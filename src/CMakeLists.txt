@@ -173,6 +173,7 @@ target_sources(${CFDJS_LIBRARY}
     cfdapi_update_witness_json.cpp
     cfdapi_select_utxos_json.cpp
     cfdapi_select_utxos_wrapper_json.cpp
+    ${CMAKE_JS_SRC}
 )
 
 target_compile_options(${CFDJS_LIBRARY}

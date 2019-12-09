@@ -1,0 +1,45 @@
+name: check-build
+
+on: 
+  push:
+    branches:
+    - master
+    - develop
+    - testing/*
+    - release/*
+  pull_request:
+    branches:
+    - master
+    - develop
+    - testing/*
+
+jobs:
+  cmake-js-build:
+    name: cmake build-mac
+    runs-on: ${{ matrix.os }}
+    matrix:
+       os: [macos-latest, windows-latest]
+       node: [8, 12]
+
+    steps:
+    - uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node }}
+    - uses: actions/checkout@v1
+    - name: npm_install
+      run: npm install
+    - name: test_all
+      run: npm run test_all
+
+  doxygen-ubuntu:
+    name: doxygen-ubuntu
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: install_doxygen
+      run: sudo apt install doxygen graphviz
+    - name: doxygen_check
+      run: |
+        cd doc
+        doxygen Doxyfile_quiet_all

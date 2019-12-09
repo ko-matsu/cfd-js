@@ -17,9 +17,10 @@ jobs:
   cmake-js-build:
     name: cmake build-mac
     runs-on: ${{ matrix.os }}
-    matrix:
-       os: [macos-latest, windows-latest]
-       node: [8, 12]
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest]
+        node: [8, 12]
 
     steps:
     - uses: actions/setup-node@v1

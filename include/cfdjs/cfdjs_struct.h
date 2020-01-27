@@ -381,6 +381,7 @@ struct CreateExtkeyFromParentPathRequestStruct {
   std::string network = "mainnet";          //!< network  // NOLINT
   std::string extkey_type = "";             //!< extkey_type  // NOLINT
   std::vector<int64_t> child_number_array;  //!< child_number_array  // NOLINT
+  std::string path = "";                    //!< path  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -1573,7 +1574,7 @@ struct GetAddressInfoResponseStruct {
   std::string locking_script = "";  //!< locking_script  // NOLINT
   std::string network = "mainnet";  //!< network  // NOLINT
   std::string hash_type = "p2pkh";  //!< hash_type  // NOLINT
-  int32_t witness_version = -1;     //!< witness_version  // NOLINT
+  int32_t witness_version = 0;      //!< witness_version  // NOLINT
   std::string hash = "";            //!< hash  // NOLINT
   cfd::js::api::InnerErrorResponseStruct error;   //!< error information
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
@@ -1599,6 +1600,7 @@ struct GetExtkeyInfoRequestStruct {
 struct GetExtkeyInfoResponseStruct {
   uint32_t version = 0;       //!< version  // NOLINT
   uint8_t depth = 0;          //!< depth  // NOLINT
+  uint32_t fingerprint = 0;   //!< fingerprint  // NOLINT
   uint32_t child_number = 0;  //!< child_number  // NOLINT
   cfd::js::api::InnerErrorResponseStruct error;   //!< error information
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.

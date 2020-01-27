@@ -272,6 +272,49 @@ class GetExtkeyInfoResponse
   }
 
   /**
+   * @brief fingerprint 取得処理
+   * @return fingerprint
+   */
+  uint32_t GetFingerprint() const {
+    return fingerprint_;
+  }
+  /**
+   * @brief fingerprint 設定処理
+   * @param[in] fingerprint    設定値
+   */
+  void SetFingerprint(  // line separate
+    const uint32_t& fingerprint) {  // NOLINT
+    this->fingerprint_ = fingerprint;
+  }
+  /**
+   * @brief fingerprint データ型の取得処理
+   * @return fingerprintのデータ型
+   */
+  static std::string GetFingerprintFieldType() {
+    return "uint32_t";
+  }
+  /**
+   * @brief fingerprint フィールドのJSON文字列取得処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @return JSON文字列
+   */
+  static std::string GetFingerprintString(  // line separate
+      const GetExtkeyInfoResponse& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.fingerprint_);
+  }
+  /**
+   * @brief fingerprint フィールドへのJSON情報設定処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @param[in] json_value  JSON情報
+   */
+  static void SetFingerprintString(  // line separate
+      GetExtkeyInfoResponse& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.fingerprint_, json_value);
+  }
+
+  /**
    * @brief childNumber 取得処理
    * @return childNumber
    */
@@ -391,6 +434,10 @@ class GetExtkeyInfoResponse
    * @brief JsonAPI(depth) のvalue
    */
   uint8_t depth_ = 0;
+  /**
+   * @brief JsonAPI(fingerprint) のvalue
+   */
+  uint32_t fingerprint_ = 0;
   /**
    * @brief JsonAPI(childNumber) のvalue
    */

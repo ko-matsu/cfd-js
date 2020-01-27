@@ -220,6 +220,49 @@ class CreateExtkeyFromParentPathRequest
   }
 
   /**
+   * @brief path 取得処理
+   * @return path
+   */
+  std::string GetPath() const {
+    return path_;
+  }
+  /**
+   * @brief path 設定処理
+   * @param[in] path    設定値
+   */
+  void SetPath(  // line separate
+    const std::string& path) {  // NOLINT
+    this->path_ = path;
+  }
+  /**
+   * @brief path データ型の取得処理
+   * @return pathのデータ型
+   */
+  static std::string GetPathFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief path フィールドのJSON文字列取得処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @return JSON文字列
+   */
+  static std::string GetPathString(  // line separate
+      const CreateExtkeyFromParentPathRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.path_);
+  }
+  /**
+   * @brief path フィールドへのJSON情報設定処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @param[in] json_value  JSON情報
+   */
+  static void SetPathString(  // line separate
+      CreateExtkeyFromParentPathRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.path_, json_value);
+  }
+
+  /**
    * @brief 無視対象アイテムを設定する。
    * @param[in] key   無視対象アイテムのキー名称
    */
@@ -304,6 +347,10 @@ class CreateExtkeyFromParentPathRequest
    * @brief JsonAPI(childNumberArray) のvalue
    */
   JsonValueVector<int64_t> child_number_array_;  // NOLINT
+  /**
+   * @brief JsonAPI(path) のvalue
+   */
+  std::string path_ = "";
 };
 
 // ------------------------------------------------------------------------

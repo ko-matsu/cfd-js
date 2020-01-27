@@ -63,6 +63,13 @@ void CreateExtkeyFromParentPathRequest::CollectFieldName() {
   };
   json_mapper.emplace("childNumberArray", func_table);
   item_list.push_back("childNumberArray");
+  func_table = {
+    CreateExtkeyFromParentPathRequest::GetPathString,
+    CreateExtkeyFromParentPathRequest::SetPathString,
+    CreateExtkeyFromParentPathRequest::GetPathFieldType,
+  };
+  json_mapper.emplace("path", func_table);
+  item_list.push_back("path");
 }
 
 void CreateExtkeyFromParentPathRequest::ConvertFromStruct(
@@ -71,6 +78,7 @@ void CreateExtkeyFromParentPathRequest::ConvertFromStruct(
   network_ = data.network;
   extkey_type_ = data.extkey_type;
   child_number_array_.ConvertFromStruct(data.child_number_array);
+  path_ = data.path;
   ignore_items = data.ignore_items;
 }
 
@@ -80,6 +88,7 @@ CreateExtkeyFromParentPathRequestStruct CreateExtkeyFromParentPathRequest::Conve
   result.network = network_;
   result.extkey_type = extkey_type_;
   result.child_number_array = child_number_array_.ConvertToStruct();
+  result.path = path_;
   result.ignore_items = ignore_items;
   return result;
 }

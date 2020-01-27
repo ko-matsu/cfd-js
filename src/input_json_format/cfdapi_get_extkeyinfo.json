@@ -10,6 +10,8 @@
     "version:type": "uint32_t",
     "depth": 0,
     "depth:type": "uint8_t",
+    "fingerprint": 0,
+    "fingerprint:type": "uint32_t",
     "childNumber": 0,
     "childNumber:type": "uint32_t"
   }

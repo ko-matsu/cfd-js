@@ -531,7 +531,7 @@ class GetAddressInfoResponse
   /**
    * @brief JsonAPI(witnessVersion) のvalue
    */
-  int32_t witness_version_ = -1;
+  int32_t witness_version_ = 0;
   /**
    * @brief JsonAPI(hash) のvalue
    */

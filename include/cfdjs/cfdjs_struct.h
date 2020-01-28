@@ -1548,6 +1548,7 @@ struct GetAddressesFromMultisigRequestStruct {
 struct GetAddressesFromMultisigResponseStruct {
   std::vector<std::string> addresses;  //!< addresses  // NOLINT
   std::vector<std::string> pubkeys;    //!< pubkeys  // NOLINT
+  int64_t require_num = 0;             //!< require_num  // NOLINT
   cfd::js::api::InnerErrorResponseStruct error;   //!< error information
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };

@@ -148,6 +148,7 @@ ElementsAddressStructApi::GetAddressesFromMultisig(
     for (const auto& pubkey : pubkeys) {
       response.pubkeys.push_back(pubkey.GetHex());
     }
+    response.require_num = redeem_script.GetElementList()[0].GetNumber();
     return response;
   };
 

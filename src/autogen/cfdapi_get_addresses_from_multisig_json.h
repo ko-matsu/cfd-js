@@ -413,6 +413,49 @@ class GetAddressesFromMultisigResponse
   }
 
   /**
+   * @brief requireNum 取得処理
+   * @return requireNum
+   */
+  int64_t GetRequireNum() const {
+    return require_num_;
+  }
+  /**
+   * @brief requireNum 設定処理
+   * @param[in] require_num    設定値
+   */
+  void SetRequireNum(  // line separate
+    const int64_t& require_num) {  // NOLINT
+    this->require_num_ = require_num;
+  }
+  /**
+   * @brief requireNum データ型の取得処理
+   * @return requireNumのデータ型
+   */
+  static std::string GetRequireNumFieldType() {
+    return "int64_t";
+  }
+  /**
+   * @brief requireNum フィールドのJSON文字列取得処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @return JSON文字列
+   */
+  static std::string GetRequireNumString(  // line separate
+      const GetAddressesFromMultisigResponse& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.require_num_);
+  }
+  /**
+   * @brief requireNum フィールドへのJSON情報設定処理
+   * @param[in,out] obj     クラスオブジェクト
+   * @param[in] json_value  JSON情報
+   */
+  static void SetRequireNumString(  // line separate
+      GetAddressesFromMultisigResponse& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.require_num_, json_value);
+  }
+
+  /**
    * @brief 無視対象アイテムを設定する。
    * @param[in] key   無視対象アイテムのキー名称
    */
@@ -489,6 +532,10 @@ class GetAddressesFromMultisigResponse
    * @brief JsonAPI(pubkeys) のvalue
    */
   JsonValueVector<std::string> pubkeys_;  // NOLINT
+  /**
+   * @brief JsonAPI(requireNum) のvalue
+   */
+  int64_t require_num_ = 0;
 };
 
 // @formatter:on

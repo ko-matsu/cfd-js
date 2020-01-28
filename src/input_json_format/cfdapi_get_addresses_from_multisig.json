@@ -13,6 +13,7 @@
   "response": {
     ":class": "GetAddressesFromMultisigResponse",
     "addresses": [""],
-    "pubkeys": [""]
+    "pubkeys": [""],
+    "requireNum": 0
   }
 }

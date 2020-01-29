@@ -111,12 +111,20 @@ void GetAddressesFromMultisigResponse::CollectFieldName() {
   };
   json_mapper.emplace("pubkeys", func_table);
   item_list.push_back("pubkeys");
+  func_table = {
+    GetAddressesFromMultisigResponse::GetRequireNumString,
+    GetAddressesFromMultisigResponse::SetRequireNumString,
+    GetAddressesFromMultisigResponse::GetRequireNumFieldType,
+  };
+  json_mapper.emplace("requireNum", func_table);
+  item_list.push_back("requireNum");
 }
 
 void GetAddressesFromMultisigResponse::ConvertFromStruct(
     const GetAddressesFromMultisigResponseStruct& data) {
   addresses_.ConvertFromStruct(data.addresses);
   pubkeys_.ConvertFromStruct(data.pubkeys);
+  require_num_ = data.require_num;
   ignore_items = data.ignore_items;
 }
 
@@ -124,6 +132,7 @@ GetAddressesFromMultisigResponseStruct GetAddressesFromMultisigResponse::Convert
   GetAddressesFromMultisigResponseStruct result;
   result.addresses = addresses_.ConvertToStruct();
   result.pubkeys = pubkeys_.ConvertToStruct();
+  result.require_num = require_num_;
   result.ignore_items = ignore_items;
   return result;
 }

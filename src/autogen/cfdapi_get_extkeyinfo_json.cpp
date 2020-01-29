@@ -85,6 +85,13 @@ void GetExtkeyInfoResponse::CollectFieldName() {
   json_mapper.emplace("depth", func_table);
   item_list.push_back("depth");
   func_table = {
+    GetExtkeyInfoResponse::GetFingerprintString,
+    GetExtkeyInfoResponse::SetFingerprintString,
+    GetExtkeyInfoResponse::GetFingerprintFieldType,
+  };
+  json_mapper.emplace("fingerprint", func_table);
+  item_list.push_back("fingerprint");
+  func_table = {
     GetExtkeyInfoResponse::GetChildNumberString,
     GetExtkeyInfoResponse::SetChildNumberString,
     GetExtkeyInfoResponse::GetChildNumberFieldType,
@@ -97,6 +104,7 @@ void GetExtkeyInfoResponse::ConvertFromStruct(
     const GetExtkeyInfoResponseStruct& data) {
   version_ = data.version;
   depth_ = data.depth;
+  fingerprint_ = data.fingerprint;
   child_number_ = data.child_number;
   ignore_items = data.ignore_items;
 }
@@ -105,6 +113,7 @@ GetExtkeyInfoResponseStruct GetExtkeyInfoResponse::ConvertToStruct() const {  //
   GetExtkeyInfoResponseStruct result;
   result.version = version_;
   result.depth = depth_;
+  result.fingerprint = fingerprint_;
   result.child_number = child_number_;
   result.ignore_items = ignore_items;
   return result;

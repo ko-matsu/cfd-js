@@ -1,8 +1,19 @@
 {
   "name": "cfd-js",
   "version": "0.0.13",
+  "description": "Crypto Finance Development Kit for JavaScript.",
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/p2pderivatives/cfd-js/issues",
+    "email" : ""
+  },
+  "homepage": "https://github.com/p2pderivatives/cfd-js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/p2pderivatives/cfd-js.git"
+  },
+  "license": "MIT",
   "main": "index.js",
-  "description": "cfd node.js api",
   "scripts": {
     "install": "run-s cmake_clean download_object cmake_install_configure cmake_compile",
     "download_object": "node ./pkg_getter.js",
@@ -108,8 +119,6 @@
     "check": "run-s doxygen_check ctest_quiet test_quiet example elements_example lint_all",
     "check_all": "run-s cmake_clean git_subm_update cmake_quiet doxygen_check ctest_quiet test_quiet example elements_example lint_all"
   },
-  "author": "",
-  "license": "MIT",
   "gypfile": false,
   "dependencies": {
     "big-integer": "^1.6.26",

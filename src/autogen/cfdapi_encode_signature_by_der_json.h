@@ -2,7 +2,7 @@
 /**
  * @file cfdapi_encode_signature_by_der_json.h
  *
- * @brief JSONマッピングファイル (自動生成)
+ * @brief JSON mapping file. (auto generate)
  */
 #ifndef CFD_JS_SRC_AUTOGEN_CFDAPI_ENCODE_SIGNATURE_BY_DER_JSON_H_
 #define CFD_JS_SRC_AUTOGEN_CFDAPI_ENCODE_SIGNATURE_BY_DER_JSON_H_
@@ -31,7 +31,7 @@ using cfd::core::JsonVector;
 // EncodeSignatureByDerRequest
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（EncodeSignatureByDerRequest）クラス
+ * @brief JSON-API (EncodeSignatureByDerRequest) class
  */
 class EncodeSignatureByDerRequest
   : public cfd::core::JsonClassBase<EncodeSignatureByDerRequest> {
@@ -43,45 +43,45 @@ class EncodeSignatureByDerRequest
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief signature 取得処理
+   * @brief Get of signature
    * @return signature
    */
   std::string GetSignature() const {
     return signature_;
   }
   /**
-   * @brief signature 設定処理
-   * @param[in] signature    設定値
+   * @brief Set to signature
+   * @param[in] signature    setting value.
    */
   void SetSignature(  // line separate
     const std::string& signature) {  // NOLINT
     this->signature_ = signature;
   }
   /**
-   * @brief signature データ型の取得処理
-   * @return signatureのデータ型
+   * @brief Get data type of signature
+   * @return Data type of signature
    */
   static std::string GetSignatureFieldType() {
     return "std::string";
   }
   /**
-   * @brief signature フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of signature field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetSignatureString(  // line separate
       const EncodeSignatureByDerRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.signature_);
   }
   /**
-   * @brief signature フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to signature field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetSignatureString(  // line separate
       EncodeSignatureByDerRequest& obj,  // NOLINT
@@ -91,40 +91,40 @@ class EncodeSignatureByDerRequest
   }
 
   /**
-   * @brief sighashType 取得処理
+   * @brief Get of sighashType
    * @return sighashType
    */
   std::string GetSighashType() const {
     return sighash_type_;
   }
   /**
-   * @brief sighashType 設定処理
-   * @param[in] sighash_type    設定値
+   * @brief Set to sighashType
+   * @param[in] sighash_type    setting value.
    */
   void SetSighashType(  // line separate
     const std::string& sighash_type) {  // NOLINT
     this->sighash_type_ = sighash_type;
   }
   /**
-   * @brief sighashType データ型の取得処理
-   * @return sighashTypeのデータ型
+   * @brief Get data type of sighashType
+   * @return Data type of sighashType
    */
   static std::string GetSighashTypeFieldType() {
     return "std::string";
   }
   /**
-   * @brief sighashType フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of sighashType field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetSighashTypeString(  // line separate
       const EncodeSignatureByDerRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.sighash_type_);
   }
   /**
-   * @brief sighashType フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to sighashType field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetSighashTypeString(  // line separate
       EncodeSignatureByDerRequest& obj,  // NOLINT
@@ -134,40 +134,40 @@ class EncodeSignatureByDerRequest
   }
 
   /**
-   * @brief sighashAnyoneCanPay 取得処理
+   * @brief Get of sighashAnyoneCanPay
    * @return sighashAnyoneCanPay
    */
   bool GetSighashAnyoneCanPay() const {
     return sighash_anyone_can_pay_;
   }
   /**
-   * @brief sighashAnyoneCanPay 設定処理
-   * @param[in] sighash_anyone_can_pay    設定値
+   * @brief Set to sighashAnyoneCanPay
+   * @param[in] sighash_anyone_can_pay    setting value.
    */
   void SetSighashAnyoneCanPay(  // line separate
     const bool& sighash_anyone_can_pay) {  // NOLINT
     this->sighash_anyone_can_pay_ = sighash_anyone_can_pay;
   }
   /**
-   * @brief sighashAnyoneCanPay データ型の取得処理
-   * @return sighashAnyoneCanPayのデータ型
+   * @brief Get data type of sighashAnyoneCanPay
+   * @return Data type of sighashAnyoneCanPay
    */
   static std::string GetSighashAnyoneCanPayFieldType() {
     return "bool";
   }
   /**
-   * @brief sighashAnyoneCanPay フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of sighashAnyoneCanPay field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetSighashAnyoneCanPayString(  // line separate
       const EncodeSignatureByDerRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.sighash_anyone_can_pay_);
   }
   /**
-   * @brief sighashAnyoneCanPay フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to sighashAnyoneCanPay field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetSighashAnyoneCanPayString(  // line separate
       EncodeSignatureByDerRequest& obj,  // NOLINT
@@ -177,54 +177,54 @@ class EncodeSignatureByDerRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const EncodeSignatureByDerRequestStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   EncodeSignatureByDerRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using EncodeSignatureByDerRequestMapTable =
     cfd::core::JsonTableMap<EncodeSignatureByDerRequest>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const EncodeSignatureByDerRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -233,28 +233,28 @@ class EncodeSignatureByDerRequest
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static EncodeSignatureByDerRequestMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(signature) のvalue
+   * @brief JsonAPI(signature) value
    */
   std::string signature_ = "";
   /**
-   * @brief JsonAPI(sighashType) のvalue
+   * @brief JsonAPI(sighashType) value
    */
   std::string sighash_type_ = "all";
   /**
-   * @brief JsonAPI(sighashAnyoneCanPay) のvalue
+   * @brief JsonAPI(sighashAnyoneCanPay) value
    */
   bool sighash_anyone_can_pay_ = false;
 };
@@ -263,7 +263,7 @@ class EncodeSignatureByDerRequest
 // EncodeSignatureByDerResponse
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（EncodeSignatureByDerResponse）クラス
+ * @brief JSON-API (EncodeSignatureByDerResponse) class
  */
 class EncodeSignatureByDerResponse
   : public cfd::core::JsonClassBase<EncodeSignatureByDerResponse> {
@@ -275,45 +275,45 @@ class EncodeSignatureByDerResponse
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief signature 取得処理
+   * @brief Get of signature
    * @return signature
    */
   std::string GetSignature() const {
     return signature_;
   }
   /**
-   * @brief signature 設定処理
-   * @param[in] signature    設定値
+   * @brief Set to signature
+   * @param[in] signature    setting value.
    */
   void SetSignature(  // line separate
     const std::string& signature) {  // NOLINT
     this->signature_ = signature;
   }
   /**
-   * @brief signature データ型の取得処理
-   * @return signatureのデータ型
+   * @brief Get data type of signature
+   * @return Data type of signature
    */
   static std::string GetSignatureFieldType() {
     return "std::string";
   }
   /**
-   * @brief signature フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of signature field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetSignatureString(  // line separate
       const EncodeSignatureByDerResponse& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.signature_);
   }
   /**
-   * @brief signature フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to signature field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetSignatureString(  // line separate
       EncodeSignatureByDerResponse& obj,  // NOLINT
@@ -323,54 +323,54 @@ class EncodeSignatureByDerResponse
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const EncodeSignatureByDerResponseStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   EncodeSignatureByDerResponseStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using EncodeSignatureByDerResponseMapTable =
     cfd::core::JsonTableMap<EncodeSignatureByDerResponse>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const EncodeSignatureByDerResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -379,20 +379,20 @@ class EncodeSignatureByDerResponse
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static EncodeSignatureByDerResponseMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(signature) のvalue
+   * @brief JsonAPI(signature) value
    */
   std::string signature_ = "";
 };

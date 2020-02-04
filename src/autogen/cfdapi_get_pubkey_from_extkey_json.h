@@ -2,7 +2,7 @@
 /**
  * @file cfdapi_get_pubkey_from_extkey_json.h
  *
- * @brief JSONマッピングファイル (自動生成)
+ * @brief JSON mapping file. (auto generate)
  */
 #ifndef CFD_JS_SRC_AUTOGEN_CFDAPI_GET_PUBKEY_FROM_EXTKEY_JSON_H_
 #define CFD_JS_SRC_AUTOGEN_CFDAPI_GET_PUBKEY_FROM_EXTKEY_JSON_H_
@@ -31,7 +31,7 @@ using cfd::core::JsonVector;
 // GetPubkeyFromExtkeyRequest
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（GetPubkeyFromExtkeyRequest）クラス
+ * @brief JSON-API (GetPubkeyFromExtkeyRequest) class
  */
 class GetPubkeyFromExtkeyRequest
   : public cfd::core::JsonClassBase<GetPubkeyFromExtkeyRequest> {
@@ -43,45 +43,45 @@ class GetPubkeyFromExtkeyRequest
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief extkey 取得処理
+   * @brief Get of extkey
    * @return extkey
    */
   std::string GetExtkey() const {
     return extkey_;
   }
   /**
-   * @brief extkey 設定処理
-   * @param[in] extkey    設定値
+   * @brief Set to extkey
+   * @param[in] extkey    setting value.
    */
   void SetExtkey(  // line separate
     const std::string& extkey) {  // NOLINT
     this->extkey_ = extkey;
   }
   /**
-   * @brief extkey データ型の取得処理
-   * @return extkeyのデータ型
+   * @brief Get data type of extkey
+   * @return Data type of extkey
    */
   static std::string GetExtkeyFieldType() {
     return "std::string";
   }
   /**
-   * @brief extkey フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of extkey field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetExtkeyString(  // line separate
       const GetPubkeyFromExtkeyRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.extkey_);
   }
   /**
-   * @brief extkey フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to extkey field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetExtkeyString(  // line separate
       GetPubkeyFromExtkeyRequest& obj,  // NOLINT
@@ -91,40 +91,40 @@ class GetPubkeyFromExtkeyRequest
   }
 
   /**
-   * @brief network 取得処理
+   * @brief Get of network
    * @return network
    */
   std::string GetNetwork() const {
     return network_;
   }
   /**
-   * @brief network 設定処理
-   * @param[in] network    設定値
+   * @brief Set to network
+   * @param[in] network    setting value.
    */
   void SetNetwork(  // line separate
     const std::string& network) {  // NOLINT
     this->network_ = network;
   }
   /**
-   * @brief network データ型の取得処理
-   * @return networkのデータ型
+   * @brief Get data type of network
+   * @return Data type of network
    */
   static std::string GetNetworkFieldType() {
     return "std::string";
   }
   /**
-   * @brief network フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of network field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetNetworkString(  // line separate
       const GetPubkeyFromExtkeyRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.network_);
   }
   /**
-   * @brief network フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to network field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetNetworkString(  // line separate
       GetPubkeyFromExtkeyRequest& obj,  // NOLINT
@@ -134,54 +134,54 @@ class GetPubkeyFromExtkeyRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const GetPubkeyFromExtkeyRequestStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   GetPubkeyFromExtkeyRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using GetPubkeyFromExtkeyRequestMapTable =
     cfd::core::JsonTableMap<GetPubkeyFromExtkeyRequest>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const GetPubkeyFromExtkeyRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -190,24 +190,24 @@ class GetPubkeyFromExtkeyRequest
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static GetPubkeyFromExtkeyRequestMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(extkey) のvalue
+   * @brief JsonAPI(extkey) value
    */
   std::string extkey_ = "";
   /**
-   * @brief JsonAPI(network) のvalue
+   * @brief JsonAPI(network) value
    */
   std::string network_ = "mainnet";
 };
@@ -216,7 +216,7 @@ class GetPubkeyFromExtkeyRequest
 // GetPubkeyFromExtkeyResponse
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（GetPubkeyFromExtkeyResponse）クラス
+ * @brief JSON-API (GetPubkeyFromExtkeyResponse) class
  */
 class GetPubkeyFromExtkeyResponse
   : public cfd::core::JsonClassBase<GetPubkeyFromExtkeyResponse> {
@@ -228,45 +228,45 @@ class GetPubkeyFromExtkeyResponse
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief pubkey 取得処理
+   * @brief Get of pubkey
    * @return pubkey
    */
   std::string GetPubkey() const {
     return pubkey_;
   }
   /**
-   * @brief pubkey 設定処理
-   * @param[in] pubkey    設定値
+   * @brief Set to pubkey
+   * @param[in] pubkey    setting value.
    */
   void SetPubkey(  // line separate
     const std::string& pubkey) {  // NOLINT
     this->pubkey_ = pubkey;
   }
   /**
-   * @brief pubkey データ型の取得処理
-   * @return pubkeyのデータ型
+   * @brief Get data type of pubkey
+   * @return Data type of pubkey
    */
   static std::string GetPubkeyFieldType() {
     return "std::string";
   }
   /**
-   * @brief pubkey フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of pubkey field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetPubkeyString(  // line separate
       const GetPubkeyFromExtkeyResponse& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.pubkey_);
   }
   /**
-   * @brief pubkey フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to pubkey field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetPubkeyString(  // line separate
       GetPubkeyFromExtkeyResponse& obj,  // NOLINT
@@ -276,54 +276,54 @@ class GetPubkeyFromExtkeyResponse
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const GetPubkeyFromExtkeyResponseStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   GetPubkeyFromExtkeyResponseStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using GetPubkeyFromExtkeyResponseMapTable =
     cfd::core::JsonTableMap<GetPubkeyFromExtkeyResponse>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const GetPubkeyFromExtkeyResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -332,20 +332,20 @@ class GetPubkeyFromExtkeyResponse
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static GetPubkeyFromExtkeyResponseMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(pubkey) のvalue
+   * @brief JsonAPI(pubkey) value
    */
   std::string pubkey_ = "";
 };

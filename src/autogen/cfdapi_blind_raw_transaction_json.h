@@ -2,7 +2,7 @@
 /**
  * @file cfdapi_blind_raw_transaction_json.h
  *
- * @brief JSONマッピングファイル (自動生成)
+ * @brief JSON mapping file. (auto generate)
  */
 #ifndef CFD_JS_SRC_AUTOGEN_CFDAPI_BLIND_RAW_TRANSACTION_JSON_H_
 #define CFD_JS_SRC_AUTOGEN_CFDAPI_BLIND_RAW_TRANSACTION_JSON_H_
@@ -31,7 +31,7 @@ using cfd::core::JsonVector;
 // BlindTxInRequest
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（BlindTxInRequest）クラス
+ * @brief JSON-API (BlindTxInRequest) class
  */
 class BlindTxInRequest
   : public cfd::core::JsonClassBase<BlindTxInRequest> {
@@ -43,45 +43,45 @@ class BlindTxInRequest
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief txid 取得処理
+   * @brief Get of txid
    * @return txid
    */
   std::string GetTxid() const {
     return txid_;
   }
   /**
-   * @brief txid 設定処理
-   * @param[in] txid    設定値
+   * @brief Set to txid
+   * @param[in] txid    setting value.
    */
   void SetTxid(  // line separate
     const std::string& txid) {  // NOLINT
     this->txid_ = txid;
   }
   /**
-   * @brief txid データ型の取得処理
-   * @return txidのデータ型
+   * @brief Get data type of txid
+   * @return Data type of txid
    */
   static std::string GetTxidFieldType() {
     return "std::string";
   }
   /**
-   * @brief txid フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of txid field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetTxidString(  // line separate
       const BlindTxInRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.txid_);
   }
   /**
-   * @brief txid フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to txid field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetTxidString(  // line separate
       BlindTxInRequest& obj,  // NOLINT
@@ -91,40 +91,40 @@ class BlindTxInRequest
   }
 
   /**
-   * @brief vout 取得処理
+   * @brief Get of vout
    * @return vout
    */
   int64_t GetVout() const {
     return vout_;
   }
   /**
-   * @brief vout 設定処理
-   * @param[in] vout    設定値
+   * @brief Set to vout
+   * @param[in] vout    setting value.
    */
   void SetVout(  // line separate
     const int64_t& vout) {  // NOLINT
     this->vout_ = vout;
   }
   /**
-   * @brief vout データ型の取得処理
-   * @return voutのデータ型
+   * @brief Get data type of vout
+   * @return Data type of vout
    */
   static std::string GetVoutFieldType() {
     return "int64_t";
   }
   /**
-   * @brief vout フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of vout field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetVoutString(  // line separate
       const BlindTxInRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.vout_);
   }
   /**
-   * @brief vout フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to vout field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetVoutString(  // line separate
       BlindTxInRequest& obj,  // NOLINT
@@ -134,40 +134,40 @@ class BlindTxInRequest
   }
 
   /**
-   * @brief asset 取得処理
+   * @brief Get of asset
    * @return asset
    */
   std::string GetAsset() const {
     return asset_;
   }
   /**
-   * @brief asset 設定処理
-   * @param[in] asset    設定値
+   * @brief Set to asset
+   * @param[in] asset    setting value.
    */
   void SetAsset(  // line separate
     const std::string& asset) {  // NOLINT
     this->asset_ = asset;
   }
   /**
-   * @brief asset データ型の取得処理
-   * @return assetのデータ型
+   * @brief Get data type of asset
+   * @return Data type of asset
    */
   static std::string GetAssetFieldType() {
     return "std::string";
   }
   /**
-   * @brief asset フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of asset field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetAssetString(  // line separate
       const BlindTxInRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.asset_);
   }
   /**
-   * @brief asset フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to asset field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetAssetString(  // line separate
       BlindTxInRequest& obj,  // NOLINT
@@ -177,40 +177,40 @@ class BlindTxInRequest
   }
 
   /**
-   * @brief blindFactor 取得処理
+   * @brief Get of blindFactor
    * @return blindFactor
    */
   std::string GetBlindFactor() const {
     return blind_factor_;
   }
   /**
-   * @brief blindFactor 設定処理
-   * @param[in] blind_factor    設定値
+   * @brief Set to blindFactor
+   * @param[in] blind_factor    setting value.
    */
   void SetBlindFactor(  // line separate
     const std::string& blind_factor) {  // NOLINT
     this->blind_factor_ = blind_factor;
   }
   /**
-   * @brief blindFactor データ型の取得処理
-   * @return blindFactorのデータ型
+   * @brief Get data type of blindFactor
+   * @return Data type of blindFactor
    */
   static std::string GetBlindFactorFieldType() {
     return "std::string";
   }
   /**
-   * @brief blindFactor フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of blindFactor field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetBlindFactorString(  // line separate
       const BlindTxInRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.blind_factor_);
   }
   /**
-   * @brief blindFactor フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to blindFactor field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetBlindFactorString(  // line separate
       BlindTxInRequest& obj,  // NOLINT
@@ -220,40 +220,40 @@ class BlindTxInRequest
   }
 
   /**
-   * @brief assetBlindFactor 取得処理
+   * @brief Get of assetBlindFactor
    * @return assetBlindFactor
    */
   std::string GetAssetBlindFactor() const {
     return asset_blind_factor_;
   }
   /**
-   * @brief assetBlindFactor 設定処理
-   * @param[in] asset_blind_factor    設定値
+   * @brief Set to assetBlindFactor
+   * @param[in] asset_blind_factor    setting value.
    */
   void SetAssetBlindFactor(  // line separate
     const std::string& asset_blind_factor) {  // NOLINT
     this->asset_blind_factor_ = asset_blind_factor;
   }
   /**
-   * @brief assetBlindFactor データ型の取得処理
-   * @return assetBlindFactorのデータ型
+   * @brief Get data type of assetBlindFactor
+   * @return Data type of assetBlindFactor
    */
   static std::string GetAssetBlindFactorFieldType() {
     return "std::string";
   }
   /**
-   * @brief assetBlindFactor フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of assetBlindFactor field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetAssetBlindFactorString(  // line separate
       const BlindTxInRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.asset_blind_factor_);
   }
   /**
-   * @brief assetBlindFactor フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to assetBlindFactor field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetAssetBlindFactorString(  // line separate
       BlindTxInRequest& obj,  // NOLINT
@@ -263,40 +263,40 @@ class BlindTxInRequest
   }
 
   /**
-   * @brief amount 取得処理
+   * @brief Get of amount
    * @return amount
    */
   int64_t GetAmount() const {
     return amount_;
   }
   /**
-   * @brief amount 設定処理
-   * @param[in] amount    設定値
+   * @brief Set to amount
+   * @param[in] amount    setting value.
    */
   void SetAmount(  // line separate
     const int64_t& amount) {  // NOLINT
     this->amount_ = amount;
   }
   /**
-   * @brief amount データ型の取得処理
-   * @return amountのデータ型
+   * @brief Get data type of amount
+   * @return Data type of amount
    */
   static std::string GetAmountFieldType() {
     return "int64_t";
   }
   /**
-   * @brief amount フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of amount field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetAmountString(  // line separate
       const BlindTxInRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.amount_);
   }
   /**
-   * @brief amount フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to amount field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetAmountString(  // line separate
       BlindTxInRequest& obj,  // NOLINT
@@ -306,54 +306,54 @@ class BlindTxInRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const BlindTxInRequestStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   BlindTxInRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using BlindTxInRequestMapTable =
     cfd::core::JsonTableMap<BlindTxInRequest>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const BlindTxInRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -362,40 +362,40 @@ class BlindTxInRequest
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static BlindTxInRequestMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(txid) のvalue
+   * @brief JsonAPI(txid) value
    */
   std::string txid_ = "";
   /**
-   * @brief JsonAPI(vout) のvalue
+   * @brief JsonAPI(vout) value
    */
   int64_t vout_ = 0;
   /**
-   * @brief JsonAPI(asset) のvalue
+   * @brief JsonAPI(asset) value
    */
   std::string asset_ = "";
   /**
-   * @brief JsonAPI(blindFactor) のvalue
+   * @brief JsonAPI(blindFactor) value
    */
   std::string blind_factor_ = "";
   /**
-   * @brief JsonAPI(assetBlindFactor) のvalue
+   * @brief JsonAPI(assetBlindFactor) value
    */
   std::string asset_blind_factor_ = "";
   /**
-   * @brief JsonAPI(amount) のvalue
+   * @brief JsonAPI(amount) value
    */
   int64_t amount_ = 0;
 };
@@ -404,7 +404,7 @@ class BlindTxInRequest
 // BlindTxOutRequest
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（BlindTxOutRequest）クラス
+ * @brief JSON-API (BlindTxOutRequest) class
  */
 class BlindTxOutRequest
   : public cfd::core::JsonClassBase<BlindTxOutRequest> {
@@ -416,45 +416,45 @@ class BlindTxOutRequest
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief index 取得処理
+   * @brief Get of index
    * @return index
    */
   uint32_t GetIndex() const {
     return index_;
   }
   /**
-   * @brief index 設定処理
-   * @param[in] index    設定値
+   * @brief Set to index
+   * @param[in] index    setting value.
    */
   void SetIndex(  // line separate
     const uint32_t& index) {  // NOLINT
     this->index_ = index;
   }
   /**
-   * @brief index データ型の取得処理
-   * @return indexのデータ型
+   * @brief Get data type of index
+   * @return Data type of index
    */
   static std::string GetIndexFieldType() {
     return "uint32_t";
   }
   /**
-   * @brief index フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of index field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetIndexString(  // line separate
       const BlindTxOutRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.index_);
   }
   /**
-   * @brief index フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to index field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetIndexString(  // line separate
       BlindTxOutRequest& obj,  // NOLINT
@@ -464,40 +464,40 @@ class BlindTxOutRequest
   }
 
   /**
-   * @brief blindPubkey 取得処理
+   * @brief Get of blindPubkey
    * @return blindPubkey
    */
   std::string GetBlindPubkey() const {
     return blind_pubkey_;
   }
   /**
-   * @brief blindPubkey 設定処理
-   * @param[in] blind_pubkey    設定値
+   * @brief Set to blindPubkey
+   * @param[in] blind_pubkey    setting value.
    */
   void SetBlindPubkey(  // line separate
     const std::string& blind_pubkey) {  // NOLINT
     this->blind_pubkey_ = blind_pubkey;
   }
   /**
-   * @brief blindPubkey データ型の取得処理
-   * @return blindPubkeyのデータ型
+   * @brief Get data type of blindPubkey
+   * @return Data type of blindPubkey
    */
   static std::string GetBlindPubkeyFieldType() {
     return "std::string";
   }
   /**
-   * @brief blindPubkey フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of blindPubkey field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetBlindPubkeyString(  // line separate
       const BlindTxOutRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.blind_pubkey_);
   }
   /**
-   * @brief blindPubkey フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to blindPubkey field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetBlindPubkeyString(  // line separate
       BlindTxOutRequest& obj,  // NOLINT
@@ -507,54 +507,54 @@ class BlindTxOutRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const BlindTxOutRequestStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   BlindTxOutRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using BlindTxOutRequestMapTable =
     cfd::core::JsonTableMap<BlindTxOutRequest>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const BlindTxOutRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -563,24 +563,24 @@ class BlindTxOutRequest
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static BlindTxOutRequestMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(index) のvalue
+   * @brief JsonAPI(index) value
    */
   uint32_t index_ = 0;
   /**
-   * @brief JsonAPI(blindPubkey) のvalue
+   * @brief JsonAPI(blindPubkey) value
    */
   std::string blind_pubkey_ = "";
 };
@@ -589,7 +589,7 @@ class BlindTxOutRequest
 // BlindIssuanceRequest
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（BlindIssuanceRequest）クラス
+ * @brief JSON-API (BlindIssuanceRequest) class
  */
 class BlindIssuanceRequest
   : public cfd::core::JsonClassBase<BlindIssuanceRequest> {
@@ -601,45 +601,45 @@ class BlindIssuanceRequest
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief txid 取得処理
+   * @brief Get of txid
    * @return txid
    */
   std::string GetTxid() const {
     return txid_;
   }
   /**
-   * @brief txid 設定処理
-   * @param[in] txid    設定値
+   * @brief Set to txid
+   * @param[in] txid    setting value.
    */
   void SetTxid(  // line separate
     const std::string& txid) {  // NOLINT
     this->txid_ = txid;
   }
   /**
-   * @brief txid データ型の取得処理
-   * @return txidのデータ型
+   * @brief Get data type of txid
+   * @return Data type of txid
    */
   static std::string GetTxidFieldType() {
     return "std::string";
   }
   /**
-   * @brief txid フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of txid field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetTxidString(  // line separate
       const BlindIssuanceRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.txid_);
   }
   /**
-   * @brief txid フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to txid field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetTxidString(  // line separate
       BlindIssuanceRequest& obj,  // NOLINT
@@ -649,40 +649,40 @@ class BlindIssuanceRequest
   }
 
   /**
-   * @brief vout 取得処理
+   * @brief Get of vout
    * @return vout
    */
   int64_t GetVout() const {
     return vout_;
   }
   /**
-   * @brief vout 設定処理
-   * @param[in] vout    設定値
+   * @brief Set to vout
+   * @param[in] vout    setting value.
    */
   void SetVout(  // line separate
     const int64_t& vout) {  // NOLINT
     this->vout_ = vout;
   }
   /**
-   * @brief vout データ型の取得処理
-   * @return voutのデータ型
+   * @brief Get data type of vout
+   * @return Data type of vout
    */
   static std::string GetVoutFieldType() {
     return "int64_t";
   }
   /**
-   * @brief vout フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of vout field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetVoutString(  // line separate
       const BlindIssuanceRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.vout_);
   }
   /**
-   * @brief vout フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to vout field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetVoutString(  // line separate
       BlindIssuanceRequest& obj,  // NOLINT
@@ -692,40 +692,40 @@ class BlindIssuanceRequest
   }
 
   /**
-   * @brief assetBlindingKey 取得処理
+   * @brief Get of assetBlindingKey
    * @return assetBlindingKey
    */
   std::string GetAssetBlindingKey() const {
     return asset_blinding_key_;
   }
   /**
-   * @brief assetBlindingKey 設定処理
-   * @param[in] asset_blinding_key    設定値
+   * @brief Set to assetBlindingKey
+   * @param[in] asset_blinding_key    setting value.
    */
   void SetAssetBlindingKey(  // line separate
     const std::string& asset_blinding_key) {  // NOLINT
     this->asset_blinding_key_ = asset_blinding_key;
   }
   /**
-   * @brief assetBlindingKey データ型の取得処理
-   * @return assetBlindingKeyのデータ型
+   * @brief Get data type of assetBlindingKey
+   * @return Data type of assetBlindingKey
    */
   static std::string GetAssetBlindingKeyFieldType() {
     return "std::string";
   }
   /**
-   * @brief assetBlindingKey フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of assetBlindingKey field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetAssetBlindingKeyString(  // line separate
       const BlindIssuanceRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.asset_blinding_key_);
   }
   /**
-   * @brief assetBlindingKey フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to assetBlindingKey field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetAssetBlindingKeyString(  // line separate
       BlindIssuanceRequest& obj,  // NOLINT
@@ -735,40 +735,40 @@ class BlindIssuanceRequest
   }
 
   /**
-   * @brief tokenBlindingKey 取得処理
+   * @brief Get of tokenBlindingKey
    * @return tokenBlindingKey
    */
   std::string GetTokenBlindingKey() const {
     return token_blinding_key_;
   }
   /**
-   * @brief tokenBlindingKey 設定処理
-   * @param[in] token_blinding_key    設定値
+   * @brief Set to tokenBlindingKey
+   * @param[in] token_blinding_key    setting value.
    */
   void SetTokenBlindingKey(  // line separate
     const std::string& token_blinding_key) {  // NOLINT
     this->token_blinding_key_ = token_blinding_key;
   }
   /**
-   * @brief tokenBlindingKey データ型の取得処理
-   * @return tokenBlindingKeyのデータ型
+   * @brief Get data type of tokenBlindingKey
+   * @return Data type of tokenBlindingKey
    */
   static std::string GetTokenBlindingKeyFieldType() {
     return "std::string";
   }
   /**
-   * @brief tokenBlindingKey フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of tokenBlindingKey field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetTokenBlindingKeyString(  // line separate
       const BlindIssuanceRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.token_blinding_key_);
   }
   /**
-   * @brief tokenBlindingKey フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to tokenBlindingKey field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetTokenBlindingKeyString(  // line separate
       BlindIssuanceRequest& obj,  // NOLINT
@@ -778,54 +778,54 @@ class BlindIssuanceRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const BlindIssuanceRequestStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   BlindIssuanceRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using BlindIssuanceRequestMapTable =
     cfd::core::JsonTableMap<BlindIssuanceRequest>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const BlindIssuanceRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -834,32 +834,32 @@ class BlindIssuanceRequest
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static BlindIssuanceRequestMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(txid) のvalue
+   * @brief JsonAPI(txid) value
    */
   std::string txid_ = "";
   /**
-   * @brief JsonAPI(vout) のvalue
+   * @brief JsonAPI(vout) value
    */
   int64_t vout_ = 0;
   /**
-   * @brief JsonAPI(assetBlindingKey) のvalue
+   * @brief JsonAPI(assetBlindingKey) value
    */
   std::string asset_blinding_key_ = "";
   /**
-   * @brief JsonAPI(tokenBlindingKey) のvalue
+   * @brief JsonAPI(tokenBlindingKey) value
    */
   std::string token_blinding_key_ = "";
 };
@@ -868,7 +868,7 @@ class BlindIssuanceRequest
 // BlindRawTransactionRequest
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（BlindRawTransactionRequest）クラス
+ * @brief JSON-API (BlindRawTransactionRequest) class
  */
 class BlindRawTransactionRequest
   : public cfd::core::JsonClassBase<BlindRawTransactionRequest> {
@@ -880,45 +880,45 @@ class BlindRawTransactionRequest
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief tx 取得処理
+   * @brief Get of tx
    * @return tx
    */
   std::string GetTx() const {
     return tx_;
   }
   /**
-   * @brief tx 設定処理
-   * @param[in] tx    設定値
+   * @brief Set to tx
+   * @param[in] tx    setting value.
    */
   void SetTx(  // line separate
     const std::string& tx) {  // NOLINT
     this->tx_ = tx;
   }
   /**
-   * @brief tx データ型の取得処理
-   * @return txのデータ型
+   * @brief Get data type of tx
+   * @return Data type of tx
    */
   static std::string GetTxFieldType() {
     return "std::string";
   }
   /**
-   * @brief tx フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of tx field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetTxString(  // line separate
       const BlindRawTransactionRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.tx_);
   }
   /**
-   * @brief tx フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to tx field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetTxString(  // line separate
       BlindRawTransactionRequest& obj,  // NOLINT
@@ -928,41 +928,42 @@ class BlindRawTransactionRequest
   }
 
   /**
-   * @brief txins 取得処理
+   * @brief Get of txins.
    * @return txins
    */
   JsonObjectVector<BlindTxInRequest, BlindTxInRequestStruct>& GetTxins() {  // NOLINT
     return txins_;
   }
   /**
-   * @brief txins 設定処理
-   * @param[in] txins    設定値
+   * @brief Set to txins.
+   * @param[in] txins    setting value.
    */
   void SetTxins(  // line separate
       const JsonObjectVector<BlindTxInRequest, BlindTxInRequestStruct>& txins) {  // NOLINT
     this->txins_ = txins;
   }
   /**
-   * @brief txins データ型の取得処理
-   * @return txinsのデータ型
+   * @brief Get data type of txins.
+   * @return Data type of txins.
    */
   static std::string GetTxinsFieldType() {
     return "JsonObjectVector<BlindTxInRequest, BlindTxInRequestStruct>";  // NOLINT
   }
   /**
-   * @brief txins フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of txins field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
    */
   static std::string GetTxinsString(  // line separate
       const BlindRawTransactionRequest& obj) {  // NOLINT
-    // Serialize内部のpre/post処理でメンバ変数の置換が起こり得るためconstにしない
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
     return obj.txins_.Serialize();
   }
   /**
-   * @brief txins フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to txins field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
    */
   static void SetTxinsString(  // line separate
       BlindRawTransactionRequest& obj,  // NOLINT
@@ -971,41 +972,42 @@ class BlindRawTransactionRequest
   }
 
   /**
-   * @brief txouts 取得処理
+   * @brief Get of txouts.
    * @return txouts
    */
   JsonObjectVector<BlindTxOutRequest, BlindTxOutRequestStruct>& GetTxouts() {  // NOLINT
     return txouts_;
   }
   /**
-   * @brief txouts 設定処理
-   * @param[in] txouts    設定値
+   * @brief Set to txouts.
+   * @param[in] txouts    setting value.
    */
   void SetTxouts(  // line separate
       const JsonObjectVector<BlindTxOutRequest, BlindTxOutRequestStruct>& txouts) {  // NOLINT
     this->txouts_ = txouts;
   }
   /**
-   * @brief txouts データ型の取得処理
-   * @return txoutsのデータ型
+   * @brief Get data type of txouts.
+   * @return Data type of txouts.
    */
   static std::string GetTxoutsFieldType() {
     return "JsonObjectVector<BlindTxOutRequest, BlindTxOutRequestStruct>";  // NOLINT
   }
   /**
-   * @brief txouts フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of txouts field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
    */
   static std::string GetTxoutsString(  // line separate
       const BlindRawTransactionRequest& obj) {  // NOLINT
-    // Serialize内部のpre/post処理でメンバ変数の置換が起こり得るためconstにしない
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
     return obj.txouts_.Serialize();
   }
   /**
-   * @brief txouts フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to txouts field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
    */
   static void SetTxoutsString(  // line separate
       BlindRawTransactionRequest& obj,  // NOLINT
@@ -1014,41 +1016,42 @@ class BlindRawTransactionRequest
   }
 
   /**
-   * @brief issuances 取得処理
+   * @brief Get of issuances.
    * @return issuances
    */
   JsonObjectVector<BlindIssuanceRequest, BlindIssuanceRequestStruct>& GetIssuances() {  // NOLINT
     return issuances_;
   }
   /**
-   * @brief issuances 設定処理
-   * @param[in] issuances    設定値
+   * @brief Set to issuances.
+   * @param[in] issuances    setting value.
    */
   void SetIssuances(  // line separate
       const JsonObjectVector<BlindIssuanceRequest, BlindIssuanceRequestStruct>& issuances) {  // NOLINT
     this->issuances_ = issuances;
   }
   /**
-   * @brief issuances データ型の取得処理
-   * @return issuancesのデータ型
+   * @brief Get data type of issuances.
+   * @return Data type of issuances.
    */
   static std::string GetIssuancesFieldType() {
     return "JsonObjectVector<BlindIssuanceRequest, BlindIssuanceRequestStruct>";  // NOLINT
   }
   /**
-   * @brief issuances フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of issuances field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
    */
   static std::string GetIssuancesString(  // line separate
       const BlindRawTransactionRequest& obj) {  // NOLINT
-    // Serialize内部のpre/post処理でメンバ変数の置換が起こり得るためconstにしない
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
     return obj.issuances_.Serialize();
   }
   /**
-   * @brief issuances フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to issuances field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
    */
   static void SetIssuancesString(  // line separate
       BlindRawTransactionRequest& obj,  // NOLINT
@@ -1057,54 +1060,54 @@ class BlindRawTransactionRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const BlindRawTransactionRequestStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   BlindRawTransactionRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using BlindRawTransactionRequestMapTable =
     cfd::core::JsonTableMap<BlindRawTransactionRequest>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const BlindRawTransactionRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -1113,32 +1116,32 @@ class BlindRawTransactionRequest
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static BlindRawTransactionRequestMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(tx) のvalue
+   * @brief JsonAPI(tx) value
    */
   std::string tx_ = "";
   /**
-   * @brief JsonAPI(txins) のvalue
+   * @brief JsonAPI(txins) value
    */
   JsonObjectVector<BlindTxInRequest, BlindTxInRequestStruct> txins_;  // NOLINT
   /**
-   * @brief JsonAPI(txouts) のvalue
+   * @brief JsonAPI(txouts) value
    */
   JsonObjectVector<BlindTxOutRequest, BlindTxOutRequestStruct> txouts_;  // NOLINT
   /**
-   * @brief JsonAPI(issuances) のvalue
+   * @brief JsonAPI(issuances) value
    */
   JsonObjectVector<BlindIssuanceRequest, BlindIssuanceRequestStruct> issuances_;  // NOLINT
 };
@@ -1147,7 +1150,7 @@ class BlindRawTransactionRequest
 // BlindRawTransactionResponse
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（BlindRawTransactionResponse）クラス
+ * @brief JSON-API (BlindRawTransactionResponse) class
  */
 class BlindRawTransactionResponse
   : public cfd::core::JsonClassBase<BlindRawTransactionResponse> {
@@ -1159,45 +1162,45 @@ class BlindRawTransactionResponse
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief hex 取得処理
+   * @brief Get of hex
    * @return hex
    */
   std::string GetHex() const {
     return hex_;
   }
   /**
-   * @brief hex 設定処理
-   * @param[in] hex    設定値
+   * @brief Set to hex
+   * @param[in] hex    setting value.
    */
   void SetHex(  // line separate
     const std::string& hex) {  // NOLINT
     this->hex_ = hex;
   }
   /**
-   * @brief hex データ型の取得処理
-   * @return hexのデータ型
+   * @brief Get data type of hex
+   * @return Data type of hex
    */
   static std::string GetHexFieldType() {
     return "std::string";
   }
   /**
-   * @brief hex フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of hex field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetHexString(  // line separate
       const BlindRawTransactionResponse& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.hex_);
   }
   /**
-   * @brief hex フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to hex field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetHexString(  // line separate
       BlindRawTransactionResponse& obj,  // NOLINT
@@ -1207,54 +1210,54 @@ class BlindRawTransactionResponse
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const BlindRawTransactionResponseStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   BlindRawTransactionResponseStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using BlindRawTransactionResponseMapTable =
     cfd::core::JsonTableMap<BlindRawTransactionResponse>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const BlindRawTransactionResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -1263,20 +1266,20 @@ class BlindRawTransactionResponse
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static BlindRawTransactionResponseMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(hex) のvalue
+   * @brief JsonAPI(hex) value
    */
   std::string hex_ = "";
 };

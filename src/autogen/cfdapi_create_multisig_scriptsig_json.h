@@ -2,7 +2,7 @@
 /**
  * @file cfdapi_create_multisig_scriptsig_json.h
  *
- * @brief JSONマッピングファイル (自動生成)
+ * @brief JSON mapping file. (auto generate)
  */
 #ifndef CFD_JS_SRC_AUTOGEN_CFDAPI_CREATE_MULTISIG_SCRIPTSIG_JSON_H_
 #define CFD_JS_SRC_AUTOGEN_CFDAPI_CREATE_MULTISIG_SCRIPTSIG_JSON_H_
@@ -31,7 +31,7 @@ using cfd::core::JsonVector;
 // MultisigScriptSigData
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（MultisigScriptSigData）クラス
+ * @brief JSON-API (MultisigScriptSigData) class
  */
 class MultisigScriptSigData
   : public cfd::core::JsonClassBase<MultisigScriptSigData> {
@@ -43,45 +43,45 @@ class MultisigScriptSigData
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief hex 取得処理
+   * @brief Get of hex
    * @return hex
    */
   std::string GetHex() const {
     return hex_;
   }
   /**
-   * @brief hex 設定処理
-   * @param[in] hex    設定値
+   * @brief Set to hex
+   * @param[in] hex    setting value.
    */
   void SetHex(  // line separate
     const std::string& hex) {  // NOLINT
     this->hex_ = hex;
   }
   /**
-   * @brief hex データ型の取得処理
-   * @return hexのデータ型
+   * @brief Get data type of hex
+   * @return Data type of hex
    */
   static std::string GetHexFieldType() {
     return "std::string";
   }
   /**
-   * @brief hex フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of hex field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetHexString(  // line separate
       const MultisigScriptSigData& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.hex_);
   }
   /**
-   * @brief hex フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to hex field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetHexString(  // line separate
       MultisigScriptSigData& obj,  // NOLINT
@@ -91,40 +91,40 @@ class MultisigScriptSigData
   }
 
   /**
-   * @brief type 取得処理
+   * @brief Get of type
    * @return type
    */
   std::string GetType() const {
     return type_;
   }
   /**
-   * @brief type 設定処理
-   * @param[in] type    設定値
+   * @brief Set to type
+   * @param[in] type    setting value.
    */
   void SetType(  // line separate
     const std::string& type) {  // NOLINT
     this->type_ = type;
   }
   /**
-   * @brief type データ型の取得処理
-   * @return typeのデータ型
+   * @brief Get data type of type
+   * @return Data type of type
    */
   static std::string GetTypeFieldType() {
     return "std::string";
   }
   /**
-   * @brief type フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of type field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetTypeString(  // line separate
       const MultisigScriptSigData& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.type_);
   }
   /**
-   * @brief type フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to type field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetTypeString(  // line separate
       MultisigScriptSigData& obj,  // NOLINT
@@ -134,40 +134,40 @@ class MultisigScriptSigData
   }
 
   /**
-   * @brief derEncode 取得処理
+   * @brief Get of derEncode
    * @return derEncode
    */
   bool GetDerEncode() const {
     return der_encode_;
   }
   /**
-   * @brief derEncode 設定処理
-   * @param[in] der_encode    設定値
+   * @brief Set to derEncode
+   * @param[in] der_encode    setting value.
    */
   void SetDerEncode(  // line separate
     const bool& der_encode) {  // NOLINT
     this->der_encode_ = der_encode;
   }
   /**
-   * @brief derEncode データ型の取得処理
-   * @return derEncodeのデータ型
+   * @brief Get data type of derEncode
+   * @return Data type of derEncode
    */
   static std::string GetDerEncodeFieldType() {
     return "bool";
   }
   /**
-   * @brief derEncode フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of derEncode field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetDerEncodeString(  // line separate
       const MultisigScriptSigData& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.der_encode_);
   }
   /**
-   * @brief derEncode フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to derEncode field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetDerEncodeString(  // line separate
       MultisigScriptSigData& obj,  // NOLINT
@@ -177,40 +177,40 @@ class MultisigScriptSigData
   }
 
   /**
-   * @brief sighashType 取得処理
+   * @brief Get of sighashType
    * @return sighashType
    */
   std::string GetSighashType() const {
     return sighash_type_;
   }
   /**
-   * @brief sighashType 設定処理
-   * @param[in] sighash_type    設定値
+   * @brief Set to sighashType
+   * @param[in] sighash_type    setting value.
    */
   void SetSighashType(  // line separate
     const std::string& sighash_type) {  // NOLINT
     this->sighash_type_ = sighash_type;
   }
   /**
-   * @brief sighashType データ型の取得処理
-   * @return sighashTypeのデータ型
+   * @brief Get data type of sighashType
+   * @return Data type of sighashType
    */
   static std::string GetSighashTypeFieldType() {
     return "std::string";
   }
   /**
-   * @brief sighashType フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of sighashType field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetSighashTypeString(  // line separate
       const MultisigScriptSigData& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.sighash_type_);
   }
   /**
-   * @brief sighashType フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to sighashType field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetSighashTypeString(  // line separate
       MultisigScriptSigData& obj,  // NOLINT
@@ -220,40 +220,40 @@ class MultisigScriptSigData
   }
 
   /**
-   * @brief sighashAnyoneCanPay 取得処理
+   * @brief Get of sighashAnyoneCanPay
    * @return sighashAnyoneCanPay
    */
   bool GetSighashAnyoneCanPay() const {
     return sighash_anyone_can_pay_;
   }
   /**
-   * @brief sighashAnyoneCanPay 設定処理
-   * @param[in] sighash_anyone_can_pay    設定値
+   * @brief Set to sighashAnyoneCanPay
+   * @param[in] sighash_anyone_can_pay    setting value.
    */
   void SetSighashAnyoneCanPay(  // line separate
     const bool& sighash_anyone_can_pay) {  // NOLINT
     this->sighash_anyone_can_pay_ = sighash_anyone_can_pay;
   }
   /**
-   * @brief sighashAnyoneCanPay データ型の取得処理
-   * @return sighashAnyoneCanPayのデータ型
+   * @brief Get data type of sighashAnyoneCanPay
+   * @return Data type of sighashAnyoneCanPay
    */
   static std::string GetSighashAnyoneCanPayFieldType() {
     return "bool";
   }
   /**
-   * @brief sighashAnyoneCanPay フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of sighashAnyoneCanPay field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetSighashAnyoneCanPayString(  // line separate
       const MultisigScriptSigData& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.sighash_anyone_can_pay_);
   }
   /**
-   * @brief sighashAnyoneCanPay フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to sighashAnyoneCanPay field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetSighashAnyoneCanPayString(  // line separate
       MultisigScriptSigData& obj,  // NOLINT
@@ -263,40 +263,40 @@ class MultisigScriptSigData
   }
 
   /**
-   * @brief relatedPubkey 取得処理
+   * @brief Get of relatedPubkey
    * @return relatedPubkey
    */
   std::string GetRelatedPubkey() const {
     return related_pubkey_;
   }
   /**
-   * @brief relatedPubkey 設定処理
-   * @param[in] related_pubkey    設定値
+   * @brief Set to relatedPubkey
+   * @param[in] related_pubkey    setting value.
    */
   void SetRelatedPubkey(  // line separate
     const std::string& related_pubkey) {  // NOLINT
     this->related_pubkey_ = related_pubkey;
   }
   /**
-   * @brief relatedPubkey データ型の取得処理
-   * @return relatedPubkeyのデータ型
+   * @brief Get data type of relatedPubkey
+   * @return Data type of relatedPubkey
    */
   static std::string GetRelatedPubkeyFieldType() {
     return "std::string";
   }
   /**
-   * @brief relatedPubkey フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of relatedPubkey field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetRelatedPubkeyString(  // line separate
       const MultisigScriptSigData& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.related_pubkey_);
   }
   /**
-   * @brief relatedPubkey フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to relatedPubkey field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetRelatedPubkeyString(  // line separate
       MultisigScriptSigData& obj,  // NOLINT
@@ -306,54 +306,54 @@ class MultisigScriptSigData
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const MultisigScriptSigDataStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   MultisigScriptSigDataStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using MultisigScriptSigDataMapTable =
     cfd::core::JsonTableMap<MultisigScriptSigData>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const MultisigScriptSigDataMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -362,40 +362,40 @@ class MultisigScriptSigData
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static MultisigScriptSigDataMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(hex) のvalue
+   * @brief JsonAPI(hex) value
    */
   std::string hex_ = "";
   /**
-   * @brief JsonAPI(type) のvalue
+   * @brief JsonAPI(type) value
    */
   std::string type_ = "sign";
   /**
-   * @brief JsonAPI(derEncode) のvalue
+   * @brief JsonAPI(derEncode) value
    */
   bool der_encode_ = true;
   /**
-   * @brief JsonAPI(sighashType) のvalue
+   * @brief JsonAPI(sighashType) value
    */
   std::string sighash_type_ = "all";
   /**
-   * @brief JsonAPI(sighashAnyoneCanPay) のvalue
+   * @brief JsonAPI(sighashAnyoneCanPay) value
    */
   bool sighash_anyone_can_pay_ = false;
   /**
-   * @brief JsonAPI(relatedPubkey) のvalue
+   * @brief JsonAPI(relatedPubkey) value
    */
   std::string related_pubkey_ = "";
 };
@@ -404,7 +404,7 @@ class MultisigScriptSigData
 // CreateMultisigScriptSigRequest
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（CreateMultisigScriptSigRequest）クラス
+ * @brief JSON-API (CreateMultisigScriptSigRequest) class
  */
 class CreateMultisigScriptSigRequest
   : public cfd::core::JsonClassBase<CreateMultisigScriptSigRequest> {
@@ -416,46 +416,47 @@ class CreateMultisigScriptSigRequest
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief signParams 取得処理
+   * @brief Get of signParams.
    * @return signParams
    */
   JsonObjectVector<MultisigScriptSigData, MultisigScriptSigDataStruct>& GetSignParams() {  // NOLINT
     return sign_params_;
   }
   /**
-   * @brief signParams 設定処理
-   * @param[in] sign_params    設定値
+   * @brief Set to signParams.
+   * @param[in] sign_params    setting value.
    */
   void SetSignParams(  // line separate
       const JsonObjectVector<MultisigScriptSigData, MultisigScriptSigDataStruct>& sign_params) {  // NOLINT
     this->sign_params_ = sign_params;
   }
   /**
-   * @brief signParams データ型の取得処理
-   * @return signParamsのデータ型
+   * @brief Get data type of signParams.
+   * @return Data type of signParams.
    */
   static std::string GetSignParamsFieldType() {
     return "JsonObjectVector<MultisigScriptSigData, MultisigScriptSigDataStruct>";  // NOLINT
   }
   /**
-   * @brief signParams フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of signParams field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
    */
   static std::string GetSignParamsString(  // line separate
       const CreateMultisigScriptSigRequest& obj) {  // NOLINT
-    // Serialize内部のpre/post処理でメンバ変数の置換が起こり得るためconstにしない
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
     return obj.sign_params_.Serialize();
   }
   /**
-   * @brief signParams フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to signParams field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
    */
   static void SetSignParamsString(  // line separate
       CreateMultisigScriptSigRequest& obj,  // NOLINT
@@ -464,40 +465,40 @@ class CreateMultisigScriptSigRequest
   }
 
   /**
-   * @brief redeemScript 取得処理
+   * @brief Get of redeemScript
    * @return redeemScript
    */
   std::string GetRedeemScript() const {
     return redeem_script_;
   }
   /**
-   * @brief redeemScript 設定処理
-   * @param[in] redeem_script    設定値
+   * @brief Set to redeemScript
+   * @param[in] redeem_script    setting value.
    */
   void SetRedeemScript(  // line separate
     const std::string& redeem_script) {  // NOLINT
     this->redeem_script_ = redeem_script;
   }
   /**
-   * @brief redeemScript データ型の取得処理
-   * @return redeemScriptのデータ型
+   * @brief Get data type of redeemScript
+   * @return Data type of redeemScript
    */
   static std::string GetRedeemScriptFieldType() {
     return "std::string";
   }
   /**
-   * @brief redeemScript フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of redeemScript field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetRedeemScriptString(  // line separate
       const CreateMultisigScriptSigRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.redeem_script_);
   }
   /**
-   * @brief redeemScript フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to redeemScript field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetRedeemScriptString(  // line separate
       CreateMultisigScriptSigRequest& obj,  // NOLINT
@@ -507,54 +508,54 @@ class CreateMultisigScriptSigRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const CreateMultisigScriptSigRequestStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   CreateMultisigScriptSigRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using CreateMultisigScriptSigRequestMapTable =
     cfd::core::JsonTableMap<CreateMultisigScriptSigRequest>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const CreateMultisigScriptSigRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -563,24 +564,24 @@ class CreateMultisigScriptSigRequest
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static CreateMultisigScriptSigRequestMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(signParams) のvalue
+   * @brief JsonAPI(signParams) value
    */
   JsonObjectVector<MultisigScriptSigData, MultisigScriptSigDataStruct> sign_params_;  // NOLINT
   /**
-   * @brief JsonAPI(redeemScript) のvalue
+   * @brief JsonAPI(redeemScript) value
    */
   std::string redeem_script_ = "";
 };
@@ -589,7 +590,7 @@ class CreateMultisigScriptSigRequest
 // CreateMultisigScriptSigResponse
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（CreateMultisigScriptSigResponse）クラス
+ * @brief JSON-API (CreateMultisigScriptSigResponse) class
  */
 class CreateMultisigScriptSigResponse
   : public cfd::core::JsonClassBase<CreateMultisigScriptSigResponse> {
@@ -601,45 +602,45 @@ class CreateMultisigScriptSigResponse
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief hex 取得処理
+   * @brief Get of hex
    * @return hex
    */
   std::string GetHex() const {
     return hex_;
   }
   /**
-   * @brief hex 設定処理
-   * @param[in] hex    設定値
+   * @brief Set to hex
+   * @param[in] hex    setting value.
    */
   void SetHex(  // line separate
     const std::string& hex) {  // NOLINT
     this->hex_ = hex;
   }
   /**
-   * @brief hex データ型の取得処理
-   * @return hexのデータ型
+   * @brief Get data type of hex
+   * @return Data type of hex
    */
   static std::string GetHexFieldType() {
     return "std::string";
   }
   /**
-   * @brief hex フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of hex field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetHexString(  // line separate
       const CreateMultisigScriptSigResponse& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.hex_);
   }
   /**
-   * @brief hex フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to hex field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetHexString(  // line separate
       CreateMultisigScriptSigResponse& obj,  // NOLINT
@@ -649,54 +650,54 @@ class CreateMultisigScriptSigResponse
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const CreateMultisigScriptSigResponseStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   CreateMultisigScriptSigResponseStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using CreateMultisigScriptSigResponseMapTable =
     cfd::core::JsonTableMap<CreateMultisigScriptSigResponse>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const CreateMultisigScriptSigResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -705,20 +706,20 @@ class CreateMultisigScriptSigResponse
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static CreateMultisigScriptSigResponseMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(hex) のvalue
+   * @brief JsonAPI(hex) value
    */
   std::string hex_ = "";
 };

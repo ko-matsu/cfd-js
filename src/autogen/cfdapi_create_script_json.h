@@ -2,7 +2,7 @@
 /**
  * @file cfdapi_create_script_json.h
  *
- * @brief JSONマッピングファイル (自動生成)
+ * @brief JSON mapping file. (auto generate)
  */
 #ifndef CFD_JS_SRC_AUTOGEN_CFDAPI_CREATE_SCRIPT_JSON_H_
 #define CFD_JS_SRC_AUTOGEN_CFDAPI_CREATE_SCRIPT_JSON_H_
@@ -31,7 +31,7 @@ using cfd::core::JsonVector;
 // CreateScriptRequest
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（CreateScriptRequest）クラス
+ * @brief JSON-API (CreateScriptRequest) class
  */
 class CreateScriptRequest
   : public cfd::core::JsonClassBase<CreateScriptRequest> {
@@ -43,46 +43,47 @@ class CreateScriptRequest
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief items 取得処理
+   * @brief Get of items.
    * @return items
    */
   JsonValueVector<std::string>& GetItems() {  // NOLINT
     return items_;
   }
   /**
-   * @brief items 設定処理
-   * @param[in] items    設定値
+   * @brief Set to items.
+   * @param[in] items    setting value.
    */
   void SetItems(  // line separate
       const JsonValueVector<std::string>& items) {  // NOLINT
     this->items_ = items;
   }
   /**
-   * @brief items データ型の取得処理
-   * @return itemsのデータ型
+   * @brief Get data type of items.
+   * @return Data type of items.
    */
   static std::string GetItemsFieldType() {
     return "JsonValueVector<std::string>";  // NOLINT
   }
   /**
-   * @brief items フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of items field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
    */
   static std::string GetItemsString(  // line separate
       const CreateScriptRequest& obj) {  // NOLINT
-    // Serialize内部のpre/post処理でメンバ変数の置換が起こり得るためconstにしない
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
     return obj.items_.Serialize();
   }
   /**
-   * @brief items フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to items field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
    */
   static void SetItemsString(  // line separate
       CreateScriptRequest& obj,  // NOLINT
@@ -91,54 +92,54 @@ class CreateScriptRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const CreateScriptRequestStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   CreateScriptRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using CreateScriptRequestMapTable =
     cfd::core::JsonTableMap<CreateScriptRequest>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const CreateScriptRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -147,20 +148,20 @@ class CreateScriptRequest
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static CreateScriptRequestMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(items) のvalue
+   * @brief JsonAPI(items) value
    */
   JsonValueVector<std::string> items_;  // NOLINT
 };
@@ -169,7 +170,7 @@ class CreateScriptRequest
 // CreateScriptResponse
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（CreateScriptResponse）クラス
+ * @brief JSON-API (CreateScriptResponse) class
  */
 class CreateScriptResponse
   : public cfd::core::JsonClassBase<CreateScriptResponse> {
@@ -181,45 +182,45 @@ class CreateScriptResponse
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief hex 取得処理
+   * @brief Get of hex
    * @return hex
    */
   std::string GetHex() const {
     return hex_;
   }
   /**
-   * @brief hex 設定処理
-   * @param[in] hex    設定値
+   * @brief Set to hex
+   * @param[in] hex    setting value.
    */
   void SetHex(  // line separate
     const std::string& hex) {  // NOLINT
     this->hex_ = hex;
   }
   /**
-   * @brief hex データ型の取得処理
-   * @return hexのデータ型
+   * @brief Get data type of hex
+   * @return Data type of hex
    */
   static std::string GetHexFieldType() {
     return "std::string";
   }
   /**
-   * @brief hex フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of hex field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetHexString(  // line separate
       const CreateScriptResponse& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.hex_);
   }
   /**
-   * @brief hex フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to hex field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetHexString(  // line separate
       CreateScriptResponse& obj,  // NOLINT
@@ -229,54 +230,54 @@ class CreateScriptResponse
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const CreateScriptResponseStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   CreateScriptResponseStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using CreateScriptResponseMapTable =
     cfd::core::JsonTableMap<CreateScriptResponse>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const CreateScriptResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -285,20 +286,20 @@ class CreateScriptResponse
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static CreateScriptResponseMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(hex) のvalue
+   * @brief JsonAPI(hex) value
    */
   std::string hex_ = "";
 };

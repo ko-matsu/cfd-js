@@ -2,7 +2,7 @@
 /**
  * @file cfdapi_elements_create_pegin_address_json.h
  *
- * @brief JSONマッピングファイル (自動生成)
+ * @brief JSON mapping file. (auto generate)
  */
 #ifndef CFD_JS_SRC_AUTOGEN_CFDAPI_ELEMENTS_CREATE_PEGIN_ADDRESS_JSON_H_
 #define CFD_JS_SRC_AUTOGEN_CFDAPI_ELEMENTS_CREATE_PEGIN_ADDRESS_JSON_H_
@@ -31,7 +31,7 @@ using cfd::core::JsonVector;
 // ElementsCreatePegInAddressRequest
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（ElementsCreatePegInAddressRequest）クラス
+ * @brief JSON-API (ElementsCreatePegInAddressRequest) class
  */
 class ElementsCreatePegInAddressRequest
   : public cfd::core::JsonClassBase<ElementsCreatePegInAddressRequest> {
@@ -43,45 +43,45 @@ class ElementsCreatePegInAddressRequest
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief fedpegscript 取得処理
+   * @brief Get of fedpegscript
    * @return fedpegscript
    */
   std::string GetFedpegscript() const {
     return fedpegscript_;
   }
   /**
-   * @brief fedpegscript 設定処理
-   * @param[in] fedpegscript    設定値
+   * @brief Set to fedpegscript
+   * @param[in] fedpegscript    setting value.
    */
   void SetFedpegscript(  // line separate
     const std::string& fedpegscript) {  // NOLINT
     this->fedpegscript_ = fedpegscript;
   }
   /**
-   * @brief fedpegscript データ型の取得処理
-   * @return fedpegscriptのデータ型
+   * @brief Get data type of fedpegscript
+   * @return Data type of fedpegscript
    */
   static std::string GetFedpegscriptFieldType() {
     return "std::string";
   }
   /**
-   * @brief fedpegscript フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of fedpegscript field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetFedpegscriptString(  // line separate
       const ElementsCreatePegInAddressRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.fedpegscript_);
   }
   /**
-   * @brief fedpegscript フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to fedpegscript field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetFedpegscriptString(  // line separate
       ElementsCreatePegInAddressRequest& obj,  // NOLINT
@@ -91,40 +91,40 @@ class ElementsCreatePegInAddressRequest
   }
 
   /**
-   * @brief pubkey 取得処理
+   * @brief Get of pubkey
    * @return pubkey
    */
   std::string GetPubkey() const {
     return pubkey_;
   }
   /**
-   * @brief pubkey 設定処理
-   * @param[in] pubkey    設定値
+   * @brief Set to pubkey
+   * @param[in] pubkey    setting value.
    */
   void SetPubkey(  // line separate
     const std::string& pubkey) {  // NOLINT
     this->pubkey_ = pubkey;
   }
   /**
-   * @brief pubkey データ型の取得処理
-   * @return pubkeyのデータ型
+   * @brief Get data type of pubkey
+   * @return Data type of pubkey
    */
   static std::string GetPubkeyFieldType() {
     return "std::string";
   }
   /**
-   * @brief pubkey フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of pubkey field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetPubkeyString(  // line separate
       const ElementsCreatePegInAddressRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.pubkey_);
   }
   /**
-   * @brief pubkey フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to pubkey field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetPubkeyString(  // line separate
       ElementsCreatePegInAddressRequest& obj,  // NOLINT
@@ -134,40 +134,40 @@ class ElementsCreatePegInAddressRequest
   }
 
   /**
-   * @brief network 取得処理
+   * @brief Get of network
    * @return network
    */
   std::string GetNetwork() const {
     return network_;
   }
   /**
-   * @brief network 設定処理
-   * @param[in] network    設定値
+   * @brief Set to network
+   * @param[in] network    setting value.
    */
   void SetNetwork(  // line separate
     const std::string& network) {  // NOLINT
     this->network_ = network;
   }
   /**
-   * @brief network データ型の取得処理
-   * @return networkのデータ型
+   * @brief Get data type of network
+   * @return Data type of network
    */
   static std::string GetNetworkFieldType() {
     return "std::string";
   }
   /**
-   * @brief network フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of network field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetNetworkString(  // line separate
       const ElementsCreatePegInAddressRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.network_);
   }
   /**
-   * @brief network フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to network field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetNetworkString(  // line separate
       ElementsCreatePegInAddressRequest& obj,  // NOLINT
@@ -177,54 +177,54 @@ class ElementsCreatePegInAddressRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const ElementsCreatePegInAddressRequestStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   ElementsCreatePegInAddressRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using ElementsCreatePegInAddressRequestMapTable =
     cfd::core::JsonTableMap<ElementsCreatePegInAddressRequest>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ElementsCreatePegInAddressRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -233,28 +233,28 @@ class ElementsCreatePegInAddressRequest
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static ElementsCreatePegInAddressRequestMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(fedpegscript) のvalue
+   * @brief JsonAPI(fedpegscript) value
    */
   std::string fedpegscript_ = "";
   /**
-   * @brief JsonAPI(pubkey) のvalue
+   * @brief JsonAPI(pubkey) value
    */
   std::string pubkey_ = "";
   /**
-   * @brief JsonAPI(network) のvalue
+   * @brief JsonAPI(network) value
    */
   std::string network_ = "mainnet";
 };
@@ -263,7 +263,7 @@ class ElementsCreatePegInAddressRequest
 // ElementsCreatePegInAddressResponse
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（ElementsCreatePegInAddressResponse）クラス
+ * @brief JSON-API (ElementsCreatePegInAddressResponse) class
  */
 class ElementsCreatePegInAddressResponse
   : public cfd::core::JsonClassBase<ElementsCreatePegInAddressResponse> {
@@ -275,45 +275,45 @@ class ElementsCreatePegInAddressResponse
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief mainchainAddress 取得処理
+   * @brief Get of mainchainAddress
    * @return mainchainAddress
    */
   std::string GetMainchainAddress() const {
     return mainchain_address_;
   }
   /**
-   * @brief mainchainAddress 設定処理
-   * @param[in] mainchain_address    設定値
+   * @brief Set to mainchainAddress
+   * @param[in] mainchain_address    setting value.
    */
   void SetMainchainAddress(  // line separate
     const std::string& mainchain_address) {  // NOLINT
     this->mainchain_address_ = mainchain_address;
   }
   /**
-   * @brief mainchainAddress データ型の取得処理
-   * @return mainchainAddressのデータ型
+   * @brief Get data type of mainchainAddress
+   * @return Data type of mainchainAddress
    */
   static std::string GetMainchainAddressFieldType() {
     return "std::string";
   }
   /**
-   * @brief mainchainAddress フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of mainchainAddress field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetMainchainAddressString(  // line separate
       const ElementsCreatePegInAddressResponse& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.mainchain_address_);
   }
   /**
-   * @brief mainchainAddress フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to mainchainAddress field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetMainchainAddressString(  // line separate
       ElementsCreatePegInAddressResponse& obj,  // NOLINT
@@ -323,40 +323,40 @@ class ElementsCreatePegInAddressResponse
   }
 
   /**
-   * @brief claimScript 取得処理
+   * @brief Get of claimScript
    * @return claimScript
    */
   std::string GetClaimScript() const {
     return claim_script_;
   }
   /**
-   * @brief claimScript 設定処理
-   * @param[in] claim_script    設定値
+   * @brief Set to claimScript
+   * @param[in] claim_script    setting value.
    */
   void SetClaimScript(  // line separate
     const std::string& claim_script) {  // NOLINT
     this->claim_script_ = claim_script;
   }
   /**
-   * @brief claimScript データ型の取得処理
-   * @return claimScriptのデータ型
+   * @brief Get data type of claimScript
+   * @return Data type of claimScript
    */
   static std::string GetClaimScriptFieldType() {
     return "std::string";
   }
   /**
-   * @brief claimScript フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of claimScript field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetClaimScriptString(  // line separate
       const ElementsCreatePegInAddressResponse& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.claim_script_);
   }
   /**
-   * @brief claimScript フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to claimScript field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetClaimScriptString(  // line separate
       ElementsCreatePegInAddressResponse& obj,  // NOLINT
@@ -366,40 +366,40 @@ class ElementsCreatePegInAddressResponse
   }
 
   /**
-   * @brief tweakFedpegscript 取得処理
+   * @brief Get of tweakFedpegscript
    * @return tweakFedpegscript
    */
   std::string GetTweakFedpegscript() const {
     return tweak_fedpegscript_;
   }
   /**
-   * @brief tweakFedpegscript 設定処理
-   * @param[in] tweak_fedpegscript    設定値
+   * @brief Set to tweakFedpegscript
+   * @param[in] tweak_fedpegscript    setting value.
    */
   void SetTweakFedpegscript(  // line separate
     const std::string& tweak_fedpegscript) {  // NOLINT
     this->tweak_fedpegscript_ = tweak_fedpegscript;
   }
   /**
-   * @brief tweakFedpegscript データ型の取得処理
-   * @return tweakFedpegscriptのデータ型
+   * @brief Get data type of tweakFedpegscript
+   * @return Data type of tweakFedpegscript
    */
   static std::string GetTweakFedpegscriptFieldType() {
     return "std::string";
   }
   /**
-   * @brief tweakFedpegscript フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of tweakFedpegscript field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetTweakFedpegscriptString(  // line separate
       const ElementsCreatePegInAddressResponse& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.tweak_fedpegscript_);
   }
   /**
-   * @brief tweakFedpegscript フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to tweakFedpegscript field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetTweakFedpegscriptString(  // line separate
       ElementsCreatePegInAddressResponse& obj,  // NOLINT
@@ -409,54 +409,54 @@ class ElementsCreatePegInAddressResponse
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const ElementsCreatePegInAddressResponseStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   ElementsCreatePegInAddressResponseStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using ElementsCreatePegInAddressResponseMapTable =
     cfd::core::JsonTableMap<ElementsCreatePegInAddressResponse>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ElementsCreatePegInAddressResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -465,28 +465,28 @@ class ElementsCreatePegInAddressResponse
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static ElementsCreatePegInAddressResponseMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(mainchainAddress) のvalue
+   * @brief JsonAPI(mainchainAddress) value
    */
   std::string mainchain_address_ = "";
   /**
-   * @brief JsonAPI(claimScript) のvalue
+   * @brief JsonAPI(claimScript) value
    */
   std::string claim_script_ = "";
   /**
-   * @brief JsonAPI(tweakFedpegscript) のvalue
+   * @brief JsonAPI(tweakFedpegscript) value
    */
   std::string tweak_fedpegscript_ = "";
 };

@@ -25,7 +25,8 @@ class JsonMappingData {
     this.is_output_struct = is_output_struct;
     this.is_array = false;
     this.is_object = false;
-    // 予約語対応。数が増えたらリスト化する。
+    // Reserved word support.
+    // TODO(k-matsuzawa): If the number increases, make a list.
     if (this.variable_name == 'asm') this.variable_name = `${this.variable_name}_`;
   }
 
@@ -116,10 +117,6 @@ class JsonMappingData {
       // if (props.length === 0) console.log('prop empty. cls=', this.toString(), ', child=', this.child_list);
       tmpMap[this.type] = props;
       tmpList.push(this.type);
-      if (this.type === 'ElementsCreateDestroyAmountRequest') {
-        console.log('DestroyAmt data: ', this.toString());
-        console.log('- props: ', props);
-      }
       return {type: this.type, map: tmpMap, list: tmpList};
     } else {
       let type = '';
@@ -173,17 +170,13 @@ function isArray(obj) {
 // analyze function
 // ----------------------------------------------------------------------------
 const analyzeJson = (jsonObj, objName = '') => {
-  // 要素を総なめ
   // console.log(`analyzeJson obj=${objName}`)
   let result;
   if (typeof jsonObj == 'string') {
-    // 対応不要
     result = new JsonMappingData(objName, 'std::string', jsonObj, '');
   } else if (typeof jsonObj == 'number') {
-    // 対応不要
     result = new JsonMappingData(objName, 'int64_t', jsonObj, '');
   } else if (typeof jsonObj == 'boolean') {
-    // 対応不要
     result = new JsonMappingData(objName, 'boolean', jsonObj, '');
   } else if (jsonObj) {
     const obj_key = Object.keys(jsonObj);
@@ -204,15 +197,15 @@ const analyzeJson = (jsonObj, objName = '') => {
       }
       // console.log(`past_type = ${past_type}`)
       if (past_type == '') {
-        // フィールド名、クラス名はコール元で設定
+        // field and class name is set by the caller.
         result = new JsonMappingData('', '', '', '');
       } else {
         if ((typeof obj_values[0] == 'string') || (typeof obj_values[0] == 'number') ||
           (typeof obj_values[0] == 'boolean')) {
-          // 文字列or数値系の配列
+          // array of string or number.
           result = new JsonMappingData(objName, `JsonValueVector<${past_type}>`, '', '');
         } else {
-          // オブジェクト系の配列
+          // array of object
           result = new JsonMappingData(objName, `JsonObjectVector<${past_type}, ${past_type}Struct>`, '', '');
         }
       }
@@ -232,10 +225,10 @@ const analyzeJson = (jsonObj, objName = '') => {
         is_output_struct = jsonObj[':isOutputStruct'];
         // console.log(`set ${class_name}, is_output_struct=${is_output_struct}`)
       }
-      // クラス名はコール元で設定
+      // Class name is set by the caller.
       result = new JsonMappingData(objName, class_name, '', '', is_output_struct);
       result.is_object = true;
-      // ソート順序維持のため、一時mapに格納
+      // Stored in temporary map to maintain sort order.
       const tmp_map = {};
       for (const key in jsonObj) {
         if (key != ':class') {
@@ -260,7 +253,7 @@ const analyzeJson = (jsonObj, objName = '') => {
             result.child_list[key] = tmp_map[key];
             result.child_list[key].init_value = value;
           } else {
-            // type判定
+            // type check
             let type_str = '';
             if (typeof value == 'string') {
               type_str = 'std::string';
@@ -271,7 +264,7 @@ const analyzeJson = (jsonObj, objName = '') => {
             } else if (value) {
               const obj_key2 = Object.keys(value);
               if (obj_key2 == 0) { // array
-                // 要素を先に調べるべき？
+                // Should I examine the element first?
                 type_str = '';
               } else { // object
                 type_str = '';
@@ -334,7 +327,7 @@ const generateSource = (filename, headerName, req, res, json_setting) => {
 /**
  * @file ${filename}
  *
- * @brief JSONマッピングファイル (自動生成)
+ * @brief JSON mapping file (auto generate)
  */
 #include <set>
 #include <string>
@@ -370,8 +363,8 @@ using cfd::core::JsonVector;
     const list = [req, res];
     for (const data in list) {
       if (!data) continue;
-      // 作成クラスの種類ソート
-      // 子要素から順に
+      // sort by classname
+      // for child elements
       const map_list = [];
       getChildClasses(list[data], map_list);
       // console.log(`map_list = ${map_list}`)
@@ -474,7 +467,7 @@ const generateClassHeader = (map_data, export_define) => {
 // ${map_data.type}
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（${map_data.type}）クラス
+ * @brief JSON-API (${map_data.type}) class
  */
 class ${export_define}${map_data.type}
   : public cfd::core::JsonClassBase<${map_data.type}> {
@@ -486,7 +479,7 @@ class ${export_define}${map_data.type}
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 `;
@@ -505,41 +498,42 @@ class ${export_define}${map_data.type}
 const generateObjectFunctionByHeader = (map_data, child_data) => {
   const object_functions = `\
   /**
-   * @brief ${child_data.name} 取得処理
+   * @brief Get of ${child_data.name}.
    * @return ${child_data.name}
    */
   ${child_data.type}& Get${child_data.method_name}() {  // NOLINT
     return ${child_data.variable_name}_;
   }
   /**
-   * @brief ${child_data.name} 設定処理
-   * @param[in] ${child_data.variable_name}    設定値
+   * @brief Set to ${child_data.name}.
+   * @param[in] ${child_data.variable_name}    setting value.
    */
   void Set${child_data.method_name}(  // line separate
       const ${child_data.type}& ${child_data.variable_name}) {  // NOLINT
     this->${child_data.variable_name}_ = ${child_data.variable_name};
   }
   /**
-   * @brief ${child_data.name} データ型の取得処理
-   * @return ${child_data.name}のデータ型
+   * @brief Get data type of ${child_data.name}.
+   * @return Data type of ${child_data.name}.
    */
   static std::string Get${child_data.method_name}FieldType() {
     return "${child_data.type}";  // NOLINT
   }
   /**
-   * @brief ${child_data.name} フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of ${child_data.name} field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
    */
   static std::string Get${child_data.method_name}String(  // line separate
       const ${map_data.type}& obj) {  // NOLINT
-    // Serialize内部のpre/post処理でメンバ変数の置換が起こり得るためconstにしない
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
     return obj.${child_data.variable_name}_.Serialize();
   }
   /**
-   * @brief ${child_data.name} フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to ${child_data.name} field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
    */
   static void Set${child_data.method_name}String(  // line separate
       ${map_data.type}& obj,  // NOLINT
@@ -556,40 +550,40 @@ const generateObjectFunctionByHeader = (map_data, child_data) => {
 const generateValueFunctionByHeader = (map_data, child_data) => {
   const value_functions = `\
   /**
-   * @brief ${child_data.name} 取得処理
+   * @brief Get of ${child_data.name}
    * @return ${child_data.name}
    */
   ${child_data.type} Get${child_data.method_name}() const {
     return ${child_data.variable_name}_;
   }
   /**
-   * @brief ${child_data.name} 設定処理
-   * @param[in] ${child_data.variable_name}    設定値
+   * @brief Set to ${child_data.name}
+   * @param[in] ${child_data.variable_name}    setting value.
    */
   void Set${child_data.method_name}(  // line separate
     const ${child_data.type}& ${child_data.variable_name}) {  // NOLINT
     this->${child_data.variable_name}_ = ${child_data.variable_name};
   }
   /**
-   * @brief ${child_data.name} データ型の取得処理
-   * @return ${child_data.name}のデータ型
+   * @brief Get data type of ${child_data.name}
+   * @return Data type of ${child_data.name}
    */
   static std::string Get${child_data.method_name}FieldType() {
     return "${child_data.type}";
   }
   /**
-   * @brief ${child_data.name} フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of ${child_data.name} field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string Get${child_data.method_name}String(  // line separate
       const ${map_data.type}& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.${child_data.variable_name}_);
   }
   /**
-   * @brief ${child_data.name} フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to ${child_data.name} field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void Set${child_data.method_name}String(  // line separate
       ${map_data.type}& obj,  // NOLINT
@@ -609,23 +603,23 @@ const generateClassFieldByHeader = (map_data) => {
   if (map_data.is_output_struct) {
     struct_convert_function = `\
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const ${map_data.struct_type}& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   ${map_data.struct_type} ConvertToStruct()  const;`;
   }
 
   const common_fields = `\
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
@@ -635,32 +629,32 @@ ${struct_convert_function}
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using ${map_data.type}MapTable =
     cfd::core::JsonTableMap<${map_data.type}>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ${map_data.type}MapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -669,15 +663,15 @@ ${struct_convert_function}
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static ${map_data.type}MapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 `;
@@ -731,7 +725,7 @@ const generateHeader = (filename, dirname, req, res, json_setting, append_header
 /**
  * @file ${filename}
  *
- * @brief JSONマッピングファイル (自動生成)
+ * @brief JSON mapping file. (auto generate)
  */
 #ifndef ${def_name}
 #define ${def_name}
@@ -776,8 +770,8 @@ using cfd::core::JsonVector;
     const list = [req, res];
     for (const data in list) {
       if (!data) continue;
-      // 作成クラスの種類ソート
-      // 子要素から順に
+      // sort by generate class
+      // Child element in order
       const map_list = [];
       getChildClasses(list[data], map_list);
       // console.log('map_list = ${map_list}`)
@@ -807,7 +801,7 @@ using cfd::core::JsonVector;
           const child_data = map_data.child_list[child_key];
           const object_fields = `\
   /**
-   * @brief JsonAPI(${child_data.name}) のvalue
+   * @brief JsonAPI(${child_data.name}) value
    */`;
           result.push(object_fields);
           if (child_data.is_object || child_data.is_array) {
@@ -849,7 +843,7 @@ const generateStructHeaderArea = (map_data) => {
 // ${map_data.struct_type}
 // ------------------------------------------------------------------------
 /**
- * @brief ${map_data.struct_type} 構造体
+ * @brief ${map_data.struct_type} struct
  */
 struct ${map_data.struct_type} {`;
   return struct_header;
@@ -1030,7 +1024,7 @@ const generateStructHeader = (dirname, filename, json_list) => {
 /**
  * @file ${filename}
  *
- * @brief 構造体マッピングファイル (自動生成)
+ * @brief Struct mapping file. (auto generate)
  */
 #ifndef ${def_name}
 #define ${def_name}

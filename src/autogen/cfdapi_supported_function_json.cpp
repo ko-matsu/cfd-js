@@ -2,7 +2,7 @@
 /**
  * @file cfdapi_supported_function_json.cpp
  *
- * @brief JSONマッピングファイル (自動生成)
+ * @brief JSON mapping file (auto generate)
  */
 #include <set>
 #include <string>

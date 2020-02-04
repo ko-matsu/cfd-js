@@ -2,7 +2,7 @@
 /**
  * @file cfdapi_parse_descriptor_json.h
  *
- * @brief JSONマッピングファイル (自動生成)
+ * @brief JSON mapping file. (auto generate)
  */
 #ifndef CFD_JS_SRC_AUTOGEN_CFDAPI_PARSE_DESCRIPTOR_JSON_H_
 #define CFD_JS_SRC_AUTOGEN_CFDAPI_PARSE_DESCRIPTOR_JSON_H_
@@ -31,7 +31,7 @@ using cfd::core::JsonVector;
 // ParseDescriptorRequest
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（ParseDescriptorRequest）クラス
+ * @brief JSON-API (ParseDescriptorRequest) class
  */
 class ParseDescriptorRequest
   : public cfd::core::JsonClassBase<ParseDescriptorRequest> {
@@ -43,45 +43,45 @@ class ParseDescriptorRequest
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief isElements 取得処理
+   * @brief Get of isElements
    * @return isElements
    */
   bool GetIsElements() const {
     return is_elements_;
   }
   /**
-   * @brief isElements 設定処理
-   * @param[in] is_elements    設定値
+   * @brief Set to isElements
+   * @param[in] is_elements    setting value.
    */
   void SetIsElements(  // line separate
     const bool& is_elements) {  // NOLINT
     this->is_elements_ = is_elements;
   }
   /**
-   * @brief isElements データ型の取得処理
-   * @return isElementsのデータ型
+   * @brief Get data type of isElements
+   * @return Data type of isElements
    */
   static std::string GetIsElementsFieldType() {
     return "bool";
   }
   /**
-   * @brief isElements フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of isElements field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetIsElementsString(  // line separate
       const ParseDescriptorRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.is_elements_);
   }
   /**
-   * @brief isElements フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to isElements field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetIsElementsString(  // line separate
       ParseDescriptorRequest& obj,  // NOLINT
@@ -91,40 +91,40 @@ class ParseDescriptorRequest
   }
 
   /**
-   * @brief descriptor 取得処理
+   * @brief Get of descriptor
    * @return descriptor
    */
   std::string GetDescriptor() const {
     return descriptor_;
   }
   /**
-   * @brief descriptor 設定処理
-   * @param[in] descriptor    設定値
+   * @brief Set to descriptor
+   * @param[in] descriptor    setting value.
    */
   void SetDescriptor(  // line separate
     const std::string& descriptor) {  // NOLINT
     this->descriptor_ = descriptor;
   }
   /**
-   * @brief descriptor データ型の取得処理
-   * @return descriptorのデータ型
+   * @brief Get data type of descriptor
+   * @return Data type of descriptor
    */
   static std::string GetDescriptorFieldType() {
     return "std::string";
   }
   /**
-   * @brief descriptor フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of descriptor field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetDescriptorString(  // line separate
       const ParseDescriptorRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.descriptor_);
   }
   /**
-   * @brief descriptor フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to descriptor field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetDescriptorString(  // line separate
       ParseDescriptorRequest& obj,  // NOLINT
@@ -134,40 +134,40 @@ class ParseDescriptorRequest
   }
 
   /**
-   * @brief network 取得処理
+   * @brief Get of network
    * @return network
    */
   std::string GetNetwork() const {
     return network_;
   }
   /**
-   * @brief network 設定処理
-   * @param[in] network    設定値
+   * @brief Set to network
+   * @param[in] network    setting value.
    */
   void SetNetwork(  // line separate
     const std::string& network) {  // NOLINT
     this->network_ = network;
   }
   /**
-   * @brief network データ型の取得処理
-   * @return networkのデータ型
+   * @brief Get data type of network
+   * @return Data type of network
    */
   static std::string GetNetworkFieldType() {
     return "std::string";
   }
   /**
-   * @brief network フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of network field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetNetworkString(  // line separate
       const ParseDescriptorRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.network_);
   }
   /**
-   * @brief network フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to network field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetNetworkString(  // line separate
       ParseDescriptorRequest& obj,  // NOLINT
@@ -177,40 +177,40 @@ class ParseDescriptorRequest
   }
 
   /**
-   * @brief bip32DerivationPath 取得処理
+   * @brief Get of bip32DerivationPath
    * @return bip32DerivationPath
    */
   std::string GetBip32DerivationPath() const {
     return bip32_derivation_path_;
   }
   /**
-   * @brief bip32DerivationPath 設定処理
-   * @param[in] bip32_derivation_path    設定値
+   * @brief Set to bip32DerivationPath
+   * @param[in] bip32_derivation_path    setting value.
    */
   void SetBip32DerivationPath(  // line separate
     const std::string& bip32_derivation_path) {  // NOLINT
     this->bip32_derivation_path_ = bip32_derivation_path;
   }
   /**
-   * @brief bip32DerivationPath データ型の取得処理
-   * @return bip32DerivationPathのデータ型
+   * @brief Get data type of bip32DerivationPath
+   * @return Data type of bip32DerivationPath
    */
   static std::string GetBip32DerivationPathFieldType() {
     return "std::string";
   }
   /**
-   * @brief bip32DerivationPath フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of bip32DerivationPath field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetBip32DerivationPathString(  // line separate
       const ParseDescriptorRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.bip32_derivation_path_);
   }
   /**
-   * @brief bip32DerivationPath フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to bip32DerivationPath field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetBip32DerivationPathString(  // line separate
       ParseDescriptorRequest& obj,  // NOLINT
@@ -220,54 +220,54 @@ class ParseDescriptorRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const ParseDescriptorRequestStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   ParseDescriptorRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using ParseDescriptorRequestMapTable =
     cfd::core::JsonTableMap<ParseDescriptorRequest>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ParseDescriptorRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -276,32 +276,32 @@ class ParseDescriptorRequest
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static ParseDescriptorRequestMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(isElements) のvalue
+   * @brief JsonAPI(isElements) value
    */
   bool is_elements_ = false;
   /**
-   * @brief JsonAPI(descriptor) のvalue
+   * @brief JsonAPI(descriptor) value
    */
   std::string descriptor_ = "";
   /**
-   * @brief JsonAPI(network) のvalue
+   * @brief JsonAPI(network) value
    */
   std::string network_ = "mainnet";
   /**
-   * @brief JsonAPI(bip32DerivationPath) のvalue
+   * @brief JsonAPI(bip32DerivationPath) value
    */
   std::string bip32_derivation_path_ = "";
 };
@@ -310,7 +310,7 @@ class ParseDescriptorRequest
 // DescriptorKeyJson
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（DescriptorKeyJson）クラス
+ * @brief JSON-API (DescriptorKeyJson) class
  */
 class DescriptorKeyJson
   : public cfd::core::JsonClassBase<DescriptorKeyJson> {
@@ -322,45 +322,45 @@ class DescriptorKeyJson
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief keyType 取得処理
+   * @brief Get of keyType
    * @return keyType
    */
   std::string GetKeyType() const {
     return key_type_;
   }
   /**
-   * @brief keyType 設定処理
-   * @param[in] key_type    設定値
+   * @brief Set to keyType
+   * @param[in] key_type    setting value.
    */
   void SetKeyType(  // line separate
     const std::string& key_type) {  // NOLINT
     this->key_type_ = key_type;
   }
   /**
-   * @brief keyType データ型の取得処理
-   * @return keyTypeのデータ型
+   * @brief Get data type of keyType
+   * @return Data type of keyType
    */
   static std::string GetKeyTypeFieldType() {
     return "std::string";
   }
   /**
-   * @brief keyType フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of keyType field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetKeyTypeString(  // line separate
       const DescriptorKeyJson& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.key_type_);
   }
   /**
-   * @brief keyType フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to keyType field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetKeyTypeString(  // line separate
       DescriptorKeyJson& obj,  // NOLINT
@@ -370,40 +370,40 @@ class DescriptorKeyJson
   }
 
   /**
-   * @brief key 取得処理
+   * @brief Get of key
    * @return key
    */
   std::string GetKey() const {
     return key_;
   }
   /**
-   * @brief key 設定処理
-   * @param[in] key    設定値
+   * @brief Set to key
+   * @param[in] key    setting value.
    */
   void SetKey(  // line separate
     const std::string& key) {  // NOLINT
     this->key_ = key;
   }
   /**
-   * @brief key データ型の取得処理
-   * @return keyのデータ型
+   * @brief Get data type of key
+   * @return Data type of key
    */
   static std::string GetKeyFieldType() {
     return "std::string";
   }
   /**
-   * @brief key フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of key field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetKeyString(  // line separate
       const DescriptorKeyJson& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.key_);
   }
   /**
-   * @brief key フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to key field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetKeyString(  // line separate
       DescriptorKeyJson& obj,  // NOLINT
@@ -413,54 +413,54 @@ class DescriptorKeyJson
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const DescriptorKeyJsonStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   DescriptorKeyJsonStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using DescriptorKeyJsonMapTable =
     cfd::core::JsonTableMap<DescriptorKeyJson>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const DescriptorKeyJsonMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -469,24 +469,24 @@ class DescriptorKeyJson
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static DescriptorKeyJsonMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(keyType) のvalue
+   * @brief JsonAPI(keyType) value
    */
   std::string key_type_ = "";
   /**
-   * @brief JsonAPI(key) のvalue
+   * @brief JsonAPI(key) value
    */
   std::string key_ = "";
 };
@@ -495,7 +495,7 @@ class DescriptorKeyJson
 // DescriptorScriptJson
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（DescriptorScriptJson）クラス
+ * @brief JSON-API (DescriptorScriptJson) class
  */
 class DescriptorScriptJson
   : public cfd::core::JsonClassBase<DescriptorScriptJson> {
@@ -507,45 +507,45 @@ class DescriptorScriptJson
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief depth 取得処理
+   * @brief Get of depth
    * @return depth
    */
   uint32_t GetDepth() const {
     return depth_;
   }
   /**
-   * @brief depth 設定処理
-   * @param[in] depth    設定値
+   * @brief Set to depth
+   * @param[in] depth    setting value.
    */
   void SetDepth(  // line separate
     const uint32_t& depth) {  // NOLINT
     this->depth_ = depth;
   }
   /**
-   * @brief depth データ型の取得処理
-   * @return depthのデータ型
+   * @brief Get data type of depth
+   * @return Data type of depth
    */
   static std::string GetDepthFieldType() {
     return "uint32_t";
   }
   /**
-   * @brief depth フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of depth field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetDepthString(  // line separate
       const DescriptorScriptJson& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.depth_);
   }
   /**
-   * @brief depth フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to depth field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetDepthString(  // line separate
       DescriptorScriptJson& obj,  // NOLINT
@@ -555,40 +555,40 @@ class DescriptorScriptJson
   }
 
   /**
-   * @brief lockingScript 取得処理
+   * @brief Get of lockingScript
    * @return lockingScript
    */
   std::string GetLockingScript() const {
     return locking_script_;
   }
   /**
-   * @brief lockingScript 設定処理
-   * @param[in] locking_script    設定値
+   * @brief Set to lockingScript
+   * @param[in] locking_script    setting value.
    */
   void SetLockingScript(  // line separate
     const std::string& locking_script) {  // NOLINT
     this->locking_script_ = locking_script;
   }
   /**
-   * @brief lockingScript データ型の取得処理
-   * @return lockingScriptのデータ型
+   * @brief Get data type of lockingScript
+   * @return Data type of lockingScript
    */
   static std::string GetLockingScriptFieldType() {
     return "std::string";
   }
   /**
-   * @brief lockingScript フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of lockingScript field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetLockingScriptString(  // line separate
       const DescriptorScriptJson& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.locking_script_);
   }
   /**
-   * @brief lockingScript フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to lockingScript field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetLockingScriptString(  // line separate
       DescriptorScriptJson& obj,  // NOLINT
@@ -598,40 +598,40 @@ class DescriptorScriptJson
   }
 
   /**
-   * @brief address 取得処理
+   * @brief Get of address
    * @return address
    */
   std::string GetAddress() const {
     return address_;
   }
   /**
-   * @brief address 設定処理
-   * @param[in] address    設定値
+   * @brief Set to address
+   * @param[in] address    setting value.
    */
   void SetAddress(  // line separate
     const std::string& address) {  // NOLINT
     this->address_ = address;
   }
   /**
-   * @brief address データ型の取得処理
-   * @return addressのデータ型
+   * @brief Get data type of address
+   * @return Data type of address
    */
   static std::string GetAddressFieldType() {
     return "std::string";
   }
   /**
-   * @brief address フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of address field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetAddressString(  // line separate
       const DescriptorScriptJson& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.address_);
   }
   /**
-   * @brief address フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to address field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetAddressString(  // line separate
       DescriptorScriptJson& obj,  // NOLINT
@@ -641,40 +641,40 @@ class DescriptorScriptJson
   }
 
   /**
-   * @brief hashType 取得処理
+   * @brief Get of hashType
    * @return hashType
    */
   std::string GetHashType() const {
     return hash_type_;
   }
   /**
-   * @brief hashType 設定処理
-   * @param[in] hash_type    設定値
+   * @brief Set to hashType
+   * @param[in] hash_type    setting value.
    */
   void SetHashType(  // line separate
     const std::string& hash_type) {  // NOLINT
     this->hash_type_ = hash_type;
   }
   /**
-   * @brief hashType データ型の取得処理
-   * @return hashTypeのデータ型
+   * @brief Get data type of hashType
+   * @return Data type of hashType
    */
   static std::string GetHashTypeFieldType() {
     return "std::string";
   }
   /**
-   * @brief hashType フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of hashType field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetHashTypeString(  // line separate
       const DescriptorScriptJson& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.hash_type_);
   }
   /**
-   * @brief hashType フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to hashType field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetHashTypeString(  // line separate
       DescriptorScriptJson& obj,  // NOLINT
@@ -684,40 +684,40 @@ class DescriptorScriptJson
   }
 
   /**
-   * @brief redeemScript 取得処理
+   * @brief Get of redeemScript
    * @return redeemScript
    */
   std::string GetRedeemScript() const {
     return redeem_script_;
   }
   /**
-   * @brief redeemScript 設定処理
-   * @param[in] redeem_script    設定値
+   * @brief Set to redeemScript
+   * @param[in] redeem_script    setting value.
    */
   void SetRedeemScript(  // line separate
     const std::string& redeem_script) {  // NOLINT
     this->redeem_script_ = redeem_script;
   }
   /**
-   * @brief redeemScript データ型の取得処理
-   * @return redeemScriptのデータ型
+   * @brief Get data type of redeemScript
+   * @return Data type of redeemScript
    */
   static std::string GetRedeemScriptFieldType() {
     return "std::string";
   }
   /**
-   * @brief redeemScript フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of redeemScript field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetRedeemScriptString(  // line separate
       const DescriptorScriptJson& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.redeem_script_);
   }
   /**
-   * @brief redeemScript フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to redeemScript field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetRedeemScriptString(  // line separate
       DescriptorScriptJson& obj,  // NOLINT
@@ -727,40 +727,40 @@ class DescriptorScriptJson
   }
 
   /**
-   * @brief keyType 取得処理
+   * @brief Get of keyType
    * @return keyType
    */
   std::string GetKeyType() const {
     return key_type_;
   }
   /**
-   * @brief keyType 設定処理
-   * @param[in] key_type    設定値
+   * @brief Set to keyType
+   * @param[in] key_type    setting value.
    */
   void SetKeyType(  // line separate
     const std::string& key_type) {  // NOLINT
     this->key_type_ = key_type;
   }
   /**
-   * @brief keyType データ型の取得処理
-   * @return keyTypeのデータ型
+   * @brief Get data type of keyType
+   * @return Data type of keyType
    */
   static std::string GetKeyTypeFieldType() {
     return "std::string";
   }
   /**
-   * @brief keyType フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of keyType field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetKeyTypeString(  // line separate
       const DescriptorScriptJson& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.key_type_);
   }
   /**
-   * @brief keyType フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to keyType field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetKeyTypeString(  // line separate
       DescriptorScriptJson& obj,  // NOLINT
@@ -770,40 +770,40 @@ class DescriptorScriptJson
   }
 
   /**
-   * @brief key 取得処理
+   * @brief Get of key
    * @return key
    */
   std::string GetKey() const {
     return key_;
   }
   /**
-   * @brief key 設定処理
-   * @param[in] key    設定値
+   * @brief Set to key
+   * @param[in] key    setting value.
    */
   void SetKey(  // line separate
     const std::string& key) {  // NOLINT
     this->key_ = key;
   }
   /**
-   * @brief key データ型の取得処理
-   * @return keyのデータ型
+   * @brief Get data type of key
+   * @return Data type of key
    */
   static std::string GetKeyFieldType() {
     return "std::string";
   }
   /**
-   * @brief key フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of key field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetKeyString(  // line separate
       const DescriptorScriptJson& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.key_);
   }
   /**
-   * @brief key フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to key field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetKeyString(  // line separate
       DescriptorScriptJson& obj,  // NOLINT
@@ -813,41 +813,42 @@ class DescriptorScriptJson
   }
 
   /**
-   * @brief keys 取得処理
+   * @brief Get of keys.
    * @return keys
    */
   JsonObjectVector<DescriptorKeyJson, DescriptorKeyJsonStruct>& GetKeys() {  // NOLINT
     return keys_;
   }
   /**
-   * @brief keys 設定処理
-   * @param[in] keys    設定値
+   * @brief Set to keys.
+   * @param[in] keys    setting value.
    */
   void SetKeys(  // line separate
       const JsonObjectVector<DescriptorKeyJson, DescriptorKeyJsonStruct>& keys) {  // NOLINT
     this->keys_ = keys;
   }
   /**
-   * @brief keys データ型の取得処理
-   * @return keysのデータ型
+   * @brief Get data type of keys.
+   * @return Data type of keys.
    */
   static std::string GetKeysFieldType() {
     return "JsonObjectVector<DescriptorKeyJson, DescriptorKeyJsonStruct>";  // NOLINT
   }
   /**
-   * @brief keys フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of keys field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
    */
   static std::string GetKeysString(  // line separate
       const DescriptorScriptJson& obj) {  // NOLINT
-    // Serialize内部のpre/post処理でメンバ変数の置換が起こり得るためconstにしない
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
     return obj.keys_.Serialize();
   }
   /**
-   * @brief keys フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to keys field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
    */
   static void SetKeysString(  // line separate
       DescriptorScriptJson& obj,  // NOLINT
@@ -856,40 +857,40 @@ class DescriptorScriptJson
   }
 
   /**
-   * @brief reqNum 取得処理
+   * @brief Get of reqNum
    * @return reqNum
    */
   int64_t GetReqNum() const {
     return req_num_;
   }
   /**
-   * @brief reqNum 設定処理
-   * @param[in] req_num    設定値
+   * @brief Set to reqNum
+   * @param[in] req_num    setting value.
    */
   void SetReqNum(  // line separate
     const int64_t& req_num) {  // NOLINT
     this->req_num_ = req_num;
   }
   /**
-   * @brief reqNum データ型の取得処理
-   * @return reqNumのデータ型
+   * @brief Get data type of reqNum
+   * @return Data type of reqNum
    */
   static std::string GetReqNumFieldType() {
     return "int64_t";
   }
   /**
-   * @brief reqNum フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of reqNum field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetReqNumString(  // line separate
       const DescriptorScriptJson& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.req_num_);
   }
   /**
-   * @brief reqNum フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to reqNum field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetReqNumString(  // line separate
       DescriptorScriptJson& obj,  // NOLINT
@@ -899,54 +900,54 @@ class DescriptorScriptJson
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const DescriptorScriptJsonStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   DescriptorScriptJsonStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using DescriptorScriptJsonMapTable =
     cfd::core::JsonTableMap<DescriptorScriptJson>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const DescriptorScriptJsonMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -955,52 +956,52 @@ class DescriptorScriptJson
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static DescriptorScriptJsonMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(depth) のvalue
+   * @brief JsonAPI(depth) value
    */
   uint32_t depth_ = 0;
   /**
-   * @brief JsonAPI(lockingScript) のvalue
+   * @brief JsonAPI(lockingScript) value
    */
   std::string locking_script_ = "";
   /**
-   * @brief JsonAPI(address) のvalue
+   * @brief JsonAPI(address) value
    */
   std::string address_ = "";
   /**
-   * @brief JsonAPI(hashType) のvalue
+   * @brief JsonAPI(hashType) value
    */
   std::string hash_type_ = "";
   /**
-   * @brief JsonAPI(redeemScript) のvalue
+   * @brief JsonAPI(redeemScript) value
    */
   std::string redeem_script_ = "";
   /**
-   * @brief JsonAPI(keyType) のvalue
+   * @brief JsonAPI(keyType) value
    */
   std::string key_type_ = "";
   /**
-   * @brief JsonAPI(key) のvalue
+   * @brief JsonAPI(key) value
    */
   std::string key_ = "";
   /**
-   * @brief JsonAPI(keys) のvalue
+   * @brief JsonAPI(keys) value
    */
   JsonObjectVector<DescriptorKeyJson, DescriptorKeyJsonStruct> keys_;  // NOLINT
   /**
-   * @brief JsonAPI(reqNum) のvalue
+   * @brief JsonAPI(reqNum) value
    */
   int64_t req_num_ = 0;
 };
@@ -1009,7 +1010,7 @@ class DescriptorScriptJson
 // ParseDescriptorResponse
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（ParseDescriptorResponse）クラス
+ * @brief JSON-API (ParseDescriptorResponse) class
  */
 class ParseDescriptorResponse
   : public cfd::core::JsonClassBase<ParseDescriptorResponse> {
@@ -1021,45 +1022,45 @@ class ParseDescriptorResponse
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief type 取得処理
+   * @brief Get of type
    * @return type
    */
   std::string GetType() const {
     return type_;
   }
   /**
-   * @brief type 設定処理
-   * @param[in] type    設定値
+   * @brief Set to type
+   * @param[in] type    setting value.
    */
   void SetType(  // line separate
     const std::string& type) {  // NOLINT
     this->type_ = type;
   }
   /**
-   * @brief type データ型の取得処理
-   * @return typeのデータ型
+   * @brief Get data type of type
+   * @return Data type of type
    */
   static std::string GetTypeFieldType() {
     return "std::string";
   }
   /**
-   * @brief type フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of type field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetTypeString(  // line separate
       const ParseDescriptorResponse& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.type_);
   }
   /**
-   * @brief type フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to type field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetTypeString(  // line separate
       ParseDescriptorResponse& obj,  // NOLINT
@@ -1069,40 +1070,40 @@ class ParseDescriptorResponse
   }
 
   /**
-   * @brief address 取得処理
+   * @brief Get of address
    * @return address
    */
   std::string GetAddress() const {
     return address_;
   }
   /**
-   * @brief address 設定処理
-   * @param[in] address    設定値
+   * @brief Set to address
+   * @param[in] address    setting value.
    */
   void SetAddress(  // line separate
     const std::string& address) {  // NOLINT
     this->address_ = address;
   }
   /**
-   * @brief address データ型の取得処理
-   * @return addressのデータ型
+   * @brief Get data type of address
+   * @return Data type of address
    */
   static std::string GetAddressFieldType() {
     return "std::string";
   }
   /**
-   * @brief address フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of address field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetAddressString(  // line separate
       const ParseDescriptorResponse& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.address_);
   }
   /**
-   * @brief address フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to address field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetAddressString(  // line separate
       ParseDescriptorResponse& obj,  // NOLINT
@@ -1112,40 +1113,40 @@ class ParseDescriptorResponse
   }
 
   /**
-   * @brief lockingScript 取得処理
+   * @brief Get of lockingScript
    * @return lockingScript
    */
   std::string GetLockingScript() const {
     return locking_script_;
   }
   /**
-   * @brief lockingScript 設定処理
-   * @param[in] locking_script    設定値
+   * @brief Set to lockingScript
+   * @param[in] locking_script    setting value.
    */
   void SetLockingScript(  // line separate
     const std::string& locking_script) {  // NOLINT
     this->locking_script_ = locking_script;
   }
   /**
-   * @brief lockingScript データ型の取得処理
-   * @return lockingScriptのデータ型
+   * @brief Get data type of lockingScript
+   * @return Data type of lockingScript
    */
   static std::string GetLockingScriptFieldType() {
     return "std::string";
   }
   /**
-   * @brief lockingScript フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of lockingScript field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetLockingScriptString(  // line separate
       const ParseDescriptorResponse& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.locking_script_);
   }
   /**
-   * @brief lockingScript フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to lockingScript field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetLockingScriptString(  // line separate
       ParseDescriptorResponse& obj,  // NOLINT
@@ -1155,40 +1156,40 @@ class ParseDescriptorResponse
   }
 
   /**
-   * @brief hashType 取得処理
+   * @brief Get of hashType
    * @return hashType
    */
   std::string GetHashType() const {
     return hash_type_;
   }
   /**
-   * @brief hashType 設定処理
-   * @param[in] hash_type    設定値
+   * @brief Set to hashType
+   * @param[in] hash_type    setting value.
    */
   void SetHashType(  // line separate
     const std::string& hash_type) {  // NOLINT
     this->hash_type_ = hash_type;
   }
   /**
-   * @brief hashType データ型の取得処理
-   * @return hashTypeのデータ型
+   * @brief Get data type of hashType
+   * @return Data type of hashType
    */
   static std::string GetHashTypeFieldType() {
     return "std::string";
   }
   /**
-   * @brief hashType フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of hashType field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetHashTypeString(  // line separate
       const ParseDescriptorResponse& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.hash_type_);
   }
   /**
-   * @brief hashType フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to hashType field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetHashTypeString(  // line separate
       ParseDescriptorResponse& obj,  // NOLINT
@@ -1198,40 +1199,40 @@ class ParseDescriptorResponse
   }
 
   /**
-   * @brief redeemScript 取得処理
+   * @brief Get of redeemScript
    * @return redeemScript
    */
   std::string GetRedeemScript() const {
     return redeem_script_;
   }
   /**
-   * @brief redeemScript 設定処理
-   * @param[in] redeem_script    設定値
+   * @brief Set to redeemScript
+   * @param[in] redeem_script    setting value.
    */
   void SetRedeemScript(  // line separate
     const std::string& redeem_script) {  // NOLINT
     this->redeem_script_ = redeem_script;
   }
   /**
-   * @brief redeemScript データ型の取得処理
-   * @return redeemScriptのデータ型
+   * @brief Get data type of redeemScript
+   * @return Data type of redeemScript
    */
   static std::string GetRedeemScriptFieldType() {
     return "std::string";
   }
   /**
-   * @brief redeemScript フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of redeemScript field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetRedeemScriptString(  // line separate
       const ParseDescriptorResponse& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.redeem_script_);
   }
   /**
-   * @brief redeemScript フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to redeemScript field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetRedeemScriptString(  // line separate
       ParseDescriptorResponse& obj,  // NOLINT
@@ -1241,40 +1242,40 @@ class ParseDescriptorResponse
   }
 
   /**
-   * @brief includeMultisig 取得処理
+   * @brief Get of includeMultisig
    * @return includeMultisig
    */
   bool GetIncludeMultisig() const {
     return include_multisig_;
   }
   /**
-   * @brief includeMultisig 設定処理
-   * @param[in] include_multisig    設定値
+   * @brief Set to includeMultisig
+   * @param[in] include_multisig    setting value.
    */
   void SetIncludeMultisig(  // line separate
     const bool& include_multisig) {  // NOLINT
     this->include_multisig_ = include_multisig;
   }
   /**
-   * @brief includeMultisig データ型の取得処理
-   * @return includeMultisigのデータ型
+   * @brief Get data type of includeMultisig
+   * @return Data type of includeMultisig
    */
   static std::string GetIncludeMultisigFieldType() {
     return "bool";
   }
   /**
-   * @brief includeMultisig フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of includeMultisig field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetIncludeMultisigString(  // line separate
       const ParseDescriptorResponse& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.include_multisig_);
   }
   /**
-   * @brief includeMultisig フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to includeMultisig field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetIncludeMultisigString(  // line separate
       ParseDescriptorResponse& obj,  // NOLINT
@@ -1284,41 +1285,42 @@ class ParseDescriptorResponse
   }
 
   /**
-   * @brief scripts 取得処理
+   * @brief Get of scripts.
    * @return scripts
    */
   JsonObjectVector<DescriptorScriptJson, DescriptorScriptJsonStruct>& GetScripts() {  // NOLINT
     return scripts_;
   }
   /**
-   * @brief scripts 設定処理
-   * @param[in] scripts    設定値
+   * @brief Set to scripts.
+   * @param[in] scripts    setting value.
    */
   void SetScripts(  // line separate
       const JsonObjectVector<DescriptorScriptJson, DescriptorScriptJsonStruct>& scripts) {  // NOLINT
     this->scripts_ = scripts;
   }
   /**
-   * @brief scripts データ型の取得処理
-   * @return scriptsのデータ型
+   * @brief Get data type of scripts.
+   * @return Data type of scripts.
    */
   static std::string GetScriptsFieldType() {
     return "JsonObjectVector<DescriptorScriptJson, DescriptorScriptJsonStruct>";  // NOLINT
   }
   /**
-   * @brief scripts フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of scripts field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
    */
   static std::string GetScriptsString(  // line separate
       const ParseDescriptorResponse& obj) {  // NOLINT
-    // Serialize内部のpre/post処理でメンバ変数の置換が起こり得るためconstにしない
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
     return obj.scripts_.Serialize();
   }
   /**
-   * @brief scripts フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to scripts field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
    */
   static void SetScriptsString(  // line separate
       ParseDescriptorResponse& obj,  // NOLINT
@@ -1327,54 +1329,54 @@ class ParseDescriptorResponse
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const ParseDescriptorResponseStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   ParseDescriptorResponseStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using ParseDescriptorResponseMapTable =
     cfd::core::JsonTableMap<ParseDescriptorResponse>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ParseDescriptorResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -1383,44 +1385,44 @@ class ParseDescriptorResponse
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static ParseDescriptorResponseMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(type) のvalue
+   * @brief JsonAPI(type) value
    */
   std::string type_ = "";
   /**
-   * @brief JsonAPI(address) のvalue
+   * @brief JsonAPI(address) value
    */
   std::string address_ = "";
   /**
-   * @brief JsonAPI(lockingScript) のvalue
+   * @brief JsonAPI(lockingScript) value
    */
   std::string locking_script_ = "";
   /**
-   * @brief JsonAPI(hashType) のvalue
+   * @brief JsonAPI(hashType) value
    */
   std::string hash_type_ = "";
   /**
-   * @brief JsonAPI(redeemScript) のvalue
+   * @brief JsonAPI(redeemScript) value
    */
   std::string redeem_script_ = "";
   /**
-   * @brief JsonAPI(includeMultisig) のvalue
+   * @brief JsonAPI(includeMultisig) value
    */
   bool include_multisig_ = false;
   /**
-   * @brief JsonAPI(scripts) のvalue
+   * @brief JsonAPI(scripts) value
    */
   JsonObjectVector<DescriptorScriptJson, DescriptorScriptJsonStruct> scripts_;  // NOLINT
 };

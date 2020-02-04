@@ -2,7 +2,7 @@
 /**
  * @file cfdapi_estimate_fee_json.h
  *
- * @brief JSONマッピングファイル (自動生成)
+ * @brief JSON mapping file. (auto generate)
  */
 #ifndef CFD_JS_SRC_AUTOGEN_CFDAPI_ESTIMATE_FEE_JSON_H_
 #define CFD_JS_SRC_AUTOGEN_CFDAPI_ESTIMATE_FEE_JSON_H_
@@ -31,7 +31,7 @@ using cfd::core::JsonVector;
 // SelectUtxoData
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（SelectUtxoData）クラス
+ * @brief JSON-API (SelectUtxoData) class
  */
 class SelectUtxoData
   : public cfd::core::JsonClassBase<SelectUtxoData> {
@@ -43,45 +43,45 @@ class SelectUtxoData
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief txid 取得処理
+   * @brief Get of txid
    * @return txid
    */
   std::string GetTxid() const {
     return txid_;
   }
   /**
-   * @brief txid 設定処理
-   * @param[in] txid    設定値
+   * @brief Set to txid
+   * @param[in] txid    setting value.
    */
   void SetTxid(  // line separate
     const std::string& txid) {  // NOLINT
     this->txid_ = txid;
   }
   /**
-   * @brief txid データ型の取得処理
-   * @return txidのデータ型
+   * @brief Get data type of txid
+   * @return Data type of txid
    */
   static std::string GetTxidFieldType() {
     return "std::string";
   }
   /**
-   * @brief txid フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of txid field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetTxidString(  // line separate
       const SelectUtxoData& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.txid_);
   }
   /**
-   * @brief txid フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to txid field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetTxidString(  // line separate
       SelectUtxoData& obj,  // NOLINT
@@ -91,40 +91,40 @@ class SelectUtxoData
   }
 
   /**
-   * @brief vout 取得処理
+   * @brief Get of vout
    * @return vout
    */
   uint32_t GetVout() const {
     return vout_;
   }
   /**
-   * @brief vout 設定処理
-   * @param[in] vout    設定値
+   * @brief Set to vout
+   * @param[in] vout    setting value.
    */
   void SetVout(  // line separate
     const uint32_t& vout) {  // NOLINT
     this->vout_ = vout;
   }
   /**
-   * @brief vout データ型の取得処理
-   * @return voutのデータ型
+   * @brief Get data type of vout
+   * @return Data type of vout
    */
   static std::string GetVoutFieldType() {
     return "uint32_t";
   }
   /**
-   * @brief vout フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of vout field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetVoutString(  // line separate
       const SelectUtxoData& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.vout_);
   }
   /**
-   * @brief vout フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to vout field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetVoutString(  // line separate
       SelectUtxoData& obj,  // NOLINT
@@ -134,40 +134,40 @@ class SelectUtxoData
   }
 
   /**
-   * @brief asset 取得処理
+   * @brief Get of asset
    * @return asset
    */
   std::string GetAsset() const {
     return asset_;
   }
   /**
-   * @brief asset 設定処理
-   * @param[in] asset    設定値
+   * @brief Set to asset
+   * @param[in] asset    setting value.
    */
   void SetAsset(  // line separate
     const std::string& asset) {  // NOLINT
     this->asset_ = asset;
   }
   /**
-   * @brief asset データ型の取得処理
-   * @return assetのデータ型
+   * @brief Get data type of asset
+   * @return Data type of asset
    */
   static std::string GetAssetFieldType() {
     return "std::string";
   }
   /**
-   * @brief asset フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of asset field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetAssetString(  // line separate
       const SelectUtxoData& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.asset_);
   }
   /**
-   * @brief asset フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to asset field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetAssetString(  // line separate
       SelectUtxoData& obj,  // NOLINT
@@ -177,40 +177,40 @@ class SelectUtxoData
   }
 
   /**
-   * @brief redeemScript 取得処理
+   * @brief Get of redeemScript
    * @return redeemScript
    */
   std::string GetRedeemScript() const {
     return redeem_script_;
   }
   /**
-   * @brief redeemScript 設定処理
-   * @param[in] redeem_script    設定値
+   * @brief Set to redeemScript
+   * @param[in] redeem_script    setting value.
    */
   void SetRedeemScript(  // line separate
     const std::string& redeem_script) {  // NOLINT
     this->redeem_script_ = redeem_script;
   }
   /**
-   * @brief redeemScript データ型の取得処理
-   * @return redeemScriptのデータ型
+   * @brief Get data type of redeemScript
+   * @return Data type of redeemScript
    */
   static std::string GetRedeemScriptFieldType() {
     return "std::string";
   }
   /**
-   * @brief redeemScript フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of redeemScript field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetRedeemScriptString(  // line separate
       const SelectUtxoData& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.redeem_script_);
   }
   /**
-   * @brief redeemScript フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to redeemScript field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetRedeemScriptString(  // line separate
       SelectUtxoData& obj,  // NOLINT
@@ -220,40 +220,40 @@ class SelectUtxoData
   }
 
   /**
-   * @brief descriptor 取得処理
+   * @brief Get of descriptor
    * @return descriptor
    */
   std::string GetDescriptor() const {
     return descriptor_;
   }
   /**
-   * @brief descriptor 設定処理
-   * @param[in] descriptor    設定値
+   * @brief Set to descriptor
+   * @param[in] descriptor    setting value.
    */
   void SetDescriptor(  // line separate
     const std::string& descriptor) {  // NOLINT
     this->descriptor_ = descriptor;
   }
   /**
-   * @brief descriptor データ型の取得処理
-   * @return descriptorのデータ型
+   * @brief Get data type of descriptor
+   * @return Data type of descriptor
    */
   static std::string GetDescriptorFieldType() {
     return "std::string";
   }
   /**
-   * @brief descriptor フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of descriptor field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetDescriptorString(  // line separate
       const SelectUtxoData& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.descriptor_);
   }
   /**
-   * @brief descriptor フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to descriptor field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetDescriptorString(  // line separate
       SelectUtxoData& obj,  // NOLINT
@@ -263,40 +263,40 @@ class SelectUtxoData
   }
 
   /**
-   * @brief isIssuance 取得処理
+   * @brief Get of isIssuance
    * @return isIssuance
    */
   bool GetIsIssuance() const {
     return is_issuance_;
   }
   /**
-   * @brief isIssuance 設定処理
-   * @param[in] is_issuance    設定値
+   * @brief Set to isIssuance
+   * @param[in] is_issuance    setting value.
    */
   void SetIsIssuance(  // line separate
     const bool& is_issuance) {  // NOLINT
     this->is_issuance_ = is_issuance;
   }
   /**
-   * @brief isIssuance データ型の取得処理
-   * @return isIssuanceのデータ型
+   * @brief Get data type of isIssuance
+   * @return Data type of isIssuance
    */
   static std::string GetIsIssuanceFieldType() {
     return "bool";
   }
   /**
-   * @brief isIssuance フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of isIssuance field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetIsIssuanceString(  // line separate
       const SelectUtxoData& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.is_issuance_);
   }
   /**
-   * @brief isIssuance フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to isIssuance field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetIsIssuanceString(  // line separate
       SelectUtxoData& obj,  // NOLINT
@@ -306,40 +306,40 @@ class SelectUtxoData
   }
 
   /**
-   * @brief isBlindIssuance 取得処理
+   * @brief Get of isBlindIssuance
    * @return isBlindIssuance
    */
   bool GetIsBlindIssuance() const {
     return is_blind_issuance_;
   }
   /**
-   * @brief isBlindIssuance 設定処理
-   * @param[in] is_blind_issuance    設定値
+   * @brief Set to isBlindIssuance
+   * @param[in] is_blind_issuance    setting value.
    */
   void SetIsBlindIssuance(  // line separate
     const bool& is_blind_issuance) {  // NOLINT
     this->is_blind_issuance_ = is_blind_issuance;
   }
   /**
-   * @brief isBlindIssuance データ型の取得処理
-   * @return isBlindIssuanceのデータ型
+   * @brief Get data type of isBlindIssuance
+   * @return Data type of isBlindIssuance
    */
   static std::string GetIsBlindIssuanceFieldType() {
     return "bool";
   }
   /**
-   * @brief isBlindIssuance フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of isBlindIssuance field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetIsBlindIssuanceString(  // line separate
       const SelectUtxoData& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.is_blind_issuance_);
   }
   /**
-   * @brief isBlindIssuance フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to isBlindIssuance field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetIsBlindIssuanceString(  // line separate
       SelectUtxoData& obj,  // NOLINT
@@ -349,40 +349,40 @@ class SelectUtxoData
   }
 
   /**
-   * @brief isPegin 取得処理
+   * @brief Get of isPegin
    * @return isPegin
    */
   bool GetIsPegin() const {
     return is_pegin_;
   }
   /**
-   * @brief isPegin 設定処理
-   * @param[in] is_pegin    設定値
+   * @brief Set to isPegin
+   * @param[in] is_pegin    setting value.
    */
   void SetIsPegin(  // line separate
     const bool& is_pegin) {  // NOLINT
     this->is_pegin_ = is_pegin;
   }
   /**
-   * @brief isPegin データ型の取得処理
-   * @return isPeginのデータ型
+   * @brief Get data type of isPegin
+   * @return Data type of isPegin
    */
   static std::string GetIsPeginFieldType() {
     return "bool";
   }
   /**
-   * @brief isPegin フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of isPegin field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetIsPeginString(  // line separate
       const SelectUtxoData& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.is_pegin_);
   }
   /**
-   * @brief isPegin フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to isPegin field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetIsPeginString(  // line separate
       SelectUtxoData& obj,  // NOLINT
@@ -392,40 +392,40 @@ class SelectUtxoData
   }
 
   /**
-   * @brief peginBtcTxSize 取得処理
+   * @brief Get of peginBtcTxSize
    * @return peginBtcTxSize
    */
   int64_t GetPeginBtcTxSize() const {
     return pegin_btc_tx_size_;
   }
   /**
-   * @brief peginBtcTxSize 設定処理
-   * @param[in] pegin_btc_tx_size    設定値
+   * @brief Set to peginBtcTxSize
+   * @param[in] pegin_btc_tx_size    setting value.
    */
   void SetPeginBtcTxSize(  // line separate
     const int64_t& pegin_btc_tx_size) {  // NOLINT
     this->pegin_btc_tx_size_ = pegin_btc_tx_size;
   }
   /**
-   * @brief peginBtcTxSize データ型の取得処理
-   * @return peginBtcTxSizeのデータ型
+   * @brief Get data type of peginBtcTxSize
+   * @return Data type of peginBtcTxSize
    */
   static std::string GetPeginBtcTxSizeFieldType() {
     return "int64_t";
   }
   /**
-   * @brief peginBtcTxSize フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of peginBtcTxSize field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetPeginBtcTxSizeString(  // line separate
       const SelectUtxoData& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.pegin_btc_tx_size_);
   }
   /**
-   * @brief peginBtcTxSize フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to peginBtcTxSize field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetPeginBtcTxSizeString(  // line separate
       SelectUtxoData& obj,  // NOLINT
@@ -435,40 +435,40 @@ class SelectUtxoData
   }
 
   /**
-   * @brief fedpegScript 取得処理
+   * @brief Get of fedpegScript
    * @return fedpegScript
    */
   std::string GetFedpegScript() const {
     return fedpeg_script_;
   }
   /**
-   * @brief fedpegScript 設定処理
-   * @param[in] fedpeg_script    設定値
+   * @brief Set to fedpegScript
+   * @param[in] fedpeg_script    setting value.
    */
   void SetFedpegScript(  // line separate
     const std::string& fedpeg_script) {  // NOLINT
     this->fedpeg_script_ = fedpeg_script;
   }
   /**
-   * @brief fedpegScript データ型の取得処理
-   * @return fedpegScriptのデータ型
+   * @brief Get data type of fedpegScript
+   * @return Data type of fedpegScript
    */
   static std::string GetFedpegScriptFieldType() {
     return "std::string";
   }
   /**
-   * @brief fedpegScript フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of fedpegScript field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetFedpegScriptString(  // line separate
       const SelectUtxoData& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.fedpeg_script_);
   }
   /**
-   * @brief fedpegScript フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to fedpegScript field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetFedpegScriptString(  // line separate
       SelectUtxoData& obj,  // NOLINT
@@ -478,54 +478,54 @@ class SelectUtxoData
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const SelectUtxoDataStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   SelectUtxoDataStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using SelectUtxoDataMapTable =
     cfd::core::JsonTableMap<SelectUtxoData>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const SelectUtxoDataMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -534,56 +534,56 @@ class SelectUtxoData
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static SelectUtxoDataMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(txid) のvalue
+   * @brief JsonAPI(txid) value
    */
   std::string txid_ = "";
   /**
-   * @brief JsonAPI(vout) のvalue
+   * @brief JsonAPI(vout) value
    */
   uint32_t vout_ = 0;
   /**
-   * @brief JsonAPI(asset) のvalue
+   * @brief JsonAPI(asset) value
    */
   std::string asset_ = "";
   /**
-   * @brief JsonAPI(redeemScript) のvalue
+   * @brief JsonAPI(redeemScript) value
    */
   std::string redeem_script_ = "";
   /**
-   * @brief JsonAPI(descriptor) のvalue
+   * @brief JsonAPI(descriptor) value
    */
   std::string descriptor_ = "";
   /**
-   * @brief JsonAPI(isIssuance) のvalue
+   * @brief JsonAPI(isIssuance) value
    */
   bool is_issuance_ = false;
   /**
-   * @brief JsonAPI(isBlindIssuance) のvalue
+   * @brief JsonAPI(isBlindIssuance) value
    */
   bool is_blind_issuance_ = false;
   /**
-   * @brief JsonAPI(isPegin) のvalue
+   * @brief JsonAPI(isPegin) value
    */
   bool is_pegin_ = false;
   /**
-   * @brief JsonAPI(peginBtcTxSize) のvalue
+   * @brief JsonAPI(peginBtcTxSize) value
    */
   int64_t pegin_btc_tx_size_ = 0;
   /**
-   * @brief JsonAPI(fedpegScript) のvalue
+   * @brief JsonAPI(fedpegScript) value
    */
   std::string fedpeg_script_ = "";
 };
@@ -592,7 +592,7 @@ class SelectUtxoData
 // EstimateFeeRequest
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（EstimateFeeRequest）クラス
+ * @brief JSON-API (EstimateFeeRequest) class
  */
 class EstimateFeeRequest
   : public cfd::core::JsonClassBase<EstimateFeeRequest> {
@@ -604,46 +604,47 @@ class EstimateFeeRequest
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief selectUtxos 取得処理
+   * @brief Get of selectUtxos.
    * @return selectUtxos
    */
   JsonObjectVector<SelectUtxoData, SelectUtxoDataStruct>& GetSelectUtxos() {  // NOLINT
     return select_utxos_;
   }
   /**
-   * @brief selectUtxos 設定処理
-   * @param[in] select_utxos    設定値
+   * @brief Set to selectUtxos.
+   * @param[in] select_utxos    setting value.
    */
   void SetSelectUtxos(  // line separate
       const JsonObjectVector<SelectUtxoData, SelectUtxoDataStruct>& select_utxos) {  // NOLINT
     this->select_utxos_ = select_utxos;
   }
   /**
-   * @brief selectUtxos データ型の取得処理
-   * @return selectUtxosのデータ型
+   * @brief Get data type of selectUtxos.
+   * @return Data type of selectUtxos.
    */
   static std::string GetSelectUtxosFieldType() {
     return "JsonObjectVector<SelectUtxoData, SelectUtxoDataStruct>";  // NOLINT
   }
   /**
-   * @brief selectUtxos フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of selectUtxos field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
    */
   static std::string GetSelectUtxosString(  // line separate
       const EstimateFeeRequest& obj) {  // NOLINT
-    // Serialize内部のpre/post処理でメンバ変数の置換が起こり得るためconstにしない
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
     return obj.select_utxos_.Serialize();
   }
   /**
-   * @brief selectUtxos フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to selectUtxos field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
    */
   static void SetSelectUtxosString(  // line separate
       EstimateFeeRequest& obj,  // NOLINT
@@ -652,40 +653,40 @@ class EstimateFeeRequest
   }
 
   /**
-   * @brief feeRate 取得処理
+   * @brief Get of feeRate
    * @return feeRate
    */
   double GetFeeRate() const {
     return fee_rate_;
   }
   /**
-   * @brief feeRate 設定処理
-   * @param[in] fee_rate    設定値
+   * @brief Set to feeRate
+   * @param[in] fee_rate    setting value.
    */
   void SetFeeRate(  // line separate
     const double& fee_rate) {  // NOLINT
     this->fee_rate_ = fee_rate;
   }
   /**
-   * @brief feeRate データ型の取得処理
-   * @return feeRateのデータ型
+   * @brief Get data type of feeRate
+   * @return Data type of feeRate
    */
   static std::string GetFeeRateFieldType() {
     return "double";
   }
   /**
-   * @brief feeRate フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of feeRate field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetFeeRateString(  // line separate
       const EstimateFeeRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.fee_rate_);
   }
   /**
-   * @brief feeRate フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to feeRate field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetFeeRateString(  // line separate
       EstimateFeeRequest& obj,  // NOLINT
@@ -695,40 +696,40 @@ class EstimateFeeRequest
   }
 
   /**
-   * @brief tx 取得処理
+   * @brief Get of tx
    * @return tx
    */
   std::string GetTx() const {
     return tx_;
   }
   /**
-   * @brief tx 設定処理
-   * @param[in] tx    設定値
+   * @brief Set to tx
+   * @param[in] tx    setting value.
    */
   void SetTx(  // line separate
     const std::string& tx) {  // NOLINT
     this->tx_ = tx;
   }
   /**
-   * @brief tx データ型の取得処理
-   * @return txのデータ型
+   * @brief Get data type of tx
+   * @return Data type of tx
    */
   static std::string GetTxFieldType() {
     return "std::string";
   }
   /**
-   * @brief tx フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of tx field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetTxString(  // line separate
       const EstimateFeeRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.tx_);
   }
   /**
-   * @brief tx フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to tx field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetTxString(  // line separate
       EstimateFeeRequest& obj,  // NOLINT
@@ -738,40 +739,40 @@ class EstimateFeeRequest
   }
 
   /**
-   * @brief isElements 取得処理
+   * @brief Get of isElements
    * @return isElements
    */
   bool GetIsElements() const {
     return is_elements_;
   }
   /**
-   * @brief isElements 設定処理
-   * @param[in] is_elements    設定値
+   * @brief Set to isElements
+   * @param[in] is_elements    setting value.
    */
   void SetIsElements(  // line separate
     const bool& is_elements) {  // NOLINT
     this->is_elements_ = is_elements;
   }
   /**
-   * @brief isElements データ型の取得処理
-   * @return isElementsのデータ型
+   * @brief Get data type of isElements
+   * @return Data type of isElements
    */
   static std::string GetIsElementsFieldType() {
     return "bool";
   }
   /**
-   * @brief isElements フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of isElements field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetIsElementsString(  // line separate
       const EstimateFeeRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.is_elements_);
   }
   /**
-   * @brief isElements フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to isElements field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetIsElementsString(  // line separate
       EstimateFeeRequest& obj,  // NOLINT
@@ -781,40 +782,40 @@ class EstimateFeeRequest
   }
 
   /**
-   * @brief isBlind 取得処理
+   * @brief Get of isBlind
    * @return isBlind
    */
   bool GetIsBlind() const {
     return is_blind_;
   }
   /**
-   * @brief isBlind 設定処理
-   * @param[in] is_blind    設定値
+   * @brief Set to isBlind
+   * @param[in] is_blind    setting value.
    */
   void SetIsBlind(  // line separate
     const bool& is_blind) {  // NOLINT
     this->is_blind_ = is_blind;
   }
   /**
-   * @brief isBlind データ型の取得処理
-   * @return isBlindのデータ型
+   * @brief Get data type of isBlind
+   * @return Data type of isBlind
    */
   static std::string GetIsBlindFieldType() {
     return "bool";
   }
   /**
-   * @brief isBlind フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of isBlind field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetIsBlindString(  // line separate
       const EstimateFeeRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.is_blind_);
   }
   /**
-   * @brief isBlind フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to isBlind field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetIsBlindString(  // line separate
       EstimateFeeRequest& obj,  // NOLINT
@@ -824,40 +825,40 @@ class EstimateFeeRequest
   }
 
   /**
-   * @brief feeAsset 取得処理
+   * @brief Get of feeAsset
    * @return feeAsset
    */
   std::string GetFeeAsset() const {
     return fee_asset_;
   }
   /**
-   * @brief feeAsset 設定処理
-   * @param[in] fee_asset    設定値
+   * @brief Set to feeAsset
+   * @param[in] fee_asset    setting value.
    */
   void SetFeeAsset(  // line separate
     const std::string& fee_asset) {  // NOLINT
     this->fee_asset_ = fee_asset;
   }
   /**
-   * @brief feeAsset データ型の取得処理
-   * @return feeAssetのデータ型
+   * @brief Get data type of feeAsset
+   * @return Data type of feeAsset
    */
   static std::string GetFeeAssetFieldType() {
     return "std::string";
   }
   /**
-   * @brief feeAsset フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of feeAsset field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetFeeAssetString(  // line separate
       const EstimateFeeRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.fee_asset_);
   }
   /**
-   * @brief feeAsset フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to feeAsset field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetFeeAssetString(  // line separate
       EstimateFeeRequest& obj,  // NOLINT
@@ -867,54 +868,54 @@ class EstimateFeeRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const EstimateFeeRequestStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   EstimateFeeRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using EstimateFeeRequestMapTable =
     cfd::core::JsonTableMap<EstimateFeeRequest>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const EstimateFeeRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -923,40 +924,40 @@ class EstimateFeeRequest
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static EstimateFeeRequestMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(selectUtxos) のvalue
+   * @brief JsonAPI(selectUtxos) value
    */
   JsonObjectVector<SelectUtxoData, SelectUtxoDataStruct> select_utxos_;  // NOLINT
   /**
-   * @brief JsonAPI(feeRate) のvalue
+   * @brief JsonAPI(feeRate) value
    */
   double fee_rate_ = 1;
   /**
-   * @brief JsonAPI(tx) のvalue
+   * @brief JsonAPI(tx) value
    */
   std::string tx_ = "";
   /**
-   * @brief JsonAPI(isElements) のvalue
+   * @brief JsonAPI(isElements) value
    */
   bool is_elements_ = false;
   /**
-   * @brief JsonAPI(isBlind) のvalue
+   * @brief JsonAPI(isBlind) value
    */
   bool is_blind_ = true;
   /**
-   * @brief JsonAPI(feeAsset) のvalue
+   * @brief JsonAPI(feeAsset) value
    */
   std::string fee_asset_ = "";
 };
@@ -965,7 +966,7 @@ class EstimateFeeRequest
 // EstimateFeeResponse
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（EstimateFeeResponse）クラス
+ * @brief JSON-API (EstimateFeeResponse) class
  */
 class EstimateFeeResponse
   : public cfd::core::JsonClassBase<EstimateFeeResponse> {
@@ -977,45 +978,45 @@ class EstimateFeeResponse
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief feeAmount 取得処理
+   * @brief Get of feeAmount
    * @return feeAmount
    */
   int64_t GetFeeAmount() const {
     return fee_amount_;
   }
   /**
-   * @brief feeAmount 設定処理
-   * @param[in] fee_amount    設定値
+   * @brief Set to feeAmount
+   * @param[in] fee_amount    setting value.
    */
   void SetFeeAmount(  // line separate
     const int64_t& fee_amount) {  // NOLINT
     this->fee_amount_ = fee_amount;
   }
   /**
-   * @brief feeAmount データ型の取得処理
-   * @return feeAmountのデータ型
+   * @brief Get data type of feeAmount
+   * @return Data type of feeAmount
    */
   static std::string GetFeeAmountFieldType() {
     return "int64_t";
   }
   /**
-   * @brief feeAmount フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of feeAmount field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetFeeAmountString(  // line separate
       const EstimateFeeResponse& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.fee_amount_);
   }
   /**
-   * @brief feeAmount フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to feeAmount field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetFeeAmountString(  // line separate
       EstimateFeeResponse& obj,  // NOLINT
@@ -1025,40 +1026,40 @@ class EstimateFeeResponse
   }
 
   /**
-   * @brief txFeeAmount 取得処理
+   * @brief Get of txFeeAmount
    * @return txFeeAmount
    */
   int64_t GetTxFeeAmount() const {
     return tx_fee_amount_;
   }
   /**
-   * @brief txFeeAmount 設定処理
-   * @param[in] tx_fee_amount    設定値
+   * @brief Set to txFeeAmount
+   * @param[in] tx_fee_amount    setting value.
    */
   void SetTxFeeAmount(  // line separate
     const int64_t& tx_fee_amount) {  // NOLINT
     this->tx_fee_amount_ = tx_fee_amount;
   }
   /**
-   * @brief txFeeAmount データ型の取得処理
-   * @return txFeeAmountのデータ型
+   * @brief Get data type of txFeeAmount
+   * @return Data type of txFeeAmount
    */
   static std::string GetTxFeeAmountFieldType() {
     return "int64_t";
   }
   /**
-   * @brief txFeeAmount フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of txFeeAmount field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetTxFeeAmountString(  // line separate
       const EstimateFeeResponse& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.tx_fee_amount_);
   }
   /**
-   * @brief txFeeAmount フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to txFeeAmount field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetTxFeeAmountString(  // line separate
       EstimateFeeResponse& obj,  // NOLINT
@@ -1068,40 +1069,40 @@ class EstimateFeeResponse
   }
 
   /**
-   * @brief utxoFeeAmount 取得処理
+   * @brief Get of utxoFeeAmount
    * @return utxoFeeAmount
    */
   int64_t GetUtxoFeeAmount() const {
     return utxo_fee_amount_;
   }
   /**
-   * @brief utxoFeeAmount 設定処理
-   * @param[in] utxo_fee_amount    設定値
+   * @brief Set to utxoFeeAmount
+   * @param[in] utxo_fee_amount    setting value.
    */
   void SetUtxoFeeAmount(  // line separate
     const int64_t& utxo_fee_amount) {  // NOLINT
     this->utxo_fee_amount_ = utxo_fee_amount;
   }
   /**
-   * @brief utxoFeeAmount データ型の取得処理
-   * @return utxoFeeAmountのデータ型
+   * @brief Get data type of utxoFeeAmount
+   * @return Data type of utxoFeeAmount
    */
   static std::string GetUtxoFeeAmountFieldType() {
     return "int64_t";
   }
   /**
-   * @brief utxoFeeAmount フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of utxoFeeAmount field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetUtxoFeeAmountString(  // line separate
       const EstimateFeeResponse& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.utxo_fee_amount_);
   }
   /**
-   * @brief utxoFeeAmount フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to utxoFeeAmount field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetUtxoFeeAmountString(  // line separate
       EstimateFeeResponse& obj,  // NOLINT
@@ -1111,54 +1112,54 @@ class EstimateFeeResponse
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const EstimateFeeResponseStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   EstimateFeeResponseStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using EstimateFeeResponseMapTable =
     cfd::core::JsonTableMap<EstimateFeeResponse>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const EstimateFeeResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -1167,28 +1168,28 @@ class EstimateFeeResponse
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static EstimateFeeResponseMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(feeAmount) のvalue
+   * @brief JsonAPI(feeAmount) value
    */
   int64_t fee_amount_ = 0;
   /**
-   * @brief JsonAPI(txFeeAmount) のvalue
+   * @brief JsonAPI(txFeeAmount) value
    */
   int64_t tx_fee_amount_ = 0;
   /**
-   * @brief JsonAPI(utxoFeeAmount) のvalue
+   * @brief JsonAPI(utxoFeeAmount) value
    */
   int64_t utxo_fee_amount_ = 0;
 };

@@ -2,7 +2,7 @@
 /**
  * @file cfdapi_error_base_json.h
  *
- * @brief JSONマッピングファイル (自動生成)
+ * @brief JSON mapping file. (auto generate)
  */
 #ifndef CFD_JS_SRC_AUTOGEN_CFDAPI_ERROR_BASE_JSON_H_
 #define CFD_JS_SRC_AUTOGEN_CFDAPI_ERROR_BASE_JSON_H_
@@ -31,7 +31,7 @@ using cfd::core::JsonVector;
 // InnerErrorResponse
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（InnerErrorResponse）クラス
+ * @brief JSON-API (InnerErrorResponse) class
  */
 class InnerErrorResponse
   : public cfd::core::JsonClassBase<InnerErrorResponse> {
@@ -43,45 +43,45 @@ class InnerErrorResponse
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief code 取得処理
+   * @brief Get of code
    * @return code
    */
   int64_t GetCode() const {
     return code_;
   }
   /**
-   * @brief code 設定処理
-   * @param[in] code    設定値
+   * @brief Set to code
+   * @param[in] code    setting value.
    */
   void SetCode(  // line separate
     const int64_t& code) {  // NOLINT
     this->code_ = code;
   }
   /**
-   * @brief code データ型の取得処理
-   * @return codeのデータ型
+   * @brief Get data type of code
+   * @return Data type of code
    */
   static std::string GetCodeFieldType() {
     return "int64_t";
   }
   /**
-   * @brief code フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of code field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetCodeString(  // line separate
       const InnerErrorResponse& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.code_);
   }
   /**
-   * @brief code フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to code field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetCodeString(  // line separate
       InnerErrorResponse& obj,  // NOLINT
@@ -91,40 +91,40 @@ class InnerErrorResponse
   }
 
   /**
-   * @brief type 取得処理
+   * @brief Get of type
    * @return type
    */
   std::string GetType() const {
     return type_;
   }
   /**
-   * @brief type 設定処理
-   * @param[in] type    設定値
+   * @brief Set to type
+   * @param[in] type    setting value.
    */
   void SetType(  // line separate
     const std::string& type) {  // NOLINT
     this->type_ = type;
   }
   /**
-   * @brief type データ型の取得処理
-   * @return typeのデータ型
+   * @brief Get data type of type
+   * @return Data type of type
    */
   static std::string GetTypeFieldType() {
     return "std::string";
   }
   /**
-   * @brief type フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of type field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetTypeString(  // line separate
       const InnerErrorResponse& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.type_);
   }
   /**
-   * @brief type フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to type field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetTypeString(  // line separate
       InnerErrorResponse& obj,  // NOLINT
@@ -134,40 +134,40 @@ class InnerErrorResponse
   }
 
   /**
-   * @brief message 取得処理
+   * @brief Get of message
    * @return message
    */
   std::string GetMessage() const {
     return message_;
   }
   /**
-   * @brief message 設定処理
-   * @param[in] message    設定値
+   * @brief Set to message
+   * @param[in] message    setting value.
    */
   void SetMessage(  // line separate
     const std::string& message) {  // NOLINT
     this->message_ = message;
   }
   /**
-   * @brief message データ型の取得処理
-   * @return messageのデータ型
+   * @brief Get data type of message
+   * @return Data type of message
    */
   static std::string GetMessageFieldType() {
     return "std::string";
   }
   /**
-   * @brief message フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of message field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetMessageString(  // line separate
       const InnerErrorResponse& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.message_);
   }
   /**
-   * @brief message フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to message field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetMessageString(  // line separate
       InnerErrorResponse& obj,  // NOLINT
@@ -177,54 +177,54 @@ class InnerErrorResponse
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const InnerErrorResponseStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   InnerErrorResponseStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using InnerErrorResponseMapTable =
     cfd::core::JsonTableMap<InnerErrorResponse>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const InnerErrorResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -233,28 +233,28 @@ class InnerErrorResponse
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static InnerErrorResponseMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(code) のvalue
+   * @brief JsonAPI(code) value
    */
   int64_t code_ = 0;
   /**
-   * @brief JsonAPI(type) のvalue
+   * @brief JsonAPI(type) value
    */
   std::string type_ = "";
   /**
-   * @brief JsonAPI(message) のvalue
+   * @brief JsonAPI(message) value
    */
   std::string message_ = "";
 };
@@ -263,7 +263,7 @@ class InnerErrorResponse
 // ErrorResponseBase
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（ErrorResponseBase）クラス
+ * @brief JSON-API (ErrorResponseBase) class
  */
 class ErrorResponseBase
   : public cfd::core::JsonClassBase<ErrorResponseBase> {
@@ -275,46 +275,47 @@ class ErrorResponseBase
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief error 取得処理
+   * @brief Get of error.
    * @return error
    */
   InnerErrorResponse& GetError() {  // NOLINT
     return error_;
   }
   /**
-   * @brief error 設定処理
-   * @param[in] error    設定値
+   * @brief Set to error.
+   * @param[in] error    setting value.
    */
   void SetError(  // line separate
       const InnerErrorResponse& error) {  // NOLINT
     this->error_ = error;
   }
   /**
-   * @brief error データ型の取得処理
-   * @return errorのデータ型
+   * @brief Get data type of error.
+   * @return Data type of error.
    */
   static std::string GetErrorFieldType() {
     return "InnerErrorResponse";  // NOLINT
   }
   /**
-   * @brief error フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of error field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
    */
   static std::string GetErrorString(  // line separate
       const ErrorResponseBase& obj) {  // NOLINT
-    // Serialize内部のpre/post処理でメンバ変数の置換が起こり得るためconstにしない
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
     return obj.error_.Serialize();
   }
   /**
-   * @brief error フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to error field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
    */
   static void SetErrorString(  // line separate
       ErrorResponseBase& obj,  // NOLINT
@@ -323,8 +324,8 @@ class ErrorResponseBase
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
@@ -334,32 +335,32 @@ class ErrorResponseBase
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using ErrorResponseBaseMapTable =
     cfd::core::JsonTableMap<ErrorResponseBase>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ErrorResponseBaseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -368,20 +369,20 @@ class ErrorResponseBase
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static ErrorResponseBaseMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(error) のvalue
+   * @brief JsonAPI(error) value
    */
   InnerErrorResponse error_;  // NOLINT
 };

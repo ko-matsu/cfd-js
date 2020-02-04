@@ -2,7 +2,7 @@
 /**
  * @file cfdapi_get_pubkey_from_extkey_json.cpp
  *
- * @brief JSONマッピングファイル (自動生成)
+ * @brief JSON mapping file (auto generate)
  */
 #include <set>
 #include <string>

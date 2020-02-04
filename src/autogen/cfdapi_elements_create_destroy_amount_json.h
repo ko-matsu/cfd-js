@@ -2,7 +2,7 @@
 /**
  * @file cfdapi_elements_create_destroy_amount_json.h
  *
- * @brief JSONマッピングファイル (自動生成)
+ * @brief JSON mapping file. (auto generate)
  */
 #ifndef CFD_JS_SRC_AUTOGEN_CFDAPI_ELEMENTS_CREATE_DESTROY_AMOUNT_JSON_H_
 #define CFD_JS_SRC_AUTOGEN_CFDAPI_ELEMENTS_CREATE_DESTROY_AMOUNT_JSON_H_
@@ -31,7 +31,7 @@ using cfd::core::JsonVector;
 // ElementsDestroyAmountTxIn
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（ElementsDestroyAmountTxIn）クラス
+ * @brief JSON-API (ElementsDestroyAmountTxIn) class
  */
 class ElementsDestroyAmountTxIn
   : public cfd::core::JsonClassBase<ElementsDestroyAmountTxIn> {
@@ -43,45 +43,45 @@ class ElementsDestroyAmountTxIn
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief txid 取得処理
+   * @brief Get of txid
    * @return txid
    */
   std::string GetTxid() const {
     return txid_;
   }
   /**
-   * @brief txid 設定処理
-   * @param[in] txid    設定値
+   * @brief Set to txid
+   * @param[in] txid    setting value.
    */
   void SetTxid(  // line separate
     const std::string& txid) {  // NOLINT
     this->txid_ = txid;
   }
   /**
-   * @brief txid データ型の取得処理
-   * @return txidのデータ型
+   * @brief Get data type of txid
+   * @return Data type of txid
    */
   static std::string GetTxidFieldType() {
     return "std::string";
   }
   /**
-   * @brief txid フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of txid field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetTxidString(  // line separate
       const ElementsDestroyAmountTxIn& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.txid_);
   }
   /**
-   * @brief txid フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to txid field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetTxidString(  // line separate
       ElementsDestroyAmountTxIn& obj,  // NOLINT
@@ -91,40 +91,40 @@ class ElementsDestroyAmountTxIn
   }
 
   /**
-   * @brief vout 取得処理
+   * @brief Get of vout
    * @return vout
    */
   uint32_t GetVout() const {
     return vout_;
   }
   /**
-   * @brief vout 設定処理
-   * @param[in] vout    設定値
+   * @brief Set to vout
+   * @param[in] vout    setting value.
    */
   void SetVout(  // line separate
     const uint32_t& vout) {  // NOLINT
     this->vout_ = vout;
   }
   /**
-   * @brief vout データ型の取得処理
-   * @return voutのデータ型
+   * @brief Get data type of vout
+   * @return Data type of vout
    */
   static std::string GetVoutFieldType() {
     return "uint32_t";
   }
   /**
-   * @brief vout フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of vout field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetVoutString(  // line separate
       const ElementsDestroyAmountTxIn& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.vout_);
   }
   /**
-   * @brief vout フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to vout field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetVoutString(  // line separate
       ElementsDestroyAmountTxIn& obj,  // NOLINT
@@ -134,40 +134,40 @@ class ElementsDestroyAmountTxIn
   }
 
   /**
-   * @brief sequence 取得処理
+   * @brief Get of sequence
    * @return sequence
    */
   uint32_t GetSequence() const {
     return sequence_;
   }
   /**
-   * @brief sequence 設定処理
-   * @param[in] sequence    設定値
+   * @brief Set to sequence
+   * @param[in] sequence    setting value.
    */
   void SetSequence(  // line separate
     const uint32_t& sequence) {  // NOLINT
     this->sequence_ = sequence;
   }
   /**
-   * @brief sequence データ型の取得処理
-   * @return sequenceのデータ型
+   * @brief Get data type of sequence
+   * @return Data type of sequence
    */
   static std::string GetSequenceFieldType() {
     return "uint32_t";
   }
   /**
-   * @brief sequence フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of sequence field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetSequenceString(  // line separate
       const ElementsDestroyAmountTxIn& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.sequence_);
   }
   /**
-   * @brief sequence フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to sequence field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetSequenceString(  // line separate
       ElementsDestroyAmountTxIn& obj,  // NOLINT
@@ -177,54 +177,54 @@ class ElementsDestroyAmountTxIn
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const ElementsDestroyAmountTxInStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   ElementsDestroyAmountTxInStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using ElementsDestroyAmountTxInMapTable =
     cfd::core::JsonTableMap<ElementsDestroyAmountTxIn>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ElementsDestroyAmountTxInMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -233,28 +233,28 @@ class ElementsDestroyAmountTxIn
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static ElementsDestroyAmountTxInMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(txid) のvalue
+   * @brief JsonAPI(txid) value
    */
   std::string txid_ = "";
   /**
-   * @brief JsonAPI(vout) のvalue
+   * @brief JsonAPI(vout) value
    */
   uint32_t vout_ = 0;
   /**
-   * @brief JsonAPI(sequence) のvalue
+   * @brief JsonAPI(sequence) value
    */
   uint32_t sequence_ = 4294967295;
 };
@@ -263,7 +263,7 @@ class ElementsDestroyAmountTxIn
 // ElementsDestroyAmountTxOut
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（ElementsDestroyAmountTxOut）クラス
+ * @brief JSON-API (ElementsDestroyAmountTxOut) class
  */
 class ElementsDestroyAmountTxOut
   : public cfd::core::JsonClassBase<ElementsDestroyAmountTxOut> {
@@ -275,45 +275,45 @@ class ElementsDestroyAmountTxOut
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief address 取得処理
+   * @brief Get of address
    * @return address
    */
   std::string GetAddress() const {
     return address_;
   }
   /**
-   * @brief address 設定処理
-   * @param[in] address    設定値
+   * @brief Set to address
+   * @param[in] address    setting value.
    */
   void SetAddress(  // line separate
     const std::string& address) {  // NOLINT
     this->address_ = address;
   }
   /**
-   * @brief address データ型の取得処理
-   * @return addressのデータ型
+   * @brief Get data type of address
+   * @return Data type of address
    */
   static std::string GetAddressFieldType() {
     return "std::string";
   }
   /**
-   * @brief address フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of address field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetAddressString(  // line separate
       const ElementsDestroyAmountTxOut& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.address_);
   }
   /**
-   * @brief address フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to address field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetAddressString(  // line separate
       ElementsDestroyAmountTxOut& obj,  // NOLINT
@@ -323,40 +323,40 @@ class ElementsDestroyAmountTxOut
   }
 
   /**
-   * @brief amount 取得処理
+   * @brief Get of amount
    * @return amount
    */
   int64_t GetAmount() const {
     return amount_;
   }
   /**
-   * @brief amount 設定処理
-   * @param[in] amount    設定値
+   * @brief Set to amount
+   * @param[in] amount    setting value.
    */
   void SetAmount(  // line separate
     const int64_t& amount) {  // NOLINT
     this->amount_ = amount;
   }
   /**
-   * @brief amount データ型の取得処理
-   * @return amountのデータ型
+   * @brief Get data type of amount
+   * @return Data type of amount
    */
   static std::string GetAmountFieldType() {
     return "int64_t";
   }
   /**
-   * @brief amount フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of amount field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetAmountString(  // line separate
       const ElementsDestroyAmountTxOut& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.amount_);
   }
   /**
-   * @brief amount フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to amount field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetAmountString(  // line separate
       ElementsDestroyAmountTxOut& obj,  // NOLINT
@@ -366,40 +366,40 @@ class ElementsDestroyAmountTxOut
   }
 
   /**
-   * @brief asset 取得処理
+   * @brief Get of asset
    * @return asset
    */
   std::string GetAsset() const {
     return asset_;
   }
   /**
-   * @brief asset 設定処理
-   * @param[in] asset    設定値
+   * @brief Set to asset
+   * @param[in] asset    setting value.
    */
   void SetAsset(  // line separate
     const std::string& asset) {  // NOLINT
     this->asset_ = asset;
   }
   /**
-   * @brief asset データ型の取得処理
-   * @return assetのデータ型
+   * @brief Get data type of asset
+   * @return Data type of asset
    */
   static std::string GetAssetFieldType() {
     return "std::string";
   }
   /**
-   * @brief asset フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of asset field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetAssetString(  // line separate
       const ElementsDestroyAmountTxOut& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.asset_);
   }
   /**
-   * @brief asset フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to asset field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetAssetString(  // line separate
       ElementsDestroyAmountTxOut& obj,  // NOLINT
@@ -409,40 +409,40 @@ class ElementsDestroyAmountTxOut
   }
 
   /**
-   * @brief isRemoveNonce 取得処理
+   * @brief Get of isRemoveNonce
    * @return isRemoveNonce
    */
   bool GetIsRemoveNonce() const {
     return is_remove_nonce_;
   }
   /**
-   * @brief isRemoveNonce 設定処理
-   * @param[in] is_remove_nonce    設定値
+   * @brief Set to isRemoveNonce
+   * @param[in] is_remove_nonce    setting value.
    */
   void SetIsRemoveNonce(  // line separate
     const bool& is_remove_nonce) {  // NOLINT
     this->is_remove_nonce_ = is_remove_nonce;
   }
   /**
-   * @brief isRemoveNonce データ型の取得処理
-   * @return isRemoveNonceのデータ型
+   * @brief Get data type of isRemoveNonce
+   * @return Data type of isRemoveNonce
    */
   static std::string GetIsRemoveNonceFieldType() {
     return "bool";
   }
   /**
-   * @brief isRemoveNonce フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of isRemoveNonce field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetIsRemoveNonceString(  // line separate
       const ElementsDestroyAmountTxOut& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.is_remove_nonce_);
   }
   /**
-   * @brief isRemoveNonce フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to isRemoveNonce field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetIsRemoveNonceString(  // line separate
       ElementsDestroyAmountTxOut& obj,  // NOLINT
@@ -452,54 +452,54 @@ class ElementsDestroyAmountTxOut
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const ElementsDestroyAmountTxOutStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   ElementsDestroyAmountTxOutStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using ElementsDestroyAmountTxOutMapTable =
     cfd::core::JsonTableMap<ElementsDestroyAmountTxOut>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ElementsDestroyAmountTxOutMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -508,32 +508,32 @@ class ElementsDestroyAmountTxOut
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static ElementsDestroyAmountTxOutMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(address) のvalue
+   * @brief JsonAPI(address) value
    */
   std::string address_ = "";
   /**
-   * @brief JsonAPI(amount) のvalue
+   * @brief JsonAPI(amount) value
    */
   int64_t amount_ = 0;
   /**
-   * @brief JsonAPI(asset) のvalue
+   * @brief JsonAPI(asset) value
    */
   std::string asset_ = "";
   /**
-   * @brief JsonAPI(isRemoveNonce) のvalue
+   * @brief JsonAPI(isRemoveNonce) value
    */
   bool is_remove_nonce_ = false;
 };
@@ -542,7 +542,7 @@ class ElementsDestroyAmountTxOut
 // ElementsDestroyAmount
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（ElementsDestroyAmount）クラス
+ * @brief JSON-API (ElementsDestroyAmount) class
  */
 class ElementsDestroyAmount
   : public cfd::core::JsonClassBase<ElementsDestroyAmount> {
@@ -554,45 +554,45 @@ class ElementsDestroyAmount
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief amount 取得処理
+   * @brief Get of amount
    * @return amount
    */
   int64_t GetAmount() const {
     return amount_;
   }
   /**
-   * @brief amount 設定処理
-   * @param[in] amount    設定値
+   * @brief Set to amount
+   * @param[in] amount    setting value.
    */
   void SetAmount(  // line separate
     const int64_t& amount) {  // NOLINT
     this->amount_ = amount;
   }
   /**
-   * @brief amount データ型の取得処理
-   * @return amountのデータ型
+   * @brief Get data type of amount
+   * @return Data type of amount
    */
   static std::string GetAmountFieldType() {
     return "int64_t";
   }
   /**
-   * @brief amount フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of amount field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetAmountString(  // line separate
       const ElementsDestroyAmount& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.amount_);
   }
   /**
-   * @brief amount フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to amount field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetAmountString(  // line separate
       ElementsDestroyAmount& obj,  // NOLINT
@@ -602,40 +602,40 @@ class ElementsDestroyAmount
   }
 
   /**
-   * @brief asset 取得処理
+   * @brief Get of asset
    * @return asset
    */
   std::string GetAsset() const {
     return asset_;
   }
   /**
-   * @brief asset 設定処理
-   * @param[in] asset    設定値
+   * @brief Set to asset
+   * @param[in] asset    setting value.
    */
   void SetAsset(  // line separate
     const std::string& asset) {  // NOLINT
     this->asset_ = asset;
   }
   /**
-   * @brief asset データ型の取得処理
-   * @return assetのデータ型
+   * @brief Get data type of asset
+   * @return Data type of asset
    */
   static std::string GetAssetFieldType() {
     return "std::string";
   }
   /**
-   * @brief asset フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of asset field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetAssetString(  // line separate
       const ElementsDestroyAmount& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.asset_);
   }
   /**
-   * @brief asset フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to asset field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetAssetString(  // line separate
       ElementsDestroyAmount& obj,  // NOLINT
@@ -645,54 +645,54 @@ class ElementsDestroyAmount
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const ElementsDestroyAmountStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   ElementsDestroyAmountStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using ElementsDestroyAmountMapTable =
     cfd::core::JsonTableMap<ElementsDestroyAmount>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ElementsDestroyAmountMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -701,24 +701,24 @@ class ElementsDestroyAmount
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static ElementsDestroyAmountMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(amount) のvalue
+   * @brief JsonAPI(amount) value
    */
   int64_t amount_ = 0;
   /**
-   * @brief JsonAPI(asset) のvalue
+   * @brief JsonAPI(asset) value
    */
   std::string asset_ = "";
 };
@@ -727,7 +727,7 @@ class ElementsDestroyAmount
 // ElementsDestroyAmountFee
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（ElementsDestroyAmountFee）クラス
+ * @brief JSON-API (ElementsDestroyAmountFee) class
  */
 class ElementsDestroyAmountFee
   : public cfd::core::JsonClassBase<ElementsDestroyAmountFee> {
@@ -739,45 +739,45 @@ class ElementsDestroyAmountFee
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief amount 取得処理
+   * @brief Get of amount
    * @return amount
    */
   int64_t GetAmount() const {
     return amount_;
   }
   /**
-   * @brief amount 設定処理
-   * @param[in] amount    設定値
+   * @brief Set to amount
+   * @param[in] amount    setting value.
    */
   void SetAmount(  // line separate
     const int64_t& amount) {  // NOLINT
     this->amount_ = amount;
   }
   /**
-   * @brief amount データ型の取得処理
-   * @return amountのデータ型
+   * @brief Get data type of amount
+   * @return Data type of amount
    */
   static std::string GetAmountFieldType() {
     return "int64_t";
   }
   /**
-   * @brief amount フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of amount field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetAmountString(  // line separate
       const ElementsDestroyAmountFee& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.amount_);
   }
   /**
-   * @brief amount フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to amount field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetAmountString(  // line separate
       ElementsDestroyAmountFee& obj,  // NOLINT
@@ -787,40 +787,40 @@ class ElementsDestroyAmountFee
   }
 
   /**
-   * @brief asset 取得処理
+   * @brief Get of asset
    * @return asset
    */
   std::string GetAsset() const {
     return asset_;
   }
   /**
-   * @brief asset 設定処理
-   * @param[in] asset    設定値
+   * @brief Set to asset
+   * @param[in] asset    setting value.
    */
   void SetAsset(  // line separate
     const std::string& asset) {  // NOLINT
     this->asset_ = asset;
   }
   /**
-   * @brief asset データ型の取得処理
-   * @return assetのデータ型
+   * @brief Get data type of asset
+   * @return Data type of asset
    */
   static std::string GetAssetFieldType() {
     return "std::string";
   }
   /**
-   * @brief asset フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of asset field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetAssetString(  // line separate
       const ElementsDestroyAmountFee& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.asset_);
   }
   /**
-   * @brief asset フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to asset field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetAssetString(  // line separate
       ElementsDestroyAmountFee& obj,  // NOLINT
@@ -830,54 +830,54 @@ class ElementsDestroyAmountFee
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const ElementsDestroyAmountFeeStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   ElementsDestroyAmountFeeStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using ElementsDestroyAmountFeeMapTable =
     cfd::core::JsonTableMap<ElementsDestroyAmountFee>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ElementsDestroyAmountFeeMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -886,24 +886,24 @@ class ElementsDestroyAmountFee
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static ElementsDestroyAmountFeeMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(amount) のvalue
+   * @brief JsonAPI(amount) value
    */
   int64_t amount_ = 0;
   /**
-   * @brief JsonAPI(asset) のvalue
+   * @brief JsonAPI(asset) value
    */
   std::string asset_ = "";
 };
@@ -912,7 +912,7 @@ class ElementsDestroyAmountFee
 // ElementsCreateDestroyAmountRequest
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（ElementsCreateDestroyAmountRequest）クラス
+ * @brief JSON-API (ElementsCreateDestroyAmountRequest) class
  */
 class ElementsCreateDestroyAmountRequest
   : public cfd::core::JsonClassBase<ElementsCreateDestroyAmountRequest> {
@@ -924,45 +924,45 @@ class ElementsCreateDestroyAmountRequest
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief version 取得処理
+   * @brief Get of version
    * @return version
    */
   uint32_t GetVersion() const {
     return version_;
   }
   /**
-   * @brief version 設定処理
-   * @param[in] version    設定値
+   * @brief Set to version
+   * @param[in] version    setting value.
    */
   void SetVersion(  // line separate
     const uint32_t& version) {  // NOLINT
     this->version_ = version;
   }
   /**
-   * @brief version データ型の取得処理
-   * @return versionのデータ型
+   * @brief Get data type of version
+   * @return Data type of version
    */
   static std::string GetVersionFieldType() {
     return "uint32_t";
   }
   /**
-   * @brief version フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of version field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetVersionString(  // line separate
       const ElementsCreateDestroyAmountRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.version_);
   }
   /**
-   * @brief version フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to version field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetVersionString(  // line separate
       ElementsCreateDestroyAmountRequest& obj,  // NOLINT
@@ -972,40 +972,40 @@ class ElementsCreateDestroyAmountRequest
   }
 
   /**
-   * @brief locktime 取得処理
+   * @brief Get of locktime
    * @return locktime
    */
   uint32_t GetLocktime() const {
     return locktime_;
   }
   /**
-   * @brief locktime 設定処理
-   * @param[in] locktime    設定値
+   * @brief Set to locktime
+   * @param[in] locktime    setting value.
    */
   void SetLocktime(  // line separate
     const uint32_t& locktime) {  // NOLINT
     this->locktime_ = locktime;
   }
   /**
-   * @brief locktime データ型の取得処理
-   * @return locktimeのデータ型
+   * @brief Get data type of locktime
+   * @return Data type of locktime
    */
   static std::string GetLocktimeFieldType() {
     return "uint32_t";
   }
   /**
-   * @brief locktime フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of locktime field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetLocktimeString(  // line separate
       const ElementsCreateDestroyAmountRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.locktime_);
   }
   /**
-   * @brief locktime フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to locktime field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetLocktimeString(  // line separate
       ElementsCreateDestroyAmountRequest& obj,  // NOLINT
@@ -1015,41 +1015,42 @@ class ElementsCreateDestroyAmountRequest
   }
 
   /**
-   * @brief txins 取得処理
+   * @brief Get of txins.
    * @return txins
    */
   JsonObjectVector<ElementsDestroyAmountTxIn, ElementsDestroyAmountTxInStruct>& GetTxins() {  // NOLINT
     return txins_;
   }
   /**
-   * @brief txins 設定処理
-   * @param[in] txins    設定値
+   * @brief Set to txins.
+   * @param[in] txins    setting value.
    */
   void SetTxins(  // line separate
       const JsonObjectVector<ElementsDestroyAmountTxIn, ElementsDestroyAmountTxInStruct>& txins) {  // NOLINT
     this->txins_ = txins;
   }
   /**
-   * @brief txins データ型の取得処理
-   * @return txinsのデータ型
+   * @brief Get data type of txins.
+   * @return Data type of txins.
    */
   static std::string GetTxinsFieldType() {
     return "JsonObjectVector<ElementsDestroyAmountTxIn, ElementsDestroyAmountTxInStruct>";  // NOLINT
   }
   /**
-   * @brief txins フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of txins field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
    */
   static std::string GetTxinsString(  // line separate
       const ElementsCreateDestroyAmountRequest& obj) {  // NOLINT
-    // Serialize内部のpre/post処理でメンバ変数の置換が起こり得るためconstにしない
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
     return obj.txins_.Serialize();
   }
   /**
-   * @brief txins フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to txins field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
    */
   static void SetTxinsString(  // line separate
       ElementsCreateDestroyAmountRequest& obj,  // NOLINT
@@ -1058,41 +1059,42 @@ class ElementsCreateDestroyAmountRequest
   }
 
   /**
-   * @brief txouts 取得処理
+   * @brief Get of txouts.
    * @return txouts
    */
   JsonObjectVector<ElementsDestroyAmountTxOut, ElementsDestroyAmountTxOutStruct>& GetTxouts() {  // NOLINT
     return txouts_;
   }
   /**
-   * @brief txouts 設定処理
-   * @param[in] txouts    設定値
+   * @brief Set to txouts.
+   * @param[in] txouts    setting value.
    */
   void SetTxouts(  // line separate
       const JsonObjectVector<ElementsDestroyAmountTxOut, ElementsDestroyAmountTxOutStruct>& txouts) {  // NOLINT
     this->txouts_ = txouts;
   }
   /**
-   * @brief txouts データ型の取得処理
-   * @return txoutsのデータ型
+   * @brief Get data type of txouts.
+   * @return Data type of txouts.
    */
   static std::string GetTxoutsFieldType() {
     return "JsonObjectVector<ElementsDestroyAmountTxOut, ElementsDestroyAmountTxOutStruct>";  // NOLINT
   }
   /**
-   * @brief txouts フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of txouts field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
    */
   static std::string GetTxoutsString(  // line separate
       const ElementsCreateDestroyAmountRequest& obj) {  // NOLINT
-    // Serialize内部のpre/post処理でメンバ変数の置換が起こり得るためconstにしない
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
     return obj.txouts_.Serialize();
   }
   /**
-   * @brief txouts フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to txouts field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
    */
   static void SetTxoutsString(  // line separate
       ElementsCreateDestroyAmountRequest& obj,  // NOLINT
@@ -1101,41 +1103,42 @@ class ElementsCreateDestroyAmountRequest
   }
 
   /**
-   * @brief destroy 取得処理
+   * @brief Get of destroy.
    * @return destroy
    */
   ElementsDestroyAmount& GetDestroy() {  // NOLINT
     return destroy_;
   }
   /**
-   * @brief destroy 設定処理
-   * @param[in] destroy    設定値
+   * @brief Set to destroy.
+   * @param[in] destroy    setting value.
    */
   void SetDestroy(  // line separate
       const ElementsDestroyAmount& destroy) {  // NOLINT
     this->destroy_ = destroy;
   }
   /**
-   * @brief destroy データ型の取得処理
-   * @return destroyのデータ型
+   * @brief Get data type of destroy.
+   * @return Data type of destroy.
    */
   static std::string GetDestroyFieldType() {
     return "ElementsDestroyAmount";  // NOLINT
   }
   /**
-   * @brief destroy フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of destroy field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
    */
   static std::string GetDestroyString(  // line separate
       const ElementsCreateDestroyAmountRequest& obj) {  // NOLINT
-    // Serialize内部のpre/post処理でメンバ変数の置換が起こり得るためconstにしない
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
     return obj.destroy_.Serialize();
   }
   /**
-   * @brief destroy フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to destroy field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
    */
   static void SetDestroyString(  // line separate
       ElementsCreateDestroyAmountRequest& obj,  // NOLINT
@@ -1144,41 +1147,42 @@ class ElementsCreateDestroyAmountRequest
   }
 
   /**
-   * @brief fee 取得処理
+   * @brief Get of fee.
    * @return fee
    */
   ElementsDestroyAmountFee& GetFee() {  // NOLINT
     return fee_;
   }
   /**
-   * @brief fee 設定処理
-   * @param[in] fee    設定値
+   * @brief Set to fee.
+   * @param[in] fee    setting value.
    */
   void SetFee(  // line separate
       const ElementsDestroyAmountFee& fee) {  // NOLINT
     this->fee_ = fee;
   }
   /**
-   * @brief fee データ型の取得処理
-   * @return feeのデータ型
+   * @brief Get data type of fee.
+   * @return Data type of fee.
    */
   static std::string GetFeeFieldType() {
     return "ElementsDestroyAmountFee";  // NOLINT
   }
   /**
-   * @brief fee フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of fee field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
    */
   static std::string GetFeeString(  // line separate
       const ElementsCreateDestroyAmountRequest& obj) {  // NOLINT
-    // Serialize内部のpre/post処理でメンバ変数の置換が起こり得るためconstにしない
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
     return obj.fee_.Serialize();
   }
   /**
-   * @brief fee フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to fee field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
    */
   static void SetFeeString(  // line separate
       ElementsCreateDestroyAmountRequest& obj,  // NOLINT
@@ -1187,54 +1191,54 @@ class ElementsCreateDestroyAmountRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const ElementsCreateDestroyAmountRequestStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   ElementsCreateDestroyAmountRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using ElementsCreateDestroyAmountRequestMapTable =
     cfd::core::JsonTableMap<ElementsCreateDestroyAmountRequest>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ElementsCreateDestroyAmountRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -1243,40 +1247,40 @@ class ElementsCreateDestroyAmountRequest
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static ElementsCreateDestroyAmountRequestMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(version) のvalue
+   * @brief JsonAPI(version) value
    */
   uint32_t version_ = 2;
   /**
-   * @brief JsonAPI(locktime) のvalue
+   * @brief JsonAPI(locktime) value
    */
   uint32_t locktime_ = 0;
   /**
-   * @brief JsonAPI(txins) のvalue
+   * @brief JsonAPI(txins) value
    */
   JsonObjectVector<ElementsDestroyAmountTxIn, ElementsDestroyAmountTxInStruct> txins_;  // NOLINT
   /**
-   * @brief JsonAPI(txouts) のvalue
+   * @brief JsonAPI(txouts) value
    */
   JsonObjectVector<ElementsDestroyAmountTxOut, ElementsDestroyAmountTxOutStruct> txouts_;  // NOLINT
   /**
-   * @brief JsonAPI(destroy) のvalue
+   * @brief JsonAPI(destroy) value
    */
   ElementsDestroyAmount destroy_;  // NOLINT
   /**
-   * @brief JsonAPI(fee) のvalue
+   * @brief JsonAPI(fee) value
    */
   ElementsDestroyAmountFee fee_;  // NOLINT
 };
@@ -1285,7 +1289,7 @@ class ElementsCreateDestroyAmountRequest
 // ElementsCreateDestroyAmountResponse
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（ElementsCreateDestroyAmountResponse）クラス
+ * @brief JSON-API (ElementsCreateDestroyAmountResponse) class
  */
 class ElementsCreateDestroyAmountResponse
   : public cfd::core::JsonClassBase<ElementsCreateDestroyAmountResponse> {
@@ -1297,45 +1301,45 @@ class ElementsCreateDestroyAmountResponse
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief hex 取得処理
+   * @brief Get of hex
    * @return hex
    */
   std::string GetHex() const {
     return hex_;
   }
   /**
-   * @brief hex 設定処理
-   * @param[in] hex    設定値
+   * @brief Set to hex
+   * @param[in] hex    setting value.
    */
   void SetHex(  // line separate
     const std::string& hex) {  // NOLINT
     this->hex_ = hex;
   }
   /**
-   * @brief hex データ型の取得処理
-   * @return hexのデータ型
+   * @brief Get data type of hex
+   * @return Data type of hex
    */
   static std::string GetHexFieldType() {
     return "std::string";
   }
   /**
-   * @brief hex フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of hex field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetHexString(  // line separate
       const ElementsCreateDestroyAmountResponse& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.hex_);
   }
   /**
-   * @brief hex フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to hex field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetHexString(  // line separate
       ElementsCreateDestroyAmountResponse& obj,  // NOLINT
@@ -1345,54 +1349,54 @@ class ElementsCreateDestroyAmountResponse
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const ElementsCreateDestroyAmountResponseStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   ElementsCreateDestroyAmountResponseStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using ElementsCreateDestroyAmountResponseMapTable =
     cfd::core::JsonTableMap<ElementsCreateDestroyAmountResponse>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ElementsCreateDestroyAmountResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -1401,20 +1405,20 @@ class ElementsCreateDestroyAmountResponse
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static ElementsCreateDestroyAmountResponseMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(hex) のvalue
+   * @brief JsonAPI(hex) value
    */
   std::string hex_ = "";
 };

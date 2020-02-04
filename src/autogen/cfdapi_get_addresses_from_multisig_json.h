@@ -2,7 +2,7 @@
 /**
  * @file cfdapi_get_addresses_from_multisig_json.h
  *
- * @brief JSONマッピングファイル (自動生成)
+ * @brief JSON mapping file. (auto generate)
  */
 #ifndef CFD_JS_SRC_AUTOGEN_CFDAPI_GET_ADDRESSES_FROM_MULTISIG_JSON_H_
 #define CFD_JS_SRC_AUTOGEN_CFDAPI_GET_ADDRESSES_FROM_MULTISIG_JSON_H_
@@ -31,7 +31,7 @@ using cfd::core::JsonVector;
 // GetAddressesFromMultisigRequest
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（GetAddressesFromMultisigRequest）クラス
+ * @brief JSON-API (GetAddressesFromMultisigRequest) class
  */
 class GetAddressesFromMultisigRequest
   : public cfd::core::JsonClassBase<GetAddressesFromMultisigRequest> {
@@ -43,45 +43,45 @@ class GetAddressesFromMultisigRequest
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief isElements 取得処理
+   * @brief Get of isElements
    * @return isElements
    */
   bool GetIsElements() const {
     return is_elements_;
   }
   /**
-   * @brief isElements 設定処理
-   * @param[in] is_elements    設定値
+   * @brief Set to isElements
+   * @param[in] is_elements    setting value.
    */
   void SetIsElements(  // line separate
     const bool& is_elements) {  // NOLINT
     this->is_elements_ = is_elements;
   }
   /**
-   * @brief isElements データ型の取得処理
-   * @return isElementsのデータ型
+   * @brief Get data type of isElements
+   * @return Data type of isElements
    */
   static std::string GetIsElementsFieldType() {
     return "bool";
   }
   /**
-   * @brief isElements フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of isElements field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetIsElementsString(  // line separate
       const GetAddressesFromMultisigRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.is_elements_);
   }
   /**
-   * @brief isElements フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to isElements field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetIsElementsString(  // line separate
       GetAddressesFromMultisigRequest& obj,  // NOLINT
@@ -91,40 +91,40 @@ class GetAddressesFromMultisigRequest
   }
 
   /**
-   * @brief redeemScript 取得処理
+   * @brief Get of redeemScript
    * @return redeemScript
    */
   std::string GetRedeemScript() const {
     return redeem_script_;
   }
   /**
-   * @brief redeemScript 設定処理
-   * @param[in] redeem_script    設定値
+   * @brief Set to redeemScript
+   * @param[in] redeem_script    setting value.
    */
   void SetRedeemScript(  // line separate
     const std::string& redeem_script) {  // NOLINT
     this->redeem_script_ = redeem_script;
   }
   /**
-   * @brief redeemScript データ型の取得処理
-   * @return redeemScriptのデータ型
+   * @brief Get data type of redeemScript
+   * @return Data type of redeemScript
    */
   static std::string GetRedeemScriptFieldType() {
     return "std::string";
   }
   /**
-   * @brief redeemScript フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of redeemScript field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetRedeemScriptString(  // line separate
       const GetAddressesFromMultisigRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.redeem_script_);
   }
   /**
-   * @brief redeemScript フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to redeemScript field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetRedeemScriptString(  // line separate
       GetAddressesFromMultisigRequest& obj,  // NOLINT
@@ -134,40 +134,40 @@ class GetAddressesFromMultisigRequest
   }
 
   /**
-   * @brief network 取得処理
+   * @brief Get of network
    * @return network
    */
   std::string GetNetwork() const {
     return network_;
   }
   /**
-   * @brief network 設定処理
-   * @param[in] network    設定値
+   * @brief Set to network
+   * @param[in] network    setting value.
    */
   void SetNetwork(  // line separate
     const std::string& network) {  // NOLINT
     this->network_ = network;
   }
   /**
-   * @brief network データ型の取得処理
-   * @return networkのデータ型
+   * @brief Get data type of network
+   * @return Data type of network
    */
   static std::string GetNetworkFieldType() {
     return "std::string";
   }
   /**
-   * @brief network フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of network field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetNetworkString(  // line separate
       const GetAddressesFromMultisigRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.network_);
   }
   /**
-   * @brief network フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to network field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetNetworkString(  // line separate
       GetAddressesFromMultisigRequest& obj,  // NOLINT
@@ -177,40 +177,40 @@ class GetAddressesFromMultisigRequest
   }
 
   /**
-   * @brief hashType 取得処理
+   * @brief Get of hashType
    * @return hashType
    */
   std::string GetHashType() const {
     return hash_type_;
   }
   /**
-   * @brief hashType 設定処理
-   * @param[in] hash_type    設定値
+   * @brief Set to hashType
+   * @param[in] hash_type    setting value.
    */
   void SetHashType(  // line separate
     const std::string& hash_type) {  // NOLINT
     this->hash_type_ = hash_type;
   }
   /**
-   * @brief hashType データ型の取得処理
-   * @return hashTypeのデータ型
+   * @brief Get data type of hashType
+   * @return Data type of hashType
    */
   static std::string GetHashTypeFieldType() {
     return "std::string";
   }
   /**
-   * @brief hashType フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of hashType field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetHashTypeString(  // line separate
       const GetAddressesFromMultisigRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.hash_type_);
   }
   /**
-   * @brief hashType フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to hashType field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetHashTypeString(  // line separate
       GetAddressesFromMultisigRequest& obj,  // NOLINT
@@ -220,54 +220,54 @@ class GetAddressesFromMultisigRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const GetAddressesFromMultisigRequestStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   GetAddressesFromMultisigRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using GetAddressesFromMultisigRequestMapTable =
     cfd::core::JsonTableMap<GetAddressesFromMultisigRequest>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const GetAddressesFromMultisigRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -276,32 +276,32 @@ class GetAddressesFromMultisigRequest
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static GetAddressesFromMultisigRequestMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(isElements) のvalue
+   * @brief JsonAPI(isElements) value
    */
   bool is_elements_ = false;
   /**
-   * @brief JsonAPI(redeemScript) のvalue
+   * @brief JsonAPI(redeemScript) value
    */
   std::string redeem_script_ = "";
   /**
-   * @brief JsonAPI(network) のvalue
+   * @brief JsonAPI(network) value
    */
   std::string network_ = "mainnet";
   /**
-   * @brief JsonAPI(hashType) のvalue
+   * @brief JsonAPI(hashType) value
    */
   std::string hash_type_ = "p2wpkh";
 };
@@ -310,7 +310,7 @@ class GetAddressesFromMultisigRequest
 // GetAddressesFromMultisigResponse
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（GetAddressesFromMultisigResponse）クラス
+ * @brief JSON-API (GetAddressesFromMultisigResponse) class
  */
 class GetAddressesFromMultisigResponse
   : public cfd::core::JsonClassBase<GetAddressesFromMultisigResponse> {
@@ -322,46 +322,47 @@ class GetAddressesFromMultisigResponse
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief addresses 取得処理
+   * @brief Get of addresses.
    * @return addresses
    */
   JsonValueVector<std::string>& GetAddresses() {  // NOLINT
     return addresses_;
   }
   /**
-   * @brief addresses 設定処理
-   * @param[in] addresses    設定値
+   * @brief Set to addresses.
+   * @param[in] addresses    setting value.
    */
   void SetAddresses(  // line separate
       const JsonValueVector<std::string>& addresses) {  // NOLINT
     this->addresses_ = addresses;
   }
   /**
-   * @brief addresses データ型の取得処理
-   * @return addressesのデータ型
+   * @brief Get data type of addresses.
+   * @return Data type of addresses.
    */
   static std::string GetAddressesFieldType() {
     return "JsonValueVector<std::string>";  // NOLINT
   }
   /**
-   * @brief addresses フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of addresses field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
    */
   static std::string GetAddressesString(  // line separate
       const GetAddressesFromMultisigResponse& obj) {  // NOLINT
-    // Serialize内部のpre/post処理でメンバ変数の置換が起こり得るためconstにしない
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
     return obj.addresses_.Serialize();
   }
   /**
-   * @brief addresses フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to addresses field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
    */
   static void SetAddressesString(  // line separate
       GetAddressesFromMultisigResponse& obj,  // NOLINT
@@ -370,41 +371,42 @@ class GetAddressesFromMultisigResponse
   }
 
   /**
-   * @brief pubkeys 取得処理
+   * @brief Get of pubkeys.
    * @return pubkeys
    */
   JsonValueVector<std::string>& GetPubkeys() {  // NOLINT
     return pubkeys_;
   }
   /**
-   * @brief pubkeys 設定処理
-   * @param[in] pubkeys    設定値
+   * @brief Set to pubkeys.
+   * @param[in] pubkeys    setting value.
    */
   void SetPubkeys(  // line separate
       const JsonValueVector<std::string>& pubkeys) {  // NOLINT
     this->pubkeys_ = pubkeys;
   }
   /**
-   * @brief pubkeys データ型の取得処理
-   * @return pubkeysのデータ型
+   * @brief Get data type of pubkeys.
+   * @return Data type of pubkeys.
    */
   static std::string GetPubkeysFieldType() {
     return "JsonValueVector<std::string>";  // NOLINT
   }
   /**
-   * @brief pubkeys フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of pubkeys field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
    */
   static std::string GetPubkeysString(  // line separate
       const GetAddressesFromMultisigResponse& obj) {  // NOLINT
-    // Serialize内部のpre/post処理でメンバ変数の置換が起こり得るためconstにしない
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
     return obj.pubkeys_.Serialize();
   }
   /**
-   * @brief pubkeys フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to pubkeys field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
    */
   static void SetPubkeysString(  // line separate
       GetAddressesFromMultisigResponse& obj,  // NOLINT
@@ -413,40 +415,40 @@ class GetAddressesFromMultisigResponse
   }
 
   /**
-   * @brief requireNum 取得処理
+   * @brief Get of requireNum
    * @return requireNum
    */
   int64_t GetRequireNum() const {
     return require_num_;
   }
   /**
-   * @brief requireNum 設定処理
-   * @param[in] require_num    設定値
+   * @brief Set to requireNum
+   * @param[in] require_num    setting value.
    */
   void SetRequireNum(  // line separate
     const int64_t& require_num) {  // NOLINT
     this->require_num_ = require_num;
   }
   /**
-   * @brief requireNum データ型の取得処理
-   * @return requireNumのデータ型
+   * @brief Get data type of requireNum
+   * @return Data type of requireNum
    */
   static std::string GetRequireNumFieldType() {
     return "int64_t";
   }
   /**
-   * @brief requireNum フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of requireNum field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetRequireNumString(  // line separate
       const GetAddressesFromMultisigResponse& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.require_num_);
   }
   /**
-   * @brief requireNum フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to requireNum field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetRequireNumString(  // line separate
       GetAddressesFromMultisigResponse& obj,  // NOLINT
@@ -456,54 +458,54 @@ class GetAddressesFromMultisigResponse
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const GetAddressesFromMultisigResponseStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   GetAddressesFromMultisigResponseStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using GetAddressesFromMultisigResponseMapTable =
     cfd::core::JsonTableMap<GetAddressesFromMultisigResponse>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const GetAddressesFromMultisigResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -512,28 +514,28 @@ class GetAddressesFromMultisigResponse
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static GetAddressesFromMultisigResponseMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(addresses) のvalue
+   * @brief JsonAPI(addresses) value
    */
   JsonValueVector<std::string> addresses_;  // NOLINT
   /**
-   * @brief JsonAPI(pubkeys) のvalue
+   * @brief JsonAPI(pubkeys) value
    */
   JsonValueVector<std::string> pubkeys_;  // NOLINT
   /**
-   * @brief JsonAPI(requireNum) のvalue
+   * @brief JsonAPI(requireNum) value
    */
   int64_t require_num_ = 0;
 };

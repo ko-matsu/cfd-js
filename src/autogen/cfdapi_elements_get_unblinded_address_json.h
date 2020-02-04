@@ -2,7 +2,7 @@
 /**
  * @file cfdapi_elements_get_unblinded_address_json.h
  *
- * @brief JSONマッピングファイル (自動生成)
+ * @brief JSON mapping file. (auto generate)
  */
 #ifndef CFD_JS_SRC_AUTOGEN_CFDAPI_ELEMENTS_GET_UNBLINDED_ADDRESS_JSON_H_
 #define CFD_JS_SRC_AUTOGEN_CFDAPI_ELEMENTS_GET_UNBLINDED_ADDRESS_JSON_H_
@@ -31,7 +31,7 @@ using cfd::core::JsonVector;
 // GetUnblindedAddressRequest
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（GetUnblindedAddressRequest）クラス
+ * @brief JSON-API (GetUnblindedAddressRequest) class
  */
 class GetUnblindedAddressRequest
   : public cfd::core::JsonClassBase<GetUnblindedAddressRequest> {
@@ -43,45 +43,45 @@ class GetUnblindedAddressRequest
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief confidentialAddress 取得処理
+   * @brief Get of confidentialAddress
    * @return confidentialAddress
    */
   std::string GetConfidentialAddress() const {
     return confidential_address_;
   }
   /**
-   * @brief confidentialAddress 設定処理
-   * @param[in] confidential_address    設定値
+   * @brief Set to confidentialAddress
+   * @param[in] confidential_address    setting value.
    */
   void SetConfidentialAddress(  // line separate
     const std::string& confidential_address) {  // NOLINT
     this->confidential_address_ = confidential_address;
   }
   /**
-   * @brief confidentialAddress データ型の取得処理
-   * @return confidentialAddressのデータ型
+   * @brief Get data type of confidentialAddress
+   * @return Data type of confidentialAddress
    */
   static std::string GetConfidentialAddressFieldType() {
     return "std::string";
   }
   /**
-   * @brief confidentialAddress フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of confidentialAddress field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetConfidentialAddressString(  // line separate
       const GetUnblindedAddressRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.confidential_address_);
   }
   /**
-   * @brief confidentialAddress フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to confidentialAddress field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetConfidentialAddressString(  // line separate
       GetUnblindedAddressRequest& obj,  // NOLINT
@@ -91,54 +91,54 @@ class GetUnblindedAddressRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const GetUnblindedAddressRequestStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   GetUnblindedAddressRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using GetUnblindedAddressRequestMapTable =
     cfd::core::JsonTableMap<GetUnblindedAddressRequest>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const GetUnblindedAddressRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -147,20 +147,20 @@ class GetUnblindedAddressRequest
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static GetUnblindedAddressRequestMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(confidentialAddress) のvalue
+   * @brief JsonAPI(confidentialAddress) value
    */
   std::string confidential_address_ = "";
 };
@@ -169,7 +169,7 @@ class GetUnblindedAddressRequest
 // GetUnblindedAddressResponse
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（GetUnblindedAddressResponse）クラス
+ * @brief JSON-API (GetUnblindedAddressResponse) class
  */
 class GetUnblindedAddressResponse
   : public cfd::core::JsonClassBase<GetUnblindedAddressResponse> {
@@ -181,45 +181,45 @@ class GetUnblindedAddressResponse
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief unblindedAddress 取得処理
+   * @brief Get of unblindedAddress
    * @return unblindedAddress
    */
   std::string GetUnblindedAddress() const {
     return unblinded_address_;
   }
   /**
-   * @brief unblindedAddress 設定処理
-   * @param[in] unblinded_address    設定値
+   * @brief Set to unblindedAddress
+   * @param[in] unblinded_address    setting value.
    */
   void SetUnblindedAddress(  // line separate
     const std::string& unblinded_address) {  // NOLINT
     this->unblinded_address_ = unblinded_address;
   }
   /**
-   * @brief unblindedAddress データ型の取得処理
-   * @return unblindedAddressのデータ型
+   * @brief Get data type of unblindedAddress
+   * @return Data type of unblindedAddress
    */
   static std::string GetUnblindedAddressFieldType() {
     return "std::string";
   }
   /**
-   * @brief unblindedAddress フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of unblindedAddress field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetUnblindedAddressString(  // line separate
       const GetUnblindedAddressResponse& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.unblinded_address_);
   }
   /**
-   * @brief unblindedAddress フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to unblindedAddress field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetUnblindedAddressString(  // line separate
       GetUnblindedAddressResponse& obj,  // NOLINT
@@ -229,40 +229,40 @@ class GetUnblindedAddressResponse
   }
 
   /**
-   * @brief confidentialKey 取得処理
+   * @brief Get of confidentialKey
    * @return confidentialKey
    */
   std::string GetConfidentialKey() const {
     return confidential_key_;
   }
   /**
-   * @brief confidentialKey 設定処理
-   * @param[in] confidential_key    設定値
+   * @brief Set to confidentialKey
+   * @param[in] confidential_key    setting value.
    */
   void SetConfidentialKey(  // line separate
     const std::string& confidential_key) {  // NOLINT
     this->confidential_key_ = confidential_key;
   }
   /**
-   * @brief confidentialKey データ型の取得処理
-   * @return confidentialKeyのデータ型
+   * @brief Get data type of confidentialKey
+   * @return Data type of confidentialKey
    */
   static std::string GetConfidentialKeyFieldType() {
     return "std::string";
   }
   /**
-   * @brief confidentialKey フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of confidentialKey field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetConfidentialKeyString(  // line separate
       const GetUnblindedAddressResponse& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.confidential_key_);
   }
   /**
-   * @brief confidentialKey フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to confidentialKey field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetConfidentialKeyString(  // line separate
       GetUnblindedAddressResponse& obj,  // NOLINT
@@ -272,54 +272,54 @@ class GetUnblindedAddressResponse
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const GetUnblindedAddressResponseStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   GetUnblindedAddressResponseStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using GetUnblindedAddressResponseMapTable =
     cfd::core::JsonTableMap<GetUnblindedAddressResponse>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const GetUnblindedAddressResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -328,24 +328,24 @@ class GetUnblindedAddressResponse
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static GetUnblindedAddressResponseMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(unblindedAddress) のvalue
+   * @brief JsonAPI(unblindedAddress) value
    */
   std::string unblinded_address_ = "";
   /**
-   * @brief JsonAPI(confidentialKey) のvalue
+   * @brief JsonAPI(confidentialKey) value
    */
   std::string confidential_key_ = "";
 };

@@ -2,7 +2,7 @@
 /**
  * @file cfdapi_calculate_ec_signature_json.h
  *
- * @brief JSONマッピングファイル (自動生成)
+ * @brief JSON mapping file. (auto generate)
  */
 #ifndef CFD_JS_SRC_AUTOGEN_CFDAPI_CALCULATE_EC_SIGNATURE_JSON_H_
 #define CFD_JS_SRC_AUTOGEN_CFDAPI_CALCULATE_EC_SIGNATURE_JSON_H_
@@ -31,7 +31,7 @@ using cfd::core::JsonVector;
 // PrivkeyData
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（PrivkeyData）クラス
+ * @brief JSON-API (PrivkeyData) class
  */
 class PrivkeyData
   : public cfd::core::JsonClassBase<PrivkeyData> {
@@ -43,45 +43,45 @@ class PrivkeyData
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief privkey 取得処理
+   * @brief Get of privkey
    * @return privkey
    */
   std::string GetPrivkey() const {
     return privkey_;
   }
   /**
-   * @brief privkey 設定処理
-   * @param[in] privkey    設定値
+   * @brief Set to privkey
+   * @param[in] privkey    setting value.
    */
   void SetPrivkey(  // line separate
     const std::string& privkey) {  // NOLINT
     this->privkey_ = privkey;
   }
   /**
-   * @brief privkey データ型の取得処理
-   * @return privkeyのデータ型
+   * @brief Get data type of privkey
+   * @return Data type of privkey
    */
   static std::string GetPrivkeyFieldType() {
     return "std::string";
   }
   /**
-   * @brief privkey フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of privkey field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetPrivkeyString(  // line separate
       const PrivkeyData& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.privkey_);
   }
   /**
-   * @brief privkey フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to privkey field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetPrivkeyString(  // line separate
       PrivkeyData& obj,  // NOLINT
@@ -91,40 +91,40 @@ class PrivkeyData
   }
 
   /**
-   * @brief wif 取得処理
+   * @brief Get of wif
    * @return wif
    */
   bool GetWif() const {
     return wif_;
   }
   /**
-   * @brief wif 設定処理
-   * @param[in] wif    設定値
+   * @brief Set to wif
+   * @param[in] wif    setting value.
    */
   void SetWif(  // line separate
     const bool& wif) {  // NOLINT
     this->wif_ = wif;
   }
   /**
-   * @brief wif データ型の取得処理
-   * @return wifのデータ型
+   * @brief Get data type of wif
+   * @return Data type of wif
    */
   static std::string GetWifFieldType() {
     return "bool";
   }
   /**
-   * @brief wif フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of wif field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetWifString(  // line separate
       const PrivkeyData& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.wif_);
   }
   /**
-   * @brief wif フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to wif field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetWifString(  // line separate
       PrivkeyData& obj,  // NOLINT
@@ -134,40 +134,40 @@ class PrivkeyData
   }
 
   /**
-   * @brief network 取得処理
+   * @brief Get of network
    * @return network
    */
   std::string GetNetwork() const {
     return network_;
   }
   /**
-   * @brief network 設定処理
-   * @param[in] network    設定値
+   * @brief Set to network
+   * @param[in] network    setting value.
    */
   void SetNetwork(  // line separate
     const std::string& network) {  // NOLINT
     this->network_ = network;
   }
   /**
-   * @brief network データ型の取得処理
-   * @return networkのデータ型
+   * @brief Get data type of network
+   * @return Data type of network
    */
   static std::string GetNetworkFieldType() {
     return "std::string";
   }
   /**
-   * @brief network フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of network field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetNetworkString(  // line separate
       const PrivkeyData& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.network_);
   }
   /**
-   * @brief network フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to network field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetNetworkString(  // line separate
       PrivkeyData& obj,  // NOLINT
@@ -177,40 +177,40 @@ class PrivkeyData
   }
 
   /**
-   * @brief isCompressed 取得処理
+   * @brief Get of isCompressed
    * @return isCompressed
    */
   bool GetIsCompressed() const {
     return is_compressed_;
   }
   /**
-   * @brief isCompressed 設定処理
-   * @param[in] is_compressed    設定値
+   * @brief Set to isCompressed
+   * @param[in] is_compressed    setting value.
    */
   void SetIsCompressed(  // line separate
     const bool& is_compressed) {  // NOLINT
     this->is_compressed_ = is_compressed;
   }
   /**
-   * @brief isCompressed データ型の取得処理
-   * @return isCompressedのデータ型
+   * @brief Get data type of isCompressed
+   * @return Data type of isCompressed
    */
   static std::string GetIsCompressedFieldType() {
     return "bool";
   }
   /**
-   * @brief isCompressed フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of isCompressed field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetIsCompressedString(  // line separate
       const PrivkeyData& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.is_compressed_);
   }
   /**
-   * @brief isCompressed フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to isCompressed field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetIsCompressedString(  // line separate
       PrivkeyData& obj,  // NOLINT
@@ -220,54 +220,54 @@ class PrivkeyData
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const PrivkeyDataStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   PrivkeyDataStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using PrivkeyDataMapTable =
     cfd::core::JsonTableMap<PrivkeyData>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const PrivkeyDataMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -276,32 +276,32 @@ class PrivkeyData
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static PrivkeyDataMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(privkey) のvalue
+   * @brief JsonAPI(privkey) value
    */
   std::string privkey_ = "";
   /**
-   * @brief JsonAPI(wif) のvalue
+   * @brief JsonAPI(wif) value
    */
   bool wif_ = true;
   /**
-   * @brief JsonAPI(network) のvalue
+   * @brief JsonAPI(network) value
    */
   std::string network_ = "mainnet";
   /**
-   * @brief JsonAPI(isCompressed) のvalue
+   * @brief JsonAPI(isCompressed) value
    */
   bool is_compressed_ = true;
 };
@@ -310,7 +310,7 @@ class PrivkeyData
 // CalculateEcSignatureRequest
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（CalculateEcSignatureRequest）クラス
+ * @brief JSON-API (CalculateEcSignatureRequest) class
  */
 class CalculateEcSignatureRequest
   : public cfd::core::JsonClassBase<CalculateEcSignatureRequest> {
@@ -322,45 +322,45 @@ class CalculateEcSignatureRequest
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief sighash 取得処理
+   * @brief Get of sighash
    * @return sighash
    */
   std::string GetSighash() const {
     return sighash_;
   }
   /**
-   * @brief sighash 設定処理
-   * @param[in] sighash    設定値
+   * @brief Set to sighash
+   * @param[in] sighash    setting value.
    */
   void SetSighash(  // line separate
     const std::string& sighash) {  // NOLINT
     this->sighash_ = sighash;
   }
   /**
-   * @brief sighash データ型の取得処理
-   * @return sighashのデータ型
+   * @brief Get data type of sighash
+   * @return Data type of sighash
    */
   static std::string GetSighashFieldType() {
     return "std::string";
   }
   /**
-   * @brief sighash フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of sighash field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetSighashString(  // line separate
       const CalculateEcSignatureRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.sighash_);
   }
   /**
-   * @brief sighash フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to sighash field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetSighashString(  // line separate
       CalculateEcSignatureRequest& obj,  // NOLINT
@@ -370,41 +370,42 @@ class CalculateEcSignatureRequest
   }
 
   /**
-   * @brief privkeyData 取得処理
+   * @brief Get of privkeyData.
    * @return privkeyData
    */
   PrivkeyData& GetPrivkeyData() {  // NOLINT
     return privkey_data_;
   }
   /**
-   * @brief privkeyData 設定処理
-   * @param[in] privkey_data    設定値
+   * @brief Set to privkeyData.
+   * @param[in] privkey_data    setting value.
    */
   void SetPrivkeyData(  // line separate
       const PrivkeyData& privkey_data) {  // NOLINT
     this->privkey_data_ = privkey_data;
   }
   /**
-   * @brief privkeyData データ型の取得処理
-   * @return privkeyDataのデータ型
+   * @brief Get data type of privkeyData.
+   * @return Data type of privkeyData.
    */
   static std::string GetPrivkeyDataFieldType() {
     return "PrivkeyData";  // NOLINT
   }
   /**
-   * @brief privkeyData フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of privkeyData field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
    */
   static std::string GetPrivkeyDataString(  // line separate
       const CalculateEcSignatureRequest& obj) {  // NOLINT
-    // Serialize内部のpre/post処理でメンバ変数の置換が起こり得るためconstにしない
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
     return obj.privkey_data_.Serialize();
   }
   /**
-   * @brief privkeyData フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to privkeyData field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
    */
   static void SetPrivkeyDataString(  // line separate
       CalculateEcSignatureRequest& obj,  // NOLINT
@@ -413,40 +414,40 @@ class CalculateEcSignatureRequest
   }
 
   /**
-   * @brief isGrindR 取得処理
+   * @brief Get of isGrindR
    * @return isGrindR
    */
   bool GetIsGrindR() const {
     return is_grind_r_;
   }
   /**
-   * @brief isGrindR 設定処理
-   * @param[in] is_grind_r    設定値
+   * @brief Set to isGrindR
+   * @param[in] is_grind_r    setting value.
    */
   void SetIsGrindR(  // line separate
     const bool& is_grind_r) {  // NOLINT
     this->is_grind_r_ = is_grind_r;
   }
   /**
-   * @brief isGrindR データ型の取得処理
-   * @return isGrindRのデータ型
+   * @brief Get data type of isGrindR
+   * @return Data type of isGrindR
    */
   static std::string GetIsGrindRFieldType() {
     return "bool";
   }
   /**
-   * @brief isGrindR フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of isGrindR field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetIsGrindRString(  // line separate
       const CalculateEcSignatureRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.is_grind_r_);
   }
   /**
-   * @brief isGrindR フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to isGrindR field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetIsGrindRString(  // line separate
       CalculateEcSignatureRequest& obj,  // NOLINT
@@ -456,54 +457,54 @@ class CalculateEcSignatureRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const CalculateEcSignatureRequestStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   CalculateEcSignatureRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using CalculateEcSignatureRequestMapTable =
     cfd::core::JsonTableMap<CalculateEcSignatureRequest>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const CalculateEcSignatureRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -512,28 +513,28 @@ class CalculateEcSignatureRequest
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static CalculateEcSignatureRequestMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(sighash) のvalue
+   * @brief JsonAPI(sighash) value
    */
   std::string sighash_ = "";
   /**
-   * @brief JsonAPI(privkeyData) のvalue
+   * @brief JsonAPI(privkeyData) value
    */
   PrivkeyData privkey_data_;  // NOLINT
   /**
-   * @brief JsonAPI(isGrindR) のvalue
+   * @brief JsonAPI(isGrindR) value
    */
   bool is_grind_r_ = true;
 };
@@ -542,7 +543,7 @@ class CalculateEcSignatureRequest
 // CalculateEcSignatureResponse
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（CalculateEcSignatureResponse）クラス
+ * @brief JSON-API (CalculateEcSignatureResponse) class
  */
 class CalculateEcSignatureResponse
   : public cfd::core::JsonClassBase<CalculateEcSignatureResponse> {
@@ -554,45 +555,45 @@ class CalculateEcSignatureResponse
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief signature 取得処理
+   * @brief Get of signature
    * @return signature
    */
   std::string GetSignature() const {
     return signature_;
   }
   /**
-   * @brief signature 設定処理
-   * @param[in] signature    設定値
+   * @brief Set to signature
+   * @param[in] signature    setting value.
    */
   void SetSignature(  // line separate
     const std::string& signature) {  // NOLINT
     this->signature_ = signature;
   }
   /**
-   * @brief signature データ型の取得処理
-   * @return signatureのデータ型
+   * @brief Get data type of signature
+   * @return Data type of signature
    */
   static std::string GetSignatureFieldType() {
     return "std::string";
   }
   /**
-   * @brief signature フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of signature field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetSignatureString(  // line separate
       const CalculateEcSignatureResponse& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.signature_);
   }
   /**
-   * @brief signature フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to signature field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetSignatureString(  // line separate
       CalculateEcSignatureResponse& obj,  // NOLINT
@@ -602,54 +603,54 @@ class CalculateEcSignatureResponse
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const CalculateEcSignatureResponseStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   CalculateEcSignatureResponseStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using CalculateEcSignatureResponseMapTable =
     cfd::core::JsonTableMap<CalculateEcSignatureResponse>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const CalculateEcSignatureResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -658,20 +659,20 @@ class CalculateEcSignatureResponse
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static CalculateEcSignatureResponseMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(signature) のvalue
+   * @brief JsonAPI(signature) value
    */
   std::string signature_ = "";
 };

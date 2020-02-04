@@ -2,7 +2,7 @@
 /**
  * @file cfdapi_convert_entropy_to_mnemonic_json.h
  *
- * @brief JSONマッピングファイル (自動生成)
+ * @brief JSON mapping file. (auto generate)
  */
 #ifndef CFD_JS_SRC_AUTOGEN_CFDAPI_CONVERT_ENTROPY_TO_MNEMONIC_JSON_H_
 #define CFD_JS_SRC_AUTOGEN_CFDAPI_CONVERT_ENTROPY_TO_MNEMONIC_JSON_H_
@@ -31,7 +31,7 @@ using cfd::core::JsonVector;
 // ConvertEntropyToMnemonicRequest
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（ConvertEntropyToMnemonicRequest）クラス
+ * @brief JSON-API (ConvertEntropyToMnemonicRequest) class
  */
 class ConvertEntropyToMnemonicRequest
   : public cfd::core::JsonClassBase<ConvertEntropyToMnemonicRequest> {
@@ -43,45 +43,45 @@ class ConvertEntropyToMnemonicRequest
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief entropy 取得処理
+   * @brief Get of entropy
    * @return entropy
    */
   std::string GetEntropy() const {
     return entropy_;
   }
   /**
-   * @brief entropy 設定処理
-   * @param[in] entropy    設定値
+   * @brief Set to entropy
+   * @param[in] entropy    setting value.
    */
   void SetEntropy(  // line separate
     const std::string& entropy) {  // NOLINT
     this->entropy_ = entropy;
   }
   /**
-   * @brief entropy データ型の取得処理
-   * @return entropyのデータ型
+   * @brief Get data type of entropy
+   * @return Data type of entropy
    */
   static std::string GetEntropyFieldType() {
     return "std::string";
   }
   /**
-   * @brief entropy フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of entropy field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetEntropyString(  // line separate
       const ConvertEntropyToMnemonicRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.entropy_);
   }
   /**
-   * @brief entropy フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to entropy field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetEntropyString(  // line separate
       ConvertEntropyToMnemonicRequest& obj,  // NOLINT
@@ -91,40 +91,40 @@ class ConvertEntropyToMnemonicRequest
   }
 
   /**
-   * @brief language 取得処理
+   * @brief Get of language
    * @return language
    */
   std::string GetLanguage() const {
     return language_;
   }
   /**
-   * @brief language 設定処理
-   * @param[in] language    設定値
+   * @brief Set to language
+   * @param[in] language    setting value.
    */
   void SetLanguage(  // line separate
     const std::string& language) {  // NOLINT
     this->language_ = language;
   }
   /**
-   * @brief language データ型の取得処理
-   * @return languageのデータ型
+   * @brief Get data type of language
+   * @return Data type of language
    */
   static std::string GetLanguageFieldType() {
     return "std::string";
   }
   /**
-   * @brief language フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of language field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetLanguageString(  // line separate
       const ConvertEntropyToMnemonicRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.language_);
   }
   /**
-   * @brief language フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to language field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetLanguageString(  // line separate
       ConvertEntropyToMnemonicRequest& obj,  // NOLINT
@@ -134,54 +134,54 @@ class ConvertEntropyToMnemonicRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const ConvertEntropyToMnemonicRequestStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   ConvertEntropyToMnemonicRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using ConvertEntropyToMnemonicRequestMapTable =
     cfd::core::JsonTableMap<ConvertEntropyToMnemonicRequest>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ConvertEntropyToMnemonicRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -190,24 +190,24 @@ class ConvertEntropyToMnemonicRequest
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static ConvertEntropyToMnemonicRequestMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(entropy) のvalue
+   * @brief JsonAPI(entropy) value
    */
   std::string entropy_ = "";
   /**
-   * @brief JsonAPI(language) のvalue
+   * @brief JsonAPI(language) value
    */
   std::string language_ = "en";
 };
@@ -216,7 +216,7 @@ class ConvertEntropyToMnemonicRequest
 // ConvertEntropyToMnemonicResponse
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（ConvertEntropyToMnemonicResponse）クラス
+ * @brief JSON-API (ConvertEntropyToMnemonicResponse) class
  */
 class ConvertEntropyToMnemonicResponse
   : public cfd::core::JsonClassBase<ConvertEntropyToMnemonicResponse> {
@@ -228,46 +228,47 @@ class ConvertEntropyToMnemonicResponse
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief mnemonic 取得処理
+   * @brief Get of mnemonic.
    * @return mnemonic
    */
   JsonValueVector<std::string>& GetMnemonic() {  // NOLINT
     return mnemonic_;
   }
   /**
-   * @brief mnemonic 設定処理
-   * @param[in] mnemonic    設定値
+   * @brief Set to mnemonic.
+   * @param[in] mnemonic    setting value.
    */
   void SetMnemonic(  // line separate
       const JsonValueVector<std::string>& mnemonic) {  // NOLINT
     this->mnemonic_ = mnemonic;
   }
   /**
-   * @brief mnemonic データ型の取得処理
-   * @return mnemonicのデータ型
+   * @brief Get data type of mnemonic.
+   * @return Data type of mnemonic.
    */
   static std::string GetMnemonicFieldType() {
     return "JsonValueVector<std::string>";  // NOLINT
   }
   /**
-   * @brief mnemonic フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of mnemonic field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
    */
   static std::string GetMnemonicString(  // line separate
       const ConvertEntropyToMnemonicResponse& obj) {  // NOLINT
-    // Serialize内部のpre/post処理でメンバ変数の置換が起こり得るためconstにしない
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
     return obj.mnemonic_.Serialize();
   }
   /**
-   * @brief mnemonic フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to mnemonic field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
    */
   static void SetMnemonicString(  // line separate
       ConvertEntropyToMnemonicResponse& obj,  // NOLINT
@@ -276,54 +277,54 @@ class ConvertEntropyToMnemonicResponse
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const ConvertEntropyToMnemonicResponseStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   ConvertEntropyToMnemonicResponseStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using ConvertEntropyToMnemonicResponseMapTable =
     cfd::core::JsonTableMap<ConvertEntropyToMnemonicResponse>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ConvertEntropyToMnemonicResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -332,20 +333,20 @@ class ConvertEntropyToMnemonicResponse
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static ConvertEntropyToMnemonicResponseMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(mnemonic) のvalue
+   * @brief JsonAPI(mnemonic) value
    */
   JsonValueVector<std::string> mnemonic_;  // NOLINT
 };

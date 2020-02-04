@@ -2,7 +2,7 @@
 /**
  * @file cfdapi_convert_entropy_to_mnemonic_json.cpp
  *
- * @brief JSONマッピングファイル (自動生成)
+ * @brief JSON mapping file (auto generate)
  */
 #include <set>
 #include <string>

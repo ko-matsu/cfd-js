@@ -2,7 +2,7 @@
 /**
  * @file cfdapi_get_address_info_json.h
  *
- * @brief JSONマッピングファイル (自動生成)
+ * @brief JSON mapping file. (auto generate)
  */
 #ifndef CFD_JS_SRC_AUTOGEN_CFDAPI_GET_ADDRESS_INFO_JSON_H_
 #define CFD_JS_SRC_AUTOGEN_CFDAPI_GET_ADDRESS_INFO_JSON_H_
@@ -31,7 +31,7 @@ using cfd::core::JsonVector;
 // GetAddressInfoRequest
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（GetAddressInfoRequest）クラス
+ * @brief JSON-API (GetAddressInfoRequest) class
  */
 class GetAddressInfoRequest
   : public cfd::core::JsonClassBase<GetAddressInfoRequest> {
@@ -43,45 +43,45 @@ class GetAddressInfoRequest
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief address 取得処理
+   * @brief Get of address
    * @return address
    */
   std::string GetAddress() const {
     return address_;
   }
   /**
-   * @brief address 設定処理
-   * @param[in] address    設定値
+   * @brief Set to address
+   * @param[in] address    setting value.
    */
   void SetAddress(  // line separate
     const std::string& address) {  // NOLINT
     this->address_ = address;
   }
   /**
-   * @brief address データ型の取得処理
-   * @return addressのデータ型
+   * @brief Get data type of address
+   * @return Data type of address
    */
   static std::string GetAddressFieldType() {
     return "std::string";
   }
   /**
-   * @brief address フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of address field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetAddressString(  // line separate
       const GetAddressInfoRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.address_);
   }
   /**
-   * @brief address フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to address field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetAddressString(  // line separate
       GetAddressInfoRequest& obj,  // NOLINT
@@ -91,40 +91,40 @@ class GetAddressInfoRequest
   }
 
   /**
-   * @brief isElements 取得処理
+   * @brief Get of isElements
    * @return isElements
    */
   bool GetIsElements() const {
     return is_elements_;
   }
   /**
-   * @brief isElements 設定処理
-   * @param[in] is_elements    設定値
+   * @brief Set to isElements
+   * @param[in] is_elements    setting value.
    */
   void SetIsElements(  // line separate
     const bool& is_elements) {  // NOLINT
     this->is_elements_ = is_elements;
   }
   /**
-   * @brief isElements データ型の取得処理
-   * @return isElementsのデータ型
+   * @brief Get data type of isElements
+   * @return Data type of isElements
    */
   static std::string GetIsElementsFieldType() {
     return "bool";
   }
   /**
-   * @brief isElements フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of isElements field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetIsElementsString(  // line separate
       const GetAddressInfoRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.is_elements_);
   }
   /**
-   * @brief isElements フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to isElements field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetIsElementsString(  // line separate
       GetAddressInfoRequest& obj,  // NOLINT
@@ -134,54 +134,54 @@ class GetAddressInfoRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const GetAddressInfoRequestStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   GetAddressInfoRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using GetAddressInfoRequestMapTable =
     cfd::core::JsonTableMap<GetAddressInfoRequest>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const GetAddressInfoRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -190,24 +190,24 @@ class GetAddressInfoRequest
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static GetAddressInfoRequestMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(address) のvalue
+   * @brief JsonAPI(address) value
    */
   std::string address_ = "";
   /**
-   * @brief JsonAPI(isElements) のvalue
+   * @brief JsonAPI(isElements) value
    */
   bool is_elements_ = false;
 };
@@ -216,7 +216,7 @@ class GetAddressInfoRequest
 // GetAddressInfoResponse
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（GetAddressInfoResponse）クラス
+ * @brief JSON-API (GetAddressInfoResponse) class
  */
 class GetAddressInfoResponse
   : public cfd::core::JsonClassBase<GetAddressInfoResponse> {
@@ -228,45 +228,45 @@ class GetAddressInfoResponse
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief lockingScript 取得処理
+   * @brief Get of lockingScript
    * @return lockingScript
    */
   std::string GetLockingScript() const {
     return locking_script_;
   }
   /**
-   * @brief lockingScript 設定処理
-   * @param[in] locking_script    設定値
+   * @brief Set to lockingScript
+   * @param[in] locking_script    setting value.
    */
   void SetLockingScript(  // line separate
     const std::string& locking_script) {  // NOLINT
     this->locking_script_ = locking_script;
   }
   /**
-   * @brief lockingScript データ型の取得処理
-   * @return lockingScriptのデータ型
+   * @brief Get data type of lockingScript
+   * @return Data type of lockingScript
    */
   static std::string GetLockingScriptFieldType() {
     return "std::string";
   }
   /**
-   * @brief lockingScript フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of lockingScript field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetLockingScriptString(  // line separate
       const GetAddressInfoResponse& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.locking_script_);
   }
   /**
-   * @brief lockingScript フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to lockingScript field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetLockingScriptString(  // line separate
       GetAddressInfoResponse& obj,  // NOLINT
@@ -276,40 +276,40 @@ class GetAddressInfoResponse
   }
 
   /**
-   * @brief network 取得処理
+   * @brief Get of network
    * @return network
    */
   std::string GetNetwork() const {
     return network_;
   }
   /**
-   * @brief network 設定処理
-   * @param[in] network    設定値
+   * @brief Set to network
+   * @param[in] network    setting value.
    */
   void SetNetwork(  // line separate
     const std::string& network) {  // NOLINT
     this->network_ = network;
   }
   /**
-   * @brief network データ型の取得処理
-   * @return networkのデータ型
+   * @brief Get data type of network
+   * @return Data type of network
    */
   static std::string GetNetworkFieldType() {
     return "std::string";
   }
   /**
-   * @brief network フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of network field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetNetworkString(  // line separate
       const GetAddressInfoResponse& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.network_);
   }
   /**
-   * @brief network フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to network field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetNetworkString(  // line separate
       GetAddressInfoResponse& obj,  // NOLINT
@@ -319,40 +319,40 @@ class GetAddressInfoResponse
   }
 
   /**
-   * @brief hashType 取得処理
+   * @brief Get of hashType
    * @return hashType
    */
   std::string GetHashType() const {
     return hash_type_;
   }
   /**
-   * @brief hashType 設定処理
-   * @param[in] hash_type    設定値
+   * @brief Set to hashType
+   * @param[in] hash_type    setting value.
    */
   void SetHashType(  // line separate
     const std::string& hash_type) {  // NOLINT
     this->hash_type_ = hash_type;
   }
   /**
-   * @brief hashType データ型の取得処理
-   * @return hashTypeのデータ型
+   * @brief Get data type of hashType
+   * @return Data type of hashType
    */
   static std::string GetHashTypeFieldType() {
     return "std::string";
   }
   /**
-   * @brief hashType フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of hashType field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetHashTypeString(  // line separate
       const GetAddressInfoResponse& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.hash_type_);
   }
   /**
-   * @brief hashType フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to hashType field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetHashTypeString(  // line separate
       GetAddressInfoResponse& obj,  // NOLINT
@@ -362,40 +362,40 @@ class GetAddressInfoResponse
   }
 
   /**
-   * @brief witnessVersion 取得処理
+   * @brief Get of witnessVersion
    * @return witnessVersion
    */
   int32_t GetWitnessVersion() const {
     return witness_version_;
   }
   /**
-   * @brief witnessVersion 設定処理
-   * @param[in] witness_version    設定値
+   * @brief Set to witnessVersion
+   * @param[in] witness_version    setting value.
    */
   void SetWitnessVersion(  // line separate
     const int32_t& witness_version) {  // NOLINT
     this->witness_version_ = witness_version;
   }
   /**
-   * @brief witnessVersion データ型の取得処理
-   * @return witnessVersionのデータ型
+   * @brief Get data type of witnessVersion
+   * @return Data type of witnessVersion
    */
   static std::string GetWitnessVersionFieldType() {
     return "int32_t";
   }
   /**
-   * @brief witnessVersion フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of witnessVersion field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetWitnessVersionString(  // line separate
       const GetAddressInfoResponse& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.witness_version_);
   }
   /**
-   * @brief witnessVersion フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to witnessVersion field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetWitnessVersionString(  // line separate
       GetAddressInfoResponse& obj,  // NOLINT
@@ -405,40 +405,40 @@ class GetAddressInfoResponse
   }
 
   /**
-   * @brief hash 取得処理
+   * @brief Get of hash
    * @return hash
    */
   std::string GetHash() const {
     return hash_;
   }
   /**
-   * @brief hash 設定処理
-   * @param[in] hash    設定値
+   * @brief Set to hash
+   * @param[in] hash    setting value.
    */
   void SetHash(  // line separate
     const std::string& hash) {  // NOLINT
     this->hash_ = hash;
   }
   /**
-   * @brief hash データ型の取得処理
-   * @return hashのデータ型
+   * @brief Get data type of hash
+   * @return Data type of hash
    */
   static std::string GetHashFieldType() {
     return "std::string";
   }
   /**
-   * @brief hash フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of hash field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetHashString(  // line separate
       const GetAddressInfoResponse& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.hash_);
   }
   /**
-   * @brief hash フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to hash field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetHashString(  // line separate
       GetAddressInfoResponse& obj,  // NOLINT
@@ -448,54 +448,54 @@ class GetAddressInfoResponse
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const GetAddressInfoResponseStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   GetAddressInfoResponseStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using GetAddressInfoResponseMapTable =
     cfd::core::JsonTableMap<GetAddressInfoResponse>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const GetAddressInfoResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -504,36 +504,36 @@ class GetAddressInfoResponse
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static GetAddressInfoResponseMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(lockingScript) のvalue
+   * @brief JsonAPI(lockingScript) value
    */
   std::string locking_script_ = "";
   /**
-   * @brief JsonAPI(network) のvalue
+   * @brief JsonAPI(network) value
    */
   std::string network_ = "mainnet";
   /**
-   * @brief JsonAPI(hashType) のvalue
+   * @brief JsonAPI(hashType) value
    */
   std::string hash_type_ = "p2pkh";
   /**
-   * @brief JsonAPI(witnessVersion) のvalue
+   * @brief JsonAPI(witnessVersion) value
    */
   int32_t witness_version_ = 0;
   /**
-   * @brief JsonAPI(hash) のvalue
+   * @brief JsonAPI(hash) value
    */
   std::string hash_ = "";
 };

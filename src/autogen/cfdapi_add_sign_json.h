@@ -2,7 +2,7 @@
 /**
  * @file cfdapi_add_sign_json.h
  *
- * @brief JSONマッピングファイル (自動生成)
+ * @brief JSON mapping file. (auto generate)
  */
 #ifndef CFD_JS_SRC_AUTOGEN_CFDAPI_ADD_SIGN_JSON_H_
 #define CFD_JS_SRC_AUTOGEN_CFDAPI_ADD_SIGN_JSON_H_
@@ -31,7 +31,7 @@ using cfd::core::JsonVector;
 // SignData
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（SignData）クラス
+ * @brief JSON-API (SignData) class
  */
 class SignData
   : public cfd::core::JsonClassBase<SignData> {
@@ -43,45 +43,45 @@ class SignData
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief hex 取得処理
+   * @brief Get of hex
    * @return hex
    */
   std::string GetHex() const {
     return hex_;
   }
   /**
-   * @brief hex 設定処理
-   * @param[in] hex    設定値
+   * @brief Set to hex
+   * @param[in] hex    setting value.
    */
   void SetHex(  // line separate
     const std::string& hex) {  // NOLINT
     this->hex_ = hex;
   }
   /**
-   * @brief hex データ型の取得処理
-   * @return hexのデータ型
+   * @brief Get data type of hex
+   * @return Data type of hex
    */
   static std::string GetHexFieldType() {
     return "std::string";
   }
   /**
-   * @brief hex フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of hex field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetHexString(  // line separate
       const SignData& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.hex_);
   }
   /**
-   * @brief hex フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to hex field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetHexString(  // line separate
       SignData& obj,  // NOLINT
@@ -91,40 +91,40 @@ class SignData
   }
 
   /**
-   * @brief type 取得処理
+   * @brief Get of type
    * @return type
    */
   std::string GetType() const {
     return type_;
   }
   /**
-   * @brief type 設定処理
-   * @param[in] type    設定値
+   * @brief Set to type
+   * @param[in] type    setting value.
    */
   void SetType(  // line separate
     const std::string& type) {  // NOLINT
     this->type_ = type;
   }
   /**
-   * @brief type データ型の取得処理
-   * @return typeのデータ型
+   * @brief Get data type of type
+   * @return Data type of type
    */
   static std::string GetTypeFieldType() {
     return "std::string";
   }
   /**
-   * @brief type フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of type field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetTypeString(  // line separate
       const SignData& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.type_);
   }
   /**
-   * @brief type フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to type field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetTypeString(  // line separate
       SignData& obj,  // NOLINT
@@ -134,40 +134,40 @@ class SignData
   }
 
   /**
-   * @brief derEncode 取得処理
+   * @brief Get of derEncode
    * @return derEncode
    */
   bool GetDerEncode() const {
     return der_encode_;
   }
   /**
-   * @brief derEncode 設定処理
-   * @param[in] der_encode    設定値
+   * @brief Set to derEncode
+   * @param[in] der_encode    setting value.
    */
   void SetDerEncode(  // line separate
     const bool& der_encode) {  // NOLINT
     this->der_encode_ = der_encode;
   }
   /**
-   * @brief derEncode データ型の取得処理
-   * @return derEncodeのデータ型
+   * @brief Get data type of derEncode
+   * @return Data type of derEncode
    */
   static std::string GetDerEncodeFieldType() {
     return "bool";
   }
   /**
-   * @brief derEncode フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of derEncode field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetDerEncodeString(  // line separate
       const SignData& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.der_encode_);
   }
   /**
-   * @brief derEncode フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to derEncode field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetDerEncodeString(  // line separate
       SignData& obj,  // NOLINT
@@ -177,40 +177,40 @@ class SignData
   }
 
   /**
-   * @brief sighashType 取得処理
+   * @brief Get of sighashType
    * @return sighashType
    */
   std::string GetSighashType() const {
     return sighash_type_;
   }
   /**
-   * @brief sighashType 設定処理
-   * @param[in] sighash_type    設定値
+   * @brief Set to sighashType
+   * @param[in] sighash_type    setting value.
    */
   void SetSighashType(  // line separate
     const std::string& sighash_type) {  // NOLINT
     this->sighash_type_ = sighash_type;
   }
   /**
-   * @brief sighashType データ型の取得処理
-   * @return sighashTypeのデータ型
+   * @brief Get data type of sighashType
+   * @return Data type of sighashType
    */
   static std::string GetSighashTypeFieldType() {
     return "std::string";
   }
   /**
-   * @brief sighashType フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of sighashType field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetSighashTypeString(  // line separate
       const SignData& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.sighash_type_);
   }
   /**
-   * @brief sighashType フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to sighashType field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetSighashTypeString(  // line separate
       SignData& obj,  // NOLINT
@@ -220,40 +220,40 @@ class SignData
   }
 
   /**
-   * @brief sighashAnyoneCanPay 取得処理
+   * @brief Get of sighashAnyoneCanPay
    * @return sighashAnyoneCanPay
    */
   bool GetSighashAnyoneCanPay() const {
     return sighash_anyone_can_pay_;
   }
   /**
-   * @brief sighashAnyoneCanPay 設定処理
-   * @param[in] sighash_anyone_can_pay    設定値
+   * @brief Set to sighashAnyoneCanPay
+   * @param[in] sighash_anyone_can_pay    setting value.
    */
   void SetSighashAnyoneCanPay(  // line separate
     const bool& sighash_anyone_can_pay) {  // NOLINT
     this->sighash_anyone_can_pay_ = sighash_anyone_can_pay;
   }
   /**
-   * @brief sighashAnyoneCanPay データ型の取得処理
-   * @return sighashAnyoneCanPayのデータ型
+   * @brief Get data type of sighashAnyoneCanPay
+   * @return Data type of sighashAnyoneCanPay
    */
   static std::string GetSighashAnyoneCanPayFieldType() {
     return "bool";
   }
   /**
-   * @brief sighashAnyoneCanPay フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of sighashAnyoneCanPay field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetSighashAnyoneCanPayString(  // line separate
       const SignData& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.sighash_anyone_can_pay_);
   }
   /**
-   * @brief sighashAnyoneCanPay フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to sighashAnyoneCanPay field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetSighashAnyoneCanPayString(  // line separate
       SignData& obj,  // NOLINT
@@ -263,54 +263,54 @@ class SignData
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const SignDataStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   SignDataStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using SignDataMapTable =
     cfd::core::JsonTableMap<SignData>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const SignDataMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -319,36 +319,36 @@ class SignData
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static SignDataMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(hex) のvalue
+   * @brief JsonAPI(hex) value
    */
   std::string hex_ = "";
   /**
-   * @brief JsonAPI(type) のvalue
+   * @brief JsonAPI(type) value
    */
   std::string type_ = "auto";
   /**
-   * @brief JsonAPI(derEncode) のvalue
+   * @brief JsonAPI(derEncode) value
    */
   bool der_encode_ = false;
   /**
-   * @brief JsonAPI(sighashType) のvalue
+   * @brief JsonAPI(sighashType) value
    */
   std::string sighash_type_ = "all";
   /**
-   * @brief JsonAPI(sighashAnyoneCanPay) のvalue
+   * @brief JsonAPI(sighashAnyoneCanPay) value
    */
   bool sighash_anyone_can_pay_ = false;
 };
@@ -357,7 +357,7 @@ class SignData
 // AddSignTxInRequest
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（AddSignTxInRequest）クラス
+ * @brief JSON-API (AddSignTxInRequest) class
  */
 class AddSignTxInRequest
   : public cfd::core::JsonClassBase<AddSignTxInRequest> {
@@ -369,45 +369,45 @@ class AddSignTxInRequest
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief txid 取得処理
+   * @brief Get of txid
    * @return txid
    */
   std::string GetTxid() const {
     return txid_;
   }
   /**
-   * @brief txid 設定処理
-   * @param[in] txid    設定値
+   * @brief Set to txid
+   * @param[in] txid    setting value.
    */
   void SetTxid(  // line separate
     const std::string& txid) {  // NOLINT
     this->txid_ = txid;
   }
   /**
-   * @brief txid データ型の取得処理
-   * @return txidのデータ型
+   * @brief Get data type of txid
+   * @return Data type of txid
    */
   static std::string GetTxidFieldType() {
     return "std::string";
   }
   /**
-   * @brief txid フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of txid field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetTxidString(  // line separate
       const AddSignTxInRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.txid_);
   }
   /**
-   * @brief txid フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to txid field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetTxidString(  // line separate
       AddSignTxInRequest& obj,  // NOLINT
@@ -417,40 +417,40 @@ class AddSignTxInRequest
   }
 
   /**
-   * @brief vout 取得処理
+   * @brief Get of vout
    * @return vout
    */
   uint32_t GetVout() const {
     return vout_;
   }
   /**
-   * @brief vout 設定処理
-   * @param[in] vout    設定値
+   * @brief Set to vout
+   * @param[in] vout    setting value.
    */
   void SetVout(  // line separate
     const uint32_t& vout) {  // NOLINT
     this->vout_ = vout;
   }
   /**
-   * @brief vout データ型の取得処理
-   * @return voutのデータ型
+   * @brief Get data type of vout
+   * @return Data type of vout
    */
   static std::string GetVoutFieldType() {
     return "uint32_t";
   }
   /**
-   * @brief vout フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of vout field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetVoutString(  // line separate
       const AddSignTxInRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.vout_);
   }
   /**
-   * @brief vout フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to vout field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetVoutString(  // line separate
       AddSignTxInRequest& obj,  // NOLINT
@@ -460,40 +460,40 @@ class AddSignTxInRequest
   }
 
   /**
-   * @brief isWitness 取得処理
+   * @brief Get of isWitness
    * @return isWitness
    */
   bool GetIsWitness() const {
     return is_witness_;
   }
   /**
-   * @brief isWitness 設定処理
-   * @param[in] is_witness    設定値
+   * @brief Set to isWitness
+   * @param[in] is_witness    setting value.
    */
   void SetIsWitness(  // line separate
     const bool& is_witness) {  // NOLINT
     this->is_witness_ = is_witness;
   }
   /**
-   * @brief isWitness データ型の取得処理
-   * @return isWitnessのデータ型
+   * @brief Get data type of isWitness
+   * @return Data type of isWitness
    */
   static std::string GetIsWitnessFieldType() {
     return "bool";
   }
   /**
-   * @brief isWitness フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of isWitness field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetIsWitnessString(  // line separate
       const AddSignTxInRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.is_witness_);
   }
   /**
-   * @brief isWitness フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to isWitness field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetIsWitnessString(  // line separate
       AddSignTxInRequest& obj,  // NOLINT
@@ -503,41 +503,42 @@ class AddSignTxInRequest
   }
 
   /**
-   * @brief signParam 取得処理
+   * @brief Get of signParam.
    * @return signParam
    */
   JsonObjectVector<SignData, SignDataStruct>& GetSignParam() {  // NOLINT
     return sign_param_;
   }
   /**
-   * @brief signParam 設定処理
-   * @param[in] sign_param    設定値
+   * @brief Set to signParam.
+   * @param[in] sign_param    setting value.
    */
   void SetSignParam(  // line separate
       const JsonObjectVector<SignData, SignDataStruct>& sign_param) {  // NOLINT
     this->sign_param_ = sign_param;
   }
   /**
-   * @brief signParam データ型の取得処理
-   * @return signParamのデータ型
+   * @brief Get data type of signParam.
+   * @return Data type of signParam.
    */
   static std::string GetSignParamFieldType() {
     return "JsonObjectVector<SignData, SignDataStruct>";  // NOLINT
   }
   /**
-   * @brief signParam フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of signParam field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
    */
   static std::string GetSignParamString(  // line separate
       const AddSignTxInRequest& obj) {  // NOLINT
-    // Serialize内部のpre/post処理でメンバ変数の置換が起こり得るためconstにしない
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
     return obj.sign_param_.Serialize();
   }
   /**
-   * @brief signParam フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to signParam field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
    */
   static void SetSignParamString(  // line separate
       AddSignTxInRequest& obj,  // NOLINT
@@ -546,40 +547,40 @@ class AddSignTxInRequest
   }
 
   /**
-   * @brief clearStack 取得処理
+   * @brief Get of clearStack
    * @return clearStack
    */
   bool GetClearStack() const {
     return clear_stack_;
   }
   /**
-   * @brief clearStack 設定処理
-   * @param[in] clear_stack    設定値
+   * @brief Set to clearStack
+   * @param[in] clear_stack    setting value.
    */
   void SetClearStack(  // line separate
     const bool& clear_stack) {  // NOLINT
     this->clear_stack_ = clear_stack;
   }
   /**
-   * @brief clearStack データ型の取得処理
-   * @return clearStackのデータ型
+   * @brief Get data type of clearStack
+   * @return Data type of clearStack
    */
   static std::string GetClearStackFieldType() {
     return "bool";
   }
   /**
-   * @brief clearStack フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of clearStack field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetClearStackString(  // line separate
       const AddSignTxInRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.clear_stack_);
   }
   /**
-   * @brief clearStack フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to clearStack field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetClearStackString(  // line separate
       AddSignTxInRequest& obj,  // NOLINT
@@ -589,54 +590,54 @@ class AddSignTxInRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const AddSignTxInRequestStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   AddSignTxInRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using AddSignTxInRequestMapTable =
     cfd::core::JsonTableMap<AddSignTxInRequest>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const AddSignTxInRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -645,36 +646,36 @@ class AddSignTxInRequest
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static AddSignTxInRequestMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(txid) のvalue
+   * @brief JsonAPI(txid) value
    */
   std::string txid_ = "";
   /**
-   * @brief JsonAPI(vout) のvalue
+   * @brief JsonAPI(vout) value
    */
   uint32_t vout_ = 0;
   /**
-   * @brief JsonAPI(isWitness) のvalue
+   * @brief JsonAPI(isWitness) value
    */
   bool is_witness_ = true;
   /**
-   * @brief JsonAPI(signParam) のvalue
+   * @brief JsonAPI(signParam) value
    */
   JsonObjectVector<SignData, SignDataStruct> sign_param_;  // NOLINT
   /**
-   * @brief JsonAPI(clearStack) のvalue
+   * @brief JsonAPI(clearStack) value
    */
   bool clear_stack_ = true;
 };
@@ -683,7 +684,7 @@ class AddSignTxInRequest
 // AddSignRequest
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（AddSignRequest）クラス
+ * @brief JSON-API (AddSignRequest) class
  */
 class AddSignRequest
   : public cfd::core::JsonClassBase<AddSignRequest> {
@@ -695,45 +696,45 @@ class AddSignRequest
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief tx 取得処理
+   * @brief Get of tx
    * @return tx
    */
   std::string GetTx() const {
     return tx_;
   }
   /**
-   * @brief tx 設定処理
-   * @param[in] tx    設定値
+   * @brief Set to tx
+   * @param[in] tx    setting value.
    */
   void SetTx(  // line separate
     const std::string& tx) {  // NOLINT
     this->tx_ = tx;
   }
   /**
-   * @brief tx データ型の取得処理
-   * @return txのデータ型
+   * @brief Get data type of tx
+   * @return Data type of tx
    */
   static std::string GetTxFieldType() {
     return "std::string";
   }
   /**
-   * @brief tx フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of tx field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetTxString(  // line separate
       const AddSignRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.tx_);
   }
   /**
-   * @brief tx フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to tx field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetTxString(  // line separate
       AddSignRequest& obj,  // NOLINT
@@ -743,40 +744,40 @@ class AddSignRequest
   }
 
   /**
-   * @brief isElements 取得処理
+   * @brief Get of isElements
    * @return isElements
    */
   bool GetIsElements() const {
     return is_elements_;
   }
   /**
-   * @brief isElements 設定処理
-   * @param[in] is_elements    設定値
+   * @brief Set to isElements
+   * @param[in] is_elements    setting value.
    */
   void SetIsElements(  // line separate
     const bool& is_elements) {  // NOLINT
     this->is_elements_ = is_elements;
   }
   /**
-   * @brief isElements データ型の取得処理
-   * @return isElementsのデータ型
+   * @brief Get data type of isElements
+   * @return Data type of isElements
    */
   static std::string GetIsElementsFieldType() {
     return "bool";
   }
   /**
-   * @brief isElements フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of isElements field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetIsElementsString(  // line separate
       const AddSignRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.is_elements_);
   }
   /**
-   * @brief isElements フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to isElements field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetIsElementsString(  // line separate
       AddSignRequest& obj,  // NOLINT
@@ -786,41 +787,42 @@ class AddSignRequest
   }
 
   /**
-   * @brief txin 取得処理
+   * @brief Get of txin.
    * @return txin
    */
   AddSignTxInRequest& GetTxin() {  // NOLINT
     return txin_;
   }
   /**
-   * @brief txin 設定処理
-   * @param[in] txin    設定値
+   * @brief Set to txin.
+   * @param[in] txin    setting value.
    */
   void SetTxin(  // line separate
       const AddSignTxInRequest& txin) {  // NOLINT
     this->txin_ = txin;
   }
   /**
-   * @brief txin データ型の取得処理
-   * @return txinのデータ型
+   * @brief Get data type of txin.
+   * @return Data type of txin.
    */
   static std::string GetTxinFieldType() {
     return "AddSignTxInRequest";  // NOLINT
   }
   /**
-   * @brief txin フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of txin field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
    */
   static std::string GetTxinString(  // line separate
       const AddSignRequest& obj) {  // NOLINT
-    // Serialize内部のpre/post処理でメンバ変数の置換が起こり得るためconstにしない
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
     return obj.txin_.Serialize();
   }
   /**
-   * @brief txin フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to txin field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
    */
   static void SetTxinString(  // line separate
       AddSignRequest& obj,  // NOLINT
@@ -829,54 +831,54 @@ class AddSignRequest
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const AddSignRequestStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   AddSignRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using AddSignRequestMapTable =
     cfd::core::JsonTableMap<AddSignRequest>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const AddSignRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -885,28 +887,28 @@ class AddSignRequest
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static AddSignRequestMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(tx) のvalue
+   * @brief JsonAPI(tx) value
    */
   std::string tx_ = "";
   /**
-   * @brief JsonAPI(isElements) のvalue
+   * @brief JsonAPI(isElements) value
    */
   bool is_elements_ = false;
   /**
-   * @brief JsonAPI(txin) のvalue
+   * @brief JsonAPI(txin) value
    */
   AddSignTxInRequest txin_;  // NOLINT
 };
@@ -915,7 +917,7 @@ class AddSignRequest
 // AddSignResponse
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（AddSignResponse）クラス
+ * @brief JSON-API (AddSignResponse) class
  */
 class AddSignResponse
   : public cfd::core::JsonClassBase<AddSignResponse> {
@@ -927,45 +929,45 @@ class AddSignResponse
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 
   /**
-   * @brief hex 取得処理
+   * @brief Get of hex
    * @return hex
    */
   std::string GetHex() const {
     return hex_;
   }
   /**
-   * @brief hex 設定処理
-   * @param[in] hex    設定値
+   * @brief Set to hex
+   * @param[in] hex    setting value.
    */
   void SetHex(  // line separate
     const std::string& hex) {  // NOLINT
     this->hex_ = hex;
   }
   /**
-   * @brief hex データ型の取得処理
-   * @return hexのデータ型
+   * @brief Get data type of hex
+   * @return Data type of hex
    */
   static std::string GetHexFieldType() {
     return "std::string";
   }
   /**
-   * @brief hex フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of hex field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string GetHexString(  // line separate
       const AddSignResponse& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.hex_);
   }
   /**
-   * @brief hex フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to hex field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void SetHexString(  // line separate
       AddSignResponse& obj,  // NOLINT
@@ -975,54 +977,54 @@ class AddSignResponse
   }
 
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
   }
 
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const AddSignResponseStruct& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   AddSignResponseStruct ConvertToStruct()  const;
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using AddSignResponseMapTable =
     cfd::core::JsonTableMap<AddSignResponse>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const AddSignResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -1031,20 +1033,20 @@ class AddSignResponse
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static AddSignResponseMapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(hex) のvalue
+   * @brief JsonAPI(hex) value
    */
   std::string hex_ = "";
 };

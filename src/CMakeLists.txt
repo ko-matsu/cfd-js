@@ -140,55 +140,7 @@ target_sources(${PROJECT_NAME}
     cfdjs_coin.cpp
     cfdapi_error_json.cpp
     cfdapi_select_utxos_wrapper_json.cpp
-    autogen/cfdapi_add_multisig_sign_json.cpp
-    autogen/cfdapi_add_sign_json.cpp
-    autogen/cfdapi_get_mnemonic_wordlist_json.cpp
-    autogen/cfdapi_blind_raw_transaction_json.cpp
-    autogen/cfdapi_calculate_ec_signature_json.cpp
-    autogen/cfdapi_convert_entropy_to_mnemonic_json.cpp
-    autogen/cfdapi_convert_mnemonic_to_seed_json.cpp
-    autogen/cfdapi_create_address_json.cpp
-    autogen/cfdapi_create_extkey_from_parent_json.cpp
-    autogen/cfdapi_create_extkey_from_path_json.cpp
-    autogen/cfdapi_create_extkey_from_seed_json.cpp
-    autogen/cfdapi_create_extpubkey_json.cpp
-    autogen/cfdapi_create_key_pair_json.cpp
-    autogen/cfdapi_create_multisig_scriptsig_json.cpp
-    autogen/cfdapi_create_script_json.cpp
-    autogen/cfdapi_decode_transaction_json.cpp
-    autogen/cfdapi_elements_create_raw_transaction_json.cpp
-    autogen/cfdapi_elements_create_raw_pegin_json.cpp
-    autogen/cfdapi_elements_create_raw_pegout_json.cpp
-    autogen/cfdapi_elements_create_destroy_amount_json.cpp
-    autogen/cfdapi_elements_create_pegin_address_json.cpp
-    autogen/cfdapi_elements_decode_raw_transaction_json.cpp
-    autogen/cfdapi_elements_unblind_raw_transaction_json.cpp
-    autogen/cfdapi_elements_set_rawissueasset_json.cpp
-    autogen/cfdapi_elements_set_rawreissueasset_json.cpp
-    autogen/cfdapi_encode_signature_by_der_json.cpp
-    autogen/cfdapi_error_base_json.cpp
-    autogen/cfdapi_estimate_fee_json.cpp
-    autogen/cfdapi_fund_raw_transaction_json.cpp
-    autogen/cfdapi_get_address_info_json.cpp
-    autogen/cfdapi_get_addresses_from_multisig_json.cpp
-    autogen/cfdapi_get_extkeyinfo_json.cpp
-    autogen/cfdapi_get_issuance_blinding_key_json.cpp
-    autogen/cfdapi_get_witness_num_json.cpp
-    autogen/cfdapi_get_privkey_from_extkey_json.cpp
-    autogen/cfdapi_get_pubkey_from_extkey_json.cpp
-    autogen/cfdapi_get_pubkey_from_privkey_json.cpp
-    autogen/cfdapi_elements_get_confidential_address_json.cpp
-    autogen/cfdapi_elements_get_unblinded_address_json.cpp
-    autogen/cfdapi_multisig_address_json.cpp
-    autogen/cfdapi_parse_descriptor_json.cpp
-    autogen/cfdapi_parse_script_json.cpp
-    autogen/cfdapi_sighash_elements_json.cpp
-    autogen/cfdapi_sighash_json.cpp
-    autogen/cfdapi_supported_function_json.cpp
-    autogen/cfdapi_transaction_json.cpp
-    autogen/cfdapi_update_witness_json.cpp
-    autogen/cfdapi_select_utxos_json.cpp
-    autogen/cfdapi_verify_signature_json.cpp
+    autogen/cfd_js_api_json_autogen.cpp
 )
 
 target_compile_options(${PROJECT_NAME}

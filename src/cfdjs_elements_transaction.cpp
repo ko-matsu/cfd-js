@@ -16,7 +16,7 @@
 #include "cfd/cfd_elements_address.h"
 #include "cfd/cfdapi_coin.h"
 #include "cfd/cfdapi_elements_transaction.h"
-#include "cfdapi_estimate_fee_json.h"  // NOLINT
+#include "cfd_js_api_json_autogen.h"  // NOLINT
 #include "cfdjs/cfdjs_api_address.h"
 #include "cfdjs/cfdjs_api_elements_address.h"
 #include "cfdjs/cfdjs_api_elements_transaction.h"

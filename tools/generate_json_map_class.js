@@ -1,6 +1,7 @@
 'use strict';
 const fs = require('fs');
 const path = require('path');
+import { Project, StructureKind } from "ts-morph";
 
 // ----------------------------------------------------------------------------
 // json data class
@@ -24,7 +25,8 @@ class JsonMappingData {
     this.is_output_struct = is_output_struct;
     this.is_array = false;
     this.is_object = false;
-    // 予約語対応。数が増えたらリスト化する。
+    // Reserved word support.
+    // TODO(k-matsuzawa): If the number increases, make a list.
     if (this.variable_name == 'asm') this.variable_name = `${this.variable_name}_`;
   }
 
@@ -60,6 +62,90 @@ class JsonMappingData {
     }
     return str;
   }
+
+  collectMapData(map, list) {
+    if (this.type.startsWith('JsonValueVector') || this.type.startsWith('JsonObjectVector')) {
+      for (const key in this.child_list) {
+        if (this.child_list[key]) {
+          const ret = this.child_list[key].collectMapData(map, list);
+          return {type: ret['type'] + '[]', map: ret['map'], list: ret['list']};
+        }
+        break;
+      }
+      throw Error('Illegal state.');
+    } else if (this.type === 'ErrorResponseBase') {
+      const clsName = 'ErrorResponse';
+      let props = [];
+      let tmpMap = map;
+      let tmpList = list;
+      for (const key in this.child_list) {
+        if (this.child_list[key]) {
+          const name = this.child_list[key].name;
+          const ret = this.child_list[key].collectMapData(tmpMap, tmpList);
+          const type = ret['type'];
+          tmpMap = ret['map'];
+          tmpList = ret['list'];
+          if (name === 'isOutputStruct') {
+            continue;
+          }
+          props.push({name: name, type: type});
+        }
+      }
+      tmpMap[clsName] = props;
+      tmpList.push(clsName);
+      return {type: clsName, map: tmpMap, list: tmpList};
+    } else if (Object.keys(this.child_list).length > 0) {
+      // my class name
+      let props = [];
+      let tmpMap = map;
+      let tmpList = list;
+      for (const key in this.child_list) {
+        if (this.child_list[key]) {
+          let name = this.child_list[key].name;
+          const ret = this.child_list[key].collectMapData(tmpMap, tmpList);
+          // console.log('prop : ', ret);
+          const type = ret['type'];
+          tmpMap = ret['map'];
+          tmpList = ret['list'];
+          if (name.indexOf('-') > 0) {
+            name = "'" + name + "'";
+          }
+          props.push({name: name, type: type});
+        }
+      }
+      // console.log("props = ", props);
+      // if (props.length === 0) console.log('prop empty. cls=', this.toString(), ', child=', this.child_list);
+      tmpMap[this.type] = props;
+      tmpList.push(this.type);
+      return {type: this.type, map: tmpMap, list: tmpList};
+    } else {
+      let type = '';
+      if (this.type === 'std::string') {
+        type = 'string';
+      } else if (this.type === 'bool') {
+        type = 'boolean';
+      } else if ((this.type === 'int64_t') || (this.type === 'uint64_t')) {
+        type = 'bigint';
+      } else {
+        type = 'number';
+      }
+      return {type: type, map: map, list: list};
+    }
+  }
+
+  getFunctionName() {
+    let result = '';
+    if (this.type.indexOf('Request') >= 0) {
+      result = this.type.substring(0, this.type.indexOf('Request'));
+    } else if (this.type.indexOf('Response') >= 0) {
+      result = this.type.substring(0, this.type.indexOf('Response'));
+    }
+    // ignore target
+    if (result === 'Error') {
+      return '';
+    }
+    return result;
+  }
 }
 
 // ----------------------------------------------------------------------------
@@ -84,17 +170,13 @@ function isArray(obj) {
 // analyze function
 // ----------------------------------------------------------------------------
 const analyzeJson = (jsonObj, objName = '') => {
-  // 要素を総なめ
   // console.log(`analyzeJson obj=${objName}`)
   let result;
   if (typeof jsonObj == 'string') {
-    // 対応不要
     result = new JsonMappingData(objName, 'std::string', jsonObj, '');
   } else if (typeof jsonObj == 'number') {
-    // 対応不要
     result = new JsonMappingData(objName, 'int64_t', jsonObj, '');
   } else if (typeof jsonObj == 'boolean') {
-    // 対応不要
     result = new JsonMappingData(objName, 'boolean', jsonObj, '');
   } else if (jsonObj) {
     const obj_key = Object.keys(jsonObj);
@@ -115,15 +197,15 @@ const analyzeJson = (jsonObj, objName = '') => {
       }
       // console.log(`past_type = ${past_type}`)
       if (past_type == '') {
-        // フィールド名、クラス名はコール元で設定
+        // field and class name is set by the caller.
         result = new JsonMappingData('', '', '', '');
       } else {
         if ((typeof obj_values[0] == 'string') || (typeof obj_values[0] == 'number') ||
           (typeof obj_values[0] == 'boolean')) {
-          // 文字列or数値系の配列
+          // array of string or number.
           result = new JsonMappingData(objName, `JsonValueVector<${past_type}>`, '', '');
         } else {
-          // オブジェクト系の配列
+          // array of object
           result = new JsonMappingData(objName, `JsonObjectVector<${past_type}, ${past_type}Struct>`, '', '');
         }
       }
@@ -143,10 +225,10 @@ const analyzeJson = (jsonObj, objName = '') => {
         is_output_struct = jsonObj[':isOutputStruct'];
         // console.log(`set ${class_name}, is_output_struct=${is_output_struct}`)
       }
-      // クラス名はコール元で設定
+      // Class name is set by the caller.
       result = new JsonMappingData(objName, class_name, '', '', is_output_struct);
       result.is_object = true;
-      // ソート順序維持のため、一時mapに格納
+      // Stored in temporary map to maintain sort order.
       const tmp_map = {};
       for (const key in jsonObj) {
         if (key != ':class') {
@@ -171,7 +253,7 @@ const analyzeJson = (jsonObj, objName = '') => {
             result.child_list[key] = tmp_map[key];
             result.child_list[key].init_value = value;
           } else {
-            // type判定
+            // type check
             let type_str = '';
             if (typeof value == 'string') {
               type_str = 'std::string';
@@ -182,7 +264,7 @@ const analyzeJson = (jsonObj, objName = '') => {
             } else if (value) {
               const obj_key2 = Object.keys(value);
               if (obj_key2 == 0) { // array
-                // 要素を先に調べるべき？
+                // Should I examine the element first?
                 type_str = '';
               } else { // object
                 type_str = '';
@@ -245,7 +327,7 @@ const generateSource = (filename, headerName, req, res, json_setting) => {
 /**
  * @file ${filename}
  *
- * @brief JSONマッピングファイル (自動生成)
+ * @brief JSON mapping file (auto generate)
  */
 #include <set>
 #include <string>
@@ -281,8 +363,8 @@ using cfd::core::JsonVector;
     const list = [req, res];
     for (const data in list) {
       if (!data) continue;
-      // 作成クラスの種類ソート
-      // 子要素から順に
+      // sort by classname
+      // for child elements
       const map_list = [];
       getChildClasses(list[data], map_list);
       // console.log(`map_list = ${map_list}`)
@@ -377,15 +459,176 @@ void ${map_data.type}::CollectFieldName() {
 
 
 // ----------------------------------------------------------------------------
+// generate cpp file source function
+// ----------------------------------------------------------------------------
+const generateFileSource = (filename, headerName, class_list, json_setting) => {
+  const result = [];
+  const namespace = json_setting.namespace;
+  const include_nolint = (headerName.indexOf('/') >= 0) ? '' : '  // NOLINT';
+
+  // header
+  const source_file_header = `// Copyright 2019 CryptoGarage
+/**
+ * @file ${filename}
+ *
+ * @brief JSON mapping file (auto generate)
+ */
+#include <set>
+#include <string>
+#include <vector>
+
+#include "${headerName}"${include_nolint}
+`;
+  result.push(source_file_header);
+
+  if (isArray(namespace)) {
+    for (let idx = 0; idx < namespace.length; ++idx) {
+      result.push(`namespace ${namespace[idx]} {`);
+    }
+  } else {
+    result.push(`namespace ${namespace} {`);
+  }
+
+  const source_file_header2 = `
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
+// clang-format off
+// @formatter:off\
+`;
+  const source_file_footer = `
+// @formatter:on
+// clang-format on
+`;
+  result.push(source_file_header2);
+
+  if (class_list) {
+    for (const data in class_list) {
+      result.push(class_list[data]);
+    }
+  }
+
+  result.push(source_file_footer);
+
+  if (isArray(namespace)) {
+    for (let idx = namespace.length - 1; idx >= 0; --idx) {
+      result.push(`}  // namespace ${namespace[idx]}`);
+    }
+  } else {
+    result.push(`}  // namespace ${namespace}`);
+  }
+  result.push('');
+
+  return result.join('\n');
+};
+
+
+// ----------------------------------------------------------------------------
+// generate cpp class source function
+// ----------------------------------------------------------------------------
+const generateClassSource = (req, res) => {
+  const result = [];
+  const processed_list = [];
+
+  if (req || res) {
+    const list = [req, res];
+    for (const data in list) {
+      if (!data) continue;
+      // sort by classname
+      // for child elements
+      const map_list = [];
+      getChildClasses(list[data], map_list);
+      // console.log(`map_list = ${map_list}`)
+
+      for (const map_key in map_list) {
+        const map_data = map_list[map_key];
+        if (processed_list.includes(map_data.type)) {
+          continue;
+        }
+        const source_class_header = `
+// ------------------------------------------------------------------------
+// ${map_data.type}
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<${map_data.type}>
+  ${map_data.type}::json_mapper;
+std::vector<std::string> ${map_data.type}::item_list;
+
+void ${map_data.type}::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<${map_data.type}> func_table;  // NOLINT
+`;
+        result.push(source_class_header);
+
+        for (const child_key in map_data.child_list) {
+          const child_data = map_data.child_list[child_key];
+          // start
+          const add_json_mapper_comment = `\
+  func_table = {
+    ${map_data.type}::Get${child_data.method_name}String,
+    ${map_data.type}::Set${child_data.method_name}String,
+    ${map_data.type}::Get${child_data.method_name}FieldType,
+  };
+  json_mapper.emplace("${child_data.name}", func_table);
+  item_list.push_back("${child_data.name}");\
+`;
+          // end
+          result.push(add_json_mapper_comment);
+        }
+        result.push('}');
+
+        if (map_data.is_output_struct) {
+          result.push('');
+          result.push(`void ${map_data.type}::ConvertFromStruct(`);
+          result.push(`    const ${map_data.struct_type}& data) {`);
+          for (const child_key in map_data.child_list) {
+            const child_data = map_data.child_list[child_key];
+            if (child_data.is_object || child_data.is_array) {
+              result.push(`  ${child_data.variable_name}_.ConvertFromStruct(data.${child_data.variable_name});`);
+            } else {
+              result.push(`  ${child_data.variable_name}_ = data.${child_data.variable_name};`);
+            }
+          }
+          result.push(`  ignore_items = data.ignore_items;`);
+          result.push('}');
+
+          result.push('');
+          result.push(`${map_data.struct_type} ${map_data.type}::ConvertToStruct() const {  // NOLINT`);
+          result.push(`  ${map_data.struct_type} result;`);
+          for (const child_key in map_data.child_list) {
+            const child_data = map_data.child_list[child_key];
+            if (child_data.is_object || child_data.is_array) {
+              result.push(`  result.${child_data.variable_name} = ${child_data.variable_name}_.ConvertToStruct();`);
+            } else {
+              result.push(`  result.${child_data.variable_name} = ${child_data.variable_name}_;`);
+            }
+          }
+          result.push(`  result.ignore_items = ignore_items;`);
+          result.push('  return result;');
+          result.push('}');
+        }
+
+        processed_list.push(map_data.type);
+      }
+    }
+  }
+
+  return result.join('\n');
+};
+
+
+// ----------------------------------------------------------------------------
 // generate class header function
 // ----------------------------------------------------------------------------
-const generateClassHeader = (map_data, export_define) => {
+const generateClassHeaderData = (map_data, export_define) => {
   const class_header = `
 // ------------------------------------------------------------------------
 // ${map_data.type}
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API（${map_data.type}）クラス
+ * @brief JSON-API (${map_data.type}) class
  */
 class ${export_define}${map_data.type}
   : public cfd::core::JsonClassBase<${map_data.type}> {
@@ -397,7 +640,7 @@ class ${export_define}${map_data.type}
     // do nothing
   }
   /**
-   * @brief フィールド名を収集する.
+   * @brief collect field name.
    */
   static void CollectFieldName();
 `;
@@ -416,41 +659,42 @@ class ${export_define}${map_data.type}
 const generateObjectFunctionByHeader = (map_data, child_data) => {
   const object_functions = `\
   /**
-   * @brief ${child_data.name} 取得処理
+   * @brief Get of ${child_data.name}.
    * @return ${child_data.name}
    */
   ${child_data.type}& Get${child_data.method_name}() {  // NOLINT
     return ${child_data.variable_name}_;
   }
   /**
-   * @brief ${child_data.name} 設定処理
-   * @param[in] ${child_data.variable_name}    設定値
+   * @brief Set to ${child_data.name}.
+   * @param[in] ${child_data.variable_name}    setting value.
    */
   void Set${child_data.method_name}(  // line separate
       const ${child_data.type}& ${child_data.variable_name}) {  // NOLINT
     this->${child_data.variable_name}_ = ${child_data.variable_name};
   }
   /**
-   * @brief ${child_data.name} データ型の取得処理
-   * @return ${child_data.name}のデータ型
+   * @brief Get data type of ${child_data.name}.
+   * @return Data type of ${child_data.name}.
    */
   static std::string Get${child_data.method_name}FieldType() {
     return "${child_data.type}";  // NOLINT
   }
   /**
-   * @brief ${child_data.name} フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of ${child_data.name} field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
    */
   static std::string Get${child_data.method_name}String(  // line separate
       const ${map_data.type}& obj) {  // NOLINT
-    // Serialize内部のpre/post処理でメンバ変数の置換が起こり得るためconstにしない
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
     return obj.${child_data.variable_name}_.Serialize();
   }
   /**
-   * @brief ${child_data.name} フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to ${child_data.name} field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
    */
   static void Set${child_data.method_name}String(  // line separate
       ${map_data.type}& obj,  // NOLINT
@@ -467,40 +711,40 @@ const generateObjectFunctionByHeader = (map_data, child_data) => {
 const generateValueFunctionByHeader = (map_data, child_data) => {
   const value_functions = `\
   /**
-   * @brief ${child_data.name} 取得処理
+   * @brief Get of ${child_data.name}
    * @return ${child_data.name}
    */
   ${child_data.type} Get${child_data.method_name}() const {
     return ${child_data.variable_name}_;
   }
   /**
-   * @brief ${child_data.name} 設定処理
-   * @param[in] ${child_data.variable_name}    設定値
+   * @brief Set to ${child_data.name}
+   * @param[in] ${child_data.variable_name}    setting value.
    */
   void Set${child_data.method_name}(  // line separate
     const ${child_data.type}& ${child_data.variable_name}) {  // NOLINT
     this->${child_data.variable_name}_ = ${child_data.variable_name};
   }
   /**
-   * @brief ${child_data.name} データ型の取得処理
-   * @return ${child_data.name}のデータ型
+   * @brief Get data type of ${child_data.name}
+   * @return Data type of ${child_data.name}
    */
   static std::string Get${child_data.method_name}FieldType() {
     return "${child_data.type}";
   }
   /**
-   * @brief ${child_data.name} フィールドのJSON文字列取得処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @return JSON文字列
+   * @brief Get json string of ${child_data.name} field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
    */
   static std::string Get${child_data.method_name}String(  // line separate
       const ${map_data.type}& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.${child_data.variable_name}_);
   }
   /**
-   * @brief ${child_data.name} フィールドへのJSON情報設定処理
-   * @param[in,out] obj     クラスオブジェクト
-   * @param[in] json_value  JSON情報
+   * @brief Set json object to ${child_data.name} field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
    */
   static void Set${child_data.method_name}String(  // line separate
       ${map_data.type}& obj,  // NOLINT
@@ -520,23 +764,23 @@ const generateClassFieldByHeader = (map_data) => {
   if (map_data.is_output_struct) {
     struct_convert_function = `\
   /**
-   * @brief 構造体からクラスへ変換する.
-   * @param[in] data   構造体データ
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
    */
   void ConvertFromStruct(
       const ${map_data.struct_type}& data);
 
   /**
-   * @brief クラスから構造体へ変換する.
-   * @return  構造体データ
+   * @brief Convert class to struct.
+   * @return  struct data.
    */
   ${map_data.struct_type} ConvertToStruct()  const;`;
   }
 
   const common_fields = `\
   /**
-   * @brief 無視対象アイテムを設定する。
-   * @param[in] key   無視対象アイテムのキー名称
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
    */
   void SetIgnoreItem(const std::string& key) {
     ignore_items.insert(key);
@@ -546,32 +790,32 @@ ${struct_convert_function}
 
  protected:
   /**
-   * @brief Mapテーブルの型名定義
+   * @brief definition type of Map table.
    */
   using ${map_data.type}MapTable =
     cfd::core::JsonTableMap<${map_data.type}>;
 
   /**
-   * @brief JSONマッピングオブジェクトを取得する。
-   * @return JSONマッピングオブジェクト
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
   virtual const ${map_data.type}MapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
-   * @brief JSONマッピングのアイテム一覧を取得する。
-   * 対象の変数名を、定義順序に従い一覧取得する。
-   * @return JSONマッピングのアイテム一覧
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
    * @see cfd::core::JsonClassBase::GetJsonItemList()
    */
   virtual const std::vector<std::string>& GetJsonItemList() const {
     return item_list;
   }
   /**
-   * @brief JSONマッピング時に無視するアイテム一覧を取得する。
-   * Serialize時に対象の変数を無視する。
-   * @return JSONマッピング時に無視するアイテム一覧
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
    * @see cfd::core::JsonClassBase::GetIgnoreItem()
    */
   virtual const std::set<std::string>& GetIgnoreItem() const {
@@ -580,15 +824,15 @@ ${struct_convert_function}
 
  private:
  /**
-  * @brief JsonFunctionMapテーブル
+  * @brief JsonFunctionMap table
   */
   static ${map_data.type}MapTable json_mapper;
   /**
-   * @brief フィールド名リスト
+   * @brief field name list.
    */
   static std::vector<std::string> item_list;
   /**
-   * @brief 無視リスト
+   * @brief ignore item list.
    */
   std::set<std::string> ignore_items;
 `;
@@ -642,7 +886,7 @@ const generateHeader = (filename, dirname, req, res, json_setting, append_header
 /**
  * @file ${filename}
  *
- * @brief JSONマッピングファイル (自動生成)
+ * @brief JSON mapping file. (auto generate)
  */
 #ifndef ${def_name}
 #define ${def_name}
@@ -687,8 +931,8 @@ using cfd::core::JsonVector;
     const list = [req, res];
     for (const data in list) {
       if (!data) continue;
-      // 作成クラスの種類ソート
-      // 子要素から順に
+      // sort by generate class
+      // Child element in order
       const map_list = [];
       getChildClasses(list[data], map_list);
       // console.log('map_list = ${map_list}`)
@@ -698,7 +942,7 @@ using cfd::core::JsonVector;
         if (processed_list.includes(map_data.type)) {
           continue;
         }
-        const class_header = generateClassHeader(map_data, export_define);
+        const class_header = generateClassHeaderData(map_data, export_define);
         result.push(class_header);
 
         for (const child_key in map_data.child_list) {
@@ -718,7 +962,7 @@ using cfd::core::JsonVector;
           const child_data = map_data.child_list[child_key];
           const object_fields = `\
   /**
-   * @brief JsonAPI(${child_data.name}) のvalue
+   * @brief JsonAPI(${child_data.name}) value
    */`;
           result.push(object_fields);
           if (child_data.is_object || child_data.is_array) {
@@ -752,6 +996,177 @@ using cfd::core::JsonVector;
 
 
 // ----------------------------------------------------------------------------
+// generate header function
+// ----------------------------------------------------------------------------
+const generateFileHeader = (filename, dirname, class_list, json_setting, append_header_name = '') => {
+  const result = [];
+
+  const namespace = json_setting.namespace;
+  let path = `${dirname}/${filename}_`;
+  if (path.startsWith(__dirname)) {
+    path = path.substr(__dirname.length);
+  }
+  while (path.indexOf('/', 0) == 0) {
+    path = path.substr(1);
+  }
+  while (path.indexOf('../') >= 0) {
+    path = path.replace('../', '');
+  }
+  while (path.indexOf('./') >= 0) {
+    path = path.replace('./', '');
+  }
+  while (path.indexOf('//') >= 0) {
+    path = path.replace('//', '/');
+  }
+  while (path.indexOf('external/') >= 0) {
+    path = path.replace('external/', '');
+  }
+  while (path.indexOf('/') >= 0) {
+    path = path.replace('/', '_');
+  }
+  while (path.indexOf('.') >= 0) {
+    path = path.replace('.', '_');
+  }
+  while (path.indexOf('-') >= 0) {
+    path = path.replace('-', '_');
+  }
+  const def_name = path.toUpperCase();
+  const include_header = (json_setting.common_header) ? `#include "${json_setting.common_header}"\n` : '';
+  const include_header2 = (append_header_name.length > 0) ? `#include "${append_header_name}"\n` : '';
+
+  // header
+  const header_file_header = `// Copyright 2019 CryptoGarage
+/**
+ * @file ${filename}
+ *
+ * @brief JSON mapping file. (auto generate)
+ */
+#ifndef ${def_name}
+#define ${def_name}
+
+#include <set>
+#include <string>
+#include <vector>
+
+#include "cfdcore/cfdcore_json_mapping_base.h"
+${include_header}
+${include_header2}`;
+
+  result.push(header_file_header);
+
+  if (isArray(namespace)) {
+    for (let idx = 0; idx < namespace.length; ++idx) {
+      result.push(`namespace ${namespace[idx]} {`);
+    }
+  } else {
+    result.push(`namespace ${namespace} {`);
+  }
+
+  const header_file_header2 = `
+using cfd::core::JsonClassBase;
+using cfd::core::JsonObjectVector;
+using cfd::core::JsonValueVector;
+using cfd::core::JsonVector;
+// clang-format off
+// @formatter:off\
+`;
+
+  const header_file_footer = `
+// @formatter:on
+// clang-format on
+`;
+  const header_file_footer2 = `
+#endif  // ${def_name}
+`;
+  result.push(header_file_header2);
+
+  if (class_list) {
+    for (const data in class_list) {
+      result.push(class_list[data]);
+    }
+  }
+
+  result.push(header_file_footer);
+  if (isArray(namespace)) {
+    for (let idx = namespace.length - 1; idx >= 0; --idx) {
+      result.push(`}  // namespace ${namespace[idx]}`);
+    }
+  } else {
+    result.push(`}  // namespace ${namespace}`);
+  }
+  result.push(header_file_footer2);
+  return result.join('\n');
+};
+
+// ----------------------------------------------------------------------------
+// generate class header function
+// ----------------------------------------------------------------------------
+const generateClassHeader = (req, res, json_setting) => {
+  const result = [];
+  const processed_list = [];
+  const export_define = (json_setting.export) ? `${json_setting.export} ` : '';
+
+  // header
+  if (req || res) {
+    const list = [req, res];
+    for (const data in list) {
+      if (!data) continue;
+      // sort by generate class
+      // Child element in order
+      const map_list = [];
+      getChildClasses(list[data], map_list);
+      // console.log('map_list = ${map_list}`)
+
+      for (const map_key in map_list) {
+        const map_data = map_list[map_key];
+        if (processed_list.includes(map_data.type)) {
+          continue;
+        }
+        const class_header = generateClassHeaderData(map_data, export_define);
+        result.push(class_header);
+
+        for (const child_key in map_data.child_list) {
+          const child_data = map_data.child_list[child_key];
+          if (child_data.is_object || child_data.is_array) {
+            const object_functions = generateObjectFunctionByHeader(map_data, child_data);
+            result.push(`${object_functions}`);
+          } else {
+            const value_functions = generateValueFunctionByHeader(map_data, child_data);
+            result.push(value_functions);
+          }
+        }
+        const common_fields = generateClassFieldByHeader(map_data);
+        result.push(common_fields);
+
+        for (const child_key in map_data.child_list) {
+          const child_data = map_data.child_list[child_key];
+          const object_fields = `\
+  /**
+   * @brief JsonAPI(${child_data.name}) value
+   */`;
+          result.push(object_fields);
+          if (child_data.is_object || child_data.is_array) {
+            result.push(`  ${child_data.type} ${child_data.variable_name}_;  // NOLINT`);
+          } else if (child_data.type == 'std::string') {
+            // string
+            result.push(`  ${child_data.type} ${child_data.variable_name}_ = "${child_data.init_value}";`);
+          } else {
+            result.push(`  ${child_data.type} ${child_data.variable_name}_ = ${child_data.init_value};`);
+          }
+        }
+
+        result.push('};');
+
+        processed_list.push(map_data.type);
+      }
+    }
+  }
+
+  return result.join('\n');
+};
+
+
+// ----------------------------------------------------------------------------
 // generate struct header function
 // ----------------------------------------------------------------------------
 const generateStructHeaderArea = (map_data) => {
@@ -760,7 +1175,7 @@ const generateStructHeaderArea = (map_data) => {
 // ${map_data.struct_type}
 // ------------------------------------------------------------------------
 /**
- * @brief ${map_data.struct_type} 構造体
+ * @brief ${map_data.struct_type} struct
  */
 struct ${map_data.struct_type} {`;
   return struct_header;
@@ -941,7 +1356,7 @@ const generateStructHeader = (dirname, filename, json_list) => {
 /**
  * @file ${filename}
  *
- * @brief 構造体マッピングファイル (自動生成)
+ * @brief Struct mapping file. (auto generate)
  */
 #ifndef ${def_name}
 #define ${def_name}
@@ -1006,26 +1421,109 @@ const generateStructHeader = (dirname, filename, json_list) => {
 
 
 // ----------------------------------------------------------------------------
+// generate typescript data file function
+// ----------------------------------------------------------------------------
+/**
+ * generateTsData
+ * @param dirname {string} - directory path.
+ * @param filename {string} - output file name.
+ * @param jsonClassMap {Object} - class object map.
+ * @param jsonTypeList {string[]} - sorted class map keys.
+ * @param functionList {string[]} - function names.
+ */
+const generateTsData = (dirname, filename, jsonClassMap, jsonTypeList, functionList) => {
+  const result = [];
+  const processedStructTypes = [];
+
+  let path = `${dirname}/${filename}`;
+  if (path.startsWith(__dirname)) {
+    path = path.substr(__dirname.length);
+  }
+  while (path.indexOf('/', 0) == 0) {
+    path = path.substr(1);
+  }
+  while (path.indexOf('//') >= 0) {
+    path = path.replace('//', '/');
+  }
+
+  // initialize
+  const project = new Project({
+      tsConfigFilePath: `${__dirname}/../tsconfig.json`,
+      addFilesFromTsConfig: false,
+  });
+
+  // add source files
+  // const namespaceFile = project.createSourceFile(path, 'export namespace Cfd {}\n');
+  // const namespaceObj = namespaceFile.getNamespace('Cfd');
+  const file = project.createSourceFile(path, '\n');
+
+  for (let i = 0; i < jsonTypeList.length; ++i) {
+    const clsName = jsonTypeList[i];
+    const props = jsonClassMap[clsName];
+    // console.log(`${clsName} = `, props);
+    file.addInterface({
+        name: clsName,
+        isExported: true,
+        properties: props
+    });
+  }
+
+  for (let i = 0; i < functionList.length; ++i) {
+    // manipulate
+    const funcName = functionList[i];
+    const reqName = `${funcName}Request`;
+    const resName = `${funcName}Response`;
+    const params = (reqName in jsonClassMap) ? [{name: 'jsonObject', type: reqName}] : [];
+//    const typeParams = (reqName in jsonClassMap) ? [{name: reqName}] : [];
+    const retType = (resName in jsonClassMap) ? resName : undefined;
+    let func = file.addFunction({
+        name: funcName,
+        isExported: true,
+        parameters: params,
+        returnType: retType,
+    });
+//        typeParameters: typeParams,
+  }
+
+  // asynchronously save all the changes above
+  project.save().then(() => console.log(`output: ${path}`));
+};
+
+
+// ----------------------------------------------------------------------------
 // search file
 // ----------------------------------------------------------------------------
 const fileList = [];
+let cfdBaseDir;
 const cfdPath = `${__dirname}/../external/cfd-js/`;
 const cfdPath2 = `${__dirname}/../../cfd-js/`;
 let folderPath = `src/input_json_format/`;
 const outJsonSourceFolderPath = `${__dirname}/../../cfd-js/src/autogen/`;
 const outJsonHeaderFolderPath = `${__dirname}/../../cfd-js/src/autogen/`;
 let outStructDirPath = `include/cfdjs/`;
+let outTsFolderPath = ``;
 const outStructFileName = `cfdjs_struct.h`;
-const jsonDataList = [];
+const outTsFileName = `index.d.ts`;
+let classHeaderList = [];
+let classSourceList = [];
+let jsonDataList = [];
+let jsonClassMap = {};
+let jsonTypeList = [];
+let functionList = [];
 
 if (fs.existsSync(cfdPath) && fs.statSync(cfdPath).isDirectory()) {
+  cfdBaseDir = cfdPath;
+  outTsFolderPath = cfdPath + outTsFolderPath;
   folderPath = cfdPath + folderPath;
   outStructDirPath = cfdPath + outStructDirPath;
 } else {
+  cfdBaseDir = cfdPath2;
+  outTsFolderPath = `${__dirname}/`;  // relative path from tsconfig.json
   folderPath = cfdPath2 + folderPath;
   outStructDirPath = cfdPath2 + outStructDirPath;
 }
 
+let jsonObjectCommon = undefined;
 fs.readdir(folderPath, (err, files) => {
   if (err) throw err;
   files.filter(function(file) {
@@ -1042,19 +1540,74 @@ fs.readdir(folderPath, (err, files) => {
     const jsonObject = JSON.parse(fs.readFileSync(inFile, 'utf8'));
     const reqData = (jsonObject.request) ? analyzeJson(jsonObject.request, 'root') : null;
     const resData = (jsonObject.response) ? analyzeJson(jsonObject.response, 'root') : null;
+    let funcName = '';
+    if (reqData != null) {
+      const ret = reqData.collectMapData(jsonClassMap, jsonTypeList);
+      jsonClassMap = ret['map'];
+      jsonTypeList = ret['list'];
+      funcName = reqData.getFunctionName();
+    }
+    if (resData != null) {
+      const ret = resData.collectMapData(jsonClassMap, jsonTypeList);
+      jsonClassMap = ret['map'];
+      jsonTypeList = ret['list'];
+      if (funcName === '') funcName = resData.getFunctionName();
+    }
+    if (funcName !== '') functionList.push(funcName);
     // console.log(`reqData = ${reqData}`)
     // console.log(`resData = ${resData}`)
     jsonDataList.push(new JsonData(jsonObject, reqData, resData));
 
-    const header_str = generateHeader(outHeaderFile, outJsonHeaderFolderPath, reqData,
-        resData, jsonObject, `cfdjs/${outStructFileName}`);
-    fs.writeFileSync(`${outJsonHeaderFolderPath}${outHeaderFile}`, header_str);
-    const src_str = generateSource(outSourceFile, outHeaderFile, reqData, resData, jsonObject);
-    fs.writeFileSync(`${outJsonSourceFolderPath}${outSourceFile}`, src_str);
+    const header_str = generateClassHeader(reqData, resData, jsonObject);
+    classHeaderList.push(header_str);
+    const src_str = generateClassSource(reqData, resData);
+    classSourceList.push(src_str);
+    if (jsonObjectCommon === undefined) {
+      jsonObjectCommon = jsonObject;
+    } else {
+      if (jsonObject.namespace && jsonObject.namespace.length > 0) {
+        jsonObjectCommon['namespace'] = jsonObject.namespace;
+      }
+      if (jsonObject.common_header && jsonObject.common_header.length > 0) {
+        jsonObjectCommon['common_header'] = jsonObject.common_header;
+      }
+    }
   });
+
+  {
+    let namespace_name = '';
+    const namespace = jsonObjectCommon.namespace;
+    if (isArray(namespace)) {
+      for (let idx = 0; idx < namespace.length; ++idx) {
+        if (idx !== 0) namespace_name += '_';
+        namespace_name += namespace[idx];
+      }
+    } else {
+      namespace_name += namespace;
+    }
+  
+    const outHeaderFile = `${namespace_name}_autogen.h`;
+    const outSourceFile = `${namespace_name}_autogen.cpp`;
+    const header_str = generateFileHeader(outHeaderFile, outJsonHeaderFolderPath,
+        classHeaderList, jsonObjectCommon, `cfdjs/${outStructFileName}`);
+    fs.writeFileSync(`${outJsonHeaderFolderPath}${outHeaderFile}`, header_str);
+    const src_str = generateFileSource(outSourceFile, outHeaderFile,
+        classSourceList, jsonObjectCommon);
+    fs.writeFileSync(`${outJsonSourceFolderPath}${outSourceFile}`, src_str);
+  };
 
   if (jsonDataList.length > 0) {
     const header_str = generateStructHeader(outStructDirPath, outStructFileName, jsonDataList);
     fs.writeFileSync(`${outStructDirPath}${outStructFileName}`, header_str);
+    console.log(`output: ${outStructFileName}`);
+  }
+
+  if (jsonTypeList.length > 0) {
+    try {
+      fs.unlinkSync(`${cfdBaseDir}${outTsFileName}`);
+    } catch (err) {
+      // do nothing
+    }
+    generateTsData(outTsFolderPath, outTsFileName, jsonClassMap, jsonTypeList, functionList);
   }
 });

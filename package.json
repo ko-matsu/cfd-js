@@ -32,7 +32,7 @@
     "format_all": "run-p code_format js_format",
     "code_format": "clang-format -i --style=file src/*.cpp src/*.h include/cfdjs/*.h addon/*.cpp",
     "js_format": "eslint --ext .js,.ts *.ts *.js wrap_js/ --fix",
-    "cmake_all": "run-s cmake_configure cmake_build",
+    "cmake_all": "run-s cmake_configure cmake_build_parallel",
     "cmake_configure": "run-script-os",
     "cmake_configure:win32": "cmake-js configure -O wrap_js/build --CDENABLE_SHARED=on --CDENABLE_CAPI=off",
     "cmake_configure:linux": "cmake-js configure -O wrap_js/build --CDENABLE_SHARED=on --CDENABLE_CAPI=off --CDTARGET_RPATH=./wrap_js/build/Release -g",

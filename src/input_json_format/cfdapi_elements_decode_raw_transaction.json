@@ -29,6 +29,7 @@
         "coinbase:hint": "coinbase is only ", 
         "txid": "",
         "vout": 0,
+        "vout:type": "uint32_t",
         "scriptSig": {
           ":class": "ElementsDecodeUnlockingScript",
           "asm": "",
@@ -68,7 +69,9 @@
         "value-maximum": 0,
         "value-maximum:type": "double",
         "ct-exponent": 0,
+        "ct-exponent:type": "int",
         "ct-bits": 0,
+        "ct-bits:type": "int",
         "surjectionproof": "",
         "valuecommitment": "",
         "asset": "",
@@ -76,11 +79,13 @@
         "commitmentnonce": "",
         "commitmentnonce_fully_valid": false,
         "n": 0,
+        "n:type": "uint32_t",
         "scriptPubKey": {
           ":class": "ElementsDecodeLockingScript",
           "asm": "",
           "hex": "",
           "reqSigs": 0,
+          "reqSigs:type": "int",
           "type": "",
           "addresses": [
             ""
@@ -89,6 +94,7 @@
           "pegout_asm": "",
           "pegout_hex": "",
           "pegout_reqSigs": 0,
+          "pegout_reqSigs:type": "int",
           "pegout_type": "",
           "pegout_addresses": [
             ""

@@ -1115,7 +1115,7 @@ class ElementsDecodeRawTransactionTxIn
    * @brief vout 取得処理
    * @return vout
    */
-  int64_t GetVout() const {
+  uint32_t GetVout() const {
     return vout_;
   }
   /**
@@ -1123,7 +1123,7 @@ class ElementsDecodeRawTransactionTxIn
    * @param[in] vout    設定値
    */
   void SetVout(  // line separate
-    const int64_t& vout) {  // NOLINT
+    const uint32_t& vout) {  // NOLINT
     this->vout_ = vout;
   }
   /**
@@ -1131,7 +1131,7 @@ class ElementsDecodeRawTransactionTxIn
    * @return voutのデータ型
    */
   static std::string GetVoutFieldType() {
-    return "int64_t";
+    return "uint32_t";
   }
   /**
    * @brief vout フィールドのJSON文字列取得処理
@@ -1492,7 +1492,7 @@ class ElementsDecodeRawTransactionTxIn
   /**
    * @brief JsonAPI(vout) のvalue
    */
-  int64_t vout_ = 0;
+  uint32_t vout_ = 0;
   /**
    * @brief JsonAPI(scriptSig) のvalue
    */
@@ -1629,7 +1629,7 @@ class ElementsDecodeLockingScript
    * @brief reqSigs 取得処理
    * @return reqSigs
    */
-  int64_t GetReqSigs() const {
+  int GetReqSigs() const {
     return req_sigs_;
   }
   /**
@@ -1637,7 +1637,7 @@ class ElementsDecodeLockingScript
    * @param[in] req_sigs    設定値
    */
   void SetReqSigs(  // line separate
-    const int64_t& req_sigs) {  // NOLINT
+    const int& req_sigs) {  // NOLINT
     this->req_sigs_ = req_sigs;
   }
   /**
@@ -1645,7 +1645,7 @@ class ElementsDecodeLockingScript
    * @return reqSigsのデータ型
    */
   static std::string GetReqSigsFieldType() {
-    return "int64_t";
+    return "int";
   }
   /**
    * @brief reqSigs フィールドのJSON文字列取得処理
@@ -1887,7 +1887,7 @@ class ElementsDecodeLockingScript
    * @brief pegout_reqSigs 取得処理
    * @return pegout_reqSigs
    */
-  int64_t GetPegout_reqSigs() const {
+  int GetPegout_reqSigs() const {
     return pegout_req_sigs_;
   }
   /**
@@ -1895,7 +1895,7 @@ class ElementsDecodeLockingScript
    * @param[in] pegout_req_sigs    設定値
    */
   void SetPegout_reqSigs(  // line separate
-    const int64_t& pegout_req_sigs) {  // NOLINT
+    const int& pegout_req_sigs) {  // NOLINT
     this->pegout_req_sigs_ = pegout_req_sigs;
   }
   /**
@@ -1903,7 +1903,7 @@ class ElementsDecodeLockingScript
    * @return pegout_reqSigsのデータ型
    */
   static std::string GetPegout_reqSigsFieldType() {
-    return "int64_t";
+    return "int";
   }
   /**
    * @brief pegout_reqSigs フィールドのJSON文字列取得処理
@@ -2092,7 +2092,7 @@ class ElementsDecodeLockingScript
   /**
    * @brief JsonAPI(reqSigs) のvalue
    */
-  int64_t req_sigs_ = 0;
+  int req_sigs_ = 0;
   /**
    * @brief JsonAPI(type) のvalue
    */
@@ -2116,7 +2116,7 @@ class ElementsDecodeLockingScript
   /**
    * @brief JsonAPI(pegout_reqSigs) のvalue
    */
-  int64_t pegout_req_sigs_ = 0;
+  int pegout_req_sigs_ = 0;
   /**
    * @brief JsonAPI(pegout_type) のvalue
    */
@@ -2280,7 +2280,7 @@ class ElementsDecodeRawTransactionTxOut
    * @brief ct-exponent 取得処理
    * @return ct-exponent
    */
-  int64_t GetCt_exponent() const {
+  int GetCt_exponent() const {
     return ct_exponent_;
   }
   /**
@@ -2288,7 +2288,7 @@ class ElementsDecodeRawTransactionTxOut
    * @param[in] ct_exponent    設定値
    */
   void SetCt_exponent(  // line separate
-    const int64_t& ct_exponent) {  // NOLINT
+    const int& ct_exponent) {  // NOLINT
     this->ct_exponent_ = ct_exponent;
   }
   /**
@@ -2296,7 +2296,7 @@ class ElementsDecodeRawTransactionTxOut
    * @return ct-exponentのデータ型
    */
   static std::string GetCt_exponentFieldType() {
-    return "int64_t";
+    return "int";
   }
   /**
    * @brief ct-exponent フィールドのJSON文字列取得処理
@@ -2323,7 +2323,7 @@ class ElementsDecodeRawTransactionTxOut
    * @brief ct-bits 取得処理
    * @return ct-bits
    */
-  int64_t GetCt_bits() const {
+  int GetCt_bits() const {
     return ct_bits_;
   }
   /**
@@ -2331,7 +2331,7 @@ class ElementsDecodeRawTransactionTxOut
    * @param[in] ct_bits    設定値
    */
   void SetCt_bits(  // line separate
-    const int64_t& ct_bits) {  // NOLINT
+    const int& ct_bits) {  // NOLINT
     this->ct_bits_ = ct_bits;
   }
   /**
@@ -2339,7 +2339,7 @@ class ElementsDecodeRawTransactionTxOut
    * @return ct-bitsのデータ型
    */
   static std::string GetCt_bitsFieldType() {
-    return "int64_t";
+    return "int";
   }
   /**
    * @brief ct-bits フィールドのJSON文字列取得処理
@@ -2624,7 +2624,7 @@ class ElementsDecodeRawTransactionTxOut
    * @brief n 取得処理
    * @return n
    */
-  int64_t GetN() const {
+  uint32_t GetN() const {
     return n_;
   }
   /**
@@ -2632,7 +2632,7 @@ class ElementsDecodeRawTransactionTxOut
    * @param[in] n    設定値
    */
   void SetN(  // line separate
-    const int64_t& n) {  // NOLINT
+    const uint32_t& n) {  // NOLINT
     this->n_ = n;
   }
   /**
@@ -2640,7 +2640,7 @@ class ElementsDecodeRawTransactionTxOut
    * @return nのデータ型
    */
   static std::string GetNFieldType() {
-    return "int64_t";
+    return "uint32_t";
   }
   /**
    * @brief n フィールドのJSON文字列取得処理
@@ -2790,11 +2790,11 @@ class ElementsDecodeRawTransactionTxOut
   /**
    * @brief JsonAPI(ct-exponent) のvalue
    */
-  int64_t ct_exponent_ = 0;
+  int ct_exponent_ = 0;
   /**
    * @brief JsonAPI(ct-bits) のvalue
    */
-  int64_t ct_bits_ = 0;
+  int ct_bits_ = 0;
   /**
    * @brief JsonAPI(surjectionproof) のvalue
    */
@@ -2822,7 +2822,7 @@ class ElementsDecodeRawTransactionTxOut
   /**
    * @brief JsonAPI(n) のvalue
    */
-  int64_t n_ = 0;
+  uint32_t n_ = 0;
   /**
    * @brief JsonAPI(scriptPubKey) のvalue
    */

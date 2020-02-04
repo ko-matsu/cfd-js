@@ -1025,7 +1025,7 @@ struct ElementsDecodeIssuanceStruct {
 struct ElementsDecodeRawTransactionTxInStruct {
   std::string coinbase = "";                       //!< coinbase  // NOLINT
   std::string txid = "";                           //!< txid  // NOLINT
-  int64_t vout = 0;                                //!< vout  // NOLINT
+  uint32_t vout = 0;                               //!< vout  // NOLINT
   ElementsDecodeUnlockingScriptStruct script_sig;  //!< script_sig  // NOLINT
   bool is_pegin = false;                           //!< is_pegin  // NOLINT
   int64_t sequence = 0;                            //!< sequence  // NOLINT
@@ -1044,13 +1044,13 @@ struct ElementsDecodeRawTransactionTxInStruct {
 struct ElementsDecodeLockingScriptStruct {
   std::string asm_ = "";                      //!< asm_  // NOLINT
   std::string hex = "";                       //!< hex  // NOLINT
-  int64_t req_sigs = 0;                       //!< req_sigs  // NOLINT
+  int req_sigs = 0;                           //!< req_sigs  // NOLINT
   std::string type = "";                      //!< type  // NOLINT
   std::vector<std::string> addresses;         //!< addresses  // NOLINT
   std::string pegout_chain = "";              //!< pegout_chain  // NOLINT
   std::string pegout_asm = "";                //!< pegout_asm  // NOLINT
   std::string pegout_hex = "";                //!< pegout_hex  // NOLINT
-  int64_t pegout_req_sigs = 0;                //!< pegout_req_sigs  // NOLINT
+  int pegout_req_sigs = 0;                    //!< pegout_req_sigs  // NOLINT
   std::string pegout_type = "";               //!< pegout_type  // NOLINT
   std::vector<std::string> pegout_addresses;  //!< pegout_addresses  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
@@ -1066,15 +1066,15 @@ struct ElementsDecodeRawTransactionTxOutStruct {
   double value = 0;                                  //!< value  // NOLINT
   double value_minimum = 0;                          //!< value_minimum  // NOLINT
   double value_maximum = 0;                          //!< value_maximum  // NOLINT
-  int64_t ct_exponent = 0;                           //!< ct_exponent  // NOLINT
-  int64_t ct_bits = 0;                               //!< ct_bits  // NOLINT
+  int ct_exponent = 0;                               //!< ct_exponent  // NOLINT
+  int ct_bits = 0;                                   //!< ct_bits  // NOLINT
   std::string surjectionproof = "";                  //!< surjectionproof  // NOLINT
   std::string valuecommitment = "";                  //!< valuecommitment  // NOLINT
   std::string asset = "";                            //!< asset  // NOLINT
   std::string assetcommitment = "";                  //!< assetcommitment  // NOLINT
   std::string commitmentnonce = "";                  //!< commitmentnonce  // NOLINT
   bool commitmentnonce_fully_valid = false;          //!< commitmentnonce_fully_valid  // NOLINT
-  int64_t n = 0;                                     //!< n  // NOLINT
+  uint32_t n = 0;                                    //!< n  // NOLINT
   ElementsDecodeLockingScriptStruct script_pub_key;  //!< script_pub_key  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };

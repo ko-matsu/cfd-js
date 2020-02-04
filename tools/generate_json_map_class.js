@@ -72,28 +72,6 @@ class JsonMappingData {
         break;
       }
       throw Error('Illegal state.');
-/*
-    } else if (this.class_name !== '') {
-      // my class name
-      // console.log("class_name = ", this.class_name);
-      let props = [];
-      let tmpMap = map;
-      let tmpList = list;
-      for (const key in this.child_list) {
-        if (this.child_list[key]) {
-          const name = this.child_list[key].name;
-          const ret = this.child_list[key].collectMapData(tmpMap, tmpList);
-          const type = ret['type'];
-          tmpMap = ret['map'];
-          tmpList = ret['list'];
-          props.push({name: name, type: type});
-        }
-      }
-      // console.log("cprops = ", props);
-      tmpMap[this.type] = props;
-      tmpList.push(this.type);
-      return {type: this.type, map: tmpMap, list: tmpList};
-*/
     } else if (this.type === 'ErrorResponseBase') {
       const clsName = 'ErrorResponse';
       let props = [];
@@ -122,12 +100,15 @@ class JsonMappingData {
       let tmpList = list;
       for (const key in this.child_list) {
         if (this.child_list[key]) {
-          const name = this.child_list[key].name;
+          let name = this.child_list[key].name;
           const ret = this.child_list[key].collectMapData(tmpMap, tmpList);
           // console.log('prop : ', ret);
           const type = ret['type'];
           tmpMap = ret['map'];
           tmpList = ret['list'];
+          if (name.indexOf('-') > 0) {
+            name = "'" + name + "'";
+          }
           props.push({name: name, type: type});
         }
       }
@@ -135,6 +116,10 @@ class JsonMappingData {
       // if (props.length === 0) console.log('prop empty. cls=', this.toString(), ', child=', this.child_list);
       tmpMap[this.type] = props;
       tmpList.push(this.type);
+      if (this.type === 'ElementsCreateDestroyAmountRequest') {
+        console.log('DestroyAmt data: ', this.toString());
+        console.log('- props: ', props);
+      }
       return {type: this.type, map: tmpMap, list: tmpList};
     } else {
       let type = '';
@@ -1110,7 +1095,7 @@ const generateStructHeader = (dirname, filename, json_list) => {
 
 
 // ----------------------------------------------------------------------------
-// generate struct header function
+// generate typescript data file function
 // ----------------------------------------------------------------------------
 /**
  * generateTsData
@@ -1142,14 +1127,15 @@ const generateTsData = (dirname, filename, jsonClassMap, jsonTypeList, functionL
   });
 
   // add source files
-  const namespaceFile = project.createSourceFile(path, 'export namespace Cfd {}');
-  const namespaceObj = namespaceFile.getNamespace('Cfd');
+  // const namespaceFile = project.createSourceFile(path, 'export namespace Cfd {}\n');
+  // const namespaceObj = namespaceFile.getNamespace('Cfd');
+  const file = project.createSourceFile(path, '\n');
 
-  for (let i = 0; i < functionList.length; ++i) {
+  for (let i = 0; i < jsonTypeList.length; ++i) {
     const clsName = jsonTypeList[i];
     const props = jsonClassMap[clsName];
     // console.log(`${clsName} = `, props);
-    namespaceObj.addInterface({
+    file.addInterface({
         name: clsName,
         isExported: true,
         properties: props
@@ -1164,11 +1150,11 @@ const generateTsData = (dirname, filename, jsonClassMap, jsonTypeList, functionL
     const params = (reqName in jsonClassMap) ? [{name: 'jsonObject', type: reqName}] : [];
 //    const typeParams = (reqName in jsonClassMap) ? [{name: reqName}] : [];
     const retType = (resName in jsonClassMap) ? resName : undefined;
-    namespaceObj.addFunction({
+    let func = file.addFunction({
         name: funcName,
         isExported: true,
         parameters: params,
-        returnType: retType
+        returnType: retType,
     });
 //        typeParameters: typeParams,
   }

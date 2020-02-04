@@ -168,7 +168,7 @@ const main = async function() {
           existSubDir = existSubDir.replace('/', separator);
         }
         try {
-          fs.mkdir(existSubDir, {recursive: true}, (err) => {
+          fs.mkdir(existSubDir, {recursive: true}, () => {
             // if (!err) console.log(`createdir ${dirpath}`)
           });
         } catch (error) {

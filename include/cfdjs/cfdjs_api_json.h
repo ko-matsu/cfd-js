@@ -40,6 +40,13 @@ class CFD_JS_API_EXPORT JsonMappingApi {
   static std::string CreateRawTransaction(const std::string &request_message);
 
   /**
+   * @brief AddRawTransactionのJSON API関数(request, response).
+   * @param[in] request_message     リクエストされたjson文字列
+   * @return 戻り値(JSON文字列)
+   */
+  static std::string AddRawTransaction(const std::string &request_message);
+
+  /**
    * @brief DecodeRawTransactionのJSON API関数(request, response).
    * @param[in] request_message     リクエストされたjson文字列
    * @return 戻り値(JSON文字列)
@@ -298,6 +305,14 @@ class CFD_JS_API_EXPORT JsonMappingApi {
    * @return 戻り値(JSON文字列)
    */
   static std::string ElementsCreateRawTransaction(
+      const std::string &request_message);
+
+  /**
+   * @brief ElementsAddRawTransactionのJSON API関数(request, response).
+   * @param[in] request_message     リクエストされたjson文字列
+   * @return 戻り値(JSON文字列)
+   */
+  static std::string ElementsAddRawTransaction(
       const std::string &request_message);
 
   /**

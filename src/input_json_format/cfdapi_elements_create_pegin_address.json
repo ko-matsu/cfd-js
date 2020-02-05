@@ -7,7 +7,9 @@
     "pubkey": "",
     "pubkey:hint": "pubkey related to mainchainAddress",
     "network": "mainnet",
-    "network:hint": "mainnet, testnet or regtest"
+    "network:hint": "mainnet, testnet or regtest",
+    "hashType": "p2sh-p2wsh",
+    "hashType:hint": "p2wsh, p2sh-p2wsh, p2sh"
   },
   "response": {
     ":class": "ElementsCreatePegInAddressResponse",

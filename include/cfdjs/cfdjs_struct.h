@@ -894,9 +894,10 @@ struct ElementsCreateDestroyAmountResponseStruct {
  * @brief ElementsCreatePegInAddressRequestStruct struct
  */
 struct ElementsCreatePegInAddressRequestStruct {
-  std::string fedpegscript = "";    //!< fedpegscript  // NOLINT
-  std::string pubkey = "";          //!< pubkey  // NOLINT
-  std::string network = "mainnet";  //!< network  // NOLINT
+  std::string fedpegscript = "";         //!< fedpegscript  // NOLINT
+  std::string pubkey = "";               //!< pubkey  // NOLINT
+  std::string network = "mainnet";       //!< network  // NOLINT
+  std::string hash_type = "p2sh-p2wsh";  //!< hash_type  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 

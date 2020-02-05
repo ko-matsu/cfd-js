@@ -3566,6 +3566,13 @@ void ElementsCreatePegInAddressRequest::CollectFieldName() {
   };
   json_mapper.emplace("network", func_table);
   item_list.push_back("network");
+  func_table = {
+    ElementsCreatePegInAddressRequest::GetHashTypeString,
+    ElementsCreatePegInAddressRequest::SetHashTypeString,
+    ElementsCreatePegInAddressRequest::GetHashTypeFieldType,
+  };
+  json_mapper.emplace("hashType", func_table);
+  item_list.push_back("hashType");
 }
 
 void ElementsCreatePegInAddressRequest::ConvertFromStruct(
@@ -3573,6 +3580,7 @@ void ElementsCreatePegInAddressRequest::ConvertFromStruct(
   fedpegscript_ = data.fedpegscript;
   pubkey_ = data.pubkey;
   network_ = data.network;
+  hash_type_ = data.hash_type;
   ignore_items = data.ignore_items;
 }
 
@@ -3581,6 +3589,7 @@ ElementsCreatePegInAddressRequestStruct ElementsCreatePegInAddressRequest::Conve
   result.fedpegscript = fedpegscript_;
   result.pubkey = pubkey_;
   result.network = network_;
+  result.hash_type = hash_type_;
   result.ignore_items = ignore_items;
   return result;
 }

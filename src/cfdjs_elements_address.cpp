@@ -273,10 +273,8 @@ ElementsAddressStructApi::CreatePegInAddress(
     Script fedpegscript = Script(request.fedpegscript);
     Pubkey pubkey = Pubkey(request.pubkey);
     NetType net_type = AddressStructApi::ConvertNetType(request.network);
-    // FIXME(fujita-cg): Extend JSON I/F and modify innner logic
-    // AddressType address_type =
-    //   AddressStructApi::ConvertAddressType(request.address_type);
-    AddressType address_type = AddressType::kP2shP2wpkhAddress;
+    AddressType address_type =
+        AddressStructApi::ConvertAddressType(request.hash_type);
 
     // prepare output parameters
     Script claim_script;

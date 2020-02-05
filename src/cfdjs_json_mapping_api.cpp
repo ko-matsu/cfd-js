@@ -310,6 +310,16 @@ std::string JsonMappingApi::CreateRawTransaction(
       request_message, TransactionStructApi::CreateRawTransaction);
 }
 
+std::string JsonMappingApi::AddRawTransaction(
+    const std::string &request_message) {
+  return ExecuteJsonApi<
+      api::json::AddRawTransactionRequest,
+      api::json::AddRawTransactionResponse,
+      api::AddRawTransactionRequestStruct,
+      api::AddRawTransactionResponseStruct>(
+      request_message, TransactionStructApi::AddRawTransaction);
+}
+
 std::string JsonMappingApi::DecodeRawTransaction(
     const std::string &request_message) {
   return ExecuteJsonApi<
@@ -690,6 +700,16 @@ std::string JsonMappingApi::ElementsCreateRawTransaction(
       api::ElementsCreateRawTransactionRequestStruct,
       api::ElementsCreateRawTransactionResponseStruct>(
       request_message, ElementsTransactionStructApi::CreateRawTransaction);
+}
+
+std::string JsonMappingApi::ElementsAddRawTransaction(
+    const std::string &request_message) {
+  return ExecuteJsonApi<
+      api::json::ElementsAddRawTransactionRequest,
+      api::json::ElementsAddRawTransactionResponse,
+      api::ElementsAddRawTransactionRequestStruct,
+      api::ElementsAddRawTransactionResponseStruct>(
+      request_message, ElementsTransactionStructApi::AddRawTransaction);
 }
 
 std::string JsonMappingApi::ElementsDecodeRawTransaction(

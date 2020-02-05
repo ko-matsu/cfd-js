@@ -27,6 +27,27 @@ export interface AddMultisigSignResponse {
     hex: string;
 }
 
+export interface AddTxIn {
+    txid: string;
+    vout: number;
+    sequence: number;
+}
+
+export interface AddTxOut {
+    address: string;
+    amount: bigint;
+}
+
+export interface AddRawTransactionRequest {
+    tx: string;
+    txins: AddTxIn[];
+    txouts: AddTxOut[];
+}
+
+export interface AddRawTransactionResponse {
+    hex: string;
+}
+
 export interface SignData {
     hex: string;
     type: string;
@@ -266,6 +287,76 @@ export interface DecodeRawTransactionResponse {
     locktime: number;
     vin: DecodeRawTransactionTxIn[];
     vout: DecodeRawTransactionTxOut[];
+}
+
+export interface ElementsAddTxInRequest {
+    txid: string;
+    vout: number;
+    sequence: number;
+}
+
+export interface ElementsAddPeginWitness {
+    amount: bigint;
+    asset: string;
+    mainchainGenesisBlockHash: string;
+    claimScript: string;
+    mainchainRawTransaction: string;
+    mainchainTxoutproof: string;
+}
+
+export interface ElementsAddPeginTxIn {
+    txid: string;
+    vout: number;
+    sequence: number;
+    peginwitness: ElementsAddPeginWitness;
+    isRemoveMainchainTxWitness: boolean;
+}
+
+export interface ElementsAddTxOut {
+    address: string;
+    amount: bigint;
+    asset: string;
+    isRemoveNonce: boolean;
+}
+
+export interface ElementsAddDestroyAmount {
+    amount: bigint;
+    asset: string;
+}
+
+export interface ElementsAddPegout {
+    amount: bigint;
+    asset: string;
+    network: string;
+    elementsNetwork: string;
+    mainchainGenesisBlockHash: string;
+    btcAddress: string;
+    onlinePubkey: string;
+    masterOnlineKey: string;
+    bitcoinDescriptor: string;
+    bip32Counter: bigint;
+    whitelist: string;
+}
+
+export interface ElementsAddTxOutFee {
+    amount: bigint;
+    asset: string;
+}
+
+export interface ElementsAddRawTransactionRequest {
+    tx: string;
+    txins: ElementsAddTxInRequest[];
+    peginTxins: ElementsAddPeginTxIn[];
+    txouts: ElementsAddTxOut[];
+    destroyAmountTxouts: ElementsAddDestroyAmount[];
+    pegoutTxouts: ElementsAddPegout[];
+    fee: ElementsAddTxOutFee;
+    isRandomSortTxOut: boolean;
+}
+
+export interface ElementsAddRawTransactionResponse {
+    hex: string;
+    btcAddresses: string[];
 }
 
 export interface ElementsDestroyAmountTxIn {
@@ -736,19 +827,6 @@ export interface FundRawTransactionResponse {
     feeAmount: bigint;
 }
 
-export interface GetAddressesFromMultisigRequest {
-    isElements: boolean;
-    redeemScript: string;
-    network: string;
-    hashType: string;
-}
-
-export interface GetAddressesFromMultisigResponse {
-    addresses: string[];
-    pubkeys: string[];
-    requireNum: bigint;
-}
-
 export interface GetAddressInfoRequest {
     address: string;
     isElements: boolean;
@@ -760,6 +838,19 @@ export interface GetAddressInfoResponse {
     hashType: string;
     witnessVersion: number;
     hash: string;
+}
+
+export interface GetAddressesFromMultisigRequest {
+    isElements: boolean;
+    redeemScript: string;
+    network: string;
+    hashType: string;
+}
+
+export interface GetAddressesFromMultisigResponse {
+    addresses: string[];
+    pubkeys: string[];
+    requireNum: bigint;
 }
 
 export interface GetExtkeyInfoRequest {
@@ -1067,6 +1158,8 @@ export interface VerifySignatureResponse {
 
 export function AddMultisigSign(jsonObject: AddMultisigSignRequest): AddMultisigSignResponse;
 
+export function AddRawTransaction(jsonObject: AddRawTransactionRequest): AddRawTransactionResponse;
+
 export function AddSign(jsonObject: AddSignRequest): AddSignResponse;
 
 export function BlindRawTransaction(jsonObject: BlindRawTransactionRequest): BlindRawTransactionResponse;
@@ -1094,6 +1187,8 @@ export function CreateMultisigScriptSig(jsonObject: CreateMultisigScriptSigReque
 export function CreateScript(jsonObject: CreateScriptRequest): CreateScriptResponse;
 
 export function DecodeRawTransaction(jsonObject: DecodeRawTransactionRequest): DecodeRawTransactionResponse;
+
+export function ElementsAddRawTransaction(jsonObject: ElementsAddRawTransactionRequest): ElementsAddRawTransactionResponse;
 
 export function ElementsCreateDestroyAmount(jsonObject: ElementsCreateDestroyAmountRequest): ElementsCreateDestroyAmountResponse;
 
@@ -1123,9 +1218,9 @@ export function EstimateFee(jsonObject: EstimateFeeRequest): EstimateFeeResponse
 
 export function FundRawTransaction(jsonObject: FundRawTransactionRequest): FundRawTransactionResponse;
 
-export function GetAddressesFromMultisig(jsonObject: GetAddressesFromMultisigRequest): GetAddressesFromMultisigResponse;
-
 export function GetAddressInfo(jsonObject: GetAddressInfoRequest): GetAddressInfoResponse;
+
+export function GetAddressesFromMultisig(jsonObject: GetAddressesFromMultisigRequest): GetAddressesFromMultisigResponse;
 
 export function GetExtkeyInfo(jsonObject: GetExtkeyInfoRequest): GetExtkeyInfoResponse;
 

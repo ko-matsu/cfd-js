@@ -90,6 +90,56 @@ struct AddMultisigSignResponseStruct {
 };
 
 // ------------------------------------------------------------------------
+// AddTxInStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief AddTxInStruct struct
+ */
+struct AddTxInStruct {
+  std::string txid = "";           //!< txid  // NOLINT
+  uint32_t vout = 0;               //!< vout  // NOLINT
+  uint32_t sequence = 4294967295;  //!< sequence  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// AddTxOutStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief AddTxOutStruct struct
+ */
+struct AddTxOutStruct {
+  std::string address = "";  //!< address  // NOLINT
+  int64_t amount = 0;        //!< amount  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// AddRawTransactionRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief AddRawTransactionRequestStruct struct
+ */
+struct AddRawTransactionRequestStruct {
+  std::string tx = "";                 //!< tx  // NOLINT
+  std::vector<AddTxInStruct> txins;    //!< txins  // NOLINT
+  std::vector<AddTxOutStruct> txouts;  //!< txouts  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// AddRawTransactionResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief AddRawTransactionResponseStruct struct
+ */
+struct AddRawTransactionResponseStruct {
+  std::string hex = "";  //!< hex  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
 // SignDataStruct
 // ------------------------------------------------------------------------
 /**
@@ -620,6 +670,140 @@ struct DecodeRawTransactionResponseStruct {
   uint32_t locktime = 0;                              //!< locktime  // NOLINT
   std::vector<DecodeRawTransactionTxInStruct> vin;    //!< vin  // NOLINT
   std::vector<DecodeRawTransactionTxOutStruct> vout;  //!< vout  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// ElementsAddTxInRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief ElementsAddTxInRequestStruct struct
+ */
+struct ElementsAddTxInRequestStruct {
+  std::string txid = "";           //!< txid  // NOLINT
+  uint32_t vout = 0;               //!< vout  // NOLINT
+  uint32_t sequence = 4294967295;  //!< sequence  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// ElementsAddPeginWitnessStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief ElementsAddPeginWitnessStruct struct
+ */
+struct ElementsAddPeginWitnessStruct {
+  int64_t amount = 0;                             //!< amount  // NOLINT
+  std::string asset = "";                         //!< asset  // NOLINT
+  std::string mainchain_genesis_block_hash = "";  //!< mainchain_genesis_block_hash  // NOLINT
+  std::string claim_script = "";                  //!< claim_script  // NOLINT
+  std::string mainchain_raw_transaction = "";     //!< mainchain_raw_transaction  // NOLINT
+  std::string mainchain_txoutproof = "";          //!< mainchain_txoutproof  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// ElementsAddPeginTxInStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief ElementsAddPeginTxInStruct struct
+ */
+struct ElementsAddPeginTxInStruct {
+  std::string txid = "";                        //!< txid  // NOLINT
+  uint32_t vout = 0;                            //!< vout  // NOLINT
+  uint32_t sequence = 4294967295;               //!< sequence  // NOLINT
+  ElementsAddPeginWitnessStruct peginwitness;   //!< peginwitness  // NOLINT
+  bool is_remove_mainchain_tx_witness = false;  //!< is_remove_mainchain_tx_witness  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// ElementsAddTxOutStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief ElementsAddTxOutStruct struct
+ */
+struct ElementsAddTxOutStruct {
+  std::string address = "";      //!< address  // NOLINT
+  int64_t amount = 0;            //!< amount  // NOLINT
+  std::string asset = "";        //!< asset  // NOLINT
+  bool is_remove_nonce = false;  //!< is_remove_nonce  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// ElementsAddDestroyAmountStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief ElementsAddDestroyAmountStruct struct
+ */
+struct ElementsAddDestroyAmountStruct {
+  int64_t amount = 0;      //!< amount  // NOLINT
+  std::string asset = "";  //!< asset  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// ElementsAddPegoutStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief ElementsAddPegoutStruct struct
+ */
+struct ElementsAddPegoutStruct {
+  int64_t amount = 0;                             //!< amount  // NOLINT
+  std::string asset = "";                         //!< asset  // NOLINT
+  std::string network = "mainnet";                //!< network  // NOLINT
+  std::string elements_network = "";              //!< elements_network  // NOLINT
+  std::string mainchain_genesis_block_hash = "";  //!< mainchain_genesis_block_hash  // NOLINT
+  std::string btc_address = "";                   //!< btc_address  // NOLINT
+  std::string online_pubkey = "";                 //!< online_pubkey  // NOLINT
+  std::string master_online_key = "";             //!< master_online_key  // NOLINT
+  std::string bitcoin_descriptor = "";            //!< bitcoin_descriptor  // NOLINT
+  int64_t bip32_counter = 0;                      //!< bip32_counter  // NOLINT
+  std::string whitelist = "";                     //!< whitelist  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// ElementsAddTxOutFeeStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief ElementsAddTxOutFeeStruct struct
+ */
+struct ElementsAddTxOutFeeStruct {
+  int64_t amount = 0;      //!< amount  // NOLINT
+  std::string asset = "";  //!< asset  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// ElementsAddRawTransactionRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief ElementsAddRawTransactionRequestStruct struct
+ */
+struct ElementsAddRawTransactionRequestStruct {
+  std::string tx = "";                                                //!< tx  // NOLINT
+  std::vector<ElementsAddTxInRequestStruct> txins;                    //!< txins  // NOLINT
+  std::vector<ElementsAddPeginTxInStruct> pegin_txins;                //!< pegin_txins  // NOLINT
+  std::vector<ElementsAddTxOutStruct> txouts;                         //!< txouts  // NOLINT
+  std::vector<ElementsAddDestroyAmountStruct> destroy_amount_txouts;  //!< destroy_amount_txouts  // NOLINT
+  std::vector<ElementsAddPegoutStruct> pegout_txouts;                 //!< pegout_txouts  // NOLINT
+  ElementsAddTxOutFeeStruct fee;                                      //!< fee  // NOLINT
+  bool is_random_sort_tx_out = false;                                 //!< is_random_sort_tx_out  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// ElementsAddRawTransactionResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief ElementsAddRawTransactionResponseStruct struct
+ */
+struct ElementsAddRawTransactionResponseStruct {
+  std::string hex = "";                    //!< hex  // NOLINT
+  std::vector<std::string> btc_addresses;  //!< btc_addresses  // NOLINT
   cfd::js::api::InnerErrorResponseStruct error;   //!< error information
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
@@ -1526,34 +1710,6 @@ struct FundRawTransactionResponseStruct {
 };
 
 // ------------------------------------------------------------------------
-// GetAddressesFromMultisigRequestStruct
-// ------------------------------------------------------------------------
-/**
- * @brief GetAddressesFromMultisigRequestStruct struct
- */
-struct GetAddressesFromMultisigRequestStruct {
-  bool is_elements = false;          //!< is_elements  // NOLINT
-  std::string redeem_script = "";    //!< redeem_script  // NOLINT
-  std::string network = "mainnet";   //!< network  // NOLINT
-  std::string hash_type = "p2wpkh";  //!< hash_type  // NOLINT
-  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
-};
-
-// ------------------------------------------------------------------------
-// GetAddressesFromMultisigResponseStruct
-// ------------------------------------------------------------------------
-/**
- * @brief GetAddressesFromMultisigResponseStruct struct
- */
-struct GetAddressesFromMultisigResponseStruct {
-  std::vector<std::string> addresses;  //!< addresses  // NOLINT
-  std::vector<std::string> pubkeys;    //!< pubkeys  // NOLINT
-  int64_t require_num = 0;             //!< require_num  // NOLINT
-  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
-  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
-};
-
-// ------------------------------------------------------------------------
 // GetAddressInfoRequestStruct
 // ------------------------------------------------------------------------
 /**
@@ -1577,6 +1733,34 @@ struct GetAddressInfoResponseStruct {
   std::string hash_type = "p2pkh";  //!< hash_type  // NOLINT
   int32_t witness_version = 0;      //!< witness_version  // NOLINT
   std::string hash = "";            //!< hash  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// GetAddressesFromMultisigRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief GetAddressesFromMultisigRequestStruct struct
+ */
+struct GetAddressesFromMultisigRequestStruct {
+  bool is_elements = false;          //!< is_elements  // NOLINT
+  std::string redeem_script = "";    //!< redeem_script  // NOLINT
+  std::string network = "mainnet";   //!< network  // NOLINT
+  std::string hash_type = "p2wpkh";  //!< hash_type  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// GetAddressesFromMultisigResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief GetAddressesFromMultisigResponseStruct struct
+ */
+struct GetAddressesFromMultisigResponseStruct {
+  std::vector<std::string> addresses;  //!< addresses  // NOLINT
+  std::vector<std::string> pubkeys;    //!< pubkeys  // NOLINT
+  int64_t require_num = 0;             //!< require_num  // NOLINT
   cfd::js::api::InnerErrorResponseStruct error;   //!< error information
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };

@@ -5,6 +5,7 @@
 const cfdjsModule = require('./cfdjs_module');
 const {
   CreateRawTransaction,
+  AddRawTransaction,
   DecodeRawTransaction,
   GetWitnessStackNum,
   AddSign,
@@ -156,6 +157,44 @@ let decodeRawTxResult;
   console.log('*** Response ***\n',
       JSON.stringify(decodeRawTxResult, null, '  '));
   console.log('-- decoderawtransaction end   --\n');
+}
+// AddRawTransaction
+let addRawTxResult;
+{
+  console.log('\n===== AddRawTransaction =====');
+  const fundTxAmt = CONTRACT_CONDS.fundAmt + (CONTRACT_CONDS.feeAmt * 2);
+  const txInAmtAlice = 3000000000; // dummy txin amount
+  const txInAmtBob = 2800000000; // dummy txin amount
+  const reqJson = {
+    'tx': '02000000000000000000',
+    'txins': [
+      {
+        'txid': DUMMY_TXID_1,
+        'vout': 0,
+      },
+      {
+        'txid': DUMMY_TXID_2,
+        'vout': 1,
+      },
+    ],
+    'txouts': [
+      {
+        'address': createMultisigResult.address,
+        'amount': fundTxAmt,
+      },
+      {
+        'address': CONTRACT_CONDS.chgAddrAlice,
+        'amount': txInAmtAlice - fundTxAmt / 2,
+      },
+      {
+        'address': CONTRACT_CONDS.chgAddrBob,
+        'amount': txInAmtBob - fundTxAmt / 2,
+      },
+    ],
+  };
+  console.log('*** Request ***\n', reqJson);
+  addRawTxResult = AddRawTransaction(reqJson);
+  console.log('\n*** Response ***\n', addRawTxResult, '\n');
 }
 // CreateSignatureHash
 let createSignatureHash;
@@ -1023,7 +1062,8 @@ let parseDescriptorResult;
   };
   console.log('*** Request ***\n', reqJson);
   parseDescriptorResult = ParseDescriptor(reqJson);
-  console.log('*** Response ***\n', parseDescriptorResult);
+  console.log('*** Response ***\n',
+      JSON.stringify(parseDescriptorResult, null, '  '));
 }
 
 let parseScriptResult;

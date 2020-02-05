@@ -399,6 +399,7 @@ export interface ElementsCreatePegInAddressRequest {
     fedpegscript: string;
     pubkey: string;
     network: string;
+    hashType: string;
 }
 
 export interface ElementsCreatePegInAddressResponse {

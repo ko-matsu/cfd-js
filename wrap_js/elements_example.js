@@ -22,6 +22,7 @@ const {
   SetRawIssueAsset,
   SetRawReissueAsset,
   GetIssuanceBlindingKey,
+  CreatePegInAddress,
   CreateRawPegin,
   CreateRawPegout,
   CreateDestroyAmount,
@@ -961,6 +962,50 @@ if (!supportFunctions.elements) {
     reissuanceUnblindRawTransactionResult = UnblindRawTransaction(reqJson);
     console.log('\n*** Response ***\n',
         reissuanceUnblindRawTransactionResult, '\n');
+  }
+
+  let createPegInAddressResult1;
+  {
+    console.log('\n===== Pegin CreatePegInAddress =====');
+    /* eslint-disable max-len */
+    const reqJson = {
+      'fedpegscript': '51',
+      'pubkey': '02200d8510dfcf8e2330c0795c771d1e6064daab2f274ac32a6e2708df9bfa893d',
+      'redeemScript': '',
+      'network': 'regtest',
+      'hashType': 'p2sh-p2wsh',
+    };
+    console.log('*** Request ***\n', reqJson);
+    createPegInAddressResult1 = CreatePegInAddress(reqJson);
+    console.log('\n*** Response ***\n',
+        createPegInAddressResult1, '\n');
+    const addrInfo = GetAddressInfo({
+      address: createPegInAddressResult1.mainchainAddress,
+      isElements: false,
+    });
+    console.log('*** address info ***\n', addrInfo);
+  }
+
+  let createPegInAddressResult2;
+  {
+    console.log('\n===== Pegin CreatePegInAddress(script) =====');
+    /* eslint-disable max-len */
+    const reqJson = {
+      'fedpegscript': '51',
+      'pubkey': '',
+      'redeemScript': createMultisigResult.witnessScript,
+      'network': 'regtest',
+      'hashType': 'p2sh-p2wsh',
+    };
+    console.log('*** Request ***\n', reqJson);
+    createPegInAddressResult2 = CreatePegInAddress(reqJson);
+    console.log('\n*** Response ***\n',
+        createPegInAddressResult2, '\n');
+    const addrInfo = GetAddressInfo({
+      address: createPegInAddressResult2.mainchainAddress,
+      isElements: false,
+    });
+    console.log('*** address info ***\n', addrInfo);
   }
 
   // Pegin ---------------------------------------------------------------

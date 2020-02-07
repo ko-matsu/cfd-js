@@ -19,6 +19,7 @@ endif()
 # common setting
 ####################
 include(./cmake/CfdCommonSetting.cmake)
+include(./cmake/ConvertSrclistFunction.cmake)
 
 
 ####################

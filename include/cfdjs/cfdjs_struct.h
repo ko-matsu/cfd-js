@@ -896,6 +896,7 @@ struct ElementsCreateDestroyAmountResponseStruct {
 struct ElementsCreatePegInAddressRequestStruct {
   std::string fedpegscript = "";         //!< fedpegscript  // NOLINT
   std::string pubkey = "";               //!< pubkey  // NOLINT
+  std::string redeem_script = "";        //!< redeem_script  // NOLINT
   std::string network = "mainnet";       //!< network  // NOLINT
   std::string hash_type = "p2sh-p2wsh";  //!< hash_type  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
@@ -1711,34 +1712,6 @@ struct FundRawTransactionResponseStruct {
 };
 
 // ------------------------------------------------------------------------
-// GetAddressInfoRequestStruct
-// ------------------------------------------------------------------------
-/**
- * @brief GetAddressInfoRequestStruct struct
- */
-struct GetAddressInfoRequestStruct {
-  std::string address = "";  //!< address  // NOLINT
-  bool is_elements = false;  //!< is_elements  // NOLINT
-  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
-};
-
-// ------------------------------------------------------------------------
-// GetAddressInfoResponseStruct
-// ------------------------------------------------------------------------
-/**
- * @brief GetAddressInfoResponseStruct struct
- */
-struct GetAddressInfoResponseStruct {
-  std::string locking_script = "";  //!< locking_script  // NOLINT
-  std::string network = "mainnet";  //!< network  // NOLINT
-  std::string hash_type = "p2pkh";  //!< hash_type  // NOLINT
-  int32_t witness_version = 0;      //!< witness_version  // NOLINT
-  std::string hash = "";            //!< hash  // NOLINT
-  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
-  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
-};
-
-// ------------------------------------------------------------------------
 // GetAddressesFromMultisigRequestStruct
 // ------------------------------------------------------------------------
 /**
@@ -1762,6 +1735,34 @@ struct GetAddressesFromMultisigResponseStruct {
   std::vector<std::string> addresses;  //!< addresses  // NOLINT
   std::vector<std::string> pubkeys;    //!< pubkeys  // NOLINT
   int64_t require_num = 0;             //!< require_num  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// GetAddressInfoRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief GetAddressInfoRequestStruct struct
+ */
+struct GetAddressInfoRequestStruct {
+  std::string address = "";  //!< address  // NOLINT
+  bool is_elements = false;  //!< is_elements  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// GetAddressInfoResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief GetAddressInfoResponseStruct struct
+ */
+struct GetAddressInfoResponseStruct {
+  std::string locking_script = "";  //!< locking_script  // NOLINT
+  std::string network = "mainnet";  //!< network  // NOLINT
+  std::string hash_type = "p2pkh";  //!< hash_type  // NOLINT
+  int32_t witness_version = 0;      //!< witness_version  // NOLINT
+  std::string hash = "";            //!< hash  // NOLINT
   cfd::js::api::InnerErrorResponseStruct error;   //!< error information
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };

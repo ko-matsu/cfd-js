@@ -398,6 +398,7 @@ export interface ElementsCreateDestroyAmountResponse {
 export interface ElementsCreatePegInAddressRequest {
     fedpegscript: string;
     pubkey: string;
+    redeemScript: string;
     network: string;
     hashType: string;
 }
@@ -828,19 +829,6 @@ export interface FundRawTransactionResponse {
     feeAmount: bigint;
 }
 
-export interface GetAddressInfoRequest {
-    address: string;
-    isElements: boolean;
-}
-
-export interface GetAddressInfoResponse {
-    lockingScript: string;
-    network: string;
-    hashType: string;
-    witnessVersion: number;
-    hash: string;
-}
-
 export interface GetAddressesFromMultisigRequest {
     isElements: boolean;
     redeemScript: string;
@@ -852,6 +840,19 @@ export interface GetAddressesFromMultisigResponse {
     addresses: string[];
     pubkeys: string[];
     requireNum: bigint;
+}
+
+export interface GetAddressInfoRequest {
+    address: string;
+    isElements: boolean;
+}
+
+export interface GetAddressInfoResponse {
+    lockingScript: string;
+    network: string;
+    hashType: string;
+    witnessVersion: number;
+    hash: string;
 }
 
 export interface GetExtkeyInfoRequest {
@@ -1219,9 +1220,9 @@ export function EstimateFee(jsonObject: EstimateFeeRequest): EstimateFeeResponse
 
 export function FundRawTransaction(jsonObject: FundRawTransactionRequest): FundRawTransactionResponse;
 
-export function GetAddressInfo(jsonObject: GetAddressInfoRequest): GetAddressInfoResponse;
-
 export function GetAddressesFromMultisig(jsonObject: GetAddressesFromMultisigRequest): GetAddressesFromMultisigResponse;
+
+export function GetAddressInfo(jsonObject: GetAddressInfoRequest): GetAddressInfoResponse;
 
 export function GetExtkeyInfo(jsonObject: GetExtkeyInfoRequest): GetExtkeyInfoResponse;
 

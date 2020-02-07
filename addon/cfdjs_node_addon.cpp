@@ -110,6 +110,15 @@ Value CreateRawTransaction(const CallbackInfo &information) {
 }
 
 /**
+ * @brief AddRawTransactionのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value AddRawTransaction(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::AddRawTransaction);
+}
+
+/**
  * @brief DecodeRawTransactionのJSON API関数(request, response).
  * @param[in] information     node addon apiのコールバック情報
  * @return 戻り値(JSON文字列)
@@ -441,6 +450,16 @@ Value ElementsCreateRawTransaction(const CallbackInfo &information) {
 }
 
 /**
+ * @brief ElementsAddRawTransactionのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value ElementsAddRawTransaction(const CallbackInfo &information) {
+  return NodeAddonJsonApi(
+      information, JsonMappingApi::ElementsAddRawTransaction);
+}
+
+/**
  * @brief ElementsDecodeRawTransactionのJSON API関数(request, response).
  * @param[in] information     node addon apiのコールバック情報
  * @return 戻り値(JSON文字列)
@@ -547,6 +566,9 @@ void InitializeJsonApi(Env env, Object *exports) {
       String::New(env, "CreateRawTransaction"),
       Function::New(env, CreateRawTransaction));
   exports->Set(
+      String::New(env, "AddRawTransaction"),
+      Function::New(env, AddRawTransaction));
+  exports->Set(
       String::New(env, "DecodeRawTransaction"),
       Function::New(env, DecodeRawTransaction));
   exports->Set(
@@ -644,6 +666,9 @@ void InitializeJsonApi(Env env, Object *exports) {
   exports->Set(
       String::New(env, "ElementsCreateRawTransaction"),
       Function::New(env, ElementsCreateRawTransaction));
+  exports->Set(
+      String::New(env, "ElementsAddRawTransaction"),
+      Function::New(env, ElementsAddRawTransaction));
   exports->Set(
       String::New(env, "ElementsDecodeRawTransaction"),
       Function::New(env, ElementsDecodeRawTransaction));

@@ -15,12 +15,14 @@ const {
   GetUnblindedAddress,
   CreateElementsSignatureHash,
   ElementsCreateRawTransaction,
+  ElementsAddRawTransaction,
   ElementsDecodeRawTransaction,
   BlindRawTransaction,
   UnblindRawTransaction,
   SetRawIssueAsset,
   SetRawReissueAsset,
   GetIssuanceBlindingKey,
+  CreatePegInAddress,
   CreateRawPegin,
   CreateRawPegout,
   CreateDestroyAmount,
@@ -342,6 +344,42 @@ if (!supportFunctions.elements) {
     console.log('*** Request ***\n', reqJson);
     blindRawTransactionResult = BlindRawTransaction(reqJson);
     console.log('\n*** Response ***\n', blindRawTransactionResult, '\n');
+  }
+
+  let elementsAddRawTransactionResult;
+  {
+    console.log('\n===== ElementsAddRawTransaction =====');
+    const reqJson = {
+      'tx': '0200000000000000000000',
+      'txins': [{
+        'txid': '7461b02405414d79e79a5050684a333c922c1136f4bdff5fb94b551394edebbd', // eslint-disable-line max-len
+        'vout': 0,
+        'sequence': 4294967295,
+      },
+      {
+        'txid': '1497e1f146bc5fe00b6268ea16a7069ecb90a2a41a183446d5df8965d2356dc1', // eslint-disable-line max-len
+        'vout': 1,
+        'sequence': 4294967295,
+      }],
+      'txouts': [{
+        'address': 'CTEw7oSCUWDfmfhCEdsB3gsG7D9b4xLCZEq71H8JxRFeBu7yQN3CbSF6qT6J4F7qji4bq1jVSdVcqvRJ', // eslint-disable-line max-len
+        'amount': 100000000,
+        'asset': 'ef47c42d34de1b06a02212e8061323f50d5f02ceed202f1cb375932aa299f751', // eslint-disable-line max-len
+      },
+      {
+        'address': '2dxZw5iVZ6Pmqoc5Vn8gkUWDGB5dXuMBCmM',
+        'amount': 1900500000,
+        'asset': '6f1a4b6bd5571b5f08ab79c314dc6483f9b952af2f5ef206cd6f8e68eb1186f3', // eslint-disable-line max-len
+      }],
+      'fee': {
+        'amount': 500000,
+        'asset': '6f1a4b6bd5571b5f08ab79c314dc6483f9b952af2f5ef206cd6f8e68eb1186f3', // eslint-disable-line max-len
+      },
+    };
+    console.log('*** Request ***\n', reqJson);
+    elementsAddRawTransactionResult = ElementsAddRawTransaction(reqJson);
+    console.log('\n*** Response ***\n',
+        elementsAddRawTransactionResult, '\n');
   }
 
   let SetRawIssueAssetResult;
@@ -924,6 +962,50 @@ if (!supportFunctions.elements) {
     reissuanceUnblindRawTransactionResult = UnblindRawTransaction(reqJson);
     console.log('\n*** Response ***\n',
         reissuanceUnblindRawTransactionResult, '\n');
+  }
+
+  let createPegInAddressResult1;
+  {
+    console.log('\n===== Pegin CreatePegInAddress =====');
+    /* eslint-disable max-len */
+    const reqJson = {
+      'fedpegscript': '51',
+      'pubkey': '02200d8510dfcf8e2330c0795c771d1e6064daab2f274ac32a6e2708df9bfa893d',
+      'redeemScript': '',
+      'network': 'regtest',
+      'hashType': 'p2sh-p2wsh',
+    };
+    console.log('*** Request ***\n', reqJson);
+    createPegInAddressResult1 = CreatePegInAddress(reqJson);
+    console.log('\n*** Response ***\n',
+        createPegInAddressResult1, '\n');
+    const addrInfo = GetAddressInfo({
+      address: createPegInAddressResult1.mainchainAddress,
+      isElements: false,
+    });
+    console.log('*** address info ***\n', addrInfo);
+  }
+
+  let createPegInAddressResult2;
+  {
+    console.log('\n===== Pegin CreatePegInAddress(script) =====');
+    /* eslint-disable max-len */
+    const reqJson = {
+      'fedpegscript': '51',
+      'pubkey': '',
+      'redeemScript': createMultisigResult.witnessScript,
+      'network': 'regtest',
+      'hashType': 'p2sh-p2wsh',
+    };
+    console.log('*** Request ***\n', reqJson);
+    createPegInAddressResult2 = CreatePegInAddress(reqJson);
+    console.log('\n*** Response ***\n',
+        createPegInAddressResult2, '\n');
+    const addrInfo = GetAddressInfo({
+      address: createPegInAddressResult2.mainchainAddress,
+      isElements: false,
+    });
+    console.log('*** address info ***\n', addrInfo);
   }
 
   // Pegin ---------------------------------------------------------------

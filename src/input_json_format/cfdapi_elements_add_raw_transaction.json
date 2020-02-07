@@ -1,0 +1,86 @@
+{
+  "namespace": ["cfd","js","api","json"],
+  "request": {
+    ":class": "ElementsAddRawTransactionRequest",
+    "tx": "",
+    "tx:comment": "transaction hex",
+    "txins": [
+      {
+        ":class": "ElementsAddTxInRequest",
+        "txid": "",
+        "vout": 0,
+        "vout:type": "uint32_t",
+        "sequence": 4294967295,
+        "sequence:type": "uint32_t"
+      }
+    ],
+    "peginTxins": [
+      {
+        ":class": "ElementsAddPeginTxIn",
+        "txid": "",
+        "vout": 0,
+        "vout:type": "uint32_t",
+        "sequence": 4294967295,
+        "sequence:type": "uint32_t",
+        "peginwitness": {
+          ":class": "ElementsAddPeginWitness",
+          "amount": 0,
+          "asset": "",
+          "mainchainGenesisBlockHash": "",
+          "claimScript": "",
+          "mainchainRawTransaction": "",
+          "mainchainTxoutproof": ""
+        },
+        "isRemoveMainchainTxWitness": false,
+        "isRemoveMainchainTxWitness:hint": "It is necessary to set true for Elements v0.18 or higher."
+      }
+    ],
+    "txouts": [
+      {
+        ":class": "ElementsAddTxOut",
+        "address": "",
+        "amount": 0,
+        "asset": "",
+        "isRemoveNonce": false
+      }
+    ],
+    "destroyAmountTxouts": [
+      {
+        ":class": "ElementsAddDestroyAmount",
+        "amount": 0,
+        "asset": ""
+      }
+    ],
+    "pegoutTxouts": [
+      {
+        ":class": "ElementsAddPegout",
+        "amount": 0,
+        "asset": "",
+        "network": "mainnet",
+        "network:hint": "mainnet, testnet or regtest",
+        "elementsNetwork": "",
+        "elementsNetwork:hint": "liquidv1, regtest",
+        "mainchainGenesisBlockHash":"",
+        "btcAddress": "",
+        "onlinePubkey":"",
+        "masterOnlineKey":"",
+        "bitcoinDescriptor":"",
+        "bip32Counter":0,
+        "whitelist":""
+      }
+    ],
+    "fee": {
+      ":class": "ElementsAddTxOutFee",
+      "amount": 0,
+      "asset": ""
+    },
+    "isRandomSortTxOut": false
+  },
+  "response": {
+    ":class": "ElementsAddRawTransactionResponse",
+    "hex": "",
+    "hex:comment": "transaction hex",
+    "btcAddresses": [""],
+    "btcAddresses:comment": "pegout address list."
+  }
+}

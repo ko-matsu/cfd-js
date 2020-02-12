@@ -5,6 +5,13 @@ import { Project } from "ts-morph";
 // FIXME(k-matsuzawa): Consider splitting the file.
 
 // ----------------------------------------------------------------------------
+// debug log function
+// ----------------------------------------------------------------------------
+let debugLog = function() {
+  // do nothing
+}
+
+// ----------------------------------------------------------------------------
 // json data class
 // ----------------------------------------------------------------------------
 class JsonMappingData {
@@ -105,7 +112,7 @@ class JsonMappingData {
         if (this.child_list[key]) {
           let name = this.child_list[key].name;
           const ret = this.child_list[key].collectMapData(tmpMap, tmpList);
-          // console.log('prop : ', ret);
+          debugLog('prop : ', ret);
           const type = ret['type'];
           tmpMap = ret['map'];
           tmpList = ret['list'];
@@ -115,7 +122,7 @@ class JsonMappingData {
           props.push({name: name, type: type});
         }
       }
-      // console.log("props = ", props);
+      debugLog("props = ", props);
       tmpMap[this.type] = props;
       tmpList.push(this.type);
       return {type: this.type, map: tmpMap, list: tmpList};
@@ -171,7 +178,7 @@ function isArray(obj) {
 // analyze function
 // ----------------------------------------------------------------------------
 const analyzeJson = (jsonObj, objName = '') => {
-  // console.log(`analyzeJson obj=${objName}`)
+  debugLog(`analyzeJson obj=${objName}`)
   let result;
   if (typeof jsonObj == 'string') {
     result = new JsonMappingData(objName, 'std::string', jsonObj, '');
@@ -183,7 +190,7 @@ const analyzeJson = (jsonObj, objName = '') => {
     const obj_key = Object.keys(jsonObj);
     const obj_values = Object.values(jsonObj);
     if (obj_key == 0) { // array
-      // console.log(`read arr = ${obj_values}`)
+      debugLog(`read arr = ${obj_values}`)
       let past_type = '';
       let first_map = null;
       for (const item in jsonObj) {
@@ -196,7 +203,7 @@ const analyzeJson = (jsonObj, objName = '') => {
           return result;
         }
       }
-      // console.log(`past_type = ${past_type}`)
+      debugLog(`past_type = ${past_type}`)
       if (past_type == '') {
         // field and class name is set by the caller.
         result = new JsonMappingData('', '', '', '');
@@ -212,19 +219,19 @@ const analyzeJson = (jsonObj, objName = '') => {
       }
       result.child_list[0] = first_map;
       result.is_array = true;
-      // console.log(`list_type = ${result.type}`)
-      // console.log(`clist_type = ${result.child_list[0].type}`)
+      debugLog(`list_type = ${result.type}`)
+      debugLog(`clist_type = ${result.child_list[0].type}`)
     } else { // object
-      // console.log(`read keys = ${obj_key}`)
+      debugLog(`read keys = ${obj_key}`)
       let class_name = objName;
       if (':class' in jsonObj) {
         class_name = jsonObj[':class'];
-        // console.log(`read class_name = ${class_name}`)
+        debugLog(`read class_name = ${class_name}`)
       }
       let is_output_struct = true;
       if (':isOutputStruct' in jsonObj) {
         is_output_struct = jsonObj[':isOutputStruct'];
-        // console.log(`set ${class_name}, is_output_struct=${is_output_struct}`)
+        debugLog(`set ${class_name}, is_output_struct=${is_output_struct}`)
       }
       // Class name is set by the caller.
       result = new JsonMappingData(objName, class_name, '', '', is_output_struct);
@@ -240,7 +247,7 @@ const analyzeJson = (jsonObj, objName = '') => {
             } else {
               const data = new JsonMappingData(key_name, jsonObj[key], '', class_name, is_output_struct);
               tmp_map[key_name] = data;
-              // console.log(`set JsonMappingData = ${key_name}`)
+              debugLog(`set JsonMappingData = ${key_name}`)
             }
           }
         }
@@ -248,7 +255,7 @@ const analyzeJson = (jsonObj, objName = '') => {
 
       for (const key in jsonObj) {
         if (key.indexOf(':') == -1) {
-          // console.log(`read key = ${key}`)
+          debugLog(`read key = ${key}`)
           const value = jsonObj[key];
           if (tmp_map[key]) {
             result.child_list[key] = tmp_map[key];
@@ -395,7 +402,7 @@ const generateClassSource = (req, res) => {
       // for child elements
       const map_list = [];
       getChildClasses(list[data], map_list);
-      // console.log(`map_list = ${map_list}`)
+      debugLog(`map_list = ${map_list}`)
 
       for (const map_key in map_list) {
         const map_data = map_list[map_key];
@@ -810,7 +817,7 @@ const generateClassHeader = (req, res, json_setting) => {
       // Child element in order
       const map_list = [];
       getChildClasses(list[data], map_list);
-      // console.log('map_list = ${map_list}`)
+      debugLog(`map_list = ${map_list}`)
 
       for (const map_key in map_list) {
         const map_data = map_list[map_key];
@@ -1147,7 +1154,7 @@ const generateTsData = (dirname, filename, jsonClassMap, jsonTypeList, functionL
   for (let i = 0; i < jsonTypeList.length; ++i) {
     const clsName = jsonTypeList[i];
     const props = jsonClassMap[clsName];
-    // console.log(`${clsName} = `, props);
+    debugLog(`${clsName} = `, props);
     file.addInterface({
         name: clsName,
         isExported: true,
@@ -1178,121 +1185,152 @@ const generateTsData = (dirname, filename, jsonClassMap, jsonTypeList, functionL
 // ----------------------------------------------------------------------------
 // search file
 // ----------------------------------------------------------------------------
-const fileList = [];
-let cfdBaseDir;
-const cfdPath = `${__dirname}/../external/cfd-js/`;
-const cfdPath2 = `${__dirname}/../../cfd-js/`;
-let folderPath = `src/input_json_format/`;
-const outJsonSourceFolderPath = `${__dirname}/../../cfd-js/src/autogen/`;
-const outJsonHeaderFolderPath = `${__dirname}/../../cfd-js/src/autogen/`;
-let outStructDirPath = `include/cfdjs/`;
-let outTsFolderPath = ``;
-const outStructFileName = `cfdjs_struct.h`;
-const outTsFileName = `index.d.ts`;
-let classHeaderList = [];
-let classSourceList = [];
-let jsonDataList = [];
-let jsonClassMap = {};
-let jsonTypeList = [];
-let functionList = [];
+function convertFile() {
+  const fileList = [];
+  let cfdBaseDir;
+  const cfdPath = `${__dirname}/../external/cfd-js/`;
+  const cfdPath2 = `${__dirname}/../../cfd-js/`;
+  let folderPath = `src/input_json_format/`;
+  const outJsonSourceFolderPath = `${__dirname}/../../cfd-js/src/autogen/`;
+  const outJsonHeaderFolderPath = `${__dirname}/../../cfd-js/src/autogen/`;
+  let outStructDirPath = `include/cfdjs/`;
+  let outTsFolderPath = ``;
+  const outStructFileName = `cfdjs_struct.h`;
+  const outTsFileName = `index.d.ts`;
+  let classHeaderList = [];
+  let classSourceList = [];
+  let jsonDataList = [];
+  let jsonClassMap = {};
+  let jsonTypeList = [];
+  let functionList = [];
 
-if (fs.existsSync(cfdPath) && fs.statSync(cfdPath).isDirectory()) {
-  cfdBaseDir = cfdPath;
-  outTsFolderPath = cfdPath + outTsFolderPath;
-  folderPath = cfdPath + folderPath;
-  outStructDirPath = cfdPath + outStructDirPath;
-} else {
-  cfdBaseDir = cfdPath2;
-  outTsFolderPath = `${__dirname}/`;  // relative path from tsconfig.json
-  folderPath = cfdPath2 + folderPath;
-  outStructDirPath = cfdPath2 + outStructDirPath;
-}
+  if (fs.existsSync(cfdPath) && fs.statSync(cfdPath).isDirectory()) {
+    cfdBaseDir = cfdPath;
+    outTsFolderPath = cfdPath + outTsFolderPath;
+    folderPath = cfdPath + folderPath;
+    outStructDirPath = cfdPath + outStructDirPath;
+  } else {
+    cfdBaseDir = cfdPath2;
+    outTsFolderPath = `${__dirname}/`;  // relative path from tsconfig.json
+    folderPath = cfdPath2 + folderPath;
+    outStructDirPath = cfdPath2 + outStructDirPath;
+  }
 
-let jsonObjectCommon = undefined;
-fs.readdir(folderPath, (err, files) => {
-  if (err) throw err;
-  files.filter(function(file) {
-    // filter
-    return fs.statSync(`${folderPath}${file}`).isFile() && /.*\.json$/.test(file);
-  }).forEach(function(file) {
-    console.log(`file = ${file}`);
-    const inFile = `${folderPath}${file}`;
-    const outFile = file.replace(/\.json$/i, '_json');
-    const outHeaderFile = `${outFile}.h`;
-    const outSourceFile = `${outFile}.cpp`;
+  let jsonObjectCommon = undefined;
+  fs.readdir(folderPath, (err, files) => {
+    if (err) throw err;
+    files.filter(function(file) {
+      // filter
+      return fs.statSync(`${folderPath}${file}`).isFile() && /.*\.json$/.test(file);
+    }).forEach(function(file) {
+      console.log(`file = ${file}`);
+      const inFile = `${folderPath}${file}`;
+      const outFile = file.replace(/\.json$/i, '_json');
+      const outHeaderFile = `${outFile}.h`;
+      const outSourceFile = `${outFile}.cpp`;
 
-    // read json
-    const jsonObject = JSON.parse(fs.readFileSync(inFile, 'utf8'));
-    const reqData = (jsonObject.request) ? analyzeJson(jsonObject.request, 'root') : null;
-    const resData = (jsonObject.response) ? analyzeJson(jsonObject.response, 'root') : null;
-    let funcName = '';
-    if (reqData != null) {
-      const ret = reqData.collectMapData(jsonClassMap, jsonTypeList);
-      jsonClassMap = ret['map'];
-      jsonTypeList = ret['list'];
-      funcName = reqData.getFunctionName();
-    }
-    if (resData != null) {
-      const ret = resData.collectMapData(jsonClassMap, jsonTypeList);
-      jsonClassMap = ret['map'];
-      jsonTypeList = ret['list'];
-      if (funcName === '') funcName = resData.getFunctionName();
-    }
-    if (funcName !== '') functionList.push(funcName);
-    // console.log(`reqData = ${reqData}`)
-    // console.log(`resData = ${resData}`)
-    jsonDataList.push(new JsonData(jsonObject, reqData, resData));
-
-    const header_str = generateClassHeader(reqData, resData, jsonObject);
-    classHeaderList.push(header_str);
-    const src_str = generateClassSource(reqData, resData);
-    classSourceList.push(src_str);
-    if (jsonObjectCommon === undefined) {
-      jsonObjectCommon = jsonObject;
-    } else {
-      if (jsonObject.namespace && jsonObject.namespace.length > 0) {
-        jsonObjectCommon['namespace'] = jsonObject.namespace;
+      // read json
+      const jsonObject = JSON.parse(fs.readFileSync(inFile, 'utf8'));
+      const reqData = (jsonObject.request) ? analyzeJson(jsonObject.request, 'root') : null;
+      const resData = (jsonObject.response) ? analyzeJson(jsonObject.response, 'root') : null;
+      let funcName = '';
+      if (reqData != null) {
+        const ret = reqData.collectMapData(jsonClassMap, jsonTypeList);
+        jsonClassMap = ret['map'];
+        jsonTypeList = ret['list'];
+        funcName = reqData.getFunctionName();
       }
-      if (jsonObject.common_header && jsonObject.common_header.length > 0) {
-        jsonObjectCommon['common_header'] = jsonObject.common_header;
+      if (resData != null) {
+        const ret = resData.collectMapData(jsonClassMap, jsonTypeList);
+        jsonClassMap = ret['map'];
+        jsonTypeList = ret['list'];
+        if (funcName === '') funcName = resData.getFunctionName();
       }
+      if (funcName !== '') functionList.push(funcName);
+      debugLog(`reqData = ${reqData}`)
+      debugLog(`resData = ${resData}`)
+      jsonDataList.push(new JsonData(jsonObject, reqData, resData));
+
+      const header_str = generateClassHeader(reqData, resData, jsonObject);
+      classHeaderList.push(header_str);
+      const src_str = generateClassSource(reqData, resData);
+      classSourceList.push(src_str);
+      if (jsonObjectCommon === undefined) {
+        jsonObjectCommon = jsonObject;
+      } else {
+        if (jsonObject.namespace && jsonObject.namespace.length > 0) {
+          jsonObjectCommon['namespace'] = jsonObject.namespace;
+        }
+        if (jsonObject.common_header && jsonObject.common_header.length > 0) {
+          jsonObjectCommon['common_header'] = jsonObject.common_header;
+        }
+      }
+    });
+
+    {
+      let namespace_name = '';
+      const namespace = jsonObjectCommon.namespace;
+      if (isArray(namespace)) {
+        for (let idx = 0; idx < namespace.length; ++idx) {
+          if (idx !== 0) namespace_name += '_';
+          namespace_name += namespace[idx];
+        }
+      } else {
+        namespace_name += namespace;
+      }
+    
+      const outHeaderFile = `${namespace_name}_autogen.h`;
+      const outSourceFile = `${namespace_name}_autogen.cpp`;
+      const header_str = generateFileHeader(outHeaderFile, outJsonHeaderFolderPath,
+          classHeaderList, jsonObjectCommon, `cfdjs/${outStructFileName}`);
+      fs.writeFileSync(`${outJsonHeaderFolderPath}${outHeaderFile}`, header_str);
+      const src_str = generateFileSource(outSourceFile, outHeaderFile,
+          classSourceList, jsonObjectCommon);
+      fs.writeFileSync(`${outJsonSourceFolderPath}${outSourceFile}`, src_str);
+    };
+
+    if (jsonDataList.length > 0) {
+      const header_str = generateStructHeader(outStructDirPath, outStructFileName, jsonDataList);
+      fs.writeFileSync(`${outStructDirPath}${outStructFileName}`, header_str);
+      console.log(`output: ${outStructFileName}`);
+    }
+
+    if (jsonTypeList.length > 0) {
+      try {
+        fs.unlinkSync(`${cfdBaseDir}${outTsFileName}`);
+      } catch (err) {
+        // do nothing
+      }
+      generateTsData(outTsFolderPath, outTsFileName, jsonClassMap, jsonTypeList, functionList);
     }
   });
+};
 
-  {
-    let namespace_name = '';
-    const namespace = jsonObjectCommon.namespace;
-    if (isArray(namespace)) {
-      for (let idx = 0; idx < namespace.length; ++idx) {
-        if (idx !== 0) namespace_name += '_';
-        namespace_name += namespace[idx];
+
+const main = function() {
+  for (let i = 2; i < process.argv.length; i++){
+    if (process.argv[i]) {
+      if (process.argv[i] === 'mode=debug') {
+        debugLog = function() {
+          switch (arguments.length) {
+            case 1:
+              console.log(arguments[0]);
+              break;
+            case 2:
+              console.log(arguments[0], arguments[1]);
+              break;
+            case 3:
+              console.log(arguments[0], arguments[1], arguments[2]);
+              break;
+            default:
+              console.log(Array.prototype.join.call(arguments));
+              break;
+          }
+        }
       }
-    } else {
-      namespace_name += namespace;
     }
-  
-    const outHeaderFile = `${namespace_name}_autogen.h`;
-    const outSourceFile = `${namespace_name}_autogen.cpp`;
-    const header_str = generateFileHeader(outHeaderFile, outJsonHeaderFolderPath,
-        classHeaderList, jsonObjectCommon, `cfdjs/${outStructFileName}`);
-    fs.writeFileSync(`${outJsonHeaderFolderPath}${outHeaderFile}`, header_str);
-    const src_str = generateFileSource(outSourceFile, outHeaderFile,
-        classSourceList, jsonObjectCommon);
-    fs.writeFileSync(`${outJsonSourceFolderPath}${outSourceFile}`, src_str);
-  };
-
-  if (jsonDataList.length > 0) {
-    const header_str = generateStructHeader(outStructDirPath, outStructFileName, jsonDataList);
-    fs.writeFileSync(`${outStructDirPath}${outStructFileName}`, header_str);
-    console.log(`output: ${outStructFileName}`);
   }
 
-  if (jsonTypeList.length > 0) {
-    try {
-      fs.unlinkSync(`${cfdBaseDir}${outTsFileName}`);
-    } catch (err) {
-      // do nothing
-    }
-    generateTsData(outTsFolderPath, outTsFileName, jsonClassMap, jsonTypeList, functionList);
-  }
-});
+  convertFile();
+};
+main();

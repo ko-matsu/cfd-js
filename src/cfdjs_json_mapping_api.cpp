@@ -18,59 +18,12 @@
 #include "cfdjs/cfdjs_api_transaction.h"
 #include "cfdjs/cfdjs_api_utility.h"
 
-#include "cfdapi_add_multisig_sign_json.h"                  // NOLINT
-#include "cfdapi_add_sign_json.h"                           // NOLINT
-#include "cfdapi_blind_raw_transaction_json.h"              // NOLINT
-#include "cfdapi_calculate_ec_signature_json.h"             // NOLINT
-#include "cfdapi_convert_entropy_to_mnemonic_json.h"        // NOLINT
-#include "cfdapi_convert_mnemonic_to_seed_json.h"           // NOLINT
-#include "cfdapi_create_address_json.h"                     // NOLINT
-#include "cfdapi_create_extkey_from_parent_json.h"          // NOLINT
-#include "cfdapi_create_extkey_from_path_json.h"            // NOLINT
-#include "cfdapi_create_extkey_from_seed_json.h"            // NOLINT
-#include "cfdapi_create_extpubkey_json.h"                   // NOLINT
-#include "cfdapi_create_key_pair_json.h"                    // NOLINT
-#include "cfdapi_create_multisig_scriptsig_json.h"          // NOLINT
-#include "cfdapi_create_script_json.h"                      // NOLINT
-#include "cfdapi_decode_transaction_json.h"                 // NOLINT
-#include "cfdapi_elements_create_destroy_amount_json.h"     // NOLINT
-#include "cfdapi_elements_create_pegin_address_json.h"      // NOLINT
-#include "cfdapi_elements_create_raw_pegin_json.h"          // NOLINT
-#include "cfdapi_elements_create_raw_pegout_json.h"         // NOLINT
-#include "cfdapi_elements_create_raw_transaction_json.h"    // NOLINT
-#include "cfdapi_elements_decode_raw_transaction_json.h"    // NOLINT
-#include "cfdapi_elements_get_confidential_address_json.h"  // NOLINT
-#include "cfdapi_elements_get_unblinded_address_json.h"     // NOLINT
-#include "cfdapi_elements_set_rawissueasset_json.h"         // NOLINT
-#include "cfdapi_elements_set_rawreissueasset_json.h"       // NOLINT
-#include "cfdapi_elements_unblind_raw_transaction_json.h"   // NOLINT
-#include "cfdapi_encode_signature_by_der_json.h"            // NOLINT
-#include "cfdapi_error_base_json.h"                         // NOLINT
-#include "cfdapi_error_json.h"                              // NOLINT
-#include "cfdapi_estimate_fee_json.h"                       // NOLINT
-#include "cfdapi_fund_raw_transaction_json.h"               // NOLINT
-#include "cfdapi_get_address_info_json.h"                   // NOLINT
-#include "cfdapi_get_addresses_from_multisig_json.h"        // NOLINT
-#include "cfdapi_get_extkeyinfo_json.h"                     // NOLINT
-#include "cfdapi_get_issuance_blinding_key_json.h"          // NOLINT
-#include "cfdapi_get_mnemonic_wordlist_json.h"              // NOLINT
-#include "cfdapi_get_privkey_from_extkey_json.h"            // NOLINT
-#include "cfdapi_get_pubkey_from_extkey_json.h"             // NOLINT
-#include "cfdapi_get_pubkey_from_privkey_json.h"            // NOLINT
-#include "cfdapi_get_witness_num_json.h"                    // NOLINT
-#include "cfdapi_multisig_address_json.h"                   // NOLINT
-#include "cfdapi_parse_descriptor_json.h"                   // NOLINT
-#include "cfdapi_parse_script_json.h"                       // NOLINT
-#include "cfdapi_select_utxos_wrapper_json.h"               // NOLINT
-#include "cfdapi_sighash_elements_json.h"                   // NOLINT
-#include "cfdapi_sighash_json.h"                            // NOLINT
-#include "cfdapi_supported_function_json.h"                 // NOLINT
-#include "cfdapi_transaction_json.h"                        // NOLINT
-#include "cfdapi_update_witness_json.h"                     // NOLINT
-#include "cfdapi_verify_signature_json.h"                   // NOLINT
-#include "cfdjs_coin.h"                                     // NOLINT
-#include "cfdjs_json_elements_transaction.h"                // NOLINT
-#include "cfdjs_json_transaction.h"                         // NOLINT
+#include "cfd_js_api_json_autogen.h"           // NOLINT
+#include "cfdapi_error_json.h"                 // NOLINT
+#include "cfdapi_select_utxos_wrapper_json.h"  // NOLINT
+#include "cfdjs_coin.h"                        // NOLINT
+#include "cfdjs_json_elements_transaction.h"   // NOLINT
+#include "cfdjs_json_transaction.h"            // NOLINT
 
 // using
 using cfd::js::api::AddressStructApi;

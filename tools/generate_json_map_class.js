@@ -1,7 +1,8 @@
 'use strict';
 const fs = require('fs');
 const path = require('path');
-import { Project, StructureKind } from "ts-morph";
+import { Project } from "ts-morph";
+// FIXME(k-matsuzawa): Consider splitting the file.
 
 // ----------------------------------------------------------------------------
 // json data class
@@ -56,10 +57,11 @@ class JsonMappingData {
 
   toString() {
     const str = `[JsonMappingData] ${this.name}:${this.type}:${this.class_name}`;
-    for (const key in this.child_list) {
-      // str += "\n - "
-      // str += this.child_list[key].toString()
-    }
+    // for debug code.
+    // for (const key in this.child_list) {
+    //   str += "\n - "
+    //   str += this.child_list[key].toString()
+    // }
     return str;
   }
 
@@ -114,7 +116,6 @@ class JsonMappingData {
         }
       }
       // console.log("props = ", props);
-      // if (props.length === 0) console.log('prop empty. cls=', this.toString(), ', child=', this.child_list);
       tmpMap[this.type] = props;
       tmpList.push(this.type);
       return {type: this.type, map: tmpMap, list: tmpList};
@@ -314,151 +315,6 @@ const getChildClasses = (jsonMapData, list) => {
 };
 
 // ----------------------------------------------------------------------------
-// generate cpp source function
-// ----------------------------------------------------------------------------
-const generateSource = (filename, headerName, req, res, json_setting) => {
-  const result = [];
-  const processed_list = [];
-  const namespace = json_setting.namespace;
-  const include_nolint = (headerName.indexOf('/') >= 0) ? '' : '  // NOLINT';
-
-  // header
-  const source_file_header = `// Copyright 2019 CryptoGarage
-/**
- * @file ${filename}
- *
- * @brief JSON mapping file (auto generate)
- */
-#include <set>
-#include <string>
-#include <vector>
-
-#include "${headerName}"${include_nolint}
-`;
-  result.push(source_file_header);
-
-  if (isArray(namespace)) {
-    for (let idx = 0; idx < namespace.length; ++idx) {
-      result.push(`namespace ${namespace[idx]} {`);
-    }
-  } else {
-    result.push(`namespace ${namespace} {`);
-  }
-
-  const source_file_header2 = `
-using cfd::core::JsonClassBase;
-using cfd::core::JsonObjectVector;
-using cfd::core::JsonValueVector;
-using cfd::core::JsonVector;
-// clang-format off
-// @formatter:off\
-`;
-  const source_file_footer = `
-// @formatter:on
-// clang-format on
-`;
-  result.push(source_file_header2);
-
-  if (req || res) {
-    const list = [req, res];
-    for (const data in list) {
-      if (!data) continue;
-      // sort by classname
-      // for child elements
-      const map_list = [];
-      getChildClasses(list[data], map_list);
-      // console.log(`map_list = ${map_list}`)
-
-      for (const map_key in map_list) {
-        const map_data = map_list[map_key];
-        if (processed_list.includes(map_data.type)) {
-          continue;
-        }
-        const source_class_header = `
-// ------------------------------------------------------------------------
-// ${map_data.type}
-// ------------------------------------------------------------------------
-cfd::core::JsonTableMap<${map_data.type}>
-  ${map_data.type}::json_mapper;
-std::vector<std::string> ${map_data.type}::item_list;
-
-void ${map_data.type}::CollectFieldName() {
-  if (!json_mapper.empty()) {
-    return;
-  }
-  cfd::core::CLASS_FUNCTION_TABLE<${map_data.type}> func_table;  // NOLINT
-`;
-        result.push(source_class_header);
-
-        for (const child_key in map_data.child_list) {
-          const child_data = map_data.child_list[child_key];
-          // start
-          const add_json_mapper_comment = `\
-  func_table = {
-    ${map_data.type}::Get${child_data.method_name}String,
-    ${map_data.type}::Set${child_data.method_name}String,
-    ${map_data.type}::Get${child_data.method_name}FieldType,
-  };
-  json_mapper.emplace("${child_data.name}", func_table);
-  item_list.push_back("${child_data.name}");\
-`;
-          // end
-          result.push(add_json_mapper_comment);
-        }
-        result.push('}');
-
-        if (map_data.is_output_struct) {
-          result.push('');
-          result.push(`void ${map_data.type}::ConvertFromStruct(`);
-          result.push(`    const ${map_data.struct_type}& data) {`);
-          for (const child_key in map_data.child_list) {
-            const child_data = map_data.child_list[child_key];
-            if (child_data.is_object || child_data.is_array) {
-              result.push(`  ${child_data.variable_name}_.ConvertFromStruct(data.${child_data.variable_name});`);
-            } else {
-              result.push(`  ${child_data.variable_name}_ = data.${child_data.variable_name};`);
-            }
-          }
-          result.push(`  ignore_items = data.ignore_items;`);
-          result.push('}');
-
-          result.push('');
-          result.push(`${map_data.struct_type} ${map_data.type}::ConvertToStruct() const {  // NOLINT`);
-          result.push(`  ${map_data.struct_type} result;`);
-          for (const child_key in map_data.child_list) {
-            const child_data = map_data.child_list[child_key];
-            if (child_data.is_object || child_data.is_array) {
-              result.push(`  result.${child_data.variable_name} = ${child_data.variable_name}_.ConvertToStruct();`);
-            } else {
-              result.push(`  result.${child_data.variable_name} = ${child_data.variable_name}_;`);
-            }
-          }
-          result.push(`  result.ignore_items = ignore_items;`);
-          result.push('  return result;');
-          result.push('}');
-        }
-
-        processed_list.push(map_data.type);
-      }
-    }
-  }
-
-  result.push(source_file_footer);
-
-  if (isArray(namespace)) {
-    for (let idx = namespace.length - 1; idx >= 0; --idx) {
-      result.push(`}  // namespace ${namespace[idx]}`);
-    }
-  } else {
-    result.push(`}  // namespace ${namespace}`);
-  }
-  result.push('');
-
-  return result.join('\n');
-};
-
-
-// ----------------------------------------------------------------------------
 // generate cpp file source function
 // ----------------------------------------------------------------------------
 const generateFileSource = (filename, headerName, class_list, json_setting) => {
@@ -644,11 +500,6 @@ class ${export_define}${map_data.type}
    */
   static void CollectFieldName();
 `;
-  //  ${map_data.type} & operator=(const ${map_data.type} & obj) & {
-  //    std::string serializeString = obj.Serialize();
-  //    Deserialize(serializeString);
-  //    return *this;
-  //  }
   return class_header;
 };
 
@@ -838,162 +689,6 @@ ${struct_convert_function}
 `;
   return common_fields;
 };
-
-// ----------------------------------------------------------------------------
-// generate header function
-// ----------------------------------------------------------------------------
-const generateHeader = (filename, dirname, req, res, json_setting, append_header_name = '') => {
-  const result = [];
-  const processed_list = [];
-
-  const namespace = json_setting.namespace;
-  const export_define = (json_setting.export) ? `${json_setting.export} ` : '';
-  let path = `${dirname}/${filename}_`;
-  if (path.startsWith(__dirname)) {
-    path = path.substr(__dirname.length);
-  }
-  while (path.indexOf('/', 0) == 0) {
-    path = path.substr(1);
-  }
-  while (path.indexOf('../') >= 0) {
-    path = path.replace('../', '');
-  }
-  while (path.indexOf('./') >= 0) {
-    path = path.replace('./', '');
-  }
-  while (path.indexOf('//') >= 0) {
-    path = path.replace('//', '/');
-  }
-  while (path.indexOf('external/') >= 0) {
-    path = path.replace('external/', '');
-  }
-  while (path.indexOf('/') >= 0) {
-    path = path.replace('/', '_');
-  }
-  while (path.indexOf('.') >= 0) {
-    path = path.replace('.', '_');
-  }
-  while (path.indexOf('-') >= 0) {
-    path = path.replace('-', '_');
-  }
-  const def_name = path.toUpperCase();
-  const include_header = (json_setting.common_header) ? `#include "${json_setting.common_header}"\n` : '';
-  const include_header2 = (append_header_name.length > 0) ? `#include "${append_header_name}"\n` : '';
-
-
-  // header
-  const header_file_header = `// Copyright 2019 CryptoGarage
-/**
- * @file ${filename}
- *
- * @brief JSON mapping file. (auto generate)
- */
-#ifndef ${def_name}
-#define ${def_name}
-
-#include <set>
-#include <string>
-#include <vector>
-
-#include "cfdcore/cfdcore_json_mapping_base.h"
-${include_header}
-${include_header2}`;
-
-  result.push(header_file_header);
-
-  if (isArray(namespace)) {
-    for (let idx = 0; idx < namespace.length; ++idx) {
-      result.push(`namespace ${namespace[idx]} {`);
-    }
-  } else {
-    result.push(`namespace ${namespace} {`);
-  }
-
-  const header_file_header2 = `
-using cfd::core::JsonClassBase;
-using cfd::core::JsonObjectVector;
-using cfd::core::JsonValueVector;
-using cfd::core::JsonVector;
-// clang-format off
-// @formatter:off\
-`;
-
-  const header_file_footer = `
-// @formatter:on
-// clang-format on
-`;
-  const header_file_footer2 = `
-#endif  // ${def_name}
-`;
-  result.push(header_file_header2);
-
-  if (req || res) {
-    const list = [req, res];
-    for (const data in list) {
-      if (!data) continue;
-      // sort by generate class
-      // Child element in order
-      const map_list = [];
-      getChildClasses(list[data], map_list);
-      // console.log('map_list = ${map_list}`)
-
-      for (const map_key in map_list) {
-        const map_data = map_list[map_key];
-        if (processed_list.includes(map_data.type)) {
-          continue;
-        }
-        const class_header = generateClassHeaderData(map_data, export_define);
-        result.push(class_header);
-
-        for (const child_key in map_data.child_list) {
-          const child_data = map_data.child_list[child_key];
-          if (child_data.is_object || child_data.is_array) {
-            const object_functions = generateObjectFunctionByHeader(map_data, child_data);
-            result.push(`${object_functions}`);
-          } else {
-            const value_functions = generateValueFunctionByHeader(map_data, child_data);
-            result.push(value_functions);
-          }
-        }
-        const common_fields = generateClassFieldByHeader(map_data);
-        result.push(common_fields);
-
-        for (const child_key in map_data.child_list) {
-          const child_data = map_data.child_list[child_key];
-          const object_fields = `\
-  /**
-   * @brief JsonAPI(${child_data.name}) value
-   */`;
-          result.push(object_fields);
-          if (child_data.is_object || child_data.is_array) {
-            result.push(`  ${child_data.type} ${child_data.variable_name}_;  // NOLINT`);
-          } else if (child_data.type == 'std::string') {
-            // string
-            result.push(`  ${child_data.type} ${child_data.variable_name}_ = "${child_data.init_value}";`);
-          } else {
-            result.push(`  ${child_data.type} ${child_data.variable_name}_ = ${child_data.init_value};`);
-          }
-        }
-
-        result.push('};');
-
-        processed_list.push(map_data.type);
-      }
-    }
-  }
-
-  result.push(header_file_footer);
-  if (isArray(namespace)) {
-    for (let idx = namespace.length - 1; idx >= 0; --idx) {
-      result.push(`}  // namespace ${namespace[idx]}`);
-    }
-  } else {
-    result.push(`}  // namespace ${namespace}`);
-  }
-  result.push(header_file_footer2);
-  return result.join('\n');
-};
-
 
 // ----------------------------------------------------------------------------
 // generate header function
@@ -1240,8 +935,6 @@ const generateStructItemData = (text_array, req, res, json_data, last_namespaces
     const list = [req, res];
     for (const data in list) {
       if (!data) continue;
-      // 作成クラスの種類ソート
-      // 子要素から順に
       const map_list = [];
       getChildClasses(list[data], map_list);
 
@@ -1349,7 +1042,6 @@ const generateStructHeader = (dirname, filename, json_list) => {
     path = path.replace('-', '_');
   }
   const def_name = path.toUpperCase();
-  // const include_header = (json_setting.common_header) ? `#include "${json_setting.common_header}"\n` : '';
 
   // header
   const header_file_header = `// Copyright 2019 CryptoGarage
@@ -1432,9 +1124,6 @@ const generateStructHeader = (dirname, filename, json_list) => {
  * @param functionList {string[]} - function names.
  */
 const generateTsData = (dirname, filename, jsonClassMap, jsonTypeList, functionList) => {
-  const result = [];
-  const processedStructTypes = [];
-
   let path = `${dirname}/${filename}`;
   if (path.startsWith(__dirname)) {
     path = path.substr(__dirname.length);
@@ -1453,8 +1142,6 @@ const generateTsData = (dirname, filename, jsonClassMap, jsonTypeList, functionL
   });
 
   // add source files
-  // const namespaceFile = project.createSourceFile(path, 'export namespace Cfd {}\n');
-  // const namespaceObj = namespaceFile.getNamespace('Cfd');
   const file = project.createSourceFile(path, '\n');
 
   for (let i = 0; i < jsonTypeList.length; ++i) {
@@ -1474,15 +1161,13 @@ const generateTsData = (dirname, filename, jsonClassMap, jsonTypeList, functionL
     const reqName = `${funcName}Request`;
     const resName = `${funcName}Response`;
     const params = (reqName in jsonClassMap) ? [{name: 'jsonObject', type: reqName}] : [];
-//    const typeParams = (reqName in jsonClassMap) ? [{name: reqName}] : [];
     const retType = (resName in jsonClassMap) ? resName : undefined;
-    let func = file.addFunction({
+    file.addFunction({
         name: funcName,
         isExported: true,
         parameters: params,
         returnType: retType,
     });
-//        typeParameters: typeParams,
   }
 
   // asynchronously save all the changes above

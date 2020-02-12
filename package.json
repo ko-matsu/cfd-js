@@ -122,7 +122,8 @@
     "git_subm_update": "git submodule -q foreach git fetch -q && git submodule -q update -i",
     "check": "run-s doxygen_check ctest_quiet test_quiet example elements_example ts_example lint_all",
     "check_all": "run-s cmake_clean git_subm_update cmake_quiet doxygen_check ctest_quiet test_quiet example elements_example ts_example lint_all",
-    "convert_json": "babel-node ./tools/generate_json_map_class.js --presets env"
+    "convert_json": "babel-node ./tools/generate_json_map_class.js --presets env",
+    "convert_json_debug": "babel-node ./tools/generate_json_map_class.js mode=debug --presets env"
   },
   "dependencies": {
     "@types/node": "^13.7.0",

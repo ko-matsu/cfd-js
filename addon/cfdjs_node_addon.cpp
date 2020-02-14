@@ -193,6 +193,25 @@ Value ParseDescriptor(const CallbackInfo &information) {
 }
 
 /**
+ * @brief CreateDescriptorのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value CreateDescriptor(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::CreateDescriptor);
+}
+
+/**
+ * @brief AppendDescriptorChecksumのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value AppendDescriptorChecksum(const CallbackInfo &information) {
+  return NodeAddonJsonApi(
+      information, JsonMappingApi::AppendDescriptorChecksum);
+}
+
+/**
  * @brief CreateSignatureHashのJSON API関数(request, response).
  * @param[in] information     node addon apiのコールバック情報
  * @return 戻り値(JSON文字列)
@@ -589,6 +608,12 @@ void InitializeJsonApi(Env env, Object *exports) {
   exports->Set(
       String::New(env, "ParseDescriptor"),
       Function::New(env, ParseDescriptor));
+  exports->Set(
+      String::New(env, "CreateDescriptor"),
+      Function::New(env, CreateDescriptor));
+  exports->Set(
+      String::New(env, "AppendDescriptorChecksum"),
+      Function::New(env, AppendDescriptorChecksum));
   exports->Set(
       String::New(env, "CreateSignatureHash"),
       Function::New(env, CreateSignatureHash));

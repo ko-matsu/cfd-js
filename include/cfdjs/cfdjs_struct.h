@@ -195,6 +195,30 @@ struct AddSignResponseStruct {
 };
 
 // ------------------------------------------------------------------------
+// AppendDescriptorChecksumRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief AppendDescriptorChecksumRequestStruct struct
+ */
+struct AppendDescriptorChecksumRequestStruct {
+  std::string descriptor = "";  //!< descriptor  // NOLINT
+  bool is_elements = false;     //!< is_elements  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// AppendDescriptorChecksumResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief AppendDescriptorChecksumResponseStruct struct
+ */
+struct AppendDescriptorChecksumResponseStruct {
+  std::string descriptor = "";  //!< descriptor  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
 // BlindTxInRequestStruct
 // ------------------------------------------------------------------------
 /**
@@ -389,6 +413,44 @@ struct CreateAddressResponseStruct {
   std::string address = "";         //!< address  // NOLINT
   std::string locking_script = "";  //!< locking_script  // NOLINT
   std::string redeem_script = "";   //!< redeem_script  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// CreateDescriptorKeyRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief CreateDescriptorKeyRequestStruct struct
+ */
+struct CreateDescriptorKeyRequestStruct {
+  std::string key = "";                   //!< key  // NOLINT
+  std::string parent_extkey = "";         //!< parent_extkey  // NOLINT
+  std::string key_path_from_parent = "";  //!< key_path_from_parent  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// CreateDescriptorRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief CreateDescriptorRequestStruct struct
+ */
+struct CreateDescriptorRequestStruct {
+  std::string script_type = "";                                 //!< script_type  // NOLINT
+  std::vector<CreateDescriptorKeyRequestStruct> key_info_list;  //!< key_info_list  // NOLINT
+  uint32_t require_num = 0;                                     //!< require_num  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// CreateDescriptorResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief CreateDescriptorResponseStruct struct
+ */
+struct CreateDescriptorResponseStruct {
+  std::string descriptor = "";  //!< descriptor  // NOLINT
   cfd::js::api::InnerErrorResponseStruct error;   //!< error information
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
@@ -1622,6 +1684,7 @@ struct EstimateFeeResponseStruct {
 struct FundUtxoJsonDataStruct {
   std::string txid = "";        //!< txid  // NOLINT
   uint32_t vout = 0;            //!< vout  // NOLINT
+  std::string address = "";     //!< address  // NOLINT
   int64_t amount = 0;           //!< amount  // NOLINT
   std::string asset = "";       //!< asset  // NOLINT
   std::string descriptor = "";  //!< descriptor  // NOLINT
@@ -1637,6 +1700,7 @@ struct FundUtxoJsonDataStruct {
 struct FundSelectUtxoDataStruct {
   std::string txid = "";           //!< txid  // NOLINT
   uint32_t vout = 0;               //!< vout  // NOLINT
+  std::string address = "";        //!< address  // NOLINT
   int64_t amount = 0;              //!< amount  // NOLINT
   std::string asset = "";          //!< asset  // NOLINT
   std::string redeem_script = "";  //!< redeem_script  // NOLINT
@@ -1785,10 +1849,10 @@ struct GetExtkeyInfoRequestStruct {
  * @brief GetExtkeyInfoResponseStruct struct
  */
 struct GetExtkeyInfoResponseStruct {
-  uint32_t version = 0;       //!< version  // NOLINT
-  uint8_t depth = 0;          //!< depth  // NOLINT
-  uint32_t fingerprint = 0;   //!< fingerprint  // NOLINT
-  uint32_t child_number = 0;  //!< child_number  // NOLINT
+  std::string version = "";      //!< version  // NOLINT
+  uint8_t depth = 0;             //!< depth  // NOLINT
+  std::string fingerprint = "";  //!< fingerprint  // NOLINT
+  uint32_t child_number = 0;     //!< child_number  // NOLINT
   cfd::js::api::InnerErrorResponseStruct error;   //!< error information
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };

@@ -1,6 +1,6 @@
 {
   "name": "cfd-js",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "Crypto Finance Development Kit for JavaScript.",
   "author": "Crypto Garage",
   "bugs": {
@@ -89,7 +89,7 @@
     "cmake_build_parallel_quick": "cmake --build wrap_js/build --parallel --config Release",
     "cmake_clean": "run-s cmake_clean_build cmake_clean_wally_file",
     "cmake_clean_build": "cmake-js clean -O wrap_js/build",
-    "cmake_clean_wally_file": "cd wrap_js && del -f wally.js",
+    "cmake_clean_wally_file": "cd wrap_js && del wally.js",
     "cmake_install_pkg": "run-script-os",
     "cmake_install_pkg:win32": "cmake --install build",
     "cmake_install_pkg:linux": "sudo cmake --install build",
@@ -120,9 +120,10 @@
     "lint_check:darwin": "cd tools && ./lint_quiet.sh",
     "eslint_check": "eslint --ext .js,.ts *.ts *.js wrap_js/",
     "git_subm_update": "git submodule -q foreach git fetch -q && git submodule -q update -i",
-    "check": "run-s doxygen_check ctest_quiet test_quiet example elements_example ts_example lint_all",
+    "check": "run-s doxygen_check lint_all ctest_quiet test_quiet example elements_example ts_example",
     "check_all": "run-s cmake_clean git_subm_update cmake_quiet doxygen_check ctest_quiet test_quiet example elements_example ts_example lint_all",
-    "convert_json": "babel-node ./tools/generate_json_map_class.js --presets env"
+    "convert_json": "babel-node ./tools/generate_json_map_class.js --presets env",
+    "convert_json_debug": "babel-node ./tools/generate_json_map_class.js mode=debug --presets env"
   },
   "dependencies": {
     "@types/node": "^13.7.0",

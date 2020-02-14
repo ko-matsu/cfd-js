@@ -105,6 +105,21 @@ class CFD_JS_API_EXPORT JsonMappingApi {
   static std::string ParseDescriptor(const std::string &request_message);
 
   /**
+   * @brief CreateDescriptorのJSON API関数(request, response).
+   * @param[in] request_message     リクエストされたjson文字列
+   * @return 戻り値(JSON文字列)
+   */
+  static std::string CreateDescriptor(const std::string &request_message);
+
+  /**
+   * @brief AppendDescriptorChecksumのJSON API関数(request, response).
+   * @param[in] request_message     リクエストされたjson文字列
+   * @return 戻り値(JSON文字列)
+   */
+  static std::string AppendDescriptorChecksum(
+      const std::string &request_message);
+
+  /**
    * @brief CreateSignatureHashのJSON API関数(request, response).
    * @param[in] request_message     リクエストされたjson文字列
    * @return 戻り値(JSON文字列)

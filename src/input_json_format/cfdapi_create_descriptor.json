@@ -1,0 +1,23 @@
+{
+  "namespace": ["cfd","js","api","json"],
+  "request": {
+    ":class": "CreateDescriptorRequest",
+    "scriptType": "",
+    "scriptType:comment": "Script types are joined by '-'. (ex. p2sh-p2wsh-multi)",
+    "keyInfoList": [
+      {
+        ":class": "CreateDescriptorKeyRequest",
+        "key": "",
+        "parentExtkey": "",
+        "keyPathFromParent": ""
+      }
+    ],
+    "requireNum": 0,
+    "requireNum:type": "uint32_t",
+    "requireNum:comment": "multisig require num."
+  },
+  "response": {
+    ":class": "CreateDescriptorResponse",
+    "descriptor": ""
+  }
+}

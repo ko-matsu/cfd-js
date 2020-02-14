@@ -11,6 +11,7 @@
 #include "cfd/cfd_elements_address.h"
 
 #include "cfd/cfdapi_elements_address.h"
+#include "cfdcore/cfdcore_descriptor.h"
 #include "cfdcore/cfdcore_elements_script.h"
 #include "cfdcore/cfdcore_script.h"
 #include "cfdjs/cfdjs_api_address.h"
@@ -30,6 +31,7 @@ using cfd::core::CfdError;
 using cfd::core::CfdException;
 using cfd::core::ConfidentialKey;
 using cfd::core::ContractHashUtil;
+using cfd::core::Descriptor;
 using cfd::core::ElementsConfidentialAddress;
 using cfd::core::ElementsNetType;
 using cfd::core::NetType;
@@ -343,6 +345,28 @@ ParseDescriptorResponseStruct ElementsAddressStructApi::ParseDescriptor(
   ParseDescriptorResponseStruct result;
   result = ExecuteStructApi<
       ParseDescriptorRequestStruct, ParseDescriptorResponseStruct>(
+      request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
+AppendDescriptorChecksumResponseStruct
+ElementsAddressStructApi::AppendDescriptorChecksum(
+    const AppendDescriptorChecksumRequestStruct& request) {
+  auto call_func = [](const AppendDescriptorChecksumRequestStruct& request)
+      -> AppendDescriptorChecksumResponseStruct {  // NOLINT
+    AppendDescriptorChecksumResponseStruct response;
+
+    Descriptor descriptor = Descriptor::ParseElements(request.descriptor);
+
+    // レスポンスとなるモデルへ変換
+    response.descriptor = descriptor.ToString();
+    return response;
+  };
+
+  AppendDescriptorChecksumResponseStruct result;
+  result = ExecuteStructApi<
+      AppendDescriptorChecksumRequestStruct,
+      AppendDescriptorChecksumResponseStruct>(
       request, call_func, std::string(__FUNCTION__));
   return result;
 }

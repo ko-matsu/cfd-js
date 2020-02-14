@@ -74,6 +74,15 @@ export interface AddSignResponse {
     hex: string;
 }
 
+export interface AppendDescriptorChecksumRequest {
+    descriptor: string;
+    isElements: boolean;
+}
+
+export interface AppendDescriptorChecksumResponse {
+    descriptor: string;
+}
+
 export interface BlindTxInRequest {
     txid: string;
     vout: bigint;
@@ -161,6 +170,22 @@ export interface CreateAddressResponse {
     address: string;
     lockingScript: string;
     redeemScript: string;
+}
+
+export interface CreateDescriptorKeyRequest {
+    key: string;
+    parentExtkey: string;
+    keyPathFromParent: string;
+}
+
+export interface CreateDescriptorRequest {
+    scriptType: string;
+    keyInfoList: CreateDescriptorKeyRequest[];
+    requireNum: number;
+}
+
+export interface CreateDescriptorResponse {
+    descriptor: string;
 }
 
 export interface CreateExtkeyFromParentRequest {
@@ -777,6 +802,7 @@ export interface EstimateFeeResponse {
 export interface FundUtxoJsonData {
     txid: string;
     vout: number;
+    address: string;
     amount: bigint;
     asset: string;
     descriptor: string;
@@ -785,6 +811,7 @@ export interface FundUtxoJsonData {
 export interface FundSelectUtxoData {
     txid: string;
     vout: number;
+    address: string;
     amount: bigint;
     asset: string;
     redeemScript: string;
@@ -860,9 +887,9 @@ export interface GetExtkeyInfoRequest {
 }
 
 export interface GetExtkeyInfoResponse {
-    version: number;
+    version: string;
     depth: number;
-    fingerprint: number;
+    fingerprint: string;
     childNumber: number;
 }
 
@@ -1164,6 +1191,8 @@ export function AddRawTransaction(jsonObject: AddRawTransactionRequest): AddRawT
 
 export function AddSign(jsonObject: AddSignRequest): AddSignResponse;
 
+export function AppendDescriptorChecksum(jsonObject: AppendDescriptorChecksumRequest): AppendDescriptorChecksumResponse;
+
 export function BlindRawTransaction(jsonObject: BlindRawTransactionRequest): BlindRawTransactionResponse;
 
 export function CalculateEcSignature(jsonObject: CalculateEcSignatureRequest): CalculateEcSignatureResponse;
@@ -1173,6 +1202,8 @@ export function ConvertEntropyToMnemonic(jsonObject: ConvertEntropyToMnemonicReq
 export function ConvertMnemonicToSeed(jsonObject: ConvertMnemonicToSeedRequest): ConvertMnemonicToSeedResponse;
 
 export function CreateAddress(jsonObject: CreateAddressRequest): CreateAddressResponse;
+
+export function CreateDescriptor(jsonObject: CreateDescriptorRequest): CreateDescriptorResponse;
 
 export function CreateExtkeyFromParent(jsonObject: CreateExtkeyFromParentRequest): CreateExtkeyFromParentResponse;
 

@@ -695,6 +695,85 @@ AddSignResponseStruct AddSignResponse::ConvertToStruct() const {  // NOLINT
 }
 
 // ------------------------------------------------------------------------
+// AppendDescriptorChecksumRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<AppendDescriptorChecksumRequest>
+  AppendDescriptorChecksumRequest::json_mapper;
+std::vector<std::string> AppendDescriptorChecksumRequest::item_list;
+
+void AppendDescriptorChecksumRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<AppendDescriptorChecksumRequest> func_table;  // NOLINT
+
+  func_table = {
+    AppendDescriptorChecksumRequest::GetDescriptorString,
+    AppendDescriptorChecksumRequest::SetDescriptorString,
+    AppendDescriptorChecksumRequest::GetDescriptorFieldType,
+  };
+  json_mapper.emplace("descriptor", func_table);
+  item_list.push_back("descriptor");
+  func_table = {
+    AppendDescriptorChecksumRequest::GetIsElementsString,
+    AppendDescriptorChecksumRequest::SetIsElementsString,
+    AppendDescriptorChecksumRequest::GetIsElementsFieldType,
+  };
+  json_mapper.emplace("isElements", func_table);
+  item_list.push_back("isElements");
+}
+
+void AppendDescriptorChecksumRequest::ConvertFromStruct(
+    const AppendDescriptorChecksumRequestStruct& data) {
+  descriptor_ = data.descriptor;
+  is_elements_ = data.is_elements;
+  ignore_items = data.ignore_items;
+}
+
+AppendDescriptorChecksumRequestStruct AppendDescriptorChecksumRequest::ConvertToStruct() const {  // NOLINT
+  AppendDescriptorChecksumRequestStruct result;
+  result.descriptor = descriptor_;
+  result.is_elements = is_elements_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// AppendDescriptorChecksumResponse
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<AppendDescriptorChecksumResponse>
+  AppendDescriptorChecksumResponse::json_mapper;
+std::vector<std::string> AppendDescriptorChecksumResponse::item_list;
+
+void AppendDescriptorChecksumResponse::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<AppendDescriptorChecksumResponse> func_table;  // NOLINT
+
+  func_table = {
+    AppendDescriptorChecksumResponse::GetDescriptorString,
+    AppendDescriptorChecksumResponse::SetDescriptorString,
+    AppendDescriptorChecksumResponse::GetDescriptorFieldType,
+  };
+  json_mapper.emplace("descriptor", func_table);
+  item_list.push_back("descriptor");
+}
+
+void AppendDescriptorChecksumResponse::ConvertFromStruct(
+    const AppendDescriptorChecksumResponseStruct& data) {
+  descriptor_ = data.descriptor;
+  ignore_items = data.ignore_items;
+}
+
+AppendDescriptorChecksumResponseStruct AppendDescriptorChecksumResponse::ConvertToStruct() const {  // NOLINT
+  AppendDescriptorChecksumResponseStruct result;
+  result.descriptor = descriptor_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
 // BlindTxInRequest
 // ------------------------------------------------------------------------
 cfd::core::JsonTableMap<BlindTxInRequest>
@@ -1476,6 +1555,147 @@ CreateAddressResponseStruct CreateAddressResponse::ConvertToStruct() const {  //
   result.address = address_;
   result.locking_script = locking_script_;
   result.redeem_script = redeem_script_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// CreateDescriptorKeyRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<CreateDescriptorKeyRequest>
+  CreateDescriptorKeyRequest::json_mapper;
+std::vector<std::string> CreateDescriptorKeyRequest::item_list;
+
+void CreateDescriptorKeyRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<CreateDescriptorKeyRequest> func_table;  // NOLINT
+
+  func_table = {
+    CreateDescriptorKeyRequest::GetKeyString,
+    CreateDescriptorKeyRequest::SetKeyString,
+    CreateDescriptorKeyRequest::GetKeyFieldType,
+  };
+  json_mapper.emplace("key", func_table);
+  item_list.push_back("key");
+  func_table = {
+    CreateDescriptorKeyRequest::GetParentExtkeyString,
+    CreateDescriptorKeyRequest::SetParentExtkeyString,
+    CreateDescriptorKeyRequest::GetParentExtkeyFieldType,
+  };
+  json_mapper.emplace("parentExtkey", func_table);
+  item_list.push_back("parentExtkey");
+  func_table = {
+    CreateDescriptorKeyRequest::GetKeyPathFromParentString,
+    CreateDescriptorKeyRequest::SetKeyPathFromParentString,
+    CreateDescriptorKeyRequest::GetKeyPathFromParentFieldType,
+  };
+  json_mapper.emplace("keyPathFromParent", func_table);
+  item_list.push_back("keyPathFromParent");
+}
+
+void CreateDescriptorKeyRequest::ConvertFromStruct(
+    const CreateDescriptorKeyRequestStruct& data) {
+  key_ = data.key;
+  parent_extkey_ = data.parent_extkey;
+  key_path_from_parent_ = data.key_path_from_parent;
+  ignore_items = data.ignore_items;
+}
+
+CreateDescriptorKeyRequestStruct CreateDescriptorKeyRequest::ConvertToStruct() const {  // NOLINT
+  CreateDescriptorKeyRequestStruct result;
+  result.key = key_;
+  result.parent_extkey = parent_extkey_;
+  result.key_path_from_parent = key_path_from_parent_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// CreateDescriptorRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<CreateDescriptorRequest>
+  CreateDescriptorRequest::json_mapper;
+std::vector<std::string> CreateDescriptorRequest::item_list;
+
+void CreateDescriptorRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<CreateDescriptorRequest> func_table;  // NOLINT
+
+  func_table = {
+    CreateDescriptorRequest::GetScriptTypeString,
+    CreateDescriptorRequest::SetScriptTypeString,
+    CreateDescriptorRequest::GetScriptTypeFieldType,
+  };
+  json_mapper.emplace("scriptType", func_table);
+  item_list.push_back("scriptType");
+  func_table = {
+    CreateDescriptorRequest::GetKeyInfoListString,
+    CreateDescriptorRequest::SetKeyInfoListString,
+    CreateDescriptorRequest::GetKeyInfoListFieldType,
+  };
+  json_mapper.emplace("keyInfoList", func_table);
+  item_list.push_back("keyInfoList");
+  func_table = {
+    CreateDescriptorRequest::GetRequireNumString,
+    CreateDescriptorRequest::SetRequireNumString,
+    CreateDescriptorRequest::GetRequireNumFieldType,
+  };
+  json_mapper.emplace("requireNum", func_table);
+  item_list.push_back("requireNum");
+}
+
+void CreateDescriptorRequest::ConvertFromStruct(
+    const CreateDescriptorRequestStruct& data) {
+  script_type_ = data.script_type;
+  key_info_list_.ConvertFromStruct(data.key_info_list);
+  require_num_ = data.require_num;
+  ignore_items = data.ignore_items;
+}
+
+CreateDescriptorRequestStruct CreateDescriptorRequest::ConvertToStruct() const {  // NOLINT
+  CreateDescriptorRequestStruct result;
+  result.script_type = script_type_;
+  result.key_info_list = key_info_list_.ConvertToStruct();
+  result.require_num = require_num_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// CreateDescriptorResponse
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<CreateDescriptorResponse>
+  CreateDescriptorResponse::json_mapper;
+std::vector<std::string> CreateDescriptorResponse::item_list;
+
+void CreateDescriptorResponse::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<CreateDescriptorResponse> func_table;  // NOLINT
+
+  func_table = {
+    CreateDescriptorResponse::GetDescriptorString,
+    CreateDescriptorResponse::SetDescriptorString,
+    CreateDescriptorResponse::GetDescriptorFieldType,
+  };
+  json_mapper.emplace("descriptor", func_table);
+  item_list.push_back("descriptor");
+}
+
+void CreateDescriptorResponse::ConvertFromStruct(
+    const CreateDescriptorResponseStruct& data) {
+  descriptor_ = data.descriptor;
+  ignore_items = data.ignore_items;
+}
+
+CreateDescriptorResponseStruct CreateDescriptorResponse::ConvertToStruct() const {  // NOLINT
+  CreateDescriptorResponseStruct result;
+  result.descriptor = descriptor_;
   result.ignore_items = ignore_items;
   return result;
 }
@@ -6907,6 +7127,13 @@ void FundUtxoJsonData::CollectFieldName() {
   json_mapper.emplace("vout", func_table);
   item_list.push_back("vout");
   func_table = {
+    FundUtxoJsonData::GetAddressString,
+    FundUtxoJsonData::SetAddressString,
+    FundUtxoJsonData::GetAddressFieldType,
+  };
+  json_mapper.emplace("address", func_table);
+  item_list.push_back("address");
+  func_table = {
     FundUtxoJsonData::GetAmountString,
     FundUtxoJsonData::SetAmountString,
     FundUtxoJsonData::GetAmountFieldType,
@@ -6933,6 +7160,7 @@ void FundUtxoJsonData::ConvertFromStruct(
     const FundUtxoJsonDataStruct& data) {
   txid_ = data.txid;
   vout_ = data.vout;
+  address_ = data.address;
   amount_ = data.amount;
   asset_ = data.asset;
   descriptor_ = data.descriptor;
@@ -6943,6 +7171,7 @@ FundUtxoJsonDataStruct FundUtxoJsonData::ConvertToStruct() const {  // NOLINT
   FundUtxoJsonDataStruct result;
   result.txid = txid_;
   result.vout = vout_;
+  result.address = address_;
   result.amount = amount_;
   result.asset = asset_;
   result.descriptor = descriptor_;
@@ -6977,6 +7206,13 @@ void FundSelectUtxoData::CollectFieldName() {
   };
   json_mapper.emplace("vout", func_table);
   item_list.push_back("vout");
+  func_table = {
+    FundSelectUtxoData::GetAddressString,
+    FundSelectUtxoData::SetAddressString,
+    FundSelectUtxoData::GetAddressFieldType,
+  };
+  json_mapper.emplace("address", func_table);
+  item_list.push_back("address");
   func_table = {
     FundSelectUtxoData::GetAmountString,
     FundSelectUtxoData::SetAmountString,
@@ -7046,6 +7282,7 @@ void FundSelectUtxoData::ConvertFromStruct(
     const FundSelectUtxoDataStruct& data) {
   txid_ = data.txid;
   vout_ = data.vout;
+  address_ = data.address;
   amount_ = data.amount;
   asset_ = data.asset;
   redeem_script_ = data.redeem_script;
@@ -7062,6 +7299,7 @@ FundSelectUtxoDataStruct FundSelectUtxoData::ConvertToStruct() const {  // NOLIN
   FundSelectUtxoDataStruct result;
   result.txid = txid_;
   result.vout = vout_;
+  result.address = address_;
   result.amount = amount_;
   result.asset = asset_;
   result.redeem_script = redeem_script_;

@@ -3006,6 +3006,329 @@ class AddSignResponse
 };
 
 // ------------------------------------------------------------------------
+// AppendDescriptorChecksumRequest
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (AppendDescriptorChecksumRequest) class
+ */
+class AppendDescriptorChecksumRequest
+  : public cfd::core::JsonClassBase<AppendDescriptorChecksumRequest> {
+ public:
+  AppendDescriptorChecksumRequest() {
+    CollectFieldName();
+  }
+  virtual ~AppendDescriptorChecksumRequest() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of descriptor
+   * @return descriptor
+   */
+  std::string GetDescriptor() const {
+    return descriptor_;
+  }
+  /**
+   * @brief Set to descriptor
+   * @param[in] descriptor    setting value.
+   */
+  void SetDescriptor(  // line separate
+    const std::string& descriptor) {  // NOLINT
+    this->descriptor_ = descriptor;
+  }
+  /**
+   * @brief Get data type of descriptor
+   * @return Data type of descriptor
+   */
+  static std::string GetDescriptorFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of descriptor field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetDescriptorString(  // line separate
+      const AppendDescriptorChecksumRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.descriptor_);
+  }
+  /**
+   * @brief Set json object to descriptor field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetDescriptorString(  // line separate
+      AppendDescriptorChecksumRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.descriptor_, json_value);
+  }
+
+  /**
+   * @brief Get of isElements
+   * @return isElements
+   */
+  bool GetIsElements() const {
+    return is_elements_;
+  }
+  /**
+   * @brief Set to isElements
+   * @param[in] is_elements    setting value.
+   */
+  void SetIsElements(  // line separate
+    const bool& is_elements) {  // NOLINT
+    this->is_elements_ = is_elements;
+  }
+  /**
+   * @brief Get data type of isElements
+   * @return Data type of isElements
+   */
+  static std::string GetIsElementsFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of isElements field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetIsElementsString(  // line separate
+      const AppendDescriptorChecksumRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.is_elements_);
+  }
+  /**
+   * @brief Set json object to isElements field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetIsElementsString(  // line separate
+      AppendDescriptorChecksumRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.is_elements_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const AppendDescriptorChecksumRequestStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  AppendDescriptorChecksumRequestStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using AppendDescriptorChecksumRequestMapTable =
+    cfd::core::JsonTableMap<AppendDescriptorChecksumRequest>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const AppendDescriptorChecksumRequestMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static AppendDescriptorChecksumRequestMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(descriptor) value
+   */
+  std::string descriptor_ = "";
+  /**
+   * @brief JsonAPI(isElements) value
+   */
+  bool is_elements_ = false;
+};
+
+// ------------------------------------------------------------------------
+// AppendDescriptorChecksumResponse
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (AppendDescriptorChecksumResponse) class
+ */
+class AppendDescriptorChecksumResponse
+  : public cfd::core::JsonClassBase<AppendDescriptorChecksumResponse> {
+ public:
+  AppendDescriptorChecksumResponse() {
+    CollectFieldName();
+  }
+  virtual ~AppendDescriptorChecksumResponse() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of descriptor
+   * @return descriptor
+   */
+  std::string GetDescriptor() const {
+    return descriptor_;
+  }
+  /**
+   * @brief Set to descriptor
+   * @param[in] descriptor    setting value.
+   */
+  void SetDescriptor(  // line separate
+    const std::string& descriptor) {  // NOLINT
+    this->descriptor_ = descriptor;
+  }
+  /**
+   * @brief Get data type of descriptor
+   * @return Data type of descriptor
+   */
+  static std::string GetDescriptorFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of descriptor field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetDescriptorString(  // line separate
+      const AppendDescriptorChecksumResponse& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.descriptor_);
+  }
+  /**
+   * @brief Set json object to descriptor field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetDescriptorString(  // line separate
+      AppendDescriptorChecksumResponse& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.descriptor_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const AppendDescriptorChecksumResponseStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  AppendDescriptorChecksumResponseStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using AppendDescriptorChecksumResponseMapTable =
+    cfd::core::JsonTableMap<AppendDescriptorChecksumResponse>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const AppendDescriptorChecksumResponseMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static AppendDescriptorChecksumResponseMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(descriptor) value
+   */
+  std::string descriptor_ = "";
+};
+
+// ------------------------------------------------------------------------
 // BlindTxInRequest
 // ------------------------------------------------------------------------
 /**
@@ -6443,6 +6766,609 @@ class CreateAddressResponse
    * @brief JsonAPI(redeemScript) value
    */
   std::string redeem_script_ = "";
+};
+
+// ------------------------------------------------------------------------
+// CreateDescriptorKeyRequest
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (CreateDescriptorKeyRequest) class
+ */
+class CreateDescriptorKeyRequest
+  : public cfd::core::JsonClassBase<CreateDescriptorKeyRequest> {
+ public:
+  CreateDescriptorKeyRequest() {
+    CollectFieldName();
+  }
+  virtual ~CreateDescriptorKeyRequest() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of key
+   * @return key
+   */
+  std::string GetKey() const {
+    return key_;
+  }
+  /**
+   * @brief Set to key
+   * @param[in] key    setting value.
+   */
+  void SetKey(  // line separate
+    const std::string& key) {  // NOLINT
+    this->key_ = key;
+  }
+  /**
+   * @brief Get data type of key
+   * @return Data type of key
+   */
+  static std::string GetKeyFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of key field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetKeyString(  // line separate
+      const CreateDescriptorKeyRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.key_);
+  }
+  /**
+   * @brief Set json object to key field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetKeyString(  // line separate
+      CreateDescriptorKeyRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.key_, json_value);
+  }
+
+  /**
+   * @brief Get of parentExtkey
+   * @return parentExtkey
+   */
+  std::string GetParentExtkey() const {
+    return parent_extkey_;
+  }
+  /**
+   * @brief Set to parentExtkey
+   * @param[in] parent_extkey    setting value.
+   */
+  void SetParentExtkey(  // line separate
+    const std::string& parent_extkey) {  // NOLINT
+    this->parent_extkey_ = parent_extkey;
+  }
+  /**
+   * @brief Get data type of parentExtkey
+   * @return Data type of parentExtkey
+   */
+  static std::string GetParentExtkeyFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of parentExtkey field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetParentExtkeyString(  // line separate
+      const CreateDescriptorKeyRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.parent_extkey_);
+  }
+  /**
+   * @brief Set json object to parentExtkey field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetParentExtkeyString(  // line separate
+      CreateDescriptorKeyRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.parent_extkey_, json_value);
+  }
+
+  /**
+   * @brief Get of keyPathFromParent
+   * @return keyPathFromParent
+   */
+  std::string GetKeyPathFromParent() const {
+    return key_path_from_parent_;
+  }
+  /**
+   * @brief Set to keyPathFromParent
+   * @param[in] key_path_from_parent    setting value.
+   */
+  void SetKeyPathFromParent(  // line separate
+    const std::string& key_path_from_parent) {  // NOLINT
+    this->key_path_from_parent_ = key_path_from_parent;
+  }
+  /**
+   * @brief Get data type of keyPathFromParent
+   * @return Data type of keyPathFromParent
+   */
+  static std::string GetKeyPathFromParentFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of keyPathFromParent field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetKeyPathFromParentString(  // line separate
+      const CreateDescriptorKeyRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.key_path_from_parent_);
+  }
+  /**
+   * @brief Set json object to keyPathFromParent field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetKeyPathFromParentString(  // line separate
+      CreateDescriptorKeyRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.key_path_from_parent_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const CreateDescriptorKeyRequestStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  CreateDescriptorKeyRequestStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using CreateDescriptorKeyRequestMapTable =
+    cfd::core::JsonTableMap<CreateDescriptorKeyRequest>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const CreateDescriptorKeyRequestMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static CreateDescriptorKeyRequestMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(key) value
+   */
+  std::string key_ = "";
+  /**
+   * @brief JsonAPI(parentExtkey) value
+   */
+  std::string parent_extkey_ = "";
+  /**
+   * @brief JsonAPI(keyPathFromParent) value
+   */
+  std::string key_path_from_parent_ = "";
+};
+
+// ------------------------------------------------------------------------
+// CreateDescriptorRequest
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (CreateDescriptorRequest) class
+ */
+class CreateDescriptorRequest
+  : public cfd::core::JsonClassBase<CreateDescriptorRequest> {
+ public:
+  CreateDescriptorRequest() {
+    CollectFieldName();
+  }
+  virtual ~CreateDescriptorRequest() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of scriptType
+   * @return scriptType
+   */
+  std::string GetScriptType() const {
+    return script_type_;
+  }
+  /**
+   * @brief Set to scriptType
+   * @param[in] script_type    setting value.
+   */
+  void SetScriptType(  // line separate
+    const std::string& script_type) {  // NOLINT
+    this->script_type_ = script_type;
+  }
+  /**
+   * @brief Get data type of scriptType
+   * @return Data type of scriptType
+   */
+  static std::string GetScriptTypeFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of scriptType field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetScriptTypeString(  // line separate
+      const CreateDescriptorRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.script_type_);
+  }
+  /**
+   * @brief Set json object to scriptType field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetScriptTypeString(  // line separate
+      CreateDescriptorRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.script_type_, json_value);
+  }
+
+  /**
+   * @brief Get of keyInfoList.
+   * @return keyInfoList
+   */
+  JsonObjectVector<CreateDescriptorKeyRequest, CreateDescriptorKeyRequestStruct>& GetKeyInfoList() {  // NOLINT
+    return key_info_list_;
+  }
+  /**
+   * @brief Set to keyInfoList.
+   * @param[in] key_info_list    setting value.
+   */
+  void SetKeyInfoList(  // line separate
+      const JsonObjectVector<CreateDescriptorKeyRequest, CreateDescriptorKeyRequestStruct>& key_info_list) {  // NOLINT
+    this->key_info_list_ = key_info_list;
+  }
+  /**
+   * @brief Get data type of keyInfoList.
+   * @return Data type of keyInfoList.
+   */
+  static std::string GetKeyInfoListFieldType() {
+    return "JsonObjectVector<CreateDescriptorKeyRequest, CreateDescriptorKeyRequestStruct>";  // NOLINT
+  }
+  /**
+   * @brief Get json string of keyInfoList field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
+   */
+  static std::string GetKeyInfoListString(  // line separate
+      const CreateDescriptorRequest& obj) {  // NOLINT
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
+    return obj.key_info_list_.Serialize();
+  }
+  /**
+   * @brief Set json object to keyInfoList field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
+   */
+  static void SetKeyInfoListString(  // line separate
+      CreateDescriptorRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    obj.key_info_list_.DeserializeUniValue(json_value);
+  }
+
+  /**
+   * @brief Get of requireNum
+   * @return requireNum
+   */
+  uint32_t GetRequireNum() const {
+    return require_num_;
+  }
+  /**
+   * @brief Set to requireNum
+   * @param[in] require_num    setting value.
+   */
+  void SetRequireNum(  // line separate
+    const uint32_t& require_num) {  // NOLINT
+    this->require_num_ = require_num;
+  }
+  /**
+   * @brief Get data type of requireNum
+   * @return Data type of requireNum
+   */
+  static std::string GetRequireNumFieldType() {
+    return "uint32_t";
+  }
+  /**
+   * @brief Get json string of requireNum field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetRequireNumString(  // line separate
+      const CreateDescriptorRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.require_num_);
+  }
+  /**
+   * @brief Set json object to requireNum field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetRequireNumString(  // line separate
+      CreateDescriptorRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.require_num_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const CreateDescriptorRequestStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  CreateDescriptorRequestStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using CreateDescriptorRequestMapTable =
+    cfd::core::JsonTableMap<CreateDescriptorRequest>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const CreateDescriptorRequestMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static CreateDescriptorRequestMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(scriptType) value
+   */
+  std::string script_type_ = "";
+  /**
+   * @brief JsonAPI(keyInfoList) value
+   */
+  JsonObjectVector<CreateDescriptorKeyRequest, CreateDescriptorKeyRequestStruct> key_info_list_;  // NOLINT
+  /**
+   * @brief JsonAPI(requireNum) value
+   */
+  uint32_t require_num_ = 0;
+};
+
+// ------------------------------------------------------------------------
+// CreateDescriptorResponse
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (CreateDescriptorResponse) class
+ */
+class CreateDescriptorResponse
+  : public cfd::core::JsonClassBase<CreateDescriptorResponse> {
+ public:
+  CreateDescriptorResponse() {
+    CollectFieldName();
+  }
+  virtual ~CreateDescriptorResponse() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of descriptor
+   * @return descriptor
+   */
+  std::string GetDescriptor() const {
+    return descriptor_;
+  }
+  /**
+   * @brief Set to descriptor
+   * @param[in] descriptor    setting value.
+   */
+  void SetDescriptor(  // line separate
+    const std::string& descriptor) {  // NOLINT
+    this->descriptor_ = descriptor;
+  }
+  /**
+   * @brief Get data type of descriptor
+   * @return Data type of descriptor
+   */
+  static std::string GetDescriptorFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of descriptor field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetDescriptorString(  // line separate
+      const CreateDescriptorResponse& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.descriptor_);
+  }
+  /**
+   * @brief Set json object to descriptor field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetDescriptorString(  // line separate
+      CreateDescriptorResponse& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.descriptor_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const CreateDescriptorResponseStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  CreateDescriptorResponseStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using CreateDescriptorResponseMapTable =
+    cfd::core::JsonTableMap<CreateDescriptorResponse>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const CreateDescriptorResponseMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static CreateDescriptorResponseMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(descriptor) value
+   */
+  std::string descriptor_ = "";
 };
 
 // ------------------------------------------------------------------------
@@ -30959,6 +31885,49 @@ class FundUtxoJsonData
   }
 
   /**
+   * @brief Get of address
+   * @return address
+   */
+  std::string GetAddress() const {
+    return address_;
+  }
+  /**
+   * @brief Set to address
+   * @param[in] address    setting value.
+   */
+  void SetAddress(  // line separate
+    const std::string& address) {  // NOLINT
+    this->address_ = address;
+  }
+  /**
+   * @brief Get data type of address
+   * @return Data type of address
+   */
+  static std::string GetAddressFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of address field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetAddressString(  // line separate
+      const FundUtxoJsonData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.address_);
+  }
+  /**
+   * @brief Set json object to address field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetAddressString(  // line separate
+      FundUtxoJsonData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.address_, json_value);
+  }
+
+  /**
    * @brief Get of amount
    * @return amount
    */
@@ -31165,6 +32134,10 @@ class FundUtxoJsonData
    */
   uint32_t vout_ = 0;
   /**
+   * @brief JsonAPI(address) value
+   */
+  std::string address_ = "";
+  /**
    * @brief JsonAPI(amount) value
    */
   int64_t amount_ = 0;
@@ -31282,6 +32255,49 @@ class FundSelectUtxoData
       const UniValue& json_value) {
     cfd::core::ConvertFromUniValue(  // line separate
       obj.vout_, json_value);
+  }
+
+  /**
+   * @brief Get of address
+   * @return address
+   */
+  std::string GetAddress() const {
+    return address_;
+  }
+  /**
+   * @brief Set to address
+   * @param[in] address    setting value.
+   */
+  void SetAddress(  // line separate
+    const std::string& address) {  // NOLINT
+    this->address_ = address;
+  }
+  /**
+   * @brief Get data type of address
+   * @return Data type of address
+   */
+  static std::string GetAddressFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of address field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetAddressString(  // line separate
+      const FundSelectUtxoData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.address_);
+  }
+  /**
+   * @brief Set json object to address field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetAddressString(  // line separate
+      FundSelectUtxoData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.address_, json_value);
   }
 
   /**
@@ -31748,6 +32764,10 @@ class FundSelectUtxoData
    * @brief JsonAPI(vout) value
    */
   uint32_t vout_ = 0;
+  /**
+   * @brief JsonAPI(address) value
+   */
+  std::string address_ = "";
   /**
    * @brief JsonAPI(amount) value
    */
@@ -34328,7 +35348,7 @@ class GetExtkeyInfoResponse
    * @brief Get of version
    * @return version
    */
-  uint32_t GetVersion() const {
+  std::string GetVersion() const {
     return version_;
   }
   /**
@@ -34336,7 +35356,7 @@ class GetExtkeyInfoResponse
    * @param[in] version    setting value.
    */
   void SetVersion(  // line separate
-    const uint32_t& version) {  // NOLINT
+    const std::string& version) {  // NOLINT
     this->version_ = version;
   }
   /**
@@ -34344,7 +35364,7 @@ class GetExtkeyInfoResponse
    * @return Data type of version
    */
   static std::string GetVersionFieldType() {
-    return "uint32_t";
+    return "std::string";
   }
   /**
    * @brief Get json string of version field.
@@ -34414,7 +35434,7 @@ class GetExtkeyInfoResponse
    * @brief Get of fingerprint
    * @return fingerprint
    */
-  uint32_t GetFingerprint() const {
+  std::string GetFingerprint() const {
     return fingerprint_;
   }
   /**
@@ -34422,7 +35442,7 @@ class GetExtkeyInfoResponse
    * @param[in] fingerprint    setting value.
    */
   void SetFingerprint(  // line separate
-    const uint32_t& fingerprint) {  // NOLINT
+    const std::string& fingerprint) {  // NOLINT
     this->fingerprint_ = fingerprint;
   }
   /**
@@ -34430,7 +35450,7 @@ class GetExtkeyInfoResponse
    * @return Data type of fingerprint
    */
   static std::string GetFingerprintFieldType() {
-    return "uint32_t";
+    return "std::string";
   }
   /**
    * @brief Get json string of fingerprint field.
@@ -34568,7 +35588,7 @@ class GetExtkeyInfoResponse
   /**
    * @brief JsonAPI(version) value
    */
-  uint32_t version_ = 0;
+  std::string version_ = "";
   /**
    * @brief JsonAPI(depth) value
    */
@@ -34576,7 +35596,7 @@ class GetExtkeyInfoResponse
   /**
    * @brief JsonAPI(fingerprint) value
    */
-  uint32_t fingerprint_ = 0;
+  std::string fingerprint_ = "";
   /**
    * @brief JsonAPI(childNumber) value
    */

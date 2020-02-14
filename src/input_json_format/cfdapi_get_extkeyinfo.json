@@ -6,12 +6,10 @@
   },
   "response": {
     ":class": "GetExtkeyInfoResponse",
-    "version": 0,
-    "version:type": "uint32_t",
+    "version": "",
     "depth": 0,
     "depth:type": "uint8_t",
-    "fingerprint": 0,
-    "fingerprint:type": "uint32_t",
+    "fingerprint": "",
     "childNumber": 0,
     "childNumber:type": "uint32_t"
   }

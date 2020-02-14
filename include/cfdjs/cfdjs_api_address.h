@@ -76,6 +76,22 @@ class CFD_JS_API_EXPORT AddressStructApi {
       const ParseDescriptorRequestStruct& request);
 
   /**
+   * @brief JSONパラメータの情報を元に、Key情報からDescriptorを生成する
+   * @param[in] request Descriptorを構築するパラメータ
+   * @return Descriptorを格納した構造体
+   */
+  static CreateDescriptorResponseStruct CreateDescriptor(
+      const CreateDescriptorRequestStruct& request);
+
+  /**
+   * @brief JSONパラメータの情報を元に、DescriptorへChecksumを追記する
+   * @param[in] request Descriptorを構築するパラメータ
+   * @return Descriptor解析結果を格納した構造体
+   */
+  static AppendDescriptorChecksumResponseStruct AppendDescriptorChecksum(
+      const AppendDescriptorChecksumRequestStruct& request);
+
+  /**
    * @brief bitcoinネットワーク文字列を、NetType構造体へ変換する.
    * @param[in] network_type ネットワーク文字列
    * @return 引数に対応するNetType構造体

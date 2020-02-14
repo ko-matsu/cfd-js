@@ -38,6 +38,8 @@ const {
   CreateMultisigScriptSig,
   VerifySignature,
   GetAddressInfo,
+  CreateDescriptor,
+  AppendDescriptorChecksum,
 } = cfdjsModule;
 
 const DUMMY_TXID_1 = '86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac'; // eslint-disable-line max-len
@@ -1144,4 +1146,40 @@ let getAddressInfo3Result;
   console.log('*** Request ***\n', reqJson);
   getAddressInfo3Result = GetAddressInfo(reqJson);
   console.log('\n*** Response ***\n', getAddressInfo3Result, '\n');
+}
+
+let createDescriptorResult;
+{
+  console.log('\n===== CreateDescriptor =====');
+  const reqJson = {
+    scriptType: 'p2sh-p2wsh-sortedmulti',
+    keyInfoList: [
+      {
+        key: 'xpub661MyMwAqRbcFW31YEwpkMuc5THy2PSt5bDMsktWQcFF8syAmRUapSCGu8ED9W6oDMSgv6Zz8idoc4a6mr8BDzTJY47LJhkJ8UB7WEGuduB/1/0/*',
+      },
+      {
+        key: 'xpub69H7F5d8KSRgmmdJg2KhpAK8SR3DjMwAdkxj3ZuxV27CprR9LgpeyGmXUbC6wb7ERfvrnKZjXoUmmDznezpbZb7ap6r1D3tgFxHmwMkQTPH/0/0/*',
+      },
+      {
+        key: '0214e236da9840dfae684cd67b9b9bd6ad9b18f8aa3551f9597097e1f9d4e1314c',
+        parentExtkey: 'xprvA5P4YtgFjzqM4QpXJZ8Zr7Wkhng7ugTybA3KWMAqDfAamqu5nqJ3zKRhB29cxuqCc8hPagZcN5BsuoXx4Xn7iYHnQvEdyMwZRFgoJXs8CDN',
+        keyPathFromParent: '0\'/1',
+      },
+    ],
+    requireNum: 2,
+  };
+  console.log('*** Request ***\n', reqJson);
+  createDescriptorResult = CreateDescriptor(reqJson);
+  console.log('\n*** Response ***\n', createDescriptorResult, '\n');
+}
+
+let appendChecksumResult;
+{
+  console.log('\n===== AppendDescriptorChecksum =====');
+  const reqJson = {
+    descriptor: 'sh(wpkh([ef57314e/0\'/0\'/4\']03d3f817091de0bbe51e19b53303b12e463f664894d49cb5bf5bb19c88fbc54d8d))',
+  };
+  console.log('*** Request ***\n', reqJson);
+  appendChecksumResult = AppendDescriptorChecksum(reqJson);
+  console.log('\n*** Response ***\n', appendChecksumResult, '\n');
 }

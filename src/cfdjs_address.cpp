@@ -10,6 +10,8 @@
 #include "cfd/cfd_address.h"
 #include "cfd/cfdapi_address.h"
 #include "cfdcore/cfdcore_descriptor.h"
+#include "cfdcore/cfdcore_hdwallet.h"
+#include "cfdcore/cfdcore_util.h"
 #include "cfdjs/cfdjs_api_address.h"
 #include "cfdjs_internal.h"  // NOLINT
 
@@ -28,9 +30,16 @@ using cfd::core::AddressFormatData;
 using cfd::core::AddressType;
 using cfd::core::CfdError;
 using cfd::core::CfdException;
+using cfd::core::Descriptor;
+using cfd::core::DescriptorKeyInfo;
+using cfd::core::DescriptorScriptType;
+using cfd::core::ExtPrivkey;
+using cfd::core::ExtPubkey;
 using cfd::core::NetType;
+using cfd::core::Privkey;
 using cfd::core::Pubkey;
 using cfd::core::Script;
+using cfd::core::StringUtil;
 
 /**
  * @brief Descriptorの名称テーブル用構造体.
@@ -55,6 +64,63 @@ static const DescriptorNameData kDescriptorNameDataTable[] = {
     {"addr", DescriptorScriptType::kDescriptorScriptAddr},
     {"raw", DescriptorScriptType::kDescriptorScriptRaw},
 };
+
+/**
+ * @brief check child key contain extkey.
+ * @param[in] target_key   check target key string.
+ * @param[in] ext_privkey  ext-privkey.
+ * @param[in] ext_pubkey   ext-pubkey.
+ * @param[in] child_path   bip32 derive path.
+ * @throw CfdException  contain extkey not found.
+ */
+static void CheckContainKey(
+    const std::string& target_key, const ExtPrivkey* ext_privkey,
+    const ExtPubkey* ext_pubkey, const std::string& child_path) {
+  ExtPrivkey child_priv;
+  ExtPubkey child_pub;
+  Privkey privkey;
+
+  if (ext_privkey != nullptr) {
+    if (child_path.empty()) {
+      child_priv = *ext_privkey;
+    } else {
+      child_priv = ext_privkey->DerivePrivkey(child_path);
+    }
+
+    if (target_key == child_priv.ToString()) {
+      return;
+    }
+    privkey = child_priv.GetPrivkey();
+    child_pub = child_priv.GetExtPubkey();
+  }
+
+  if (ext_pubkey != nullptr) {
+    if (child_path.empty()) {
+      child_pub = *ext_pubkey;
+    } else {
+      child_pub = ext_pubkey->DerivePubkey(child_path);
+    }
+  }
+  if (target_key == child_pub.ToString()) {
+    return;
+  }
+
+  if (privkey.IsValid()) {
+    std::string wif_main = privkey.ConvertWif(NetType::kMainnet);
+    std::string wif_test = privkey.ConvertWif(NetType::kTestnet);
+    if ((target_key == wif_main) || (target_key == wif_test) ||
+        (target_key == privkey.GetHex())) {
+      return;
+    }
+  }
+
+  Pubkey pubkey = child_pub.GetPubkey();
+  if (target_key != pubkey.GetHex()) {
+    throw CfdException(
+        CfdError::kCfdIllegalArgumentError,
+        "Invalid parent key. derived key from parent and key unmatch.");
+  }
+}
 
 CreateAddressResponseStruct AddressStructApi::CreateAddress(
     const CreateAddressRequestStruct& request) {
@@ -237,6 +303,94 @@ ParseDescriptorResponseStruct AddressStructApi::ParseDescriptor(
   ParseDescriptorResponseStruct result;
   result = ExecuteStructApi<
       ParseDescriptorRequestStruct, ParseDescriptorResponseStruct>(
+      request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
+CreateDescriptorResponseStruct AddressStructApi::CreateDescriptor(
+    const CreateDescriptorRequestStruct& request) {
+  auto call_func = [](const CreateDescriptorRequestStruct& request)
+      -> CreateDescriptorResponseStruct {  // NOLINT
+    CreateDescriptorResponseStruct response;
+
+    std::vector<std::string> types =
+        StringUtil::Split(request.script_type, "-");
+    std::vector<DescriptorScriptType> type_list;
+    for (const auto& type : types) {
+      std::string temp_type = type;
+      if (temp_type.find("p2") == 0) {
+        temp_type = temp_type.substr(2);
+      }
+      for (const auto& table_data : kDescriptorNameDataTable) {
+        if (temp_type == table_data.name) {
+          type_list.push_back(table_data.type);
+          break;
+        }
+      }
+    }
+    std::vector<DescriptorKeyInfo> key_info_list;
+    for (const auto& key_info : request.key_info_list) {
+      std::string parent_info;
+      if (!key_info.parent_extkey.empty()) {
+        std::string hdkey_top;
+        if (key_info.parent_extkey.size() > 4) {
+          hdkey_top = key_info.parent_extkey.substr(1, 3);
+        }
+        std::string checked_path;
+        std::vector<std::string> child_path =
+            StringUtil::Split(key_info.key, "/");
+        if (hdkey_top == "prv") {
+          ExtPrivkey ext_privkey(key_info.parent_extkey);
+          parent_info = DescriptorKeyInfo::GetExtPrivkeyInformation(
+              ext_privkey, key_info.key_path_from_parent);
+          CheckContainKey(
+              child_path[0], &ext_privkey, nullptr,
+              key_info.key_path_from_parent);
+        } else {
+          ExtPubkey ext_pubkey(key_info.parent_extkey);
+          parent_info = DescriptorKeyInfo::GetExtPubkeyInformation(
+              ext_pubkey, key_info.key_path_from_parent);
+          CheckContainKey(
+              child_path[0], nullptr, &ext_pubkey,
+              key_info.key_path_from_parent);
+        }
+      }
+      key_info_list.emplace_back(DescriptorKeyInfo(key_info.key, parent_info));
+    }
+
+    Descriptor descriptor = Descriptor::CreateDescriptor(
+        type_list, key_info_list, request.require_num);
+
+    // レスポンスとなるモデルへ変換
+    response.descriptor = descriptor.ToString();
+    return response;
+  };
+
+  CreateDescriptorResponseStruct result;
+  result = ExecuteStructApi<
+      CreateDescriptorRequestStruct, CreateDescriptorResponseStruct>(
+      request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
+AppendDescriptorChecksumResponseStruct
+AddressStructApi::AppendDescriptorChecksum(
+    const AppendDescriptorChecksumRequestStruct& request) {
+  auto call_func = [](const AppendDescriptorChecksumRequestStruct& request)
+      -> AppendDescriptorChecksumResponseStruct {  // NOLINT
+    AppendDescriptorChecksumResponseStruct response;
+
+    Descriptor descriptor = Descriptor::Parse(request.descriptor);
+
+    // レスポンスとなるモデルへ変換
+    response.descriptor = descriptor.ToString();
+    return response;
+  };
+
+  AppendDescriptorChecksumResponseStruct result;
+  result = ExecuteStructApi<
+      AppendDescriptorChecksumRequestStruct,
+      AppendDescriptorChecksumResponseStruct>(
       request, call_func, std::string(__FUNCTION__));
   return result;
 }

@@ -663,6 +663,9 @@ void TransactionJsonApi::FundRawTransaction(
     UtxoData data = {};
     data.txid = Txid(utxo.GetTxid());
     data.vout = utxo.GetVout();
+    if (!utxo.GetAddress().empty()) {
+      data.address = Address(utxo.GetAddress());
+    }
     data.amount = Amount::CreateBySatoshiAmount(utxo.GetAmount());
     data.descriptor = utxo.GetDescriptor();
     data.binary_data = nullptr;
@@ -672,6 +675,9 @@ void TransactionJsonApi::FundRawTransaction(
     UtxoData data = {};
     data.txid = Txid(utxo.GetTxid());
     data.vout = utxo.GetVout();
+    if (!utxo.GetAddress().empty()) {
+      data.address = Address(utxo.GetAddress());
+    }
     data.amount = Amount::CreateBySatoshiAmount(utxo.GetAmount());
     if (!utxo.GetRedeemScript().empty()) {
       data.redeem_script = Script(utxo.GetRedeemScript());

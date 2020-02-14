@@ -416,6 +416,29 @@ std::string JsonMappingApi::ParseDescriptor(
 #endif
 }
 
+std::string JsonMappingApi::CreateDescriptor(
+    const std::string &request_message) {
+  return ExecuteJsonApi<
+      api::json::CreateDescriptorRequest, api::json::CreateDescriptorResponse,
+      api::CreateDescriptorRequestStruct, api::CreateDescriptorResponseStruct>(
+      request_message, AddressStructApi::CreateDescriptor);
+}
+
+std::string JsonMappingApi::AppendDescriptorChecksum(
+    const std::string &request_message) {
+  return ExecuteElementsCheckApi<
+      api::json::AppendDescriptorChecksumRequest,
+      api::json::AppendDescriptorChecksumResponse,
+      api::AppendDescriptorChecksumRequestStruct,
+      api::AppendDescriptorChecksumResponseStruct>(
+      request_message, AddressStructApi::AppendDescriptorChecksum,
+#ifndef CFD_DISABLE_ELEMENTS
+      ElementsAddressStructApi::AppendDescriptorChecksum);
+#else
+      AddressStructApi::AppendDescriptorChecksum);
+#endif
+}
+
 std::string JsonMappingApi::CreateSignatureHash(
     const std::string &request_message) {
   return ExecuteJsonApi<

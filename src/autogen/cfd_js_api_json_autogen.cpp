@@ -7912,6 +7912,13 @@ void GetExtkeyInfoResponse::CollectFieldName() {
   };
   json_mapper.emplace("childNumber", func_table);
   item_list.push_back("childNumber");
+  func_table = {
+    GetExtkeyInfoResponse::GetChainCodeString,
+    GetExtkeyInfoResponse::SetChainCodeString,
+    GetExtkeyInfoResponse::GetChainCodeFieldType,
+  };
+  json_mapper.emplace("chainCode", func_table);
+  item_list.push_back("chainCode");
 }
 
 void GetExtkeyInfoResponse::ConvertFromStruct(
@@ -7920,6 +7927,7 @@ void GetExtkeyInfoResponse::ConvertFromStruct(
   depth_ = data.depth;
   fingerprint_ = data.fingerprint;
   child_number_ = data.child_number;
+  chain_code_ = data.chain_code;
   ignore_items = data.ignore_items;
 }
 
@@ -7929,6 +7937,7 @@ GetExtkeyInfoResponseStruct GetExtkeyInfoResponse::ConvertToStruct() const {  //
   result.depth = depth_;
   result.fingerprint = fingerprint_;
   result.child_number = child_number_;
+  result.chain_code = chain_code_;
   result.ignore_items = ignore_items;
   return result;
 }
@@ -8184,6 +8193,182 @@ void GetPrivkeyFromExtkeyResponse::ConvertFromStruct(
 GetPrivkeyFromExtkeyResponseStruct GetPrivkeyFromExtkeyResponse::ConvertToStruct() const {  // NOLINT
   GetPrivkeyFromExtkeyResponseStruct result;
   result.privkey = privkey_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// GetPrivkeyFromWifRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<GetPrivkeyFromWifRequest>
+  GetPrivkeyFromWifRequest::json_mapper;
+std::vector<std::string> GetPrivkeyFromWifRequest::item_list;
+
+void GetPrivkeyFromWifRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<GetPrivkeyFromWifRequest> func_table;  // NOLINT
+
+  func_table = {
+    GetPrivkeyFromWifRequest::GetWifString,
+    GetPrivkeyFromWifRequest::SetWifString,
+    GetPrivkeyFromWifRequest::GetWifFieldType,
+  };
+  json_mapper.emplace("wif", func_table);
+  item_list.push_back("wif");
+}
+
+void GetPrivkeyFromWifRequest::ConvertFromStruct(
+    const GetPrivkeyFromWifRequestStruct& data) {
+  wif_ = data.wif;
+  ignore_items = data.ignore_items;
+}
+
+GetPrivkeyFromWifRequestStruct GetPrivkeyFromWifRequest::ConvertToStruct() const {  // NOLINT
+  GetPrivkeyFromWifRequestStruct result;
+  result.wif = wif_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// GetPrivkeyFromWifResponse
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<GetPrivkeyFromWifResponse>
+  GetPrivkeyFromWifResponse::json_mapper;
+std::vector<std::string> GetPrivkeyFromWifResponse::item_list;
+
+void GetPrivkeyFromWifResponse::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<GetPrivkeyFromWifResponse> func_table;  // NOLINT
+
+  func_table = {
+    GetPrivkeyFromWifResponse::GetHexString,
+    GetPrivkeyFromWifResponse::SetHexString,
+    GetPrivkeyFromWifResponse::GetHexFieldType,
+  };
+  json_mapper.emplace("hex", func_table);
+  item_list.push_back("hex");
+  func_table = {
+    GetPrivkeyFromWifResponse::GetNetworkString,
+    GetPrivkeyFromWifResponse::SetNetworkString,
+    GetPrivkeyFromWifResponse::GetNetworkFieldType,
+  };
+  json_mapper.emplace("network", func_table);
+  item_list.push_back("network");
+  func_table = {
+    GetPrivkeyFromWifResponse::GetIsCompressedString,
+    GetPrivkeyFromWifResponse::SetIsCompressedString,
+    GetPrivkeyFromWifResponse::GetIsCompressedFieldType,
+  };
+  json_mapper.emplace("isCompressed", func_table);
+  item_list.push_back("isCompressed");
+}
+
+void GetPrivkeyFromWifResponse::ConvertFromStruct(
+    const GetPrivkeyFromWifResponseStruct& data) {
+  hex_ = data.hex;
+  network_ = data.network;
+  is_compressed_ = data.is_compressed;
+  ignore_items = data.ignore_items;
+}
+
+GetPrivkeyFromWifResponseStruct GetPrivkeyFromWifResponse::ConvertToStruct() const {  // NOLINT
+  GetPrivkeyFromWifResponseStruct result;
+  result.hex = hex_;
+  result.network = network_;
+  result.is_compressed = is_compressed_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// GetPrivkeyWifRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<GetPrivkeyWifRequest>
+  GetPrivkeyWifRequest::json_mapper;
+std::vector<std::string> GetPrivkeyWifRequest::item_list;
+
+void GetPrivkeyWifRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<GetPrivkeyWifRequest> func_table;  // NOLINT
+
+  func_table = {
+    GetPrivkeyWifRequest::GetHexString,
+    GetPrivkeyWifRequest::SetHexString,
+    GetPrivkeyWifRequest::GetHexFieldType,
+  };
+  json_mapper.emplace("hex", func_table);
+  item_list.push_back("hex");
+  func_table = {
+    GetPrivkeyWifRequest::GetNetworkString,
+    GetPrivkeyWifRequest::SetNetworkString,
+    GetPrivkeyWifRequest::GetNetworkFieldType,
+  };
+  json_mapper.emplace("network", func_table);
+  item_list.push_back("network");
+  func_table = {
+    GetPrivkeyWifRequest::GetIsCompressedString,
+    GetPrivkeyWifRequest::SetIsCompressedString,
+    GetPrivkeyWifRequest::GetIsCompressedFieldType,
+  };
+  json_mapper.emplace("isCompressed", func_table);
+  item_list.push_back("isCompressed");
+}
+
+void GetPrivkeyWifRequest::ConvertFromStruct(
+    const GetPrivkeyWifRequestStruct& data) {
+  hex_ = data.hex;
+  network_ = data.network;
+  is_compressed_ = data.is_compressed;
+  ignore_items = data.ignore_items;
+}
+
+GetPrivkeyWifRequestStruct GetPrivkeyWifRequest::ConvertToStruct() const {  // NOLINT
+  GetPrivkeyWifRequestStruct result;
+  result.hex = hex_;
+  result.network = network_;
+  result.is_compressed = is_compressed_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// GetPrivkeyWifResponse
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<GetPrivkeyWifResponse>
+  GetPrivkeyWifResponse::json_mapper;
+std::vector<std::string> GetPrivkeyWifResponse::item_list;
+
+void GetPrivkeyWifResponse::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<GetPrivkeyWifResponse> func_table;  // NOLINT
+
+  func_table = {
+    GetPrivkeyWifResponse::GetWifString,
+    GetPrivkeyWifResponse::SetWifString,
+    GetPrivkeyWifResponse::GetWifFieldType,
+  };
+  json_mapper.emplace("wif", func_table);
+  item_list.push_back("wif");
+}
+
+void GetPrivkeyWifResponse::ConvertFromStruct(
+    const GetPrivkeyWifResponseStruct& data) {
+  wif_ = data.wif;
+  ignore_items = data.ignore_items;
+}
+
+GetPrivkeyWifResponseStruct GetPrivkeyWifResponse::ConvertToStruct() const {  // NOLINT
+  GetPrivkeyWifResponseStruct result;
+  result.wif = wif_;
   result.ignore_items = ignore_items;
   return result;
 }

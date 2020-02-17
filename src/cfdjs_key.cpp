@@ -105,13 +105,7 @@ GetPrivkeyFromWifResponseStruct KeyStructApi::GetPrivkeyFromWif(
     Privkey privkey =
         api.GetPrivkeyFromWif(request.wif, &net_type, &response.is_compressed);
     response.hex = privkey.GetHex();
-    if (net_type == NetType::kMainnet) {
-      response.network = "mainnet";
-    } else if (net_type == NetType::kTestnet) {
-      response.network = "testnet";
-    } else {
-      response.network = "regtest";
-    }
+    response.network = AddressStructApi::ConvertNetTypeString(net_type);
     return response;
   };
 

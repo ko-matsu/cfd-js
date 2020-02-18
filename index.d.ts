@@ -891,6 +891,7 @@ export interface GetExtkeyInfoResponse {
     depth: number;
     fingerprint: string;
     childNumber: number;
+    chainCode: string;
 }
 
 export interface GetIssuanceBlindingKeyRequest {
@@ -920,6 +921,26 @@ export interface GetPrivkeyFromExtkeyRequest {
 
 export interface GetPrivkeyFromExtkeyResponse {
     privkey: string;
+}
+
+export interface GetPrivkeyFromWifRequest {
+    wif: string;
+}
+
+export interface GetPrivkeyFromWifResponse {
+    hex: string;
+    network: string;
+    isCompressed: boolean;
+}
+
+export interface GetPrivkeyWifRequest {
+    hex: string;
+    network: string;
+    isCompressed: boolean;
+}
+
+export interface GetPrivkeyWifResponse {
+    wif: string;
 }
 
 export interface GetPubkeyFromExtkeyRequest {
@@ -1262,6 +1283,10 @@ export function GetIssuanceBlindingKey(jsonObject: GetIssuanceBlindingKeyRequest
 export function GetMnemonicWordlist(jsonObject: GetMnemonicWordlistRequest): GetMnemonicWordlistResponse;
 
 export function GetPrivkeyFromExtkey(jsonObject: GetPrivkeyFromExtkeyRequest): GetPrivkeyFromExtkeyResponse;
+
+export function GetPrivkeyFromWif(jsonObject: GetPrivkeyFromWifRequest): GetPrivkeyFromWifResponse;
+
+export function GetPrivkeyWif(jsonObject: GetPrivkeyWifRequest): GetPrivkeyWifResponse;
 
 export function GetPubkeyFromExtkey(jsonObject: GetPubkeyFromExtkeyRequest): GetPubkeyFromExtkeyResponse;
 

@@ -238,6 +238,7 @@ GetExtkeyInfoResponseStruct HDWalletStructApi::GetExtkeyInfo(
       response.version = privkey.GetVersionData().GetHex();
       response.depth = privkey.GetDepth();
       response.fingerprint = privkey.GetFingerprintData().GetHex();
+      response.chain_code = privkey.GetChainCode().GetHex();
       response.child_number = privkey.GetChildNum();
       return response;
     } catch (...) {
@@ -248,6 +249,7 @@ GetExtkeyInfoResponseStruct HDWalletStructApi::GetExtkeyInfo(
     response.version = pubkey.GetVersionData().GetHex();
     response.depth = pubkey.GetDepth();
     response.fingerprint = pubkey.GetFingerprintData().GetHex();
+    response.chain_code = pubkey.GetChainCode().GetHex();
     response.child_number = pubkey.GetChildNum();
     return response;
   };

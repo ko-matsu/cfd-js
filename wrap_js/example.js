@@ -40,6 +40,8 @@ const {
   GetAddressInfo,
   CreateDescriptor,
   AppendDescriptorChecksum,
+  GetPrivkeyWif,
+  GetPrivkeyFromWif,
 } = cfdjsModule;
 
 const DUMMY_TXID_1 = '86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac'; // eslint-disable-line max-len
@@ -1168,6 +1170,7 @@ let createDescriptorResult;
     ],
     requireNum: 2,
   };
+  /** comment */
   console.log('*** Request ***\n', reqJson);
   createDescriptorResult = CreateDescriptor(reqJson);
   console.log('\n*** Response ***\n', createDescriptorResult, '\n');
@@ -1182,4 +1185,32 @@ let appendChecksumResult;
   console.log('*** Request ***\n', reqJson);
   appendChecksumResult = AppendDescriptorChecksum(reqJson);
   console.log('\n*** Response ***\n', appendChecksumResult, '\n');
+}
+
+let getPrivkeyWifResult;
+{
+  console.log('\n===== GetPrivkeyWif & GetPrivkeyFromWif =====');
+  const createKeyPairJson = {
+    wif: false,
+    network: NET_TYPE,
+    isCompressed: true,
+  };
+  console.log('*** CreateKeyPair:Request ***\n', createKeyPairJson);
+  const keyPair = CreateKeyPair(createKeyPairJson);
+  console.log('*** CreateKeyPair:Response ***\n', keyPair);
+
+  const getPrivkeyWifJson = {
+    hex: keyPair.privkey,
+    network: NET_TYPE,
+    isCompressed: true,
+  };
+  console.log('*** GetPrivkeyWif:Request ***\n', getPrivkeyWifJson);
+  getPrivkeyWifResult = GetPrivkeyWif(getPrivkeyWifJson);
+  console.log('*** GetPrivkeyWif:Response ***\n', getPrivkeyWifResult);
+
+  const getPrivkeyFromWifJson = {
+    wif: getPrivkeyWifResult.wif,
+  };
+  const result = GetPrivkeyFromWif(getPrivkeyWifResult);
+  console.log('*** GetPrivkeyFromWif:Response ***\n', result, '\n');
 }

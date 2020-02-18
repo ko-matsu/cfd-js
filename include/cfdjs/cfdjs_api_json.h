@@ -162,6 +162,20 @@ class CFD_JS_API_EXPORT JsonMappingApi {
   static std::string GetPubkeyFromExtkey(const std::string &request_message);
 
   /**
+   * @brief GetPrivkeyFromWifのJSON API関数(request, response).
+   * @param[in] request_message     リクエストされたjson文字列
+   * @return 戻り値(JSON文字列)
+   */
+  static std::string GetPrivkeyFromWif(const std::string &request_message);
+
+  /**
+   * @brief GetPrivkeyWifのJSON API関数(request, response).
+   * @param[in] request_message     リクエストされたjson文字列
+   * @return 戻り値(JSON文字列)
+   */
+  static std::string GetPrivkeyWif(const std::string &request_message);
+
+  /**
    * @brief GetPubkeyFromPrivkeyのJSON API関数(request, response).
    * @param[in] request_message     リクエストされたjson文字列
    * @return 戻り値(JSON文字列)

@@ -1853,6 +1853,7 @@ struct GetExtkeyInfoResponseStruct {
   uint8_t depth = 0;             //!< depth  // NOLINT
   std::string fingerprint = "";  //!< fingerprint  // NOLINT
   uint32_t child_number = 0;     //!< child_number  // NOLINT
+  std::string chain_code = "";   //!< chain_code  // NOLINT
   cfd::js::api::InnerErrorResponseStruct error;   //!< error information
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
@@ -1927,6 +1928,56 @@ struct GetPrivkeyFromExtkeyRequestStruct {
  */
 struct GetPrivkeyFromExtkeyResponseStruct {
   std::string privkey = "";  //!< privkey  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// GetPrivkeyFromWifRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief GetPrivkeyFromWifRequestStruct struct
+ */
+struct GetPrivkeyFromWifRequestStruct {
+  std::string wif = "";  //!< wif  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// GetPrivkeyFromWifResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief GetPrivkeyFromWifResponseStruct struct
+ */
+struct GetPrivkeyFromWifResponseStruct {
+  std::string hex = "";       //!< hex  // NOLINT
+  std::string network = "";   //!< network  // NOLINT
+  bool is_compressed = true;  //!< is_compressed  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// GetPrivkeyWifRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief GetPrivkeyWifRequestStruct struct
+ */
+struct GetPrivkeyWifRequestStruct {
+  std::string hex = "";             //!< hex  // NOLINT
+  std::string network = "mainnet";  //!< network  // NOLINT
+  bool is_compressed = true;        //!< is_compressed  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// GetPrivkeyWifResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief GetPrivkeyWifResponseStruct struct
+ */
+struct GetPrivkeyWifResponseStruct {
+  std::string wif = "";  //!< wif  // NOLINT
   cfd::js::api::InnerErrorResponseStruct error;   //!< error information
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };

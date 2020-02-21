@@ -255,13 +255,7 @@ GetAddressInfoResponseStruct AddressStructApi::GetAddressInfo(
     Address address = factory.GetAddress(request.address);
 
     response.locking_script = address.GetLockingScript().GetHex();
-    if (address.GetNetType() == NetType::kMainnet) {
-      response.network = "mainnet";
-    } else if (address.GetNetType() == NetType::kTestnet) {
-      response.network = "testnet";
-    } else {
-      response.network = "regtest";
-    }
+    response.network = ConvertNetTypeString(address.GetNetType());
     response.hash_type = ConvertAddressTypeText(address.GetAddressType());
     response.witness_version =
         static_cast<int32_t>(address.GetWitnessVersion());
@@ -560,6 +554,28 @@ NetType AddressStructApi::ConvertNetType(const std::string& network_type) {
   return net_type;
 }
 
+std::string AddressStructApi::ConvertNetTypeString(NetType network_type) {
+  std::string result;
+  if (network_type == NetType::kMainnet) {
+    result = "mainnet";
+  } else if (network_type == NetType::kTestnet) {
+    result = "testnet";
+  } else if (network_type == NetType::kRegtest) {
+    result = "regtest";
+  } else {
+    warn(
+        CFD_LOG_SOURCE,
+        "Failed to ConvertNetTypeString. Invalid network_type passed:  "
+        "network_type={}",  // NOLINT
+        network_type);
+    throw CfdException(
+        CfdError::kCfdIllegalArgumentError,
+        "Invalid network_type passed. network_type must be \"kMainnet\""
+        " or \"kTestnet\" or \"kRegtest\".");
+  }
+  return result;
+}
+
 AddressType AddressStructApi::ConvertAddressType(
     const std::string& address_type) {
   AddressType addr_type;
@@ -591,6 +607,11 @@ AddressType AddressStructApi::ConvertAddressType(
 }
 
 std::string AddressStructApi::ConvertAddressTypeText(
+    AddressType address_type) {
+  return ConvertAddressTypeString(address_type);
+}
+
+std::string AddressStructApi::ConvertAddressTypeString(
     AddressType address_type) {
   std::string result;
   switch (address_type) {

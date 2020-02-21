@@ -11,6 +11,7 @@
     "depth:type": "uint8_t",
     "fingerprint": "",
     "childNumber": 0,
-    "childNumber:type": "uint32_t"
+    "childNumber:type": "uint32_t",
+    "chainCode": ""
   }
 }

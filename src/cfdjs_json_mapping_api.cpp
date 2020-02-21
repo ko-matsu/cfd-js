@@ -496,6 +496,23 @@ std::string JsonMappingApi::GetPubkeyFromExtkey(
       request_message, HDWalletStructApi::GetPubkeyFromExtkey);
 }
 
+std::string JsonMappingApi::GetPrivkeyFromWif(
+    const std::string &request_message) {
+  return ExecuteJsonApi<
+      api::json::GetPrivkeyFromWifRequest,
+      api::json::GetPrivkeyFromWifResponse,
+      api::GetPrivkeyFromWifRequestStruct,
+      api::GetPrivkeyFromWifResponseStruct>(
+      request_message, KeyStructApi::GetPrivkeyFromWif);
+}
+
+std::string JsonMappingApi::GetPrivkeyWif(const std::string &request_message) {
+  return ExecuteJsonApi<
+      api::json::GetPrivkeyWifRequest, api::json::GetPrivkeyWifResponse,
+      api::GetPrivkeyWifRequestStruct, api::GetPrivkeyWifResponseStruct>(
+      request_message, KeyStructApi::GetPrivkeyWif);
+}
+
 std::string JsonMappingApi::GetPubkeyFromPrivkey(
     const std::string &request_message) {
   return ExecuteJsonApi<

@@ -35517,6 +35517,49 @@ class GetExtkeyInfoResponse
   }
 
   /**
+   * @brief Get of chainCode
+   * @return chainCode
+   */
+  std::string GetChainCode() const {
+    return chain_code_;
+  }
+  /**
+   * @brief Set to chainCode
+   * @param[in] chain_code    setting value.
+   */
+  void SetChainCode(  // line separate
+    const std::string& chain_code) {  // NOLINT
+    this->chain_code_ = chain_code;
+  }
+  /**
+   * @brief Get data type of chainCode
+   * @return Data type of chainCode
+   */
+  static std::string GetChainCodeFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of chainCode field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetChainCodeString(  // line separate
+      const GetExtkeyInfoResponse& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.chain_code_);
+  }
+  /**
+   * @brief Set json object to chainCode field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetChainCodeString(  // line separate
+      GetExtkeyInfoResponse& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.chain_code_, json_value);
+  }
+
+  /**
    * @brief Set ignore item.
    * @param[in] key   ignore target key name.
    */
@@ -35601,6 +35644,10 @@ class GetExtkeyInfoResponse
    * @brief JsonAPI(childNumber) value
    */
   uint32_t child_number_ = 0;
+  /**
+   * @brief JsonAPI(chainCode) value
+   */
+  std::string chain_code_ = "";
 };
 
 // ------------------------------------------------------------------------
@@ -36665,6 +36712,746 @@ class GetPrivkeyFromExtkeyResponse
    * @brief JsonAPI(privkey) value
    */
   std::string privkey_ = "";
+};
+
+// ------------------------------------------------------------------------
+// GetPrivkeyFromWifRequest
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (GetPrivkeyFromWifRequest) class
+ */
+class GetPrivkeyFromWifRequest
+  : public cfd::core::JsonClassBase<GetPrivkeyFromWifRequest> {
+ public:
+  GetPrivkeyFromWifRequest() {
+    CollectFieldName();
+  }
+  virtual ~GetPrivkeyFromWifRequest() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of wif
+   * @return wif
+   */
+  std::string GetWif() const {
+    return wif_;
+  }
+  /**
+   * @brief Set to wif
+   * @param[in] wif    setting value.
+   */
+  void SetWif(  // line separate
+    const std::string& wif) {  // NOLINT
+    this->wif_ = wif;
+  }
+  /**
+   * @brief Get data type of wif
+   * @return Data type of wif
+   */
+  static std::string GetWifFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of wif field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetWifString(  // line separate
+      const GetPrivkeyFromWifRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.wif_);
+  }
+  /**
+   * @brief Set json object to wif field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetWifString(  // line separate
+      GetPrivkeyFromWifRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.wif_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const GetPrivkeyFromWifRequestStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  GetPrivkeyFromWifRequestStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using GetPrivkeyFromWifRequestMapTable =
+    cfd::core::JsonTableMap<GetPrivkeyFromWifRequest>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const GetPrivkeyFromWifRequestMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static GetPrivkeyFromWifRequestMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(wif) value
+   */
+  std::string wif_ = "";
+};
+
+// ------------------------------------------------------------------------
+// GetPrivkeyFromWifResponse
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (GetPrivkeyFromWifResponse) class
+ */
+class GetPrivkeyFromWifResponse
+  : public cfd::core::JsonClassBase<GetPrivkeyFromWifResponse> {
+ public:
+  GetPrivkeyFromWifResponse() {
+    CollectFieldName();
+  }
+  virtual ~GetPrivkeyFromWifResponse() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of hex
+   * @return hex
+   */
+  std::string GetHex() const {
+    return hex_;
+  }
+  /**
+   * @brief Set to hex
+   * @param[in] hex    setting value.
+   */
+  void SetHex(  // line separate
+    const std::string& hex) {  // NOLINT
+    this->hex_ = hex;
+  }
+  /**
+   * @brief Get data type of hex
+   * @return Data type of hex
+   */
+  static std::string GetHexFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of hex field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetHexString(  // line separate
+      const GetPrivkeyFromWifResponse& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.hex_);
+  }
+  /**
+   * @brief Set json object to hex field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetHexString(  // line separate
+      GetPrivkeyFromWifResponse& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.hex_, json_value);
+  }
+
+  /**
+   * @brief Get of network
+   * @return network
+   */
+  std::string GetNetwork() const {
+    return network_;
+  }
+  /**
+   * @brief Set to network
+   * @param[in] network    setting value.
+   */
+  void SetNetwork(  // line separate
+    const std::string& network) {  // NOLINT
+    this->network_ = network;
+  }
+  /**
+   * @brief Get data type of network
+   * @return Data type of network
+   */
+  static std::string GetNetworkFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of network field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetNetworkString(  // line separate
+      const GetPrivkeyFromWifResponse& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.network_);
+  }
+  /**
+   * @brief Set json object to network field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetNetworkString(  // line separate
+      GetPrivkeyFromWifResponse& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.network_, json_value);
+  }
+
+  /**
+   * @brief Get of isCompressed
+   * @return isCompressed
+   */
+  bool GetIsCompressed() const {
+    return is_compressed_;
+  }
+  /**
+   * @brief Set to isCompressed
+   * @param[in] is_compressed    setting value.
+   */
+  void SetIsCompressed(  // line separate
+    const bool& is_compressed) {  // NOLINT
+    this->is_compressed_ = is_compressed;
+  }
+  /**
+   * @brief Get data type of isCompressed
+   * @return Data type of isCompressed
+   */
+  static std::string GetIsCompressedFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of isCompressed field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetIsCompressedString(  // line separate
+      const GetPrivkeyFromWifResponse& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.is_compressed_);
+  }
+  /**
+   * @brief Set json object to isCompressed field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetIsCompressedString(  // line separate
+      GetPrivkeyFromWifResponse& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.is_compressed_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const GetPrivkeyFromWifResponseStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  GetPrivkeyFromWifResponseStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using GetPrivkeyFromWifResponseMapTable =
+    cfd::core::JsonTableMap<GetPrivkeyFromWifResponse>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const GetPrivkeyFromWifResponseMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static GetPrivkeyFromWifResponseMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(hex) value
+   */
+  std::string hex_ = "";
+  /**
+   * @brief JsonAPI(network) value
+   */
+  std::string network_ = "";
+  /**
+   * @brief JsonAPI(isCompressed) value
+   */
+  bool is_compressed_ = true;
+};
+
+// ------------------------------------------------------------------------
+// GetPrivkeyWifRequest
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (GetPrivkeyWifRequest) class
+ */
+class GetPrivkeyWifRequest
+  : public cfd::core::JsonClassBase<GetPrivkeyWifRequest> {
+ public:
+  GetPrivkeyWifRequest() {
+    CollectFieldName();
+  }
+  virtual ~GetPrivkeyWifRequest() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of hex
+   * @return hex
+   */
+  std::string GetHex() const {
+    return hex_;
+  }
+  /**
+   * @brief Set to hex
+   * @param[in] hex    setting value.
+   */
+  void SetHex(  // line separate
+    const std::string& hex) {  // NOLINT
+    this->hex_ = hex;
+  }
+  /**
+   * @brief Get data type of hex
+   * @return Data type of hex
+   */
+  static std::string GetHexFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of hex field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetHexString(  // line separate
+      const GetPrivkeyWifRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.hex_);
+  }
+  /**
+   * @brief Set json object to hex field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetHexString(  // line separate
+      GetPrivkeyWifRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.hex_, json_value);
+  }
+
+  /**
+   * @brief Get of network
+   * @return network
+   */
+  std::string GetNetwork() const {
+    return network_;
+  }
+  /**
+   * @brief Set to network
+   * @param[in] network    setting value.
+   */
+  void SetNetwork(  // line separate
+    const std::string& network) {  // NOLINT
+    this->network_ = network;
+  }
+  /**
+   * @brief Get data type of network
+   * @return Data type of network
+   */
+  static std::string GetNetworkFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of network field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetNetworkString(  // line separate
+      const GetPrivkeyWifRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.network_);
+  }
+  /**
+   * @brief Set json object to network field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetNetworkString(  // line separate
+      GetPrivkeyWifRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.network_, json_value);
+  }
+
+  /**
+   * @brief Get of isCompressed
+   * @return isCompressed
+   */
+  bool GetIsCompressed() const {
+    return is_compressed_;
+  }
+  /**
+   * @brief Set to isCompressed
+   * @param[in] is_compressed    setting value.
+   */
+  void SetIsCompressed(  // line separate
+    const bool& is_compressed) {  // NOLINT
+    this->is_compressed_ = is_compressed;
+  }
+  /**
+   * @brief Get data type of isCompressed
+   * @return Data type of isCompressed
+   */
+  static std::string GetIsCompressedFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of isCompressed field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetIsCompressedString(  // line separate
+      const GetPrivkeyWifRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.is_compressed_);
+  }
+  /**
+   * @brief Set json object to isCompressed field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetIsCompressedString(  // line separate
+      GetPrivkeyWifRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.is_compressed_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const GetPrivkeyWifRequestStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  GetPrivkeyWifRequestStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using GetPrivkeyWifRequestMapTable =
+    cfd::core::JsonTableMap<GetPrivkeyWifRequest>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const GetPrivkeyWifRequestMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static GetPrivkeyWifRequestMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(hex) value
+   */
+  std::string hex_ = "";
+  /**
+   * @brief JsonAPI(network) value
+   */
+  std::string network_ = "mainnet";
+  /**
+   * @brief JsonAPI(isCompressed) value
+   */
+  bool is_compressed_ = true;
+};
+
+// ------------------------------------------------------------------------
+// GetPrivkeyWifResponse
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (GetPrivkeyWifResponse) class
+ */
+class GetPrivkeyWifResponse
+  : public cfd::core::JsonClassBase<GetPrivkeyWifResponse> {
+ public:
+  GetPrivkeyWifResponse() {
+    CollectFieldName();
+  }
+  virtual ~GetPrivkeyWifResponse() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of wif
+   * @return wif
+   */
+  std::string GetWif() const {
+    return wif_;
+  }
+  /**
+   * @brief Set to wif
+   * @param[in] wif    setting value.
+   */
+  void SetWif(  // line separate
+    const std::string& wif) {  // NOLINT
+    this->wif_ = wif;
+  }
+  /**
+   * @brief Get data type of wif
+   * @return Data type of wif
+   */
+  static std::string GetWifFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of wif field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetWifString(  // line separate
+      const GetPrivkeyWifResponse& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.wif_);
+  }
+  /**
+   * @brief Set json object to wif field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetWifString(  // line separate
+      GetPrivkeyWifResponse& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.wif_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const GetPrivkeyWifResponseStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  GetPrivkeyWifResponseStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using GetPrivkeyWifResponseMapTable =
+    cfd::core::JsonTableMap<GetPrivkeyWifResponse>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const GetPrivkeyWifResponseMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static GetPrivkeyWifResponseMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(wif) value
+   */
+  std::string wif_ = "";
 };
 
 // ------------------------------------------------------------------------

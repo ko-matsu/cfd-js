@@ -266,6 +266,24 @@ Value GetPubkeyFromExtkey(const CallbackInfo &information) {
 }
 
 /**
+ * @brief GetPrivkeyFromWifのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value GetPrivkeyFromWif(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::GetPrivkeyFromWif);
+}
+
+/**
+ * @brief GetPrivkeyWifのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value GetPrivkeyWif(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::GetPrivkeyWif);
+}
+
+/**
  * @brief GetPubkeyFromPrivkeyのJSON API関数(request, response).
  * @param[in] information     node addon apiのコールバック情報
  * @return 戻り値(JSON文字列)
@@ -644,6 +662,11 @@ void InitializeJsonApi(Env env, Object *exports) {
   exports->Set(
       String::New(env, "GetPubkeyFromExtkey"),
       Function::New(env, GetPubkeyFromExtkey));
+  exports->Set(
+      String::New(env, "GetPrivkeyFromWif"),
+      Function::New(env, GetPrivkeyFromWif));
+  exports->Set(
+      String::New(env, "GetPrivkeyWif"), Function::New(env, GetPrivkeyWif));
   exports->Set(
       String::New(env, "GetPubkeyFromPrivkey"),
       Function::New(env, GetPubkeyFromPrivkey));

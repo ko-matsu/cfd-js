@@ -3765,6 +3765,49 @@ class BlindTxOutRequest
   }
 
   /**
+   * @brief Get of confidentialKey
+   * @return confidentialKey
+   */
+  std::string GetConfidentialKey() const {
+    return confidential_key_;
+  }
+  /**
+   * @brief Set to confidentialKey
+   * @param[in] confidential_key    setting value.
+   */
+  void SetConfidentialKey(  // line separate
+    const std::string& confidential_key) {  // NOLINT
+    this->confidential_key_ = confidential_key;
+  }
+  /**
+   * @brief Get data type of confidentialKey
+   * @return Data type of confidentialKey
+   */
+  static std::string GetConfidentialKeyFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of confidentialKey field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetConfidentialKeyString(  // line separate
+      const BlindTxOutRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.confidential_key_);
+  }
+  /**
+   * @brief Set json object to confidentialKey field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetConfidentialKeyString(  // line separate
+      BlindTxOutRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.confidential_key_, json_value);
+  }
+
+  /**
    * @brief Get of blindPubkey
    * @return blindPubkey
    */
@@ -3880,6 +3923,10 @@ class BlindTxOutRequest
    * @brief JsonAPI(index) value
    */
   uint32_t index_ = 0;
+  /**
+   * @brief JsonAPI(confidentialKey) value
+   */
+  std::string confidential_key_ = "";
   /**
    * @brief JsonAPI(blindPubkey) value
    */
@@ -11527,7 +11574,7 @@ class DecodeRawTransactionTxOut
    * @brief Get of value
    * @return value
    */
-  double GetValue() const {
+  int64_t GetValue() const {
     return value_;
   }
   /**
@@ -11535,7 +11582,7 @@ class DecodeRawTransactionTxOut
    * @param[in] value    setting value.
    */
   void SetValue(  // line separate
-    const double& value) {  // NOLINT
+    const int64_t& value) {  // NOLINT
     this->value_ = value;
   }
   /**
@@ -11543,7 +11590,7 @@ class DecodeRawTransactionTxOut
    * @return Data type of value
    */
   static std::string GetValueFieldType() {
-    return "double";
+    return "int64_t";
   }
   /**
    * @brief Get json string of value field.
@@ -11725,7 +11772,7 @@ class DecodeRawTransactionTxOut
   /**
    * @brief JsonAPI(value) value
    */
-  double value_ = 0;
+  int64_t value_ = 0;
   /**
    * @brief JsonAPI(n) value
    */
@@ -22511,7 +22558,7 @@ class ElementsDecodeIssuance
    * @brief Get of assetamount
    * @return assetamount
    */
-  double GetAssetamount() const {
+  int64_t GetAssetamount() const {
     return assetamount_;
   }
   /**
@@ -22519,7 +22566,7 @@ class ElementsDecodeIssuance
    * @param[in] assetamount    setting value.
    */
   void SetAssetamount(  // line separate
-    const double& assetamount) {  // NOLINT
+    const int64_t& assetamount) {  // NOLINT
     this->assetamount_ = assetamount;
   }
   /**
@@ -22527,7 +22574,7 @@ class ElementsDecodeIssuance
    * @return Data type of assetamount
    */
   static std::string GetAssetamountFieldType() {
-    return "double";
+    return "int64_t";
   }
   /**
    * @brief Get json string of assetamount field.
@@ -22597,7 +22644,7 @@ class ElementsDecodeIssuance
    * @brief Get of tokenamount
    * @return tokenamount
    */
-  double GetTokenamount() const {
+  int64_t GetTokenamount() const {
     return tokenamount_;
   }
   /**
@@ -22605,7 +22652,7 @@ class ElementsDecodeIssuance
    * @param[in] tokenamount    setting value.
    */
   void SetTokenamount(  // line separate
-    const double& tokenamount) {  // NOLINT
+    const int64_t& tokenamount) {  // NOLINT
     this->tokenamount_ = tokenamount;
   }
   /**
@@ -22613,7 +22660,7 @@ class ElementsDecodeIssuance
    * @return Data type of tokenamount
    */
   static std::string GetTokenamountFieldType() {
-    return "double";
+    return "int64_t";
   }
   /**
    * @brief Get json string of tokenamount field.
@@ -22771,7 +22818,7 @@ class ElementsDecodeIssuance
   /**
    * @brief JsonAPI(assetamount) value
    */
-  double assetamount_ = 0;
+  int64_t assetamount_ = 0;
   /**
    * @brief JsonAPI(assetamountcommitment) value
    */
@@ -22779,7 +22826,7 @@ class ElementsDecodeIssuance
   /**
    * @brief JsonAPI(tokenamount) value
    */
-  double tokenamount_ = 0;
+  int64_t tokenamount_ = 0;
   /**
    * @brief JsonAPI(tokenamountcommitment) value
    */
@@ -23938,7 +23985,7 @@ class ElementsDecodeRawTransactionTxOut
    * @brief Get of value
    * @return value
    */
-  double GetValue() const {
+  int64_t GetValue() const {
     return value_;
   }
   /**
@@ -23946,7 +23993,7 @@ class ElementsDecodeRawTransactionTxOut
    * @param[in] value    setting value.
    */
   void SetValue(  // line separate
-    const double& value) {  // NOLINT
+    const int64_t& value) {  // NOLINT
     this->value_ = value;
   }
   /**
@@ -23954,7 +24001,7 @@ class ElementsDecodeRawTransactionTxOut
    * @return Data type of value
    */
   static std::string GetValueFieldType() {
-    return "double";
+    return "int64_t";
   }
   /**
    * @brief Get json string of value field.
@@ -24566,7 +24613,7 @@ class ElementsDecodeRawTransactionTxOut
   /**
    * @brief JsonAPI(value) value
    */
-  double value_ = 0;
+  int64_t value_ = 0;
   /**
    * @brief JsonAPI(value-minimum) value
    */
@@ -45338,7 +45385,7 @@ class WitnessStackData
    * @brief Get of index
    * @return index
    */
-  uint64_t GetIndex() const {
+  uint32_t GetIndex() const {
     return index_;
   }
   /**
@@ -45346,7 +45393,7 @@ class WitnessStackData
    * @param[in] index    setting value.
    */
   void SetIndex(  // line separate
-    const uint64_t& index) {  // NOLINT
+    const uint32_t& index) {  // NOLINT
     this->index_ = index;
   }
   /**
@@ -45354,7 +45401,7 @@ class WitnessStackData
    * @return Data type of index
    */
   static std::string GetIndexFieldType() {
-    return "uint64_t";
+    return "uint32_t";
   }
   /**
    * @brief Get json string of index field.
@@ -45664,7 +45711,7 @@ class WitnessStackData
   /**
    * @brief JsonAPI(index) value
    */
-  uint64_t index_ = 0;
+  uint32_t index_ = 0;
   /**
    * @brief JsonAPI(hex) value
    */

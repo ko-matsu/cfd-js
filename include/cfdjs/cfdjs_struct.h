@@ -241,8 +241,9 @@ struct BlindTxInRequestStruct {
  * @brief BlindTxOutRequestStruct struct
  */
 struct BlindTxOutRequestStruct {
-  uint32_t index = 0;             //!< index  // NOLINT
-  std::string blind_pubkey = "";  //!< blind_pubkey  // NOLINT
+  uint32_t index = 0;                 //!< index  // NOLINT
+  std::string confidential_key = "";  //!< confidential_key  // NOLINT
+  std::string blind_pubkey = "";      //!< blind_pubkey  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -710,7 +711,7 @@ struct DecodeLockingScriptStruct {
  * @brief DecodeRawTransactionTxOutStruct struct
  */
 struct DecodeRawTransactionTxOutStruct {
-  double value = 0;                          //!< value  // NOLINT
+  int64_t value = 0;                         //!< value  // NOLINT
   int64_t n = 0;                             //!< n  // NOLINT
   DecodeLockingScriptStruct script_pub_key;  //!< script_pub_key  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
@@ -1257,9 +1258,9 @@ struct ElementsDecodeIssuanceStruct {
   bool isreissuance = false;               //!< isreissuance  // NOLINT
   std::string token = "";                  //!< token  // NOLINT
   std::string asset = "";                  //!< asset  // NOLINT
-  double assetamount = 0;                  //!< assetamount  // NOLINT
+  int64_t assetamount = 0;                 //!< assetamount  // NOLINT
   std::string assetamountcommitment = "";  //!< assetamountcommitment  // NOLINT
-  double tokenamount = 0;                  //!< tokenamount  // NOLINT
+  int64_t tokenamount = 0;                 //!< tokenamount  // NOLINT
   std::string tokenamountcommitment = "";  //!< tokenamountcommitment  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
@@ -1311,7 +1312,7 @@ struct ElementsDecodeLockingScriptStruct {
  * @brief ElementsDecodeRawTransactionTxOutStruct struct
  */
 struct ElementsDecodeRawTransactionTxOutStruct {
-  double value = 0;                                  //!< value  // NOLINT
+  int64_t value = 0;                                 //!< value  // NOLINT
   double value_minimum = 0;                          //!< value_minimum  // NOLINT
   double value_maximum = 0;                          //!< value_maximum  // NOLINT
   int ct_exponent = 0;                               //!< ct_exponent  // NOLINT
@@ -2433,7 +2434,7 @@ struct CreateRawTransactionResponseStruct {
  * @brief WitnessStackDataStruct struct
  */
 struct WitnessStackDataStruct {
-  uint64_t index = 0;                   //!< index  // NOLINT
+  uint32_t index = 0;                   //!< index  // NOLINT
   std::string hex = "";                 //!< hex  // NOLINT
   std::string type = "binary";          //!< type  // NOLINT
   bool der_encode = false;              //!< der_encode  // NOLINT

@@ -1,26 +1,26 @@
 export interface MultisigSignData {
     hex: string;
-    type: string;
-    derEncode: boolean;
-    sighashType: string;
-    sighashAnyoneCanPay: boolean;
-    relatedPubkey: string;
+    type?: string;
+    derEncode?: boolean;
+    sighashType?: string;
+    sighashAnyoneCanPay?: boolean;
+    relatedPubkey?: string;
 }
 
 export interface AddMultisigSignTxInRequest {
     txid: string;
     vout: number;
-    signParams: MultisigSignData[];
-    redeemScript: string;
-    witnessScript: string;
+    signParams?: MultisigSignData[];
+    redeemScript?: string;
+    witnessScript?: string;
     hashType: string;
-    clearStack: boolean;
+    clearStack?: boolean;
 }
 
 export interface AddMultisigSignRequest {
-    isElements: boolean;
+    isElements?: boolean;
     tx: string;
-    txin: AddMultisigSignTxInRequest;
+    txin?: AddMultisigSignTxInRequest;
 }
 
 export interface AddMultisigSignResponse {
@@ -30,7 +30,7 @@ export interface AddMultisigSignResponse {
 export interface AddTxIn {
     txid: string;
     vout: number;
-    sequence: number;
+    sequence?: number;
 }
 
 export interface AddTxOut {
@@ -40,8 +40,8 @@ export interface AddTxOut {
 
 export interface AddRawTransactionRequest {
     tx: string;
-    txins: AddTxIn[];
-    txouts: AddTxOut[];
+    txins?: AddTxIn[];
+    txouts?: AddTxOut[];
 }
 
 export interface AddRawTransactionResponse {
@@ -50,24 +50,24 @@ export interface AddRawTransactionResponse {
 
 export interface SignData {
     hex: string;
-    type: string;
-    derEncode: boolean;
-    sighashType: string;
-    sighashAnyoneCanPay: boolean;
+    type?: string;
+    derEncode?: boolean;
+    sighashType?: string;
+    sighashAnyoneCanPay?: boolean;
 }
 
 export interface AddSignTxInRequest {
     txid: string;
     vout: number;
-    isWitness: boolean;
+    isWitness?: boolean;
     signParam: SignData[];
-    clearStack: boolean;
+    clearStack?: boolean;
 }
 
 export interface AddSignRequest {
     tx: string;
-    isElements: boolean;
-    txin: AddSignTxInRequest;
+    isElements?: boolean;
+    txin?: AddSignTxInRequest;
 }
 
 export interface AddSignResponse {
@@ -76,7 +76,7 @@ export interface AddSignResponse {
 
 export interface AppendDescriptorChecksumRequest {
     descriptor: string;
-    isElements: boolean;
+    isElements?: boolean;
 }
 
 export interface AppendDescriptorChecksumResponse {
@@ -87,28 +87,29 @@ export interface BlindTxInRequest {
     txid: string;
     vout: bigint;
     asset: string;
-    blindFactor: string;
-    assetBlindFactor: string;
+    blindFactor?: string;
+    assetBlindFactor?: string;
     amount: bigint;
 }
 
 export interface BlindTxOutRequest {
     index: number;
-    blindPubkey: string;
+    confidentialKey: string;
+    blindPubkey?: string;
 }
 
 export interface BlindIssuanceRequest {
     txid: string;
     vout: bigint;
     assetBlindingKey: string;
-    tokenBlindingKey: string;
+    tokenBlindingKey?: string;
 }
 
 export interface BlindRawTransactionRequest {
     tx: string;
-    txins: BlindTxInRequest[];
+    txins?: BlindTxInRequest[];
     txouts: BlindTxOutRequest[];
-    issuances: BlindIssuanceRequest[];
+    issuances?: BlindIssuanceRequest[];
 }
 
 export interface BlindRawTransactionResponse {
@@ -118,14 +119,14 @@ export interface BlindRawTransactionResponse {
 export interface PrivkeyData {
     privkey: string;
     wif: boolean;
-    network: string;
-    isCompressed: boolean;
+    network?: string;
+    isCompressed?: boolean;
 }
 
 export interface CalculateEcSignatureRequest {
     sighash: string;
-    privkeyData: PrivkeyData;
-    isGrindR: boolean;
+    privkeyData?: PrivkeyData;
+    isGrindR?: boolean;
 }
 
 export interface CalculateEcSignatureResponse {
@@ -134,7 +135,7 @@ export interface CalculateEcSignatureResponse {
 
 export interface ConvertEntropyToMnemonicRequest {
     entropy: string;
-    language: string;
+    language?: string;
 }
 
 export interface ConvertEntropyToMnemonicResponse {
@@ -144,14 +145,14 @@ export interface ConvertEntropyToMnemonicResponse {
 export interface ConvertMnemonicToSeedRequest {
     mnemonic: string[];
     passphrase: string;
-    strictCheck: boolean;
-    language: string;
-    useIdeographicSpace: boolean;
+    strictCheck?: boolean;
+    language?: string;
+    useIdeographicSpace?: boolean;
 }
 
 export interface ConvertMnemonicToSeedResponse {
-    seed: string;
-    entropy: string;
+    seed?: string;
+    entropy?: string;
 }
 
 export interface CreateAddressKeyData {
@@ -160,8 +161,8 @@ export interface CreateAddressKeyData {
 }
 
 export interface CreateAddressRequest {
-    isElements: boolean;
-    keyData: CreateAddressKeyData;
+    isElements?: boolean;
+    keyData?: CreateAddressKeyData;
     network: string;
     hashType: string;
 }
@@ -169,19 +170,19 @@ export interface CreateAddressRequest {
 export interface CreateAddressResponse {
     address: string;
     lockingScript: string;
-    redeemScript: string;
+    redeemScript?: string;
 }
 
 export interface CreateDescriptorKeyRequest {
     key: string;
-    parentExtkey: string;
-    keyPathFromParent: string;
+    parentExtkey?: string;
+    keyPathFromParent?: string;
 }
 
 export interface CreateDescriptorRequest {
     scriptType: string;
-    keyInfoList: CreateDescriptorKeyRequest[];
-    requireNum: number;
+    keyInfoList?: CreateDescriptorKeyRequest[];
+    requireNum?: number;
 }
 
 export interface CreateDescriptorResponse {
@@ -193,7 +194,7 @@ export interface CreateExtkeyFromParentRequest {
     network: string;
     extkeyType: string;
     childNumber: bigint;
-    hardened: boolean;
+    hardened?: boolean;
 }
 
 export interface CreateExtkeyFromParentResponse {
@@ -204,8 +205,8 @@ export interface CreateExtkeyFromParentPathRequest {
     extkey: string;
     network: string;
     extkeyType: string;
-    childNumberArray: bigint[];
-    path: string;
+    childNumberArray?: bigint[];
+    path?: string;
 }
 
 export interface CreateExtkeyFromParentPathResponse {
@@ -215,7 +216,7 @@ export interface CreateExtkeyFromParentPathResponse {
 export interface CreateExtkeyFromSeedRequest {
     seed: string;
     network: string;
-    extkeyType: string;
+    extkeyType?: string;
 }
 
 export interface CreateExtkeyFromSeedResponse {
@@ -233,8 +234,8 @@ export interface CreateExtPubkeyResponse {
 
 export interface CreateKeyPairRequest {
     wif: boolean;
-    network: string;
-    isCompressed: boolean;
+    network?: string;
+    isCompressed?: boolean;
 }
 
 export interface CreateKeyPairResponse {
@@ -244,15 +245,15 @@ export interface CreateKeyPairResponse {
 
 export interface MultisigScriptSigData {
     hex: string;
-    type: string;
-    derEncode: boolean;
-    sighashType: string;
-    sighashAnyoneCanPay: boolean;
-    relatedPubkey: string;
+    type?: string;
+    derEncode?: boolean;
+    sighashType?: string;
+    sighashAnyoneCanPay?: boolean;
+    relatedPubkey?: string;
 }
 
 export interface CreateMultisigScriptSigRequest {
-    signParams: MultisigScriptSigData[];
+    signParams?: MultisigScriptSigData[];
     redeemScript: string;
 }
 
@@ -270,36 +271,36 @@ export interface CreateScriptResponse {
 
 export interface DecodeRawTransactionRequest {
     hex: string;
-    network: string;
-    iswitness: boolean;
+    network?: string;
+    iswitness?: boolean;
 }
 
 export interface DecodeUnlockingScript {
-    asm: string;
-    hex: string;
+    asm?: string;
+    hex?: string;
 }
 
 export interface DecodeRawTransactionTxIn {
-    coinbase: string;
-    txid: string;
-    vout: bigint;
-    scriptSig: DecodeUnlockingScript;
-    txinwitness: string[];
-    sequence: bigint;
+    coinbase?: string;
+    txid?: string;
+    vout?: bigint;
+    scriptSig?: DecodeUnlockingScript;
+    txinwitness?: string[];
+    sequence?: bigint;
 }
 
 export interface DecodeLockingScript {
-    asm: string;
-    hex: string;
-    reqSigs: bigint;
-    type: string;
-    addresses: string[];
+    asm?: string;
+    hex?: string;
+    reqSigs?: bigint;
+    type?: string;
+    addresses?: string[];
 }
 
 export interface DecodeRawTransactionTxOut {
-    value: number;
+    value: bigint;
     n: bigint;
-    scriptPubKey: DecodeLockingScript;
+    scriptPubKey?: DecodeLockingScript;
 }
 
 export interface DecodeRawTransactionResponse {
@@ -310,14 +311,14 @@ export interface DecodeRawTransactionResponse {
     vsize: bigint;
     weight: bigint;
     locktime: number;
-    vin: DecodeRawTransactionTxIn[];
-    vout: DecodeRawTransactionTxOut[];
+    vin?: DecodeRawTransactionTxIn[];
+    vout?: DecodeRawTransactionTxOut[];
 }
 
 export interface ElementsAddTxInRequest {
     txid: string;
     vout: number;
-    sequence: number;
+    sequence?: number;
 }
 
 export interface ElementsAddPeginWitness {
@@ -332,16 +333,16 @@ export interface ElementsAddPeginWitness {
 export interface ElementsAddPeginTxIn {
     txid: string;
     vout: number;
-    sequence: number;
+    sequence?: number;
     peginwitness: ElementsAddPeginWitness;
-    isRemoveMainchainTxWitness: boolean;
+    isRemoveMainchainTxWitness?: boolean;
 }
 
 export interface ElementsAddTxOut {
     address: string;
     amount: bigint;
     asset: string;
-    isRemoveNonce: boolean;
+    isRemoveNonce?: boolean;
 }
 
 export interface ElementsAddDestroyAmount {
@@ -355,7 +356,7 @@ export interface ElementsAddPegout {
     network: string;
     elementsNetwork: string;
     mainchainGenesisBlockHash: string;
-    btcAddress: string;
+    btcAddress?: string;
     onlinePubkey: string;
     masterOnlineKey: string;
     bitcoinDescriptor: string;
@@ -370,31 +371,31 @@ export interface ElementsAddTxOutFee {
 
 export interface ElementsAddRawTransactionRequest {
     tx: string;
-    txins: ElementsAddTxInRequest[];
-    peginTxins: ElementsAddPeginTxIn[];
-    txouts: ElementsAddTxOut[];
-    destroyAmountTxouts: ElementsAddDestroyAmount[];
-    pegoutTxouts: ElementsAddPegout[];
-    fee: ElementsAddTxOutFee;
-    isRandomSortTxOut: boolean;
+    txins?: ElementsAddTxInRequest[];
+    peginTxins?: ElementsAddPeginTxIn[];
+    txouts?: ElementsAddTxOut[];
+    destroyAmountTxouts?: ElementsAddDestroyAmount[];
+    pegoutTxouts?: ElementsAddPegout[];
+    fee?: ElementsAddTxOutFee;
+    isRandomSortTxOut?: boolean;
 }
 
 export interface ElementsAddRawTransactionResponse {
     hex: string;
-    btcAddresses: string[];
+    btcAddresses?: string[];
 }
 
 export interface ElementsDestroyAmountTxIn {
     txid: string;
     vout: number;
-    sequence: number;
+    sequence?: number;
 }
 
 export interface ElementsDestroyAmountTxOut {
     address: string;
     amount: bigint;
     asset: string;
-    isRemoveNonce: boolean;
+    isRemoveNonce?: boolean;
 }
 
 export interface ElementsDestroyAmount {
@@ -408,12 +409,12 @@ export interface ElementsDestroyAmountFee {
 }
 
 export interface ElementsCreateDestroyAmountRequest {
-    version: number;
-    locktime: number;
-    txins: ElementsDestroyAmountTxIn[];
-    txouts: ElementsDestroyAmountTxOut[];
+    version?: number;
+    locktime?: number;
+    txins?: ElementsDestroyAmountTxIn[];
+    txouts?: ElementsDestroyAmountTxOut[];
     destroy: ElementsDestroyAmount;
-    fee: ElementsDestroyAmountFee;
+    fee?: ElementsDestroyAmountFee;
 }
 
 export interface ElementsCreateDestroyAmountResponse {
@@ -423,9 +424,9 @@ export interface ElementsCreateDestroyAmountResponse {
 export interface ElementsCreatePegInAddressRequest {
     fedpegscript: string;
     pubkey: string;
-    redeemScript: string;
-    network: string;
-    hashType: string;
+    redeemScript?: string;
+    network?: string;
+    hashType?: string;
 }
 
 export interface ElementsCreatePegInAddressResponse {
@@ -444,19 +445,19 @@ export interface ElementsPeginWitness {
 }
 
 export interface ElementsPeginTxIn {
-    isPegin: boolean;
+    isPegin?: boolean;
     txid: string;
     vout: number;
-    sequence: number;
-    peginwitness: ElementsPeginWitness;
-    isRemoveMainchainTxWitness: boolean;
+    sequence?: number;
+    peginwitness?: ElementsPeginWitness;
+    isRemoveMainchainTxWitness?: boolean;
 }
 
 export interface ElementsPeginTxOut {
     address: string;
     amount: bigint;
     asset: string;
-    isRemoveNonce: boolean;
+    isRemoveNonce?: boolean;
 }
 
 export interface ElementsPeginTxOutFee {
@@ -465,12 +466,12 @@ export interface ElementsPeginTxOutFee {
 }
 
 export interface ElementsCreateRawPeginRequest {
-    version: number;
-    locktime: number;
+    version?: number;
+    locktime?: number;
     txins: ElementsPeginTxIn[];
-    txouts: ElementsPeginTxOut[];
-    fee: ElementsPeginTxOutFee;
-    isRandomSortTxOut: boolean;
+    txouts?: ElementsPeginTxOut[];
+    fee?: ElementsPeginTxOutFee;
+    isRandomSortTxOut?: boolean;
 }
 
 export interface ElementsCreateRawPeginResponse {
@@ -480,14 +481,14 @@ export interface ElementsCreateRawPeginResponse {
 export interface ElementsPegoutTxIn {
     txid: string;
     vout: number;
-    sequence: number;
+    sequence?: number;
 }
 
 export interface ElementsPegoutTxOut {
     address: string;
     amount: bigint;
     asset: string;
-    isRemoveNonce: boolean;
+    isRemoveNonce?: boolean;
 }
 
 export interface ElementsPegout {
@@ -496,7 +497,7 @@ export interface ElementsPegout {
     network: string;
     elementsNetwork: string;
     mainchainGenesisBlockHash: string;
-    btcAddress: string;
+    btcAddress?: string;
     onlinePubkey: string;
     masterOnlineKey: string;
     bitcoinDescriptor: string;
@@ -510,30 +511,30 @@ export interface ElementsPegoutTxOutFee {
 }
 
 export interface ElementsCreateRawPegoutRequest {
-    version: number;
-    locktime: number;
-    txins: ElementsPegoutTxIn[];
-    txouts: ElementsPegoutTxOut[];
+    version?: number;
+    locktime?: number;
+    txins?: ElementsPegoutTxIn[];
+    txouts?: ElementsPegoutTxOut[];
     pegout: ElementsPegout;
-    fee: ElementsPegoutTxOutFee;
+    fee?: ElementsPegoutTxOutFee;
 }
 
 export interface ElementsCreateRawPegoutResponse {
     hex: string;
-    btcAddress: string;
+    btcAddress?: string;
 }
 
 export interface ElementsTxInRequest {
     txid: string;
     vout: number;
-    sequence: number;
+    sequence?: number;
 }
 
 export interface ElementsTxOutRequest {
     address: string;
     amount: bigint;
     asset: string;
-    isRemoveNonce: boolean;
+    isRemoveNonce?: boolean;
 }
 
 export interface ElementsTxOutFeeRequest {
@@ -542,11 +543,11 @@ export interface ElementsTxOutFeeRequest {
 }
 
 export interface ElementsCreateRawTransactionRequest {
-    version: number;
-    locktime: number;
+    version?: number;
+    locktime?: number;
     txins: ElementsTxInRequest[];
-    txouts: ElementsTxOutRequest[];
-    fee: ElementsTxOutFeeRequest;
+    txouts?: ElementsTxOutRequest[];
+    fee?: ElementsTxOutFeeRequest;
 }
 
 export interface ElementsCreateRawTransactionResponse {
@@ -555,9 +556,9 @@ export interface ElementsCreateRawTransactionResponse {
 
 export interface ElementsDecodeRawTransactionRequest {
     hex: string;
-    network: string;
-    mainchainNetwork: string;
-    iswitness: boolean;
+    network?: string;
+    mainchainNetwork?: string;
+    iswitness?: boolean;
 }
 
 export interface ElementsDecodeUnlockingScript {
@@ -569,54 +570,54 @@ export interface ElementsDecodeIssuance {
     assetBlindingNonce: string;
     assetEntropy: string;
     isreissuance: boolean;
-    token: string;
-    asset: string;
-    assetamount: number;
-    assetamountcommitment: string;
-    tokenamount: number;
-    tokenamountcommitment: string;
+    token?: string;
+    asset?: string;
+    assetamount?: bigint;
+    assetamountcommitment?: string;
+    tokenamount?: bigint;
+    tokenamountcommitment?: string;
 }
 
 export interface ElementsDecodeRawTransactionTxIn {
-    coinbase: string;
-    txid: string;
-    vout: number;
-    scriptSig: ElementsDecodeUnlockingScript;
-    is_pegin: boolean;
-    sequence: bigint;
-    txinwitness: string[];
-    pegin_witness: string[];
-    issuance: ElementsDecodeIssuance;
+    coinbase?: string;
+    txid?: string;
+    vout?: number;
+    scriptSig?: ElementsDecodeUnlockingScript;
+    is_pegin?: boolean;
+    sequence?: bigint;
+    txinwitness?: string[];
+    pegin_witness?: string[];
+    issuance?: ElementsDecodeIssuance;
 }
 
 export interface ElementsDecodeLockingScript {
-    asm: string;
-    hex: string;
-    reqSigs: number;
+    asm?: string;
+    hex?: string;
+    reqSigs?: number;
     type: string;
-    addresses: string[];
-    pegout_chain: string;
-    pegout_asm: string;
-    pegout_hex: string;
-    pegout_reqSigs: number;
-    pegout_type: string;
-    pegout_addresses: string[];
+    addresses?: string[];
+    pegout_chain?: string;
+    pegout_asm?: string;
+    pegout_hex?: string;
+    pegout_reqSigs?: number;
+    pegout_type?: string;
+    pegout_addresses?: string[];
 }
 
 export interface ElementsDecodeRawTransactionTxOut {
-    value: number;
-    'value-minimum': number;
-    'value-maximum': number;
-    'ct-exponent': number;
-    'ct-bits': number;
-    surjectionproof: string;
-    valuecommitment: string;
-    asset: string;
-    assetcommitment: string;
-    commitmentnonce: string;
-    commitmentnonce_fully_valid: boolean;
+    value?: bigint;
+    'value-minimum?': number;
+    'value-maximum?': number;
+    'ct-exponent?': number;
+    'ct-bits?': number;
+    surjectionproof?: string;
+    valuecommitment?: string;
+    asset?: string;
+    assetcommitment?: string;
+    commitmentnonce?: string;
+    commitmentnonce_fully_valid?: boolean;
     n: number;
-    scriptPubKey: ElementsDecodeLockingScript;
+    scriptPubKey?: ElementsDecodeLockingScript;
 }
 
 export interface ElementsDecodeRawTransactionResponse {
@@ -629,8 +630,8 @@ export interface ElementsDecodeRawTransactionResponse {
     vsize: bigint;
     weight: bigint;
     locktime: number;
-    vin: ElementsDecodeRawTransactionTxIn[];
-    vout: ElementsDecodeRawTransactionTxOut[];
+    vin?: ElementsDecodeRawTransactionTxIn[];
+    vout?: ElementsDecodeRawTransactionTxOut[];
 }
 
 export interface GetConfidentialAddressRequest {
@@ -658,14 +659,14 @@ export interface IssuanceDataRequest {
     assetAddress: string;
     tokenAmount: bigint;
     tokenAddress: string;
-    isBlind: boolean;
-    contractHash: string;
-    isRemoveNonce: boolean;
+    isBlind?: boolean;
+    contractHash?: string;
+    isRemoveNonce?: boolean;
 }
 
 export interface SetRawIssueAssetRequest {
     tx: string;
-    isRandomSortTxOut: boolean;
+    isRandomSortTxOut?: boolean;
     issuances: IssuanceDataRequest[];
 }
 
@@ -674,7 +675,7 @@ export interface IssuanceDataResponse {
     vout: number;
     asset: string;
     entropy: string;
-    token: string;
+    token?: string;
 }
 
 export interface SetRawIssueAssetResponse {
@@ -689,12 +690,12 @@ export interface ReissuanceDataRequest {
     address: string;
     assetBlindingNonce: string;
     assetEntropy: string;
-    isRemoveNonce: boolean;
+    isRemoveNonce?: boolean;
 }
 
 export interface SetRawReissueAssetRequest {
     tx: string;
-    isRandomSortTxOut: boolean;
+    isRandomSortTxOut?: boolean;
     issuances: ReissuanceDataRequest[];
 }
 
@@ -718,14 +719,14 @@ export interface UnblindTxOut {
 export interface UnblindIssuance {
     txid: string;
     vout: bigint;
-    assetBlindingKey: string;
-    tokenBlindingKey: string;
+    assetBlindingKey?: string;
+    tokenBlindingKey?: string;
 }
 
 export interface UnblindRawTransactionRequest {
     tx: string;
-    txouts: UnblindTxOut[];
-    issuances: UnblindIssuance[];
+    txouts?: UnblindTxOut[];
+    issuances?: UnblindIssuance[];
 }
 
 export interface UnblindOutput {
@@ -739,22 +740,22 @@ export interface UnblindOutput {
 export interface UnblindIssuanceOutput {
     txid: string;
     vout: bigint;
-    asset: string;
-    assetamount: bigint;
-    token: string;
-    tokenamount: bigint;
+    asset?: string;
+    assetamount?: bigint;
+    token?: string;
+    tokenamount?: bigint;
 }
 
 export interface UnblindRawTransactionResponse {
     hex: string;
-    outputs: UnblindOutput[];
-    issuanceOutputs: UnblindIssuanceOutput[];
+    outputs?: UnblindOutput[];
+    issuanceOutputs?: UnblindIssuanceOutput[];
 }
 
 export interface EncodeSignatureByDerRequest {
     signature: string;
     sighashType: string;
-    sighashAnyoneCanPay: boolean;
+    sighashAnyoneCanPay?: boolean;
 }
 
 export interface EncodeSignatureByDerResponse {
@@ -774,29 +775,29 @@ export interface ErrorResponse {
 export interface SelectUtxoData {
     txid: string;
     vout: number;
-    asset: string;
-    redeemScript: string;
-    descriptor: string;
-    isIssuance: boolean;
-    isBlindIssuance: boolean;
-    isPegin: boolean;
-    peginBtcTxSize: bigint;
-    fedpegScript: string;
+    asset?: string;
+    redeemScript?: string;
+    descriptor?: string;
+    isIssuance?: boolean;
+    isBlindIssuance?: boolean;
+    isPegin?: boolean;
+    peginBtcTxSize?: bigint;
+    fedpegScript?: string;
 }
 
 export interface EstimateFeeRequest {
-    selectUtxos: SelectUtxoData[];
+    selectUtxos?: SelectUtxoData[];
     feeRate: number;
     tx: string;
-    isElements: boolean;
-    isBlind: boolean;
-    feeAsset: string;
+    isElements?: boolean;
+    isBlind?: boolean;
+    feeAsset?: string;
 }
 
 export interface EstimateFeeResponse {
     feeAmount: bigint;
-    txFeeAmount: bigint;
-    utxoFeeAmount: bigint;
+    txFeeAmount?: bigint;
+    utxoFeeAmount?: bigint;
 }
 
 export interface FundUtxoJsonData {
@@ -804,8 +805,8 @@ export interface FundUtxoJsonData {
     vout: number;
     address: string;
     amount: bigint;
-    asset: string;
-    descriptor: string;
+    asset?: string;
+    descriptor?: string;
 }
 
 export interface FundSelectUtxoData {
@@ -813,14 +814,14 @@ export interface FundSelectUtxoData {
     vout: number;
     address: string;
     amount: bigint;
-    asset: string;
-    redeemScript: string;
-    descriptor: string;
-    isIssuance: boolean;
-    isBlindIssuance: boolean;
-    isPegin: boolean;
-    peginBtcTxSize: bigint;
-    fedpegScript: string;
+    asset?: string;
+    redeemScript?: string;
+    descriptor?: string;
+    isIssuance?: boolean;
+    isBlindIssuance?: boolean;
+    isPegin?: boolean;
+    peginBtcTxSize?: bigint;
+    fedpegScript?: string;
 }
 
 export interface FundAmountMapData {
@@ -831,36 +832,36 @@ export interface FundAmountMapData {
 
 export interface FundFeeInfomation {
     feeRate: number;
-    longTermFeeRate: number;
-    knapsackMinChange: bigint;
-    dustFeeRate: number;
-    feeAsset: string;
-    isBlindEstimateFee: boolean;
+    longTermFeeRate?: number;
+    knapsackMinChange?: bigint;
+    dustFeeRate?: number;
+    feeAsset?: string;
+    isBlindEstimateFee?: boolean;
 }
 
 export interface FundRawTransactionRequest {
     utxos: FundUtxoJsonData[];
-    selectUtxos: FundSelectUtxoData[];
+    selectUtxos?: FundSelectUtxoData[];
     tx: string;
-    isElements: boolean;
-    network: string;
-    targetAmount: bigint;
-    reserveAddress: string;
-    targets: FundAmountMapData[];
-    feeInfo: FundFeeInfomation;
+    isElements?: boolean;
+    network?: string;
+    targetAmount?: bigint;
+    reserveAddress?: string;
+    targets?: FundAmountMapData[];
+    feeInfo?: FundFeeInfomation;
 }
 
 export interface FundRawTransactionResponse {
     hex: string;
-    usedAddresses: string[];
-    feeAmount: bigint;
+    usedAddresses?: string[];
+    feeAmount?: bigint;
 }
 
 export interface GetAddressesFromMultisigRequest {
-    isElements: boolean;
+    isElements?: boolean;
     redeemScript: string;
-    network: string;
-    hashType: string;
+    network?: string;
+    hashType?: string;
 }
 
 export interface GetAddressesFromMultisigResponse {
@@ -871,15 +872,15 @@ export interface GetAddressesFromMultisigResponse {
 
 export interface GetAddressInfoRequest {
     address: string;
-    isElements: boolean;
+    isElements?: boolean;
 }
 
 export interface GetAddressInfoResponse {
     lockingScript: string;
     network: string;
     hashType: string;
-    witnessVersion: number;
-    hash: string;
+    witnessVersion?: number;
+    hash?: string;
 }
 
 export interface GetExtkeyInfoRequest {
@@ -916,7 +917,7 @@ export interface GetPrivkeyFromExtkeyRequest {
     extkey: string;
     network: string;
     wif: boolean;
-    isCompressed: boolean;
+    isCompressed?: boolean;
 }
 
 export interface GetPrivkeyFromExtkeyResponse {
@@ -954,7 +955,7 @@ export interface GetPubkeyFromExtkeyResponse {
 
 export interface GetPubkeyFromPrivkeyRequest {
     privkey: string;
-    isCompressed: boolean;
+    isCompressed?: boolean;
 }
 
 export interface GetPubkeyFromPrivkeyResponse {
@@ -968,7 +969,7 @@ export interface GetWitnessStackNumTxInRequest {
 
 export interface GetWitnessStackNumRequest {
     tx: string;
-    isElements: boolean;
+    isElements?: boolean;
     txin: GetWitnessStackNumTxInRequest;
 }
 
@@ -979,22 +980,22 @@ export interface GetWitnessStackNumResponse {
 export interface CreateMultisigRequest {
     nrequired: number;
     keys: string[];
-    isElements: boolean;
+    isElements?: boolean;
     network: string;
     hashType: string;
 }
 
 export interface CreateMultisigResponse {
     address: string;
-    redeemScript: string;
-    witnessScript: string;
+    redeemScript?: string;
+    witnessScript?: string;
 }
 
 export interface ParseDescriptorRequest {
-    isElements: boolean;
+    isElements?: boolean;
     descriptor: string;
-    network: string;
-    bip32DerivationPath: string;
+    network?: string;
+    bip32DerivationPath?: string;
 }
 
 export interface DescriptorKeyJson {
@@ -1007,21 +1008,21 @@ export interface DescriptorScriptJson {
     lockingScript: string;
     address: string;
     hashType: string;
-    redeemScript: string;
-    keyType: string;
-    key: string;
-    keys: DescriptorKeyJson[];
-    reqNum: bigint;
+    redeemScript?: string;
+    keyType?: string;
+    key?: string;
+    keys?: DescriptorKeyJson[];
+    reqNum?: bigint;
 }
 
 export interface ParseDescriptorResponse {
     type: string;
-    address: string;
+    address?: string;
     lockingScript: string;
-    hashType: string;
-    redeemScript: string;
+    hashType?: string;
+    redeemScript?: string;
     includeMultisig: boolean;
-    scripts: DescriptorScriptJson[];
+    scripts?: DescriptorScriptJson[];
 }
 
 export interface ParseScriptRequest {
@@ -1036,8 +1037,8 @@ export interface UtxoJsonData {
     txid: string;
     vout: number;
     amount: bigint;
-    asset: string;
-    descriptor: string;
+    asset?: string;
+    descriptor?: string;
 }
 
 export interface TargetAmountMapData {
@@ -1046,27 +1047,27 @@ export interface TargetAmountMapData {
 }
 
 export interface CoinSelectionFeeInfomationField {
-    txFeeAmount: bigint;
-    feeRate: number;
-    longTermFeeRate: number;
-    knapsackMinChange: bigint;
-    feeAsset: string;
+    txFeeAmount?: bigint;
+    feeRate?: number;
+    longTermFeeRate?: number;
+    knapsackMinChange?: bigint;
+    feeAsset?: string;
 }
 
 export interface SelectUtxosRequest {
     utxos: UtxoJsonData[];
-    targetAmount: bigint;
-    isElements: boolean;
-    targets: TargetAmountMapData[];
-    feeInfo: CoinSelectionFeeInfomationField;
+    targetAmount?: bigint;
+    isElements?: boolean;
+    targets?: TargetAmountMapData[];
+    feeInfo?: CoinSelectionFeeInfomationField;
 }
 
 export interface UtxoJsonData {
     txid: string;
     vout: number;
     amount: bigint;
-    asset: string;
-    descriptor: string;
+    asset?: string;
+    descriptor?: string;
 }
 
 export interface TargetAmountMapData {
@@ -1076,9 +1077,9 @@ export interface TargetAmountMapData {
 
 export interface SelectUtxosResponse {
     utxos: UtxoJsonData[];
-    selectedAmount: bigint;
-    selectedAmounts: TargetAmountMapData[];
-    feeAmount: bigint;
+    selectedAmount?: bigint;
+    selectedAmounts?: TargetAmountMapData[];
+    feeAmount?: bigint;
     utxoFeeAmount: bigint;
 }
 
@@ -1093,8 +1094,8 @@ export interface CreateSignatureHashTxInRequest {
     keyData: SignatureHashKeyData;
     amount: bigint;
     hashType: string;
-    sighashType: string;
-    sighashAnyoneCanPay: boolean;
+    sighashType?: string;
+    sighashAnyoneCanPay?: boolean;
 }
 
 export interface CreateSignatureHashRequest {
@@ -1115,11 +1116,11 @@ export interface CreateElementsSignatureHashTxIn {
     txid: string;
     vout: number;
     keyData: ElementsSignatureHashKeyData;
-    amount: bigint;
-    confidentialValueCommitment: string;
+    amount?: bigint;
+    confidentialValueCommitment?: string;
     hashType: string;
-    sighashType: string;
-    sighashAnyoneCanPay: boolean;
+    sighashType?: string;
+    sighashAnyoneCanPay?: boolean;
 }
 
 export interface CreateElementsSignatureHashRequest {
@@ -1139,7 +1140,7 @@ export interface GetSupportedFunctionResponse {
 export interface TxInRequest {
     txid: string;
     vout: number;
-    sequence: number;
+    sequence?: number;
 }
 
 export interface TxOutRequest {
@@ -1148,10 +1149,10 @@ export interface TxOutRequest {
 }
 
 export interface CreateRawTransactionRequest {
-    version: number;
-    locktime: number;
-    txins: TxInRequest[];
-    txouts: TxOutRequest[];
+    version?: number;
+    locktime?: number;
+    txins?: TxInRequest[];
+    txouts?: TxOutRequest[];
 }
 
 export interface CreateRawTransactionResponse {
@@ -1159,12 +1160,12 @@ export interface CreateRawTransactionResponse {
 }
 
 export interface WitnessStackData {
-    index: bigint;
+    index: number;
     hex: string;
-    type: string;
-    derEncode: boolean;
-    sighashType: string;
-    sighashAnyoneCanPay: boolean;
+    type?: string;
+    derEncode?: boolean;
+    sighashType?: string;
+    sighashAnyoneCanPay?: boolean;
 }
 
 export interface UpdateWitnessStackTxInRequest {
@@ -1175,12 +1176,12 @@ export interface UpdateWitnessStackTxInRequest {
 
 export interface UpdateWitnessStackRequest {
     tx: string;
-    isElements: boolean;
-    txin: UpdateWitnessStackTxInRequest;
+    isElements?: boolean;
+    txin?: UpdateWitnessStackTxInRequest;
 }
 
 export interface UpdateWitnessStackResponse {
-    hex: string;
+    hex?: string;
 }
 
 export interface VerifySignatureTxInRequest {
@@ -1188,17 +1189,17 @@ export interface VerifySignatureTxInRequest {
     vout: number;
     signature: string;
     pubkey: string;
-    redeemScript: string;
+    redeemScript?: string;
     hashType: string;
-    sighashType: string;
-    sighashAnyoneCanPay: boolean;
-    amount: bigint;
-    confidentialValueCommitment: string;
+    sighashType?: string;
+    sighashAnyoneCanPay?: boolean;
+    amount?: bigint;
+    confidentialValueCommitment?: string;
 }
 
 export interface VerifySignatureRequest {
     tx: string;
-    isElements: boolean;
+    isElements?: boolean;
     txin: VerifySignatureTxInRequest;
 }
 

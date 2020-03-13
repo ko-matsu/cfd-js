@@ -13,7 +13,6 @@ const NET_TYPE = 'testnet';
   const reqJson: cfdjs.CreateKeyPairRequest = {
     'wif': true,
     'network': NET_TYPE,
-    'isCompressed': true,
   };
   console.log('*** Request ***\n', reqJson);
   const result: cfdjs.CreateKeyPairResponse =
@@ -45,7 +44,6 @@ let createMultisigResult: cfdjs.CreateMultisigResponse;
     ],
     network: NET_TYPE,
     hashType: 'p2wsh',
-    isElements: false,
   };
   console.log('*** Request ***\n', reqJson);
   createMultisigResult = cfdjs.CreateMultisig(reqJson);

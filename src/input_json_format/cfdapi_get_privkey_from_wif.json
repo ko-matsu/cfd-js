@@ -3,14 +3,18 @@
   "request": {
     ":class": "GetPrivkeyFromWifRequest",
     "wif": "",
+    "wif:require": "require",
     "wif:comment": "Wallet Import Format"
   },
   "response": {
     ":class": "GetPrivkeyFromWifResponse",
     "hex": "",
+    "hex:require": "require",
     "hex:comment": "privkey hex.",
     "network": "",
+    "network:require": "require",
     "network:hint": "mainnet, testnet or regtest",
-    "isCompressed": true
+    "isCompressed": true,
+    "isCompressed:require": "require"
   }
 }

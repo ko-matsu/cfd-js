@@ -987,7 +987,12 @@ ElementsTransactionStructApi::BlindTransaction(
     for (BlindTxOutRequestStruct txout : request.txouts) {
       TxOutBlindKeys txout_key;
       txout_key.index = txout.index;
-      txout_key.blinding_key = Pubkey(txout.blind_pubkey);
+      if (!txout.confidential_key.empty()) {
+        txout_key.blinding_key = Pubkey(txout.confidential_key);
+      } else {
+        // Deprecated
+        txout_key.blinding_key = Pubkey(txout.blind_pubkey);
+      }
       txout_blind_keys.push_back(txout_key);
     }
 

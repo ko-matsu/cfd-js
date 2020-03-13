@@ -1119,7 +1119,7 @@ let createMultisigScriptSigResult;
 
   const vout = 0;
   const signedResult = cfdjsUtil.SetMultisigScriptSig(createP2shP2wshTxResult.hex, DUMMY_TXID_1, vout, createMultisigScriptSigResult.hex, 'p2sh-p2wsh', false);
-  console.log('*** SetElementsMultisigScriptSig ***\n', signedResult);
+  console.log('*** SetMultisigScriptSig ***\n', signedResult);
 }
 
 let getAddressInfoResult;

@@ -151,7 +151,7 @@ export interface ConvertMnemonicToSeedRequest {
 }
 
 export interface ConvertMnemonicToSeedResponse {
-    seed?: string;
+    seed: string;
     entropy?: string;
 }
 

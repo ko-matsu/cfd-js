@@ -19,7 +19,7 @@
   "response": {
     ":class": "ConvertMnemonicToSeedResponse",
     "seed": "",
-    "mnemonic:require": "require",
+    "seed:require": "require",
     "entropy": "",
     "entropy:require": "optional",
     "entropy:comment": "This field is only set if \"language\" is set in the request"

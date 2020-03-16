@@ -336,7 +336,7 @@ if (!supportFunctions.elements) {
       'txouts': [
         {
           'index': 0,
-          'blindPubkey': '02d570f84ffe5bdf7583400af2e6b9e219210ecf29a333757481cbca826ada8e16',
+          'confidentialKey': '02d570f84ffe5bdf7583400af2e6b9e219210ecf29a333757481cbca826ada8e16',
         },
       ],
     };
@@ -480,11 +480,11 @@ if (!supportFunctions.elements) {
       'txouts': [
         {
           'index': 0,
-          'blindPubkey': '0213c4451645063e1edd5fe76e5194864c2246d4c4e6c8df5a305224046e1ea2c4',
+          'confidentialKey': '0213c4451645063e1edd5fe76e5194864c2246d4c4e6c8df5a305224046e1ea2c4',
         },
         {
           'index': 1,
-          'blindPubkey': '0213c4451645063e1edd5fe76e5194864c2246d4c4e6c8df5a305224046e1ea2c4',
+          'confidentialKey': '0213c4451645063e1edd5fe76e5194864c2246d4c4e6c8df5a305224046e1ea2c4',
         },
       ],
     };
@@ -709,15 +709,15 @@ if (!supportFunctions.elements) {
       'txouts': [
         {
           'index': 0,
-          'blindPubkey': '03c9104d9ffbec46e25ea783ac1968800203888f287c735cbb5af3a4be250dc849',
+          'confidentialKey': '03c9104d9ffbec46e25ea783ac1968800203888f287c735cbb5af3a4be250dc849',
         },
         {
           'index': 2,
-          'blindPubkey': '03bcb46403c62f1d39ad824450145dc4e45c2772345686c22508cc370d38547fce',
+          'confidentialKey': '03bcb46403c62f1d39ad824450145dc4e45c2772345686c22508cc370d38547fce',
         },
         {
           'index': 3,
-          'blindPubkey': '02893fdde05b0f0d2662f75d63860ba5c5b02424a66e7a1f8d0a98dcd02bb74748',
+          'confidentialKey': '02893fdde05b0f0d2662f75d63860ba5c5b02424a66e7a1f8d0a98dcd02bb74748',
         },
       ],
       'issuances': [{
@@ -803,7 +803,7 @@ if (!supportFunctions.elements) {
     'CTExCoUri8VzkxbbhqzgsruWJ5zYtmoFXxCWtjiSLAzcMbpEWhHmDrZ66bAb41VsmSKnvJWrq2cfjUw9', // reissue
   ];
   // elements-cli getaddressinfo "address"
-  const blindPubkeys = [
+  const confidentialKeys = [
     '02200d8510dfcf8e2330c0795c771d1e6064daab2f274ac32a6e2708df9bfa893d', // utxoChange
     '02cc645552109331726c0ffadccab21620dd7a5a33260c6ac7bd1c78b98cb1e35a', // utxoIssuance
     '03ce4c4eac09fe317f365e45c00ffcf2e9639bc0fd792c10f72cdc173c4e5ed879', // reissue
@@ -907,15 +907,15 @@ if (!supportFunctions.elements) {
       'txouts': [
         {
           'index': 0,
-          'blindPubkey': blindPubkeys[0],
+          'confidentialKey': confidentialKeys[0],
         },
         {
           'index': 1,
-          'blindPubkey': blindPubkeys[1],
+          'confidentialKey': confidentialKeys[1],
         },
         {
           'index': 3,
-          'blindPubkey': blindPubkeys[2],
+          'confidentialKey': confidentialKeys[2],
         },
       ],
       'issuances': [{

@@ -13,7 +13,6 @@ const NET_TYPE = 'testnet';
   const reqJson: cfdjs.CreateKeyPairRequest = {
     'wif': true,
     'network': NET_TYPE,
-    'isCompressed': true,
   };
   console.log('*** Request ***\n', reqJson);
   const result: cfdjs.CreateKeyPairResponse =
@@ -45,10 +44,50 @@ let createMultisigResult: cfdjs.CreateMultisigResponse;
     ],
     network: NET_TYPE,
     hashType: 'p2wsh',
-    isElements: false,
   };
   console.log('*** Request ***\n', reqJson);
   createMultisigResult = cfdjs.CreateMultisig(reqJson);
   console.log('\n*** Response ***\n', createMultisigResult, '\n');
 }
 
+let createRawTransactionResult: cfdjs.CreateRawTransactionResponse;
+{
+  const fundTxAmt = 5000000000n + (8000n * 2n);
+  const txInAmtAlice = 3000000000n; // dummy txin amount
+  const txInAmtBob = 2800000000n; // dummy txin amount
+
+  console.log('\n===== CreateRawTransaction =====');
+  const reqJson: cfdjs.CreateRawTransactionRequest = {
+    version: 2,
+    locktime: 0,
+    txins: [
+      {
+        txid: '86dc9d4a8764c8658f24ab0286f215abe443f98221c272e1999c56e902c9a6ac',
+        vout: 0,
+      }, {
+        txid: 'd99c1749f81555ac372e3884251c9c758004516b05e5108db38f48bc626aa933',
+        vout: 1,
+      },
+    ],
+    txouts: [
+      {
+        address: createMultisigResult.address,
+        amount: fundTxAmt,
+      }, {
+        address: 'tb1q6vugzhd50r3yxgejxym0yzylkpkh2qqcvjuqp4',
+        amount: txInAmtAlice - fundTxAmt / 2n,
+      }, {
+        address: 'tb1qy7c7fqkgags3g6j0r8naj6c8fydcaz766d0skr',
+        amount: txInAmtBob - fundTxAmt / 2n,
+      },
+    ],
+  };
+  console.log('*** Request ***\n', reqJson);
+  createRawTransactionResult = cfdjs.CreateRawTransaction(reqJson);
+  console.log('\n*** Response ***\n', createRawTransactionResult, '\n');
+  const decodeResult: cfdjs.DecodeRawTransactionResponse =
+      cfdjs.DecodeRawTransaction({
+        hex: createRawTransactionResult.hex,
+      });
+  console.log('\n*** Decode ***\n', JSON.stringify(decodeResult, null, '  '), '\n');
+}

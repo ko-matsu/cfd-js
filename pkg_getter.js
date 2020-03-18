@@ -113,7 +113,7 @@ const main = async function() {
       const pipeline = util.promisify(stream.pipeline);
       await pipeline(
           got.stream(targetUrl),
-          fs.createWriteStream(zipfilepath)
+          fs.createWriteStream(zipfilepath),
       );
     }
 

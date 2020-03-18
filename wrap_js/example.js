@@ -3,6 +3,7 @@
 // サンプルコード
 //
 const cfdjsModule = require('./cfdjs_module');
+const cfdjsUtil = require('../cfdjs_util');
 const {
   CreateRawTransaction,
   AddRawTransaction,
@@ -1115,6 +1116,10 @@ let createMultisigScriptSigResult;
     script: createMultisigScriptSigResult.hex,
   });
   console.log('*** ParseScript ***\n', parseResult);
+
+  const vout = 0;
+  const signedResult = cfdjsUtil.SetMultisigScriptSig(createP2shP2wshTxResult.hex, DUMMY_TXID_1, vout, createMultisigScriptSigResult.hex, 'p2sh-p2wsh', false);
+  console.log('*** SetMultisigScriptSig ***\n', signedResult);
 }
 
 let getAddressInfoResult;
@@ -1211,6 +1216,6 @@ let getPrivkeyWifResult;
   const getPrivkeyFromWifJson = {
     wif: getPrivkeyWifResult.wif,
   };
-  const result = GetPrivkeyFromWif(getPrivkeyWifResult);
+  const result = GetPrivkeyFromWif(getPrivkeyFromWifJson);
   console.log('*** GetPrivkeyFromWif:Response ***\n', result, '\n');
 }

@@ -33,6 +33,7 @@ class JsonMappingData {
     this.is_output_struct = is_output_struct;
     this.is_array = false;
     this.is_object = false;
+    this.is_require = false;
     // Reserved word support.
     // TODO(k-matsuzawa): If the number increases, make a list.
     if (this.variable_name == 'asm') this.variable_name = `${this.variable_name}_`;
@@ -47,6 +48,12 @@ class JsonMappingData {
     } else if (type.startsWith('JsonObjectVector')) {
       const type_name = type.split('<')[1].split(',')[0].split('>')[0];
       this.struct_type = `std::vector<${type_name}Struct>`;
+    }
+  }
+
+  setRequired(require_info) {
+    if (require_info === 'require') {
+      this.is_require = true;
     }
   }
 
@@ -89,7 +96,7 @@ class JsonMappingData {
       let tmpList = list;
       for (const key in this.child_list) {
         if (this.child_list[key]) {
-          const name = this.child_list[key].name;
+          const name = this.child_list[key].name + (this.child_list[key].is_require ? '' : '?');
           const ret = this.child_list[key].collectMapData(tmpMap, tmpList);
           const type = ret['type'];
           tmpMap = ret['map'];
@@ -110,7 +117,7 @@ class JsonMappingData {
       let tmpList = list;
       for (const key in this.child_list) {
         if (this.child_list[key]) {
-          let name = this.child_list[key].name;
+          let name = this.child_list[key].name + (this.child_list[key].is_require ? '' : '?');
           const ret = this.child_list[key].collectMapData(tmpMap, tmpList);
           debugLog('prop : ', ret);
           const type = ret['type'];
@@ -238,6 +245,7 @@ const analyzeJson = (jsonObj, objName = '') => {
       result.is_object = true;
       // Stored in temporary map to maintain sort order.
       const tmp_map = {};
+      const require_map = {};
       for (const key in jsonObj) {
         if (key != ':class') {
           if (key.lastIndexOf(':type') >= 0) {
@@ -249,6 +257,10 @@ const analyzeJson = (jsonObj, objName = '') => {
               tmp_map[key_name] = data;
               debugLog(`set JsonMappingData = ${key_name}`)
             }
+          }
+          if (key.lastIndexOf(':require') >= 0) {
+            const key_name = key.split(':')[0];
+            require_map[key_name] = jsonObj[key];
           }
         }
       }
@@ -279,6 +291,9 @@ const analyzeJson = (jsonObj, objName = '') => {
               }
             }
             result.child_list[key] = new JsonMappingData(key, type_str, value, class_name);
+          }
+          if (require_map[key]) {
+            result.child_list[key].setRequired(require_map[key]);
           }
           const temp_child = analyzeJson(value, key);
           if (result.child_list[key].type == '') {

@@ -874,6 +874,13 @@ void BlindTxOutRequest::CollectFieldName() {
   json_mapper.emplace("index", func_table);
   item_list.push_back("index");
   func_table = {
+    BlindTxOutRequest::GetConfidentialKeyString,
+    BlindTxOutRequest::SetConfidentialKeyString,
+    BlindTxOutRequest::GetConfidentialKeyFieldType,
+  };
+  json_mapper.emplace("confidentialKey", func_table);
+  item_list.push_back("confidentialKey");
+  func_table = {
     BlindTxOutRequest::GetBlindPubkeyString,
     BlindTxOutRequest::SetBlindPubkeyString,
     BlindTxOutRequest::GetBlindPubkeyFieldType,
@@ -885,6 +892,7 @@ void BlindTxOutRequest::CollectFieldName() {
 void BlindTxOutRequest::ConvertFromStruct(
     const BlindTxOutRequestStruct& data) {
   index_ = data.index;
+  confidential_key_ = data.confidential_key;
   blind_pubkey_ = data.blind_pubkey;
   ignore_items = data.ignore_items;
 }
@@ -892,6 +900,7 @@ void BlindTxOutRequest::ConvertFromStruct(
 BlindTxOutRequestStruct BlindTxOutRequest::ConvertToStruct() const {  // NOLINT
   BlindTxOutRequestStruct result;
   result.index = index_;
+  result.confidential_key = confidential_key_;
   result.blind_pubkey = blind_pubkey_;
   result.ignore_items = ignore_items;
   return result;

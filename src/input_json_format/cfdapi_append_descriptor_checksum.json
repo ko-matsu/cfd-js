@@ -3,10 +3,13 @@
   "request": {
     ":class": "AppendDescriptorChecksumRequest",
     "descriptor": "",
-    "isElements": false
+    "descriptor:require": "require",
+    "isElements": false,
+    "isElements:require": "optional"
   },
   "response": {
     ":class": "AppendDescriptorChecksumResponse",
-    "descriptor": ""
+    "descriptor": "",
+    "descriptor:require": "require"
   }
 }

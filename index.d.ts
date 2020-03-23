@@ -269,6 +269,14 @@ export interface CreateScriptResponse {
     hex: string;
 }
 
+export interface DecodeDerSignatureToRawRequest {
+    signature: string;
+}
+
+export interface DecodeDerSignatureToRawResponse {
+    signature: string;
+}
+
 export interface DecodeRawTransactionRequest {
     hex: string;
     network?: string;
@@ -1240,6 +1248,8 @@ export function CreateKeyPair(jsonObject: CreateKeyPairRequest): CreateKeyPairRe
 export function CreateMultisigScriptSig(jsonObject: CreateMultisigScriptSigRequest): CreateMultisigScriptSigResponse;
 
 export function CreateScript(jsonObject: CreateScriptRequest): CreateScriptResponse;
+
+export function DecodeDerSignatureToRaw(jsonObject: DecodeDerSignatureToRawRequest): DecodeDerSignatureToRawResponse;
 
 export function DecodeRawTransaction(jsonObject: DecodeRawTransactionRequest): DecodeRawTransactionResponse;
 

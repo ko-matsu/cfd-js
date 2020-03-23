@@ -649,6 +649,29 @@ struct CreateScriptResponseStruct {
 };
 
 // ------------------------------------------------------------------------
+// DecodeDerSignatureToRawRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief DecodeDerSignatureToRawRequestStruct struct
+ */
+struct DecodeDerSignatureToRawRequestStruct {
+  std::string signature = "";  //!< signature  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// DecodeDerSignatureToRawResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief DecodeDerSignatureToRawResponseStruct struct
+ */
+struct DecodeDerSignatureToRawResponseStruct {
+  std::string signature = "";  //!< signature  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
 // DecodeRawTransactionRequestStruct
 // ------------------------------------------------------------------------
 /**

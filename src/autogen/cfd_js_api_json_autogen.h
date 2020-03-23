@@ -7883,6 +7883,564 @@ class CreateExtkeyFromParentResponse
 };
 
 // ------------------------------------------------------------------------
+// CreateExtkeyFromParentKeyRequest
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (CreateExtkeyFromParentKeyRequest) class
+ */
+class CreateExtkeyFromParentKeyRequest
+  : public cfd::core::JsonClassBase<CreateExtkeyFromParentKeyRequest> {
+ public:
+  CreateExtkeyFromParentKeyRequest() {
+    CollectFieldName();
+  }
+  virtual ~CreateExtkeyFromParentKeyRequest() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of network
+   * @return network
+   */
+  std::string GetNetwork() const {
+    return network_;
+  }
+  /**
+   * @brief Set to network
+   * @param[in] network    setting value.
+   */
+  void SetNetwork(  // line separate
+    const std::string& network) {  // NOLINT
+    this->network_ = network;
+  }
+  /**
+   * @brief Get data type of network
+   * @return Data type of network
+   */
+  static std::string GetNetworkFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of network field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetNetworkString(  // line separate
+      const CreateExtkeyFromParentKeyRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.network_);
+  }
+  /**
+   * @brief Set json object to network field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetNetworkString(  // line separate
+      CreateExtkeyFromParentKeyRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.network_, json_value);
+  }
+
+  /**
+   * @brief Get of extkeyType
+   * @return extkeyType
+   */
+  std::string GetExtkeyType() const {
+    return extkey_type_;
+  }
+  /**
+   * @brief Set to extkeyType
+   * @param[in] extkey_type    setting value.
+   */
+  void SetExtkeyType(  // line separate
+    const std::string& extkey_type) {  // NOLINT
+    this->extkey_type_ = extkey_type;
+  }
+  /**
+   * @brief Get data type of extkeyType
+   * @return Data type of extkeyType
+   */
+  static std::string GetExtkeyTypeFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of extkeyType field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetExtkeyTypeString(  // line separate
+      const CreateExtkeyFromParentKeyRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.extkey_type_);
+  }
+  /**
+   * @brief Set json object to extkeyType field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetExtkeyTypeString(  // line separate
+      CreateExtkeyFromParentKeyRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.extkey_type_, json_value);
+  }
+
+  /**
+   * @brief Get of parentKey
+   * @return parentKey
+   */
+  std::string GetParentKey() const {
+    return parent_key_;
+  }
+  /**
+   * @brief Set to parentKey
+   * @param[in] parent_key    setting value.
+   */
+  void SetParentKey(  // line separate
+    const std::string& parent_key) {  // NOLINT
+    this->parent_key_ = parent_key;
+  }
+  /**
+   * @brief Get data type of parentKey
+   * @return Data type of parentKey
+   */
+  static std::string GetParentKeyFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of parentKey field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetParentKeyString(  // line separate
+      const CreateExtkeyFromParentKeyRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.parent_key_);
+  }
+  /**
+   * @brief Set json object to parentKey field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetParentKeyString(  // line separate
+      CreateExtkeyFromParentKeyRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.parent_key_, json_value);
+  }
+
+  /**
+   * @brief Get of parentDepth
+   * @return parentDepth
+   */
+  uint8_t GetParentDepth() const {
+    return parent_depth_;
+  }
+  /**
+   * @brief Set to parentDepth
+   * @param[in] parent_depth    setting value.
+   */
+  void SetParentDepth(  // line separate
+    const uint8_t& parent_depth) {  // NOLINT
+    this->parent_depth_ = parent_depth;
+  }
+  /**
+   * @brief Get data type of parentDepth
+   * @return Data type of parentDepth
+   */
+  static std::string GetParentDepthFieldType() {
+    return "uint8_t";
+  }
+  /**
+   * @brief Get json string of parentDepth field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetParentDepthString(  // line separate
+      const CreateExtkeyFromParentKeyRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.parent_depth_);
+  }
+  /**
+   * @brief Set json object to parentDepth field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetParentDepthString(  // line separate
+      CreateExtkeyFromParentKeyRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.parent_depth_, json_value);
+  }
+
+  /**
+   * @brief Get of parentChainCode
+   * @return parentChainCode
+   */
+  std::string GetParentChainCode() const {
+    return parent_chain_code_;
+  }
+  /**
+   * @brief Set to parentChainCode
+   * @param[in] parent_chain_code    setting value.
+   */
+  void SetParentChainCode(  // line separate
+    const std::string& parent_chain_code) {  // NOLINT
+    this->parent_chain_code_ = parent_chain_code;
+  }
+  /**
+   * @brief Get data type of parentChainCode
+   * @return Data type of parentChainCode
+   */
+  static std::string GetParentChainCodeFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of parentChainCode field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetParentChainCodeString(  // line separate
+      const CreateExtkeyFromParentKeyRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.parent_chain_code_);
+  }
+  /**
+   * @brief Set json object to parentChainCode field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetParentChainCodeString(  // line separate
+      CreateExtkeyFromParentKeyRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.parent_chain_code_, json_value);
+  }
+
+  /**
+   * @brief Get of childNumber
+   * @return childNumber
+   */
+  uint32_t GetChildNumber() const {
+    return child_number_;
+  }
+  /**
+   * @brief Set to childNumber
+   * @param[in] child_number    setting value.
+   */
+  void SetChildNumber(  // line separate
+    const uint32_t& child_number) {  // NOLINT
+    this->child_number_ = child_number;
+  }
+  /**
+   * @brief Get data type of childNumber
+   * @return Data type of childNumber
+   */
+  static std::string GetChildNumberFieldType() {
+    return "uint32_t";
+  }
+  /**
+   * @brief Get json string of childNumber field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetChildNumberString(  // line separate
+      const CreateExtkeyFromParentKeyRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.child_number_);
+  }
+  /**
+   * @brief Set json object to childNumber field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetChildNumberString(  // line separate
+      CreateExtkeyFromParentKeyRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.child_number_, json_value);
+  }
+
+  /**
+   * @brief Get of hardened
+   * @return hardened
+   */
+  bool GetHardened() const {
+    return hardened_;
+  }
+  /**
+   * @brief Set to hardened
+   * @param[in] hardened    setting value.
+   */
+  void SetHardened(  // line separate
+    const bool& hardened) {  // NOLINT
+    this->hardened_ = hardened;
+  }
+  /**
+   * @brief Get data type of hardened
+   * @return Data type of hardened
+   */
+  static std::string GetHardenedFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of hardened field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetHardenedString(  // line separate
+      const CreateExtkeyFromParentKeyRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.hardened_);
+  }
+  /**
+   * @brief Set json object to hardened field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetHardenedString(  // line separate
+      CreateExtkeyFromParentKeyRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.hardened_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const CreateExtkeyFromParentKeyRequestStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  CreateExtkeyFromParentKeyRequestStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using CreateExtkeyFromParentKeyRequestMapTable =
+    cfd::core::JsonTableMap<CreateExtkeyFromParentKeyRequest>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const CreateExtkeyFromParentKeyRequestMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static CreateExtkeyFromParentKeyRequestMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(network) value
+   */
+  std::string network_ = "mainnet";
+  /**
+   * @brief JsonAPI(extkeyType) value
+   */
+  std::string extkey_type_ = "extPubkey";
+  /**
+   * @brief JsonAPI(parentKey) value
+   */
+  std::string parent_key_ = "";
+  /**
+   * @brief JsonAPI(parentDepth) value
+   */
+  uint8_t parent_depth_ = 0;
+  /**
+   * @brief JsonAPI(parentChainCode) value
+   */
+  std::string parent_chain_code_ = "";
+  /**
+   * @brief JsonAPI(childNumber) value
+   */
+  uint32_t child_number_ = 0;
+  /**
+   * @brief JsonAPI(hardened) value
+   */
+  bool hardened_ = false;
+};
+
+// ------------------------------------------------------------------------
+// CreateExtkeyFromParentKeyResponse
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (CreateExtkeyFromParentKeyResponse) class
+ */
+class CreateExtkeyFromParentKeyResponse
+  : public cfd::core::JsonClassBase<CreateExtkeyFromParentKeyResponse> {
+ public:
+  CreateExtkeyFromParentKeyResponse() {
+    CollectFieldName();
+  }
+  virtual ~CreateExtkeyFromParentKeyResponse() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of extkey
+   * @return extkey
+   */
+  std::string GetExtkey() const {
+    return extkey_;
+  }
+  /**
+   * @brief Set to extkey
+   * @param[in] extkey    setting value.
+   */
+  void SetExtkey(  // line separate
+    const std::string& extkey) {  // NOLINT
+    this->extkey_ = extkey;
+  }
+  /**
+   * @brief Get data type of extkey
+   * @return Data type of extkey
+   */
+  static std::string GetExtkeyFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of extkey field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetExtkeyString(  // line separate
+      const CreateExtkeyFromParentKeyResponse& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.extkey_);
+  }
+  /**
+   * @brief Set json object to extkey field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetExtkeyString(  // line separate
+      CreateExtkeyFromParentKeyResponse& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.extkey_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const CreateExtkeyFromParentKeyResponseStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  CreateExtkeyFromParentKeyResponseStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using CreateExtkeyFromParentKeyResponseMapTable =
+    cfd::core::JsonTableMap<CreateExtkeyFromParentKeyResponse>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const CreateExtkeyFromParentKeyResponseMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static CreateExtkeyFromParentKeyResponseMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(extkey) value
+   */
+  std::string extkey_ = "";
+};
+
+// ------------------------------------------------------------------------
 // CreateExtkeyFromParentPathRequest
 // ------------------------------------------------------------------------
 /**

@@ -201,6 +201,20 @@ export interface CreateExtkeyFromParentResponse {
     extkey: string;
 }
 
+export interface CreateExtkeyFromParentKeyRequest {
+    network: string;
+    extkeyType?: string;
+    parentKey: string;
+    parentDepth: number;
+    parentChainCode: string;
+    childNumber: number;
+    hardened?: boolean;
+}
+
+export interface CreateExtkeyFromParentKeyResponse {
+    extkey: string;
+}
+
 export interface CreateExtkeyFromParentPathRequest {
     extkey: string;
     network: string;
@@ -1236,6 +1250,8 @@ export function CreateAddress(jsonObject: CreateAddressRequest): CreateAddressRe
 export function CreateDescriptor(jsonObject: CreateDescriptorRequest): CreateDescriptorResponse;
 
 export function CreateExtkeyFromParent(jsonObject: CreateExtkeyFromParentRequest): CreateExtkeyFromParentResponse;
+
+export function CreateExtkeyFromParentKey(jsonObject: CreateExtkeyFromParentKeyRequest): CreateExtkeyFromParentKeyResponse;
 
 export function CreateExtkeyFromParentPath(jsonObject: CreateExtkeyFromParentPathRequest): CreateExtkeyFromParentPathResponse;
 

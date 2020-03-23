@@ -214,6 +214,14 @@ class CFD_JS_API_EXPORT JsonMappingApi {
       const std::string &request_message);
 
   /**
+   * @brief CreateExtkeyFromParentKeyのJSON API関数(request, response).
+   * @param[in] request_message     リクエストされたjson文字列
+   * @return 戻り値(JSON文字列)
+   */
+  static std::string CreateExtkeyFromParentKey(
+      const std::string &request_message);
+
+  /**
    * @brief CreateExtPubkeyのJSON API関数(request, response).
    * @param[in] request_message     リクエストされたjson文字列
    * @return 戻り値(JSON文字列)

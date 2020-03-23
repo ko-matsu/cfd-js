@@ -563,6 +563,16 @@ std::string JsonMappingApi::CreateExtkeyFromParentPath(
       request_message, HDWalletStructApi::CreateExtkeyFromParentPath);
 }
 
+std::string JsonMappingApi::CreateExtkeyFromParentKey(
+    const std::string &request_message) {
+  return ExecuteJsonApi<
+      api::json::CreateExtkeyFromParentKeyRequest,
+      api::json::CreateExtkeyFromParentKeyResponse,
+      api::CreateExtkeyFromParentKeyRequestStruct,
+      api::CreateExtkeyFromParentKeyResponseStruct>(
+      request_message, HDWalletStructApi::CreateExtkeyFromParentKey);
+}
+
 std::string JsonMappingApi::CreateExtPubkey(
     const std::string &request_message) {
   return ExecuteJsonApi<

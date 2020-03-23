@@ -484,6 +484,35 @@ struct CreateExtkeyFromParentResponseStruct {
 };
 
 // ------------------------------------------------------------------------
+// CreateExtkeyFromParentKeyRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief CreateExtkeyFromParentKeyRequestStruct struct
+ */
+struct CreateExtkeyFromParentKeyRequestStruct {
+  std::string network = "mainnet";        //!< network  // NOLINT
+  std::string extkey_type = "extPubkey";  //!< extkey_type  // NOLINT
+  std::string parent_key = "";            //!< parent_key  // NOLINT
+  uint8_t parent_depth = 0;               //!< parent_depth  // NOLINT
+  std::string parent_chain_code = "";     //!< parent_chain_code  // NOLINT
+  uint32_t child_number = 0;              //!< child_number  // NOLINT
+  bool hardened = false;                  //!< hardened  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// CreateExtkeyFromParentKeyResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief CreateExtkeyFromParentKeyResponseStruct struct
+ */
+struct CreateExtkeyFromParentKeyResponseStruct {
+  std::string extkey = "";  //!< extkey  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
 // CreateExtkeyFromParentPathRequestStruct
 // ------------------------------------------------------------------------
 /**

@@ -1567,9 +1567,10 @@ ElementsTransactionStructApi::SerializeLedgerFormat(
     ConfidentialTransactionContext tx(request.tx);
 
     std::vector<LedgerMetaDataStackItem> array;
+    array.resize(request.txouts.size());
     for (const auto& txout : request.txouts) {
       if (array.size() <= txout.index) {
-        array.resize(txout.index);
+        array.resize(txout.index + 2);
       }
       array[txout.index].metadata1 = txout.asset;
       ConfidentialValue value(Amount(txout.amount));

@@ -66,12 +66,12 @@ jobs:
         export CURRENT_DIR=$(pwd)
         echo ::add-path::$CURRENT_DIR/$cmake_file_name/bin
         cd ../..
-    - name: npm_install_v8
+    - name: npm_ci_v8
       if: matrix.node == 8
-      run: npm install
-    - name: npm_install
+      run: npm ci
+    - name: npm_ci
       if: matrix.node != 8
-      run: npm install
+      run: npm ci
       continue-on-error: true
     - name: npm_clean
       if: matrix.os != 'windows-latest'

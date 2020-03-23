@@ -167,6 +167,14 @@ class CFD_JS_API_EXPORT ElementsTransactionStructApi {
   static ElementsCreateDestroyAmountResponseStruct
   CreateDestroyAmountTransaction(
       const ElementsCreateDestroyAmountRequestStruct& request);
+
+  /**
+   * @brief パラメータの情報を元に、Ledger format serialize dataを作成する.
+   * @param[in] request Transactionを構築するパラメータの構造体
+   * @return Ledger format serialize dataを格納した構造体
+   */
+  static SerializeLedgerFormatResponseStruct SerializeLedgerFormat(
+      const SerializeLedgerFormatRequestStruct& request);
 };
 
 }  // namespace api

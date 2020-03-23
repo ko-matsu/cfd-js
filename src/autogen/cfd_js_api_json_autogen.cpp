@@ -2415,6 +2415,76 @@ CreateScriptResponseStruct CreateScriptResponse::ConvertToStruct() const {  // N
 }
 
 // ------------------------------------------------------------------------
+// DecodeDerSignatureToRawRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<DecodeDerSignatureToRawRequest>
+  DecodeDerSignatureToRawRequest::json_mapper;
+std::vector<std::string> DecodeDerSignatureToRawRequest::item_list;
+
+void DecodeDerSignatureToRawRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<DecodeDerSignatureToRawRequest> func_table;  // NOLINT
+
+  func_table = {
+    DecodeDerSignatureToRawRequest::GetSignatureString,
+    DecodeDerSignatureToRawRequest::SetSignatureString,
+    DecodeDerSignatureToRawRequest::GetSignatureFieldType,
+  };
+  json_mapper.emplace("signature", func_table);
+  item_list.push_back("signature");
+}
+
+void DecodeDerSignatureToRawRequest::ConvertFromStruct(
+    const DecodeDerSignatureToRawRequestStruct& data) {
+  signature_ = data.signature;
+  ignore_items = data.ignore_items;
+}
+
+DecodeDerSignatureToRawRequestStruct DecodeDerSignatureToRawRequest::ConvertToStruct() const {  // NOLINT
+  DecodeDerSignatureToRawRequestStruct result;
+  result.signature = signature_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// DecodeDerSignatureToRawResponse
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<DecodeDerSignatureToRawResponse>
+  DecodeDerSignatureToRawResponse::json_mapper;
+std::vector<std::string> DecodeDerSignatureToRawResponse::item_list;
+
+void DecodeDerSignatureToRawResponse::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<DecodeDerSignatureToRawResponse> func_table;  // NOLINT
+
+  func_table = {
+    DecodeDerSignatureToRawResponse::GetSignatureString,
+    DecodeDerSignatureToRawResponse::SetSignatureString,
+    DecodeDerSignatureToRawResponse::GetSignatureFieldType,
+  };
+  json_mapper.emplace("signature", func_table);
+  item_list.push_back("signature");
+}
+
+void DecodeDerSignatureToRawResponse::ConvertFromStruct(
+    const DecodeDerSignatureToRawResponseStruct& data) {
+  signature_ = data.signature;
+  ignore_items = data.ignore_items;
+}
+
+DecodeDerSignatureToRawResponseStruct DecodeDerSignatureToRawResponse::ConvertToStruct() const {  // NOLINT
+  DecodeDerSignatureToRawResponseStruct result;
+  result.signature = signature_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
 // DecodeRawTransactionRequest
 // ------------------------------------------------------------------------
 cfd::core::JsonTableMap<DecodeRawTransactionRequest>

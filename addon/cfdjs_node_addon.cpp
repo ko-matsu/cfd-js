@@ -230,6 +230,16 @@ Value EncodeSignatureByDer(const CallbackInfo &information) {
 }
 
 /**
+ * @brief DecodeDerSignatureToRaw の JSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value DecodeDerSignatureToRaw(const CallbackInfo &information) {
+  return NodeAddonJsonApi(
+      information, JsonMappingApi::DecodeDerSignatureToRaw);
+}
+
+/**
  * @brief GetMnemonicWordlistのJSON API関数(request, response).
  * @param[in] information     node addon apiのコールバック情報
  * @return 戻り値(JSON文字列)
@@ -638,6 +648,9 @@ void InitializeJsonApi(Env env, Object *exports) {
   exports->Set(
       String::New(env, "EncodeSignatureByDer"),
       Function::New(env, EncodeSignatureByDer));
+  exports->Set(
+      String::New(env, "DecodeDerSignatureToRaw"),
+      Function::New(env, DecodeDerSignatureToRaw));
   exports->Set(
       String::New(env, "GetWitnessStackNum"),
       Function::New(env, GetWitnessStackNum));

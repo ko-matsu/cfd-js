@@ -134,6 +134,14 @@ class CFD_JS_API_EXPORT JsonMappingApi {
   static std::string EncodeSignatureByDer(const std::string &request_message);
 
   /**
+   * @brief DecodeDerSignatureToRaw の JSON API関数(request, response).
+   * @param[in] request_message     リクエストされたjson文字列
+   * @return 戻り値(JSON文字列)
+   */
+  static std::string DecodeDerSignatureToRaw(
+      const std::string &request_message);
+
+  /**
    * @brief GetMnemonicWordlistのJSON API関数(request, response).
    * @param[in] request_message     リクエストされたjson文字列
    * @return 戻り値(JSON文字列)

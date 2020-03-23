@@ -36,6 +36,7 @@ const {
   ParseDescriptor,
   ParseScript,
   EncodeSignatureByDer,
+  DecodeDerSignatureToRaw,
   CreateMultisigScriptSig,
   VerifySignature,
   GetAddressInfo,
@@ -445,6 +446,20 @@ let addP2shP2wpkhTxWitness;
         derSignatureRet, '\n');
     decodedTx = DecodeRawTransaction({'hex': addP2shP2wpkhTxWitness.hex});
     console.log('\n*** DecodedSignature ***\n', decodedTx.vin[0].txinwitness[0], '\n');
+  }
+  // der decode signature
+  let rawSignatureRet;
+  {
+    console.log('\n===== DecodeDerSignatureToRaw =====');
+    const reqJson = {
+      'signature': derSignatureRet.signature,
+      'sighashType': 'all',
+      'sighashAnyoneCanPay': false,
+    };
+    console.log(reqJson);
+    rawSignatureRet = DecodeDerSignatureToRaw(reqJson);
+    console.log('\n*** DecodeDerSignatureToRaw Response ***\n',
+        rawSignatureRet, '\n');
   }
 }
 let addP2shP2wpkhTxStack;

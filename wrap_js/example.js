@@ -24,6 +24,7 @@ const {
   CreateExtkeyFromSeed,
   CreateExtkeyFromParent,
   CreateExtkeyFromParentPath,
+  CreateExtkeyFromParentKey,
   CreateExtPubkey,
   GetExtkeyInfo,
   GetPrivkeyFromExtkey,
@@ -870,6 +871,37 @@ let extPubkeyFromParentPathResult;
   console.log('*** Request ***\n', reqJson);
   extPubkeyFromParentPathResult = CreateExtkeyFromParentPath(reqJson);
   console.log('*** Response ***\n', extPubkeyFromParentPathResult);
+}
+
+let extPubkeyFromParentKeyResult;
+{
+  console.log('-- CreateExtkeyFromParentKey start (m/44\'/0\'/0\'/2) --');
+  const network = 'mainnet';
+  const parentExtKey = CreateExtkeyFromParentPath({
+    extkey: extPrivkeyHardenedFromParentResult.extkey,
+    network: network,
+    extkeyType: 'extPubkey',
+    childNumberArray: [
+      2147483648, 2147483648,
+    ],
+  });
+  const parentExtKeyInfo = GetExtkeyInfo({
+    extkey: parentExtKey.extkey,
+  });
+  const pubkeyInfo = GetPubkeyFromExtkey({
+    extkey: parentExtKey.extkey,
+    network: network,
+  });
+  const reqJson = {
+    network: network,
+    parentKey: pubkeyInfo.pubkey,
+    parentDepth: parentExtKeyInfo.depth,
+    parentChainCode: parentExtKeyInfo.chainCode,
+    childNumber: 2,
+  };
+  console.log('*** Request ***\n', reqJson);
+  extPubkeyFromParentKeyResult = CreateExtkeyFromParentKey(reqJson);
+  console.log('*** Response ***\n', extPubkeyFromParentKeyResult);
 }
 
 let createExtPubkeyResult;

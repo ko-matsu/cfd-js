@@ -321,6 +321,16 @@ Value CreateExtkeyFromParentPath(const CallbackInfo &information) {
 }
 
 /**
+ * @brief CreateExtkeyFromParentKeyのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value CreateExtkeyFromParentKey(const CallbackInfo &information) {
+  return NodeAddonJsonApi(
+      information, JsonMappingApi::CreateExtkeyFromParentKey);
+}
+
+/**
  * @brief CreateExtPubkeyのJSON API関数(request, response).
  * @param[in] information     node addon apiのコールバック情報
  * @return 戻り値(JSON文字列)
@@ -679,6 +689,9 @@ void InitializeJsonApi(Env env, Object *exports) {
   exports->Set(
       String::New(env, "CreateExtkeyFromParentPath"),
       Function::New(env, CreateExtkeyFromParentPath));
+  exports->Set(
+      String::New(env, "CreateExtkeyFromParentKey"),
+      Function::New(env, CreateExtkeyFromParentKey));
   exports->Set(
       String::New(env, "CreateExtPubkey"),
       Function::New(env, CreateExtPubkey));

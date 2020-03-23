@@ -1816,6 +1816,130 @@ CreateExtkeyFromParentResponseStruct CreateExtkeyFromParentResponse::ConvertToSt
 }
 
 // ------------------------------------------------------------------------
+// CreateExtkeyFromParentKeyRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<CreateExtkeyFromParentKeyRequest>
+  CreateExtkeyFromParentKeyRequest::json_mapper;
+std::vector<std::string> CreateExtkeyFromParentKeyRequest::item_list;
+
+void CreateExtkeyFromParentKeyRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<CreateExtkeyFromParentKeyRequest> func_table;  // NOLINT
+
+  func_table = {
+    CreateExtkeyFromParentKeyRequest::GetNetworkString,
+    CreateExtkeyFromParentKeyRequest::SetNetworkString,
+    CreateExtkeyFromParentKeyRequest::GetNetworkFieldType,
+  };
+  json_mapper.emplace("network", func_table);
+  item_list.push_back("network");
+  func_table = {
+    CreateExtkeyFromParentKeyRequest::GetExtkeyTypeString,
+    CreateExtkeyFromParentKeyRequest::SetExtkeyTypeString,
+    CreateExtkeyFromParentKeyRequest::GetExtkeyTypeFieldType,
+  };
+  json_mapper.emplace("extkeyType", func_table);
+  item_list.push_back("extkeyType");
+  func_table = {
+    CreateExtkeyFromParentKeyRequest::GetParentKeyString,
+    CreateExtkeyFromParentKeyRequest::SetParentKeyString,
+    CreateExtkeyFromParentKeyRequest::GetParentKeyFieldType,
+  };
+  json_mapper.emplace("parentKey", func_table);
+  item_list.push_back("parentKey");
+  func_table = {
+    CreateExtkeyFromParentKeyRequest::GetParentDepthString,
+    CreateExtkeyFromParentKeyRequest::SetParentDepthString,
+    CreateExtkeyFromParentKeyRequest::GetParentDepthFieldType,
+  };
+  json_mapper.emplace("parentDepth", func_table);
+  item_list.push_back("parentDepth");
+  func_table = {
+    CreateExtkeyFromParentKeyRequest::GetParentChainCodeString,
+    CreateExtkeyFromParentKeyRequest::SetParentChainCodeString,
+    CreateExtkeyFromParentKeyRequest::GetParentChainCodeFieldType,
+  };
+  json_mapper.emplace("parentChainCode", func_table);
+  item_list.push_back("parentChainCode");
+  func_table = {
+    CreateExtkeyFromParentKeyRequest::GetChildNumberString,
+    CreateExtkeyFromParentKeyRequest::SetChildNumberString,
+    CreateExtkeyFromParentKeyRequest::GetChildNumberFieldType,
+  };
+  json_mapper.emplace("childNumber", func_table);
+  item_list.push_back("childNumber");
+  func_table = {
+    CreateExtkeyFromParentKeyRequest::GetHardenedString,
+    CreateExtkeyFromParentKeyRequest::SetHardenedString,
+    CreateExtkeyFromParentKeyRequest::GetHardenedFieldType,
+  };
+  json_mapper.emplace("hardened", func_table);
+  item_list.push_back("hardened");
+}
+
+void CreateExtkeyFromParentKeyRequest::ConvertFromStruct(
+    const CreateExtkeyFromParentKeyRequestStruct& data) {
+  network_ = data.network;
+  extkey_type_ = data.extkey_type;
+  parent_key_ = data.parent_key;
+  parent_depth_ = data.parent_depth;
+  parent_chain_code_ = data.parent_chain_code;
+  child_number_ = data.child_number;
+  hardened_ = data.hardened;
+  ignore_items = data.ignore_items;
+}
+
+CreateExtkeyFromParentKeyRequestStruct CreateExtkeyFromParentKeyRequest::ConvertToStruct() const {  // NOLINT
+  CreateExtkeyFromParentKeyRequestStruct result;
+  result.network = network_;
+  result.extkey_type = extkey_type_;
+  result.parent_key = parent_key_;
+  result.parent_depth = parent_depth_;
+  result.parent_chain_code = parent_chain_code_;
+  result.child_number = child_number_;
+  result.hardened = hardened_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// CreateExtkeyFromParentKeyResponse
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<CreateExtkeyFromParentKeyResponse>
+  CreateExtkeyFromParentKeyResponse::json_mapper;
+std::vector<std::string> CreateExtkeyFromParentKeyResponse::item_list;
+
+void CreateExtkeyFromParentKeyResponse::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<CreateExtkeyFromParentKeyResponse> func_table;  // NOLINT
+
+  func_table = {
+    CreateExtkeyFromParentKeyResponse::GetExtkeyString,
+    CreateExtkeyFromParentKeyResponse::SetExtkeyString,
+    CreateExtkeyFromParentKeyResponse::GetExtkeyFieldType,
+  };
+  json_mapper.emplace("extkey", func_table);
+  item_list.push_back("extkey");
+}
+
+void CreateExtkeyFromParentKeyResponse::ConvertFromStruct(
+    const CreateExtkeyFromParentKeyResponseStruct& data) {
+  extkey_ = data.extkey;
+  ignore_items = data.ignore_items;
+}
+
+CreateExtkeyFromParentKeyResponseStruct CreateExtkeyFromParentKeyResponse::ConvertToStruct() const {  // NOLINT
+  CreateExtkeyFromParentKeyResponseStruct result;
+  result.extkey = extkey_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
 // CreateExtkeyFromParentPathRequest
 // ------------------------------------------------------------------------
 cfd::core::JsonTableMap<CreateExtkeyFromParentPathRequest>

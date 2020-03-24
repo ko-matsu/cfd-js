@@ -917,6 +917,15 @@ let extPubkeyFromParentKeyResult;
   console.log('*** Request ***\n', reqJson);
   extPubkeyFromParentKeyResult = CreateExtkeyFromParentKey(reqJson);
   console.log('*** Response ***\n', extPubkeyFromParentKeyResult);
+
+  const ret2 = CreateExtkeyFromParentKey({
+    network: network,
+    parentKey: '045bdbaf62dc45e3cd6e207d625f65913d3355d5ce998d412bffb22ac72098c3f303eeb65fea50e85a6cf537ffc82f1801d43b655f273da3e984668663563cb58a',
+    parentDepth: 4,
+    parentChainCode: '56c9d7fe10a5d063aa4c93460da026f77dde382a8b86d9304eac738fe5febe90',
+    childNumber: 0,
+  });
+  console.log('*** Response ***\n', ret2);
 }
 
 let createExtPubkeyResult;

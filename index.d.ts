@@ -1105,6 +1105,24 @@ export interface SelectUtxosResponse {
     utxoFeeAmount: bigint;
 }
 
+export interface SerializeLedgerFormatTxOut {
+    index: number;
+    asset: string;
+    amount: bigint;
+}
+
+export interface SerializeLedgerFormatRequest {
+    tx: string;
+    txouts?: SerializeLedgerFormatTxOut[];
+    skipWitness?: boolean;
+    isAuthorization: boolean;
+}
+
+export interface SerializeLedgerFormatResponse {
+    serialize: string;
+    sha256: string;
+}
+
 export interface SignatureHashKeyData {
     hex: string;
     type: string;
@@ -1328,6 +1346,8 @@ export function ParseDescriptor(jsonObject: ParseDescriptorRequest): ParseDescri
 export function ParseScript(jsonObject: ParseScriptRequest): ParseScriptResponse;
 
 export function SelectUtxos(jsonObject: SelectUtxosRequest): SelectUtxosResponse;
+
+export function SerializeLedgerFormat(jsonObject: SerializeLedgerFormatRequest): SerializeLedgerFormatResponse;
 
 export function CreateSignatureHash(jsonObject: CreateSignatureHashRequest): CreateSignatureHashResponse;
 

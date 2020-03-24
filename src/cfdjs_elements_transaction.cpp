@@ -16,7 +16,9 @@
 #include "cfd/cfd_elements_address.h"
 #include "cfd/cfdapi_coin.h"
 #include "cfd/cfdapi_elements_transaction.h"
+#include "cfd/cfdapi_ledger.h"
 #include "cfd_js_api_json_autogen.h"  // NOLINT
+#include "cfdcore/cfdcore_util.h"
 #include "cfdjs/cfdjs_api_address.h"
 #include "cfdjs/cfdjs_api_elements_address.h"
 #include "cfdjs/cfdjs_api_elements_transaction.h"
@@ -35,6 +37,8 @@ using cfd::api::ElementsTransactionApi;
 using cfd::api::ElementsUtxoAndOption;
 using cfd::api::IssuanceBlindKeys;
 using cfd::api::IssuanceOutput;
+using cfd::api::LedgerApi;
+using cfd::api::LedgerMetaDataStackItem;
 using cfd::api::TxInBlindParameters;
 using cfd::api::TxInIssuanceParameters;
 using cfd::api::TxInPeginParameters;
@@ -66,6 +70,7 @@ using cfd::core::ElementsAddressType;
 using cfd::core::ElementsConfidentialAddress;
 using cfd::core::ElementsNetType;
 using cfd::core::HashType;
+using cfd::core::HashUtil;
 using cfd::core::IssuanceParameter;
 using cfd::core::NetType;
 using cfd::core::Privkey;
@@ -1549,6 +1554,41 @@ ElementsTransactionStructApi::CreateDestroyAmountTransaction(
   result = ExecuteStructApi<
       ElementsCreateDestroyAmountRequestStruct,
       ElementsCreateDestroyAmountResponseStruct>(
+      request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
+SerializeLedgerFormatResponseStruct
+ElementsTransactionStructApi::SerializeLedgerFormat(
+    const SerializeLedgerFormatRequestStruct& request) {
+  auto call_func = [](const SerializeLedgerFormatRequestStruct& request)
+      -> SerializeLedgerFormatResponseStruct {  // NOLINT
+    SerializeLedgerFormatResponseStruct response;
+    ConfidentialTransactionContext tx(request.tx);
+
+    std::vector<LedgerMetaDataStackItem> array;
+    array.resize(request.txouts.size());
+    for (const auto& txout : request.txouts) {
+      if (array.size() <= txout.index) {
+        array.resize(txout.index + 2);
+      }
+      array[txout.index].metadata1 = txout.asset;
+      ConfidentialValue value(Amount(txout.amount));
+      array[txout.index].metadata2 = value.GetHex().substr(2);
+    }
+
+    LedgerApi api;
+    ByteData data = api.Serialize(
+        tx, array, request.skip_witness, request.is_authorization);
+
+    response.serialize = data.GetHex();
+    response.sha256 = HashUtil::Sha256(data).GetHex();
+    return response;
+  };
+
+  SerializeLedgerFormatResponseStruct result;
+  result = ExecuteStructApi<
+      SerializeLedgerFormatRequestStruct, SerializeLedgerFormatResponseStruct>(
       request, call_func, std::string(__FUNCTION__));
   return result;
 }

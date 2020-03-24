@@ -873,6 +873,17 @@ std::string JsonMappingApi::CreateDestroyAmount(
       request_message,
       ElementsTransactionStructApi::CreateDestroyAmountTransaction);
 }
+
+std::string JsonMappingApi::SerializeLedgerFormat(
+    const std::string &request_message) {
+  return ExecuteJsonApi<
+      api::json::SerializeLedgerFormatRequest,
+      api::json::SerializeLedgerFormatResponse,
+      api::SerializeLedgerFormatRequestStruct,
+      api::SerializeLedgerFormatResponseStruct>(
+      request_message, ElementsTransactionStructApi::SerializeLedgerFormat);
+}
+
 #endif  // CFD_DISABLE_ELEMENTS
 
 }  // namespace json

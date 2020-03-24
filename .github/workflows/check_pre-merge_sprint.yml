@@ -49,6 +49,7 @@ jobs:
       with:
         path: cache/cmake
         key: ${{ runner.os }}-cmake-3.15.5-x64
+        restore-keys: ${{ runner.os }}-cmake-3.15.5-x64
     - name: cmake-download-ubuntu
       if: matrix.os == 'ubuntu-latest' && steps.cache.outputs.cache-hit != 'true'
       run: |
@@ -66,12 +67,26 @@ jobs:
         export CURRENT_DIR=$(pwd)
         echo ::add-path::$CURRENT_DIR/$cmake_file_name/bin
         cd ../..
-    - name: npm_ci_v8
-      if: matrix.node == 8
-      run: npm ci
-    - name: npm_ci
-      if: matrix.node != 8
-      run: npm ci
+    - name: dump node version
+      id: node_ver
+      run: |
+        export node_ver="$(node --version)"
+        echo "::set-output name=node_version::$node_ver"
+        echo "node_version=$node_ver"
+      shell: bash
+    - name: node_modules-useCache
+      uses: actions/cache@v1
+      id: node_cache
+      with:
+        path: node_modules
+        key: npm-${{ runner.os }}-${{ matrix.node }}-${{ steps.node_ver.outputs.node_version }}-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: npm-${{ runner.os }}-${{ matrix.node }}-${{ steps.node_ver.outputs.node_version }}-${{ hashFiles('**/package-lock.json') }}
+    - name: npm_install_v8
+      if: matrix.node == 8 && steps.node_cache.outputs.cache-hit != 'true'
+      run: npm install
+    - name: npm_install
+      if: matrix.node != 8 && steps.node_cache.outputs.cache-hit != 'true'
+      run: npm install
       continue-on-error: true
     - name: npm_clean
       if: matrix.os != 'windows-latest'

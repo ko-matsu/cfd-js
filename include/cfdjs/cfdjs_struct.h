@@ -678,6 +678,29 @@ struct CreateScriptResponseStruct {
 };
 
 // ------------------------------------------------------------------------
+// DecodeDerSignatureToRawRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief DecodeDerSignatureToRawRequestStruct struct
+ */
+struct DecodeDerSignatureToRawRequestStruct {
+  std::string signature = "";  //!< signature  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// DecodeDerSignatureToRawResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief DecodeDerSignatureToRawResponseStruct struct
+ */
+struct DecodeDerSignatureToRawResponseStruct {
+  std::string signature = "";  //!< signature  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
 // DecodeRawTransactionRequestStruct
 // ------------------------------------------------------------------------
 /**
@@ -2281,6 +2304,46 @@ struct SelectUtxosResponseStruct {
   std::vector<TargetAmountMapDataStruct> selected_amounts;  //!< selected_amounts  // NOLINT
   int64_t fee_amount = 0;                                   //!< fee_amount  // NOLINT
   int64_t utxo_fee_amount = 0;                              //!< utxo_fee_amount  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// SerializeLedgerFormatTxOutStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief SerializeLedgerFormatTxOutStruct struct
+ */
+struct SerializeLedgerFormatTxOutStruct {
+  uint32_t index = 0;      //!< index  // NOLINT
+  std::string asset = "";  //!< asset  // NOLINT
+  int64_t amount = 0;      //!< amount  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// SerializeLedgerFormatRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief SerializeLedgerFormatRequestStruct struct
+ */
+struct SerializeLedgerFormatRequestStruct {
+  std::string tx = "";                                   //!< tx  // NOLINT
+  std::vector<SerializeLedgerFormatTxOutStruct> txouts;  //!< txouts  // NOLINT
+  bool skip_witness = false;                             //!< skip_witness  // NOLINT
+  bool is_authorization = true;                          //!< is_authorization  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// SerializeLedgerFormatResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief SerializeLedgerFormatResponseStruct struct
+ */
+struct SerializeLedgerFormatResponseStruct {
+  std::string serialize = "";  //!< serialize  // NOLINT
+  std::string sha256 = "";     //!< sha256  // NOLINT
   cfd::js::api::InnerErrorResponseStruct error;   //!< error information
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };

@@ -459,6 +459,16 @@ std::string JsonMappingApi::EncodeSignatureByDer(
       request_message, UtilStructApi::EncodeSignatureByDer);
 }
 
+std::string JsonMappingApi::DecodeDerSignatureToRaw(
+    const std::string &request_message) {
+  return ExecuteJsonApi<
+      api::json::DecodeDerSignatureToRawRequest,
+      api::json::DecodeDerSignatureToRawResponse,
+      api::DecodeDerSignatureToRawRequestStruct,
+      api::DecodeDerSignatureToRawResponseStruct>(
+      request_message, UtilStructApi::DecodeDerSignatureToRaw);
+}
+
 std::string JsonMappingApi::GetMnemonicWordlist(
     const std::string &request_message) {
   return ExecuteJsonApi<
@@ -863,6 +873,17 @@ std::string JsonMappingApi::CreateDestroyAmount(
       request_message,
       ElementsTransactionStructApi::CreateDestroyAmountTransaction);
 }
+
+std::string JsonMappingApi::SerializeLedgerFormat(
+    const std::string &request_message) {
+  return ExecuteJsonApi<
+      api::json::SerializeLedgerFormatRequest,
+      api::json::SerializeLedgerFormatResponse,
+      api::SerializeLedgerFormatRequestStruct,
+      api::SerializeLedgerFormatResponseStruct>(
+      request_message, ElementsTransactionStructApi::SerializeLedgerFormat);
+}
+
 #endif  // CFD_DISABLE_ELEMENTS
 
 }  // namespace json

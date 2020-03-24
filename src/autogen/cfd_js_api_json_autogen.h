@@ -10990,6 +10990,282 @@ class CreateScriptResponse
 };
 
 // ------------------------------------------------------------------------
+// DecodeDerSignatureToRawRequest
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (DecodeDerSignatureToRawRequest) class
+ */
+class DecodeDerSignatureToRawRequest
+  : public cfd::core::JsonClassBase<DecodeDerSignatureToRawRequest> {
+ public:
+  DecodeDerSignatureToRawRequest() {
+    CollectFieldName();
+  }
+  virtual ~DecodeDerSignatureToRawRequest() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of signature
+   * @return signature
+   */
+  std::string GetSignature() const {
+    return signature_;
+  }
+  /**
+   * @brief Set to signature
+   * @param[in] signature    setting value.
+   */
+  void SetSignature(  // line separate
+    const std::string& signature) {  // NOLINT
+    this->signature_ = signature;
+  }
+  /**
+   * @brief Get data type of signature
+   * @return Data type of signature
+   */
+  static std::string GetSignatureFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of signature field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetSignatureString(  // line separate
+      const DecodeDerSignatureToRawRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.signature_);
+  }
+  /**
+   * @brief Set json object to signature field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetSignatureString(  // line separate
+      DecodeDerSignatureToRawRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.signature_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const DecodeDerSignatureToRawRequestStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  DecodeDerSignatureToRawRequestStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using DecodeDerSignatureToRawRequestMapTable =
+    cfd::core::JsonTableMap<DecodeDerSignatureToRawRequest>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const DecodeDerSignatureToRawRequestMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static DecodeDerSignatureToRawRequestMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(signature) value
+   */
+  std::string signature_ = "";
+};
+
+// ------------------------------------------------------------------------
+// DecodeDerSignatureToRawResponse
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (DecodeDerSignatureToRawResponse) class
+ */
+class DecodeDerSignatureToRawResponse
+  : public cfd::core::JsonClassBase<DecodeDerSignatureToRawResponse> {
+ public:
+  DecodeDerSignatureToRawResponse() {
+    CollectFieldName();
+  }
+  virtual ~DecodeDerSignatureToRawResponse() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of signature
+   * @return signature
+   */
+  std::string GetSignature() const {
+    return signature_;
+  }
+  /**
+   * @brief Set to signature
+   * @param[in] signature    setting value.
+   */
+  void SetSignature(  // line separate
+    const std::string& signature) {  // NOLINT
+    this->signature_ = signature;
+  }
+  /**
+   * @brief Get data type of signature
+   * @return Data type of signature
+   */
+  static std::string GetSignatureFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of signature field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetSignatureString(  // line separate
+      const DecodeDerSignatureToRawResponse& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.signature_);
+  }
+  /**
+   * @brief Set json object to signature field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetSignatureString(  // line separate
+      DecodeDerSignatureToRawResponse& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.signature_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const DecodeDerSignatureToRawResponseStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  DecodeDerSignatureToRawResponseStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using DecodeDerSignatureToRawResponseMapTable =
+    cfd::core::JsonTableMap<DecodeDerSignatureToRawResponse>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const DecodeDerSignatureToRawResponseMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static DecodeDerSignatureToRawResponseMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(signature) value
+   */
+  std::string signature_ = "";
+};
+
+// ------------------------------------------------------------------------
 // DecodeRawTransactionRequest
 // ------------------------------------------------------------------------
 /**
@@ -42989,6 +43265,703 @@ class SelectUtxosResponse
    * @brief JsonAPI(utxoFeeAmount) value
    */
   int64_t utxo_fee_amount_ = 0;
+};
+
+// ------------------------------------------------------------------------
+// SerializeLedgerFormatTxOut
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (SerializeLedgerFormatTxOut) class
+ */
+class SerializeLedgerFormatTxOut
+  : public cfd::core::JsonClassBase<SerializeLedgerFormatTxOut> {
+ public:
+  SerializeLedgerFormatTxOut() {
+    CollectFieldName();
+  }
+  virtual ~SerializeLedgerFormatTxOut() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of index
+   * @return index
+   */
+  uint32_t GetIndex() const {
+    return index_;
+  }
+  /**
+   * @brief Set to index
+   * @param[in] index    setting value.
+   */
+  void SetIndex(  // line separate
+    const uint32_t& index) {  // NOLINT
+    this->index_ = index;
+  }
+  /**
+   * @brief Get data type of index
+   * @return Data type of index
+   */
+  static std::string GetIndexFieldType() {
+    return "uint32_t";
+  }
+  /**
+   * @brief Get json string of index field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetIndexString(  // line separate
+      const SerializeLedgerFormatTxOut& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.index_);
+  }
+  /**
+   * @brief Set json object to index field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetIndexString(  // line separate
+      SerializeLedgerFormatTxOut& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.index_, json_value);
+  }
+
+  /**
+   * @brief Get of asset
+   * @return asset
+   */
+  std::string GetAsset() const {
+    return asset_;
+  }
+  /**
+   * @brief Set to asset
+   * @param[in] asset    setting value.
+   */
+  void SetAsset(  // line separate
+    const std::string& asset) {  // NOLINT
+    this->asset_ = asset;
+  }
+  /**
+   * @brief Get data type of asset
+   * @return Data type of asset
+   */
+  static std::string GetAssetFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of asset field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetAssetString(  // line separate
+      const SerializeLedgerFormatTxOut& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.asset_);
+  }
+  /**
+   * @brief Set json object to asset field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetAssetString(  // line separate
+      SerializeLedgerFormatTxOut& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.asset_, json_value);
+  }
+
+  /**
+   * @brief Get of amount
+   * @return amount
+   */
+  int64_t GetAmount() const {
+    return amount_;
+  }
+  /**
+   * @brief Set to amount
+   * @param[in] amount    setting value.
+   */
+  void SetAmount(  // line separate
+    const int64_t& amount) {  // NOLINT
+    this->amount_ = amount;
+  }
+  /**
+   * @brief Get data type of amount
+   * @return Data type of amount
+   */
+  static std::string GetAmountFieldType() {
+    return "int64_t";
+  }
+  /**
+   * @brief Get json string of amount field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetAmountString(  // line separate
+      const SerializeLedgerFormatTxOut& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.amount_);
+  }
+  /**
+   * @brief Set json object to amount field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetAmountString(  // line separate
+      SerializeLedgerFormatTxOut& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.amount_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const SerializeLedgerFormatTxOutStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  SerializeLedgerFormatTxOutStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using SerializeLedgerFormatTxOutMapTable =
+    cfd::core::JsonTableMap<SerializeLedgerFormatTxOut>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const SerializeLedgerFormatTxOutMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static SerializeLedgerFormatTxOutMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(index) value
+   */
+  uint32_t index_ = 0;
+  /**
+   * @brief JsonAPI(asset) value
+   */
+  std::string asset_ = "";
+  /**
+   * @brief JsonAPI(amount) value
+   */
+  int64_t amount_ = 0;
+};
+
+// ------------------------------------------------------------------------
+// SerializeLedgerFormatRequest
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (SerializeLedgerFormatRequest) class
+ */
+class SerializeLedgerFormatRequest
+  : public cfd::core::JsonClassBase<SerializeLedgerFormatRequest> {
+ public:
+  SerializeLedgerFormatRequest() {
+    CollectFieldName();
+  }
+  virtual ~SerializeLedgerFormatRequest() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of tx
+   * @return tx
+   */
+  std::string GetTx() const {
+    return tx_;
+  }
+  /**
+   * @brief Set to tx
+   * @param[in] tx    setting value.
+   */
+  void SetTx(  // line separate
+    const std::string& tx) {  // NOLINT
+    this->tx_ = tx;
+  }
+  /**
+   * @brief Get data type of tx
+   * @return Data type of tx
+   */
+  static std::string GetTxFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of tx field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTxString(  // line separate
+      const SerializeLedgerFormatRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.tx_);
+  }
+  /**
+   * @brief Set json object to tx field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTxString(  // line separate
+      SerializeLedgerFormatRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.tx_, json_value);
+  }
+
+  /**
+   * @brief Get of txouts.
+   * @return txouts
+   */
+  JsonObjectVector<SerializeLedgerFormatTxOut, SerializeLedgerFormatTxOutStruct>& GetTxouts() {  // NOLINT
+    return txouts_;
+  }
+  /**
+   * @brief Set to txouts.
+   * @param[in] txouts    setting value.
+   */
+  void SetTxouts(  // line separate
+      const JsonObjectVector<SerializeLedgerFormatTxOut, SerializeLedgerFormatTxOutStruct>& txouts) {  // NOLINT
+    this->txouts_ = txouts;
+  }
+  /**
+   * @brief Get data type of txouts.
+   * @return Data type of txouts.
+   */
+  static std::string GetTxoutsFieldType() {
+    return "JsonObjectVector<SerializeLedgerFormatTxOut, SerializeLedgerFormatTxOutStruct>";  // NOLINT
+  }
+  /**
+   * @brief Get json string of txouts field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
+   */
+  static std::string GetTxoutsString(  // line separate
+      const SerializeLedgerFormatRequest& obj) {  // NOLINT
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
+    return obj.txouts_.Serialize();
+  }
+  /**
+   * @brief Set json object to txouts field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
+   */
+  static void SetTxoutsString(  // line separate
+      SerializeLedgerFormatRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    obj.txouts_.DeserializeUniValue(json_value);
+  }
+
+  /**
+   * @brief Get of skipWitness
+   * @return skipWitness
+   */
+  bool GetSkipWitness() const {
+    return skip_witness_;
+  }
+  /**
+   * @brief Set to skipWitness
+   * @param[in] skip_witness    setting value.
+   */
+  void SetSkipWitness(  // line separate
+    const bool& skip_witness) {  // NOLINT
+    this->skip_witness_ = skip_witness;
+  }
+  /**
+   * @brief Get data type of skipWitness
+   * @return Data type of skipWitness
+   */
+  static std::string GetSkipWitnessFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of skipWitness field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetSkipWitnessString(  // line separate
+      const SerializeLedgerFormatRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.skip_witness_);
+  }
+  /**
+   * @brief Set json object to skipWitness field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetSkipWitnessString(  // line separate
+      SerializeLedgerFormatRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.skip_witness_, json_value);
+  }
+
+  /**
+   * @brief Get of isAuthorization
+   * @return isAuthorization
+   */
+  bool GetIsAuthorization() const {
+    return is_authorization_;
+  }
+  /**
+   * @brief Set to isAuthorization
+   * @param[in] is_authorization    setting value.
+   */
+  void SetIsAuthorization(  // line separate
+    const bool& is_authorization) {  // NOLINT
+    this->is_authorization_ = is_authorization;
+  }
+  /**
+   * @brief Get data type of isAuthorization
+   * @return Data type of isAuthorization
+   */
+  static std::string GetIsAuthorizationFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of isAuthorization field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetIsAuthorizationString(  // line separate
+      const SerializeLedgerFormatRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.is_authorization_);
+  }
+  /**
+   * @brief Set json object to isAuthorization field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetIsAuthorizationString(  // line separate
+      SerializeLedgerFormatRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.is_authorization_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const SerializeLedgerFormatRequestStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  SerializeLedgerFormatRequestStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using SerializeLedgerFormatRequestMapTable =
+    cfd::core::JsonTableMap<SerializeLedgerFormatRequest>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const SerializeLedgerFormatRequestMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static SerializeLedgerFormatRequestMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(tx) value
+   */
+  std::string tx_ = "";
+  /**
+   * @brief JsonAPI(txouts) value
+   */
+  JsonObjectVector<SerializeLedgerFormatTxOut, SerializeLedgerFormatTxOutStruct> txouts_;  // NOLINT
+  /**
+   * @brief JsonAPI(skipWitness) value
+   */
+  bool skip_witness_ = false;
+  /**
+   * @brief JsonAPI(isAuthorization) value
+   */
+  bool is_authorization_ = true;
+};
+
+// ------------------------------------------------------------------------
+// SerializeLedgerFormatResponse
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (SerializeLedgerFormatResponse) class
+ */
+class SerializeLedgerFormatResponse
+  : public cfd::core::JsonClassBase<SerializeLedgerFormatResponse> {
+ public:
+  SerializeLedgerFormatResponse() {
+    CollectFieldName();
+  }
+  virtual ~SerializeLedgerFormatResponse() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of serialize
+   * @return serialize
+   */
+  std::string GetSerialize() const {
+    return serialize_;
+  }
+  /**
+   * @brief Set to serialize
+   * @param[in] serialize    setting value.
+   */
+  void SetSerialize(  // line separate
+    const std::string& serialize) {  // NOLINT
+    this->serialize_ = serialize;
+  }
+  /**
+   * @brief Get data type of serialize
+   * @return Data type of serialize
+   */
+  static std::string GetSerializeFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of serialize field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetSerializeString(  // line separate
+      const SerializeLedgerFormatResponse& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.serialize_);
+  }
+  /**
+   * @brief Set json object to serialize field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetSerializeString(  // line separate
+      SerializeLedgerFormatResponse& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.serialize_, json_value);
+  }
+
+  /**
+   * @brief Get of sha256
+   * @return sha256
+   */
+  std::string GetSha256() const {
+    return sha256_;
+  }
+  /**
+   * @brief Set to sha256
+   * @param[in] sha256    setting value.
+   */
+  void SetSha256(  // line separate
+    const std::string& sha256) {  // NOLINT
+    this->sha256_ = sha256;
+  }
+  /**
+   * @brief Get data type of sha256
+   * @return Data type of sha256
+   */
+  static std::string GetSha256FieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of sha256 field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetSha256String(  // line separate
+      const SerializeLedgerFormatResponse& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.sha256_);
+  }
+  /**
+   * @brief Set json object to sha256 field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetSha256String(  // line separate
+      SerializeLedgerFormatResponse& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.sha256_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const SerializeLedgerFormatResponseStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  SerializeLedgerFormatResponseStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using SerializeLedgerFormatResponseMapTable =
+    cfd::core::JsonTableMap<SerializeLedgerFormatResponse>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const SerializeLedgerFormatResponseMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static SerializeLedgerFormatResponseMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(serialize) value
+   */
+  std::string serialize_ = "";
+  /**
+   * @brief JsonAPI(sha256) value
+   */
+  std::string sha256_ = "";
 };
 
 // ------------------------------------------------------------------------

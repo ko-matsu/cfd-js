@@ -283,6 +283,14 @@ export interface CreateScriptResponse {
     hex: string;
 }
 
+export interface DecodeDerSignatureToRawRequest {
+    signature: string;
+}
+
+export interface DecodeDerSignatureToRawResponse {
+    signature: string;
+}
+
 export interface DecodeRawTransactionRequest {
     hex: string;
     network?: string;
@@ -1097,6 +1105,24 @@ export interface SelectUtxosResponse {
     utxoFeeAmount: bigint;
 }
 
+export interface SerializeLedgerFormatTxOut {
+    index: number;
+    asset: string;
+    amount: bigint;
+}
+
+export interface SerializeLedgerFormatRequest {
+    tx: string;
+    txouts?: SerializeLedgerFormatTxOut[];
+    skipWitness?: boolean;
+    isAuthorization: boolean;
+}
+
+export interface SerializeLedgerFormatResponse {
+    serialize: string;
+    sha256: string;
+}
+
 export interface SignatureHashKeyData {
     hex: string;
     type: string;
@@ -1257,6 +1283,8 @@ export function CreateMultisigScriptSig(jsonObject: CreateMultisigScriptSigReque
 
 export function CreateScript(jsonObject: CreateScriptRequest): CreateScriptResponse;
 
+export function DecodeDerSignatureToRaw(jsonObject: DecodeDerSignatureToRawRequest): DecodeDerSignatureToRawResponse;
+
 export function DecodeRawTransaction(jsonObject: DecodeRawTransactionRequest): DecodeRawTransactionResponse;
 
 export function ElementsAddRawTransaction(jsonObject: ElementsAddRawTransactionRequest): ElementsAddRawTransactionResponse;
@@ -1318,6 +1346,8 @@ export function ParseDescriptor(jsonObject: ParseDescriptorRequest): ParseDescri
 export function ParseScript(jsonObject: ParseScriptRequest): ParseScriptResponse;
 
 export function SelectUtxos(jsonObject: SelectUtxosRequest): SelectUtxosResponse;
+
+export function SerializeLedgerFormat(jsonObject: SerializeLedgerFormatRequest): SerializeLedgerFormatResponse;
 
 export function CreateSignatureHash(jsonObject: CreateSignatureHashRequest): CreateSignatureHashResponse;
 

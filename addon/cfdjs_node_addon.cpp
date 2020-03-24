@@ -230,6 +230,16 @@ Value EncodeSignatureByDer(const CallbackInfo &information) {
 }
 
 /**
+ * @brief DecodeDerSignatureToRaw の JSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value DecodeDerSignatureToRaw(const CallbackInfo &information) {
+  return NodeAddonJsonApi(
+      information, JsonMappingApi::DecodeDerSignatureToRaw);
+}
+
+/**
  * @brief GetMnemonicWordlistのJSON API関数(request, response).
  * @param[in] information     node addon apiのコールバック情報
  * @return 戻り値(JSON文字列)
@@ -597,6 +607,15 @@ Value GetIssuanceBlindingKey(const CallbackInfo &information) {
 Value CreateDestroyAmount(const CallbackInfo &information) {
   return NodeAddonJsonApi(information, JsonMappingApi::CreateDestroyAmount);
 }
+
+/**
+ * @brief SerializeLedgerFormatのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value SerializeLedgerFormat(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::SerializeLedgerFormat);
+}
 #endif  // CFD_DISABLE_ELEMENTS
 
 /**
@@ -648,6 +667,9 @@ void InitializeJsonApi(Env env, Object *exports) {
   exports->Set(
       String::New(env, "EncodeSignatureByDer"),
       Function::New(env, EncodeSignatureByDer));
+  exports->Set(
+      String::New(env, "DecodeDerSignatureToRaw"),
+      Function::New(env, DecodeDerSignatureToRaw));
   exports->Set(
       String::New(env, "GetWitnessStackNum"),
       Function::New(env, GetWitnessStackNum));
@@ -759,6 +781,9 @@ void InitializeJsonApi(Env env, Object *exports) {
   exports->Set(
       String::New(env, "CreateDestroyAmount"),
       Function::New(env, CreateDestroyAmount));
+  exports->Set(
+      String::New(env, "SerializeLedgerFormat"),
+      Function::New(env, SerializeLedgerFormat));
 #endif  // CFD_DISABLE_ELEMENTS
 }
 

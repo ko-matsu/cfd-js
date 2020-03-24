@@ -509,11 +509,9 @@ ElementsTransactionStructApi::DecodeRawTransaction(  // NOLINT
           const RangeProofInfo& range_proof_info =
               ConfidentialTxOut::DecodeRangeProofInfo(range_proof);
           tx_out_res.value_minimum =
-              Amount::CreateBySatoshiAmount(range_proof_info.min_value)
-                  .GetSatoshiValue();
+              Amount(range_proof_info.min_value).GetSatoshiValue();
           tx_out_res.value_maximum =
-              Amount::CreateBySatoshiAmount(range_proof_info.max_value)
-                  .GetSatoshiValue();
+              Amount(range_proof_info.max_value, true).GetSatoshiValue();
           tx_out_res.ct_exponent = range_proof_info.exponent;
           tx_out_res.ct_bits = range_proof_info.mantissa;
         } else {

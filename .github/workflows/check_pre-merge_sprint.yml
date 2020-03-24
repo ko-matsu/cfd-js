@@ -79,32 +79,13 @@ jobs:
       id: node_cache
       with:
         path: node_modules
-        key: npm-${{ runner.os }}-${{ matrix.node }}-${{ steps.node_ver.outputs.node_version }}-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: npm-${{ runner.os }}-${{ matrix.node }}-${{ steps.node_ver.outputs.node_version }}-${{ hashFiles('**/package-lock.json') }}
-    - name: npm_install_v8
-      if: matrix.node == 8 && steps.node_cache.outputs.cache-hit != 'true'
-      run: npm install
+        key: node-${{ runner.os }}-${{ matrix.node }}-${{ steps.node_ver.outputs.node_version }}-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: node-${{ runner.os }}-${{ matrix.node }}-${{ steps.node_ver.outputs.node_version }}-${{ hashFiles('**/package-lock.json') }}
     - name: npm_install
-      if: matrix.node != 8 && steps.node_cache.outputs.cache-hit != 'true'
+      if: steps.node_cache.outputs.cache-hit != 'true'
+      env:
+        CFDJS_UNUSE_ASSET: true
       run: npm install
-      continue-on-error: true
-    - name: npm_clean
-      if: matrix.os != 'windows-latest'
-      run: |
-        cd wrap_js
-        rm -rf dl_lib
-        cd ..
-      continue-on-error: true
-    - name: npm_clean_windows
-      if: matrix.os == 'windows-latest'
-      run: |
-        cd wrap_js
-        rm -Recurse -Force dl_lib
-        cd ..
-      continue-on-error: true
-    - name: npm_build
-      if: matrix.node != 8
-      run: npm run cmake_release_parallel
     - name: test_all
       run: npm run test
     - name: example
@@ -114,6 +95,10 @@ jobs:
     - name: lint_check
       if: matrix.os != 'macos-latest'
       run: npm run lint_all
+    - name: after_job
+      run: rm -rf node_modules/cfd-js
+      shell: bash
+      continue-on-error: true
     - name: ubuntu-after
       if: matrix.os == 'ubuntu-latest'
       run: rm -rf cache/cmake/cmake-$CMAKE_VERSION-Linux-x86_64

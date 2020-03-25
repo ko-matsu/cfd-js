@@ -509,9 +509,11 @@ ElementsTransactionStructApi::DecodeRawTransaction(  // NOLINT
           const RangeProofInfo& range_proof_info =
               ConfidentialTxOut::DecodeRangeProofInfo(range_proof);
           tx_out_res.value_minimum =
-              Amount(range_proof_info.min_value).GetSatoshiValue();
+              Amount(static_cast<int64_t>(range_proof_info.min_value))
+                  .GetSatoshiValue();
           tx_out_res.value_maximum =
-              Amount(range_proof_info.max_value, true).GetSatoshiValue();
+              Amount(static_cast<int64_t>(range_proof_info.max_value), true)
+                  .GetSatoshiValue();
           tx_out_res.ct_exponent = range_proof_info.exponent;
           tx_out_res.ct_bits = range_proof_info.mantissa;
         } else {
@@ -557,7 +559,8 @@ ElementsTransactionStructApi::DecodeRawTransaction(  // NOLINT
       LockingScriptType type = extract_data.script_type;
       script_pub_key_res.type =
           TransactionStructApiBase::ConvertLockingScriptTypeString(type);
-      script_pub_key_res.req_sigs = extract_data.pushed_datas.size();
+      script_pub_key_res.req_sigs =
+          static_cast<int>(extract_data.pushed_datas.size());
 
       ElementsNetType elements_net_type =
           ElementsAddressStructApi::ConvertElementsNetType(request.network);
@@ -620,7 +623,7 @@ ElementsTransactionStructApi::DecodeRawTransaction(  // NOLINT
             TransactionStructApiBase::ConvertLockingScriptTypeString(
                 pegout_type);
         script_pub_key_res.pegout_req_sigs =
-            pegout_extract_data.pushed_datas.size();
+            static_cast<int>(pegout_extract_data.pushed_datas.size());
 
         const NetType net_type =
             AddressStructApi::ConvertNetType(request.mainchain_network);

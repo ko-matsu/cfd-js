@@ -2574,6 +2574,60 @@ struct UpdateWitnessStackResponseStruct {
 };
 
 // ------------------------------------------------------------------------
+// VerifyignTxInUtxoDataStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief VerifyignTxInUtxoDataStruct struct
+ */
+struct VerifyignTxInUtxoDataStruct {
+  std::string txid = "";                           //!< txid  // NOLINT
+  uint32_t vout = 0;                               //!< vout  // NOLINT
+  std::string address = "";                        //!< address  // NOLINT
+  int64_t amount = 0;                              //!< amount  // NOLINT
+  std::string descriptor = "";                     //!< descriptor  // NOLINT
+  std::string confidential_value_commitment = "";  //!< confidential_value_commitment  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// VerifySignRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief VerifySignRequestStruct struct
+ */
+struct VerifySignRequestStruct {
+  std::string tx = "";                             //!< tx  // NOLINT
+  bool is_elements = false;                        //!< is_elements  // NOLINT
+  std::vector<VerifyignTxInUtxoDataStruct> txins;  //!< txins  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// FailSignTxInStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief FailSignTxInStruct struct
+ */
+struct FailSignTxInStruct {
+  std::string txid = "";  //!< txid  // NOLINT
+  uint32_t vout = 0;      //!< vout  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// VerifySignResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief VerifySignResponseStruct struct
+ */
+struct VerifySignResponseStruct {
+  bool success = true;                         //!< success  // NOLINT
+  std::vector<FailSignTxInStruct> fail_txins;  //!< fail_txins  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
 // VerifySignatureTxInRequestStruct
 // ------------------------------------------------------------------------
 /**

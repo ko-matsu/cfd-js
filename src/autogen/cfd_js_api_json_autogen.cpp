@@ -10742,6 +10742,227 @@ UpdateWitnessStackResponseStruct UpdateWitnessStackResponse::ConvertToStruct() c
 }
 
 // ------------------------------------------------------------------------
+// VerifyignTxInUtxoData
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<VerifyignTxInUtxoData>
+  VerifyignTxInUtxoData::json_mapper;
+std::vector<std::string> VerifyignTxInUtxoData::item_list;
+
+void VerifyignTxInUtxoData::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<VerifyignTxInUtxoData> func_table;  // NOLINT
+
+  func_table = {
+    VerifyignTxInUtxoData::GetTxidString,
+    VerifyignTxInUtxoData::SetTxidString,
+    VerifyignTxInUtxoData::GetTxidFieldType,
+  };
+  json_mapper.emplace("txid", func_table);
+  item_list.push_back("txid");
+  func_table = {
+    VerifyignTxInUtxoData::GetVoutString,
+    VerifyignTxInUtxoData::SetVoutString,
+    VerifyignTxInUtxoData::GetVoutFieldType,
+  };
+  json_mapper.emplace("vout", func_table);
+  item_list.push_back("vout");
+  func_table = {
+    VerifyignTxInUtxoData::GetAddressString,
+    VerifyignTxInUtxoData::SetAddressString,
+    VerifyignTxInUtxoData::GetAddressFieldType,
+  };
+  json_mapper.emplace("address", func_table);
+  item_list.push_back("address");
+  func_table = {
+    VerifyignTxInUtxoData::GetAmountString,
+    VerifyignTxInUtxoData::SetAmountString,
+    VerifyignTxInUtxoData::GetAmountFieldType,
+  };
+  json_mapper.emplace("amount", func_table);
+  item_list.push_back("amount");
+  func_table = {
+    VerifyignTxInUtxoData::GetDescriptorString,
+    VerifyignTxInUtxoData::SetDescriptorString,
+    VerifyignTxInUtxoData::GetDescriptorFieldType,
+  };
+  json_mapper.emplace("descriptor", func_table);
+  item_list.push_back("descriptor");
+  func_table = {
+    VerifyignTxInUtxoData::GetConfidentialValueCommitmentString,
+    VerifyignTxInUtxoData::SetConfidentialValueCommitmentString,
+    VerifyignTxInUtxoData::GetConfidentialValueCommitmentFieldType,
+  };
+  json_mapper.emplace("confidentialValueCommitment", func_table);
+  item_list.push_back("confidentialValueCommitment");
+}
+
+void VerifyignTxInUtxoData::ConvertFromStruct(
+    const VerifyignTxInUtxoDataStruct& data) {
+  txid_ = data.txid;
+  vout_ = data.vout;
+  address_ = data.address;
+  amount_ = data.amount;
+  descriptor_ = data.descriptor;
+  confidential_value_commitment_ = data.confidential_value_commitment;
+  ignore_items = data.ignore_items;
+}
+
+VerifyignTxInUtxoDataStruct VerifyignTxInUtxoData::ConvertToStruct() const {  // NOLINT
+  VerifyignTxInUtxoDataStruct result;
+  result.txid = txid_;
+  result.vout = vout_;
+  result.address = address_;
+  result.amount = amount_;
+  result.descriptor = descriptor_;
+  result.confidential_value_commitment = confidential_value_commitment_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// VerifySignRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<VerifySignRequest>
+  VerifySignRequest::json_mapper;
+std::vector<std::string> VerifySignRequest::item_list;
+
+void VerifySignRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<VerifySignRequest> func_table;  // NOLINT
+
+  func_table = {
+    VerifySignRequest::GetTxString,
+    VerifySignRequest::SetTxString,
+    VerifySignRequest::GetTxFieldType,
+  };
+  json_mapper.emplace("tx", func_table);
+  item_list.push_back("tx");
+  func_table = {
+    VerifySignRequest::GetIsElementsString,
+    VerifySignRequest::SetIsElementsString,
+    VerifySignRequest::GetIsElementsFieldType,
+  };
+  json_mapper.emplace("isElements", func_table);
+  item_list.push_back("isElements");
+  func_table = {
+    VerifySignRequest::GetTxinsString,
+    VerifySignRequest::SetTxinsString,
+    VerifySignRequest::GetTxinsFieldType,
+  };
+  json_mapper.emplace("txins", func_table);
+  item_list.push_back("txins");
+}
+
+void VerifySignRequest::ConvertFromStruct(
+    const VerifySignRequestStruct& data) {
+  tx_ = data.tx;
+  is_elements_ = data.is_elements;
+  txins_.ConvertFromStruct(data.txins);
+  ignore_items = data.ignore_items;
+}
+
+VerifySignRequestStruct VerifySignRequest::ConvertToStruct() const {  // NOLINT
+  VerifySignRequestStruct result;
+  result.tx = tx_;
+  result.is_elements = is_elements_;
+  result.txins = txins_.ConvertToStruct();
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// FailSignTxIn
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<FailSignTxIn>
+  FailSignTxIn::json_mapper;
+std::vector<std::string> FailSignTxIn::item_list;
+
+void FailSignTxIn::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<FailSignTxIn> func_table;  // NOLINT
+
+  func_table = {
+    FailSignTxIn::GetTxidString,
+    FailSignTxIn::SetTxidString,
+    FailSignTxIn::GetTxidFieldType,
+  };
+  json_mapper.emplace("txid", func_table);
+  item_list.push_back("txid");
+  func_table = {
+    FailSignTxIn::GetVoutString,
+    FailSignTxIn::SetVoutString,
+    FailSignTxIn::GetVoutFieldType,
+  };
+  json_mapper.emplace("vout", func_table);
+  item_list.push_back("vout");
+}
+
+void FailSignTxIn::ConvertFromStruct(
+    const FailSignTxInStruct& data) {
+  txid_ = data.txid;
+  vout_ = data.vout;
+  ignore_items = data.ignore_items;
+}
+
+FailSignTxInStruct FailSignTxIn::ConvertToStruct() const {  // NOLINT
+  FailSignTxInStruct result;
+  result.txid = txid_;
+  result.vout = vout_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// VerifySignResponse
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<VerifySignResponse>
+  VerifySignResponse::json_mapper;
+std::vector<std::string> VerifySignResponse::item_list;
+
+void VerifySignResponse::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<VerifySignResponse> func_table;  // NOLINT
+
+  func_table = {
+    VerifySignResponse::GetSuccessString,
+    VerifySignResponse::SetSuccessString,
+    VerifySignResponse::GetSuccessFieldType,
+  };
+  json_mapper.emplace("success", func_table);
+  item_list.push_back("success");
+  func_table = {
+    VerifySignResponse::GetFailTxinsString,
+    VerifySignResponse::SetFailTxinsString,
+    VerifySignResponse::GetFailTxinsFieldType,
+  };
+  json_mapper.emplace("failTxins", func_table);
+  item_list.push_back("failTxins");
+}
+
+void VerifySignResponse::ConvertFromStruct(
+    const VerifySignResponseStruct& data) {
+  success_ = data.success;
+  fail_txins_.ConvertFromStruct(data.fail_txins);
+  ignore_items = data.ignore_items;
+}
+
+VerifySignResponseStruct VerifySignResponse::ConvertToStruct() const {  // NOLINT
+  VerifySignResponseStruct result;
+  result.success = success_;
+  result.fail_txins = fail_txins_.ConvertToStruct();
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
 // VerifySignatureTxInRequest
 // ------------------------------------------------------------------------
 cfd::core::JsonTableMap<VerifySignatureTxInRequest>

@@ -47870,6 +47870,983 @@ class UpdateWitnessStackResponse
 };
 
 // ------------------------------------------------------------------------
+// VerifyignTxInUtxoData
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (VerifyignTxInUtxoData) class
+ */
+class VerifyignTxInUtxoData
+  : public cfd::core::JsonClassBase<VerifyignTxInUtxoData> {
+ public:
+  VerifyignTxInUtxoData() {
+    CollectFieldName();
+  }
+  virtual ~VerifyignTxInUtxoData() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of txid
+   * @return txid
+   */
+  std::string GetTxid() const {
+    return txid_;
+  }
+  /**
+   * @brief Set to txid
+   * @param[in] txid    setting value.
+   */
+  void SetTxid(  // line separate
+    const std::string& txid) {  // NOLINT
+    this->txid_ = txid;
+  }
+  /**
+   * @brief Get data type of txid
+   * @return Data type of txid
+   */
+  static std::string GetTxidFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of txid field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTxidString(  // line separate
+      const VerifyignTxInUtxoData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.txid_);
+  }
+  /**
+   * @brief Set json object to txid field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTxidString(  // line separate
+      VerifyignTxInUtxoData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.txid_, json_value);
+  }
+
+  /**
+   * @brief Get of vout
+   * @return vout
+   */
+  uint32_t GetVout() const {
+    return vout_;
+  }
+  /**
+   * @brief Set to vout
+   * @param[in] vout    setting value.
+   */
+  void SetVout(  // line separate
+    const uint32_t& vout) {  // NOLINT
+    this->vout_ = vout;
+  }
+  /**
+   * @brief Get data type of vout
+   * @return Data type of vout
+   */
+  static std::string GetVoutFieldType() {
+    return "uint32_t";
+  }
+  /**
+   * @brief Get json string of vout field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetVoutString(  // line separate
+      const VerifyignTxInUtxoData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.vout_);
+  }
+  /**
+   * @brief Set json object to vout field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetVoutString(  // line separate
+      VerifyignTxInUtxoData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.vout_, json_value);
+  }
+
+  /**
+   * @brief Get of address
+   * @return address
+   */
+  std::string GetAddress() const {
+    return address_;
+  }
+  /**
+   * @brief Set to address
+   * @param[in] address    setting value.
+   */
+  void SetAddress(  // line separate
+    const std::string& address) {  // NOLINT
+    this->address_ = address;
+  }
+  /**
+   * @brief Get data type of address
+   * @return Data type of address
+   */
+  static std::string GetAddressFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of address field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetAddressString(  // line separate
+      const VerifyignTxInUtxoData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.address_);
+  }
+  /**
+   * @brief Set json object to address field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetAddressString(  // line separate
+      VerifyignTxInUtxoData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.address_, json_value);
+  }
+
+  /**
+   * @brief Get of amount
+   * @return amount
+   */
+  int64_t GetAmount() const {
+    return amount_;
+  }
+  /**
+   * @brief Set to amount
+   * @param[in] amount    setting value.
+   */
+  void SetAmount(  // line separate
+    const int64_t& amount) {  // NOLINT
+    this->amount_ = amount;
+  }
+  /**
+   * @brief Get data type of amount
+   * @return Data type of amount
+   */
+  static std::string GetAmountFieldType() {
+    return "int64_t";
+  }
+  /**
+   * @brief Get json string of amount field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetAmountString(  // line separate
+      const VerifyignTxInUtxoData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.amount_);
+  }
+  /**
+   * @brief Set json object to amount field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetAmountString(  // line separate
+      VerifyignTxInUtxoData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.amount_, json_value);
+  }
+
+  /**
+   * @brief Get of descriptor
+   * @return descriptor
+   */
+  std::string GetDescriptor() const {
+    return descriptor_;
+  }
+  /**
+   * @brief Set to descriptor
+   * @param[in] descriptor    setting value.
+   */
+  void SetDescriptor(  // line separate
+    const std::string& descriptor) {  // NOLINT
+    this->descriptor_ = descriptor;
+  }
+  /**
+   * @brief Get data type of descriptor
+   * @return Data type of descriptor
+   */
+  static std::string GetDescriptorFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of descriptor field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetDescriptorString(  // line separate
+      const VerifyignTxInUtxoData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.descriptor_);
+  }
+  /**
+   * @brief Set json object to descriptor field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetDescriptorString(  // line separate
+      VerifyignTxInUtxoData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.descriptor_, json_value);
+  }
+
+  /**
+   * @brief Get of confidentialValueCommitment
+   * @return confidentialValueCommitment
+   */
+  std::string GetConfidentialValueCommitment() const {
+    return confidential_value_commitment_;
+  }
+  /**
+   * @brief Set to confidentialValueCommitment
+   * @param[in] confidential_value_commitment    setting value.
+   */
+  void SetConfidentialValueCommitment(  // line separate
+    const std::string& confidential_value_commitment) {  // NOLINT
+    this->confidential_value_commitment_ = confidential_value_commitment;
+  }
+  /**
+   * @brief Get data type of confidentialValueCommitment
+   * @return Data type of confidentialValueCommitment
+   */
+  static std::string GetConfidentialValueCommitmentFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of confidentialValueCommitment field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetConfidentialValueCommitmentString(  // line separate
+      const VerifyignTxInUtxoData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.confidential_value_commitment_);
+  }
+  /**
+   * @brief Set json object to confidentialValueCommitment field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetConfidentialValueCommitmentString(  // line separate
+      VerifyignTxInUtxoData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.confidential_value_commitment_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const VerifyignTxInUtxoDataStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  VerifyignTxInUtxoDataStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using VerifyignTxInUtxoDataMapTable =
+    cfd::core::JsonTableMap<VerifyignTxInUtxoData>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const VerifyignTxInUtxoDataMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static VerifyignTxInUtxoDataMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(txid) value
+   */
+  std::string txid_ = "";
+  /**
+   * @brief JsonAPI(vout) value
+   */
+  uint32_t vout_ = 0;
+  /**
+   * @brief JsonAPI(address) value
+   */
+  std::string address_ = "";
+  /**
+   * @brief JsonAPI(amount) value
+   */
+  int64_t amount_ = 0;
+  /**
+   * @brief JsonAPI(descriptor) value
+   */
+  std::string descriptor_ = "";
+  /**
+   * @brief JsonAPI(confidentialValueCommitment) value
+   */
+  std::string confidential_value_commitment_ = "";
+};
+
+// ------------------------------------------------------------------------
+// VerifySignRequest
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (VerifySignRequest) class
+ */
+class VerifySignRequest
+  : public cfd::core::JsonClassBase<VerifySignRequest> {
+ public:
+  VerifySignRequest() {
+    CollectFieldName();
+  }
+  virtual ~VerifySignRequest() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of tx
+   * @return tx
+   */
+  std::string GetTx() const {
+    return tx_;
+  }
+  /**
+   * @brief Set to tx
+   * @param[in] tx    setting value.
+   */
+  void SetTx(  // line separate
+    const std::string& tx) {  // NOLINT
+    this->tx_ = tx;
+  }
+  /**
+   * @brief Get data type of tx
+   * @return Data type of tx
+   */
+  static std::string GetTxFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of tx field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTxString(  // line separate
+      const VerifySignRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.tx_);
+  }
+  /**
+   * @brief Set json object to tx field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTxString(  // line separate
+      VerifySignRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.tx_, json_value);
+  }
+
+  /**
+   * @brief Get of isElements
+   * @return isElements
+   */
+  bool GetIsElements() const {
+    return is_elements_;
+  }
+  /**
+   * @brief Set to isElements
+   * @param[in] is_elements    setting value.
+   */
+  void SetIsElements(  // line separate
+    const bool& is_elements) {  // NOLINT
+    this->is_elements_ = is_elements;
+  }
+  /**
+   * @brief Get data type of isElements
+   * @return Data type of isElements
+   */
+  static std::string GetIsElementsFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of isElements field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetIsElementsString(  // line separate
+      const VerifySignRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.is_elements_);
+  }
+  /**
+   * @brief Set json object to isElements field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetIsElementsString(  // line separate
+      VerifySignRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.is_elements_, json_value);
+  }
+
+  /**
+   * @brief Get of txins.
+   * @return txins
+   */
+  JsonObjectVector<VerifyignTxInUtxoData, VerifyignTxInUtxoDataStruct>& GetTxins() {  // NOLINT
+    return txins_;
+  }
+  /**
+   * @brief Set to txins.
+   * @param[in] txins    setting value.
+   */
+  void SetTxins(  // line separate
+      const JsonObjectVector<VerifyignTxInUtxoData, VerifyignTxInUtxoDataStruct>& txins) {  // NOLINT
+    this->txins_ = txins;
+  }
+  /**
+   * @brief Get data type of txins.
+   * @return Data type of txins.
+   */
+  static std::string GetTxinsFieldType() {
+    return "JsonObjectVector<VerifyignTxInUtxoData, VerifyignTxInUtxoDataStruct>";  // NOLINT
+  }
+  /**
+   * @brief Get json string of txins field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
+   */
+  static std::string GetTxinsString(  // line separate
+      const VerifySignRequest& obj) {  // NOLINT
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
+    return obj.txins_.Serialize();
+  }
+  /**
+   * @brief Set json object to txins field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
+   */
+  static void SetTxinsString(  // line separate
+      VerifySignRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    obj.txins_.DeserializeUniValue(json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const VerifySignRequestStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  VerifySignRequestStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using VerifySignRequestMapTable =
+    cfd::core::JsonTableMap<VerifySignRequest>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const VerifySignRequestMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static VerifySignRequestMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(tx) value
+   */
+  std::string tx_ = "";
+  /**
+   * @brief JsonAPI(isElements) value
+   */
+  bool is_elements_ = false;
+  /**
+   * @brief JsonAPI(txins) value
+   */
+  JsonObjectVector<VerifyignTxInUtxoData, VerifyignTxInUtxoDataStruct> txins_;  // NOLINT
+};
+
+// ------------------------------------------------------------------------
+// FailSignTxIn
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (FailSignTxIn) class
+ */
+class FailSignTxIn
+  : public cfd::core::JsonClassBase<FailSignTxIn> {
+ public:
+  FailSignTxIn() {
+    CollectFieldName();
+  }
+  virtual ~FailSignTxIn() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of txid
+   * @return txid
+   */
+  std::string GetTxid() const {
+    return txid_;
+  }
+  /**
+   * @brief Set to txid
+   * @param[in] txid    setting value.
+   */
+  void SetTxid(  // line separate
+    const std::string& txid) {  // NOLINT
+    this->txid_ = txid;
+  }
+  /**
+   * @brief Get data type of txid
+   * @return Data type of txid
+   */
+  static std::string GetTxidFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of txid field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTxidString(  // line separate
+      const FailSignTxIn& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.txid_);
+  }
+  /**
+   * @brief Set json object to txid field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTxidString(  // line separate
+      FailSignTxIn& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.txid_, json_value);
+  }
+
+  /**
+   * @brief Get of vout
+   * @return vout
+   */
+  uint32_t GetVout() const {
+    return vout_;
+  }
+  /**
+   * @brief Set to vout
+   * @param[in] vout    setting value.
+   */
+  void SetVout(  // line separate
+    const uint32_t& vout) {  // NOLINT
+    this->vout_ = vout;
+  }
+  /**
+   * @brief Get data type of vout
+   * @return Data type of vout
+   */
+  static std::string GetVoutFieldType() {
+    return "uint32_t";
+  }
+  /**
+   * @brief Get json string of vout field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetVoutString(  // line separate
+      const FailSignTxIn& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.vout_);
+  }
+  /**
+   * @brief Set json object to vout field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetVoutString(  // line separate
+      FailSignTxIn& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.vout_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const FailSignTxInStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  FailSignTxInStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using FailSignTxInMapTable =
+    cfd::core::JsonTableMap<FailSignTxIn>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const FailSignTxInMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static FailSignTxInMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(txid) value
+   */
+  std::string txid_ = "";
+  /**
+   * @brief JsonAPI(vout) value
+   */
+  uint32_t vout_ = 0;
+};
+
+// ------------------------------------------------------------------------
+// VerifySignResponse
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (VerifySignResponse) class
+ */
+class VerifySignResponse
+  : public cfd::core::JsonClassBase<VerifySignResponse> {
+ public:
+  VerifySignResponse() {
+    CollectFieldName();
+  }
+  virtual ~VerifySignResponse() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of success
+   * @return success
+   */
+  bool GetSuccess() const {
+    return success_;
+  }
+  /**
+   * @brief Set to success
+   * @param[in] success    setting value.
+   */
+  void SetSuccess(  // line separate
+    const bool& success) {  // NOLINT
+    this->success_ = success;
+  }
+  /**
+   * @brief Get data type of success
+   * @return Data type of success
+   */
+  static std::string GetSuccessFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of success field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetSuccessString(  // line separate
+      const VerifySignResponse& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.success_);
+  }
+  /**
+   * @brief Set json object to success field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetSuccessString(  // line separate
+      VerifySignResponse& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.success_, json_value);
+  }
+
+  /**
+   * @brief Get of failTxins.
+   * @return failTxins
+   */
+  JsonObjectVector<FailSignTxIn, FailSignTxInStruct>& GetFailTxins() {  // NOLINT
+    return fail_txins_;
+  }
+  /**
+   * @brief Set to failTxins.
+   * @param[in] fail_txins    setting value.
+   */
+  void SetFailTxins(  // line separate
+      const JsonObjectVector<FailSignTxIn, FailSignTxInStruct>& fail_txins) {  // NOLINT
+    this->fail_txins_ = fail_txins;
+  }
+  /**
+   * @brief Get data type of failTxins.
+   * @return Data type of failTxins.
+   */
+  static std::string GetFailTxinsFieldType() {
+    return "JsonObjectVector<FailSignTxIn, FailSignTxInStruct>";  // NOLINT
+  }
+  /**
+   * @brief Get json string of failTxins field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
+   */
+  static std::string GetFailTxinsString(  // line separate
+      const VerifySignResponse& obj) {  // NOLINT
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
+    return obj.fail_txins_.Serialize();
+  }
+  /**
+   * @brief Set json object to failTxins field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
+   */
+  static void SetFailTxinsString(  // line separate
+      VerifySignResponse& obj,  // NOLINT
+      const UniValue& json_value) {
+    obj.fail_txins_.DeserializeUniValue(json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const VerifySignResponseStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  VerifySignResponseStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using VerifySignResponseMapTable =
+    cfd::core::JsonTableMap<VerifySignResponse>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const VerifySignResponseMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static VerifySignResponseMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(success) value
+   */
+  bool success_ = true;
+  /**
+   * @brief JsonAPI(failTxins) value
+   */
+  JsonObjectVector<FailSignTxIn, FailSignTxInStruct> fail_txins_;  // NOLINT
+};
+
+// ------------------------------------------------------------------------
 // VerifySignatureTxInRequest
 // ------------------------------------------------------------------------
 /**

@@ -1224,6 +1224,31 @@ export interface UpdateWitnessStackResponse {
     hex?: string;
 }
 
+export interface VerifyignTxInUtxoData {
+    txid: string;
+    vout: number;
+    address: string;
+    amount: bigint;
+    descriptor?: string;
+    confidentialValueCommitment?: string;
+}
+
+export interface VerifySignRequest {
+    tx: string;
+    isElements?: boolean;
+    txins: VerifyignTxInUtxoData[];
+}
+
+export interface FailSignTxIn {
+    txid: string;
+    vout: number;
+}
+
+export interface VerifySignResponse {
+    success: boolean;
+    failTxins?: FailSignTxIn[];
+}
+
 export interface VerifySignatureTxInRequest {
     txid: string;
     vout: number;
@@ -1358,5 +1383,7 @@ export function GetSupportedFunction(): GetSupportedFunctionResponse;
 export function CreateRawTransaction(jsonObject: CreateRawTransactionRequest): CreateRawTransactionResponse;
 
 export function UpdateWitnessStack(jsonObject: UpdateWitnessStackRequest): UpdateWitnessStackResponse;
+
+export function VerifySign(jsonObject: VerifySignRequest): VerifySignResponse;
 
 export function VerifySignature(jsonObject: VerifySignatureRequest): VerifySignatureResponse;

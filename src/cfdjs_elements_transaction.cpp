@@ -15,9 +15,11 @@
 #include "cfd/cfd_address.h"
 #include "cfd/cfd_elements_address.h"
 #include "cfd/cfdapi_coin.h"
+#include "cfd/cfdapi_elements_address.h"
 #include "cfd/cfdapi_elements_transaction.h"
 #include "cfd/cfdapi_ledger.h"
 #include "cfd_js_api_json_autogen.h"  // NOLINT
+#include "cfdcore/cfdcore_descriptor.h"
 #include "cfdcore/cfdcore_util.h"
 #include "cfdjs/cfdjs_api_address.h"
 #include "cfdjs/cfdjs_api_elements_address.h"
@@ -30,9 +32,11 @@ namespace cfd {
 namespace js {
 namespace api {
 
+using cfd::ConfidentialTransactionContext;
 using cfd::ConfidentialTransactionController;
 using cfd::ElementsAddressFactory;
 using cfd::UtxoData;
+using cfd::api::ElementsAddressApi;
 using cfd::api::ElementsTransactionApi;
 using cfd::api::ElementsUtxoAndOption;
 using cfd::api::IssuanceBlindKeys;
@@ -66,6 +70,7 @@ using cfd::core::ConfidentialTxInReference;
 using cfd::core::ConfidentialTxOut;
 using cfd::core::ConfidentialTxOutReference;
 using cfd::core::ConfidentialValue;
+using cfd::core::DescriptorScriptType;
 using cfd::core::ElementsAddressType;
 using cfd::core::ElementsConfidentialAddress;
 using cfd::core::ElementsNetType;
@@ -940,6 +945,80 @@ VerifySignatureResponseStruct ElementsTransactionStructApi::VerifySignature(
   VerifySignatureResponseStruct result;
   result = ExecuteStructApi<
       VerifySignatureRequestStruct, VerifySignatureResponseStruct>(
+      request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
+VerifySignResponseStruct ElementsTransactionStructApi::VerifySign(
+    const VerifySignRequestStruct& request) {
+  auto call_func = [](const VerifySignRequestStruct& request)
+      -> VerifySignResponseStruct {  // NOLINT
+    VerifySignResponseStruct response;
+
+    ConfidentialTransactionContext ctx(request.tx);
+    ElementsAddressFactory address_factory;
+    std::vector<UtxoData> utxos;
+    ElementsAddressApi addr_api;
+    for (auto& utxo : request.txins) {
+      UtxoData data = {};
+      data.txid = Txid(utxo.txid);
+      data.vout = utxo.vout;
+      data.amount = Amount::CreateBySatoshiAmount(utxo.amount);
+      if (!utxo.confidential_value_commitment.empty()) {
+        data.value_commitment =
+            ConfidentialValue(utxo.confidential_value_commitment);
+      }
+
+      data.descriptor = utxo.descriptor;
+      if (!data.descriptor.empty()) {
+        DescriptorScriptData script_data = addr_api.ParseOutputDescriptor(
+            data.descriptor, NetType::kMainnet, "", nullptr, nullptr, nullptr);
+        if (script_data.type == DescriptorScriptType::kDescriptorScriptRaw) {
+          data.locking_script = script_data.locking_script;
+        } else {
+          // TODO(k-matsuzawa): mainnet only?
+          data.address = script_data.address;
+          data.locking_script = script_data.locking_script;
+          data.address_type = data.address.GetAddressType();
+        }
+      } else if (!utxo.address.empty()) {
+        if (ElementsConfidentialAddress::IsConfidentialAddress(utxo.address)) {
+          ElementsConfidentialAddress confidential_addr(utxo.address);
+          data.address = confidential_addr.GetUnblindedAddress();
+        } else {
+          data.address = address_factory.GetAddress(utxo.address);
+        }
+        data.locking_script = data.address.GetLockingScript();
+        data.address_type = data.address.GetAddressType();
+      }
+      data.binary_data = nullptr;
+      utxos.push_back(data);
+    }
+    ctx.CollectInputUtxo(utxos);
+
+    bool is_success = true;
+    for (auto& utxo : utxos) {
+      OutPoint outpoint(utxo.txid, utxo.vout);
+      try {
+        ctx.Verify(outpoint);
+      } catch (const CfdException& except) {
+        warn(
+            CFD_LOG_SOURCE, "Failed to VerifySign. {}",
+            std::string(except.what()));
+        is_success = false;
+        FailSignTxInStruct fail_data;
+        fail_data.txid = outpoint.GetTxid().GetHex();
+        fail_data.vout = outpoint.GetVout();
+        response.fail_txins.push_back(fail_data);
+      }
+    }
+
+    response.success = is_success;
+    return response;
+  };
+
+  VerifySignResponseStruct result;
+  result = ExecuteStructApi<VerifySignRequestStruct, VerifySignResponseStruct>(
       request, call_func, std::string(__FUNCTION__));
   return result;
 }

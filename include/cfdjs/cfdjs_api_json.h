@@ -300,6 +300,13 @@ class CFD_JS_API_EXPORT JsonMappingApi {
   static std::string VerifySignature(const std::string &request_message);
 
   /**
+   * @brief VerifySignのJSON API関数(request, response).
+   * @param[in] request_message     リクエストされたjson文字列
+   * @return 戻り値(JSON文字列)
+   */
+  static std::string VerifySign(const std::string &request_message);
+
+  /**
    * @brief EstimateFeeのJSON API関数(request, response).
    * @param[in] request_message     リクエストされたjson文字列
    * @return 戻り値(JSON文字列)

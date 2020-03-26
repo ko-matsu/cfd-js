@@ -690,6 +690,18 @@ std::string JsonMappingApi::VerifySignature(
 #endif
 }
 
+std::string JsonMappingApi::VerifySign(const std::string &request_message) {
+  return ExecuteElementsCheckApi<
+      api::json::VerifySignRequest, api::json::VerifySignResponse,
+      api::VerifySignRequestStruct, api::VerifySignResponseStruct>(
+      request_message, TransactionStructApi::VerifySign,
+#ifndef CFD_DISABLE_ELEMENTS
+      ElementsTransactionStructApi::VerifySign);
+#else
+      TransactionStructApi::VerifySign);
+#endif
+}
+
 std::string JsonMappingApi::EstimateFee(const std::string &request_message) {
   return ExecuteElementsCheckDirectApi<
       api::json::EstimateFeeRequest, api::json::EstimateFeeResponse>(

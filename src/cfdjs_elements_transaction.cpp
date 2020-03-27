@@ -959,11 +959,11 @@ VerifySignResponseStruct ElementsTransactionStructApi::VerifySign(
     ElementsAddressFactory address_factory;
     std::vector<UtxoData> utxos;
     ElementsAddressApi addr_api;
-    for (auto& utxo : request.txins) {
+    for (const auto& utxo : request.txins) {
       UtxoData data = {};
       data.txid = Txid(utxo.txid);
       data.vout = utxo.vout;
-      data.amount = Amount::CreateBySatoshiAmount(utxo.amount);
+      data.amount = Amount(utxo.amount);
       if (!utxo.confidential_value_commitment.empty()) {
         data.value_commitment =
             ConfidentialValue(utxo.confidential_value_commitment);
@@ -972,14 +972,15 @@ VerifySignResponseStruct ElementsTransactionStructApi::VerifySign(
       data.descriptor = utxo.descriptor;
       if (!data.descriptor.empty()) {
         DescriptorScriptData script_data = addr_api.ParseOutputDescriptor(
-            data.descriptor, NetType::kMainnet, "", nullptr, nullptr, nullptr);
+            data.descriptor, NetType::kLiquidV1, "", nullptr, nullptr,
+            nullptr);
+        data.address_type = script_data.address_type;
         if (script_data.type == DescriptorScriptType::kDescriptorScriptRaw) {
           data.locking_script = script_data.locking_script;
         } else {
           // TODO(k-matsuzawa): mainnet only?
           data.address = script_data.address;
           data.locking_script = script_data.locking_script;
-          data.address_type = data.address.GetAddressType();
         }
       } else if (!utxo.address.empty()) {
         if (ElementsConfidentialAddress::IsConfidentialAddress(utxo.address)) {
@@ -996,7 +997,7 @@ VerifySignResponseStruct ElementsTransactionStructApi::VerifySign(
     }
     ctx.CollectInputUtxo(utxos);
 
-    bool is_success = true;
+    response.success = !utxos.empty();
     for (auto& utxo : utxos) {
       OutPoint outpoint(utxo.txid, utxo.vout);
       try {
@@ -1005,7 +1006,7 @@ VerifySignResponseStruct ElementsTransactionStructApi::VerifySign(
         warn(
             CFD_LOG_SOURCE, "Failed to VerifySign. {}",
             std::string(except.what()));
-        is_success = false;
+        response.success = false;
         FailSignTxInStruct fail_data;
         fail_data.txid = outpoint.GetTxid().GetHex();
         fail_data.vout = outpoint.GetVout();
@@ -1013,7 +1014,6 @@ VerifySignResponseStruct ElementsTransactionStructApi::VerifySign(
       }
     }
 
-    response.success = is_success;
     return response;
   };
 

@@ -581,13 +581,13 @@ VerifySignResponseStruct TransactionStructApi::VerifySign(
       if (!data.descriptor.empty()) {
         DescriptorScriptData script_data = addr_api.ParseOutputDescriptor(
             data.descriptor, NetType::kMainnet, "", nullptr, nullptr, nullptr);
+        data.address_type = script_data.address_type;
         if (script_data.type == DescriptorScriptType::kDescriptorScriptRaw) {
           data.locking_script = script_data.locking_script;
         } else {
           // TODO(k-matsuzawa): mainnet only?
           data.address = script_data.address;
           data.locking_script = script_data.locking_script;
-          data.address_type = data.address.GetAddressType();
         }
       } else if (!utxo.address.empty()) {
         if (ElementsConfidentialAddress::IsConfidentialAddress(utxo.address)) {

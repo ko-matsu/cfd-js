@@ -27,6 +27,32 @@ export interface AddMultisigSignResponse {
     hex: string;
 }
 
+export interface PubkeyHashSignData {
+    hex: string;
+    type?: string;
+    derEncode?: boolean;
+    sighashType?: string;
+    sighashAnyoneCanPay?: boolean;
+}
+
+export interface AddPubkeyHashSignTxInRequest {
+    txid: string;
+    vout: number;
+    signParam?: PubkeyHashSignData;
+    pubkey: string;
+    hashType: string;
+}
+
+export interface AddPubkeyHashSignRequest {
+    isElements?: boolean;
+    tx: string;
+    txin?: AddPubkeyHashSignTxInRequest;
+}
+
+export interface AddPubkeyHashSignResponse {
+    hex: string;
+}
+
 export interface AddTxIn {
     txid: string;
     vout: number;
@@ -108,8 +134,12 @@ export interface BlindIssuanceRequest {
 export interface BlindRawTransactionRequest {
     tx: string;
     txins?: BlindTxInRequest[];
-    txouts: BlindTxOutRequest[];
+    txouts?: BlindTxOutRequest[];
+    txoutConfidentialAddresses?: string[];
     issuances?: BlindIssuanceRequest[];
+    minimumRangeValue?: bigint;
+    exponent?: number;
+    minimumBits?: number;
 }
 
 export interface BlindRawTransactionResponse {
@@ -905,6 +935,14 @@ export interface GetAddressInfoResponse {
     hash?: string;
 }
 
+export interface GetCompressedPubkeyRequest {
+    pubkey: string;
+}
+
+export interface GetCompressedPubkeyResponse {
+    pubkey: string;
+}
+
 export interface GetExtkeyInfoRequest {
     extkey: string;
 }
@@ -1172,6 +1210,29 @@ export interface CreateElementsSignatureHashResponse {
     sighash: string;
 }
 
+export interface SignWithPrivkeyTxInRequest {
+    txid: string;
+    vout: number;
+    privkey: string;
+    pubkey?: string;
+    hashType: string;
+    sighashType?: string;
+    sighashAnyoneCanPay?: boolean;
+    amount?: bigint;
+    confidentialValueCommitment?: string;
+    isGrindR?: boolean;
+}
+
+export interface SignWithPrivkeyRequest {
+    isElements?: boolean;
+    tx: string;
+    txin?: SignWithPrivkeyTxInRequest;
+}
+
+export interface SignWithPrivkeyResponse {
+    hex: string;
+}
+
 export interface GetSupportedFunctionResponse {
     bitcoin: boolean;
     elements: boolean;
@@ -1274,6 +1335,8 @@ export interface VerifySignatureResponse {
 
 export function AddMultisigSign(jsonObject: AddMultisigSignRequest): AddMultisigSignResponse;
 
+export function AddPubkeyHashSign(jsonObject: AddPubkeyHashSignRequest): AddPubkeyHashSignResponse;
+
 export function AddRawTransaction(jsonObject: AddRawTransactionRequest): AddRawTransactionResponse;
 
 export function AddSign(jsonObject: AddSignRequest): AddSignResponse;
@@ -1346,6 +1409,8 @@ export function GetAddressesFromMultisig(jsonObject: GetAddressesFromMultisigReq
 
 export function GetAddressInfo(jsonObject: GetAddressInfoRequest): GetAddressInfoResponse;
 
+export function GetCompressedPubkey(jsonObject: GetCompressedPubkeyRequest): GetCompressedPubkeyResponse;
+
 export function GetExtkeyInfo(jsonObject: GetExtkeyInfoRequest): GetExtkeyInfoResponse;
 
 export function GetIssuanceBlindingKey(jsonObject: GetIssuanceBlindingKeyRequest): GetIssuanceBlindingKeyResponse;
@@ -1377,6 +1442,8 @@ export function SerializeLedgerFormat(jsonObject: SerializeLedgerFormatRequest):
 export function CreateSignatureHash(jsonObject: CreateSignatureHashRequest): CreateSignatureHashResponse;
 
 export function CreateElementsSignatureHash(jsonObject: CreateElementsSignatureHashRequest): CreateElementsSignatureHashResponse;
+
+export function SignWithPrivkey(jsonObject: SignWithPrivkeyRequest): SignWithPrivkeyResponse;
 
 export function GetSupportedFunction(): GetSupportedFunctionResponse;
 

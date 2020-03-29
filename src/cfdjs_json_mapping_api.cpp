@@ -533,6 +533,16 @@ std::string JsonMappingApi::GetPubkeyFromPrivkey(
       request_message, KeyStructApi::GetPubkeyFromPrivkey);
 }
 
+std::string JsonMappingApi::GetCompressedPubkey(
+    const std::string &request_message) {
+  return ExecuteJsonApi<
+      api::json::GetCompressedPubkeyRequest,
+      api::json::GetCompressedPubkeyResponse,
+      api::GetCompressedPubkeyRequestStruct,
+      api::GetCompressedPubkeyResponseStruct>(
+      request_message, KeyStructApi::GetCompressedPubkey);
+}
+
 std::string JsonMappingApi::CreateExtkeyFromSeed(
     const std::string &request_message) {
   return ExecuteJsonApi<
@@ -631,6 +641,34 @@ std::string JsonMappingApi::AddSign(const std::string &request_message) {
       ElementsTransactionStructApi::AddSign);
 #else
       TransactionStructApi::AddSign);
+#endif
+}
+
+std::string JsonMappingApi::AddPubkeyHashSign(
+    const std::string &request_message) {
+  return ExecuteElementsCheckApi<
+      api::json::AddPubkeyHashSignRequest,
+      api::json::AddPubkeyHashSignResponse,
+      api::AddPubkeyHashSignRequestStruct,
+      api::AddPubkeyHashSignResponseStruct>(
+      request_message, TransactionStructApi::AddPubkeyHashSign,
+#ifndef CFD_DISABLE_ELEMENTS
+      ElementsTransactionStructApi::AddPubkeyHashSign);
+#else
+      TransactionStructApi::AddPubkeyHashSign);
+#endif
+}
+
+std::string JsonMappingApi::SignWithPrivkey(
+    const std::string &request_message) {
+  return ExecuteElementsCheckApi<
+      api::json::SignWithPrivkeyRequest, api::json::SignWithPrivkeyResponse,
+      api::SignWithPrivkeyRequestStruct, api::SignWithPrivkeyResponseStruct>(
+      request_message, TransactionStructApi::SignWithPrivkey,
+#ifndef CFD_DISABLE_ELEMENTS
+      ElementsTransactionStructApi::SignWithPrivkey);
+#else
+      TransactionStructApi::SignWithPrivkey);
 #endif
 }
 

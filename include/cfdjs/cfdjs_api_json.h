@@ -191,6 +191,13 @@ class CFD_JS_API_EXPORT JsonMappingApi {
   static std::string GetPubkeyFromPrivkey(const std::string &request_message);
 
   /**
+   * @brief GetCompressedPubkeyのJSON API関数(request, response).
+   * @param[in] request_message     リクエストされたjson文字列
+   * @return 戻り値(JSON文字列)
+   */
+  static std::string GetCompressedPubkey(const std::string &request_message);
+
+  /**
    * @brief CreateExtkeyFromSeedのJSON API関数(request, response).
    * @param[in] request_message     リクエストされたjson文字列
    * @return 戻り値(JSON文字列)
@@ -270,6 +277,20 @@ class CFD_JS_API_EXPORT JsonMappingApi {
    * @return 戻り値(JSON文字列)
    */
   static std::string AddSign(const std::string &request_message);
+
+  /**
+   * @brief AddPubkeyHashSignのJSON API関数(request, response).
+   * @param[in] request_message     リクエストされたjson文字列
+   * @return 戻り値(JSON文字列)
+   */
+  static std::string AddPubkeyHashSign(const std::string &request_message);
+
+  /**
+   * @brief SignWithPrivkeyのJSON API関数(request, response).
+   * @param[in] request_message     リクエストされたjson文字列
+   * @return 戻り値(JSON文字列)
+   */
+  static std::string SignWithPrivkey(const std::string &request_message);
 
   /**
    * @brief UpdateWitnessStackのJSON API関数(request, response).

@@ -303,6 +303,15 @@ Value GetPubkeyFromPrivkey(const CallbackInfo &information) {
 }
 
 /**
+ * @brief GetCompressedPubkeyのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value GetCompressedPubkey(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::GetCompressedPubkey);
+}
+
+/**
  * @brief CreateExtkeyFromSeedのJSON API関数(request, response).
  * @param[in] information     node addon apiのコールバック情報
  * @return 戻り値(JSON文字列)
@@ -402,6 +411,24 @@ Value CalculateEcSignature(const CallbackInfo &information) {
  */
 Value AddSign(const CallbackInfo &information) {
   return NodeAddonJsonApi(information, JsonMappingApi::AddSign);
+}
+
+/**
+ * @brief AddPubkeyHashSignのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value AddPubkeyHashSign(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::AddPubkeyHashSign);
+}
+
+/**
+ * @brief SignWithPrivkeyのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value SignWithPrivkey(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::SignWithPrivkey);
 }
 
 /**
@@ -684,6 +711,12 @@ void InitializeJsonApi(Env env, Object *exports) {
       Function::New(env, GetWitnessStackNum));
   exports->Set(String::New(env, "AddSign"), Function::New(env, AddSign));
   exports->Set(
+      String::New(env, "AddPubkeyHashSign"),
+      Function::New(env, AddPubkeyHashSign));
+  exports->Set(
+      String::New(env, "SignWithPrivkey"),
+      Function::New(env, SignWithPrivkey));
+  exports->Set(
       String::New(env, "UpdateWitnessStack"),
       Function::New(env, UpdateWitnessStack));
   exports->Set(
@@ -712,6 +745,9 @@ void InitializeJsonApi(Env env, Object *exports) {
   exports->Set(
       String::New(env, "GetPubkeyFromPrivkey"),
       Function::New(env, GetPubkeyFromPrivkey));
+  exports->Set(
+      String::New(env, "GetCompressedPubkey"),
+      Function::New(env, GetCompressedPubkey));
   exports->Set(
       String::New(env, "CreateExtkeyFromSeed"),
       Function::New(env, CreateExtkeyFromSeed));

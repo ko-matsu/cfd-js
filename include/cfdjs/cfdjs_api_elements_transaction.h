@@ -78,6 +78,22 @@ class CFD_JS_API_EXPORT ElementsTransactionStructApi {
       const AddMultisigSignRequestStruct& request);
 
   /**
+   * @brief パラメータの情報を元に、秘密鍵で署名する.
+   * @param[in] request Transactionと署名情報を格納した構造体
+   * @return Transactionのhexデータを格納した構造体
+   */
+  static SignWithPrivkeyResponseStruct SignWithPrivkey(
+      const SignWithPrivkeyRequestStruct& request);
+
+  /**
+   * @brief パラメータの情報を元に、公開鍵署名情報を追加する.
+   * @param[in] request Transactionと署名情報を格納した構造体
+   * @return Transactionのhexデータを格納した構造体
+   */
+  static AddPubkeyHashSignResponseStruct AddPubkeyHashSign(
+      const AddPubkeyHashSignRequestStruct& request);
+
+  /**
    * @brief パラメータの情報を元に、WitnessStackの情報を更新する.
    * @param[in] request TransactionとWitnessStack追加情報を格納した構造体
    * @return Transactionのhexデータを格納した構造体

@@ -12,6 +12,7 @@ on:
 
 env:
   CMAKE_VERSION: 3.15.5
+  CMAKE_BUILD_PARALLEL_LEVEL: 4
 
 jobs:
   cmake-js-build:

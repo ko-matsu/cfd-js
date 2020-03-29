@@ -464,7 +464,13 @@ void ${map_data.type}::CollectFieldName() {
           for (const child_key in map_data.child_list) {
             const child_data = map_data.child_list[child_key];
             if (child_data.is_object || child_data.is_array) {
-              result.push(`  ${child_data.variable_name}_.ConvertFromStruct(data.${child_data.variable_name});`);
+              const str = `  ${child_data.variable_name}_.ConvertFromStruct(data.${child_data.variable_name});`;
+              if (str.length > 80) {
+                result.push(`  ${child_data.variable_name}_.ConvertFromStruct(`);
+                result.push(`      data.${child_data.variable_name});`);
+              } else {
+                result.push(`  ${child_data.variable_name}_.ConvertFromStruct(data.${child_data.variable_name});`);
+              }
             } else {
               result.push(`  ${child_data.variable_name}_ = data.${child_data.variable_name};`);
             }
@@ -478,7 +484,12 @@ void ${map_data.type}::CollectFieldName() {
           for (const child_key in map_data.child_list) {
             const child_data = map_data.child_list[child_key];
             if (child_data.is_object || child_data.is_array) {
-              result.push(`  result.${child_data.variable_name} = ${child_data.variable_name}_.ConvertToStruct();`);
+              const str = `  result.${child_data.variable_name} = ${child_data.variable_name}_.ConvertToStruct();`;
+              if (str.length > 80) {
+                result.push(`  result.${child_data.variable_name} = ${child_data.variable_name}_.ConvertToStruct();  // NOLINT`);
+              } else {
+                result.push(`  result.${child_data.variable_name} = ${child_data.variable_name}_.ConvertToStruct();`);
+              }
             } else {
               result.push(`  result.${child_data.variable_name} = ${child_data.variable_name}_;`);
             }

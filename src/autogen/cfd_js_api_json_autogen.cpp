@@ -1274,7 +1274,8 @@ void BlindRawTransactionRequest::ConvertFromStruct(
   tx_ = data.tx;
   txins_.ConvertFromStruct(data.txins);
   txouts_.ConvertFromStruct(data.txouts);
-  txout_confidential_addresses_.ConvertFromStruct(data.txout_confidential_addresses);
+  txout_confidential_addresses_.ConvertFromStruct(
+      data.txout_confidential_addresses);
   issuances_.ConvertFromStruct(data.issuances);
   minimum_range_value_ = data.minimum_range_value;
   exponent_ = data.exponent;
@@ -1287,7 +1288,7 @@ BlindRawTransactionRequestStruct BlindRawTransactionRequest::ConvertToStruct() c
   result.tx = tx_;
   result.txins = txins_.ConvertToStruct();
   result.txouts = txouts_.ConvertToStruct();
-  result.txout_confidential_addresses = txout_confidential_addresses_.ConvertToStruct();
+  result.txout_confidential_addresses = txout_confidential_addresses_.ConvertToStruct();  // NOLINT
   result.issuances = issuances_.ConvertToStruct();
   result.minimum_range_value = minimum_range_value_;
   result.exponent = exponent_;

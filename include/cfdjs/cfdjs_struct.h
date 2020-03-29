@@ -90,6 +90,61 @@ struct AddMultisigSignResponseStruct {
 };
 
 // ------------------------------------------------------------------------
+// PubkeyHashSignDataStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief PubkeyHashSignDataStruct struct
+ */
+struct PubkeyHashSignDataStruct {
+  std::string hex = "";                 //!< hex  // NOLINT
+  std::string type = "sign";            //!< type  // NOLINT
+  bool der_encode = true;               //!< der_encode  // NOLINT
+  std::string sighash_type = "all";     //!< sighash_type  // NOLINT
+  bool sighash_anyone_can_pay = false;  //!< sighash_anyone_can_pay  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// AddPubkeyHashSignTxInRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief AddPubkeyHashSignTxInRequestStruct struct
+ */
+struct AddPubkeyHashSignTxInRequestStruct {
+  std::string txid = "";                //!< txid  // NOLINT
+  uint32_t vout = 0;                    //!< vout  // NOLINT
+  PubkeyHashSignDataStruct sign_param;  //!< sign_param  // NOLINT
+  std::string pubkey = "";              //!< pubkey  // NOLINT
+  std::string hash_type = "";           //!< hash_type  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// AddPubkeyHashSignRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief AddPubkeyHashSignRequestStruct struct
+ */
+struct AddPubkeyHashSignRequestStruct {
+  bool is_elements = false;                 //!< is_elements  // NOLINT
+  std::string tx = "";                      //!< tx  // NOLINT
+  AddPubkeyHashSignTxInRequestStruct txin;  //!< txin  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// AddPubkeyHashSignResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief AddPubkeyHashSignResponseStruct struct
+ */
+struct AddPubkeyHashSignResponseStruct {
+  std::string hex = "";  //!< hex  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
 // AddTxInStruct
 // ------------------------------------------------------------------------
 /**
@@ -268,10 +323,14 @@ struct BlindIssuanceRequestStruct {
  * @brief BlindRawTransactionRequestStruct struct
  */
 struct BlindRawTransactionRequestStruct {
-  std::string tx = "";                                //!< tx  // NOLINT
-  std::vector<BlindTxInRequestStruct> txins;          //!< txins  // NOLINT
-  std::vector<BlindTxOutRequestStruct> txouts;        //!< txouts  // NOLINT
-  std::vector<BlindIssuanceRequestStruct> issuances;  //!< issuances  // NOLINT
+  std::string tx = "";                                    //!< tx  // NOLINT
+  std::vector<BlindTxInRequestStruct> txins;              //!< txins  // NOLINT
+  std::vector<BlindTxOutRequestStruct> txouts;            //!< txouts  // NOLINT
+  std::vector<std::string> txout_confidential_addresses;  //!< txout_confidential_addresses  // NOLINT
+  std::vector<BlindIssuanceRequestStruct> issuances;      //!< issuances  // NOLINT
+  int64_t minimum_range_value = 1;                        //!< minimum_range_value  // NOLINT
+  int exponent = 0;                                       //!< exponent  // NOLINT
+  int minimum_bits = 52;                                  //!< minimum_bits  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -1885,6 +1944,29 @@ struct GetAddressInfoResponseStruct {
 };
 
 // ------------------------------------------------------------------------
+// GetCompressedPubkeyRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief GetCompressedPubkeyRequestStruct struct
+ */
+struct GetCompressedPubkeyRequestStruct {
+  std::string pubkey = "";  //!< pubkey  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// GetCompressedPubkeyResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief GetCompressedPubkeyResponseStruct struct
+ */
+struct GetCompressedPubkeyResponseStruct {
+  std::string pubkey = "";  //!< pubkey  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
 // GetExtkeyInfoRequestStruct
 // ------------------------------------------------------------------------
 /**
@@ -2456,6 +2538,51 @@ struct CreateElementsSignatureHashResponseStruct {
 };
 
 // ------------------------------------------------------------------------
+// SignWithPrivkeyTxInRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief SignWithPrivkeyTxInRequestStruct struct
+ */
+struct SignWithPrivkeyTxInRequestStruct {
+  std::string txid = "";                           //!< txid  // NOLINT
+  uint32_t vout = 0;                               //!< vout  // NOLINT
+  std::string privkey = "";                        //!< privkey  // NOLINT
+  std::string pubkey = "";                         //!< pubkey  // NOLINT
+  std::string hash_type = "";                      //!< hash_type  // NOLINT
+  std::string sighash_type = "all";                //!< sighash_type  // NOLINT
+  bool sighash_anyone_can_pay = false;             //!< sighash_anyone_can_pay  // NOLINT
+  int64_t amount = 0;                              //!< amount  // NOLINT
+  std::string confidential_value_commitment = "";  //!< confidential_value_commitment  // NOLINT
+  bool is_grind_r = true;                          //!< is_grind_r  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// SignWithPrivkeyRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief SignWithPrivkeyRequestStruct struct
+ */
+struct SignWithPrivkeyRequestStruct {
+  bool is_elements = false;               //!< is_elements  // NOLINT
+  std::string tx = "";                    //!< tx  // NOLINT
+  SignWithPrivkeyTxInRequestStruct txin;  //!< txin  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// SignWithPrivkeyResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief SignWithPrivkeyResponseStruct struct
+ */
+struct SignWithPrivkeyResponseStruct {
+  std::string hex = "";  //!< hex  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
 // GetSupportedFunctionResponseStruct
 // ------------------------------------------------------------------------
 /**
@@ -2569,6 +2696,60 @@ struct UpdateWitnessStackRequestStruct {
  */
 struct UpdateWitnessStackResponseStruct {
   std::string hex = "";  //!< hex  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// VerifyignTxInUtxoDataStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief VerifyignTxInUtxoDataStruct struct
+ */
+struct VerifyignTxInUtxoDataStruct {
+  std::string txid = "";                           //!< txid  // NOLINT
+  uint32_t vout = 0;                               //!< vout  // NOLINT
+  std::string address = "";                        //!< address  // NOLINT
+  int64_t amount = 0;                              //!< amount  // NOLINT
+  std::string descriptor = "";                     //!< descriptor  // NOLINT
+  std::string confidential_value_commitment = "";  //!< confidential_value_commitment  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// VerifySignRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief VerifySignRequestStruct struct
+ */
+struct VerifySignRequestStruct {
+  std::string tx = "";                             //!< tx  // NOLINT
+  bool is_elements = false;                        //!< is_elements  // NOLINT
+  std::vector<VerifyignTxInUtxoDataStruct> txins;  //!< txins  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// FailSignTxInStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief FailSignTxInStruct struct
+ */
+struct FailSignTxInStruct {
+  std::string txid = "";  //!< txid  // NOLINT
+  uint32_t vout = 0;      //!< vout  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// VerifySignResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief VerifySignResponseStruct struct
+ */
+struct VerifySignResponseStruct {
+  bool success = true;                         //!< success  // NOLINT
+  std::vector<FailSignTxInStruct> fail_txins;  //!< fail_txins  // NOLINT
   cfd::js::api::InnerErrorResponseStruct error;   //!< error information
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };

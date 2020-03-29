@@ -15,9 +15,12 @@
 #include "cfd/cfd_address.h"
 #include "cfd/cfd_elements_address.h"
 #include "cfd/cfdapi_coin.h"
+#include "cfd/cfdapi_elements_address.h"
 #include "cfd/cfdapi_elements_transaction.h"
+#include "cfd/cfdapi_key.h"
 #include "cfd/cfdapi_ledger.h"
 #include "cfd_js_api_json_autogen.h"  // NOLINT
+#include "cfdcore/cfdcore_descriptor.h"
 #include "cfdcore/cfdcore_util.h"
 #include "cfdjs/cfdjs_api_address.h"
 #include "cfdjs/cfdjs_api_elements_address.h"
@@ -30,13 +33,16 @@ namespace cfd {
 namespace js {
 namespace api {
 
+using cfd::ConfidentialTransactionContext;
 using cfd::ConfidentialTransactionController;
 using cfd::ElementsAddressFactory;
 using cfd::UtxoData;
+using cfd::api::ElementsAddressApi;
 using cfd::api::ElementsTransactionApi;
 using cfd::api::ElementsUtxoAndOption;
 using cfd::api::IssuanceBlindKeys;
 using cfd::api::IssuanceOutput;
+using cfd::api::KeyApi;
 using cfd::api::LedgerApi;
 using cfd::api::LedgerMetaDataStackItem;
 using cfd::api::TxInBlindParameters;
@@ -66,6 +72,7 @@ using cfd::core::ConfidentialTxInReference;
 using cfd::core::ConfidentialTxOut;
 using cfd::core::ConfidentialTxOutReference;
 using cfd::core::ConfidentialValue;
+using cfd::core::DescriptorScriptType;
 using cfd::core::ElementsAddressType;
 using cfd::core::ElementsConfidentialAddress;
 using cfd::core::ElementsNetType;
@@ -509,10 +516,10 @@ ElementsTransactionStructApi::DecodeRawTransaction(  // NOLINT
           const RangeProofInfo& range_proof_info =
               ConfidentialTxOut::DecodeRangeProofInfo(range_proof);
           tx_out_res.value_minimum =
-              Amount::CreateBySatoshiAmount(range_proof_info.min_value)
+              Amount(static_cast<int64_t>(range_proof_info.min_value))
                   .GetSatoshiValue();
           tx_out_res.value_maximum =
-              Amount::CreateBySatoshiAmount(range_proof_info.max_value)
+              Amount(static_cast<int64_t>(range_proof_info.max_value), true)
                   .GetSatoshiValue();
           tx_out_res.ct_exponent = range_proof_info.exponent;
           tx_out_res.ct_bits = range_proof_info.mantissa;
@@ -559,7 +566,8 @@ ElementsTransactionStructApi::DecodeRawTransaction(  // NOLINT
       LockingScriptType type = extract_data.script_type;
       script_pub_key_res.type =
           TransactionStructApiBase::ConvertLockingScriptTypeString(type);
-      script_pub_key_res.req_sigs = extract_data.pushed_datas.size();
+      script_pub_key_res.req_sigs =
+          static_cast<int>(extract_data.pushed_datas.size());
 
       ElementsNetType elements_net_type =
           ElementsAddressStructApi::ConvertElementsNetType(request.network);
@@ -622,7 +630,7 @@ ElementsTransactionStructApi::DecodeRawTransaction(  // NOLINT
             TransactionStructApiBase::ConvertLockingScriptTypeString(
                 pegout_type);
         script_pub_key_res.pegout_req_sigs =
-            pegout_extract_data.pushed_datas.size();
+            static_cast<int>(pegout_extract_data.pushed_datas.size());
 
         const NetType net_type =
             AddressStructApi::ConvertNetType(request.mainchain_network);
@@ -780,6 +788,83 @@ AddMultisigSignResponseStruct ElementsTransactionStructApi::AddMultisigSign(
   AddMultisigSignResponseStruct result;
   result = ExecuteStructApi<
       AddMultisigSignRequestStruct, AddMultisigSignResponseStruct>(
+      request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
+SignWithPrivkeyResponseStruct ElementsTransactionStructApi::SignWithPrivkey(
+    const SignWithPrivkeyRequestStruct& request) {
+  auto call_func = [](const SignWithPrivkeyRequestStruct& request)
+      -> SignWithPrivkeyResponseStruct {  // NOLINT
+    SignWithPrivkeyResponseStruct response;
+
+    ConfidentialTransactionContext ctx(request.tx);
+    OutPoint outpoint(Txid(request.txin.txid), request.txin.vout);
+    Pubkey pubkey;
+    Privkey privkey;
+    AddressType addr_type =
+        AddressStructApi::ConvertAddressType(request.txin.hash_type);
+    SigHashType sighashtype = TransactionStructApiBase::ConvertSigHashType(
+        request.txin.sighash_type, request.txin.sighash_anyone_can_pay);
+
+    if (request.txin.privkey.size() == (Privkey::kPrivkeySize * 2)) {
+      privkey = Privkey(request.txin.privkey);
+    } else {
+      KeyApi key_api;
+      privkey = key_api.GetPrivkeyFromWif(request.txin.privkey);
+    }
+    if (request.txin.pubkey.empty()) {
+      pubkey = privkey.GeneratePubkey();
+    } else {
+      pubkey = Pubkey(request.txin.pubkey);
+    }
+
+    const std::string& value_hex = request.txin.confidential_value_commitment;
+    ConfidentialValue value =
+        (value_hex.empty()) ? ConfidentialValue(Amount(request.txin.amount))
+                            : ConfidentialValue(value_hex);
+
+    ctx.SignWithPrivkeySimple(
+        outpoint, pubkey, privkey, sighashtype, value, addr_type,
+        request.txin.is_grind_r);
+    response.hex = ctx.GetHex();
+    return response;
+  };
+
+  SignWithPrivkeyResponseStruct result;
+  result = ExecuteStructApi<
+      SignWithPrivkeyRequestStruct, SignWithPrivkeyResponseStruct>(
+      request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
+AddPubkeyHashSignResponseStruct
+ElementsTransactionStructApi::AddPubkeyHashSign(
+    const AddPubkeyHashSignRequestStruct& request) {
+  auto call_func = [](const AddPubkeyHashSignRequestStruct& request)
+      -> AddPubkeyHashSignResponseStruct {  // NOLINT
+    AddPubkeyHashSignResponseStruct response;
+
+    ConfidentialTransactionContext ctx(request.tx);
+    OutPoint outpoint(Txid(request.txin.txid), request.txin.vout);
+    Pubkey pubkey(request.txin.pubkey);
+    AddressType addr_type =
+        AddressStructApi::ConvertAddressType(request.txin.hash_type);
+    SigHashType sighashtype = TransactionStructApiBase::ConvertSigHashType(
+        request.txin.sign_param.sighash_type,
+        request.txin.sign_param.sighash_anyone_can_pay);
+    SignParameter signature(
+        ByteData(request.txin.sign_param.hex),
+        request.txin.sign_param.der_encode, sighashtype);
+
+    ctx.AddPubkeyHashSign(outpoint, signature, pubkey, addr_type);
+    response.hex = ctx.GetHex();
+    return response;
+  };
+
+  AddPubkeyHashSignResponseStruct result;
+  result = ExecuteStructApi<
+      AddPubkeyHashSignRequestStruct, AddPubkeyHashSignResponseStruct>(
       request, call_func, std::string(__FUNCTION__));
   return result;
 }
@@ -943,42 +1028,114 @@ VerifySignatureResponseStruct ElementsTransactionStructApi::VerifySignature(
   return result;
 }
 
+VerifySignResponseStruct ElementsTransactionStructApi::VerifySign(
+    const VerifySignRequestStruct& request) {
+  auto call_func = [](const VerifySignRequestStruct& request)
+      -> VerifySignResponseStruct {  // NOLINT
+    VerifySignResponseStruct response;
+
+    ConfidentialTransactionContext ctx(request.tx);
+    ElementsAddressFactory address_factory;
+    std::vector<UtxoData> utxos;
+    ElementsAddressApi addr_api;
+    for (const auto& utxo : request.txins) {
+      UtxoData data = {};
+      data.txid = Txid(utxo.txid);
+      data.vout = utxo.vout;
+      data.amount = Amount(utxo.amount);
+      if (!utxo.confidential_value_commitment.empty()) {
+        data.value_commitment =
+            ConfidentialValue(utxo.confidential_value_commitment);
+      }
+
+      data.descriptor = utxo.descriptor;
+      if (!data.descriptor.empty()) {
+        DescriptorScriptData script_data = addr_api.ParseOutputDescriptor(
+            data.descriptor, NetType::kLiquidV1, "", nullptr, nullptr,
+            nullptr);
+        data.address_type = script_data.address_type;
+        if (script_data.type == DescriptorScriptType::kDescriptorScriptRaw) {
+          data.locking_script = script_data.locking_script;
+        } else {
+          // TODO(k-matsuzawa): mainnet only?
+          data.address = script_data.address;
+          data.locking_script = script_data.locking_script;
+        }
+      } else if (!utxo.address.empty()) {
+        if (ElementsConfidentialAddress::IsConfidentialAddress(utxo.address)) {
+          ElementsConfidentialAddress confidential_addr(utxo.address);
+          data.address = confidential_addr.GetUnblindedAddress();
+        } else {
+          data.address = address_factory.GetAddress(utxo.address);
+        }
+        data.locking_script = data.address.GetLockingScript();
+        data.address_type = data.address.GetAddressType();
+      }
+      data.binary_data = nullptr;
+      utxos.push_back(data);
+    }
+    ctx.CollectInputUtxo(utxos);
+
+    response.success = !utxos.empty();
+    for (auto& utxo : utxos) {
+      OutPoint outpoint(utxo.txid, utxo.vout);
+      try {
+        ctx.Verify(outpoint);
+      } catch (const CfdException& except) {
+        warn(
+            CFD_LOG_SOURCE, "Failed to VerifySign. {}",
+            std::string(except.what()));
+        response.success = false;
+        FailSignTxInStruct fail_data;
+        fail_data.txid = outpoint.GetTxid().GetHex();
+        fail_data.vout = outpoint.GetVout();
+        response.fail_txins.push_back(fail_data);
+      }
+    }
+
+    return response;
+  };
+
+  VerifySignResponseStruct result;
+  result = ExecuteStructApi<VerifySignRequestStruct, VerifySignResponseStruct>(
+      request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
 BlindRawTransactionResponseStruct
 ElementsTransactionStructApi::BlindTransaction(
     const BlindRawTransactionRequestStruct& request) {
   auto call_func = [](const BlindRawTransactionRequestStruct& request)
       -> BlindRawTransactionResponseStruct {  // NOLINT
     BlindRawTransactionResponseStruct response;
-
-    std::vector<TxInBlindParameters> txin_blind_keys;
-    std::vector<TxOutBlindKeys> txout_blind_keys;
-    bool is_issuance = false;
     uint32_t issuance_count = 0;
+    std::map<OutPoint, BlindParameter> utxo_info_map;
+    std::map<OutPoint, IssuanceBlindingKeyPair> issuance_key_map;
+    std::vector<ElementsConfidentialAddress> confidential_key_list;
+
+    ConfidentialTransactionContext ctxc(request.tx);
 
     for (BlindTxInRequestStruct txin : request.txins) {
-      TxInBlindParameters txin_key;
-      txin_key.txid = Txid(txin.txid);
-      txin_key.vout = txin.vout;
-      txin_key.blind_param.asset = ConfidentialAssetId(txin.asset);
-      txin_key.blind_param.vbf = BlindFactor(txin.blind_factor);
-      txin_key.blind_param.abf = BlindFactor(txin.asset_blind_factor);
-      txin_key.blind_param.value =
+      OutPoint outpoint(Txid(txin.txid), txin.vout);
+      BlindParameter blind_param;
+
+      blind_param.asset = ConfidentialAssetId(txin.asset);
+      blind_param.vbf = BlindFactor(txin.blind_factor);
+      blind_param.abf = BlindFactor(txin.asset_blind_factor);
+      blind_param.value =
           ConfidentialValue(Amount::CreateBySatoshiAmount(txin.amount));
-      txin_key.is_issuance = false;
+      utxo_info_map.emplace(outpoint, blind_param);
 
       for (BlindIssuanceRequestStruct issuance : request.issuances) {
-        if (issuance.txid == txin.txid && issuance.vout == txin.vout) {
-          is_issuance = true;
-          txin_key.is_issuance = true;
-          txin_key.issuance_key.asset_key =
-              Privkey(issuance.asset_blinding_key);
-          txin_key.issuance_key.token_key =
-              Privkey(issuance.token_blinding_key);
+        if ((issuance.txid == txin.txid) && (issuance.vout == txin.vout)) {
+          IssuanceBlindingKeyPair issuance_key;
+          issuance_key.asset_key = Privkey(issuance.asset_blinding_key);
+          issuance_key.token_key = Privkey(issuance.token_blinding_key);
+          issuance_key_map.emplace(outpoint, issuance_key);
           issuance_count++;
           break;
         }
       }
-      txin_blind_keys.push_back(txin_key);
     }
 
     if (issuance_count != request.issuances.size()) {
@@ -989,22 +1146,30 @@ ElementsTransactionStructApi::BlindTransaction(
           CfdError::kCfdIllegalArgumentError, "Txid is not found.");
     }
 
+    ElementsAddressFactory address_factory;
     for (BlindTxOutRequestStruct txout : request.txouts) {
-      TxOutBlindKeys txout_key;
-      txout_key.index = txout.index;
+      std::string key;
       if (!txout.confidential_key.empty()) {
-        txout_key.blinding_key = Pubkey(txout.confidential_key);
+        key = txout.confidential_key;
       } else {
-        // Deprecated
-        txout_key.blinding_key = Pubkey(txout.blind_pubkey);
+        key = txout.blind_pubkey;  // deprecated
       }
-      txout_blind_keys.push_back(txout_key);
+      if ((!key.empty()) && (key.size() <= 130) &&
+          Pubkey::IsValid(ByteData(key))) {
+        Address addr = ctxc.GetTxOutAddress(txout.index);
+        confidential_key_list.emplace_back(addr, Pubkey(key));
+      }
     }
 
-    ElementsTransactionApi api;
-    ConfidentialTransactionController txc = api.BlindTransaction(
-        request.tx, txin_blind_keys, txout_blind_keys, is_issuance);
-    response.hex = txc.GetHex();
+    for (const auto& ct_addr : request.txout_confidential_addresses) {
+      confidential_key_list.push_back(
+          address_factory.GetConfidentialAddress(ct_addr));
+    }
+
+    ctxc.BlindTransaction(
+        utxo_info_map, issuance_key_map, confidential_key_list,
+        request.minimum_range_value, request.exponent, request.minimum_bits);
+    response.hex = ctxc.GetHex();
     return response;
   };
 

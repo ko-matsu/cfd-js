@@ -27,6 +27,32 @@ export interface AddMultisigSignResponse {
     hex: string;
 }
 
+export interface PubkeyHashSignData {
+    hex: string;
+    type?: string;
+    derEncode?: boolean;
+    sighashType?: string;
+    sighashAnyoneCanPay?: boolean;
+}
+
+export interface AddPubkeyHashSignTxInRequest {
+    txid: string;
+    vout: number;
+    signParam?: PubkeyHashSignData;
+    pubkey: string;
+    hashType: string;
+}
+
+export interface AddPubkeyHashSignRequest {
+    isElements?: boolean;
+    tx: string;
+    txin?: AddPubkeyHashSignTxInRequest;
+}
+
+export interface AddPubkeyHashSignResponse {
+    hex: string;
+}
+
 export interface AddTxIn {
     txid: string;
     vout: number;
@@ -108,8 +134,12 @@ export interface BlindIssuanceRequest {
 export interface BlindRawTransactionRequest {
     tx: string;
     txins?: BlindTxInRequest[];
-    txouts: BlindTxOutRequest[];
+    txouts?: BlindTxOutRequest[];
+    txoutConfidentialAddresses?: string[];
     issuances?: BlindIssuanceRequest[];
+    minimumRangeValue?: bigint;
+    exponent?: number;
+    minimumBits?: number;
 }
 
 export interface BlindRawTransactionResponse {
@@ -905,6 +935,14 @@ export interface GetAddressInfoResponse {
     hash?: string;
 }
 
+export interface GetCompressedPubkeyRequest {
+    pubkey: string;
+}
+
+export interface GetCompressedPubkeyResponse {
+    pubkey: string;
+}
+
 export interface GetExtkeyInfoRequest {
     extkey: string;
 }
@@ -1172,6 +1210,29 @@ export interface CreateElementsSignatureHashResponse {
     sighash: string;
 }
 
+export interface SignWithPrivkeyTxInRequest {
+    txid: string;
+    vout: number;
+    privkey: string;
+    pubkey?: string;
+    hashType: string;
+    sighashType?: string;
+    sighashAnyoneCanPay?: boolean;
+    amount?: bigint;
+    confidentialValueCommitment?: string;
+    isGrindR?: boolean;
+}
+
+export interface SignWithPrivkeyRequest {
+    isElements?: boolean;
+    tx: string;
+    txin?: SignWithPrivkeyTxInRequest;
+}
+
+export interface SignWithPrivkeyResponse {
+    hex: string;
+}
+
 export interface GetSupportedFunctionResponse {
     bitcoin: boolean;
     elements: boolean;
@@ -1224,6 +1285,31 @@ export interface UpdateWitnessStackResponse {
     hex?: string;
 }
 
+export interface VerifyignTxInUtxoData {
+    txid: string;
+    vout: number;
+    address: string;
+    amount: bigint;
+    descriptor?: string;
+    confidentialValueCommitment?: string;
+}
+
+export interface VerifySignRequest {
+    tx: string;
+    isElements?: boolean;
+    txins: VerifyignTxInUtxoData[];
+}
+
+export interface FailSignTxIn {
+    txid: string;
+    vout: number;
+}
+
+export interface VerifySignResponse {
+    success: boolean;
+    failTxins?: FailSignTxIn[];
+}
+
 export interface VerifySignatureTxInRequest {
     txid: string;
     vout: number;
@@ -1248,6 +1334,8 @@ export interface VerifySignatureResponse {
 }
 
 export function AddMultisigSign(jsonObject: AddMultisigSignRequest): AddMultisigSignResponse;
+
+export function AddPubkeyHashSign(jsonObject: AddPubkeyHashSignRequest): AddPubkeyHashSignResponse;
 
 export function AddRawTransaction(jsonObject: AddRawTransactionRequest): AddRawTransactionResponse;
 
@@ -1321,6 +1409,8 @@ export function GetAddressesFromMultisig(jsonObject: GetAddressesFromMultisigReq
 
 export function GetAddressInfo(jsonObject: GetAddressInfoRequest): GetAddressInfoResponse;
 
+export function GetCompressedPubkey(jsonObject: GetCompressedPubkeyRequest): GetCompressedPubkeyResponse;
+
 export function GetExtkeyInfo(jsonObject: GetExtkeyInfoRequest): GetExtkeyInfoResponse;
 
 export function GetIssuanceBlindingKey(jsonObject: GetIssuanceBlindingKeyRequest): GetIssuanceBlindingKeyResponse;
@@ -1353,10 +1443,14 @@ export function CreateSignatureHash(jsonObject: CreateSignatureHashRequest): Cre
 
 export function CreateElementsSignatureHash(jsonObject: CreateElementsSignatureHashRequest): CreateElementsSignatureHashResponse;
 
+export function SignWithPrivkey(jsonObject: SignWithPrivkeyRequest): SignWithPrivkeyResponse;
+
 export function GetSupportedFunction(): GetSupportedFunctionResponse;
 
 export function CreateRawTransaction(jsonObject: CreateRawTransactionRequest): CreateRawTransactionResponse;
 
 export function UpdateWitnessStack(jsonObject: UpdateWitnessStackRequest): UpdateWitnessStackResponse;
+
+export function VerifySign(jsonObject: VerifySignRequest): VerifySignResponse;
 
 export function VerifySignature(jsonObject: VerifySignatureRequest): VerifySignatureResponse;

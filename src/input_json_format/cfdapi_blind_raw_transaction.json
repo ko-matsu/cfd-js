@@ -22,7 +22,7 @@
         "amount:require": "require"
       }
     ],
-    "txouts:require": "require",
+    "txouts:require": "optional",
     "txouts": [
       {
         ":class": "BlindTxOutRequest",
@@ -36,6 +36,9 @@
         "blindPubkey:comment": "deprecated field"
       }
     ],
+    "txoutConfidentialAddresses": [""],
+    "txoutConfidentialAddresses:require": "optional",
+    "txoutConfidentialAddresses:comment": "confidential address list",
     "issuances:require": "optional",
     "issuances":[
       {
@@ -49,7 +52,12 @@
         "tokenBlindingKey":"",
         "tokenBlindingKey:require": "optional"
       }
-    ]
+    ],
+    "minimumRangeValue": 1,
+    "exponent": 0,
+    "exponent:type": "int",
+    "minimumBits": 52,
+    "minimumBits:type": "int"
   },
   "response": {
     ":class": "BlindRawTransactionResponse",

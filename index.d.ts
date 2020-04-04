@@ -111,7 +111,7 @@ export interface AppendDescriptorChecksumResponse {
 
 export interface BlindTxInRequest {
     txid: string;
-    vout: bigint;
+    vout: number;
     asset: string;
     blindFactor?: string;
     assetBlindFactor?: string;
@@ -126,7 +126,7 @@ export interface BlindTxOutRequest {
 
 export interface BlindIssuanceRequest {
     txid: string;
-    vout: bigint;
+    vout: number;
     assetBlindingKey: string;
     tokenBlindingKey?: string;
 }
@@ -223,7 +223,7 @@ export interface CreateExtkeyFromParentRequest {
     extkey: string;
     network: string;
     extkeyType: string;
-    childNumber: bigint;
+    childNumber: number;
     hardened?: boolean;
 }
 
@@ -249,7 +249,7 @@ export interface CreateExtkeyFromParentPathRequest {
     extkey: string;
     network: string;
     extkeyType: string;
-    childNumberArray?: bigint[];
+    childNumberArray?: number[];
     path?: string;
 }
 
@@ -335,23 +335,23 @@ export interface DecodeUnlockingScript {
 export interface DecodeRawTransactionTxIn {
     coinbase?: string;
     txid?: string;
-    vout?: bigint;
+    vout?: number;
     scriptSig?: DecodeUnlockingScript;
     txinwitness?: string[];
-    sequence?: bigint;
+    sequence?: number;
 }
 
 export interface DecodeLockingScript {
     asm?: string;
     hex?: string;
-    reqSigs?: bigint;
+    reqSigs?: number;
     type?: string;
     addresses?: string[];
 }
 
 export interface DecodeRawTransactionTxOut {
     value: bigint;
-    n: bigint;
+    n: number;
     scriptPubKey?: DecodeLockingScript;
 }
 
@@ -359,9 +359,9 @@ export interface DecodeRawTransactionResponse {
     txid: string;
     hash: string;
     version: number;
-    size: bigint;
-    vsize: bigint;
-    weight: bigint;
+    size: number;
+    vsize: number;
+    weight: number;
     locktime: number;
     vin?: DecodeRawTransactionTxIn[];
     vout?: DecodeRawTransactionTxOut[];
@@ -412,7 +412,7 @@ export interface ElementsAddPegout {
     onlinePubkey: string;
     masterOnlineKey: string;
     bitcoinDescriptor: string;
-    bip32Counter: bigint;
+    bip32Counter: number;
     whitelist: string;
 }
 
@@ -553,7 +553,7 @@ export interface ElementsPegout {
     onlinePubkey: string;
     masterOnlineKey: string;
     bitcoinDescriptor: string;
-    bip32Counter: bigint;
+    bip32Counter: number;
     whitelist: string;
 }
 
@@ -658,8 +658,8 @@ export interface ElementsDecodeLockingScript {
 
 export interface ElementsDecodeRawTransactionTxOut {
     value?: bigint;
-    'value-minimum?': number;
-    'value-maximum?': number;
+    'value-minimum?': bigint;
+    'value-maximum?': bigint;
     'ct-exponent?': number;
     'ct-bits?': number;
     surjectionproof?: string;
@@ -678,9 +678,9 @@ export interface ElementsDecodeRawTransactionResponse {
     wtxid: string;
     withash: string;
     version: number;
-    size: bigint;
-    vsize: bigint;
-    weight: bigint;
+    size: number;
+    vsize: number;
+    weight: number;
     locktime: number;
     vin?: ElementsDecodeRawTransactionTxIn[];
     vout?: ElementsDecodeRawTransactionTxOut[];
@@ -770,7 +770,7 @@ export interface UnblindTxOut {
 
 export interface UnblindIssuance {
     txid: string;
-    vout: bigint;
+    vout: number;
     assetBlindingKey?: string;
     tokenBlindingKey?: string;
 }
@@ -791,7 +791,7 @@ export interface UnblindOutput {
 
 export interface UnblindIssuanceOutput {
     txid: string;
-    vout: bigint;
+    vout: number;
     asset?: string;
     assetamount?: bigint;
     token?: string;
@@ -815,7 +815,7 @@ export interface EncodeSignatureByDerResponse {
 }
 
 export interface InnerErrorResponse {
-    code: bigint;
+    code: number;
     type: string;
     message: string;
 }
@@ -872,7 +872,7 @@ export interface FundSelectUtxoData {
     isIssuance?: boolean;
     isBlindIssuance?: boolean;
     isPegin?: boolean;
-    peginBtcTxSize?: bigint;
+    peginBtcTxSize?: number;
     fedpegScript?: string;
 }
 
@@ -919,7 +919,7 @@ export interface GetAddressesFromMultisigRequest {
 export interface GetAddressesFromMultisigResponse {
     addresses: string[];
     pubkeys: string[];
-    requireNum: bigint;
+    requireNum: number;
 }
 
 export interface GetAddressInfoRequest {
@@ -1034,7 +1034,7 @@ export interface GetWitnessStackNumRequest {
 }
 
 export interface GetWitnessStackNumResponse {
-    count: bigint;
+    count: number;
 }
 
 export interface CreateMultisigRequest {
@@ -1072,7 +1072,7 @@ export interface DescriptorScriptJson {
     keyType?: string;
     key?: string;
     keys?: DescriptorKeyJson[];
-    reqNum?: bigint;
+    reqNum?: number;
 }
 
 export interface ParseDescriptorResponse {
@@ -1110,7 +1110,7 @@ export interface CoinSelectionFeeInfomationField {
     txFeeAmount?: bigint;
     feeRate?: number;
     longTermFeeRate?: number;
-    knapsackMinChange?: bigint;
+    knapsackMinChange?: number;
     feeAsset?: string;
 }
 

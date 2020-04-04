@@ -12,6 +12,7 @@
     "extkeyType:hint": "extPrivkey or extPubkey",
     "childNumber": 0,
     "childNumber:require": "require",
+    "childNumber:type": "uint32_t",
     "hardened": false,
     "hardened:require": "optional",
     "hardened:hint": "true is extPrivkey only."

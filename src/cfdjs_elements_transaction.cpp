@@ -1120,8 +1120,12 @@ ElementsTransactionStructApi::BlindTransaction(
       BlindParameter blind_param;
 
       blind_param.asset = ConfidentialAssetId(txin.asset);
-      blind_param.vbf = BlindFactor(txin.blind_factor);
-      blind_param.abf = BlindFactor(txin.asset_blind_factor);
+      if (!txin.blind_factor.empty()) {
+        blind_param.vbf = BlindFactor(txin.blind_factor);
+      }
+      if (!txin.asset_blind_factor.empty()) {
+        blind_param.abf = BlindFactor(txin.asset_blind_factor);
+      }
       blind_param.value =
           ConfidentialValue(Amount::CreateBySatoshiAmount(txin.amount));
       utxo_info_map.emplace(outpoint, blind_param);
@@ -1129,8 +1133,12 @@ ElementsTransactionStructApi::BlindTransaction(
       for (BlindIssuanceRequestStruct issuance : request.issuances) {
         if ((issuance.txid == txin.txid) && (issuance.vout == txin.vout)) {
           IssuanceBlindingKeyPair issuance_key;
-          issuance_key.asset_key = Privkey(issuance.asset_blinding_key);
-          issuance_key.token_key = Privkey(issuance.token_blinding_key);
+          if (!issuance.asset_blinding_key.empty()) {
+            issuance_key.asset_key = Privkey(issuance.asset_blinding_key);
+          }
+          if (!issuance.token_blinding_key.empty()) {
+            issuance_key.token_key = Privkey(issuance.token_blinding_key);
+          }
           issuance_key_map.emplace(outpoint, issuance_key);
           issuance_count++;
           break;
@@ -1326,7 +1334,9 @@ SetRawIssueAssetResponseStruct ElementsTransactionStructApi::SetRawIssueAsset(
       param.asset_txout = asset_txout;
       param.token_amount = token_amount;
       param.token_txout = token_txout;
-      param.contract_hash = ByteData256(issuance.contract_hash);
+      if (!issuance.contract_hash.empty()) {
+        param.contract_hash = ByteData256(issuance.contract_hash);
+      }
       param.is_blind = issuance.is_blind;
       issuance_param.push_back(param);
     }

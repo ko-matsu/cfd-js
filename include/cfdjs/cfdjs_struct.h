@@ -25,7 +25,7 @@ namespace api {
  * @brief InnerErrorResponseStruct struct
  */
 struct InnerErrorResponseStruct {
-  int64_t code = 0;          //!< code  // NOLINT
+  int code = 0;              //!< code  // NOLINT
   std::string type = "";     //!< type  // NOLINT
   std::string message = "";  //!< message  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
@@ -281,7 +281,7 @@ struct AppendDescriptorChecksumResponseStruct {
  */
 struct BlindTxInRequestStruct {
   std::string txid = "";                //!< txid  // NOLINT
-  int64_t vout = 0;                     //!< vout  // NOLINT
+  uint32_t vout = 0;                    //!< vout  // NOLINT
   std::string asset = "";               //!< asset  // NOLINT
   std::string blind_factor = "";        //!< blind_factor  // NOLINT
   std::string asset_blind_factor = "";  //!< asset_blind_factor  // NOLINT
@@ -310,7 +310,7 @@ struct BlindTxOutRequestStruct {
  */
 struct BlindIssuanceRequestStruct {
   std::string txid = "";                //!< txid  // NOLINT
-  int64_t vout = 0;                     //!< vout  // NOLINT
+  uint32_t vout = 0;                    //!< vout  // NOLINT
   std::string asset_blinding_key = "";  //!< asset_blinding_key  // NOLINT
   std::string token_blinding_key = "";  //!< token_blinding_key  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
@@ -525,7 +525,7 @@ struct CreateExtkeyFromParentRequestStruct {
   std::string extkey = "";          //!< extkey  // NOLINT
   std::string network = "mainnet";  //!< network  // NOLINT
   std::string extkey_type = "";     //!< extkey_type  // NOLINT
-  int64_t child_number = 0;         //!< child_number  // NOLINT
+  uint32_t child_number = 0;        //!< child_number  // NOLINT
   bool hardened = false;            //!< hardened  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
@@ -578,11 +578,11 @@ struct CreateExtkeyFromParentKeyResponseStruct {
  * @brief CreateExtkeyFromParentPathRequestStruct struct
  */
 struct CreateExtkeyFromParentPathRequestStruct {
-  std::string extkey = "";                  //!< extkey  // NOLINT
-  std::string network = "mainnet";          //!< network  // NOLINT
-  std::string extkey_type = "";             //!< extkey_type  // NOLINT
-  std::vector<int64_t> child_number_array;  //!< child_number_array  // NOLINT
-  std::string path = "";                    //!< path  // NOLINT
+  std::string extkey = "";                   //!< extkey  // NOLINT
+  std::string network = "mainnet";           //!< network  // NOLINT
+  std::string extkey_type = "";              //!< extkey_type  // NOLINT
+  std::vector<uint32_t> child_number_array;  //!< child_number_array  // NOLINT
+  std::string path = "";                     //!< path  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -793,10 +793,10 @@ struct DecodeUnlockingScriptStruct {
 struct DecodeRawTransactionTxInStruct {
   std::string coinbase = "";               //!< coinbase  // NOLINT
   std::string txid = "";                   //!< txid  // NOLINT
-  int64_t vout = 0;                        //!< vout  // NOLINT
+  uint32_t vout = 0;                       //!< vout  // NOLINT
   DecodeUnlockingScriptStruct script_sig;  //!< script_sig  // NOLINT
   std::vector<std::string> txinwitness;    //!< txinwitness  // NOLINT
-  int64_t sequence = 0;                    //!< sequence  // NOLINT
+  uint32_t sequence = 0;                   //!< sequence  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -809,7 +809,7 @@ struct DecodeRawTransactionTxInStruct {
 struct DecodeLockingScriptStruct {
   std::string asm_ = "";               //!< asm_  // NOLINT
   std::string hex = "";                //!< hex  // NOLINT
-  int64_t req_sigs = 0;                //!< req_sigs  // NOLINT
+  int req_sigs = 0;                    //!< req_sigs  // NOLINT
   std::string type = "";               //!< type  // NOLINT
   std::vector<std::string> addresses;  //!< addresses  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
@@ -823,7 +823,7 @@ struct DecodeLockingScriptStruct {
  */
 struct DecodeRawTransactionTxOutStruct {
   int64_t value = 0;                         //!< value  // NOLINT
-  int64_t n = 0;                             //!< n  // NOLINT
+  uint32_t n = 0;                            //!< n  // NOLINT
   DecodeLockingScriptStruct script_pub_key;  //!< script_pub_key  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
@@ -838,9 +838,9 @@ struct DecodeRawTransactionResponseStruct {
   std::string txid = "";                              //!< txid  // NOLINT
   std::string hash = "";                              //!< hash  // NOLINT
   uint32_t version = 0;                               //!< version  // NOLINT
-  int64_t size = 0;                                   //!< size  // NOLINT
-  int64_t vsize = 0;                                  //!< vsize  // NOLINT
-  int64_t weight = 0;                                 //!< weight  // NOLINT
+  uint32_t size = 0;                                  //!< size  // NOLINT
+  uint32_t vsize = 0;                                 //!< vsize  // NOLINT
+  uint32_t weight = 0;                                //!< weight  // NOLINT
   uint32_t locktime = 0;                              //!< locktime  // NOLINT
   std::vector<DecodeRawTransactionTxInStruct> vin;    //!< vin  // NOLINT
   std::vector<DecodeRawTransactionTxOutStruct> vout;  //!< vout  // NOLINT
@@ -934,7 +934,7 @@ struct ElementsAddPegoutStruct {
   std::string online_pubkey = "";                 //!< online_pubkey  // NOLINT
   std::string master_online_key = "";             //!< master_online_key  // NOLINT
   std::string bitcoin_descriptor = "";            //!< bitcoin_descriptor  // NOLINT
-  int64_t bip32_counter = 0;                      //!< bip32_counter  // NOLINT
+  uint32_t bip32_counter = 0;                     //!< bip32_counter  // NOLINT
   std::string whitelist = "";                     //!< whitelist  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
@@ -1219,7 +1219,7 @@ struct ElementsPegoutStruct {
   std::string online_pubkey = "";                 //!< online_pubkey  // NOLINT
   std::string master_online_key = "";             //!< master_online_key  // NOLINT
   std::string bitcoin_descriptor = "";            //!< bitcoin_descriptor  // NOLINT
-  int64_t bip32_counter = 0;                      //!< bip32_counter  // NOLINT
+  uint32_t bip32_counter = 0;                     //!< bip32_counter  // NOLINT
   std::string whitelist = "";                     //!< whitelist  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
@@ -1424,8 +1424,8 @@ struct ElementsDecodeLockingScriptStruct {
  */
 struct ElementsDecodeRawTransactionTxOutStruct {
   int64_t value = 0;                                 //!< value  // NOLINT
-  double value_minimum = 0;                          //!< value_minimum  // NOLINT
-  double value_maximum = 0;                          //!< value_maximum  // NOLINT
+  int64_t value_minimum = 0;                         //!< value_minimum  // NOLINT
+  int64_t value_maximum = 0;                         //!< value_maximum  // NOLINT
   int ct_exponent = 0;                               //!< ct_exponent  // NOLINT
   int ct_bits = 0;                                   //!< ct_bits  // NOLINT
   std::string surjectionproof = "";                  //!< surjectionproof  // NOLINT
@@ -1451,9 +1451,9 @@ struct ElementsDecodeRawTransactionResponseStruct {
   std::string wtxid = "";                                     //!< wtxid  // NOLINT
   std::string withash = "";                                   //!< withash  // NOLINT
   uint32_t version = 0;                                       //!< version  // NOLINT
-  int64_t size = 0;                                           //!< size  // NOLINT
-  int64_t vsize = 0;                                          //!< vsize  // NOLINT
-  int64_t weight = 0;                                         //!< weight  // NOLINT
+  uint32_t size = 0;                                          //!< size  // NOLINT
+  uint32_t vsize = 0;                                         //!< vsize  // NOLINT
+  uint32_t weight = 0;                                        //!< weight  // NOLINT
   uint32_t locktime = 0;                                      //!< locktime  // NOLINT
   std::vector<ElementsDecodeRawTransactionTxInStruct> vin;    //!< vin  // NOLINT
   std::vector<ElementsDecodeRawTransactionTxOutStruct> vout;  //!< vout  // NOLINT
@@ -1648,7 +1648,7 @@ struct UnblindTxOutStruct {
  */
 struct UnblindIssuanceStruct {
   std::string txid = "";                //!< txid  // NOLINT
-  int64_t vout = 0;                     //!< vout  // NOLINT
+  uint32_t vout = 0;                    //!< vout  // NOLINT
   std::string asset_blinding_key = "";  //!< asset_blinding_key  // NOLINT
   std::string token_blinding_key = "";  //!< token_blinding_key  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
@@ -1690,7 +1690,7 @@ struct UnblindOutputStruct {
  */
 struct UnblindIssuanceOutputStruct {
   std::string txid = "";    //!< txid  // NOLINT
-  int64_t vout = 0;         //!< vout  // NOLINT
+  uint32_t vout = 0;        //!< vout  // NOLINT
   std::string asset = "";   //!< asset  // NOLINT
   int64_t assetamount = 0;  //!< assetamount  // NOLINT
   std::string token = "";   //!< token  // NOLINT
@@ -1820,7 +1820,7 @@ struct FundSelectUtxoDataStruct {
   bool is_issuance = false;        //!< is_issuance  // NOLINT
   bool is_blind_issuance = false;  //!< is_blind_issuance  // NOLINT
   bool is_pegin = false;           //!< is_pegin  // NOLINT
-  int64_t pegin_btc_tx_size = 0;   //!< pegin_btc_tx_size  // NOLINT
+  uint32_t pegin_btc_tx_size = 0;  //!< pegin_btc_tx_size  // NOLINT
   std::string fedpeg_script = "";  //!< fedpeg_script  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
@@ -1910,7 +1910,7 @@ struct GetAddressesFromMultisigRequestStruct {
 struct GetAddressesFromMultisigResponseStruct {
   std::vector<std::string> addresses;  //!< addresses  // NOLINT
   std::vector<std::string> pubkeys;    //!< pubkeys  // NOLINT
-  int64_t require_num = 0;             //!< require_num  // NOLINT
+  uint32_t require_num = 0;            //!< require_num  // NOLINT
   cfd::js::api::InnerErrorResponseStruct error;   //!< error information
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
@@ -2197,7 +2197,7 @@ struct GetWitnessStackNumRequestStruct {
  * @brief GetWitnessStackNumResponseStruct struct
  */
 struct GetWitnessStackNumResponseStruct {
-  int64_t count = 0;  //!< count  // NOLINT
+  uint32_t count = 0;  //!< count  // NOLINT
   cfd::js::api::InnerErrorResponseStruct error;   //!< error information
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
@@ -2272,7 +2272,7 @@ struct DescriptorScriptJsonStruct {
   std::string key_type = "";                  //!< key_type  // NOLINT
   std::string key = "";                       //!< key  // NOLINT
   std::vector<DescriptorKeyJsonStruct> keys;  //!< keys  // NOLINT
-  int64_t req_num = 0;                        //!< req_num  // NOLINT
+  uint32_t req_num = 0;                       //!< req_num  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -2354,7 +2354,7 @@ struct CoinSelectionFeeInfomationFieldStruct {
   int64_t tx_fee_amount = 0;         //!< tx_fee_amount  // NOLINT
   double fee_rate = 20;              //!< fee_rate  // NOLINT
   double long_term_fee_rate = 20;    //!< long_term_fee_rate  // NOLINT
-  int64_t knapsack_min_change = -1;  //!< knapsack_min_change  // NOLINT
+  int32_t knapsack_min_change = -1;  //!< knapsack_min_change  // NOLINT
   std::string fee_asset = "";        //!< fee_asset  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };

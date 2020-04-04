@@ -4419,7 +4419,7 @@ class BlindTxInRequest
    * @brief Get of vout
    * @return vout
    */
-  int64_t GetVout() const {
+  uint32_t GetVout() const {
     return vout_;
   }
   /**
@@ -4427,7 +4427,7 @@ class BlindTxInRequest
    * @param[in] vout    setting value.
    */
   void SetVout(  // line separate
-    const int64_t& vout) {  // NOLINT
+    const uint32_t& vout) {  // NOLINT
     this->vout_ = vout;
   }
   /**
@@ -4435,7 +4435,7 @@ class BlindTxInRequest
    * @return Data type of vout
    */
   static std::string GetVoutFieldType() {
-    return "int64_t";
+    return "uint32_t";
   }
   /**
    * @brief Get json string of vout field.
@@ -4706,7 +4706,7 @@ class BlindTxInRequest
   /**
    * @brief JsonAPI(vout) value
    */
-  int64_t vout_ = 0;
+  uint32_t vout_ = 0;
   /**
    * @brief JsonAPI(asset) value
    */
@@ -5024,7 +5024,7 @@ class BlindIssuanceRequest
    * @brief Get of vout
    * @return vout
    */
-  int64_t GetVout() const {
+  uint32_t GetVout() const {
     return vout_;
   }
   /**
@@ -5032,7 +5032,7 @@ class BlindIssuanceRequest
    * @param[in] vout    setting value.
    */
   void SetVout(  // line separate
-    const int64_t& vout) {  // NOLINT
+    const uint32_t& vout) {  // NOLINT
     this->vout_ = vout;
   }
   /**
@@ -5040,7 +5040,7 @@ class BlindIssuanceRequest
    * @return Data type of vout
    */
   static std::string GetVoutFieldType() {
-    return "int64_t";
+    return "uint32_t";
   }
   /**
    * @brief Get json string of vout field.
@@ -5225,7 +5225,7 @@ class BlindIssuanceRequest
   /**
    * @brief JsonAPI(vout) value
    */
-  int64_t vout_ = 0;
+  uint32_t vout_ = 0;
   /**
    * @brief JsonAPI(assetBlindingKey) value
    */
@@ -8784,7 +8784,7 @@ class CreateExtkeyFromParentRequest
    * @brief Get of childNumber
    * @return childNumber
    */
-  int64_t GetChildNumber() const {
+  uint32_t GetChildNumber() const {
     return child_number_;
   }
   /**
@@ -8792,7 +8792,7 @@ class CreateExtkeyFromParentRequest
    * @param[in] child_number    setting value.
    */
   void SetChildNumber(  // line separate
-    const int64_t& child_number) {  // NOLINT
+    const uint32_t& child_number) {  // NOLINT
     this->child_number_ = child_number;
   }
   /**
@@ -8800,7 +8800,7 @@ class CreateExtkeyFromParentRequest
    * @return Data type of childNumber
    */
   static std::string GetChildNumberFieldType() {
-    return "int64_t";
+    return "uint32_t";
   }
   /**
    * @brief Get json string of childNumber field.
@@ -8950,7 +8950,7 @@ class CreateExtkeyFromParentRequest
   /**
    * @brief JsonAPI(childNumber) value
    */
-  int64_t child_number_ = 0;
+  uint32_t child_number_ = 0;
   /**
    * @brief JsonAPI(hardened) value
    */
@@ -9806,7 +9806,7 @@ class CreateExtkeyFromParentPathRequest
    * @brief Get of childNumberArray.
    * @return childNumberArray
    */
-  JsonValueVector<int64_t>& GetChildNumberArray() {  // NOLINT
+  JsonValueVector<uint32_t>& GetChildNumberArray() {  // NOLINT
     return child_number_array_;
   }
   /**
@@ -9814,7 +9814,7 @@ class CreateExtkeyFromParentPathRequest
    * @param[in] child_number_array    setting value.
    */
   void SetChildNumberArray(  // line separate
-      const JsonValueVector<int64_t>& child_number_array) {  // NOLINT
+      const JsonValueVector<uint32_t>& child_number_array) {  // NOLINT
     this->child_number_array_ = child_number_array;
   }
   /**
@@ -9822,7 +9822,7 @@ class CreateExtkeyFromParentPathRequest
    * @return Data type of childNumberArray.
    */
   static std::string GetChildNumberArrayFieldType() {
-    return "JsonValueVector<int64_t>";  // NOLINT
+    return "JsonValueVector<uint32_t>";  // NOLINT
   }
   /**
    * @brief Get json string of childNumberArray field.
@@ -9973,7 +9973,7 @@ class CreateExtkeyFromParentPathRequest
   /**
    * @brief JsonAPI(childNumberArray) value
    */
-  JsonValueVector<int64_t> child_number_array_;  // NOLINT
+  JsonValueVector<uint32_t> child_number_array_;  // NOLINT
   /**
    * @brief JsonAPI(path) value
    */
@@ -13005,7 +13005,7 @@ class DecodeRawTransactionTxIn
    * @brief Get of vout
    * @return vout
    */
-  int64_t GetVout() const {
+  uint32_t GetVout() const {
     return vout_;
   }
   /**
@@ -13013,7 +13013,7 @@ class DecodeRawTransactionTxIn
    * @param[in] vout    setting value.
    */
   void SetVout(  // line separate
-    const int64_t& vout) {  // NOLINT
+    const uint32_t& vout) {  // NOLINT
     this->vout_ = vout;
   }
   /**
@@ -13021,7 +13021,7 @@ class DecodeRawTransactionTxIn
    * @return Data type of vout
    */
   static std::string GetVoutFieldType() {
-    return "int64_t";
+    return "uint32_t";
   }
   /**
    * @brief Get json string of vout field.
@@ -13136,7 +13136,7 @@ class DecodeRawTransactionTxIn
    * @brief Get of sequence
    * @return sequence
    */
-  int64_t GetSequence() const {
+  uint32_t GetSequence() const {
     return sequence_;
   }
   /**
@@ -13144,7 +13144,7 @@ class DecodeRawTransactionTxIn
    * @param[in] sequence    setting value.
    */
   void SetSequence(  // line separate
-    const int64_t& sequence) {  // NOLINT
+    const uint32_t& sequence) {  // NOLINT
     this->sequence_ = sequence;
   }
   /**
@@ -13152,7 +13152,7 @@ class DecodeRawTransactionTxIn
    * @return Data type of sequence
    */
   static std::string GetSequenceFieldType() {
-    return "int64_t";
+    return "uint32_t";
   }
   /**
    * @brief Get json string of sequence field.
@@ -13255,7 +13255,7 @@ class DecodeRawTransactionTxIn
   /**
    * @brief JsonAPI(vout) value
    */
-  int64_t vout_ = 0;
+  uint32_t vout_ = 0;
   /**
    * @brief JsonAPI(scriptSig) value
    */
@@ -13267,7 +13267,7 @@ class DecodeRawTransactionTxIn
   /**
    * @brief JsonAPI(sequence) value
    */
-  int64_t sequence_ = 0;
+  uint32_t sequence_ = 0;
 };
 
 // ------------------------------------------------------------------------
@@ -13380,7 +13380,7 @@ class DecodeLockingScript
    * @brief Get of reqSigs
    * @return reqSigs
    */
-  int64_t GetReqSigs() const {
+  int GetReqSigs() const {
     return req_sigs_;
   }
   /**
@@ -13388,7 +13388,7 @@ class DecodeLockingScript
    * @param[in] req_sigs    setting value.
    */
   void SetReqSigs(  // line separate
-    const int64_t& req_sigs) {  // NOLINT
+    const int& req_sigs) {  // NOLINT
     this->req_sigs_ = req_sigs;
   }
   /**
@@ -13396,7 +13396,7 @@ class DecodeLockingScript
    * @return Data type of reqSigs
    */
   static std::string GetReqSigsFieldType() {
-    return "int64_t";
+    return "int";
   }
   /**
    * @brief Get json string of reqSigs field.
@@ -13586,7 +13586,7 @@ class DecodeLockingScript
   /**
    * @brief JsonAPI(reqSigs) value
    */
-  int64_t req_sigs_ = 0;
+  int req_sigs_ = 0;
   /**
    * @brief JsonAPI(type) value
    */
@@ -13664,7 +13664,7 @@ class DecodeRawTransactionTxOut
    * @brief Get of n
    * @return n
    */
-  int64_t GetN() const {
+  uint32_t GetN() const {
     return n_;
   }
   /**
@@ -13672,7 +13672,7 @@ class DecodeRawTransactionTxOut
    * @param[in] n    setting value.
    */
   void SetN(  // line separate
-    const int64_t& n) {  // NOLINT
+    const uint32_t& n) {  // NOLINT
     this->n_ = n;
   }
   /**
@@ -13680,7 +13680,7 @@ class DecodeRawTransactionTxOut
    * @return Data type of n
    */
   static std::string GetNFieldType() {
-    return "int64_t";
+    return "uint32_t";
   }
   /**
    * @brief Get json string of n field.
@@ -13823,7 +13823,7 @@ class DecodeRawTransactionTxOut
   /**
    * @brief JsonAPI(n) value
    */
-  int64_t n_ = 0;
+  uint32_t n_ = 0;
   /**
    * @brief JsonAPI(scriptPubKey) value
    */
@@ -13983,7 +13983,7 @@ class DecodeRawTransactionResponse
    * @brief Get of size
    * @return size
    */
-  int64_t GetSize() const {
+  uint32_t GetSize() const {
     return size_;
   }
   /**
@@ -13991,7 +13991,7 @@ class DecodeRawTransactionResponse
    * @param[in] size    setting value.
    */
   void SetSize(  // line separate
-    const int64_t& size) {  // NOLINT
+    const uint32_t& size) {  // NOLINT
     this->size_ = size;
   }
   /**
@@ -13999,7 +13999,7 @@ class DecodeRawTransactionResponse
    * @return Data type of size
    */
   static std::string GetSizeFieldType() {
-    return "int64_t";
+    return "uint32_t";
   }
   /**
    * @brief Get json string of size field.
@@ -14026,7 +14026,7 @@ class DecodeRawTransactionResponse
    * @brief Get of vsize
    * @return vsize
    */
-  int64_t GetVsize() const {
+  uint32_t GetVsize() const {
     return vsize_;
   }
   /**
@@ -14034,7 +14034,7 @@ class DecodeRawTransactionResponse
    * @param[in] vsize    setting value.
    */
   void SetVsize(  // line separate
-    const int64_t& vsize) {  // NOLINT
+    const uint32_t& vsize) {  // NOLINT
     this->vsize_ = vsize;
   }
   /**
@@ -14042,7 +14042,7 @@ class DecodeRawTransactionResponse
    * @return Data type of vsize
    */
   static std::string GetVsizeFieldType() {
-    return "int64_t";
+    return "uint32_t";
   }
   /**
    * @brief Get json string of vsize field.
@@ -14069,7 +14069,7 @@ class DecodeRawTransactionResponse
    * @brief Get of weight
    * @return weight
    */
-  int64_t GetWeight() const {
+  uint32_t GetWeight() const {
     return weight_;
   }
   /**
@@ -14077,7 +14077,7 @@ class DecodeRawTransactionResponse
    * @param[in] weight    setting value.
    */
   void SetWeight(  // line separate
-    const int64_t& weight) {  // NOLINT
+    const uint32_t& weight) {  // NOLINT
     this->weight_ = weight;
   }
   /**
@@ -14085,7 +14085,7 @@ class DecodeRawTransactionResponse
    * @return Data type of weight
    */
   static std::string GetWeightFieldType() {
-    return "int64_t";
+    return "uint32_t";
   }
   /**
    * @brief Get json string of weight field.
@@ -14323,15 +14323,15 @@ class DecodeRawTransactionResponse
   /**
    * @brief JsonAPI(size) value
    */
-  int64_t size_ = 0;
+  uint32_t size_ = 0;
   /**
    * @brief JsonAPI(vsize) value
    */
-  int64_t vsize_ = 0;
+  uint32_t vsize_ = 0;
   /**
    * @brief JsonAPI(weight) value
    */
-  int64_t weight_ = 0;
+  uint32_t weight_ = 0;
   /**
    * @brief JsonAPI(locktime) value
    */
@@ -16153,7 +16153,7 @@ class ElementsAddPegout
    * @brief Get of bip32Counter
    * @return bip32Counter
    */
-  int64_t GetBip32Counter() const {
+  uint32_t GetBip32Counter() const {
     return bip32_counter_;
   }
   /**
@@ -16161,7 +16161,7 @@ class ElementsAddPegout
    * @param[in] bip32_counter    setting value.
    */
   void SetBip32Counter(  // line separate
-    const int64_t& bip32_counter) {  // NOLINT
+    const uint32_t& bip32_counter) {  // NOLINT
     this->bip32_counter_ = bip32_counter;
   }
   /**
@@ -16169,7 +16169,7 @@ class ElementsAddPegout
    * @return Data type of bip32Counter
    */
   static std::string GetBip32CounterFieldType() {
-    return "int64_t";
+    return "uint32_t";
   }
   /**
    * @brief Get json string of bip32Counter field.
@@ -16343,7 +16343,7 @@ class ElementsAddPegout
   /**
    * @brief JsonAPI(bip32Counter) value
    */
-  int64_t bip32_counter_ = 0;
+  uint32_t bip32_counter_ = 0;
   /**
    * @brief JsonAPI(whitelist) value
    */
@@ -21795,7 +21795,7 @@ class ElementsPegout
    * @brief Get of bip32Counter
    * @return bip32Counter
    */
-  int64_t GetBip32Counter() const {
+  uint32_t GetBip32Counter() const {
     return bip32_counter_;
   }
   /**
@@ -21803,7 +21803,7 @@ class ElementsPegout
    * @param[in] bip32_counter    setting value.
    */
   void SetBip32Counter(  // line separate
-    const int64_t& bip32_counter) {  // NOLINT
+    const uint32_t& bip32_counter) {  // NOLINT
     this->bip32_counter_ = bip32_counter;
   }
   /**
@@ -21811,7 +21811,7 @@ class ElementsPegout
    * @return Data type of bip32Counter
    */
   static std::string GetBip32CounterFieldType() {
-    return "int64_t";
+    return "uint32_t";
   }
   /**
    * @brief Get json string of bip32Counter field.
@@ -21985,7 +21985,7 @@ class ElementsPegout
   /**
    * @brief JsonAPI(bip32Counter) value
    */
-  int64_t bip32_counter_ = 0;
+  uint32_t bip32_counter_ = 0;
   /**
    * @brief JsonAPI(whitelist) value
    */
@@ -26075,7 +26075,7 @@ class ElementsDecodeRawTransactionTxOut
    * @brief Get of value-minimum
    * @return value-minimum
    */
-  double GetValue_minimum() const {
+  int64_t GetValue_minimum() const {
     return value_minimum_;
   }
   /**
@@ -26083,7 +26083,7 @@ class ElementsDecodeRawTransactionTxOut
    * @param[in] value_minimum    setting value.
    */
   void SetValue_minimum(  // line separate
-    const double& value_minimum) {  // NOLINT
+    const int64_t& value_minimum) {  // NOLINT
     this->value_minimum_ = value_minimum;
   }
   /**
@@ -26091,7 +26091,7 @@ class ElementsDecodeRawTransactionTxOut
    * @return Data type of value-minimum
    */
   static std::string GetValue_minimumFieldType() {
-    return "double";
+    return "int64_t";
   }
   /**
    * @brief Get json string of value-minimum field.
@@ -26118,7 +26118,7 @@ class ElementsDecodeRawTransactionTxOut
    * @brief Get of value-maximum
    * @return value-maximum
    */
-  double GetValue_maximum() const {
+  int64_t GetValue_maximum() const {
     return value_maximum_;
   }
   /**
@@ -26126,7 +26126,7 @@ class ElementsDecodeRawTransactionTxOut
    * @param[in] value_maximum    setting value.
    */
   void SetValue_maximum(  // line separate
-    const double& value_maximum) {  // NOLINT
+    const int64_t& value_maximum) {  // NOLINT
     this->value_maximum_ = value_maximum;
   }
   /**
@@ -26134,7 +26134,7 @@ class ElementsDecodeRawTransactionTxOut
    * @return Data type of value-maximum
    */
   static std::string GetValue_maximumFieldType() {
-    return "double";
+    return "int64_t";
   }
   /**
    * @brief Get json string of value-maximum field.
@@ -26664,11 +26664,11 @@ class ElementsDecodeRawTransactionTxOut
   /**
    * @brief JsonAPI(value-minimum) value
    */
-  double value_minimum_ = 0;
+  int64_t value_minimum_ = 0;
   /**
    * @brief JsonAPI(value-maximum) value
    */
-  double value_maximum_ = 0;
+  int64_t value_maximum_ = 0;
   /**
    * @brief JsonAPI(ct-exponent) value
    */
@@ -26950,7 +26950,7 @@ class ElementsDecodeRawTransactionResponse
    * @brief Get of size
    * @return size
    */
-  int64_t GetSize() const {
+  uint32_t GetSize() const {
     return size_;
   }
   /**
@@ -26958,7 +26958,7 @@ class ElementsDecodeRawTransactionResponse
    * @param[in] size    setting value.
    */
   void SetSize(  // line separate
-    const int64_t& size) {  // NOLINT
+    const uint32_t& size) {  // NOLINT
     this->size_ = size;
   }
   /**
@@ -26966,7 +26966,7 @@ class ElementsDecodeRawTransactionResponse
    * @return Data type of size
    */
   static std::string GetSizeFieldType() {
-    return "int64_t";
+    return "uint32_t";
   }
   /**
    * @brief Get json string of size field.
@@ -26993,7 +26993,7 @@ class ElementsDecodeRawTransactionResponse
    * @brief Get of vsize
    * @return vsize
    */
-  int64_t GetVsize() const {
+  uint32_t GetVsize() const {
     return vsize_;
   }
   /**
@@ -27001,7 +27001,7 @@ class ElementsDecodeRawTransactionResponse
    * @param[in] vsize    setting value.
    */
   void SetVsize(  // line separate
-    const int64_t& vsize) {  // NOLINT
+    const uint32_t& vsize) {  // NOLINT
     this->vsize_ = vsize;
   }
   /**
@@ -27009,7 +27009,7 @@ class ElementsDecodeRawTransactionResponse
    * @return Data type of vsize
    */
   static std::string GetVsizeFieldType() {
-    return "int64_t";
+    return "uint32_t";
   }
   /**
    * @brief Get json string of vsize field.
@@ -27036,7 +27036,7 @@ class ElementsDecodeRawTransactionResponse
    * @brief Get of weight
    * @return weight
    */
-  int64_t GetWeight() const {
+  uint32_t GetWeight() const {
     return weight_;
   }
   /**
@@ -27044,7 +27044,7 @@ class ElementsDecodeRawTransactionResponse
    * @param[in] weight    setting value.
    */
   void SetWeight(  // line separate
-    const int64_t& weight) {  // NOLINT
+    const uint32_t& weight) {  // NOLINT
     this->weight_ = weight;
   }
   /**
@@ -27052,7 +27052,7 @@ class ElementsDecodeRawTransactionResponse
    * @return Data type of weight
    */
   static std::string GetWeightFieldType() {
-    return "int64_t";
+    return "uint32_t";
   }
   /**
    * @brief Get json string of weight field.
@@ -27298,15 +27298,15 @@ class ElementsDecodeRawTransactionResponse
   /**
    * @brief JsonAPI(size) value
    */
-  int64_t size_ = 0;
+  uint32_t size_ = 0;
   /**
    * @brief JsonAPI(vsize) value
    */
-  int64_t vsize_ = 0;
+  uint32_t vsize_ = 0;
   /**
    * @brief JsonAPI(weight) value
    */
-  int64_t weight_ = 0;
+  uint32_t weight_ = 0;
   /**
    * @brief JsonAPI(locktime) value
    */
@@ -30596,7 +30596,7 @@ class UnblindIssuance
    * @brief Get of vout
    * @return vout
    */
-  int64_t GetVout() const {
+  uint32_t GetVout() const {
     return vout_;
   }
   /**
@@ -30604,7 +30604,7 @@ class UnblindIssuance
    * @param[in] vout    setting value.
    */
   void SetVout(  // line separate
-    const int64_t& vout) {  // NOLINT
+    const uint32_t& vout) {  // NOLINT
     this->vout_ = vout;
   }
   /**
@@ -30612,7 +30612,7 @@ class UnblindIssuance
    * @return Data type of vout
    */
   static std::string GetVoutFieldType() {
-    return "int64_t";
+    return "uint32_t";
   }
   /**
    * @brief Get json string of vout field.
@@ -30797,7 +30797,7 @@ class UnblindIssuance
   /**
    * @brief JsonAPI(vout) value
    */
-  int64_t vout_ = 0;
+  uint32_t vout_ = 0;
   /**
    * @brief JsonAPI(assetBlindingKey) value
    */
@@ -31435,7 +31435,7 @@ class UnblindIssuanceOutput
    * @brief Get of vout
    * @return vout
    */
-  int64_t GetVout() const {
+  uint32_t GetVout() const {
     return vout_;
   }
   /**
@@ -31443,7 +31443,7 @@ class UnblindIssuanceOutput
    * @param[in] vout    setting value.
    */
   void SetVout(  // line separate
-    const int64_t& vout) {  // NOLINT
+    const uint32_t& vout) {  // NOLINT
     this->vout_ = vout;
   }
   /**
@@ -31451,7 +31451,7 @@ class UnblindIssuanceOutput
    * @return Data type of vout
    */
   static std::string GetVoutFieldType() {
-    return "int64_t";
+    return "uint32_t";
   }
   /**
    * @brief Get json string of vout field.
@@ -31722,7 +31722,7 @@ class UnblindIssuanceOutput
   /**
    * @brief JsonAPI(vout) value
    */
-  int64_t vout_ = 0;
+  uint32_t vout_ = 0;
   /**
    * @brief JsonAPI(asset) value
    */
@@ -32369,7 +32369,7 @@ class InnerErrorResponse
    * @brief Get of code
    * @return code
    */
-  int64_t GetCode() const {
+  int GetCode() const {
     return code_;
   }
   /**
@@ -32377,7 +32377,7 @@ class InnerErrorResponse
    * @param[in] code    setting value.
    */
   void SetCode(  // line separate
-    const int64_t& code) {  // NOLINT
+    const int& code) {  // NOLINT
     this->code_ = code;
   }
   /**
@@ -32385,7 +32385,7 @@ class InnerErrorResponse
    * @return Data type of code
    */
   static std::string GetCodeFieldType() {
-    return "int64_t";
+    return "int";
   }
   /**
    * @brief Get json string of code field.
@@ -32566,7 +32566,7 @@ class InnerErrorResponse
   /**
    * @brief JsonAPI(code) value
    */
-  int64_t code_ = 0;
+  int code_ = 0;
   /**
    * @brief JsonAPI(type) value
    */
@@ -34699,7 +34699,7 @@ class FundSelectUtxoData
    * @brief Get of peginBtcTxSize
    * @return peginBtcTxSize
    */
-  int64_t GetPeginBtcTxSize() const {
+  uint32_t GetPeginBtcTxSize() const {
     return pegin_btc_tx_size_;
   }
   /**
@@ -34707,7 +34707,7 @@ class FundSelectUtxoData
    * @param[in] pegin_btc_tx_size    setting value.
    */
   void SetPeginBtcTxSize(  // line separate
-    const int64_t& pegin_btc_tx_size) {  // NOLINT
+    const uint32_t& pegin_btc_tx_size) {  // NOLINT
     this->pegin_btc_tx_size_ = pegin_btc_tx_size;
   }
   /**
@@ -34715,7 +34715,7 @@ class FundSelectUtxoData
    * @return Data type of peginBtcTxSize
    */
   static std::string GetPeginBtcTxSizeFieldType() {
-    return "int64_t";
+    return "uint32_t";
   }
   /**
    * @brief Get json string of peginBtcTxSize field.
@@ -34893,7 +34893,7 @@ class FundSelectUtxoData
   /**
    * @brief JsonAPI(peginBtcTxSize) value
    */
-  int64_t pegin_btc_tx_size_ = 0;
+  uint32_t pegin_btc_tx_size_ = 0;
   /**
    * @brief JsonAPI(fedpegScript) value
    */
@@ -36647,7 +36647,7 @@ class GetAddressesFromMultisigResponse
    * @brief Get of requireNum
    * @return requireNum
    */
-  int64_t GetRequireNum() const {
+  uint32_t GetRequireNum() const {
     return require_num_;
   }
   /**
@@ -36655,7 +36655,7 @@ class GetAddressesFromMultisigResponse
    * @param[in] require_num    setting value.
    */
   void SetRequireNum(  // line separate
-    const int64_t& require_num) {  // NOLINT
+    const uint32_t& require_num) {  // NOLINT
     this->require_num_ = require_num;
   }
   /**
@@ -36663,7 +36663,7 @@ class GetAddressesFromMultisigResponse
    * @return Data type of requireNum
    */
   static std::string GetRequireNumFieldType() {
-    return "int64_t";
+    return "uint32_t";
   }
   /**
    * @brief Get json string of requireNum field.
@@ -36766,7 +36766,7 @@ class GetAddressesFromMultisigResponse
   /**
    * @brief JsonAPI(requireNum) value
    */
-  int64_t require_num_ = 0;
+  uint32_t require_num_ = 0;
 };
 
 // ------------------------------------------------------------------------
@@ -40912,7 +40912,7 @@ class GetWitnessStackNumResponse
    * @brief Get of count
    * @return count
    */
-  int64_t GetCount() const {
+  uint32_t GetCount() const {
     return count_;
   }
   /**
@@ -40920,7 +40920,7 @@ class GetWitnessStackNumResponse
    * @param[in] count    setting value.
    */
   void SetCount(  // line separate
-    const int64_t& count) {  // NOLINT
+    const uint32_t& count) {  // NOLINT
     this->count_ = count;
   }
   /**
@@ -40928,7 +40928,7 @@ class GetWitnessStackNumResponse
    * @return Data type of count
    */
   static std::string GetCountFieldType() {
-    return "int64_t";
+    return "uint32_t";
   }
   /**
    * @brief Get json string of count field.
@@ -41023,7 +41023,7 @@ class GetWitnessStackNumResponse
   /**
    * @brief JsonAPI(count) value
    */
-  int64_t count_ = 0;
+  uint32_t count_ = 0;
 };
 
 // ------------------------------------------------------------------------
@@ -42418,7 +42418,7 @@ class DescriptorScriptJson
    * @brief Get of reqNum
    * @return reqNum
    */
-  int64_t GetReqNum() const {
+  uint32_t GetReqNum() const {
     return req_num_;
   }
   /**
@@ -42426,7 +42426,7 @@ class DescriptorScriptJson
    * @param[in] req_num    setting value.
    */
   void SetReqNum(  // line separate
-    const int64_t& req_num) {  // NOLINT
+    const uint32_t& req_num) {  // NOLINT
     this->req_num_ = req_num;
   }
   /**
@@ -42434,7 +42434,7 @@ class DescriptorScriptJson
    * @return Data type of reqNum
    */
   static std::string GetReqNumFieldType() {
-    return "int64_t";
+    return "uint32_t";
   }
   /**
    * @brief Get json string of reqNum field.
@@ -42561,7 +42561,7 @@ class DescriptorScriptJson
   /**
    * @brief JsonAPI(reqNum) value
    */
-  int64_t req_num_ = 0;
+  uint32_t req_num_ = 0;
 };
 
 // ------------------------------------------------------------------------
@@ -43926,7 +43926,7 @@ class CoinSelectionFeeInfomationField
    * @brief Get of knapsackMinChange
    * @return knapsackMinChange
    */
-  int64_t GetKnapsackMinChange() const {
+  int32_t GetKnapsackMinChange() const {
     return knapsack_min_change_;
   }
   /**
@@ -43934,7 +43934,7 @@ class CoinSelectionFeeInfomationField
    * @param[in] knapsack_min_change    setting value.
    */
   void SetKnapsackMinChange(  // line separate
-    const int64_t& knapsack_min_change) {  // NOLINT
+    const int32_t& knapsack_min_change) {  // NOLINT
     this->knapsack_min_change_ = knapsack_min_change;
   }
   /**
@@ -43942,7 +43942,7 @@ class CoinSelectionFeeInfomationField
    * @return Data type of knapsackMinChange
    */
   static std::string GetKnapsackMinChangeFieldType() {
-    return "int64_t";
+    return "int32_t";
   }
   /**
    * @brief Get json string of knapsackMinChange field.
@@ -44092,7 +44092,7 @@ class CoinSelectionFeeInfomationField
   /**
    * @brief JsonAPI(knapsackMinChange) value
    */
-  int64_t knapsack_min_change_ = -1;
+  int32_t knapsack_min_change_ = -1;
   /**
    * @brief JsonAPI(feeAsset) value
    */

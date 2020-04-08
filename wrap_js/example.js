@@ -25,6 +25,7 @@ const {
   CreateExtkeyFromParent,
   CreateExtkeyFromParentPath,
   CreateExtkeyFromParentKey,
+  CreateExtkey,
   CreateExtPubkey,
   GetExtkeyInfo,
   GetPrivkeyFromExtkey,
@@ -973,6 +974,27 @@ let extPubkeyFromParentKeyResult;
     childNumber: 0,
   });
   console.log('*** Response ***\n', ret2);
+}
+
+let createExtkeyResult;
+{
+  // xprvA66cwGaFCmUSrFCDpNnLMJXQ8Vv71BxViAMoo3NVa5FhXV2631MJRmvXbm1cQfTeSnp8hpkNiZ8SLgaem1LTfQvHSYTTo8KCTow2azSgZrV/44h
+  // xpub6LeyMkufeeMnKV1hcfXycCFietNdxSp4BGNsGiwJGZxvP9Ys7gQG7b6Lbk9xUwySGX1dFrkLyoynRwrKAMXRE6A6ciXx94FQ1xiFNJnm8Pw
+  console.log('-- CreateExtkey start --');
+  const reqJson = {
+    network: 'mainnet',
+    extkeyType: 'extPubkey',
+    parentKey: '021c3ffc02d3ad3035e35de2881861113513606e80199f809663f46cad126acedc',
+    // parentFingerprint: 'f37a28c1',
+    key: '027db891d4021bd58d52e342887a2cf57151858edcb216e63cbe8873fcec513dd2',
+    depth: 7,
+    chainCode: 'ac4f1a0a433dbcccf9474925f4a1068f09bd1e4868b11e73f2833bcd0d6c1db9',
+    childNumber: 44,
+    hardened: true,
+  };
+  console.log('*** Request ***\n', reqJson);
+  createExtkeyResult = CreateExtkey(reqJson);
+  console.log('*** Response ***\n', createExtkeyResult);
 }
 
 let createExtPubkeyResult;

@@ -1977,6 +1977,148 @@ CreateDescriptorResponseStruct CreateDescriptorResponse::ConvertToStruct() const
 }
 
 // ------------------------------------------------------------------------
+// CreateExtkeyRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<CreateExtkeyRequest>
+  CreateExtkeyRequest::json_mapper;
+std::vector<std::string> CreateExtkeyRequest::item_list;
+
+void CreateExtkeyRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<CreateExtkeyRequest> func_table;  // NOLINT
+
+  func_table = {
+    CreateExtkeyRequest::GetNetworkString,
+    CreateExtkeyRequest::SetNetworkString,
+    CreateExtkeyRequest::GetNetworkFieldType,
+  };
+  json_mapper.emplace("network", func_table);
+  item_list.push_back("network");
+  func_table = {
+    CreateExtkeyRequest::GetExtkeyTypeString,
+    CreateExtkeyRequest::SetExtkeyTypeString,
+    CreateExtkeyRequest::GetExtkeyTypeFieldType,
+  };
+  json_mapper.emplace("extkeyType", func_table);
+  item_list.push_back("extkeyType");
+  func_table = {
+    CreateExtkeyRequest::GetParentKeyString,
+    CreateExtkeyRequest::SetParentKeyString,
+    CreateExtkeyRequest::GetParentKeyFieldType,
+  };
+  json_mapper.emplace("parentKey", func_table);
+  item_list.push_back("parentKey");
+  func_table = {
+    CreateExtkeyRequest::GetParentFingerprintString,
+    CreateExtkeyRequest::SetParentFingerprintString,
+    CreateExtkeyRequest::GetParentFingerprintFieldType,
+  };
+  json_mapper.emplace("parentFingerprint", func_table);
+  item_list.push_back("parentFingerprint");
+  func_table = {
+    CreateExtkeyRequest::GetKeyString,
+    CreateExtkeyRequest::SetKeyString,
+    CreateExtkeyRequest::GetKeyFieldType,
+  };
+  json_mapper.emplace("key", func_table);
+  item_list.push_back("key");
+  func_table = {
+    CreateExtkeyRequest::GetDepthString,
+    CreateExtkeyRequest::SetDepthString,
+    CreateExtkeyRequest::GetDepthFieldType,
+  };
+  json_mapper.emplace("depth", func_table);
+  item_list.push_back("depth");
+  func_table = {
+    CreateExtkeyRequest::GetChainCodeString,
+    CreateExtkeyRequest::SetChainCodeString,
+    CreateExtkeyRequest::GetChainCodeFieldType,
+  };
+  json_mapper.emplace("chainCode", func_table);
+  item_list.push_back("chainCode");
+  func_table = {
+    CreateExtkeyRequest::GetChildNumberString,
+    CreateExtkeyRequest::SetChildNumberString,
+    CreateExtkeyRequest::GetChildNumberFieldType,
+  };
+  json_mapper.emplace("childNumber", func_table);
+  item_list.push_back("childNumber");
+  func_table = {
+    CreateExtkeyRequest::GetHardenedString,
+    CreateExtkeyRequest::SetHardenedString,
+    CreateExtkeyRequest::GetHardenedFieldType,
+  };
+  json_mapper.emplace("hardened", func_table);
+  item_list.push_back("hardened");
+}
+
+void CreateExtkeyRequest::ConvertFromStruct(
+    const CreateExtkeyRequestStruct& data) {
+  network_ = data.network;
+  extkey_type_ = data.extkey_type;
+  parent_key_ = data.parent_key;
+  parent_fingerprint_ = data.parent_fingerprint;
+  key_ = data.key;
+  depth_ = data.depth;
+  chain_code_ = data.chain_code;
+  child_number_ = data.child_number;
+  hardened_ = data.hardened;
+  ignore_items = data.ignore_items;
+}
+
+CreateExtkeyRequestStruct CreateExtkeyRequest::ConvertToStruct() const {  // NOLINT
+  CreateExtkeyRequestStruct result;
+  result.network = network_;
+  result.extkey_type = extkey_type_;
+  result.parent_key = parent_key_;
+  result.parent_fingerprint = parent_fingerprint_;
+  result.key = key_;
+  result.depth = depth_;
+  result.chain_code = chain_code_;
+  result.child_number = child_number_;
+  result.hardened = hardened_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// CreateExtkeyResponse
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<CreateExtkeyResponse>
+  CreateExtkeyResponse::json_mapper;
+std::vector<std::string> CreateExtkeyResponse::item_list;
+
+void CreateExtkeyResponse::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<CreateExtkeyResponse> func_table;  // NOLINT
+
+  func_table = {
+    CreateExtkeyResponse::GetExtkeyString,
+    CreateExtkeyResponse::SetExtkeyString,
+    CreateExtkeyResponse::GetExtkeyFieldType,
+  };
+  json_mapper.emplace("extkey", func_table);
+  item_list.push_back("extkey");
+}
+
+void CreateExtkeyResponse::ConvertFromStruct(
+    const CreateExtkeyResponseStruct& data) {
+  extkey_ = data.extkey;
+  ignore_items = data.ignore_items;
+}
+
+CreateExtkeyResponseStruct CreateExtkeyResponse::ConvertToStruct() const {  // NOLINT
+  CreateExtkeyResponseStruct result;
+  result.extkey = extkey_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
 // CreateExtkeyFromParentRequest
 // ------------------------------------------------------------------------
 cfd::core::JsonTableMap<CreateExtkeyFromParentRequest>

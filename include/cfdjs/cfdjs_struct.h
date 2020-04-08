@@ -516,6 +516,37 @@ struct CreateDescriptorResponseStruct {
 };
 
 // ------------------------------------------------------------------------
+// CreateExtkeyRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief CreateExtkeyRequestStruct struct
+ */
+struct CreateExtkeyRequestStruct {
+  std::string network = "mainnet";        //!< network  // NOLINT
+  std::string extkey_type = "extPubkey";  //!< extkey_type  // NOLINT
+  std::string parent_key = "";            //!< parent_key  // NOLINT
+  std::string parent_fingerprint = "";    //!< parent_fingerprint  // NOLINT
+  std::string key = "";                   //!< key  // NOLINT
+  uint8_t depth = 0;                      //!< depth  // NOLINT
+  std::string chain_code = "";            //!< chain_code  // NOLINT
+  uint32_t child_number = 0;              //!< child_number  // NOLINT
+  bool hardened = false;                  //!< hardened  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// CreateExtkeyResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief CreateExtkeyResponseStruct struct
+ */
+struct CreateExtkeyResponseStruct {
+  std::string extkey = "";  //!< extkey  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
 // CreateExtkeyFromParentRequestStruct
 // ------------------------------------------------------------------------
 /**

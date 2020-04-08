@@ -551,19 +551,23 @@ class ${export_define}${map_data.type}
 // generate object function by header
 // ----------------------------------------------------------------------------
 const generateObjectFunctionByHeader = (map_data, child_data) => {
+  // Rename method name because equals windows macro's function.
+  const methodName = (child_data.method_name === 'KValue') ?
+      'K_Value' : child_data.method_name;
+
   const object_functions = `\
   /**
    * @brief Get of ${child_data.name}.
    * @return ${child_data.name}
    */
-  ${child_data.type}& Get${child_data.method_name}() {  // NOLINT
+  ${child_data.type}& Get${methodName}() {  // NOLINT
     return ${child_data.variable_name}_;
   }
   /**
    * @brief Set to ${child_data.name}.
    * @param[in] ${child_data.variable_name}    setting value.
    */
-  void Set${child_data.method_name}(  // line separate
+  void Set${methodName}(  // line separate
       const ${child_data.type}& ${child_data.variable_name}) {  // NOLINT
     this->${child_data.variable_name}_ = ${child_data.variable_name};
   }
@@ -603,19 +607,23 @@ const generateObjectFunctionByHeader = (map_data, child_data) => {
 // generate value function by header
 // ----------------------------------------------------------------------------
 const generateValueFunctionByHeader = (map_data, child_data) => {
+  // Rename method name because equals windows macro's function.
+  const methodName = (child_data.method_name === 'KValue') ?
+      'K_Value' : child_data.method_name;
+
   const value_functions = `\
   /**
    * @brief Get of ${child_data.name}
    * @return ${child_data.name}
    */
-  ${child_data.type} Get${child_data.method_name}() const {
+  ${child_data.type} Get${methodName}() const {
     return ${child_data.variable_name}_;
   }
   /**
    * @brief Set to ${child_data.name}
    * @param[in] ${child_data.variable_name}    setting value.
    */
-  void Set${child_data.method_name}(  // line separate
+  void Set${methodName}(  // line separate
     const ${child_data.type}& ${child_data.variable_name}) {  // NOLINT
     this->${child_data.variable_name}_ = ${child_data.variable_name};
   }
@@ -922,7 +930,7 @@ struct ${map_data.struct_type} {`;
 // ----------------------------------------------------------------------------
 // generate struct item data function
 // ----------------------------------------------------------------------------
-const generateStructItemData = (text_array, req, res, json_data, last_namespaces, has_error_output, processed_list) => {
+const generateStructItemData = (text_array, req, res, json_data, last_namespaces, has_error_output, processed_list, libNamespace) => {
   if (req || res) {
     let namespace = '';
     let last_namespace = '';
@@ -1034,10 +1042,10 @@ const generateStructItemData = (text_array, req, res, json_data, last_namespaces
         }
 
         if (has_error_output && (map_data.struct_type.indexOf('ResponseStruct') >= 0)) {
-          if (namespace == 'cfd::js::api') {
+          if (namespace == libNamespace) {
             text_array.push(`  InnerErrorResponseStruct error;       //!< error information`);
           } else {
-            text_array.push(`  cfd::js::api::InnerErrorResponseStruct error;   //!< error information`);
+            text_array.push(`  ${libNamespace}::InnerErrorResponseStruct error;   //!< error information`);
           }
         }
         text_array.push(`  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.`);
@@ -1052,7 +1060,7 @@ const generateStructItemData = (text_array, req, res, json_data, last_namespaces
 // ----------------------------------------------------------------------------
 // generate struct header function
 // ----------------------------------------------------------------------------
-const generateStructHeader = (dirname, filename, json_list) => {
+const generateStructHeader = (dirname, filename, json_list, libNamespace) => {
   const result = [];
   const processedStructTypes = [];
 
@@ -1120,7 +1128,7 @@ const generateStructHeader = (dirname, filename, json_list) => {
       const res = json_list[json_data_index].response_data;
       generateStructItemData(result, req, res,
           json_list[json_data_index].json_data, last_namespace, false,
-          processedStructTypes);
+          processedStructTypes, libNamespace);
       last_namespace = json_list[json_data_index].json_data.namespace;
     }
   }
@@ -1134,7 +1142,7 @@ const generateStructHeader = (dirname, filename, json_list) => {
       const res = json_list[json_data_index].response_data;
       generateStructItemData(result, req, res,
           json_list[json_data_index].json_data, last_namespace, true,
-          processedStructTypes);
+          processedStructTypes, libNamespace);
       const json_data = json_list[json_data_index].json_data;
       last_namespace = json_list[json_data_index].json_data.namespace;
     }
@@ -1165,17 +1173,18 @@ const generateStructHeader = (dirname, filename, json_list) => {
  * @param jsonClassMap {Object} - class object map.
  * @param jsonTypeList {string[]} - sorted class map keys.
  * @param functionList {string[]} - function names.
+ * @param loadCfdjsIndexFile {string} - cfd-js index.d.ts path.
  */
-const generateTsData = (dirname, filename, jsonClassMap, jsonTypeList, functionList) => {
-  let path = `${dirname}/${filename}`;
-  if (path.startsWith(__dirname)) {
-    path = path.substr(__dirname.length);
+const generateTsData = (dirname, filename, jsonClassMap, jsonTypeList, functionList, loadCfdjsIndexFile) => {
+  let outPath = `${dirname}/${filename}`;
+  if (outPath.startsWith(__dirname)) {
+    outPath = outPath.substr(__dirname.length);
   }
-  while (path.indexOf('/', 0) == 0) {
-    path = path.substr(1);
+  while (outPath.indexOf('/', 0) == 0) {
+    outPath = outPath.substr(1);
   }
-  while (path.indexOf('//') >= 0) {
-    path = path.replace('//', '/');
+  while (outPath.indexOf('//') >= 0) {
+    outPath = outPath.replace('//', '/');
   }
 
   // initialize
@@ -1184,8 +1193,24 @@ const generateTsData = (dirname, filename, jsonClassMap, jsonTypeList, functionL
       addFilesFromTsConfig: false,
   });
 
+  if (loadCfdjsIndexFile) {
+    fs.copyFileSync(loadCfdjsIndexFile, outPath);
+  }
+
   // add source files
-  const file = project.createSourceFile(path, '\n');
+  const file = (!loadCfdjsIndexFile) ? project.createSourceFile(outPath, '\n')
+      : project.addSourceFileAtPath(outPath);
+
+  if (loadCfdjsIndexFile) {
+    const internalErrorObj = file.getInterface('InnerErrorResponse');
+    if (internalErrorObj !== undefined) {
+      internalErrorObj.remove();
+    }
+    const errorObj = file.getInterface('ErrorResponse');
+    if (errorObj !== undefined) {
+      errorObj.remove();
+    }
+  }
 
   for (let i = 0; i < jsonTypeList.length; ++i) {
     const clsName = jsonTypeList[i];
@@ -1214,7 +1239,7 @@ const generateTsData = (dirname, filename, jsonClassMap, jsonTypeList, functionL
   }
 
   // asynchronously save all the changes above
-  project.save().then(() => console.log(`output: ${path}`));
+  project.save().then(() => console.log(`output: ${outPath}`));
 };
 
 
@@ -1224,14 +1249,18 @@ const generateTsData = (dirname, filename, jsonClassMap, jsonTypeList, functionL
 function convertFile() {
   const fileList = [];
   let cfdBaseDir;
-  const cfdPath = `${__dirname}/../external/cfd-js/`;
-  const cfdPath2 = `${__dirname}/../../cfd-js/`;
+  const libname = 'cfd-js';
+  const libPrefix = 'cfdjs';
+  const libNamespace = 'cfd::js::api';
+  const cfdPath = `${__dirname}/../external/${libname}/`;
+  const cfdPath2 = `${__dirname}/../../${libname}/`;
   let folderPath = `src/input_json_format/`;
-  const outJsonSourceFolderPath = `${__dirname}/../../cfd-js/src/autogen/`;
-  const outJsonHeaderFolderPath = `${__dirname}/../../cfd-js/src/autogen/`;
-  let outStructDirPath = `include/cfdjs/`;
+  const outJsonSourceFolderPath = `${__dirname}/../../${libname}/src/autogen/`;
+  const outJsonHeaderFolderPath = `${__dirname}/../../${libname}/src/autogen/`;
+  let outStructDirPath = `include/${libPrefix}/`;
+  const loadCfdjsIndexFile = '';
   let outTsFolderPath = ``;
-  const outStructFileName = `cfdjs_struct.h`;
+  const outStructFileName = `${libPrefix}_struct.h`;
   const outTsFileName = `index.d.ts`;
   let classHeaderList = [];
   let classSourceList = [];
@@ -1318,7 +1347,7 @@ function convertFile() {
       const outHeaderFile = `${namespace_name}_autogen.h`;
       const outSourceFile = `${namespace_name}_autogen.cpp`;
       const header_str = generateFileHeader(outHeaderFile, outJsonHeaderFolderPath,
-          classHeaderList, jsonObjectCommon, `cfdjs/${outStructFileName}`);
+          classHeaderList, jsonObjectCommon, `${libPrefix}/${outStructFileName}`);
       fs.writeFileSync(`${outJsonHeaderFolderPath}${outHeaderFile}`, header_str);
       const src_str = generateFileSource(outSourceFile, outHeaderFile,
           classSourceList, jsonObjectCommon);
@@ -1326,18 +1355,18 @@ function convertFile() {
     };
 
     if (jsonDataList.length > 0) {
-      const header_str = generateStructHeader(outStructDirPath, outStructFileName, jsonDataList);
-      fs.writeFileSync(`${outStructDirPath}${outStructFileName}`, header_str);
+      const header_str = generateStructHeader(outStructDirPath, outStructFileName, jsonDataList, libNamespace);
+      fs.writeFileSync(path.resolve(`${outStructDirPath}${outStructFileName}`), header_str);
       console.log(`output: ${outStructFileName}`);
     }
 
     if (jsonTypeList.length > 0) {
       try {
-        fs.unlinkSync(`${cfdBaseDir}${outTsFileName}`);
+        fs.unlinkSync(path.resolve(`${cfdBaseDir}${outTsFileName}`));
       } catch (err) {
         // do nothing
       }
-      generateTsData(outTsFolderPath, outTsFileName, jsonClassMap, jsonTypeList, functionList);
+      generateTsData(outTsFolderPath, outTsFileName, jsonClassMap, jsonTypeList, functionList, loadCfdjsIndexFile);
     }
   });
 };

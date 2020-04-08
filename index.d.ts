@@ -219,6 +219,22 @@ export interface CreateDescriptorResponse {
     descriptor: string;
 }
 
+export interface CreateExtkeyRequest {
+    network: string;
+    extkeyType?: string;
+    parentKey?: string;
+    parentFingerprint?: string;
+    key: string;
+    depth: number;
+    chainCode: string;
+    childNumber: number;
+    hardened?: boolean;
+}
+
+export interface CreateExtkeyResponse {
+    extkey: string;
+}
+
 export interface CreateExtkeyFromParentRequest {
     extkey: string;
     network: string;
@@ -1354,6 +1370,8 @@ export function ConvertMnemonicToSeed(jsonObject: ConvertMnemonicToSeedRequest):
 export function CreateAddress(jsonObject: CreateAddressRequest): CreateAddressResponse;
 
 export function CreateDescriptor(jsonObject: CreateDescriptorRequest): CreateDescriptorResponse;
+
+export function CreateExtkey(jsonObject: CreateExtkeyRequest): CreateExtkeyResponse;
 
 export function CreateExtkeyFromParent(jsonObject: CreateExtkeyFromParentRequest): CreateExtkeyFromParentResponse;
 

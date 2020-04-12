@@ -79,11 +79,11 @@ class JsonMappingData {
     return str;
   }
 
-  collectMapData(map, list) {
+  collectMapData(map, list, isRequest) {
     if (this.type.startsWith('JsonValueVector') || this.type.startsWith('JsonObjectVector')) {
       for (const key in this.child_list) {
         if (this.child_list[key]) {
-          const ret = this.child_list[key].collectMapData(map, list);
+          const ret = this.child_list[key].collectMapData(map, list, isRequest);
           return {type: ret['type'] + '[]', map: ret['map'], list: ret['list']};
         }
         break;
@@ -97,7 +97,7 @@ class JsonMappingData {
       for (const key in this.child_list) {
         if (this.child_list[key]) {
           const name = this.child_list[key].name + (this.child_list[key].is_require ? '' : '?');
-          const ret = this.child_list[key].collectMapData(tmpMap, tmpList);
+          const ret = this.child_list[key].collectMapData(tmpMap, tmpList, isRequest);
           const type = ret['type'];
           tmpMap = ret['map'];
           tmpList = ret['list'];
@@ -118,7 +118,7 @@ class JsonMappingData {
       for (const key in this.child_list) {
         if (this.child_list[key]) {
           let name = this.child_list[key].name + (this.child_list[key].is_require ? '' : '?');
-          const ret = this.child_list[key].collectMapData(tmpMap, tmpList);
+          const ret = this.child_list[key].collectMapData(tmpMap, tmpList, isRequest);
           debugLog('prop : ', ret);
           const type = ret['type'];
           tmpMap = ret['map'];
@@ -140,7 +140,7 @@ class JsonMappingData {
       } else if (this.type === 'bool') {
         type = 'boolean';
       } else if ((this.type === 'int64_t') || (this.type === 'uint64_t')) {
-        type = 'bigint';
+        type = (isRequest) ? 'bigint | number' : 'bigint';
       } else {
         type = 'number';
       }
@@ -1300,13 +1300,13 @@ function convertFile() {
       const resData = (jsonObject.response) ? analyzeJson(jsonObject.response, 'root') : null;
       let funcName = '';
       if (reqData != null) {
-        const ret = reqData.collectMapData(jsonClassMap, jsonTypeList);
+        const ret = reqData.collectMapData(jsonClassMap, jsonTypeList, true);
         jsonClassMap = ret['map'];
         jsonTypeList = ret['list'];
         funcName = reqData.getFunctionName();
       }
       if (resData != null) {
-        const ret = resData.collectMapData(jsonClassMap, jsonTypeList);
+        const ret = resData.collectMapData(jsonClassMap, jsonTypeList, false);
         jsonClassMap = ret['map'];
         jsonTypeList = ret['list'];
         if (funcName === '') funcName = resData.getFunctionName();

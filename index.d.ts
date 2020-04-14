@@ -627,6 +627,7 @@ export interface ElementsDecodeRawTransactionRequest {
     network?: string;
     mainchainNetwork?: string;
     iswitness?: boolean;
+    fullDump?: boolean;
 }
 
 export interface ElementsDecodeUnlockingScript {
@@ -637,6 +638,7 @@ export interface ElementsDecodeUnlockingScript {
 export interface ElementsDecodeIssuance {
     assetBlindingNonce: string;
     assetEntropy: string;
+    contractHash?: string;
     isreissuance: boolean;
     token?: string;
     asset?: string;
@@ -644,6 +646,8 @@ export interface ElementsDecodeIssuance {
     assetamountcommitment?: string;
     tokenamount?: bigint;
     tokenamountcommitment?: string;
+    assetRangeproof?: string;
+    tokenRangeproof?: string;
 }
 
 export interface ElementsDecodeRawTransactionTxIn {
@@ -686,6 +690,7 @@ export interface ElementsDecodeRawTransactionTxOut {
     commitmentnonce_fully_valid?: boolean;
     n: number;
     scriptPubKey?: ElementsDecodeLockingScript;
+    rangeproof?: string;
 }
 
 export interface ElementsDecodeRawTransactionResponse {

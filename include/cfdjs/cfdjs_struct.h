@@ -1373,6 +1373,7 @@ struct ElementsDecodeRawTransactionRequestStruct {
   std::string network = "liquidv1";    //!< network  // NOLINT
   std::string mainchain_network = "";  //!< mainchain_network  // NOLINT
   bool iswitness = true;               //!< iswitness  // NOLINT
+  bool full_dump = false;              //!< full_dump  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -1397,6 +1398,7 @@ struct ElementsDecodeUnlockingScriptStruct {
 struct ElementsDecodeIssuanceStruct {
   std::string asset_blinding_nonce = "";   //!< asset_blinding_nonce  // NOLINT
   std::string asset_entropy = "";          //!< asset_entropy  // NOLINT
+  std::string contract_hash = "";          //!< contract_hash  // NOLINT
   bool isreissuance = false;               //!< isreissuance  // NOLINT
   std::string token = "";                  //!< token  // NOLINT
   std::string asset = "";                  //!< asset  // NOLINT
@@ -1404,6 +1406,8 @@ struct ElementsDecodeIssuanceStruct {
   std::string assetamountcommitment = "";  //!< assetamountcommitment  // NOLINT
   int64_t tokenamount = 0;                 //!< tokenamount  // NOLINT
   std::string tokenamountcommitment = "";  //!< tokenamountcommitment  // NOLINT
+  std::string asset_rangeproof = "";       //!< asset_rangeproof  // NOLINT
+  std::string token_rangeproof = "";       //!< token_rangeproof  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -1467,6 +1471,7 @@ struct ElementsDecodeRawTransactionTxOutStruct {
   bool commitmentnonce_fully_valid = false;          //!< commitmentnonce_fully_valid  // NOLINT
   uint32_t n = 0;                                    //!< n  // NOLINT
   ElementsDecodeLockingScriptStruct script_pub_key;  //!< script_pub_key  // NOLINT
+  std::string rangeproof = "";                       //!< rangeproof  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 

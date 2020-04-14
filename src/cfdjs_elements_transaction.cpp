@@ -443,6 +443,8 @@ ElementsTransactionStructApi::DecodeRawTransaction(  // NOLINT
               issuance.asset_entropy_);
           tx_in_res.issuance.asset_entropy = asset_entropy.GetHex();
           tx_in_res.issuance.isreissuance = false;
+          tx_in_res.issuance.contract_hash =
+              BlindFactor(tx_in_ref.GetAssetEntropy()).GetHex();
           // token
           ConfidentialAssetId token =
               ConfidentialTransaction::CalculateReissuanceToken(
@@ -453,6 +455,7 @@ ElementsTransactionStructApi::DecodeRawTransaction(  // NOLINT
           tx_in_res.issuance.asset_entropy = asset_entropy.GetHex();
           tx_in_res.issuance.isreissuance = true;
           tx_in_res.issuance.ignore_items.insert("token");
+          tx_in_res.issuance.ignore_items.insert("contractHash");
         }
         // asset
         ConfidentialAssetId asset =
@@ -464,14 +467,22 @@ ElementsTransactionStructApi::DecodeRawTransaction(  // NOLINT
           if (asset_amount.HasBlinding()) {
             tx_in_res.issuance.assetamountcommitment = asset_amount.GetHex();
             tx_in_res.issuance.ignore_items.insert("assetamount");
+            if (request.full_dump) {
+              tx_in_res.issuance.asset_rangeproof =
+                  tx_in_ref.GetIssuanceAmountRangeproof().GetHex();
+            } else {
+              tx_in_res.issuance.ignore_items.insert("assetRangeproof");
+            }
           } else {
             tx_in_res.issuance.assetamount =
                 asset_amount.GetAmount().GetSatoshiValue();
             tx_in_res.issuance.ignore_items.insert("assetamountcommitment");
+            tx_in_res.issuance.ignore_items.insert("assetRangeproof");
           }
         } else {
           tx_in_res.issuance.ignore_items.insert("assetamount");
           tx_in_res.issuance.ignore_items.insert("assetamountcommitment");
+          tx_in_res.issuance.ignore_items.insert("assetRangeproof");
         }
 
         const ConfidentialValue inflation_keys = issuance.inflation_keys_;
@@ -479,14 +490,22 @@ ElementsTransactionStructApi::DecodeRawTransaction(  // NOLINT
           if (inflation_keys.HasBlinding()) {
             tx_in_res.issuance.tokenamountcommitment = inflation_keys.GetHex();
             tx_in_res.issuance.ignore_items.insert("tokenamount");
+            if (request.full_dump) {
+              tx_in_res.issuance.token_rangeproof =
+                  tx_in_ref.GetInflationKeysRangeproof().GetHex();
+            } else {
+              tx_in_res.issuance.ignore_items.insert("tokenRangeproof");
+            }
           } else {
             tx_in_res.issuance.tokenamount =
                 inflation_keys.GetAmount().GetSatoshiValue();
             tx_in_res.issuance.ignore_items.insert("tokenamountcommitment");
+            tx_in_res.issuance.ignore_items.insert("tokenRangeproof");
           }
         } else {
           tx_in_res.issuance.ignore_items.insert("tokenamount");
           tx_in_res.issuance.ignore_items.insert("tokenamountcommitment");
+          tx_in_res.issuance.ignore_items.insert("tokenRangeproof");
         }
       } else {
         // issuanceを除外
@@ -509,6 +528,7 @@ ElementsTransactionStructApi::DecodeRawTransaction(  // NOLINT
         tx_out_res.ignore_items.insert("ct-exponent");
         tx_out_res.ignore_items.insert("ct-bits");
         tx_out_res.ignore_items.insert("surjectionproof");
+        tx_out_res.ignore_items.insert("rangeproof");
         tx_out_res.ignore_items.insert("valuecommitment");
       } else {
         const ByteData& range_proof = tx_out_ref.GetRangeProof();
@@ -535,6 +555,11 @@ ElementsTransactionStructApi::DecodeRawTransaction(  // NOLINT
           tx_out_res.surjectionproof = surjection_proof.GetHex();
         } else {
           tx_out_res.ignore_items.insert("surjectionproof");
+        }
+        if (request.full_dump) {
+          tx_out_res.rangeproof = range_proof.GetHex();
+        } else {
+          tx_out_res.ignore_items.insert("rangeproof");
         }
 
         tx_out_res.valuecommitment = tx_out_value.GetHex();

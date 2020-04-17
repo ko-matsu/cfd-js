@@ -128,3 +128,18 @@ set CFD_CMAKE_GIT_SSH=1
 ```
 export CFD_CMAKE_GIT_SSH=1
 ```
+
+### For installed fail:
+
+If the shared library you downloaded cannot be referenced and the build fails, do a full build without downloading the shared library.
+Prevents the download of the shared library by setting `CFDJS_UNUSE_ASSET=1` in the environment variable.
+
+- Windows: (On the command line. Or set from the system setting screen.)
+```
+set CFDJS_UNUSE_ASSET=1
+```
+
+- MacOS & Linux(Ubuntu):
+```
+export CFDJS_UNUSE_ASSET=1
+```

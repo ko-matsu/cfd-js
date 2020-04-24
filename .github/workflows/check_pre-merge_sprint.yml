@@ -19,7 +19,7 @@ jobs:
     strategy:
       matrix:
         os: [macos-latest, windows-latest, ubuntu-latest]
-        node: [8, 12, 13]
+        node: [8, 12, 13, 14]
         exclude:
           - os: windows-latest
             node: 8
@@ -27,6 +27,8 @@ jobs:
             node: 8
           - os: macos-latest
             node: 13
+          - os: macos-latest
+            node: 14
 
     steps:
     - uses: actions/checkout@v2

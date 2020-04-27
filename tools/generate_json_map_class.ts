@@ -1,21 +1,49 @@
 'use strict';
-const fs = require('fs');
-const path = require('path');
-import { Project } from "ts-morph";
+import fs from 'fs';
+import path from 'path';
+import {Project} from 'ts-morph';
 // FIXME(k-matsuzawa): Consider splitting the file.
+
+interface JsonObjectCommonType {
+  namespace: string | string[];
+  common_header: string;
+};
+
+interface ClassMapType {
+  [key: string]: any;
+};
+
+interface CollectMapDataResponse {
+  type: string;
+  map: ClassMapType;
+  list: any[];
+}
 
 // ----------------------------------------------------------------------------
 // debug log function
 // ----------------------------------------------------------------------------
-let debugLog = function() {
+let debugLog = function(message: string, param1?: string | {}) {
   // do nothing
-}
+};
 
 // ----------------------------------------------------------------------------
 // json data class
 // ----------------------------------------------------------------------------
 class JsonMappingData {
-  constructor(name, type, init_value, class_name, is_output_struct = true) {
+  name: string;
+  method_name: string;
+  variable_name: string;
+  init_value: string | number | boolean;
+  class_name: string;
+  child_list: {[key: string]: JsonMappingData};
+  parent: null;
+  is_output_struct: boolean;
+  is_array: boolean;
+  is_object: boolean;
+  is_require: boolean;
+  type: string;
+  struct_type: string;
+  constructor(name: string, type: string, init_value: string | number | boolean, class_name: string, is_output_struct = true) {
     this.name = name;
     this.method_name = (() => {
       const replaced_method_name = this.name.replace(/-/gi, '_');
@@ -25,6 +53,8 @@ class JsonMappingData {
       const replaced_variable_name = this.name.replace(/-/gi, '_');
       return replaced_variable_name.split(/(?=[A-Z])/).join('_').toLowerCase();
     })();
+    this.type = type;
+    this.struct_type = `${type}Struct`;
     this.setType(type);
     this.init_value = init_value;
     this.class_name = class_name;
@@ -39,7 +69,7 @@ class JsonMappingData {
     if (this.variable_name == 'asm') this.variable_name = `${this.variable_name}_`;
   }
 
-  setType(type) {
+  setType(type: string) {
     this.type = type;
     this.struct_type = `${type}Struct`;
     if (type.startsWith('JsonValueVector')) {
@@ -51,13 +81,13 @@ class JsonMappingData {
     }
   }
 
-  setRequired(require_info) {
+  setRequired(require_info: string) {
     if (require_info === 'require') {
       this.is_require = true;
     }
   }
 
-  setTypeStruct(type, struct_type) {
+  setTypeStruct(type: string, struct_type: any) {
     this.type = type;
     this.struct_type = struct_type;
     if (type.startsWith('JsonValueVector')) {
@@ -79,7 +109,7 @@ class JsonMappingData {
     return str;
   }
 
-  collectMapData(map, list, isRequest) {
+  collectMapData(map: ClassMapType, list: any[], isRequest: boolean): CollectMapDataResponse {
     if (this.type.startsWith('JsonValueVector') || this.type.startsWith('JsonObjectVector')) {
       for (const key in this.child_list) {
         if (this.child_list[key]) {
@@ -91,7 +121,7 @@ class JsonMappingData {
       throw Error('Illegal state.');
     } else if (this.type === 'ErrorResponseBase') {
       const clsName = 'ErrorResponse';
-      let props = [];
+      const props = [];
       let tmpMap = map;
       let tmpList = list;
       for (const key in this.child_list) {
@@ -112,7 +142,7 @@ class JsonMappingData {
       return {type: clsName, map: tmpMap, list: tmpList};
     } else if (Object.keys(this.child_list).length > 0) {
       // my class name
-      let props = [];
+      const props = [];
       let tmpMap = map;
       let tmpList = list;
       for (const key in this.child_list) {
@@ -124,12 +154,12 @@ class JsonMappingData {
           tmpMap = ret['map'];
           tmpList = ret['list'];
           if (name.indexOf('-') > 0) {
-            name = "'" + name + "'";
+            name = '\'' + name + '\'';
           }
           props.push({name: name, type: type});
         }
       }
-      debugLog("props = ", props);
+      debugLog('props = ', props);
       tmpMap[this.type] = props;
       tmpList.push(this.type);
       return {type: this.type, map: tmpMap, list: tmpList};
@@ -167,7 +197,10 @@ class JsonMappingData {
 // json data class
 // ----------------------------------------------------------------------------
 class JsonData {
-  constructor(json_data, request_data, response_data) {
+  json_data: any;
+  request_data: JsonMappingData | null | undefined;
+  response_data: JsonMappingData | null | undefined;
+  constructor(json_data: any, request_data: JsonMappingData | null | undefined, response_data: JsonMappingData | null | undefined) {
     this.json_data = json_data;
     this.request_data = request_data;
     this.response_data = response_data;
@@ -177,15 +210,17 @@ class JsonData {
 // ----------------------------------------------------------------------------
 // array check function
 // ----------------------------------------------------------------------------
-function isArray(obj) {
-  return Object.prototype.toString.call(obj) === '[object Array]';
+function isArray(obj: any) {
+  return (obj instanceof Array);
+  // return Object.prototype.toString.call(obj) === '[object Array]';
 }
 
 // ----------------------------------------------------------------------------
 // analyze function
 // ----------------------------------------------------------------------------
-const analyzeJson = (jsonObj, objName = '', arraytype = '') => {
-  debugLog(`analyzeJson obj=${objName}`)
+const analyzeJson = (jsonObj: any | any[],
+    objName = '', arraytype = '') => {
+  debugLog(`analyzeJson obj=${objName}`);
   let result;
   if (typeof jsonObj == 'string') {
     result = new JsonMappingData(objName, 'std::string', jsonObj, '');
@@ -196,13 +231,16 @@ const analyzeJson = (jsonObj, objName = '', arraytype = '') => {
   } else if (jsonObj) {
     const obj_key = Object.keys(jsonObj);
     const obj_values = Object.values(jsonObj);
-    if (obj_key == 0) { // array
-      debugLog(`read arr = ${obj_values}`)
+    // if (obj_key == 0) { // array
+    if (isArray(jsonObj)) {
+      debugLog(`read arr = ${obj_values}`);
       let past_type = '';
-      let first_map = null;
+      let first_map: JsonMappingData | null = null;
       for (const item in jsonObj) {
         const temp_child = analyzeJson(jsonObj[item], objName);
-        if (past_type == '') {
+        if (!temp_child) {
+          // error
+        } else if (past_type == '') {
           first_map = temp_child;
           past_type = temp_child.type;
         } else if (past_type != temp_child.type) {
@@ -210,7 +248,7 @@ const analyzeJson = (jsonObj, objName = '', arraytype = '') => {
           return result;
         }
       }
-      debugLog(`past_type = ${past_type}`)
+      debugLog(`past_type = ${past_type}`);
       if (past_type == '') {
         // field and class name is set by the caller.
         result = new JsonMappingData('', '', '', '');
@@ -220,7 +258,7 @@ const analyzeJson = (jsonObj, objName = '', arraytype = '') => {
           // array of string or number.
           if ((typeof obj_values[0] == 'number') && (arraytype)) {
             result = new JsonMappingData(objName, `JsonValueVector<${arraytype}>`, '', '');
-            first_map.setType(arraytype);
+            if (first_map !== null) first_map.setType(arraytype);
           } else {
             result = new JsonMappingData(objName, `JsonValueVector<${past_type}>`, '', '');
           }
@@ -229,29 +267,35 @@ const analyzeJson = (jsonObj, objName = '', arraytype = '') => {
           result = new JsonMappingData(objName, `JsonObjectVector<${past_type}, ${past_type}Struct>`, '', '');
         }
       }
-      result.child_list[0] = first_map;
+      if (first_map !== null) {
+        result.child_list[0] = first_map;
+      }
       result.is_array = true;
-      debugLog(`list_type = ${result.type}`)
-      debugLog(`clist_type = ${result.child_list[0].type}`)
+      debugLog(`list_type = ${result.type}`);
+      debugLog(`clist_type = ${result.child_list[0].type}`);
     } else { // object
-      debugLog(`read keys = ${obj_key}`)
+      debugLog(`read keys = ${obj_key}`);
       let class_name = objName;
       if (':class' in jsonObj) {
-        class_name = jsonObj[':class'];
-        debugLog(`read class_name = ${class_name}`)
+        if (typeof jsonObj[':class'] === 'string') {
+          class_name = jsonObj[':class'];
+          debugLog(`read class_name = ${class_name}`);
+        }
       }
       let is_output_struct = true;
       if (':isOutputStruct' in jsonObj) {
-        is_output_struct = jsonObj[':isOutputStruct'];
-        debugLog(`set ${class_name}, is_output_struct=${is_output_struct}`)
+        if (typeof jsonObj[':isOutputStruct'] === 'boolean') {
+          is_output_struct = jsonObj[':isOutputStruct'];
+          debugLog(`set ${class_name}, is_output_struct=${is_output_struct}`);
+        }
       }
       // Class name is set by the caller.
       result = new JsonMappingData(objName, class_name, '', '', is_output_struct);
       result.is_object = true;
       // Stored in temporary map to maintain sort order.
-      const tmp_map = {};
-      const require_map = {};
-      const arraytype_map = {};
+      const tmp_map: {[key: string]: JsonMappingData} = {};
+      const require_map: {[key: string]: string} = {};
+      const arraytype_map: {[key: string]: string} = {};
       for (const key in jsonObj) {
         if (key != ':class') {
           if (key.lastIndexOf(':type') >= 0) {
@@ -261,7 +305,7 @@ const analyzeJson = (jsonObj, objName = '', arraytype = '') => {
             } else {
               const data = new JsonMappingData(key_name, jsonObj[key], '', class_name, is_output_struct);
               tmp_map[key_name] = data;
-              debugLog(`set JsonMappingData = ${key_name}`)
+              debugLog(`set JsonMappingData = ${key_name}`);
             }
           }
           if (key.lastIndexOf(':require') >= 0) {
@@ -277,7 +321,7 @@ const analyzeJson = (jsonObj, objName = '', arraytype = '') => {
 
       for (const key in jsonObj) {
         if (key.indexOf(':') == -1) {
-          debugLog(`read key = ${key}`)
+          debugLog(`read key = ${key}`);
           const value = jsonObj[key];
           if (tmp_map[key]) {
             result.child_list[key] = tmp_map[key];
@@ -293,7 +337,7 @@ const analyzeJson = (jsonObj, objName = '', arraytype = '') => {
               type_str = 'bool';
             } else if (value) {
               const obj_key2 = Object.keys(value);
-              if (obj_key2 == 0) { // array
+              if ((typeof obj_key2 === 'number') && (obj_key2 == 0)) { // array
                 // Should I examine the element first?
                 type_str = '';
               } else { // object
@@ -306,17 +350,19 @@ const analyzeJson = (jsonObj, objName = '', arraytype = '') => {
             result.child_list[key].setRequired(require_map[key]);
           }
           const temp_child = analyzeJson(value, key, arraytype_map[key]);
-          if (result.child_list[key].type == '') {
-            result.child_list[key].setTypeStruct(temp_child.type, temp_child.struct_type);
-            if ((result.child_list[key].type.indexOf('JsonObjectVector') >= 0) ||
-              (result.child_list[key].type.indexOf('JsonValueVector') >= 0)) {
-              result.child_list[key].is_array = true;
-            } else {
-              result.child_list[key].is_object = true;
+          if (temp_child) {
+            if (result.child_list[key].type == '') {
+              result.child_list[key].setTypeStruct(temp_child.type, temp_child.struct_type);
+              if ((result.child_list[key].type.indexOf('JsonObjectVector') >= 0) ||
+                (result.child_list[key].type.indexOf('JsonValueVector') >= 0)) {
+                result.child_list[key].is_array = true;
+              } else {
+                result.child_list[key].is_object = true;
+              }
             }
+            result.child_list[key].child_list = temp_child.child_list;
+            result.child_list[key].class_name = class_name;
           }
-          result.child_list[key].child_list = temp_child.child_list;
-          result.child_list[key].class_name = class_name;
         }
       }
     }
@@ -326,10 +372,16 @@ const analyzeJson = (jsonObj, objName = '', arraytype = '') => {
   return result;
 };
 
+interface JsonMapDataType {
+  is_object: boolean;
+  child_list: any[];
+  is_array: boolean;
+}
+
 // ----------------------------------------------------------------------------
 // analize child class function
 // ----------------------------------------------------------------------------
-const getChildClasses = (jsonMapData, list) => {
+const getChildClasses = (jsonMapData: JsonMappingData, list: JsonMappingData[]) => {
   if (!jsonMapData) {
     // do nothing
   } else if (jsonMapData.is_object) {
@@ -349,9 +401,10 @@ const getChildClasses = (jsonMapData, list) => {
 // ----------------------------------------------------------------------------
 // generate cpp file source function
 // ----------------------------------------------------------------------------
-const generateFileSource = (filename, headerName, class_list, json_setting) => {
+const generateFileSource = (filename: string, headerName: string | string[],
+    class_list: any[], json_setting: JsonObjectCommonType | undefined) => {
   const result = [];
-  const namespace = json_setting.namespace;
+  const namespace = (!json_setting) ? '' : json_setting.namespace;
   const include_nolint = (headerName.indexOf('/') >= 0) ? '' : '  // NOLINT';
 
   // header
@@ -415,19 +468,21 @@ using cfd::core::JsonVector;
 // ----------------------------------------------------------------------------
 // generate cpp class source function
 // ----------------------------------------------------------------------------
-const generateClassSource = (req, res) => {
+const generateClassSource = (req: JsonMappingData | null | undefined, res: JsonMappingData | null | undefined) => {
   const result = [];
-  const processed_list = [];
+  const processed_list: any[] = [];
 
   if (req || res) {
-    const list = [req, res];
-    for (const data in list) {
+    const list: JsonMappingData[] = [];
+    if (req) list.push(req);
+    if (res) list.push(res);
+    for (const data of list) {
       if (!data) continue;
       // sort by classname
       // for child elements
-      const map_list = [];
-      getChildClasses(list[data], map_list);
-      debugLog(`map_list = ${map_list}`)
+      const map_list: JsonMappingData[] = [];
+      getChildClasses(data, map_list);
+      debugLog(`map_list = ${map_list}`);
 
       for (const map_key in map_list) {
         const map_data = map_list[map_key];
@@ -521,7 +576,7 @@ void ${map_data.type}::CollectFieldName() {
 // ----------------------------------------------------------------------------
 // generate class header function
 // ----------------------------------------------------------------------------
-const generateClassHeaderData = (map_data, export_define) => {
+const generateClassHeaderData = (map_data: JsonMappingData, export_define: string) => {
   const class_header = `
 // ------------------------------------------------------------------------
 // ${map_data.type}
@@ -550,7 +605,8 @@ class ${export_define}${map_data.type}
 // ----------------------------------------------------------------------------
 // generate object function by header
 // ----------------------------------------------------------------------------
-const generateObjectFunctionByHeader = (map_data, child_data) => {
+const generateObjectFunctionByHeader = (map_data: JsonMappingData,
+    child_data: JsonMappingData) => {
   // Rename method name because equals windows macro's function.
   const methodName = (child_data.method_name === 'KValue') ?
       'K_Value' : child_data.method_name;
@@ -606,7 +662,8 @@ const generateObjectFunctionByHeader = (map_data, child_data) => {
 // ----------------------------------------------------------------------------
 // generate value function by header
 // ----------------------------------------------------------------------------
-const generateValueFunctionByHeader = (map_data, child_data) => {
+const generateValueFunctionByHeader = (map_data: JsonMappingData,
+    child_data: JsonMappingData) => {
   // Rename method name because equals windows macro's function.
   const methodName = (child_data.method_name === 'KValue') ?
       'K_Value' : child_data.method_name;
@@ -661,7 +718,7 @@ const generateValueFunctionByHeader = (map_data, child_data) => {
 // ----------------------------------------------------------------------------
 // generate class field by header
 // ----------------------------------------------------------------------------
-const generateClassFieldByHeader = (map_data) => {
+const generateClassFieldByHeader = (map_data: JsonMappingData) => {
   let struct_convert_function = '';
   if (map_data.is_output_struct) {
     struct_convert_function = `\
@@ -744,10 +801,12 @@ ${struct_convert_function}
 // ----------------------------------------------------------------------------
 // generate header function
 // ----------------------------------------------------------------------------
-const generateFileHeader = (filename, dirname, class_list, json_setting, append_header_name = '') => {
+const generateFileHeader = (filename: string, dirname: string, class_list: any[],
+    json_setting: JsonObjectCommonType | undefined, append_header_name = '') => {
   const result = [];
 
-  const namespace = json_setting.namespace;
+  const namespace = (!json_setting) ? '' : json_setting.namespace;
+  const common_header = (!json_setting) ? '' : json_setting.common_header;
   let path = `${dirname}/${filename}_`;
   if (path.startsWith(__dirname)) {
     path = path.substr(__dirname.length);
@@ -777,7 +836,7 @@ const generateFileHeader = (filename, dirname, class_list, json_setting, append_
     path = path.replace('-', '_');
   }
   const def_name = path.toUpperCase();
-  const include_header = (json_setting.common_header) ? `#include "${json_setting.common_header}"\n` : '';
+  const include_header = (common_header) ? `#include "${common_header}"\n` : '';
   const include_header2 = (append_header_name.length > 0) ? `#include "${append_header_name}"\n` : '';
 
   // header
@@ -800,7 +859,7 @@ ${include_header2}`;
 
   result.push(header_file_header);
 
-  if (isArray(namespace)) {
+  if (typeof namespace !== 'string') {
     for (let idx = 0; idx < namespace.length; ++idx) {
       result.push(`namespace ${namespace[idx]} {`);
     }
@@ -833,7 +892,7 @@ using cfd::core::JsonVector;
   }
 
   result.push(header_file_footer);
-  if (isArray(namespace)) {
+  if (typeof namespace !== 'string') {
     for (let idx = namespace.length - 1; idx >= 0; --idx) {
       result.push(`}  // namespace ${namespace[idx]}`);
     }
@@ -847,21 +906,23 @@ using cfd::core::JsonVector;
 // ----------------------------------------------------------------------------
 // generate class header function
 // ----------------------------------------------------------------------------
-const generateClassHeader = (req, res, json_setting) => {
+const generateClassHeader = (req: JsonMappingData | null | undefined, res: JsonMappingData | null | undefined, json_setting: { export: any }) => {
   const result = [];
-  const processed_list = [];
+  const processed_list: any[] = [];
   const export_define = (json_setting.export) ? `${json_setting.export} ` : '';
 
   // header
   if (req || res) {
-    const list = [req, res];
-    for (const data in list) {
+    const list: JsonMappingData[] = [];
+    if (req) list.push(req);
+    if (res) list.push(res);
+    for (const data of list) {
       if (!data) continue;
       // sort by generate class
       // Child element in order
-      const map_list = [];
-      getChildClasses(list[data], map_list);
-      debugLog(`map_list = ${map_list}`)
+      const map_list: JsonMappingData[] = [];
+      getChildClasses(data, map_list);
+      debugLog(`map_list = ${map_list}`);
 
       for (const map_key in map_list) {
         const map_data = map_list[map_key];
@@ -915,7 +976,7 @@ const generateClassHeader = (req, res, json_setting) => {
 // ----------------------------------------------------------------------------
 // generate struct header function
 // ----------------------------------------------------------------------------
-const generateStructHeaderArea = (map_data) => {
+const generateStructHeaderArea = (map_data: { struct_type: any }) => {
   const struct_header = `
 // ------------------------------------------------------------------------
 // ${map_data.struct_type}
@@ -930,11 +991,17 @@ struct ${map_data.struct_type} {`;
 // ----------------------------------------------------------------------------
 // generate struct item data function
 // ----------------------------------------------------------------------------
-const generateStructItemData = (text_array, req, res, json_data, last_namespaces, has_error_output, processed_list, libNamespace) => {
+const generateStructItemData = (text_array: string[],
+    req: JsonMappingData | null | undefined, res: JsonMappingData | null | undefined,
+    json_data: { namespace: string | string[] },
+    last_namespaces: string | any[], has_error_output: boolean,
+    processed_list: any[], libNamespace: string) => {
   if (req || res) {
     let namespace = '';
     let last_namespace = '';
-    if (isArray(json_data.namespace)) {
+    if (typeof json_data.namespace === 'string') {
+      namespace = json_data.namespace;
+    } else {
       for (let idx = 0; idx < json_data.namespace.length; ++idx) {
         if (namespace.length > 0) {
           namespace += '::' + json_data.namespace[idx];
@@ -942,10 +1009,10 @@ const generateStructItemData = (text_array, req, res, json_data, last_namespaces
           namespace = json_data.namespace[idx];
         }
       }
-    } else {
-      namespace = json_data.namespace;
     }
-    if (isArray(last_namespaces)) {
+    if (typeof last_namespaces === 'string') {
+      last_namespace = last_namespaces;
+    } else {
       for (let idx = 0; idx < last_namespaces.length; ++idx) {
         if (last_namespace.length > 0) {
           last_namespace += '::' + last_namespaces[idx];
@@ -953,14 +1020,12 @@ const generateStructItemData = (text_array, req, res, json_data, last_namespaces
           last_namespace = last_namespaces[idx];
         }
       }
-    } else {
-      last_namespace = last_namespaces;
     }
 
     if (namespace != last_namespace) {
       if (last_namespace.length > 0) {
         text_array.push('');
-        if (isArray(last_namespaces)) {
+        if (typeof last_namespaces !== 'string') {
           for (let idx = last_namespaces.length - 1; idx >= 0; --idx) {
             if (last_namespaces[idx] != 'json') {
               text_array.push(`}  // namespace ${last_namespaces[idx]}`);
@@ -972,7 +1037,7 @@ const generateStructItemData = (text_array, req, res, json_data, last_namespaces
         text_array.push('');
       }
 
-      if (isArray(json_data.namespace)) {
+      if (typeof json_data.namespace !== 'string') {
         for (let idx = 0; idx < json_data.namespace.length; ++idx) {
           if (json_data.namespace[idx] != 'json') {
             text_array.push(`namespace ${json_data.namespace[idx]} {`);
@@ -983,10 +1048,12 @@ const generateStructItemData = (text_array, req, res, json_data, last_namespaces
       }
     }
 
-    const list = [req, res];
+    const list: JsonMappingData[] = [];
+    if (req) list.push(req);
+    if (res) list.push(res);
     for (const data in list) {
       if (!data) continue;
-      const map_list = [];
+      const map_list: JsonMappingData[] = [];
       getChildClasses(list[data], map_list);
 
       for (const map_key in map_list) {
@@ -1005,7 +1072,9 @@ const generateStructItemData = (text_array, req, res, json_data, last_namespaces
           if (child_data.is_object || child_data.is_array) {
             name_length = child_data.struct_type.length + child_data.variable_name.length;
           } else if (child_data.type == 'std::string') {
-            name_length += child_data.init_value.length + 5;
+            if (typeof child_data.init_value === 'string') {
+              name_length += child_data.init_value.length + 5;
+            }
           } else {
             const string_text = `${child_data.init_value}`;
             name_length += string_text.length + 3;
@@ -1019,7 +1088,9 @@ const generateStructItemData = (text_array, req, res, json_data, last_namespaces
           if (child_data.is_object || child_data.is_array) {
             name_length = child_data.struct_type.length + child_data.variable_name.length;
           } else if (child_data.type == 'std::string') {
-            name_length += child_data.init_value.length + 5;
+            if (typeof child_data.init_value === 'string') {
+              name_length += child_data.init_value.length + 5;
+            }
           } else {
             const string_text = `${child_data.init_value}`;
             name_length += string_text.length + 3;
@@ -1060,9 +1131,9 @@ const generateStructItemData = (text_array, req, res, json_data, last_namespaces
 // ----------------------------------------------------------------------------
 // generate struct header function
 // ----------------------------------------------------------------------------
-const generateStructHeader = (dirname, filename, json_list, libNamespace) => {
+const generateStructHeader = (dirname: string, filename: string, json_list: any[], libNamespace: string) => {
   const result = [];
-  const processedStructTypes = [];
+  const processedStructTypes: never[] = [];
 
   let path = `${dirname}/${filename}_`;
   if (path.startsWith(__dirname)) {
@@ -1175,7 +1246,7 @@ const generateStructHeader = (dirname, filename, json_list, libNamespace) => {
  * @param functionList {string[]} - function names.
  * @param loadCfdjsIndexFile {string} - cfd-js index.d.ts path.
  */
-const generateTsData = (dirname, filename, jsonClassMap, jsonTypeList, functionList, loadCfdjsIndexFile) => {
+const generateTsData = (dirname: string, filename: string, jsonClassMap: { [x: string]: any }, jsonTypeList: string | any[], functionList: string | any[], loadCfdjsIndexFile: fs.PathLike) => {
   let outPath = `${dirname}/${filename}`;
   if (outPath.startsWith(__dirname)) {
     outPath = outPath.substr(__dirname.length);
@@ -1189,8 +1260,8 @@ const generateTsData = (dirname, filename, jsonClassMap, jsonTypeList, functionL
 
   // initialize
   const project = new Project({
-      tsConfigFilePath: `${__dirname}/../tsconfig.json`,
-      addFilesFromTsConfig: false,
+    tsConfigFilePath: `${__dirname}/../tsconfig.json`,
+    addFilesFromTsConfig: false,
   });
 
   if (loadCfdjsIndexFile) {
@@ -1198,8 +1269,8 @@ const generateTsData = (dirname, filename, jsonClassMap, jsonTypeList, functionL
   }
 
   // add source files
-  const file = (!loadCfdjsIndexFile) ? project.createSourceFile(outPath, '\n')
-      : project.addSourceFileAtPath(outPath);
+  const file = (!loadCfdjsIndexFile) ? project.createSourceFile(outPath, '\n') :
+      project.addSourceFileAtPath(outPath);
 
   if (loadCfdjsIndexFile) {
     const internalErrorObj = file.getInterface('InnerErrorResponse');
@@ -1217,9 +1288,9 @@ const generateTsData = (dirname, filename, jsonClassMap, jsonTypeList, functionL
     const props = jsonClassMap[clsName];
     debugLog(`${clsName} = `, props);
     file.addInterface({
-        name: clsName,
-        isExported: true,
-        properties: props
+      name: clsName,
+      isExported: true,
+      properties: props,
     });
   }
 
@@ -1231,10 +1302,10 @@ const generateTsData = (dirname, filename, jsonClassMap, jsonTypeList, functionL
     const params = (reqName in jsonClassMap) ? [{name: 'jsonObject', type: reqName}] : [];
     const retType = (resName in jsonClassMap) ? resName : undefined;
     file.addFunction({
-        name: funcName,
-        isExported: true,
-        parameters: params,
-        returnType: retType,
+      name: funcName,
+      isExported: true,
+      parameters: params,
+      returnType: retType,
     });
   }
 
@@ -1248,7 +1319,7 @@ const generateTsData = (dirname, filename, jsonClassMap, jsonTypeList, functionL
 // ----------------------------------------------------------------------------
 function convertFile() {
   const fileList = [];
-  let cfdBaseDir;
+  let cfdBaseDir: string;
   const libname = 'cfd-js';
   const libPrefix = 'cfdjs';
   const libNamespace = 'cfd::js::api';
@@ -1262,12 +1333,12 @@ function convertFile() {
   let outTsFolderPath = ``;
   const outStructFileName = `${libPrefix}_struct.h`;
   const outTsFileName = `index.d.ts`;
-  let classHeaderList = [];
-  let classSourceList = [];
-  let jsonDataList = [];
-  let jsonClassMap = {};
-  let jsonTypeList = [];
-  let functionList = [];
+  const classHeaderList: string[] = [];
+  const classSourceList: string[] = [];
+  const jsonDataList: JsonData[] = [];
+  let jsonClassMap: ClassMapType = {};
+  let jsonTypeList: any[] = [];
+  const functionList: string[] = [];
 
   if (fs.existsSync(cfdPath) && fs.statSync(cfdPath).isDirectory()) {
     cfdBaseDir = cfdPath;
@@ -1276,12 +1347,12 @@ function convertFile() {
     outStructDirPath = cfdPath + outStructDirPath;
   } else {
     cfdBaseDir = cfdPath2;
-    outTsFolderPath = `${__dirname}/`;  // relative path from tsconfig.json
+    outTsFolderPath = `${__dirname}/`; // relative path from tsconfig.json
     folderPath = cfdPath2 + folderPath;
     outStructDirPath = cfdPath2 + outStructDirPath;
   }
 
-  let jsonObjectCommon = undefined;
+  let jsonObjectCommon: JsonObjectCommonType | undefined = undefined;
   fs.readdir(folderPath, (err, files) => {
     if (err) throw err;
     files.filter(function(file) {
@@ -1312,8 +1383,8 @@ function convertFile() {
         if (funcName === '') funcName = resData.getFunctionName();
       }
       if (funcName !== '') functionList.push(funcName);
-      debugLog(`reqData = ${reqData}`)
-      debugLog(`resData = ${resData}`)
+      debugLog(`reqData = ${reqData}`);
+      debugLog(`resData = ${resData}`);
       jsonDataList.push(new JsonData(jsonObject, reqData, resData));
 
       const header_str = generateClassHeader(reqData, resData, jsonObject);
@@ -1334,8 +1405,8 @@ function convertFile() {
 
     {
       let namespace_name = '';
-      const namespace = jsonObjectCommon.namespace;
-      if (isArray(namespace)) {
+      const namespace = (jsonObjectCommon) ? jsonObjectCommon.namespace : '';
+      if (typeof namespace !== 'string') {
         for (let idx = 0; idx < namespace.length; ++idx) {
           if (idx !== 0) namespace_name += '_';
           namespace_name += namespace[idx];
@@ -1343,7 +1414,7 @@ function convertFile() {
       } else {
         namespace_name += namespace;
       }
-    
+
       const outHeaderFile = `${namespace_name}_autogen.h`;
       const outSourceFile = `${namespace_name}_autogen.cpp`;
       const header_str = generateFileHeader(outHeaderFile, outJsonHeaderFolderPath,
@@ -1373,7 +1444,7 @@ function convertFile() {
 
 
 const main = function() {
-  for (let i = 2; i < process.argv.length; i++){
+  for (let i = 2; i < process.argv.length; i++) {
     if (process.argv[i]) {
       if (process.argv[i] === 'mode=debug') {
         debugLog = function() {
@@ -1391,7 +1462,7 @@ const main = function() {
               console.log(Array.prototype.join.call(arguments));
               break;
           }
-        }
+        };
       }
     }
   }

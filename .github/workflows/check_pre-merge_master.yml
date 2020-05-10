@@ -55,8 +55,9 @@ jobs:
       id: cache
       with:
         path: cache/cmake
-        key: ${{ runner.os }}-cmake-${{ env.CMAKE_VERSION }}-x64
-        restore-keys: ${{ runner.os }}-cmake-${{ env.CMAKE_VERSION }}-x64
+        key: ${{ runner.os }}-cmake-${{ env.CMAKE_VERSION }}-x64-0
+        restore-keys: |
+          ${{ runner.os }}-cmake-${{ env.CMAKE_VERSION }}-x64-
     - name: cmake-download-ubuntu
       if: matrix.os == 'ubuntu-latest' && steps.cache.outputs.cache-hit != 'true'
       run: |

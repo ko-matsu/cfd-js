@@ -1355,3 +1355,60 @@ let getCompressedPubkeyResult;
   getCompressedPubkeyResult = GetCompressedPubkey(reqJson);
   console.log('*** GetCompressedPubkey:Response ***\n', getCompressedPubkeyResult);
 }
+
+{
+  console.log('\n===== HasChildExtkey(success) =====');
+  // [44h]xpub6LeyMkufeeMnKV1hcfXycCFietNdxSp4BGNsGiwJGZxvP9Ys7gQG7b6Lbk9xUwySGX1dFrkLyoynRwrKAMXRE6A6ciXx94FQ1xiFNJnm8Pw/0/4
+  // xpub6PHQL2jAESaKPFB13fGz8GBavh1UmAaoRX7iMqP47XtwAfE56n2ASsddmh7YKboQiZh4GZeA2xd4wBpH9jGTd87UrzG9msUqHHp3xLvgCwg
+  const rootKey1 = 'xpub6LeyMkufeeMnKV1hcfXycCFietNdxSp4BGNsGiwJGZxvP9Ys7gQG7b6Lbk9xUwySGX1dFrkLyoynRwrKAMXRE6A6ciXx94FQ1xiFNJnm8Pw';
+  const rootPrivKey1 = 'xprvA66cwGaFCmUSrFCDpNnLMJXQ8Vv71BxViAMoo3NVa5FhXV2631MJRmvXbm1cQfTeSnp8hpkNiZ8SLgaem1LTfQvHSYTTo8KCTow2azSgZrV';
+  const childKey1 = 'xpub6PHQL2jAESaKPFB13fGz8GBavh1UmAaoRX7iMqP47XtwAfE56n2ASsddmh7YKboQiZh4GZeA2xd4wBpH9jGTd87UrzG9msUqHHp3xLvgCwg';
+  let isSuccess;
+  isSuccess = cfdjsUtil.HasChildExtkey(rootKey1, '', childKey1, '0/4');
+  console.log(`*** HasChildExtkey(1) = ${isSuccess} ***`);
+  isSuccess = cfdjsUtil.HasChildExtkey(rootKey1, '0/44h', childKey1, '0/44h/0/4');
+  console.log(`*** HasChildExtkey(2) = ${isSuccess} ***`);
+  console.log('\n===== HasChildExtkey(fail) =====');
+  try {
+    isSuccess = false;
+    isSuccess = cfdjsUtil.HasChildExtkey(rootKey1, '', childKey1, '0/2');
+  } catch (e) {
+    console.log(e.toString());
+  }
+  console.log(`*** HasChildExtkey(3) = ${isSuccess} ***`);
+  try {
+    isSuccess = false;
+    isSuccess = cfdjsUtil.HasChildExtkey(rootKey1, '0/44', childKey1, '0/44/0/2');
+  } catch (e) {
+    console.log(e.toString());
+  }
+  console.log(`*** HasChildExtkey(4) = ${isSuccess} ***`);
+  try {
+    isSuccess = false;
+    isSuccess = cfdjsUtil.HasChildExtkey(rootKey1, '0/44h', childKey1, '0/44h/0/2/2');
+  } catch (e) {
+    console.log(e.toString());
+  }
+  console.log(`*** HasChildExtkey(5) = ${isSuccess} ***`);
+  try {
+    isSuccess = false;
+    isSuccess = cfdjsUtil.HasChildExtkey(rootKey1, '0/44h', childKey1, '0/44/0/2');
+  } catch (e) {
+    console.log(e.toString());
+  }
+  console.log(`*** HasChildExtkey(6) = ${isSuccess} ***`);
+  try {
+    isSuccess = false;
+    isSuccess = cfdjsUtil.HasChildExtkey(rootKey1, '0/44h', childKey1, '0/2');
+  } catch (e) {
+    console.log(e.toString());
+  }
+  console.log(`*** HasChildExtkey(7) = ${isSuccess} ***`);
+  try {
+    isSuccess = false;
+    isSuccess = cfdjsUtil.HasChildExtkey(rootPrivKey1, '0/44h', childKey1, '0/44/0/2');
+  } catch (e) {
+    console.log(e.toString());
+  }
+  console.log(`*** HasChildExtkey(8) = ${isSuccess} ***`);
+}

@@ -1690,6 +1690,35 @@ ElementsTransactionStructApi::GetIssuanceBlindingKey(
   return result;
 }
 
+GetDefaultBlindingKeyResponseStruct
+ElementsTransactionStructApi::GetDefaultBlindingKey(
+    const GetDefaultBlindingKeyRequestStruct& request) {
+  auto call_func = [](const GetDefaultBlindingKeyRequestStruct& request)
+      -> GetDefaultBlindingKeyResponseStruct {
+    GetDefaultBlindingKeyResponseStruct response;
+    Script locking_script;
+
+    if (!request.address.empty() && request.locking_script.empty()) {
+      ElementsAddressFactory factory;
+      Address address = factory.GetAddress(request.address);
+      locking_script = address.GetLockingScript();
+    } else {
+      locking_script = Script(request.locking_script);
+    }
+    Privkey blinding_key = ElementsConfidentialAddress::GetBlindingKey(
+        Privkey(request.master_blinding_key), locking_script);
+
+    response.blinding_key = blinding_key.GetHex();
+    return response;
+  };
+
+  GetDefaultBlindingKeyResponseStruct result;
+  result = ExecuteStructApi<
+      GetDefaultBlindingKeyRequestStruct, GetDefaultBlindingKeyResponseStruct>(
+      request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
 ElementsCreateDestroyAmountResponseStruct
 ElementsTransactionStructApi::CreateDestroyAmountTransaction(
     const ElementsCreateDestroyAmountRequestStruct& request) {
@@ -1820,6 +1849,9 @@ void ElementsTransactionJsonApi::EstimateFee(
     }
     data.utxo.descriptor = utxo.GetDescriptor();
     data.utxo.binary_data = nullptr;
+    if (!utxo.GetScriptSigTemplate().empty()) {
+      data.utxo.scriptsig_template = Script(utxo.GetScriptSigTemplate());
+    }
 
     data.is_issuance = utxo.GetIsIssuance();
     data.is_blind_issuance = utxo.GetIsBlindIssuance();
@@ -1836,7 +1868,8 @@ void ElementsTransactionJsonApi::EstimateFee(
   ElementsTransactionApi api;
   Amount fee = api.EstimateFee(
       request->GetTx(), utxos, fee_asset, &tx_fee, &utxo_fee,
-      request->GetIsBlind(), request->GetFeeRate());
+      request->GetIsBlind(), request->GetFeeRate(), request->GetExponent(),
+      request->GetMinimumBits());
 
   response->SetFeeAmount(fee.GetSatoshiValue());
   response->SetTxFeeAmount(tx_fee.GetSatoshiValue());
@@ -1858,6 +1891,9 @@ void ElementsTransactionJsonApi::FundRawTransaction(
     }
     data.descriptor = utxo.GetDescriptor();
     data.binary_data = nullptr;
+    if (!utxo.GetScriptSigTemplate().empty()) {
+      data.scriptsig_template = Script(utxo.GetScriptSigTemplate());
+    }
     utxos.push_back(data);
   }
   for (auto& utxo : request->GetSelectUtxos()) {
@@ -1873,6 +1909,9 @@ void ElementsTransactionJsonApi::FundRawTransaction(
     }
     data.utxo.descriptor = utxo.GetDescriptor();
     data.utxo.binary_data = nullptr;
+    if (!utxo.GetScriptSigTemplate().empty()) {
+      data.utxo.scriptsig_template = Script(utxo.GetScriptSigTemplate());
+    }
 
     data.is_issuance = utxo.GetIsIssuance();
     data.is_blind_issuance = utxo.GetIsBlindIssuance();
@@ -1888,6 +1927,7 @@ void ElementsTransactionJsonApi::FundRawTransaction(
   const FundFeeInfomation& fee_info = request->GetFeeInfo();
   CoinSelectionOption option;
   ConfidentialAssetId fee_asset;
+  option.SetBlindInfo(fee_info.GetExponent(), fee_info.GetMinimumBits());
   option.InitializeConfidentialTxSizeInfo();
   option.SetEffectiveFeeBaserate(fee_info.GetFeeRate());
   option.SetLongTermFeeBaserate(fee_info.GetLongTermFeeRate());

@@ -1780,16 +1780,17 @@ struct EncodeSignatureByDerResponseStruct {
  * @brief SelectUtxoDataStruct struct
  */
 struct SelectUtxoDataStruct {
-  std::string txid = "";           //!< txid  // NOLINT
-  uint32_t vout = 0;               //!< vout  // NOLINT
-  std::string asset = "";          //!< asset  // NOLINT
-  std::string redeem_script = "";  //!< redeem_script  // NOLINT
-  std::string descriptor = "";     //!< descriptor  // NOLINT
-  bool is_issuance = false;        //!< is_issuance  // NOLINT
-  bool is_blind_issuance = false;  //!< is_blind_issuance  // NOLINT
-  bool is_pegin = false;           //!< is_pegin  // NOLINT
-  int64_t pegin_btc_tx_size = 0;   //!< pegin_btc_tx_size  // NOLINT
-  std::string fedpeg_script = "";  //!< fedpeg_script  // NOLINT
+  std::string txid = "";                 //!< txid  // NOLINT
+  uint32_t vout = 0;                     //!< vout  // NOLINT
+  std::string asset = "";                //!< asset  // NOLINT
+  std::string redeem_script = "";        //!< redeem_script  // NOLINT
+  std::string descriptor = "";           //!< descriptor  // NOLINT
+  bool is_issuance = false;              //!< is_issuance  // NOLINT
+  bool is_blind_issuance = false;        //!< is_blind_issuance  // NOLINT
+  bool is_pegin = false;                 //!< is_pegin  // NOLINT
+  int64_t pegin_btc_tx_size = 0;         //!< pegin_btc_tx_size  // NOLINT
+  std::string fedpeg_script = "";        //!< fedpeg_script  // NOLINT
+  std::string script_sig_template = "";  //!< script_sig_template  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -1806,6 +1807,8 @@ struct EstimateFeeRequestStruct {
   bool is_elements = false;                        //!< is_elements  // NOLINT
   bool is_blind = true;                            //!< is_blind  // NOLINT
   std::string fee_asset = "";                      //!< fee_asset  // NOLINT
+  int exponent = 0;                                //!< exponent  // NOLINT
+  int minimum_bits = 52;                           //!< minimum_bits  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -1830,12 +1833,13 @@ struct EstimateFeeResponseStruct {
  * @brief FundUtxoJsonDataStruct struct
  */
 struct FundUtxoJsonDataStruct {
-  std::string txid = "";        //!< txid  // NOLINT
-  uint32_t vout = 0;            //!< vout  // NOLINT
-  std::string address = "";     //!< address  // NOLINT
-  int64_t amount = 0;           //!< amount  // NOLINT
-  std::string asset = "";       //!< asset  // NOLINT
-  std::string descriptor = "";  //!< descriptor  // NOLINT
+  std::string txid = "";                 //!< txid  // NOLINT
+  uint32_t vout = 0;                     //!< vout  // NOLINT
+  std::string address = "";              //!< address  // NOLINT
+  int64_t amount = 0;                    //!< amount  // NOLINT
+  std::string asset = "";                //!< asset  // NOLINT
+  std::string descriptor = "";           //!< descriptor  // NOLINT
+  std::string script_sig_template = "";  //!< script_sig_template  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -1846,18 +1850,19 @@ struct FundUtxoJsonDataStruct {
  * @brief FundSelectUtxoDataStruct struct
  */
 struct FundSelectUtxoDataStruct {
-  std::string txid = "";           //!< txid  // NOLINT
-  uint32_t vout = 0;               //!< vout  // NOLINT
-  std::string address = "";        //!< address  // NOLINT
-  int64_t amount = 0;              //!< amount  // NOLINT
-  std::string asset = "";          //!< asset  // NOLINT
-  std::string redeem_script = "";  //!< redeem_script  // NOLINT
-  std::string descriptor = "";     //!< descriptor  // NOLINT
-  bool is_issuance = false;        //!< is_issuance  // NOLINT
-  bool is_blind_issuance = false;  //!< is_blind_issuance  // NOLINT
-  bool is_pegin = false;           //!< is_pegin  // NOLINT
-  uint32_t pegin_btc_tx_size = 0;  //!< pegin_btc_tx_size  // NOLINT
-  std::string fedpeg_script = "";  //!< fedpeg_script  // NOLINT
+  std::string txid = "";                 //!< txid  // NOLINT
+  uint32_t vout = 0;                     //!< vout  // NOLINT
+  std::string address = "";              //!< address  // NOLINT
+  int64_t amount = 0;                    //!< amount  // NOLINT
+  std::string asset = "";                //!< asset  // NOLINT
+  std::string redeem_script = "";        //!< redeem_script  // NOLINT
+  std::string descriptor = "";           //!< descriptor  // NOLINT
+  bool is_issuance = false;              //!< is_issuance  // NOLINT
+  bool is_blind_issuance = false;        //!< is_blind_issuance  // NOLINT
+  bool is_pegin = false;                 //!< is_pegin  // NOLINT
+  uint32_t pegin_btc_tx_size = 0;        //!< pegin_btc_tx_size  // NOLINT
+  std::string fedpeg_script = "";        //!< fedpeg_script  // NOLINT
+  std::string script_sig_template = "";  //!< script_sig_template  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -1887,6 +1892,8 @@ struct FundFeeInfomationStruct {
   double dust_fee_rate = 3;           //!< dust_fee_rate  // NOLINT
   std::string fee_asset = "";         //!< fee_asset  // NOLINT
   bool is_blind_estimate_fee = true;  //!< is_blind_estimate_fee  // NOLINT
+  int exponent = 0;                   //!< exponent  // NOLINT
+  int minimum_bits = 52;              //!< minimum_bits  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -1998,6 +2005,31 @@ struct GetCompressedPubkeyRequestStruct {
  */
 struct GetCompressedPubkeyResponseStruct {
   std::string pubkey = "";  //!< pubkey  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// GetDefaultBlindingKeyRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief GetDefaultBlindingKeyRequestStruct struct
+ */
+struct GetDefaultBlindingKeyRequestStruct {
+  std::string master_blinding_key = "";  //!< master_blinding_key  // NOLINT
+  std::string locking_script = "";       //!< locking_script  // NOLINT
+  std::string address = "";              //!< address  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// GetDefaultBlindingKeyResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief GetDefaultBlindingKeyResponseStruct struct
+ */
+struct GetDefaultBlindingKeyResponseStruct {
+  std::string blinding_key = "";  //!< blinding_key  // NOLINT
   cfd::js::api::InnerErrorResponseStruct error;   //!< error information
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
@@ -2360,11 +2392,12 @@ struct ParseScriptResponseStruct {
  * @brief UtxoJsonDataStruct struct
  */
 struct UtxoJsonDataStruct {
-  std::string txid = "";        //!< txid  // NOLINT
-  uint32_t vout = 0;            //!< vout  // NOLINT
-  int64_t amount = 0;           //!< amount  // NOLINT
-  std::string asset = "";       //!< asset  // NOLINT
-  std::string descriptor = "";  //!< descriptor  // NOLINT
+  std::string txid = "";                 //!< txid  // NOLINT
+  uint32_t vout = 0;                     //!< vout  // NOLINT
+  int64_t amount = 0;                    //!< amount  // NOLINT
+  std::string asset = "";                //!< asset  // NOLINT
+  std::string descriptor = "";           //!< descriptor  // NOLINT
+  std::string script_sig_template = "";  //!< script_sig_template  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -2392,6 +2425,8 @@ struct CoinSelectionFeeInfomationFieldStruct {
   double long_term_fee_rate = 20;    //!< long_term_fee_rate  // NOLINT
   int32_t knapsack_min_change = -1;  //!< knapsack_min_change  // NOLINT
   std::string fee_asset = "";        //!< fee_asset  // NOLINT
+  int exponent = 0;                  //!< exponent  // NOLINT
+  int minimum_bits = 52;             //!< minimum_bits  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 

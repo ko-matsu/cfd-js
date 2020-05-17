@@ -34043,6 +34043,49 @@ class SelectUtxoData
   }
 
   /**
+   * @brief Get of scriptSigTemplate
+   * @return scriptSigTemplate
+   */
+  std::string GetScriptSigTemplate() const {
+    return script_sig_template_;
+  }
+  /**
+   * @brief Set to scriptSigTemplate
+   * @param[in] script_sig_template    setting value.
+   */
+  void SetScriptSigTemplate(  // line separate
+    const std::string& script_sig_template) {  // NOLINT
+    this->script_sig_template_ = script_sig_template;
+  }
+  /**
+   * @brief Get data type of scriptSigTemplate
+   * @return Data type of scriptSigTemplate
+   */
+  static std::string GetScriptSigTemplateFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of scriptSigTemplate field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetScriptSigTemplateString(  // line separate
+      const SelectUtxoData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.script_sig_template_);
+  }
+  /**
+   * @brief Set json object to scriptSigTemplate field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetScriptSigTemplateString(  // line separate
+      SelectUtxoData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.script_sig_template_, json_value);
+  }
+
+  /**
    * @brief Set ignore item.
    * @param[in] key   ignore target key name.
    */
@@ -34151,6 +34194,10 @@ class SelectUtxoData
    * @brief JsonAPI(fedpegScript) value
    */
   std::string fedpeg_script_ = "";
+  /**
+   * @brief JsonAPI(scriptSigTemplate) value
+   */
+  std::string script_sig_template_ = "";
 };
 
 // ------------------------------------------------------------------------
@@ -34433,6 +34480,92 @@ class EstimateFeeRequest
   }
 
   /**
+   * @brief Get of exponent
+   * @return exponent
+   */
+  int GetExponent() const {
+    return exponent_;
+  }
+  /**
+   * @brief Set to exponent
+   * @param[in] exponent    setting value.
+   */
+  void SetExponent(  // line separate
+    const int& exponent) {  // NOLINT
+    this->exponent_ = exponent;
+  }
+  /**
+   * @brief Get data type of exponent
+   * @return Data type of exponent
+   */
+  static std::string GetExponentFieldType() {
+    return "int";
+  }
+  /**
+   * @brief Get json string of exponent field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetExponentString(  // line separate
+      const EstimateFeeRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.exponent_);
+  }
+  /**
+   * @brief Set json object to exponent field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetExponentString(  // line separate
+      EstimateFeeRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.exponent_, json_value);
+  }
+
+  /**
+   * @brief Get of minimumBits
+   * @return minimumBits
+   */
+  int GetMinimumBits() const {
+    return minimum_bits_;
+  }
+  /**
+   * @brief Set to minimumBits
+   * @param[in] minimum_bits    setting value.
+   */
+  void SetMinimumBits(  // line separate
+    const int& minimum_bits) {  // NOLINT
+    this->minimum_bits_ = minimum_bits;
+  }
+  /**
+   * @brief Get data type of minimumBits
+   * @return Data type of minimumBits
+   */
+  static std::string GetMinimumBitsFieldType() {
+    return "int";
+  }
+  /**
+   * @brief Get json string of minimumBits field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetMinimumBitsString(  // line separate
+      const EstimateFeeRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.minimum_bits_);
+  }
+  /**
+   * @brief Set json object to minimumBits field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetMinimumBitsString(  // line separate
+      EstimateFeeRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.minimum_bits_, json_value);
+  }
+
+  /**
    * @brief Set ignore item.
    * @param[in] key   ignore target key name.
    */
@@ -34525,6 +34658,14 @@ class EstimateFeeRequest
    * @brief JsonAPI(feeAsset) value
    */
   std::string fee_asset_ = "";
+  /**
+   * @brief JsonAPI(exponent) value
+   */
+  int exponent_ = 0;
+  /**
+   * @brief JsonAPI(minimumBits) value
+   */
+  int minimum_bits_ = 52;
 };
 
 // ------------------------------------------------------------------------
@@ -35038,6 +35179,49 @@ class FundUtxoJsonData
   }
 
   /**
+   * @brief Get of scriptSigTemplate
+   * @return scriptSigTemplate
+   */
+  std::string GetScriptSigTemplate() const {
+    return script_sig_template_;
+  }
+  /**
+   * @brief Set to scriptSigTemplate
+   * @param[in] script_sig_template    setting value.
+   */
+  void SetScriptSigTemplate(  // line separate
+    const std::string& script_sig_template) {  // NOLINT
+    this->script_sig_template_ = script_sig_template;
+  }
+  /**
+   * @brief Get data type of scriptSigTemplate
+   * @return Data type of scriptSigTemplate
+   */
+  static std::string GetScriptSigTemplateFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of scriptSigTemplate field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetScriptSigTemplateString(  // line separate
+      const FundUtxoJsonData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.script_sig_template_);
+  }
+  /**
+   * @brief Set json object to scriptSigTemplate field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetScriptSigTemplateString(  // line separate
+      FundUtxoJsonData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.script_sig_template_, json_value);
+  }
+
+  /**
    * @brief Set ignore item.
    * @param[in] key   ignore target key name.
    */
@@ -35130,6 +35314,10 @@ class FundUtxoJsonData
    * @brief JsonAPI(descriptor) value
    */
   std::string descriptor_ = "";
+  /**
+   * @brief JsonAPI(scriptSigTemplate) value
+   */
+  std::string script_sig_template_ = "";
 };
 
 // ------------------------------------------------------------------------
@@ -35669,6 +35857,49 @@ class FundSelectUtxoData
   }
 
   /**
+   * @brief Get of scriptSigTemplate
+   * @return scriptSigTemplate
+   */
+  std::string GetScriptSigTemplate() const {
+    return script_sig_template_;
+  }
+  /**
+   * @brief Set to scriptSigTemplate
+   * @param[in] script_sig_template    setting value.
+   */
+  void SetScriptSigTemplate(  // line separate
+    const std::string& script_sig_template) {  // NOLINT
+    this->script_sig_template_ = script_sig_template;
+  }
+  /**
+   * @brief Get data type of scriptSigTemplate
+   * @return Data type of scriptSigTemplate
+   */
+  static std::string GetScriptSigTemplateFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of scriptSigTemplate field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetScriptSigTemplateString(  // line separate
+      const FundSelectUtxoData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.script_sig_template_);
+  }
+  /**
+   * @brief Set json object to scriptSigTemplate field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetScriptSigTemplateString(  // line separate
+      FundSelectUtxoData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.script_sig_template_, json_value);
+  }
+
+  /**
    * @brief Set ignore item.
    * @param[in] key   ignore target key name.
    */
@@ -35785,6 +36016,10 @@ class FundSelectUtxoData
    * @brief JsonAPI(fedpegScript) value
    */
   std::string fedpeg_script_ = "";
+  /**
+   * @brief JsonAPI(scriptSigTemplate) value
+   */
+  std::string script_sig_template_ = "";
 };
 
 // ------------------------------------------------------------------------
@@ -36298,6 +36533,92 @@ class FundFeeInfomation
   }
 
   /**
+   * @brief Get of exponent
+   * @return exponent
+   */
+  int GetExponent() const {
+    return exponent_;
+  }
+  /**
+   * @brief Set to exponent
+   * @param[in] exponent    setting value.
+   */
+  void SetExponent(  // line separate
+    const int& exponent) {  // NOLINT
+    this->exponent_ = exponent;
+  }
+  /**
+   * @brief Get data type of exponent
+   * @return Data type of exponent
+   */
+  static std::string GetExponentFieldType() {
+    return "int";
+  }
+  /**
+   * @brief Get json string of exponent field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetExponentString(  // line separate
+      const FundFeeInfomation& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.exponent_);
+  }
+  /**
+   * @brief Set json object to exponent field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetExponentString(  // line separate
+      FundFeeInfomation& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.exponent_, json_value);
+  }
+
+  /**
+   * @brief Get of minimumBits
+   * @return minimumBits
+   */
+  int GetMinimumBits() const {
+    return minimum_bits_;
+  }
+  /**
+   * @brief Set to minimumBits
+   * @param[in] minimum_bits    setting value.
+   */
+  void SetMinimumBits(  // line separate
+    const int& minimum_bits) {  // NOLINT
+    this->minimum_bits_ = minimum_bits;
+  }
+  /**
+   * @brief Get data type of minimumBits
+   * @return Data type of minimumBits
+   */
+  static std::string GetMinimumBitsFieldType() {
+    return "int";
+  }
+  /**
+   * @brief Get json string of minimumBits field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetMinimumBitsString(  // line separate
+      const FundFeeInfomation& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.minimum_bits_);
+  }
+  /**
+   * @brief Set json object to minimumBits field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetMinimumBitsString(  // line separate
+      FundFeeInfomation& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.minimum_bits_, json_value);
+  }
+
+  /**
    * @brief Set ignore item.
    * @param[in] key   ignore target key name.
    */
@@ -36390,6 +36711,14 @@ class FundFeeInfomation
    * @brief JsonAPI(isBlindEstimateFee) value
    */
   bool is_blind_estimate_fee_ = true;
+  /**
+   * @brief JsonAPI(exponent) value
+   */
+  int exponent_ = 0;
+  /**
+   * @brief JsonAPI(minimumBits) value
+   */
+  int minimum_bits_ = 52;
 };
 
 // ------------------------------------------------------------------------
@@ -38441,6 +38770,376 @@ class GetCompressedPubkeyResponse
    * @brief JsonAPI(pubkey) value
    */
   std::string pubkey_ = "";
+};
+
+// ------------------------------------------------------------------------
+// GetDefaultBlindingKeyRequest
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (GetDefaultBlindingKeyRequest) class
+ */
+class GetDefaultBlindingKeyRequest
+  : public cfd::core::JsonClassBase<GetDefaultBlindingKeyRequest> {
+ public:
+  GetDefaultBlindingKeyRequest() {
+    CollectFieldName();
+  }
+  virtual ~GetDefaultBlindingKeyRequest() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of masterBlindingKey
+   * @return masterBlindingKey
+   */
+  std::string GetMasterBlindingKey() const {
+    return master_blinding_key_;
+  }
+  /**
+   * @brief Set to masterBlindingKey
+   * @param[in] master_blinding_key    setting value.
+   */
+  void SetMasterBlindingKey(  // line separate
+    const std::string& master_blinding_key) {  // NOLINT
+    this->master_blinding_key_ = master_blinding_key;
+  }
+  /**
+   * @brief Get data type of masterBlindingKey
+   * @return Data type of masterBlindingKey
+   */
+  static std::string GetMasterBlindingKeyFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of masterBlindingKey field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetMasterBlindingKeyString(  // line separate
+      const GetDefaultBlindingKeyRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.master_blinding_key_);
+  }
+  /**
+   * @brief Set json object to masterBlindingKey field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetMasterBlindingKeyString(  // line separate
+      GetDefaultBlindingKeyRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.master_blinding_key_, json_value);
+  }
+
+  /**
+   * @brief Get of lockingScript
+   * @return lockingScript
+   */
+  std::string GetLockingScript() const {
+    return locking_script_;
+  }
+  /**
+   * @brief Set to lockingScript
+   * @param[in] locking_script    setting value.
+   */
+  void SetLockingScript(  // line separate
+    const std::string& locking_script) {  // NOLINT
+    this->locking_script_ = locking_script;
+  }
+  /**
+   * @brief Get data type of lockingScript
+   * @return Data type of lockingScript
+   */
+  static std::string GetLockingScriptFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of lockingScript field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetLockingScriptString(  // line separate
+      const GetDefaultBlindingKeyRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.locking_script_);
+  }
+  /**
+   * @brief Set json object to lockingScript field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetLockingScriptString(  // line separate
+      GetDefaultBlindingKeyRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.locking_script_, json_value);
+  }
+
+  /**
+   * @brief Get of address
+   * @return address
+   */
+  std::string GetAddress() const {
+    return address_;
+  }
+  /**
+   * @brief Set to address
+   * @param[in] address    setting value.
+   */
+  void SetAddress(  // line separate
+    const std::string& address) {  // NOLINT
+    this->address_ = address;
+  }
+  /**
+   * @brief Get data type of address
+   * @return Data type of address
+   */
+  static std::string GetAddressFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of address field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetAddressString(  // line separate
+      const GetDefaultBlindingKeyRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.address_);
+  }
+  /**
+   * @brief Set json object to address field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetAddressString(  // line separate
+      GetDefaultBlindingKeyRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.address_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const GetDefaultBlindingKeyRequestStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  GetDefaultBlindingKeyRequestStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using GetDefaultBlindingKeyRequestMapTable =
+    cfd::core::JsonTableMap<GetDefaultBlindingKeyRequest>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const GetDefaultBlindingKeyRequestMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static GetDefaultBlindingKeyRequestMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(masterBlindingKey) value
+   */
+  std::string master_blinding_key_ = "";
+  /**
+   * @brief JsonAPI(lockingScript) value
+   */
+  std::string locking_script_ = "";
+  /**
+   * @brief JsonAPI(address) value
+   */
+  std::string address_ = "";
+};
+
+// ------------------------------------------------------------------------
+// GetDefaultBlindingKeyResponse
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (GetDefaultBlindingKeyResponse) class
+ */
+class GetDefaultBlindingKeyResponse
+  : public cfd::core::JsonClassBase<GetDefaultBlindingKeyResponse> {
+ public:
+  GetDefaultBlindingKeyResponse() {
+    CollectFieldName();
+  }
+  virtual ~GetDefaultBlindingKeyResponse() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of blindingKey
+   * @return blindingKey
+   */
+  std::string GetBlindingKey() const {
+    return blinding_key_;
+  }
+  /**
+   * @brief Set to blindingKey
+   * @param[in] blinding_key    setting value.
+   */
+  void SetBlindingKey(  // line separate
+    const std::string& blinding_key) {  // NOLINT
+    this->blinding_key_ = blinding_key;
+  }
+  /**
+   * @brief Get data type of blindingKey
+   * @return Data type of blindingKey
+   */
+  static std::string GetBlindingKeyFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of blindingKey field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetBlindingKeyString(  // line separate
+      const GetDefaultBlindingKeyResponse& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.blinding_key_);
+  }
+  /**
+   * @brief Set json object to blindingKey field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetBlindingKeyString(  // line separate
+      GetDefaultBlindingKeyResponse& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.blinding_key_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const GetDefaultBlindingKeyResponseStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  GetDefaultBlindingKeyResponseStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using GetDefaultBlindingKeyResponseMapTable =
+    cfd::core::JsonTableMap<GetDefaultBlindingKeyResponse>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const GetDefaultBlindingKeyResponseMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static GetDefaultBlindingKeyResponseMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(blindingKey) value
+   */
+  std::string blinding_key_ = "";
 };
 
 // ------------------------------------------------------------------------
@@ -44385,6 +45084,49 @@ class UtxoJsonData
   }
 
   /**
+   * @brief Get of scriptSigTemplate
+   * @return scriptSigTemplate
+   */
+  std::string GetScriptSigTemplate() const {
+    return script_sig_template_;
+  }
+  /**
+   * @brief Set to scriptSigTemplate
+   * @param[in] script_sig_template    setting value.
+   */
+  void SetScriptSigTemplate(  // line separate
+    const std::string& script_sig_template) {  // NOLINT
+    this->script_sig_template_ = script_sig_template;
+  }
+  /**
+   * @brief Get data type of scriptSigTemplate
+   * @return Data type of scriptSigTemplate
+   */
+  static std::string GetScriptSigTemplateFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of scriptSigTemplate field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetScriptSigTemplateString(  // line separate
+      const UtxoJsonData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.script_sig_template_);
+  }
+  /**
+   * @brief Set json object to scriptSigTemplate field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetScriptSigTemplateString(  // line separate
+      UtxoJsonData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.script_sig_template_, json_value);
+  }
+
+  /**
    * @brief Set ignore item.
    * @param[in] key   ignore target key name.
    */
@@ -44473,6 +45215,10 @@ class UtxoJsonData
    * @brief JsonAPI(descriptor) value
    */
   std::string descriptor_ = "";
+  /**
+   * @brief JsonAPI(scriptSigTemplate) value
+   */
+  std::string script_sig_template_ = "";
 };
 
 // ------------------------------------------------------------------------
@@ -44896,6 +45642,92 @@ class CoinSelectionFeeInfomationField
   }
 
   /**
+   * @brief Get of exponent
+   * @return exponent
+   */
+  int GetExponent() const {
+    return exponent_;
+  }
+  /**
+   * @brief Set to exponent
+   * @param[in] exponent    setting value.
+   */
+  void SetExponent(  // line separate
+    const int& exponent) {  // NOLINT
+    this->exponent_ = exponent;
+  }
+  /**
+   * @brief Get data type of exponent
+   * @return Data type of exponent
+   */
+  static std::string GetExponentFieldType() {
+    return "int";
+  }
+  /**
+   * @brief Get json string of exponent field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetExponentString(  // line separate
+      const CoinSelectionFeeInfomationField& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.exponent_);
+  }
+  /**
+   * @brief Set json object to exponent field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetExponentString(  // line separate
+      CoinSelectionFeeInfomationField& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.exponent_, json_value);
+  }
+
+  /**
+   * @brief Get of minimumBits
+   * @return minimumBits
+   */
+  int GetMinimumBits() const {
+    return minimum_bits_;
+  }
+  /**
+   * @brief Set to minimumBits
+   * @param[in] minimum_bits    setting value.
+   */
+  void SetMinimumBits(  // line separate
+    const int& minimum_bits) {  // NOLINT
+    this->minimum_bits_ = minimum_bits;
+  }
+  /**
+   * @brief Get data type of minimumBits
+   * @return Data type of minimumBits
+   */
+  static std::string GetMinimumBitsFieldType() {
+    return "int";
+  }
+  /**
+   * @brief Get json string of minimumBits field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetMinimumBitsString(  // line separate
+      const CoinSelectionFeeInfomationField& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.minimum_bits_);
+  }
+  /**
+   * @brief Set json object to minimumBits field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetMinimumBitsString(  // line separate
+      CoinSelectionFeeInfomationField& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.minimum_bits_, json_value);
+  }
+
+  /**
    * @brief Set ignore item.
    * @param[in] key   ignore target key name.
    */
@@ -44984,6 +45816,14 @@ class CoinSelectionFeeInfomationField
    * @brief JsonAPI(feeAsset) value
    */
   std::string fee_asset_ = "";
+  /**
+   * @brief JsonAPI(exponent) value
+   */
+  int exponent_ = 0;
+  /**
+   * @brief JsonAPI(minimumBits) value
+   */
+  int minimum_bits_ = 52;
 };
 
 // ------------------------------------------------------------------------

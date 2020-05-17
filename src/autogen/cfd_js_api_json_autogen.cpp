@@ -7590,6 +7590,13 @@ void SelectUtxoData::CollectFieldName() {
   };
   json_mapper.emplace("fedpegScript", func_table);
   item_list.push_back("fedpegScript");
+  func_table = {
+    SelectUtxoData::GetScriptSigTemplateString,
+    SelectUtxoData::SetScriptSigTemplateString,
+    SelectUtxoData::GetScriptSigTemplateFieldType,
+  };
+  json_mapper.emplace("scriptSigTemplate", func_table);
+  item_list.push_back("scriptSigTemplate");
 }
 
 void SelectUtxoData::ConvertFromStruct(
@@ -7604,6 +7611,7 @@ void SelectUtxoData::ConvertFromStruct(
   is_pegin_ = data.is_pegin;
   pegin_btc_tx_size_ = data.pegin_btc_tx_size;
   fedpeg_script_ = data.fedpeg_script;
+  script_sig_template_ = data.script_sig_template;
   ignore_items = data.ignore_items;
 }
 
@@ -7619,6 +7627,7 @@ SelectUtxoDataStruct SelectUtxoData::ConvertToStruct() const {  // NOLINT
   result.is_pegin = is_pegin_;
   result.pegin_btc_tx_size = pegin_btc_tx_size_;
   result.fedpeg_script = fedpeg_script_;
+  result.script_sig_template = script_sig_template_;
   result.ignore_items = ignore_items;
   return result;
 }
@@ -7678,6 +7687,20 @@ void EstimateFeeRequest::CollectFieldName() {
   };
   json_mapper.emplace("feeAsset", func_table);
   item_list.push_back("feeAsset");
+  func_table = {
+    EstimateFeeRequest::GetExponentString,
+    EstimateFeeRequest::SetExponentString,
+    EstimateFeeRequest::GetExponentFieldType,
+  };
+  json_mapper.emplace("exponent", func_table);
+  item_list.push_back("exponent");
+  func_table = {
+    EstimateFeeRequest::GetMinimumBitsString,
+    EstimateFeeRequest::SetMinimumBitsString,
+    EstimateFeeRequest::GetMinimumBitsFieldType,
+  };
+  json_mapper.emplace("minimumBits", func_table);
+  item_list.push_back("minimumBits");
 }
 
 void EstimateFeeRequest::ConvertFromStruct(
@@ -7688,6 +7711,8 @@ void EstimateFeeRequest::ConvertFromStruct(
   is_elements_ = data.is_elements;
   is_blind_ = data.is_blind;
   fee_asset_ = data.fee_asset;
+  exponent_ = data.exponent;
+  minimum_bits_ = data.minimum_bits;
   ignore_items = data.ignore_items;
 }
 
@@ -7699,6 +7724,8 @@ EstimateFeeRequestStruct EstimateFeeRequest::ConvertToStruct() const {  // NOLIN
   result.is_elements = is_elements_;
   result.is_blind = is_blind_;
   result.fee_asset = fee_asset_;
+  result.exponent = exponent_;
+  result.minimum_bits = minimum_bits_;
   result.ignore_items = ignore_items;
   return result;
 }
@@ -7811,6 +7838,13 @@ void FundUtxoJsonData::CollectFieldName() {
   };
   json_mapper.emplace("descriptor", func_table);
   item_list.push_back("descriptor");
+  func_table = {
+    FundUtxoJsonData::GetScriptSigTemplateString,
+    FundUtxoJsonData::SetScriptSigTemplateString,
+    FundUtxoJsonData::GetScriptSigTemplateFieldType,
+  };
+  json_mapper.emplace("scriptSigTemplate", func_table);
+  item_list.push_back("scriptSigTemplate");
 }
 
 void FundUtxoJsonData::ConvertFromStruct(
@@ -7821,6 +7855,7 @@ void FundUtxoJsonData::ConvertFromStruct(
   amount_ = data.amount;
   asset_ = data.asset;
   descriptor_ = data.descriptor;
+  script_sig_template_ = data.script_sig_template;
   ignore_items = data.ignore_items;
 }
 
@@ -7832,6 +7867,7 @@ FundUtxoJsonDataStruct FundUtxoJsonData::ConvertToStruct() const {  // NOLINT
   result.amount = amount_;
   result.asset = asset_;
   result.descriptor = descriptor_;
+  result.script_sig_template = script_sig_template_;
   result.ignore_items = ignore_items;
   return result;
 }
@@ -7933,6 +7969,13 @@ void FundSelectUtxoData::CollectFieldName() {
   };
   json_mapper.emplace("fedpegScript", func_table);
   item_list.push_back("fedpegScript");
+  func_table = {
+    FundSelectUtxoData::GetScriptSigTemplateString,
+    FundSelectUtxoData::SetScriptSigTemplateString,
+    FundSelectUtxoData::GetScriptSigTemplateFieldType,
+  };
+  json_mapper.emplace("scriptSigTemplate", func_table);
+  item_list.push_back("scriptSigTemplate");
 }
 
 void FundSelectUtxoData::ConvertFromStruct(
@@ -7949,6 +7992,7 @@ void FundSelectUtxoData::ConvertFromStruct(
   is_pegin_ = data.is_pegin;
   pegin_btc_tx_size_ = data.pegin_btc_tx_size;
   fedpeg_script_ = data.fedpeg_script;
+  script_sig_template_ = data.script_sig_template;
   ignore_items = data.ignore_items;
 }
 
@@ -7966,6 +8010,7 @@ FundSelectUtxoDataStruct FundSelectUtxoData::ConvertToStruct() const {  // NOLIN
   result.is_pegin = is_pegin_;
   result.pegin_btc_tx_size = pegin_btc_tx_size_;
   result.fedpeg_script = fedpeg_script_;
+  result.script_sig_template = script_sig_template_;
   result.ignore_items = ignore_items;
   return result;
 }
@@ -8078,6 +8123,20 @@ void FundFeeInfomation::CollectFieldName() {
   };
   json_mapper.emplace("isBlindEstimateFee", func_table);
   item_list.push_back("isBlindEstimateFee");
+  func_table = {
+    FundFeeInfomation::GetExponentString,
+    FundFeeInfomation::SetExponentString,
+    FundFeeInfomation::GetExponentFieldType,
+  };
+  json_mapper.emplace("exponent", func_table);
+  item_list.push_back("exponent");
+  func_table = {
+    FundFeeInfomation::GetMinimumBitsString,
+    FundFeeInfomation::SetMinimumBitsString,
+    FundFeeInfomation::GetMinimumBitsFieldType,
+  };
+  json_mapper.emplace("minimumBits", func_table);
+  item_list.push_back("minimumBits");
 }
 
 void FundFeeInfomation::ConvertFromStruct(
@@ -8088,6 +8147,8 @@ void FundFeeInfomation::ConvertFromStruct(
   dust_fee_rate_ = data.dust_fee_rate;
   fee_asset_ = data.fee_asset;
   is_blind_estimate_fee_ = data.is_blind_estimate_fee;
+  exponent_ = data.exponent;
+  minimum_bits_ = data.minimum_bits;
   ignore_items = data.ignore_items;
 }
 
@@ -8099,6 +8160,8 @@ FundFeeInfomationStruct FundFeeInfomation::ConvertToStruct() const {  // NOLINT
   result.dust_fee_rate = dust_fee_rate_;
   result.fee_asset = fee_asset_;
   result.is_blind_estimate_fee = is_blind_estimate_fee_;
+  result.exponent = exponent_;
+  result.minimum_bits = minimum_bits_;
   result.ignore_items = ignore_items;
   return result;
 }
@@ -8559,6 +8622,94 @@ void GetCompressedPubkeyResponse::ConvertFromStruct(
 GetCompressedPubkeyResponseStruct GetCompressedPubkeyResponse::ConvertToStruct() const {  // NOLINT
   GetCompressedPubkeyResponseStruct result;
   result.pubkey = pubkey_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// GetDefaultBlindingKeyRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<GetDefaultBlindingKeyRequest>
+  GetDefaultBlindingKeyRequest::json_mapper;
+std::vector<std::string> GetDefaultBlindingKeyRequest::item_list;
+
+void GetDefaultBlindingKeyRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<GetDefaultBlindingKeyRequest> func_table;  // NOLINT
+
+  func_table = {
+    GetDefaultBlindingKeyRequest::GetMasterBlindingKeyString,
+    GetDefaultBlindingKeyRequest::SetMasterBlindingKeyString,
+    GetDefaultBlindingKeyRequest::GetMasterBlindingKeyFieldType,
+  };
+  json_mapper.emplace("masterBlindingKey", func_table);
+  item_list.push_back("masterBlindingKey");
+  func_table = {
+    GetDefaultBlindingKeyRequest::GetLockingScriptString,
+    GetDefaultBlindingKeyRequest::SetLockingScriptString,
+    GetDefaultBlindingKeyRequest::GetLockingScriptFieldType,
+  };
+  json_mapper.emplace("lockingScript", func_table);
+  item_list.push_back("lockingScript");
+  func_table = {
+    GetDefaultBlindingKeyRequest::GetAddressString,
+    GetDefaultBlindingKeyRequest::SetAddressString,
+    GetDefaultBlindingKeyRequest::GetAddressFieldType,
+  };
+  json_mapper.emplace("address", func_table);
+  item_list.push_back("address");
+}
+
+void GetDefaultBlindingKeyRequest::ConvertFromStruct(
+    const GetDefaultBlindingKeyRequestStruct& data) {
+  master_blinding_key_ = data.master_blinding_key;
+  locking_script_ = data.locking_script;
+  address_ = data.address;
+  ignore_items = data.ignore_items;
+}
+
+GetDefaultBlindingKeyRequestStruct GetDefaultBlindingKeyRequest::ConvertToStruct() const {  // NOLINT
+  GetDefaultBlindingKeyRequestStruct result;
+  result.master_blinding_key = master_blinding_key_;
+  result.locking_script = locking_script_;
+  result.address = address_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// GetDefaultBlindingKeyResponse
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<GetDefaultBlindingKeyResponse>
+  GetDefaultBlindingKeyResponse::json_mapper;
+std::vector<std::string> GetDefaultBlindingKeyResponse::item_list;
+
+void GetDefaultBlindingKeyResponse::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<GetDefaultBlindingKeyResponse> func_table;  // NOLINT
+
+  func_table = {
+    GetDefaultBlindingKeyResponse::GetBlindingKeyString,
+    GetDefaultBlindingKeyResponse::SetBlindingKeyString,
+    GetDefaultBlindingKeyResponse::GetBlindingKeyFieldType,
+  };
+  json_mapper.emplace("blindingKey", func_table);
+  item_list.push_back("blindingKey");
+}
+
+void GetDefaultBlindingKeyResponse::ConvertFromStruct(
+    const GetDefaultBlindingKeyResponseStruct& data) {
+  blinding_key_ = data.blinding_key;
+  ignore_items = data.ignore_items;
+}
+
+GetDefaultBlindingKeyResponseStruct GetDefaultBlindingKeyResponse::ConvertToStruct() const {  // NOLINT
+  GetDefaultBlindingKeyResponseStruct result;
+  result.blinding_key = blinding_key_;
   result.ignore_items = ignore_items;
   return result;
 }
@@ -9934,6 +10085,13 @@ void UtxoJsonData::CollectFieldName() {
   };
   json_mapper.emplace("descriptor", func_table);
   item_list.push_back("descriptor");
+  func_table = {
+    UtxoJsonData::GetScriptSigTemplateString,
+    UtxoJsonData::SetScriptSigTemplateString,
+    UtxoJsonData::GetScriptSigTemplateFieldType,
+  };
+  json_mapper.emplace("scriptSigTemplate", func_table);
+  item_list.push_back("scriptSigTemplate");
 }
 
 void UtxoJsonData::ConvertFromStruct(
@@ -9943,6 +10101,7 @@ void UtxoJsonData::ConvertFromStruct(
   amount_ = data.amount;
   asset_ = data.asset;
   descriptor_ = data.descriptor;
+  script_sig_template_ = data.script_sig_template;
   ignore_items = data.ignore_items;
 }
 
@@ -9953,6 +10112,7 @@ UtxoJsonDataStruct UtxoJsonData::ConvertToStruct() const {  // NOLINT
   result.amount = amount_;
   result.asset = asset_;
   result.descriptor = descriptor_;
+  result.script_sig_template = script_sig_template_;
   result.ignore_items = ignore_items;
   return result;
 }
@@ -10049,6 +10209,20 @@ void CoinSelectionFeeInfomationField::CollectFieldName() {
   };
   json_mapper.emplace("feeAsset", func_table);
   item_list.push_back("feeAsset");
+  func_table = {
+    CoinSelectionFeeInfomationField::GetExponentString,
+    CoinSelectionFeeInfomationField::SetExponentString,
+    CoinSelectionFeeInfomationField::GetExponentFieldType,
+  };
+  json_mapper.emplace("exponent", func_table);
+  item_list.push_back("exponent");
+  func_table = {
+    CoinSelectionFeeInfomationField::GetMinimumBitsString,
+    CoinSelectionFeeInfomationField::SetMinimumBitsString,
+    CoinSelectionFeeInfomationField::GetMinimumBitsFieldType,
+  };
+  json_mapper.emplace("minimumBits", func_table);
+  item_list.push_back("minimumBits");
 }
 
 void CoinSelectionFeeInfomationField::ConvertFromStruct(
@@ -10058,6 +10232,8 @@ void CoinSelectionFeeInfomationField::ConvertFromStruct(
   long_term_fee_rate_ = data.long_term_fee_rate;
   knapsack_min_change_ = data.knapsack_min_change;
   fee_asset_ = data.fee_asset;
+  exponent_ = data.exponent;
+  minimum_bits_ = data.minimum_bits;
   ignore_items = data.ignore_items;
 }
 
@@ -10068,6 +10244,8 @@ CoinSelectionFeeInfomationFieldStruct CoinSelectionFeeInfomationField::ConvertTo
   result.long_term_fee_rate = long_term_fee_rate_;
   result.knapsack_min_change = knapsack_min_change_;
   result.fee_asset = fee_asset_;
+  result.exponent = exponent_;
+  result.minimum_bits = minimum_bits_;
   result.ignore_items = ignore_items;
   return result;
 }

@@ -856,6 +856,7 @@ export interface SelectUtxoData {
     isPegin?: boolean;
     peginBtcTxSize?: bigint | number;
     fedpegScript?: string;
+    scriptSigTemplate?: string;
 }
 
 export interface EstimateFeeRequest {
@@ -865,6 +866,8 @@ export interface EstimateFeeRequest {
     isElements?: boolean;
     isBlind?: boolean;
     feeAsset?: string;
+    exponent?: number;
+    minimumBits?: number;
 }
 
 export interface EstimateFeeResponse {
@@ -880,6 +883,7 @@ export interface FundUtxoJsonData {
     amount: bigint | number;
     asset?: string;
     descriptor?: string;
+    scriptSigTemplate?: string;
 }
 
 export interface FundSelectUtxoData {
@@ -895,6 +899,7 @@ export interface FundSelectUtxoData {
     isPegin?: boolean;
     peginBtcTxSize?: number;
     fedpegScript?: string;
+    scriptSigTemplate?: string;
 }
 
 export interface FundAmountMapData {
@@ -910,6 +915,8 @@ export interface FundFeeInfomation {
     dustFeeRate?: number;
     feeAsset?: string;
     isBlindEstimateFee?: boolean;
+    exponent?: number;
+    minimumBits?: number;
 }
 
 export interface FundRawTransactionRequest {
@@ -962,6 +969,16 @@ export interface GetCompressedPubkeyRequest {
 
 export interface GetCompressedPubkeyResponse {
     pubkey: string;
+}
+
+export interface GetDefaultBlindingKeyRequest {
+    masterBlindingKey: string;
+    lockingScript?: string;
+    address?: string;
+}
+
+export interface GetDefaultBlindingKeyResponse {
+    blindingKey: string;
 }
 
 export interface GetExtkeyInfoRequest {
@@ -1133,6 +1150,8 @@ export interface CoinSelectionFeeInfomationField {
     longTermFeeRate?: number;
     knapsackMinChange?: number;
     feeAsset?: string;
+    exponent?: number;
+    minimumBits?: number;
 }
 
 export interface SelectUtxosRequest {
@@ -1433,6 +1452,8 @@ export function GetAddressesFromMultisig(jsonObject: GetAddressesFromMultisigReq
 export function GetAddressInfo(jsonObject: GetAddressInfoRequest): GetAddressInfoResponse;
 
 export function GetCompressedPubkey(jsonObject: GetCompressedPubkeyRequest): GetCompressedPubkeyResponse;
+
+export function GetDefaultBlindingKey(jsonObject: GetDefaultBlindingKeyRequest): GetDefaultBlindingKeyResponse;
 
 export function GetExtkeyInfo(jsonObject: GetExtkeyInfoRequest): GetExtkeyInfoResponse;
 

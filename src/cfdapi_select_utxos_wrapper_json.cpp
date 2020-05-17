@@ -67,10 +67,16 @@ const AmountMap& SelectUtxosWrapRequest::GetTargetAmountMap() const {
 
 void SelectUtxosWrapRequest::ConvertToUtxo(
     const UtxoJsonData& data, Utxo* utxo) {
+  const Script* scriptsig_template = nullptr;
+  Script scriptsig_template_obj;
+  if (!data.GetScriptSigTemplate().empty()) {
+    scriptsig_template_obj = Script(data.GetScriptSigTemplate());
+    scriptsig_template = &scriptsig_template_obj;
+  }
   CoinSelection::ConvertToUtxo(
       Txid(data.GetTxid()), data.GetVout(), data.GetDescriptor(),
       Amount::CreateBySatoshiAmount(data.GetAmount()), data.GetAsset(),
-      reinterpret_cast<const void*>(&data), utxo);
+      reinterpret_cast<const void*>(&data), utxo, scriptsig_template);
 }
 
 // ------------------------------------------------------------------------

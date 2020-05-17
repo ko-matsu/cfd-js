@@ -920,6 +920,16 @@ std::string JsonMappingApi::GetIssuanceBlindingKey(
       request_message, ElementsTransactionStructApi::GetIssuanceBlindingKey);
 }
 
+std::string JsonMappingApi::GetDefaultBlindingKey(
+    const std::string &request_message) {
+  return ExecuteJsonApi<
+      api::json::GetDefaultBlindingKeyRequest,
+      api::json::GetDefaultBlindingKeyResponse,
+      api::GetDefaultBlindingKeyRequestStruct,
+      api::GetDefaultBlindingKeyResponseStruct>(
+      request_message, ElementsTransactionStructApi::GetDefaultBlindingKey);
+}
+
 std::string JsonMappingApi::CreateDestroyAmount(
     const std::string &request_message) {
   return ExecuteJsonApi<

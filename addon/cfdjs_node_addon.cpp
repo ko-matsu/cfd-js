@@ -645,6 +645,15 @@ Value GetIssuanceBlindingKey(const CallbackInfo &information) {
 }
 
 /**
+ * @brief GetDefaultBlindingKeyのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value GetDefaultBlindingKey(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::GetDefaultBlindingKey);
+}
+
+/**
  * @brief CreateDestroyAmountのJSON API関数(request, response).
  * @param[in] information     node addon apiのコールバック情報
  * @return 戻り値(JSON文字列)
@@ -835,6 +844,9 @@ void InitializeJsonApi(Env env, Object *exports) {
   exports->Set(
       String::New(env, "GetIssuanceBlindingKey"),
       Function::New(env, GetIssuanceBlindingKey));
+  exports->Set(
+      String::New(env, "GetDefaultBlindingKey"),
+      Function::New(env, GetDefaultBlindingKey));
   exports->Set(
       String::New(env, "CreateDestroyAmount"),
       Function::New(env, CreateDestroyAmount));

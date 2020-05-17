@@ -73,6 +73,7 @@ void SelectUtxosWrapRequest::ConvertToUtxo(
     scriptsig_template_obj = Script(data.GetScriptSigTemplate());
     scriptsig_template = &scriptsig_template_obj;
   }
+  memset(utxo, 0, sizeof(Utxo));
   CoinSelection::ConvertToUtxo(
       Txid(data.GetTxid()), data.GetVout(), data.GetDescriptor(),
       Amount::CreateBySatoshiAmount(data.GetAmount()), data.GetAsset(),
@@ -84,6 +85,7 @@ void SelectUtxosWrapRequest::ConvertToUtxo(
 // ------------------------------------------------------------------------
 void SelectUtxosWrapResponse::SetTargetUtxoList(
     const std::vector<Utxo>& utxo_list) {
+  static constexpr size_t kCheckSize = 36;
   JsonObjectVector<UtxoJsonData, UtxoJsonDataStruct>& json_list = GetUtxos();
   json_list.clear();
   Utxo temp;
@@ -91,11 +93,12 @@ void SelectUtxosWrapResponse::SetTargetUtxoList(
     if (utxo.binary_data != nullptr) {
       const UtxoJsonData* json_data =
           static_cast<const UtxoJsonData*>(utxo.binary_data);
-      // 整合性チェック(末尾の作業領域は除外)
+      // 整合性チェック(txid/voutをチェック)
       SelectUtxosWrapRequest::ConvertToUtxo(*json_data, &temp);
-      if (memcmp(&utxo, &temp, sizeof(Utxo) - 24) == 0) {
+      if (memcmp(utxo.txid, temp.txid, kCheckSize) == 0) {
         json_list.push_back(*json_data);
       }
+      //json_list.push_back(*json_data);
     }
   }
 }

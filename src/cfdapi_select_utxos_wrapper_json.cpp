@@ -2,7 +2,7 @@
 /**
  * @file cfdapi_select_utxos_wrapper_json.cpp
  *
- * @brief JSONマッピングファイル (自動生成)
+ * @brief json mapping override file.
  */
 #include <map>
 #include <set>
@@ -23,10 +23,6 @@ using cfd::core::JsonClassBase;
 using cfd::core::JsonObjectVector;
 using cfd::core::JsonValueVector;
 using cfd::core::JsonVector;
-
-// ------------------------------------------------------------------------
-// CoinSelectionFeeInfomationWrapField(不要?)
-// ------------------------------------------------------------------------
 
 // ------------------------------------------------------------------------
 // SelectUtxosWrapRequest
@@ -93,12 +89,11 @@ void SelectUtxosWrapResponse::SetTargetUtxoList(
     if (utxo.binary_data != nullptr) {
       const UtxoJsonData* json_data =
           static_cast<const UtxoJsonData*>(utxo.binary_data);
-      // 整合性チェック(txid/voutをチェック)
+      // Consistency check (txid/vout)
       SelectUtxosWrapRequest::ConvertToUtxo(*json_data, &temp);
       if (memcmp(utxo.txid, temp.txid, kCheckSize) == 0) {
         json_list.push_back(*json_data);
       }
-      //json_list.push_back(*json_data);
     }
   }
 }

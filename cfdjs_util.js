@@ -13,6 +13,9 @@ function parseBip32Path(path) {
   if (targetPath === '') {
     throw new Error('empty BIP 32 path.');
   }
+  if (targetPath.startsWith('/')) {
+    throw new Error('Slash cannot be used at the beginning of BIP32 path.');
+  }
 
   const items = targetPath.split('/');
   if (items.length > 10) {

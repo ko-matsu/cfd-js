@@ -1411,6 +1411,20 @@ let getCompressedPubkeyResult;
     console.log(e.toString());
   }
   console.log(`*** HasChildExtkey(8) = ${isSuccess} ***`);
+  try {
+    isSuccess = false;
+    isSuccess = cfdjsUtil.HasChildExtkey(rootKey1, '', childKey1, '/0/4');
+  } catch (e) {
+    console.log(e.toString());
+  }
+  console.log(`*** HasChildExtkey(9) = ${isSuccess} ***`);
+  try {
+    isSuccess = false;
+    isSuccess = cfdjsUtil.HasChildExtkey(rootKey1, '', childKey1, '');
+  } catch (e) {
+    console.log(e.toString());
+  }
+  console.log(`*** HasChildExtkey(10) = ${isSuccess} ***`);
 }
 
 {

@@ -215,7 +215,7 @@ exports.HasChildPubkey = function(
  */
 exports.GetPubkeyFromKey = function(key) {
   if (key.length === 66) {
-    return [key];
+    return key;
   } else {
     // xpub or xpriv
     const extKeyInfo = cfdjs.GetExtkeyInfo({
@@ -229,7 +229,7 @@ exports.GetPubkeyFromKey = function(key) {
       extkey: key,
       network: netType,
     });
-    return [derivePubkeyResult.pubkey];
+    return derivePubkeyResult.pubkey;
   }
 };
 

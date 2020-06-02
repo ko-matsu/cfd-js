@@ -2079,6 +2079,7 @@ struct GetExtkeyInfoRequestStruct {
  * @brief GetExtkeyInfoResponseStruct struct
  */
 struct GetExtkeyInfoResponseStruct {
+  std::string network = "";      //!< network  // NOLINT
   std::string version = "";      //!< version  // NOLINT
   uint8_t depth = 0;             //!< depth  // NOLINT
   std::string fingerprint = "";  //!< fingerprint  // NOLINT

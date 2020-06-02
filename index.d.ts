@@ -998,6 +998,7 @@ export interface GetExtkeyInfoRequest {
 }
 
 export interface GetExtkeyInfoResponse {
+    network: string;
     version: string;
     depth: number;
     fingerprint: string;

@@ -39765,6 +39765,49 @@ class GetExtkeyInfoResponse
   static void CollectFieldName();
 
   /**
+   * @brief Get of network
+   * @return network
+   */
+  std::string GetNetwork() const {
+    return network_;
+  }
+  /**
+   * @brief Set to network
+   * @param[in] network    setting value.
+   */
+  void SetNetwork(  // line separate
+    const std::string& network) {  // NOLINT
+    this->network_ = network;
+  }
+  /**
+   * @brief Get data type of network
+   * @return Data type of network
+   */
+  static std::string GetNetworkFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of network field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetNetworkString(  // line separate
+      const GetExtkeyInfoResponse& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.network_);
+  }
+  /**
+   * @brief Set json object to network field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetNetworkString(  // line separate
+      GetExtkeyInfoResponse& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.network_, json_value);
+  }
+
+  /**
    * @brief Get of version
    * @return version
    */
@@ -40048,6 +40091,10 @@ class GetExtkeyInfoResponse
    */
   std::set<std::string> ignore_items;
 
+  /**
+   * @brief JsonAPI(network) value
+   */
+  std::string network_ = "";
   /**
    * @brief JsonAPI(version) value
    */

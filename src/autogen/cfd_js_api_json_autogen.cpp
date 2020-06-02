@@ -8869,6 +8869,13 @@ void GetExtkeyInfoResponse::CollectFieldName() {
   cfd::core::CLASS_FUNCTION_TABLE<GetExtkeyInfoResponse> func_table;  // NOLINT
 
   func_table = {
+    GetExtkeyInfoResponse::GetNetworkString,
+    GetExtkeyInfoResponse::SetNetworkString,
+    GetExtkeyInfoResponse::GetNetworkFieldType,
+  };
+  json_mapper.emplace("network", func_table);
+  item_list.push_back("network");
+  func_table = {
     GetExtkeyInfoResponse::GetVersionString,
     GetExtkeyInfoResponse::SetVersionString,
     GetExtkeyInfoResponse::GetVersionFieldType,
@@ -8907,6 +8914,7 @@ void GetExtkeyInfoResponse::CollectFieldName() {
 
 void GetExtkeyInfoResponse::ConvertFromStruct(
     const GetExtkeyInfoResponseStruct& data) {
+  network_ = data.network;
   version_ = data.version;
   depth_ = data.depth;
   fingerprint_ = data.fingerprint;
@@ -8917,6 +8925,7 @@ void GetExtkeyInfoResponse::ConvertFromStruct(
 
 GetExtkeyInfoResponseStruct GetExtkeyInfoResponse::ConvertToStruct() const {  // NOLINT
   GetExtkeyInfoResponseStruct result;
+  result.network = network_;
   result.version = version_;
   result.depth = depth_;
   result.fingerprint = fingerprint_;

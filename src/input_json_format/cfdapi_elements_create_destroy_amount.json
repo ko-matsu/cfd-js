@@ -32,6 +32,10 @@
         "amount:require": "require",
         "asset": "",
         "asset:require": "require",
+        "directLockingScript": "",
+        "directLockingScript:require": "optional",
+        "directNonce": "",
+        "directNonce:require": "optional",
         "isRemoveNonce": false,
         "isRemoveNonce:require": "optional"
       }
@@ -42,7 +46,9 @@
       "amount": 0,
       "amount:require": "require",
       "asset": "",
-      "asset:require": "require"
+      "asset:require": "require",
+      "directNonce": "",
+      "directNonce:require": "optional"
     },
     "fee:require": "optional",
     "fee": {

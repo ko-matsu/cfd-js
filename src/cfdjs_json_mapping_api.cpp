@@ -802,10 +802,10 @@ std::string JsonMappingApi::GetUnblindedAddress(
 std::string JsonMappingApi::CreatePegInAddress(
     const std::string &request_message) {
   return ExecuteJsonApi<
-      api::json::ElementsCreatePegInAddressRequest,
-      api::json::ElementsCreatePegInAddressResponse,
-      api::ElementsCreatePegInAddressRequestStruct,
-      api::ElementsCreatePegInAddressResponseStruct>(
+      api::json::CreatePegInAddressRequest,
+      api::json::CreatePegInAddressResponse,
+      api::CreatePegInAddressRequestStruct,
+      api::CreatePegInAddressResponseStruct>(
       request_message, ElementsAddressStructApi::CreatePegInAddress);
 }
 

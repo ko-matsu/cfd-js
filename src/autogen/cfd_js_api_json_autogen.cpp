@@ -589,12 +589,20 @@ void AddTxOut::CollectFieldName() {
   };
   json_mapper.emplace("amount", func_table);
   item_list.push_back("amount");
+  func_table = {
+    AddTxOut::GetDirectLockingScriptString,
+    AddTxOut::SetDirectLockingScriptString,
+    AddTxOut::GetDirectLockingScriptFieldType,
+  };
+  json_mapper.emplace("directLockingScript", func_table);
+  item_list.push_back("directLockingScript");
 }
 
 void AddTxOut::ConvertFromStruct(
     const AddTxOutStruct& data) {
   address_ = data.address;
   amount_ = data.amount;
+  direct_locking_script_ = data.direct_locking_script;
   ignore_items = data.ignore_items;
 }
 
@@ -602,6 +610,7 @@ AddTxOutStruct AddTxOut::ConvertToStruct() const {  // NOLINT
   AddTxOutStruct result;
   result.address = address_;
   result.amount = amount_;
+  result.direct_locking_script = direct_locking_script_;
   result.ignore_items = ignore_items;
   return result;
 }
@@ -3664,6 +3673,20 @@ void ElementsAddTxOut::CollectFieldName() {
   json_mapper.emplace("asset", func_table);
   item_list.push_back("asset");
   func_table = {
+    ElementsAddTxOut::GetDirectLockingScriptString,
+    ElementsAddTxOut::SetDirectLockingScriptString,
+    ElementsAddTxOut::GetDirectLockingScriptFieldType,
+  };
+  json_mapper.emplace("directLockingScript", func_table);
+  item_list.push_back("directLockingScript");
+  func_table = {
+    ElementsAddTxOut::GetDirectNonceString,
+    ElementsAddTxOut::SetDirectNonceString,
+    ElementsAddTxOut::GetDirectNonceFieldType,
+  };
+  json_mapper.emplace("directNonce", func_table);
+  item_list.push_back("directNonce");
+  func_table = {
     ElementsAddTxOut::GetIsRemoveNonceString,
     ElementsAddTxOut::SetIsRemoveNonceString,
     ElementsAddTxOut::GetIsRemoveNonceFieldType,
@@ -3677,6 +3700,8 @@ void ElementsAddTxOut::ConvertFromStruct(
   address_ = data.address;
   amount_ = data.amount;
   asset_ = data.asset;
+  direct_locking_script_ = data.direct_locking_script;
+  direct_nonce_ = data.direct_nonce;
   is_remove_nonce_ = data.is_remove_nonce;
   ignore_items = data.ignore_items;
 }
@@ -3686,6 +3711,8 @@ ElementsAddTxOutStruct ElementsAddTxOut::ConvertToStruct() const {  // NOLINT
   result.address = address_;
   result.amount = amount_;
   result.asset = asset_;
+  result.direct_locking_script = direct_locking_script_;
+  result.direct_nonce = direct_nonce_;
   result.is_remove_nonce = is_remove_nonce_;
   result.ignore_items = ignore_items;
   return result;
@@ -3718,12 +3745,20 @@ void ElementsAddDestroyAmount::CollectFieldName() {
   };
   json_mapper.emplace("asset", func_table);
   item_list.push_back("asset");
+  func_table = {
+    ElementsAddDestroyAmount::GetDirectNonceString,
+    ElementsAddDestroyAmount::SetDirectNonceString,
+    ElementsAddDestroyAmount::GetDirectNonceFieldType,
+  };
+  json_mapper.emplace("directNonce", func_table);
+  item_list.push_back("directNonce");
 }
 
 void ElementsAddDestroyAmount::ConvertFromStruct(
     const ElementsAddDestroyAmountStruct& data) {
   amount_ = data.amount;
   asset_ = data.asset;
+  direct_nonce_ = data.direct_nonce;
   ignore_items = data.ignore_items;
 }
 
@@ -3731,6 +3766,7 @@ ElementsAddDestroyAmountStruct ElementsAddDestroyAmount::ConvertToStruct() const
   ElementsAddDestroyAmountStruct result;
   result.amount = amount_;
   result.asset = asset_;
+  result.direct_nonce = direct_nonce_;
   result.ignore_items = ignore_items;
   return result;
 }
@@ -4134,6 +4170,20 @@ void ElementsDestroyAmountTxOut::CollectFieldName() {
   json_mapper.emplace("asset", func_table);
   item_list.push_back("asset");
   func_table = {
+    ElementsDestroyAmountTxOut::GetDirectLockingScriptString,
+    ElementsDestroyAmountTxOut::SetDirectLockingScriptString,
+    ElementsDestroyAmountTxOut::GetDirectLockingScriptFieldType,
+  };
+  json_mapper.emplace("directLockingScript", func_table);
+  item_list.push_back("directLockingScript");
+  func_table = {
+    ElementsDestroyAmountTxOut::GetDirectNonceString,
+    ElementsDestroyAmountTxOut::SetDirectNonceString,
+    ElementsDestroyAmountTxOut::GetDirectNonceFieldType,
+  };
+  json_mapper.emplace("directNonce", func_table);
+  item_list.push_back("directNonce");
+  func_table = {
     ElementsDestroyAmountTxOut::GetIsRemoveNonceString,
     ElementsDestroyAmountTxOut::SetIsRemoveNonceString,
     ElementsDestroyAmountTxOut::GetIsRemoveNonceFieldType,
@@ -4147,6 +4197,8 @@ void ElementsDestroyAmountTxOut::ConvertFromStruct(
   address_ = data.address;
   amount_ = data.amount;
   asset_ = data.asset;
+  direct_locking_script_ = data.direct_locking_script;
+  direct_nonce_ = data.direct_nonce;
   is_remove_nonce_ = data.is_remove_nonce;
   ignore_items = data.ignore_items;
 }
@@ -4156,6 +4208,8 @@ ElementsDestroyAmountTxOutStruct ElementsDestroyAmountTxOut::ConvertToStruct() c
   result.address = address_;
   result.amount = amount_;
   result.asset = asset_;
+  result.direct_locking_script = direct_locking_script_;
+  result.direct_nonce = direct_nonce_;
   result.is_remove_nonce = is_remove_nonce_;
   result.ignore_items = ignore_items;
   return result;
@@ -4188,12 +4242,20 @@ void ElementsDestroyAmount::CollectFieldName() {
   };
   json_mapper.emplace("asset", func_table);
   item_list.push_back("asset");
+  func_table = {
+    ElementsDestroyAmount::GetDirectNonceString,
+    ElementsDestroyAmount::SetDirectNonceString,
+    ElementsDestroyAmount::GetDirectNonceFieldType,
+  };
+  json_mapper.emplace("directNonce", func_table);
+  item_list.push_back("directNonce");
 }
 
 void ElementsDestroyAmount::ConvertFromStruct(
     const ElementsDestroyAmountStruct& data) {
   amount_ = data.amount;
   asset_ = data.asset;
+  direct_nonce_ = data.direct_nonce;
   ignore_items = data.ignore_items;
 }
 
@@ -4201,6 +4263,7 @@ ElementsDestroyAmountStruct ElementsDestroyAmount::ConvertToStruct() const {  //
   ElementsDestroyAmountStruct result;
   result.amount = amount_;
   result.asset = asset_;
+  result.direct_nonce = direct_nonce_;
   result.ignore_items = ignore_items;
   return result;
 }
@@ -4365,57 +4428,57 @@ ElementsCreateDestroyAmountResponseStruct ElementsCreateDestroyAmountResponse::C
 }
 
 // ------------------------------------------------------------------------
-// ElementsCreatePegInAddressRequest
+// CreatePegInAddressRequest
 // ------------------------------------------------------------------------
-cfd::core::JsonTableMap<ElementsCreatePegInAddressRequest>
-  ElementsCreatePegInAddressRequest::json_mapper;
-std::vector<std::string> ElementsCreatePegInAddressRequest::item_list;
+cfd::core::JsonTableMap<CreatePegInAddressRequest>
+  CreatePegInAddressRequest::json_mapper;
+std::vector<std::string> CreatePegInAddressRequest::item_list;
 
-void ElementsCreatePegInAddressRequest::CollectFieldName() {
+void CreatePegInAddressRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfd::core::CLASS_FUNCTION_TABLE<ElementsCreatePegInAddressRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<CreatePegInAddressRequest> func_table;  // NOLINT
 
   func_table = {
-    ElementsCreatePegInAddressRequest::GetFedpegscriptString,
-    ElementsCreatePegInAddressRequest::SetFedpegscriptString,
-    ElementsCreatePegInAddressRequest::GetFedpegscriptFieldType,
+    CreatePegInAddressRequest::GetFedpegscriptString,
+    CreatePegInAddressRequest::SetFedpegscriptString,
+    CreatePegInAddressRequest::GetFedpegscriptFieldType,
   };
   json_mapper.emplace("fedpegscript", func_table);
   item_list.push_back("fedpegscript");
   func_table = {
-    ElementsCreatePegInAddressRequest::GetPubkeyString,
-    ElementsCreatePegInAddressRequest::SetPubkeyString,
-    ElementsCreatePegInAddressRequest::GetPubkeyFieldType,
+    CreatePegInAddressRequest::GetPubkeyString,
+    CreatePegInAddressRequest::SetPubkeyString,
+    CreatePegInAddressRequest::GetPubkeyFieldType,
   };
   json_mapper.emplace("pubkey", func_table);
   item_list.push_back("pubkey");
   func_table = {
-    ElementsCreatePegInAddressRequest::GetRedeemScriptString,
-    ElementsCreatePegInAddressRequest::SetRedeemScriptString,
-    ElementsCreatePegInAddressRequest::GetRedeemScriptFieldType,
+    CreatePegInAddressRequest::GetRedeemScriptString,
+    CreatePegInAddressRequest::SetRedeemScriptString,
+    CreatePegInAddressRequest::GetRedeemScriptFieldType,
   };
   json_mapper.emplace("redeemScript", func_table);
   item_list.push_back("redeemScript");
   func_table = {
-    ElementsCreatePegInAddressRequest::GetNetworkString,
-    ElementsCreatePegInAddressRequest::SetNetworkString,
-    ElementsCreatePegInAddressRequest::GetNetworkFieldType,
+    CreatePegInAddressRequest::GetNetworkString,
+    CreatePegInAddressRequest::SetNetworkString,
+    CreatePegInAddressRequest::GetNetworkFieldType,
   };
   json_mapper.emplace("network", func_table);
   item_list.push_back("network");
   func_table = {
-    ElementsCreatePegInAddressRequest::GetHashTypeString,
-    ElementsCreatePegInAddressRequest::SetHashTypeString,
-    ElementsCreatePegInAddressRequest::GetHashTypeFieldType,
+    CreatePegInAddressRequest::GetHashTypeString,
+    CreatePegInAddressRequest::SetHashTypeString,
+    CreatePegInAddressRequest::GetHashTypeFieldType,
   };
   json_mapper.emplace("hashType", func_table);
   item_list.push_back("hashType");
 }
 
-void ElementsCreatePegInAddressRequest::ConvertFromStruct(
-    const ElementsCreatePegInAddressRequestStruct& data) {
+void CreatePegInAddressRequest::ConvertFromStruct(
+    const CreatePegInAddressRequestStruct& data) {
   fedpegscript_ = data.fedpegscript;
   pubkey_ = data.pubkey;
   redeem_script_ = data.redeem_script;
@@ -4424,8 +4487,8 @@ void ElementsCreatePegInAddressRequest::ConvertFromStruct(
   ignore_items = data.ignore_items;
 }
 
-ElementsCreatePegInAddressRequestStruct ElementsCreatePegInAddressRequest::ConvertToStruct() const {  // NOLINT
-  ElementsCreatePegInAddressRequestStruct result;
+CreatePegInAddressRequestStruct CreatePegInAddressRequest::ConvertToStruct() const {  // NOLINT
+  CreatePegInAddressRequestStruct result;
   result.fedpegscript = fedpegscript_;
   result.pubkey = pubkey_;
   result.redeem_script = redeem_script_;
@@ -4436,51 +4499,51 @@ ElementsCreatePegInAddressRequestStruct ElementsCreatePegInAddressRequest::Conve
 }
 
 // ------------------------------------------------------------------------
-// ElementsCreatePegInAddressResponse
+// CreatePegInAddressResponse
 // ------------------------------------------------------------------------
-cfd::core::JsonTableMap<ElementsCreatePegInAddressResponse>
-  ElementsCreatePegInAddressResponse::json_mapper;
-std::vector<std::string> ElementsCreatePegInAddressResponse::item_list;
+cfd::core::JsonTableMap<CreatePegInAddressResponse>
+  CreatePegInAddressResponse::json_mapper;
+std::vector<std::string> CreatePegInAddressResponse::item_list;
 
-void ElementsCreatePegInAddressResponse::CollectFieldName() {
+void CreatePegInAddressResponse::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfd::core::CLASS_FUNCTION_TABLE<ElementsCreatePegInAddressResponse> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<CreatePegInAddressResponse> func_table;  // NOLINT
 
   func_table = {
-    ElementsCreatePegInAddressResponse::GetMainchainAddressString,
-    ElementsCreatePegInAddressResponse::SetMainchainAddressString,
-    ElementsCreatePegInAddressResponse::GetMainchainAddressFieldType,
+    CreatePegInAddressResponse::GetMainchainAddressString,
+    CreatePegInAddressResponse::SetMainchainAddressString,
+    CreatePegInAddressResponse::GetMainchainAddressFieldType,
   };
   json_mapper.emplace("mainchainAddress", func_table);
   item_list.push_back("mainchainAddress");
   func_table = {
-    ElementsCreatePegInAddressResponse::GetClaimScriptString,
-    ElementsCreatePegInAddressResponse::SetClaimScriptString,
-    ElementsCreatePegInAddressResponse::GetClaimScriptFieldType,
+    CreatePegInAddressResponse::GetClaimScriptString,
+    CreatePegInAddressResponse::SetClaimScriptString,
+    CreatePegInAddressResponse::GetClaimScriptFieldType,
   };
   json_mapper.emplace("claimScript", func_table);
   item_list.push_back("claimScript");
   func_table = {
-    ElementsCreatePegInAddressResponse::GetTweakFedpegscriptString,
-    ElementsCreatePegInAddressResponse::SetTweakFedpegscriptString,
-    ElementsCreatePegInAddressResponse::GetTweakFedpegscriptFieldType,
+    CreatePegInAddressResponse::GetTweakFedpegscriptString,
+    CreatePegInAddressResponse::SetTweakFedpegscriptString,
+    CreatePegInAddressResponse::GetTweakFedpegscriptFieldType,
   };
   json_mapper.emplace("tweakFedpegscript", func_table);
   item_list.push_back("tweakFedpegscript");
 }
 
-void ElementsCreatePegInAddressResponse::ConvertFromStruct(
-    const ElementsCreatePegInAddressResponseStruct& data) {
+void CreatePegInAddressResponse::ConvertFromStruct(
+    const CreatePegInAddressResponseStruct& data) {
   mainchain_address_ = data.mainchain_address;
   claim_script_ = data.claim_script;
   tweak_fedpegscript_ = data.tweak_fedpegscript;
   ignore_items = data.ignore_items;
 }
 
-ElementsCreatePegInAddressResponseStruct ElementsCreatePegInAddressResponse::ConvertToStruct() const {  // NOLINT
-  ElementsCreatePegInAddressResponseStruct result;
+CreatePegInAddressResponseStruct CreatePegInAddressResponse::ConvertToStruct() const {  // NOLINT
+  CreatePegInAddressResponseStruct result;
   result.mainchain_address = mainchain_address_;
   result.claim_script = claim_script_;
   result.tweak_fedpegscript = tweak_fedpegscript_;
@@ -4683,6 +4746,20 @@ void ElementsPeginTxOut::CollectFieldName() {
   json_mapper.emplace("asset", func_table);
   item_list.push_back("asset");
   func_table = {
+    ElementsPeginTxOut::GetDirectLockingScriptString,
+    ElementsPeginTxOut::SetDirectLockingScriptString,
+    ElementsPeginTxOut::GetDirectLockingScriptFieldType,
+  };
+  json_mapper.emplace("directLockingScript", func_table);
+  item_list.push_back("directLockingScript");
+  func_table = {
+    ElementsPeginTxOut::GetDirectNonceString,
+    ElementsPeginTxOut::SetDirectNonceString,
+    ElementsPeginTxOut::GetDirectNonceFieldType,
+  };
+  json_mapper.emplace("directNonce", func_table);
+  item_list.push_back("directNonce");
+  func_table = {
     ElementsPeginTxOut::GetIsRemoveNonceString,
     ElementsPeginTxOut::SetIsRemoveNonceString,
     ElementsPeginTxOut::GetIsRemoveNonceFieldType,
@@ -4696,6 +4773,8 @@ void ElementsPeginTxOut::ConvertFromStruct(
   address_ = data.address;
   amount_ = data.amount;
   asset_ = data.asset;
+  direct_locking_script_ = data.direct_locking_script;
+  direct_nonce_ = data.direct_nonce;
   is_remove_nonce_ = data.is_remove_nonce;
   ignore_items = data.ignore_items;
 }
@@ -4705,6 +4784,8 @@ ElementsPeginTxOutStruct ElementsPeginTxOut::ConvertToStruct() const {  // NOLIN
   result.address = address_;
   result.amount = amount_;
   result.asset = asset_;
+  result.direct_locking_script = direct_locking_script_;
+  result.direct_nonce = direct_nonce_;
   result.is_remove_nonce = is_remove_nonce_;
   result.ignore_items = ignore_items;
   return result;
@@ -4957,6 +5038,20 @@ void ElementsPegoutTxOut::CollectFieldName() {
   json_mapper.emplace("asset", func_table);
   item_list.push_back("asset");
   func_table = {
+    ElementsPegoutTxOut::GetDirectLockingScriptString,
+    ElementsPegoutTxOut::SetDirectLockingScriptString,
+    ElementsPegoutTxOut::GetDirectLockingScriptFieldType,
+  };
+  json_mapper.emplace("directLockingScript", func_table);
+  item_list.push_back("directLockingScript");
+  func_table = {
+    ElementsPegoutTxOut::GetDirectNonceString,
+    ElementsPegoutTxOut::SetDirectNonceString,
+    ElementsPegoutTxOut::GetDirectNonceFieldType,
+  };
+  json_mapper.emplace("directNonce", func_table);
+  item_list.push_back("directNonce");
+  func_table = {
     ElementsPegoutTxOut::GetIsRemoveNonceString,
     ElementsPegoutTxOut::SetIsRemoveNonceString,
     ElementsPegoutTxOut::GetIsRemoveNonceFieldType,
@@ -4970,6 +5065,8 @@ void ElementsPegoutTxOut::ConvertFromStruct(
   address_ = data.address;
   amount_ = data.amount;
   asset_ = data.asset;
+  direct_locking_script_ = data.direct_locking_script;
+  direct_nonce_ = data.direct_nonce;
   is_remove_nonce_ = data.is_remove_nonce;
   ignore_items = data.ignore_items;
 }
@@ -4979,6 +5076,8 @@ ElementsPegoutTxOutStruct ElementsPegoutTxOut::ConvertToStruct() const {  // NOL
   result.address = address_;
   result.amount = amount_;
   result.asset = asset_;
+  result.direct_locking_script = direct_locking_script_;
+  result.direct_nonce = direct_nonce_;
   result.is_remove_nonce = is_remove_nonce_;
   result.ignore_items = ignore_items;
   return result;
@@ -5365,6 +5464,20 @@ void ElementsTxOutRequest::CollectFieldName() {
   json_mapper.emplace("asset", func_table);
   item_list.push_back("asset");
   func_table = {
+    ElementsTxOutRequest::GetDirectLockingScriptString,
+    ElementsTxOutRequest::SetDirectLockingScriptString,
+    ElementsTxOutRequest::GetDirectLockingScriptFieldType,
+  };
+  json_mapper.emplace("directLockingScript", func_table);
+  item_list.push_back("directLockingScript");
+  func_table = {
+    ElementsTxOutRequest::GetDirectNonceString,
+    ElementsTxOutRequest::SetDirectNonceString,
+    ElementsTxOutRequest::GetDirectNonceFieldType,
+  };
+  json_mapper.emplace("directNonce", func_table);
+  item_list.push_back("directNonce");
+  func_table = {
     ElementsTxOutRequest::GetIsRemoveNonceString,
     ElementsTxOutRequest::SetIsRemoveNonceString,
     ElementsTxOutRequest::GetIsRemoveNonceFieldType,
@@ -5378,6 +5491,8 @@ void ElementsTxOutRequest::ConvertFromStruct(
   address_ = data.address;
   amount_ = data.amount;
   asset_ = data.asset;
+  direct_locking_script_ = data.direct_locking_script;
+  direct_nonce_ = data.direct_nonce;
   is_remove_nonce_ = data.is_remove_nonce;
   ignore_items = data.ignore_items;
 }
@@ -5387,6 +5502,8 @@ ElementsTxOutRequestStruct ElementsTxOutRequest::ConvertToStruct() const {  // N
   result.address = address_;
   result.amount = amount_;
   result.asset = asset_;
+  result.direct_locking_script = direct_locking_script_;
+  result.direct_nonce = direct_nonce_;
   result.is_remove_nonce = is_remove_nonce_;
   result.ignore_items = ignore_items;
   return result;
@@ -8869,6 +8986,13 @@ void GetExtkeyInfoResponse::CollectFieldName() {
   cfd::core::CLASS_FUNCTION_TABLE<GetExtkeyInfoResponse> func_table;  // NOLINT
 
   func_table = {
+    GetExtkeyInfoResponse::GetNetworkString,
+    GetExtkeyInfoResponse::SetNetworkString,
+    GetExtkeyInfoResponse::GetNetworkFieldType,
+  };
+  json_mapper.emplace("network", func_table);
+  item_list.push_back("network");
+  func_table = {
     GetExtkeyInfoResponse::GetVersionString,
     GetExtkeyInfoResponse::SetVersionString,
     GetExtkeyInfoResponse::GetVersionFieldType,
@@ -8907,6 +9031,7 @@ void GetExtkeyInfoResponse::CollectFieldName() {
 
 void GetExtkeyInfoResponse::ConvertFromStruct(
     const GetExtkeyInfoResponseStruct& data) {
+  network_ = data.network;
   version_ = data.version;
   depth_ = data.depth;
   fingerprint_ = data.fingerprint;
@@ -8917,6 +9042,7 @@ void GetExtkeyInfoResponse::ConvertFromStruct(
 
 GetExtkeyInfoResponseStruct GetExtkeyInfoResponse::ConvertToStruct() const {  // NOLINT
   GetExtkeyInfoResponseStruct result;
+  result.network = network_;
   result.version = version_;
   result.depth = depth_;
   result.fingerprint = fingerprint_;
@@ -11418,12 +11544,20 @@ void TxOutRequest::CollectFieldName() {
   };
   json_mapper.emplace("amount", func_table);
   item_list.push_back("amount");
+  func_table = {
+    TxOutRequest::GetDirectLockingScriptString,
+    TxOutRequest::SetDirectLockingScriptString,
+    TxOutRequest::GetDirectLockingScriptFieldType,
+  };
+  json_mapper.emplace("directLockingScript", func_table);
+  item_list.push_back("directLockingScript");
 }
 
 void TxOutRequest::ConvertFromStruct(
     const TxOutRequestStruct& data) {
   address_ = data.address;
   amount_ = data.amount;
+  direct_locking_script_ = data.direct_locking_script;
   ignore_items = data.ignore_items;
 }
 
@@ -11431,6 +11565,7 @@ TxOutRequestStruct TxOutRequest::ConvertToStruct() const {  // NOLINT
   TxOutRequestStruct result;
   result.address = address_;
   result.amount = amount_;
+  result.direct_locking_script = direct_locking_script_;
   result.ignore_items = ignore_items;
   return result;
 }

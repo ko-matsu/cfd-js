@@ -62,6 +62,7 @@ export interface AddTxIn {
 export interface AddTxOut {
     address: string;
     amount: bigint | number;
+    directLockingScript?: string;
 }
 
 export interface AddRawTransactionRequest {
@@ -410,12 +411,15 @@ export interface ElementsAddTxOut {
     address: string;
     amount: bigint | number;
     asset: string;
+    directLockingScript?: string;
+    directNonce?: string;
     isRemoveNonce?: boolean;
 }
 
 export interface ElementsAddDestroyAmount {
     amount: bigint | number;
     asset: string;
+    directNonce?: string;
 }
 
 export interface ElementsAddPegout {
@@ -463,12 +467,15 @@ export interface ElementsDestroyAmountTxOut {
     address: string;
     amount: bigint | number;
     asset: string;
+    directLockingScript?: string;
+    directNonce?: string;
     isRemoveNonce?: boolean;
 }
 
 export interface ElementsDestroyAmount {
     amount: bigint | number;
     asset: string;
+    directNonce?: string;
 }
 
 export interface ElementsDestroyAmountFee {
@@ -489,7 +496,7 @@ export interface ElementsCreateDestroyAmountResponse {
     hex: string;
 }
 
-export interface ElementsCreatePegInAddressRequest {
+export interface CreatePegInAddressRequest {
     fedpegscript: string;
     pubkey: string;
     redeemScript?: string;
@@ -497,7 +504,7 @@ export interface ElementsCreatePegInAddressRequest {
     hashType?: string;
 }
 
-export interface ElementsCreatePegInAddressResponse {
+export interface CreatePegInAddressResponse {
     mainchainAddress: string;
     claimScript: string;
     tweakFedpegscript: string;
@@ -525,6 +532,8 @@ export interface ElementsPeginTxOut {
     address: string;
     amount: bigint | number;
     asset: string;
+    directLockingScript?: string;
+    directNonce?: string;
     isRemoveNonce?: boolean;
 }
 
@@ -556,6 +565,8 @@ export interface ElementsPegoutTxOut {
     address: string;
     amount: bigint | number;
     asset: string;
+    directLockingScript?: string;
+    directNonce?: string;
     isRemoveNonce?: boolean;
 }
 
@@ -602,6 +613,8 @@ export interface ElementsTxOutRequest {
     address: string;
     amount: bigint | number;
     asset: string;
+    directLockingScript?: string;
+    directNonce?: string;
     isRemoveNonce?: boolean;
 }
 
@@ -998,6 +1011,7 @@ export interface GetExtkeyInfoRequest {
 }
 
 export interface GetExtkeyInfoResponse {
+    network: string;
     version: string;
     depth: number;
     fingerprint: string;
@@ -1299,6 +1313,7 @@ export interface TxInRequest {
 export interface TxOutRequest {
     address: string;
     amount: bigint | number;
+    directLockingScript?: string;
 }
 
 export interface CreateRawTransactionRequest {
@@ -1433,7 +1448,7 @@ export function ElementsAddRawTransaction(jsonObject: ElementsAddRawTransactionR
 
 export function ElementsCreateDestroyAmount(jsonObject: ElementsCreateDestroyAmountRequest): ElementsCreateDestroyAmountResponse;
 
-export function ElementsCreatePegInAddress(jsonObject: ElementsCreatePegInAddressRequest): ElementsCreatePegInAddressResponse;
+export function CreatePegInAddress(jsonObject: CreatePegInAddressRequest): CreatePegInAddressResponse;
 
 export function ElementsCreateRawPegin(jsonObject: ElementsCreateRawPeginRequest): ElementsCreateRawPeginResponse;
 

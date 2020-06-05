@@ -86,9 +86,14 @@ CreateRawTransactionResponseStruct TransactionStructApi::CreateRawTransaction(
     std::vector<TxOut> txouts;
     for (TxOutRequestStruct txout_req : request.txouts) {
       Amount amount = Amount::CreateBySatoshiAmount(txout_req.amount);
-      Address address(txout_req.address);
-      TxOut txout(amount, address);
-      txouts.push_back(txout);
+      if (!txout_req.direct_locking_script.empty()) {
+        TxOut txout(amount, Script(txout_req.direct_locking_script));
+        txouts.push_back(txout);
+      } else {
+        Address address(txout_req.address);
+        TxOut txout(amount, address);
+        txouts.push_back(txout);
+      }
     }
 
     TransactionApi api;
@@ -121,9 +126,14 @@ AddRawTransactionResponseStruct TransactionStructApi::AddRawTransaction(
     std::vector<TxOut> txouts;
     for (AddTxOutStruct txout_req : request.txouts) {
       Amount amount = Amount::CreateBySatoshiAmount(txout_req.amount);
-      Address address(txout_req.address);
-      TxOut txout(amount, address);
-      txouts.push_back(txout);
+      if (!txout_req.direct_locking_script.empty()) {
+        TxOut txout(amount, Script(txout_req.direct_locking_script));
+        txouts.push_back(txout);
+      } else {
+        Address address(txout_req.address);
+        TxOut txout(amount, address);
+        txouts.push_back(txout);
+      }
     }
 
     TransactionApi api;

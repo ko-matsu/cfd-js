@@ -340,8 +340,8 @@ GetExtkeyInfoResponseStruct HDWalletStructApi::GetExtkeyInfo(
 
     try {
       ExtPrivkey privkey(request.extkey);
-      response.network = AddressStructApi::ConvertNetTypeString(
-          privkey.GetNetworkType());
+      response.network =
+          AddressStructApi::ConvertNetTypeString(privkey.GetNetworkType());
       response.version = privkey.GetVersionData().GetHex();
       response.depth = privkey.GetDepth();
       response.fingerprint = privkey.GetFingerprintData().GetHex();
@@ -353,8 +353,8 @@ GetExtkeyInfoResponseStruct HDWalletStructApi::GetExtkeyInfo(
     }
 
     ExtPubkey pubkey(request.extkey);
-    response.network = AddressStructApi::ConvertNetTypeString(
-        pubkey.GetNetworkType());
+    response.network =
+        AddressStructApi::ConvertNetTypeString(pubkey.GetNetworkType());
     response.version = pubkey.GetVersionData().GetHex();
     response.depth = pubkey.GetDepth();
     response.fingerprint = pubkey.GetFingerprintData().GetHex();

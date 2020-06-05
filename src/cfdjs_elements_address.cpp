@@ -268,12 +268,11 @@ ElementsAddressStructApi::GetUnblindedAddress(
   return result;
 }
 
-ElementsCreatePegInAddressResponseStruct
-ElementsAddressStructApi::CreatePegInAddress(
-    const ElementsCreatePegInAddressRequestStruct& request) {
-  auto call_func = [](const ElementsCreatePegInAddressRequestStruct& request)
-      -> ElementsCreatePegInAddressResponseStruct {  // NOLINT
-    ElementsCreatePegInAddressResponseStruct response;
+CreatePegInAddressResponseStruct ElementsAddressStructApi::CreatePegInAddress(
+    const CreatePegInAddressRequestStruct& request) {
+  auto call_func = [](const CreatePegInAddressRequestStruct& request)
+      -> CreatePegInAddressResponseStruct {  // NOLINT
+    CreatePegInAddressResponseStruct response;
 
     // convert request arguments from struct
     Script fedpegscript = Script(request.fedpegscript);
@@ -313,10 +312,9 @@ ElementsAddressStructApi::CreatePegInAddress(
     return response;
   };
 
-  ElementsCreatePegInAddressResponseStruct result;
+  CreatePegInAddressResponseStruct result;
   result = ExecuteStructApi<
-      ElementsCreatePegInAddressRequestStruct,
-      ElementsCreatePegInAddressResponseStruct>(
+      CreatePegInAddressRequestStruct, CreatePegInAddressResponseStruct>(
       request, call_func, std::string(__FUNCTION__));
   return result;
 }

@@ -1491,12 +1491,12 @@ ElementsTransactionStructApi::SetRawReissueAsset(
   return result;
 }
 
-ElementsCreateRawPeginResponseStruct
+CreateRawPeginResponseStruct
 ElementsTransactionStructApi::CreateRawPeginTransaction(  // NOLINT
-    const ElementsCreateRawPeginRequestStruct& request) {
-  auto call_func = [](const ElementsCreateRawPeginRequestStruct& request)
-      -> ElementsCreateRawPeginResponseStruct {  // NOLINT
-    ElementsCreateRawPeginResponseStruct response;
+    const CreateRawPeginRequestStruct& request) {
+  auto call_func = [](const CreateRawPeginRequestStruct& request)
+      -> CreateRawPeginResponseStruct {  // NOLINT
+    CreateRawPeginResponseStruct response;
     // Transaction作成
     std::vector<ConfidentialTxIn> txins;
     std::vector<ConfidentialTxOut> txouts;
@@ -1583,20 +1583,20 @@ ElementsTransactionStructApi::CreateRawPeginTransaction(  // NOLINT
     return response;
   };
 
-  ElementsCreateRawPeginResponseStruct result;
+  CreateRawPeginResponseStruct result;
   result = ExecuteStructApi<
-      ElementsCreateRawPeginRequestStruct,
-      ElementsCreateRawPeginResponseStruct>(
+      CreateRawPeginRequestStruct,
+      CreateRawPeginResponseStruct>(
       request, call_func, std::string(__FUNCTION__));
   return result;
 }
 
-ElementsCreateRawPegoutResponseStruct
+CreateRawPegoutResponseStruct
 ElementsTransactionStructApi::CreateRawPegoutTransaction(  // NOLINT
-    const ElementsCreateRawPegoutRequestStruct& request) {
-  auto call_func = [](const ElementsCreateRawPegoutRequestStruct& request)
-      -> ElementsCreateRawPegoutResponseStruct {  // NOLINT
-    ElementsCreateRawPegoutResponseStruct response;
+    const CreateRawPegoutRequestStruct& request) {
+  auto call_func = [](const CreateRawPegoutRequestStruct& request)
+      -> CreateRawPegoutResponseStruct {  // NOLINT
+    CreateRawPegoutResponseStruct response;
     // Transaction作成
     std::vector<ConfidentialTxIn> txins;
     std::vector<ConfidentialTxOut> txouts;
@@ -1701,10 +1701,10 @@ ElementsTransactionStructApi::CreateRawPegoutTransaction(  // NOLINT
     return response;
   };
 
-  ElementsCreateRawPegoutResponseStruct result;
+  CreateRawPegoutResponseStruct result;
   result = ExecuteStructApi<
-      ElementsCreateRawPegoutRequestStruct,
-      ElementsCreateRawPegoutResponseStruct>(
+      CreateRawPegoutRequestStruct,
+      CreateRawPegoutResponseStruct>(
       request, call_func, std::string(__FUNCTION__));
   return result;
 }
@@ -1762,12 +1762,12 @@ ElementsTransactionStructApi::GetDefaultBlindingKey(
   return result;
 }
 
-ElementsCreateDestroyAmountResponseStruct
+CreateDestroyAmountResponseStruct
 ElementsTransactionStructApi::CreateDestroyAmountTransaction(
-    const ElementsCreateDestroyAmountRequestStruct& request) {
-  auto call_func = [](const ElementsCreateDestroyAmountRequestStruct& request)
-      -> ElementsCreateDestroyAmountResponseStruct {  // NOLINT
-    ElementsCreateDestroyAmountResponseStruct response;
+    const CreateDestroyAmountRequestStruct& request) {
+  auto call_func = [](const CreateDestroyAmountRequestStruct& request)
+      -> CreateDestroyAmountResponseStruct {  // NOLINT
+    CreateDestroyAmountResponseStruct response;
     // Transaction作成
     ElementsAddressFactory address_factory;
     // Transaction作成
@@ -1835,10 +1835,10 @@ ElementsTransactionStructApi::CreateDestroyAmountTransaction(
     return response;
   };
 
-  ElementsCreateDestroyAmountResponseStruct result;
+  CreateDestroyAmountResponseStruct result;
   result = ExecuteStructApi<
-      ElementsCreateDestroyAmountRequestStruct,
-      ElementsCreateDestroyAmountResponseStruct>(
+      CreateDestroyAmountRequestStruct,
+      CreateDestroyAmountResponseStruct>(
       request, call_func, std::string(__FUNCTION__));
   return result;
 }

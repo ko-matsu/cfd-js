@@ -891,10 +891,10 @@ std::string JsonMappingApi::CreateElementsSignatureHash(
 std::string JsonMappingApi::CreateRawPegin(
     const std::string &request_message) {
   return ExecuteJsonApi<
-      api::json::ElementsCreateRawPeginRequest,
-      api::json::ElementsCreateRawPeginResponse,
-      api::ElementsCreateRawPeginRequestStruct,
-      api::ElementsCreateRawPeginResponseStruct>(
+      api::json::CreateRawPeginRequest,
+      api::json::CreateRawPeginResponse,
+      api::CreateRawPeginRequestStruct,
+      api::CreateRawPeginResponseStruct>(
       request_message,
       ElementsTransactionStructApi::CreateRawPeginTransaction);
 }
@@ -902,10 +902,10 @@ std::string JsonMappingApi::CreateRawPegin(
 std::string JsonMappingApi::CreateRawPegout(
     const std::string &request_message) {
   return ExecuteJsonApi<
-      api::json::ElementsCreateRawPegoutRequest,
-      api::json::ElementsCreateRawPegoutResponse,
-      api::ElementsCreateRawPegoutRequestStruct,
-      api::ElementsCreateRawPegoutResponseStruct>(
+      api::json::CreateRawPegoutRequest,
+      api::json::CreateRawPegoutResponse,
+      api::CreateRawPegoutRequestStruct,
+      api::CreateRawPegoutResponseStruct>(
       request_message,
       ElementsTransactionStructApi::CreateRawPegoutTransaction);
 }
@@ -933,10 +933,10 @@ std::string JsonMappingApi::GetDefaultBlindingKey(
 std::string JsonMappingApi::CreateDestroyAmount(
     const std::string &request_message) {
   return ExecuteJsonApi<
-      api::json::ElementsCreateDestroyAmountRequest,
-      api::json::ElementsCreateDestroyAmountResponse,
-      api::ElementsCreateDestroyAmountRequestStruct,
-      api::ElementsCreateDestroyAmountResponseStruct>(
+      api::json::CreateDestroyAmountRequest,
+      api::json::CreateDestroyAmountResponse,
+      api::CreateDestroyAmountRequestStruct,
+      api::CreateDestroyAmountResponseStruct>(
       request_message,
       ElementsTransactionStructApi::CreateDestroyAmountTransaction);
 }

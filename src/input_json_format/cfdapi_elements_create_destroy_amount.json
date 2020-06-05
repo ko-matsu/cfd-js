@@ -1,7 +1,7 @@
 {
   "namespace": ["cfd","js","api","json"],
   "request": {
-    ":class": "ElementsCreateDestroyAmountRequest",
+    ":class": "CreateDestroyAmountRequest",
     "version": 2,
     "version:type": "uint32_t",
     "version:require": "optional",
@@ -60,7 +60,7 @@
     }
   },
   "response": {
-    ":class": "ElementsCreateDestroyAmountResponse",
+    ":class": "CreateDestroyAmountResponse",
     "hex": "",
     "hex:require": "require"
   }

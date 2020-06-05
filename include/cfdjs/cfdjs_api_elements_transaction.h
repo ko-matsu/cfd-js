@@ -163,17 +163,17 @@ class CFD_JS_API_EXPORT ElementsTransactionStructApi {
    * @param[in] request Transactionを構築するパラメータの構造体
    * @return Transactionのhexデータを格納した構造体
    */
-  static ElementsCreateRawPeginResponseStruct
+  static CreateRawPeginResponseStruct
   CreateRawPeginTransaction(  // NOLINT
-      const ElementsCreateRawPeginRequestStruct& request);
+      const CreateRawPeginRequestStruct& request);
 
   /**
    * @brief パラメータの情報を元に、Elements Pegout用のRaw Transactionを作成する.
    * @param[in] request Transactionを構築するパラメータの構造体
    * @return Transactionのhexデータを格納した構造体
    */
-  static ElementsCreateRawPegoutResponseStruct CreateRawPegoutTransaction(
-      const ElementsCreateRawPegoutRequestStruct& request);
+  static CreateRawPegoutResponseStruct CreateRawPegoutTransaction(
+      const CreateRawPegoutRequestStruct& request);
 
   /**
    * @brief パラメータの情報を元に、Issue用BlindingKeyを作成する.
@@ -196,9 +196,9 @@ class CFD_JS_API_EXPORT ElementsTransactionStructApi {
    * @param[in] request Transactionを構築するパラメータの構造体
    * @return Transactionのhexデータを格納した構造体
    */
-  static ElementsCreateDestroyAmountResponseStruct
+  static CreateDestroyAmountResponseStruct
   CreateDestroyAmountTransaction(
-      const ElementsCreateDestroyAmountRequestStruct& request);
+      const CreateDestroyAmountRequestStruct& request);
 
   /**
    * @brief パラメータの情報を元に、Ledger format serialize dataを作成する.

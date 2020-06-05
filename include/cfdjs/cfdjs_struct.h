@@ -1072,12 +1072,12 @@ struct ElementsDestroyAmountFeeStruct {
 };
 
 // ------------------------------------------------------------------------
-// ElementsCreateDestroyAmountRequestStruct
+// CreateDestroyAmountRequestStruct
 // ------------------------------------------------------------------------
 /**
- * @brief ElementsCreateDestroyAmountRequestStruct struct
+ * @brief CreateDestroyAmountRequestStruct struct
  */
-struct ElementsCreateDestroyAmountRequestStruct {
+struct CreateDestroyAmountRequestStruct {
   uint32_t version = 2;                                  //!< version  // NOLINT
   uint32_t locktime = 0;                                 //!< locktime  // NOLINT
   std::vector<ElementsDestroyAmountTxInStruct> txins;    //!< txins  // NOLINT
@@ -1088,12 +1088,12 @@ struct ElementsCreateDestroyAmountRequestStruct {
 };
 
 // ------------------------------------------------------------------------
-// ElementsCreateDestroyAmountResponseStruct
+// CreateDestroyAmountResponseStruct
 // ------------------------------------------------------------------------
 /**
- * @brief ElementsCreateDestroyAmountResponseStruct struct
+ * @brief CreateDestroyAmountResponseStruct struct
  */
-struct ElementsCreateDestroyAmountResponseStruct {
+struct CreateDestroyAmountResponseStruct {
   std::string hex = "";  //!< hex  // NOLINT
   cfd::js::api::InnerErrorResponseStruct error;   //!< error information
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
@@ -1189,12 +1189,12 @@ struct ElementsPeginTxOutFeeStruct {
 };
 
 // ------------------------------------------------------------------------
-// ElementsCreateRawPeginRequestStruct
+// CreateRawPeginRequestStruct
 // ------------------------------------------------------------------------
 /**
- * @brief ElementsCreateRawPeginRequestStruct struct
+ * @brief CreateRawPeginRequestStruct struct
  */
-struct ElementsCreateRawPeginRequestStruct {
+struct CreateRawPeginRequestStruct {
   uint32_t version = 2;                          //!< version  // NOLINT
   uint32_t locktime = 0;                         //!< locktime  // NOLINT
   std::vector<ElementsPeginTxInStruct> txins;    //!< txins  // NOLINT
@@ -1205,12 +1205,12 @@ struct ElementsCreateRawPeginRequestStruct {
 };
 
 // ------------------------------------------------------------------------
-// ElementsCreateRawPeginResponseStruct
+// CreateRawPeginResponseStruct
 // ------------------------------------------------------------------------
 /**
- * @brief ElementsCreateRawPeginResponseStruct struct
+ * @brief CreateRawPeginResponseStruct struct
  */
-struct ElementsCreateRawPeginResponseStruct {
+struct CreateRawPeginResponseStruct {
   std::string hex = "";  //!< hex  // NOLINT
   cfd::js::api::InnerErrorResponseStruct error;   //!< error information
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
@@ -1279,12 +1279,12 @@ struct ElementsPegoutTxOutFeeStruct {
 };
 
 // ------------------------------------------------------------------------
-// ElementsCreateRawPegoutRequestStruct
+// CreateRawPegoutRequestStruct
 // ------------------------------------------------------------------------
 /**
- * @brief ElementsCreateRawPegoutRequestStruct struct
+ * @brief CreateRawPegoutRequestStruct struct
  */
-struct ElementsCreateRawPegoutRequestStruct {
+struct CreateRawPegoutRequestStruct {
   uint32_t version = 2;                           //!< version  // NOLINT
   uint32_t locktime = 0;                          //!< locktime  // NOLINT
   std::vector<ElementsPegoutTxInStruct> txins;    //!< txins  // NOLINT
@@ -1295,12 +1295,12 @@ struct ElementsCreateRawPegoutRequestStruct {
 };
 
 // ------------------------------------------------------------------------
-// ElementsCreateRawPegoutResponseStruct
+// CreateRawPegoutResponseStruct
 // ------------------------------------------------------------------------
 /**
- * @brief ElementsCreateRawPegoutResponseStruct struct
+ * @brief CreateRawPegoutResponseStruct struct
  */
-struct ElementsCreateRawPegoutResponseStruct {
+struct CreateRawPegoutResponseStruct {
   std::string hex = "";          //!< hex  // NOLINT
   std::string btc_address = "";  //!< btc_address  // NOLINT
   cfd::js::api::InnerErrorResponseStruct error;   //!< error information

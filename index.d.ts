@@ -483,7 +483,7 @@ export interface ElementsDestroyAmountFee {
     asset: string;
 }
 
-export interface ElementsCreateDestroyAmountRequest {
+export interface CreateDestroyAmountRequest {
     version?: number;
     locktime?: number;
     txins?: ElementsDestroyAmountTxIn[];
@@ -492,7 +492,7 @@ export interface ElementsCreateDestroyAmountRequest {
     fee?: ElementsDestroyAmountFee;
 }
 
-export interface ElementsCreateDestroyAmountResponse {
+export interface CreateDestroyAmountResponse {
     hex: string;
 }
 
@@ -542,7 +542,7 @@ export interface ElementsPeginTxOutFee {
     asset: string;
 }
 
-export interface ElementsCreateRawPeginRequest {
+export interface CreateRawPeginRequest {
     version?: number;
     locktime?: number;
     txins: ElementsPeginTxIn[];
@@ -551,7 +551,7 @@ export interface ElementsCreateRawPeginRequest {
     isRandomSortTxOut?: boolean;
 }
 
-export interface ElementsCreateRawPeginResponse {
+export interface CreateRawPeginResponse {
     hex: string;
 }
 
@@ -589,7 +589,7 @@ export interface ElementsPegoutTxOutFee {
     asset: string;
 }
 
-export interface ElementsCreateRawPegoutRequest {
+export interface CreateRawPegoutRequest {
     version?: number;
     locktime?: number;
     txins?: ElementsPegoutTxIn[];
@@ -598,7 +598,7 @@ export interface ElementsCreateRawPegoutRequest {
     fee?: ElementsPegoutTxOutFee;
 }
 
-export interface ElementsCreateRawPegoutResponse {
+export interface CreateRawPegoutResponse {
     hex: string;
     btcAddress?: string;
 }
@@ -1446,13 +1446,13 @@ export function DecodeRawTransaction(jsonObject: DecodeRawTransactionRequest): D
 
 export function ElementsAddRawTransaction(jsonObject: ElementsAddRawTransactionRequest): ElementsAddRawTransactionResponse;
 
-export function ElementsCreateDestroyAmount(jsonObject: ElementsCreateDestroyAmountRequest): ElementsCreateDestroyAmountResponse;
+export function CreateDestroyAmount(jsonObject: CreateDestroyAmountRequest): CreateDestroyAmountResponse;
 
 export function CreatePegInAddress(jsonObject: CreatePegInAddressRequest): CreatePegInAddressResponse;
 
-export function ElementsCreateRawPegin(jsonObject: ElementsCreateRawPeginRequest): ElementsCreateRawPeginResponse;
+export function CreateRawPegin(jsonObject: CreateRawPeginRequest): CreateRawPeginResponse;
 
-export function ElementsCreateRawPegout(jsonObject: ElementsCreateRawPegoutRequest): ElementsCreateRawPegoutResponse;
+export function CreateRawPegout(jsonObject: CreateRawPegoutRequest): CreateRawPegoutResponse;
 
 export function ElementsCreateRawTransaction(jsonObject: ElementsCreateRawTransactionRequest): ElementsCreateRawTransactionResponse;
 

@@ -19057,18 +19057,18 @@ class ElementsDestroyAmountFee
 };
 
 // ------------------------------------------------------------------------
-// ElementsCreateDestroyAmountRequest
+// CreateDestroyAmountRequest
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API (ElementsCreateDestroyAmountRequest) class
+ * @brief JSON-API (CreateDestroyAmountRequest) class
  */
-class ElementsCreateDestroyAmountRequest
-  : public cfd::core::JsonClassBase<ElementsCreateDestroyAmountRequest> {
+class CreateDestroyAmountRequest
+  : public cfd::core::JsonClassBase<CreateDestroyAmountRequest> {
  public:
-  ElementsCreateDestroyAmountRequest() {
+  CreateDestroyAmountRequest() {
     CollectFieldName();
   }
-  virtual ~ElementsCreateDestroyAmountRequest() {
+  virtual ~CreateDestroyAmountRequest() {
     // do nothing
   }
   /**
@@ -19104,7 +19104,7 @@ class ElementsCreateDestroyAmountRequest
    * @return JSON string
    */
   static std::string GetVersionString(  // line separate
-      const ElementsCreateDestroyAmountRequest& obj) {  // NOLINT
+      const CreateDestroyAmountRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.version_);
   }
   /**
@@ -19113,7 +19113,7 @@ class ElementsCreateDestroyAmountRequest
    * @param[in] json_value  JSON object.
    */
   static void SetVersionString(  // line separate
-      ElementsCreateDestroyAmountRequest& obj,  // NOLINT
+      CreateDestroyAmountRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfd::core::ConvertFromUniValue(  // line separate
       obj.version_, json_value);
@@ -19147,7 +19147,7 @@ class ElementsCreateDestroyAmountRequest
    * @return JSON string
    */
   static std::string GetLocktimeString(  // line separate
-      const ElementsCreateDestroyAmountRequest& obj) {  // NOLINT
+      const CreateDestroyAmountRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.locktime_);
   }
   /**
@@ -19156,7 +19156,7 @@ class ElementsCreateDestroyAmountRequest
    * @param[in] json_value  JSON object.
    */
   static void SetLocktimeString(  // line separate
-      ElementsCreateDestroyAmountRequest& obj,  // NOLINT
+      CreateDestroyAmountRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfd::core::ConvertFromUniValue(  // line separate
       obj.locktime_, json_value);
@@ -19190,7 +19190,7 @@ class ElementsCreateDestroyAmountRequest
    * @return JSON string.
    */
   static std::string GetTxinsString(  // line separate
-      const ElementsCreateDestroyAmountRequest& obj) {  // NOLINT
+      const CreateDestroyAmountRequest& obj) {  // NOLINT
     // Do not set to const, because substitution of member variables
     // may occur in pre / post processing inside Serialize
     return obj.txins_.Serialize();
@@ -19201,7 +19201,7 @@ class ElementsCreateDestroyAmountRequest
    * @param[in] json_value  JSON object
    */
   static void SetTxinsString(  // line separate
-      ElementsCreateDestroyAmountRequest& obj,  // NOLINT
+      CreateDestroyAmountRequest& obj,  // NOLINT
       const UniValue& json_value) {
     obj.txins_.DeserializeUniValue(json_value);
   }
@@ -19234,7 +19234,7 @@ class ElementsCreateDestroyAmountRequest
    * @return JSON string.
    */
   static std::string GetTxoutsString(  // line separate
-      const ElementsCreateDestroyAmountRequest& obj) {  // NOLINT
+      const CreateDestroyAmountRequest& obj) {  // NOLINT
     // Do not set to const, because substitution of member variables
     // may occur in pre / post processing inside Serialize
     return obj.txouts_.Serialize();
@@ -19245,7 +19245,7 @@ class ElementsCreateDestroyAmountRequest
    * @param[in] json_value  JSON object
    */
   static void SetTxoutsString(  // line separate
-      ElementsCreateDestroyAmountRequest& obj,  // NOLINT
+      CreateDestroyAmountRequest& obj,  // NOLINT
       const UniValue& json_value) {
     obj.txouts_.DeserializeUniValue(json_value);
   }
@@ -19278,7 +19278,7 @@ class ElementsCreateDestroyAmountRequest
    * @return JSON string.
    */
   static std::string GetDestroyString(  // line separate
-      const ElementsCreateDestroyAmountRequest& obj) {  // NOLINT
+      const CreateDestroyAmountRequest& obj) {  // NOLINT
     // Do not set to const, because substitution of member variables
     // may occur in pre / post processing inside Serialize
     return obj.destroy_.Serialize();
@@ -19289,7 +19289,7 @@ class ElementsCreateDestroyAmountRequest
    * @param[in] json_value  JSON object
    */
   static void SetDestroyString(  // line separate
-      ElementsCreateDestroyAmountRequest& obj,  // NOLINT
+      CreateDestroyAmountRequest& obj,  // NOLINT
       const UniValue& json_value) {
     obj.destroy_.DeserializeUniValue(json_value);
   }
@@ -19322,7 +19322,7 @@ class ElementsCreateDestroyAmountRequest
    * @return JSON string.
    */
   static std::string GetFeeString(  // line separate
-      const ElementsCreateDestroyAmountRequest& obj) {  // NOLINT
+      const CreateDestroyAmountRequest& obj) {  // NOLINT
     // Do not set to const, because substitution of member variables
     // may occur in pre / post processing inside Serialize
     return obj.fee_.Serialize();
@@ -19333,7 +19333,7 @@ class ElementsCreateDestroyAmountRequest
    * @param[in] json_value  JSON object
    */
   static void SetFeeString(  // line separate
-      ElementsCreateDestroyAmountRequest& obj,  // NOLINT
+      CreateDestroyAmountRequest& obj,  // NOLINT
       const UniValue& json_value) {
     obj.fee_.DeserializeUniValue(json_value);
   }
@@ -19351,27 +19351,27 @@ class ElementsCreateDestroyAmountRequest
    * @param[in] data   struct data.
    */
   void ConvertFromStruct(
-      const ElementsCreateDestroyAmountRequestStruct& data);
+      const CreateDestroyAmountRequestStruct& data);
 
   /**
    * @brief Convert class to struct.
    * @return  struct data.
    */
-  ElementsCreateDestroyAmountRequestStruct ConvertToStruct()  const;
+  CreateDestroyAmountRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
    * @brief definition type of Map table.
    */
-  using ElementsCreateDestroyAmountRequestMapTable =
-    cfd::core::JsonTableMap<ElementsCreateDestroyAmountRequest>;
+  using CreateDestroyAmountRequestMapTable =
+    cfd::core::JsonTableMap<CreateDestroyAmountRequest>;
 
   /**
    * @brief Get JSON mapping object.
    * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
-  virtual const ElementsCreateDestroyAmountRequestMapTable& GetJsonMapper() const {  // NOLINT
+  virtual const CreateDestroyAmountRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
@@ -19397,7 +19397,7 @@ class ElementsCreateDestroyAmountRequest
  /**
   * @brief JsonFunctionMap table
   */
-  static ElementsCreateDestroyAmountRequestMapTable json_mapper;
+  static CreateDestroyAmountRequestMapTable json_mapper;
   /**
    * @brief field name list.
    */
@@ -19434,18 +19434,18 @@ class ElementsCreateDestroyAmountRequest
 };
 
 // ------------------------------------------------------------------------
-// ElementsCreateDestroyAmountResponse
+// CreateDestroyAmountResponse
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API (ElementsCreateDestroyAmountResponse) class
+ * @brief JSON-API (CreateDestroyAmountResponse) class
  */
-class ElementsCreateDestroyAmountResponse
-  : public cfd::core::JsonClassBase<ElementsCreateDestroyAmountResponse> {
+class CreateDestroyAmountResponse
+  : public cfd::core::JsonClassBase<CreateDestroyAmountResponse> {
  public:
-  ElementsCreateDestroyAmountResponse() {
+  CreateDestroyAmountResponse() {
     CollectFieldName();
   }
-  virtual ~ElementsCreateDestroyAmountResponse() {
+  virtual ~CreateDestroyAmountResponse() {
     // do nothing
   }
   /**
@@ -19481,7 +19481,7 @@ class ElementsCreateDestroyAmountResponse
    * @return JSON string
    */
   static std::string GetHexString(  // line separate
-      const ElementsCreateDestroyAmountResponse& obj) {  // NOLINT
+      const CreateDestroyAmountResponse& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.hex_);
   }
   /**
@@ -19490,7 +19490,7 @@ class ElementsCreateDestroyAmountResponse
    * @param[in] json_value  JSON object.
    */
   static void SetHexString(  // line separate
-      ElementsCreateDestroyAmountResponse& obj,  // NOLINT
+      CreateDestroyAmountResponse& obj,  // NOLINT
       const UniValue& json_value) {
     cfd::core::ConvertFromUniValue(  // line separate
       obj.hex_, json_value);
@@ -19509,27 +19509,27 @@ class ElementsCreateDestroyAmountResponse
    * @param[in] data   struct data.
    */
   void ConvertFromStruct(
-      const ElementsCreateDestroyAmountResponseStruct& data);
+      const CreateDestroyAmountResponseStruct& data);
 
   /**
    * @brief Convert class to struct.
    * @return  struct data.
    */
-  ElementsCreateDestroyAmountResponseStruct ConvertToStruct()  const;
+  CreateDestroyAmountResponseStruct ConvertToStruct()  const;
 
  protected:
   /**
    * @brief definition type of Map table.
    */
-  using ElementsCreateDestroyAmountResponseMapTable =
-    cfd::core::JsonTableMap<ElementsCreateDestroyAmountResponse>;
+  using CreateDestroyAmountResponseMapTable =
+    cfd::core::JsonTableMap<CreateDestroyAmountResponse>;
 
   /**
    * @brief Get JSON mapping object.
    * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
-  virtual const ElementsCreateDestroyAmountResponseMapTable& GetJsonMapper() const {  // NOLINT
+  virtual const CreateDestroyAmountResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
@@ -19555,7 +19555,7 @@ class ElementsCreateDestroyAmountResponse
  /**
   * @brief JsonFunctionMap table
   */
-  static ElementsCreateDestroyAmountResponseMapTable json_mapper;
+  static CreateDestroyAmountResponseMapTable json_mapper;
   /**
    * @brief field name list.
    */
@@ -21435,18 +21435,18 @@ class ElementsPeginTxOutFee
 };
 
 // ------------------------------------------------------------------------
-// ElementsCreateRawPeginRequest
+// CreateRawPeginRequest
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API (ElementsCreateRawPeginRequest) class
+ * @brief JSON-API (CreateRawPeginRequest) class
  */
-class ElementsCreateRawPeginRequest
-  : public cfd::core::JsonClassBase<ElementsCreateRawPeginRequest> {
+class CreateRawPeginRequest
+  : public cfd::core::JsonClassBase<CreateRawPeginRequest> {
  public:
-  ElementsCreateRawPeginRequest() {
+  CreateRawPeginRequest() {
     CollectFieldName();
   }
-  virtual ~ElementsCreateRawPeginRequest() {
+  virtual ~CreateRawPeginRequest() {
     // do nothing
   }
   /**
@@ -21482,7 +21482,7 @@ class ElementsCreateRawPeginRequest
    * @return JSON string
    */
   static std::string GetVersionString(  // line separate
-      const ElementsCreateRawPeginRequest& obj) {  // NOLINT
+      const CreateRawPeginRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.version_);
   }
   /**
@@ -21491,7 +21491,7 @@ class ElementsCreateRawPeginRequest
    * @param[in] json_value  JSON object.
    */
   static void SetVersionString(  // line separate
-      ElementsCreateRawPeginRequest& obj,  // NOLINT
+      CreateRawPeginRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfd::core::ConvertFromUniValue(  // line separate
       obj.version_, json_value);
@@ -21525,7 +21525,7 @@ class ElementsCreateRawPeginRequest
    * @return JSON string
    */
   static std::string GetLocktimeString(  // line separate
-      const ElementsCreateRawPeginRequest& obj) {  // NOLINT
+      const CreateRawPeginRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.locktime_);
   }
   /**
@@ -21534,7 +21534,7 @@ class ElementsCreateRawPeginRequest
    * @param[in] json_value  JSON object.
    */
   static void SetLocktimeString(  // line separate
-      ElementsCreateRawPeginRequest& obj,  // NOLINT
+      CreateRawPeginRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfd::core::ConvertFromUniValue(  // line separate
       obj.locktime_, json_value);
@@ -21568,7 +21568,7 @@ class ElementsCreateRawPeginRequest
    * @return JSON string.
    */
   static std::string GetTxinsString(  // line separate
-      const ElementsCreateRawPeginRequest& obj) {  // NOLINT
+      const CreateRawPeginRequest& obj) {  // NOLINT
     // Do not set to const, because substitution of member variables
     // may occur in pre / post processing inside Serialize
     return obj.txins_.Serialize();
@@ -21579,7 +21579,7 @@ class ElementsCreateRawPeginRequest
    * @param[in] json_value  JSON object
    */
   static void SetTxinsString(  // line separate
-      ElementsCreateRawPeginRequest& obj,  // NOLINT
+      CreateRawPeginRequest& obj,  // NOLINT
       const UniValue& json_value) {
     obj.txins_.DeserializeUniValue(json_value);
   }
@@ -21612,7 +21612,7 @@ class ElementsCreateRawPeginRequest
    * @return JSON string.
    */
   static std::string GetTxoutsString(  // line separate
-      const ElementsCreateRawPeginRequest& obj) {  // NOLINT
+      const CreateRawPeginRequest& obj) {  // NOLINT
     // Do not set to const, because substitution of member variables
     // may occur in pre / post processing inside Serialize
     return obj.txouts_.Serialize();
@@ -21623,7 +21623,7 @@ class ElementsCreateRawPeginRequest
    * @param[in] json_value  JSON object
    */
   static void SetTxoutsString(  // line separate
-      ElementsCreateRawPeginRequest& obj,  // NOLINT
+      CreateRawPeginRequest& obj,  // NOLINT
       const UniValue& json_value) {
     obj.txouts_.DeserializeUniValue(json_value);
   }
@@ -21656,7 +21656,7 @@ class ElementsCreateRawPeginRequest
    * @return JSON string.
    */
   static std::string GetFeeString(  // line separate
-      const ElementsCreateRawPeginRequest& obj) {  // NOLINT
+      const CreateRawPeginRequest& obj) {  // NOLINT
     // Do not set to const, because substitution of member variables
     // may occur in pre / post processing inside Serialize
     return obj.fee_.Serialize();
@@ -21667,7 +21667,7 @@ class ElementsCreateRawPeginRequest
    * @param[in] json_value  JSON object
    */
   static void SetFeeString(  // line separate
-      ElementsCreateRawPeginRequest& obj,  // NOLINT
+      CreateRawPeginRequest& obj,  // NOLINT
       const UniValue& json_value) {
     obj.fee_.DeserializeUniValue(json_value);
   }
@@ -21700,7 +21700,7 @@ class ElementsCreateRawPeginRequest
    * @return JSON string
    */
   static std::string GetIsRandomSortTxOutString(  // line separate
-      const ElementsCreateRawPeginRequest& obj) {  // NOLINT
+      const CreateRawPeginRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.is_random_sort_tx_out_);
   }
   /**
@@ -21709,7 +21709,7 @@ class ElementsCreateRawPeginRequest
    * @param[in] json_value  JSON object.
    */
   static void SetIsRandomSortTxOutString(  // line separate
-      ElementsCreateRawPeginRequest& obj,  // NOLINT
+      CreateRawPeginRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfd::core::ConvertFromUniValue(  // line separate
       obj.is_random_sort_tx_out_, json_value);
@@ -21728,27 +21728,27 @@ class ElementsCreateRawPeginRequest
    * @param[in] data   struct data.
    */
   void ConvertFromStruct(
-      const ElementsCreateRawPeginRequestStruct& data);
+      const CreateRawPeginRequestStruct& data);
 
   /**
    * @brief Convert class to struct.
    * @return  struct data.
    */
-  ElementsCreateRawPeginRequestStruct ConvertToStruct()  const;
+  CreateRawPeginRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
    * @brief definition type of Map table.
    */
-  using ElementsCreateRawPeginRequestMapTable =
-    cfd::core::JsonTableMap<ElementsCreateRawPeginRequest>;
+  using CreateRawPeginRequestMapTable =
+    cfd::core::JsonTableMap<CreateRawPeginRequest>;
 
   /**
    * @brief Get JSON mapping object.
    * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
-  virtual const ElementsCreateRawPeginRequestMapTable& GetJsonMapper() const {  // NOLINT
+  virtual const CreateRawPeginRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
@@ -21774,7 +21774,7 @@ class ElementsCreateRawPeginRequest
  /**
   * @brief JsonFunctionMap table
   */
-  static ElementsCreateRawPeginRequestMapTable json_mapper;
+  static CreateRawPeginRequestMapTable json_mapper;
   /**
    * @brief field name list.
    */
@@ -21811,18 +21811,18 @@ class ElementsCreateRawPeginRequest
 };
 
 // ------------------------------------------------------------------------
-// ElementsCreateRawPeginResponse
+// CreateRawPeginResponse
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API (ElementsCreateRawPeginResponse) class
+ * @brief JSON-API (CreateRawPeginResponse) class
  */
-class ElementsCreateRawPeginResponse
-  : public cfd::core::JsonClassBase<ElementsCreateRawPeginResponse> {
+class CreateRawPeginResponse
+  : public cfd::core::JsonClassBase<CreateRawPeginResponse> {
  public:
-  ElementsCreateRawPeginResponse() {
+  CreateRawPeginResponse() {
     CollectFieldName();
   }
-  virtual ~ElementsCreateRawPeginResponse() {
+  virtual ~CreateRawPeginResponse() {
     // do nothing
   }
   /**
@@ -21858,7 +21858,7 @@ class ElementsCreateRawPeginResponse
    * @return JSON string
    */
   static std::string GetHexString(  // line separate
-      const ElementsCreateRawPeginResponse& obj) {  // NOLINT
+      const CreateRawPeginResponse& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.hex_);
   }
   /**
@@ -21867,7 +21867,7 @@ class ElementsCreateRawPeginResponse
    * @param[in] json_value  JSON object.
    */
   static void SetHexString(  // line separate
-      ElementsCreateRawPeginResponse& obj,  // NOLINT
+      CreateRawPeginResponse& obj,  // NOLINT
       const UniValue& json_value) {
     cfd::core::ConvertFromUniValue(  // line separate
       obj.hex_, json_value);
@@ -21886,27 +21886,27 @@ class ElementsCreateRawPeginResponse
    * @param[in] data   struct data.
    */
   void ConvertFromStruct(
-      const ElementsCreateRawPeginResponseStruct& data);
+      const CreateRawPeginResponseStruct& data);
 
   /**
    * @brief Convert class to struct.
    * @return  struct data.
    */
-  ElementsCreateRawPeginResponseStruct ConvertToStruct()  const;
+  CreateRawPeginResponseStruct ConvertToStruct()  const;
 
  protected:
   /**
    * @brief definition type of Map table.
    */
-  using ElementsCreateRawPeginResponseMapTable =
-    cfd::core::JsonTableMap<ElementsCreateRawPeginResponse>;
+  using CreateRawPeginResponseMapTable =
+    cfd::core::JsonTableMap<CreateRawPeginResponse>;
 
   /**
    * @brief Get JSON mapping object.
    * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
-  virtual const ElementsCreateRawPeginResponseMapTable& GetJsonMapper() const {  // NOLINT
+  virtual const CreateRawPeginResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
@@ -21932,7 +21932,7 @@ class ElementsCreateRawPeginResponse
  /**
   * @brief JsonFunctionMap table
   */
-  static ElementsCreateRawPeginResponseMapTable json_mapper;
+  static CreateRawPeginResponseMapTable json_mapper;
   /**
    * @brief field name list.
    */
@@ -23347,18 +23347,18 @@ class ElementsPegoutTxOutFee
 };
 
 // ------------------------------------------------------------------------
-// ElementsCreateRawPegoutRequest
+// CreateRawPegoutRequest
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API (ElementsCreateRawPegoutRequest) class
+ * @brief JSON-API (CreateRawPegoutRequest) class
  */
-class ElementsCreateRawPegoutRequest
-  : public cfd::core::JsonClassBase<ElementsCreateRawPegoutRequest> {
+class CreateRawPegoutRequest
+  : public cfd::core::JsonClassBase<CreateRawPegoutRequest> {
  public:
-  ElementsCreateRawPegoutRequest() {
+  CreateRawPegoutRequest() {
     CollectFieldName();
   }
-  virtual ~ElementsCreateRawPegoutRequest() {
+  virtual ~CreateRawPegoutRequest() {
     // do nothing
   }
   /**
@@ -23394,7 +23394,7 @@ class ElementsCreateRawPegoutRequest
    * @return JSON string
    */
   static std::string GetVersionString(  // line separate
-      const ElementsCreateRawPegoutRequest& obj) {  // NOLINT
+      const CreateRawPegoutRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.version_);
   }
   /**
@@ -23403,7 +23403,7 @@ class ElementsCreateRawPegoutRequest
    * @param[in] json_value  JSON object.
    */
   static void SetVersionString(  // line separate
-      ElementsCreateRawPegoutRequest& obj,  // NOLINT
+      CreateRawPegoutRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfd::core::ConvertFromUniValue(  // line separate
       obj.version_, json_value);
@@ -23437,7 +23437,7 @@ class ElementsCreateRawPegoutRequest
    * @return JSON string
    */
   static std::string GetLocktimeString(  // line separate
-      const ElementsCreateRawPegoutRequest& obj) {  // NOLINT
+      const CreateRawPegoutRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.locktime_);
   }
   /**
@@ -23446,7 +23446,7 @@ class ElementsCreateRawPegoutRequest
    * @param[in] json_value  JSON object.
    */
   static void SetLocktimeString(  // line separate
-      ElementsCreateRawPegoutRequest& obj,  // NOLINT
+      CreateRawPegoutRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfd::core::ConvertFromUniValue(  // line separate
       obj.locktime_, json_value);
@@ -23480,7 +23480,7 @@ class ElementsCreateRawPegoutRequest
    * @return JSON string.
    */
   static std::string GetTxinsString(  // line separate
-      const ElementsCreateRawPegoutRequest& obj) {  // NOLINT
+      const CreateRawPegoutRequest& obj) {  // NOLINT
     // Do not set to const, because substitution of member variables
     // may occur in pre / post processing inside Serialize
     return obj.txins_.Serialize();
@@ -23491,7 +23491,7 @@ class ElementsCreateRawPegoutRequest
    * @param[in] json_value  JSON object
    */
   static void SetTxinsString(  // line separate
-      ElementsCreateRawPegoutRequest& obj,  // NOLINT
+      CreateRawPegoutRequest& obj,  // NOLINT
       const UniValue& json_value) {
     obj.txins_.DeserializeUniValue(json_value);
   }
@@ -23524,7 +23524,7 @@ class ElementsCreateRawPegoutRequest
    * @return JSON string.
    */
   static std::string GetTxoutsString(  // line separate
-      const ElementsCreateRawPegoutRequest& obj) {  // NOLINT
+      const CreateRawPegoutRequest& obj) {  // NOLINT
     // Do not set to const, because substitution of member variables
     // may occur in pre / post processing inside Serialize
     return obj.txouts_.Serialize();
@@ -23535,7 +23535,7 @@ class ElementsCreateRawPegoutRequest
    * @param[in] json_value  JSON object
    */
   static void SetTxoutsString(  // line separate
-      ElementsCreateRawPegoutRequest& obj,  // NOLINT
+      CreateRawPegoutRequest& obj,  // NOLINT
       const UniValue& json_value) {
     obj.txouts_.DeserializeUniValue(json_value);
   }
@@ -23568,7 +23568,7 @@ class ElementsCreateRawPegoutRequest
    * @return JSON string.
    */
   static std::string GetPegoutString(  // line separate
-      const ElementsCreateRawPegoutRequest& obj) {  // NOLINT
+      const CreateRawPegoutRequest& obj) {  // NOLINT
     // Do not set to const, because substitution of member variables
     // may occur in pre / post processing inside Serialize
     return obj.pegout_.Serialize();
@@ -23579,7 +23579,7 @@ class ElementsCreateRawPegoutRequest
    * @param[in] json_value  JSON object
    */
   static void SetPegoutString(  // line separate
-      ElementsCreateRawPegoutRequest& obj,  // NOLINT
+      CreateRawPegoutRequest& obj,  // NOLINT
       const UniValue& json_value) {
     obj.pegout_.DeserializeUniValue(json_value);
   }
@@ -23612,7 +23612,7 @@ class ElementsCreateRawPegoutRequest
    * @return JSON string.
    */
   static std::string GetFeeString(  // line separate
-      const ElementsCreateRawPegoutRequest& obj) {  // NOLINT
+      const CreateRawPegoutRequest& obj) {  // NOLINT
     // Do not set to const, because substitution of member variables
     // may occur in pre / post processing inside Serialize
     return obj.fee_.Serialize();
@@ -23623,7 +23623,7 @@ class ElementsCreateRawPegoutRequest
    * @param[in] json_value  JSON object
    */
   static void SetFeeString(  // line separate
-      ElementsCreateRawPegoutRequest& obj,  // NOLINT
+      CreateRawPegoutRequest& obj,  // NOLINT
       const UniValue& json_value) {
     obj.fee_.DeserializeUniValue(json_value);
   }
@@ -23641,27 +23641,27 @@ class ElementsCreateRawPegoutRequest
    * @param[in] data   struct data.
    */
   void ConvertFromStruct(
-      const ElementsCreateRawPegoutRequestStruct& data);
+      const CreateRawPegoutRequestStruct& data);
 
   /**
    * @brief Convert class to struct.
    * @return  struct data.
    */
-  ElementsCreateRawPegoutRequestStruct ConvertToStruct()  const;
+  CreateRawPegoutRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
    * @brief definition type of Map table.
    */
-  using ElementsCreateRawPegoutRequestMapTable =
-    cfd::core::JsonTableMap<ElementsCreateRawPegoutRequest>;
+  using CreateRawPegoutRequestMapTable =
+    cfd::core::JsonTableMap<CreateRawPegoutRequest>;
 
   /**
    * @brief Get JSON mapping object.
    * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
-  virtual const ElementsCreateRawPegoutRequestMapTable& GetJsonMapper() const {  // NOLINT
+  virtual const CreateRawPegoutRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
@@ -23687,7 +23687,7 @@ class ElementsCreateRawPegoutRequest
  /**
   * @brief JsonFunctionMap table
   */
-  static ElementsCreateRawPegoutRequestMapTable json_mapper;
+  static CreateRawPegoutRequestMapTable json_mapper;
   /**
    * @brief field name list.
    */
@@ -23724,18 +23724,18 @@ class ElementsCreateRawPegoutRequest
 };
 
 // ------------------------------------------------------------------------
-// ElementsCreateRawPegoutResponse
+// CreateRawPegoutResponse
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API (ElementsCreateRawPegoutResponse) class
+ * @brief JSON-API (CreateRawPegoutResponse) class
  */
-class ElementsCreateRawPegoutResponse
-  : public cfd::core::JsonClassBase<ElementsCreateRawPegoutResponse> {
+class CreateRawPegoutResponse
+  : public cfd::core::JsonClassBase<CreateRawPegoutResponse> {
  public:
-  ElementsCreateRawPegoutResponse() {
+  CreateRawPegoutResponse() {
     CollectFieldName();
   }
-  virtual ~ElementsCreateRawPegoutResponse() {
+  virtual ~CreateRawPegoutResponse() {
     // do nothing
   }
   /**
@@ -23771,7 +23771,7 @@ class ElementsCreateRawPegoutResponse
    * @return JSON string
    */
   static std::string GetHexString(  // line separate
-      const ElementsCreateRawPegoutResponse& obj) {  // NOLINT
+      const CreateRawPegoutResponse& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.hex_);
   }
   /**
@@ -23780,7 +23780,7 @@ class ElementsCreateRawPegoutResponse
    * @param[in] json_value  JSON object.
    */
   static void SetHexString(  // line separate
-      ElementsCreateRawPegoutResponse& obj,  // NOLINT
+      CreateRawPegoutResponse& obj,  // NOLINT
       const UniValue& json_value) {
     cfd::core::ConvertFromUniValue(  // line separate
       obj.hex_, json_value);
@@ -23814,7 +23814,7 @@ class ElementsCreateRawPegoutResponse
    * @return JSON string
    */
   static std::string GetBtcAddressString(  // line separate
-      const ElementsCreateRawPegoutResponse& obj) {  // NOLINT
+      const CreateRawPegoutResponse& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.btc_address_);
   }
   /**
@@ -23823,7 +23823,7 @@ class ElementsCreateRawPegoutResponse
    * @param[in] json_value  JSON object.
    */
   static void SetBtcAddressString(  // line separate
-      ElementsCreateRawPegoutResponse& obj,  // NOLINT
+      CreateRawPegoutResponse& obj,  // NOLINT
       const UniValue& json_value) {
     cfd::core::ConvertFromUniValue(  // line separate
       obj.btc_address_, json_value);
@@ -23842,27 +23842,27 @@ class ElementsCreateRawPegoutResponse
    * @param[in] data   struct data.
    */
   void ConvertFromStruct(
-      const ElementsCreateRawPegoutResponseStruct& data);
+      const CreateRawPegoutResponseStruct& data);
 
   /**
    * @brief Convert class to struct.
    * @return  struct data.
    */
-  ElementsCreateRawPegoutResponseStruct ConvertToStruct()  const;
+  CreateRawPegoutResponseStruct ConvertToStruct()  const;
 
  protected:
   /**
    * @brief definition type of Map table.
    */
-  using ElementsCreateRawPegoutResponseMapTable =
-    cfd::core::JsonTableMap<ElementsCreateRawPegoutResponse>;
+  using CreateRawPegoutResponseMapTable =
+    cfd::core::JsonTableMap<CreateRawPegoutResponse>;
 
   /**
    * @brief Get JSON mapping object.
    * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
-  virtual const ElementsCreateRawPegoutResponseMapTable& GetJsonMapper() const {  // NOLINT
+  virtual const CreateRawPegoutResponseMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
@@ -23888,7 +23888,7 @@ class ElementsCreateRawPegoutResponse
  /**
   * @brief JsonFunctionMap table
   */
-  static ElementsCreateRawPegoutResponseMapTable json_mapper;
+  static CreateRawPegoutResponseMapTable json_mapper;
   /**
    * @brief field name list.
    */

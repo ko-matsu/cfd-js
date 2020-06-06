@@ -1585,8 +1585,7 @@ ElementsTransactionStructApi::CreateRawPeginTransaction(  // NOLINT
 
   CreateRawPeginResponseStruct result;
   result = ExecuteStructApi<
-      CreateRawPeginRequestStruct,
-      CreateRawPeginResponseStruct>(
+      CreateRawPeginRequestStruct, CreateRawPeginResponseStruct>(
       request, call_func, std::string(__FUNCTION__));
   return result;
 }
@@ -1703,8 +1702,7 @@ ElementsTransactionStructApi::CreateRawPegoutTransaction(  // NOLINT
 
   CreateRawPegoutResponseStruct result;
   result = ExecuteStructApi<
-      CreateRawPegoutRequestStruct,
-      CreateRawPegoutResponseStruct>(
+      CreateRawPegoutRequestStruct, CreateRawPegoutResponseStruct>(
       request, call_func, std::string(__FUNCTION__));
   return result;
 }
@@ -1837,8 +1835,7 @@ ElementsTransactionStructApi::CreateDestroyAmountTransaction(
 
   CreateDestroyAmountResponseStruct result;
   result = ExecuteStructApi<
-      CreateDestroyAmountRequestStruct,
-      CreateDestroyAmountResponseStruct>(
+      CreateDestroyAmountRequestStruct, CreateDestroyAmountResponseStruct>(
       request, call_func, std::string(__FUNCTION__));
   return result;
 }

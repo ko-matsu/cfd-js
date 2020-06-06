@@ -163,8 +163,7 @@ class CFD_JS_API_EXPORT ElementsTransactionStructApi {
    * @param[in] request Transactionを構築するパラメータの構造体
    * @return Transactionのhexデータを格納した構造体
    */
-  static CreateRawPeginResponseStruct
-  CreateRawPeginTransaction(  // NOLINT
+  static CreateRawPeginResponseStruct CreateRawPeginTransaction(  // NOLINT
       const CreateRawPeginRequestStruct& request);
 
   /**
@@ -196,8 +195,7 @@ class CFD_JS_API_EXPORT ElementsTransactionStructApi {
    * @param[in] request Transactionを構築するパラメータの構造体
    * @return Transactionのhexデータを格納した構造体
    */
-  static CreateDestroyAmountResponseStruct
-  CreateDestroyAmountTransaction(
+  static CreateDestroyAmountResponseStruct CreateDestroyAmountTransaction(
       const CreateDestroyAmountRequestStruct& request);
 
   /**

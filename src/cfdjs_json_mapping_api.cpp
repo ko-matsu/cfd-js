@@ -891,10 +891,8 @@ std::string JsonMappingApi::CreateElementsSignatureHash(
 std::string JsonMappingApi::CreateRawPegin(
     const std::string &request_message) {
   return ExecuteJsonApi<
-      api::json::CreateRawPeginRequest,
-      api::json::CreateRawPeginResponse,
-      api::CreateRawPeginRequestStruct,
-      api::CreateRawPeginResponseStruct>(
+      api::json::CreateRawPeginRequest, api::json::CreateRawPeginResponse,
+      api::CreateRawPeginRequestStruct, api::CreateRawPeginResponseStruct>(
       request_message,
       ElementsTransactionStructApi::CreateRawPeginTransaction);
 }
@@ -902,10 +900,8 @@ std::string JsonMappingApi::CreateRawPegin(
 std::string JsonMappingApi::CreateRawPegout(
     const std::string &request_message) {
   return ExecuteJsonApi<
-      api::json::CreateRawPegoutRequest,
-      api::json::CreateRawPegoutResponse,
-      api::CreateRawPegoutRequestStruct,
-      api::CreateRawPegoutResponseStruct>(
+      api::json::CreateRawPegoutRequest, api::json::CreateRawPegoutResponse,
+      api::CreateRawPegoutRequestStruct, api::CreateRawPegoutResponseStruct>(
       request_message,
       ElementsTransactionStructApi::CreateRawPegoutTransaction);
 }

@@ -374,7 +374,8 @@ ElementsNetType ElementsAddressStructApi::ConvertElementsNetType(
   ElementsNetType net_type;
   if (elements_net_type == "liquidv1") {
     net_type = ElementsNetType::kLiquidV1;
-  } else if ((elements_net_type == "regtest") ||
+  } else if (
+      (elements_net_type == "regtest") ||
       (elements_net_type == "liquidregtest") ||
       (elements_net_type == "elementsregtest")) {
     net_type = ElementsNetType::kElementsRegtest;

@@ -777,6 +777,21 @@ std::string JsonMappingApi::FundRawTransaction(
 #endif
 }
 
+std::string JsonMappingApi::UpdateTxOutAmount(
+    const std::string &request_message) {
+  return ExecuteElementsCheckApi<
+      api::json::UpdateTxOutAmountRequest,
+      api::json::UpdateTxOutAmountResponse,
+      api::UpdateTxOutAmountRequestStruct,
+      api::UpdateTxOutAmountResponseStruct>(
+      request_message, TransactionStructApi::UpdateTxOutAmount,
+#ifndef CFD_DISABLE_ELEMENTS
+      ElementsTransactionStructApi::UpdateTxOutAmount);
+#else
+      TransactionStructApi::UpdateTxOutAmount);
+#endif
+}
+
 #ifndef CFD_DISABLE_ELEMENTS
 
 std::string JsonMappingApi::GetConfidentialAddress(

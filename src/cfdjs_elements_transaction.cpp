@@ -1150,6 +1150,42 @@ VerifySignResponseStruct ElementsTransactionStructApi::VerifySign(
   return result;
 }
 
+UpdateTxOutAmountResponseStruct
+ElementsTransactionStructApi::UpdateTxOutAmount(
+    const UpdateTxOutAmountRequestStruct& request) {
+  auto call_func = [](const UpdateTxOutAmountRequestStruct& request)
+      -> UpdateTxOutAmountResponseStruct {  // NOLINT
+    UpdateTxOutAmountResponseStruct response;
+
+    ConfidentialTransactionContext ctx(request.tx);
+    ElementsAddressFactory address_factory;
+    for (auto& txout : request.txouts) {
+      uint32_t index = txout.index;
+      if (!txout.direct_locking_script.empty()) {
+        index = ctx.GetTxOutIndex(Script(txout.direct_locking_script));
+      } else if (!txout.address.empty()) {
+        if (ElementsConfidentialAddress::IsConfidentialAddress(
+                txout.address)) {
+          ElementsConfidentialAddress confidential_addr(txout.address);
+          index = ctx.GetTxOutIndex(confidential_addr.GetUnblindedAddress());
+        } else {
+          index = ctx.GetTxOutIndex(address_factory.GetAddress(txout.address));
+        }
+      }
+      ctx.SetTxOutValue(index, Amount(txout.amount));
+    }
+
+    response.hex = ctx.GetHex();
+    return response;
+  };
+
+  UpdateTxOutAmountResponseStruct result;
+  result = ExecuteStructApi<
+      UpdateTxOutAmountRequestStruct, UpdateTxOutAmountResponseStruct>(
+      request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
 BlindRawTransactionResponseStruct
 ElementsTransactionStructApi::BlindTransaction(
     const BlindRawTransactionRequestStruct& request) {

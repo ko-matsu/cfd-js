@@ -11668,6 +11668,156 @@ CreateRawTransactionResponseStruct CreateRawTransactionResponse::ConvertToStruct
 }
 
 // ------------------------------------------------------------------------
+// UpdateTxOutAmountData
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<UpdateTxOutAmountData>
+  UpdateTxOutAmountData::json_mapper;
+std::vector<std::string> UpdateTxOutAmountData::item_list;
+
+void UpdateTxOutAmountData::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<UpdateTxOutAmountData> func_table;  // NOLINT
+
+  func_table = {
+    UpdateTxOutAmountData::GetAmountString,
+    UpdateTxOutAmountData::SetAmountString,
+    UpdateTxOutAmountData::GetAmountFieldType,
+  };
+  json_mapper.emplace("amount", func_table);
+  item_list.push_back("amount");
+  func_table = {
+    UpdateTxOutAmountData::GetIndexString,
+    UpdateTxOutAmountData::SetIndexString,
+    UpdateTxOutAmountData::GetIndexFieldType,
+  };
+  json_mapper.emplace("index", func_table);
+  item_list.push_back("index");
+  func_table = {
+    UpdateTxOutAmountData::GetAddressString,
+    UpdateTxOutAmountData::SetAddressString,
+    UpdateTxOutAmountData::GetAddressFieldType,
+  };
+  json_mapper.emplace("address", func_table);
+  item_list.push_back("address");
+  func_table = {
+    UpdateTxOutAmountData::GetDirectLockingScriptString,
+    UpdateTxOutAmountData::SetDirectLockingScriptString,
+    UpdateTxOutAmountData::GetDirectLockingScriptFieldType,
+  };
+  json_mapper.emplace("directLockingScript", func_table);
+  item_list.push_back("directLockingScript");
+}
+
+void UpdateTxOutAmountData::ConvertFromStruct(
+    const UpdateTxOutAmountDataStruct& data) {
+  amount_ = data.amount;
+  index_ = data.index;
+  address_ = data.address;
+  direct_locking_script_ = data.direct_locking_script;
+  ignore_items = data.ignore_items;
+}
+
+UpdateTxOutAmountDataStruct UpdateTxOutAmountData::ConvertToStruct() const {  // NOLINT
+  UpdateTxOutAmountDataStruct result;
+  result.amount = amount_;
+  result.index = index_;
+  result.address = address_;
+  result.direct_locking_script = direct_locking_script_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// UpdateTxOutAmountRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<UpdateTxOutAmountRequest>
+  UpdateTxOutAmountRequest::json_mapper;
+std::vector<std::string> UpdateTxOutAmountRequest::item_list;
+
+void UpdateTxOutAmountRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<UpdateTxOutAmountRequest> func_table;  // NOLINT
+
+  func_table = {
+    UpdateTxOutAmountRequest::GetTxString,
+    UpdateTxOutAmountRequest::SetTxString,
+    UpdateTxOutAmountRequest::GetTxFieldType,
+  };
+  json_mapper.emplace("tx", func_table);
+  item_list.push_back("tx");
+  func_table = {
+    UpdateTxOutAmountRequest::GetIsElementsString,
+    UpdateTxOutAmountRequest::SetIsElementsString,
+    UpdateTxOutAmountRequest::GetIsElementsFieldType,
+  };
+  json_mapper.emplace("isElements", func_table);
+  item_list.push_back("isElements");
+  func_table = {
+    UpdateTxOutAmountRequest::GetTxoutsString,
+    UpdateTxOutAmountRequest::SetTxoutsString,
+    UpdateTxOutAmountRequest::GetTxoutsFieldType,
+  };
+  json_mapper.emplace("txouts", func_table);
+  item_list.push_back("txouts");
+}
+
+void UpdateTxOutAmountRequest::ConvertFromStruct(
+    const UpdateTxOutAmountRequestStruct& data) {
+  tx_ = data.tx;
+  is_elements_ = data.is_elements;
+  txouts_.ConvertFromStruct(data.txouts);
+  ignore_items = data.ignore_items;
+}
+
+UpdateTxOutAmountRequestStruct UpdateTxOutAmountRequest::ConvertToStruct() const {  // NOLINT
+  UpdateTxOutAmountRequestStruct result;
+  result.tx = tx_;
+  result.is_elements = is_elements_;
+  result.txouts = txouts_.ConvertToStruct();
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// UpdateTxOutAmountResponse
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<UpdateTxOutAmountResponse>
+  UpdateTxOutAmountResponse::json_mapper;
+std::vector<std::string> UpdateTxOutAmountResponse::item_list;
+
+void UpdateTxOutAmountResponse::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<UpdateTxOutAmountResponse> func_table;  // NOLINT
+
+  func_table = {
+    UpdateTxOutAmountResponse::GetHexString,
+    UpdateTxOutAmountResponse::SetHexString,
+    UpdateTxOutAmountResponse::GetHexFieldType,
+  };
+  json_mapper.emplace("hex", func_table);
+  item_list.push_back("hex");
+}
+
+void UpdateTxOutAmountResponse::ConvertFromStruct(
+    const UpdateTxOutAmountResponseStruct& data) {
+  hex_ = data.hex;
+  ignore_items = data.ignore_items;
+}
+
+UpdateTxOutAmountResponseStruct UpdateTxOutAmountResponse::ConvertToStruct() const {  // NOLINT
+  UpdateTxOutAmountResponseStruct result;
+  result.hex = hex_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
 // WitnessStackData
 // ------------------------------------------------------------------------
 cfd::core::JsonTableMap<WitnessStackData>

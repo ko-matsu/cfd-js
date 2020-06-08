@@ -710,18 +710,47 @@ VerifySignResponseStruct TransactionStructApi::VerifySign(
   return result;
 }
 
+UpdateTxOutAmountResponseStruct TransactionStructApi::UpdateTxOutAmount(
+    const UpdateTxOutAmountRequestStruct& request) {
+  auto call_func = [](const UpdateTxOutAmountRequestStruct& request)
+      -> UpdateTxOutAmountResponseStruct {  // NOLINT
+    UpdateTxOutAmountResponseStruct response;
+
+    TransactionContext ctx(request.tx);
+    AddressFactory address_factory;
+    for (auto& txout : request.txouts) {
+      uint32_t index = txout.index;
+      if (!txout.direct_locking_script.empty()) {
+        index = ctx.GetTxOutIndex(Script(txout.direct_locking_script));
+      } else if (!txout.address.empty()) {
+        index = ctx.GetTxOutIndex(address_factory.GetAddress(txout.address));
+      }
+      ctx.SetTxOutValue(index, Amount(txout.amount));
+    }
+
+    response.hex = ctx.GetHex();
+    return response;
+  };
+
+  UpdateTxOutAmountResponseStruct result;
+  result = ExecuteStructApi<
+      UpdateTxOutAmountRequestStruct, UpdateTxOutAmountResponseStruct>(
+      request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
 bool TransactionStructApi::CheckMultiSigScript(const Script& script) {
   bool is_match = false;
   std::vector<ScriptElement> script_element = script.GetElementList();
 
   if (script_element.size() < 4) {
-    // 不足
+    // insufficient
   } else {
     for (size_t index = 0; index < script_element.size(); ++index) {
       if ((index == 0) || (index == (script_element.size() - 2))) {
         int value = static_cast<int>(script_element[index].GetNumber());
         if ((value >= 1) && (value <= 16)) {
-          // OK (1～16)
+          // OK (1 to 16)
         } else {
           break;
         }
@@ -729,10 +758,10 @@ bool TransactionStructApi::CheckMultiSigScript(const Script& script) {
         ScriptOperator op_code = script_element[index].GetOpCode();
 
         if (op_code == ScriptOperator::OP_CHECKMULTISIG) {
-          // CheckMultiSigVerifyは関係ない
+          // OP_CHECKMULTISIGVERIFY is excluded.
           is_match = true;
         }
-        // 終端なのでbreakは行わない
+        // Don't have to call break because it is the end.
       } else {
         size_t data_size = script_element[index].GetBinaryData().GetDataSize();
         if (script_element[index].IsBinary() &&

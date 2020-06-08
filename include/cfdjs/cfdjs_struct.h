@@ -2760,6 +2760,45 @@ struct CreateRawTransactionResponseStruct {
 };
 
 // ------------------------------------------------------------------------
+// UpdateTxOutAmountDataStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief UpdateTxOutAmountDataStruct struct
+ */
+struct UpdateTxOutAmountDataStruct {
+  int64_t amount = 0;                      //!< amount  // NOLINT
+  uint32_t index = 0;                      //!< index  // NOLINT
+  std::string address = "";                //!< address  // NOLINT
+  std::string direct_locking_script = "";  //!< direct_locking_script  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// UpdateTxOutAmountRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief UpdateTxOutAmountRequestStruct struct
+ */
+struct UpdateTxOutAmountRequestStruct {
+  std::string tx = "";                              //!< tx  // NOLINT
+  bool is_elements = false;                         //!< is_elements  // NOLINT
+  std::vector<UpdateTxOutAmountDataStruct> txouts;  //!< txouts  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// UpdateTxOutAmountResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief UpdateTxOutAmountResponseStruct struct
+ */
+struct UpdateTxOutAmountResponseStruct {
+  std::string hex = "";  //!< hex  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
 // WitnessStackDataStruct
 // ------------------------------------------------------------------------
 /**

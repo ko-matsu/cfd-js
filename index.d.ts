@@ -1327,6 +1327,23 @@ export interface CreateRawTransactionResponse {
     hex: string;
 }
 
+export interface UpdateTxOutAmountData {
+    amount: bigint | number;
+    index?: number;
+    address?: string;
+    directLockingScript?: string;
+}
+
+export interface UpdateTxOutAmountRequest {
+    tx: string;
+    isElements?: boolean;
+    txouts?: UpdateTxOutAmountData[];
+}
+
+export interface UpdateTxOutAmountResponse {
+    hex: string;
+}
+
 export interface WitnessStackData {
     index: number;
     hex: string;
@@ -1521,6 +1538,8 @@ export function SignWithPrivkey(jsonObject: SignWithPrivkeyRequest): SignWithPri
 export function GetSupportedFunction(): GetSupportedFunctionResponse;
 
 export function CreateRawTransaction(jsonObject: CreateRawTransactionRequest): CreateRawTransactionResponse;
+
+export function UpdateTxOutAmount(jsonObject: UpdateTxOutAmountRequest): UpdateTxOutAmountResponse;
 
 export function UpdateWitnessStack(jsonObject: UpdateWitnessStackRequest): UpdateWitnessStackResponse;
 

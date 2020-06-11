@@ -523,6 +523,39 @@ AddPubkeyHashSignResponseStruct TransactionStructApi::AddPubkeyHashSign(
   return result;
 }
 
+AddScriptHashSignResponseStruct TransactionStructApi::AddScriptHashSign(
+    const AddScriptHashSignRequestStruct& request) {
+  auto call_func = [](const AddScriptHashSignRequestStruct& request)
+      -> AddScriptHashSignResponseStruct {  // NOLINT
+    AddScriptHashSignResponseStruct response;
+
+    TransactionContext ctx(request.tx);
+    OutPoint outpoint(Txid(request.txin.txid), request.txin.vout);
+    Script redeem_script(request.txin.redeem_script);
+    AddressType addr_type =
+        AddressStructApi::ConvertAddressType(request.txin.hash_type);
+    std::vector<SignParameter> signatures;
+    for (const auto& sign_data : request.txin.sign_param) {
+      SignParameter signature =
+          TransactionStructApiBase::ConvertSignDataStructToSignParameter(
+              sign_data);  // NOLINT
+      signatures.emplace_back(signature);
+    }
+
+    ctx.AddScriptHashSign(
+        outpoint, signatures, redeem_script, addr_type,
+        redeem_script.IsMultisigScript());
+    response.hex = ctx.GetHex();
+    return response;
+  };
+
+  AddScriptHashSignResponseStruct result;
+  result = ExecuteStructApi<
+      AddScriptHashSignRequestStruct, AddScriptHashSignResponseStruct>(
+      request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
 CreateSignatureHashResponseStruct TransactionStructApi::CreateSignatureHash(
     const CreateSignatureHashRequestStruct& request) {
   auto call_func = [](const CreateSignatureHashRequestStruct& request)

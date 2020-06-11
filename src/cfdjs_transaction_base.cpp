@@ -301,6 +301,15 @@ template SignParameter
 TransactionStructApiBase::ConvertSignDataStructToSignParameter<
     MultisigScriptSigDataStruct>(const MultisigScriptSigDataStruct& sign_data);
 
+/**
+ * @relates TransactionStructApiBase
+ * @param[in] sign_data ScriptHashSignDataStruct構造体
+ * @returns SignParameter情報
+ */
+template SignParameter
+TransactionStructApiBase::ConvertSignDataStructToSignParameter<
+    ScriptHashSignDataStruct>(const ScriptHashSignDataStruct& sign_data);
+
 }  // namespace api
 }  // namespace js
 }  // namespace cfd

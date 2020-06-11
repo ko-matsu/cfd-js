@@ -840,7 +840,7 @@ let addP2WPKHTxSign2;
     },
   };
   /* eslint-enable max-len */
-  console.log('*** Request ***\n', reqJson);
+  console.log('*** Request ***\n', JSON.stringify(reqJson, null, '  '));
   addP2WPKHTxSign2 = AddSign(reqJson);
   console.log('\n*** Response ***\n', addP2WPKHTxSign2, '\n');
 }

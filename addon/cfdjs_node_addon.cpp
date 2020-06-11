@@ -441,6 +441,15 @@ Value SignWithPrivkey(const CallbackInfo &information) {
 }
 
 /**
+ * @brief AddScriptHashSignのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value AddScriptHashSign(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::AddScriptHashSign);
+}
+
+/**
  * @brief UpdateWitnessStackのJSON API関数(request, response).
  * @param[in] information     node addon apiのコールバック情報
  * @return 戻り値(JSON文字列)
@@ -752,6 +761,9 @@ void InitializeJsonApi(Env env, Object *exports) {
   exports->Set(
       String::New(env, "SignWithPrivkey"),
       Function::New(env, SignWithPrivkey));
+  exports->Set(
+      String::New(env, "AddScriptHashSign"),
+      Function::New(env, AddScriptHashSign));
   exports->Set(
       String::New(env, "UpdateWitnessStack"),
       Function::New(env, UpdateWitnessStack));

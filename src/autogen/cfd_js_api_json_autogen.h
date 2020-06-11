@@ -3053,6 +3053,1030 @@ class AddRawTransactionResponse
 };
 
 // ------------------------------------------------------------------------
+// ScriptHashSignData
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (ScriptHashSignData) class
+ */
+class ScriptHashSignData
+  : public cfd::core::JsonClassBase<ScriptHashSignData> {
+ public:
+  ScriptHashSignData() {
+    CollectFieldName();
+  }
+  virtual ~ScriptHashSignData() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of hex
+   * @return hex
+   */
+  std::string GetHex() const {
+    return hex_;
+  }
+  /**
+   * @brief Set to hex
+   * @param[in] hex    setting value.
+   */
+  void SetHex(  // line separate
+    const std::string& hex) {  // NOLINT
+    this->hex_ = hex;
+  }
+  /**
+   * @brief Get data type of hex
+   * @return Data type of hex
+   */
+  static std::string GetHexFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of hex field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetHexString(  // line separate
+      const ScriptHashSignData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.hex_);
+  }
+  /**
+   * @brief Set json object to hex field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetHexString(  // line separate
+      ScriptHashSignData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.hex_, json_value);
+  }
+
+  /**
+   * @brief Get of type
+   * @return type
+   */
+  std::string GetType() const {
+    return type_;
+  }
+  /**
+   * @brief Set to type
+   * @param[in] type    setting value.
+   */
+  void SetType(  // line separate
+    const std::string& type) {  // NOLINT
+    this->type_ = type;
+  }
+  /**
+   * @brief Get data type of type
+   * @return Data type of type
+   */
+  static std::string GetTypeFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of type field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTypeString(  // line separate
+      const ScriptHashSignData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.type_);
+  }
+  /**
+   * @brief Set json object to type field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTypeString(  // line separate
+      ScriptHashSignData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.type_, json_value);
+  }
+
+  /**
+   * @brief Get of derEncode
+   * @return derEncode
+   */
+  bool GetDerEncode() const {
+    return der_encode_;
+  }
+  /**
+   * @brief Set to derEncode
+   * @param[in] der_encode    setting value.
+   */
+  void SetDerEncode(  // line separate
+    const bool& der_encode) {  // NOLINT
+    this->der_encode_ = der_encode;
+  }
+  /**
+   * @brief Get data type of derEncode
+   * @return Data type of derEncode
+   */
+  static std::string GetDerEncodeFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of derEncode field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetDerEncodeString(  // line separate
+      const ScriptHashSignData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.der_encode_);
+  }
+  /**
+   * @brief Set json object to derEncode field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetDerEncodeString(  // line separate
+      ScriptHashSignData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.der_encode_, json_value);
+  }
+
+  /**
+   * @brief Get of sighashType
+   * @return sighashType
+   */
+  std::string GetSighashType() const {
+    return sighash_type_;
+  }
+  /**
+   * @brief Set to sighashType
+   * @param[in] sighash_type    setting value.
+   */
+  void SetSighashType(  // line separate
+    const std::string& sighash_type) {  // NOLINT
+    this->sighash_type_ = sighash_type;
+  }
+  /**
+   * @brief Get data type of sighashType
+   * @return Data type of sighashType
+   */
+  static std::string GetSighashTypeFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of sighashType field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetSighashTypeString(  // line separate
+      const ScriptHashSignData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.sighash_type_);
+  }
+  /**
+   * @brief Set json object to sighashType field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetSighashTypeString(  // line separate
+      ScriptHashSignData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.sighash_type_, json_value);
+  }
+
+  /**
+   * @brief Get of sighashAnyoneCanPay
+   * @return sighashAnyoneCanPay
+   */
+  bool GetSighashAnyoneCanPay() const {
+    return sighash_anyone_can_pay_;
+  }
+  /**
+   * @brief Set to sighashAnyoneCanPay
+   * @param[in] sighash_anyone_can_pay    setting value.
+   */
+  void SetSighashAnyoneCanPay(  // line separate
+    const bool& sighash_anyone_can_pay) {  // NOLINT
+    this->sighash_anyone_can_pay_ = sighash_anyone_can_pay;
+  }
+  /**
+   * @brief Get data type of sighashAnyoneCanPay
+   * @return Data type of sighashAnyoneCanPay
+   */
+  static std::string GetSighashAnyoneCanPayFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of sighashAnyoneCanPay field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetSighashAnyoneCanPayString(  // line separate
+      const ScriptHashSignData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.sighash_anyone_can_pay_);
+  }
+  /**
+   * @brief Set json object to sighashAnyoneCanPay field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetSighashAnyoneCanPayString(  // line separate
+      ScriptHashSignData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.sighash_anyone_can_pay_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const ScriptHashSignDataStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  ScriptHashSignDataStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using ScriptHashSignDataMapTable =
+    cfd::core::JsonTableMap<ScriptHashSignData>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const ScriptHashSignDataMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static ScriptHashSignDataMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(hex) value
+   */
+  std::string hex_ = "";
+  /**
+   * @brief JsonAPI(type) value
+   */
+  std::string type_ = "auto";
+  /**
+   * @brief JsonAPI(derEncode) value
+   */
+  bool der_encode_ = false;
+  /**
+   * @brief JsonAPI(sighashType) value
+   */
+  std::string sighash_type_ = "all";
+  /**
+   * @brief JsonAPI(sighashAnyoneCanPay) value
+   */
+  bool sighash_anyone_can_pay_ = false;
+};
+
+// ------------------------------------------------------------------------
+// AddScriptHashSignTxInRequest
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (AddScriptHashSignTxInRequest) class
+ */
+class AddScriptHashSignTxInRequest
+  : public cfd::core::JsonClassBase<AddScriptHashSignTxInRequest> {
+ public:
+  AddScriptHashSignTxInRequest() {
+    CollectFieldName();
+  }
+  virtual ~AddScriptHashSignTxInRequest() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of txid
+   * @return txid
+   */
+  std::string GetTxid() const {
+    return txid_;
+  }
+  /**
+   * @brief Set to txid
+   * @param[in] txid    setting value.
+   */
+  void SetTxid(  // line separate
+    const std::string& txid) {  // NOLINT
+    this->txid_ = txid;
+  }
+  /**
+   * @brief Get data type of txid
+   * @return Data type of txid
+   */
+  static std::string GetTxidFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of txid field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTxidString(  // line separate
+      const AddScriptHashSignTxInRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.txid_);
+  }
+  /**
+   * @brief Set json object to txid field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTxidString(  // line separate
+      AddScriptHashSignTxInRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.txid_, json_value);
+  }
+
+  /**
+   * @brief Get of vout
+   * @return vout
+   */
+  uint32_t GetVout() const {
+    return vout_;
+  }
+  /**
+   * @brief Set to vout
+   * @param[in] vout    setting value.
+   */
+  void SetVout(  // line separate
+    const uint32_t& vout) {  // NOLINT
+    this->vout_ = vout;
+  }
+  /**
+   * @brief Get data type of vout
+   * @return Data type of vout
+   */
+  static std::string GetVoutFieldType() {
+    return "uint32_t";
+  }
+  /**
+   * @brief Get json string of vout field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetVoutString(  // line separate
+      const AddScriptHashSignTxInRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.vout_);
+  }
+  /**
+   * @brief Set json object to vout field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetVoutString(  // line separate
+      AddScriptHashSignTxInRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.vout_, json_value);
+  }
+
+  /**
+   * @brief Get of signParam.
+   * @return signParam
+   */
+  JsonObjectVector<ScriptHashSignData, ScriptHashSignDataStruct>& GetSignParam() {  // NOLINT
+    return sign_param_;
+  }
+  /**
+   * @brief Set to signParam.
+   * @param[in] sign_param    setting value.
+   */
+  void SetSignParam(  // line separate
+      const JsonObjectVector<ScriptHashSignData, ScriptHashSignDataStruct>& sign_param) {  // NOLINT
+    this->sign_param_ = sign_param;
+  }
+  /**
+   * @brief Get data type of signParam.
+   * @return Data type of signParam.
+   */
+  static std::string GetSignParamFieldType() {
+    return "JsonObjectVector<ScriptHashSignData, ScriptHashSignDataStruct>";  // NOLINT
+  }
+  /**
+   * @brief Get json string of signParam field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
+   */
+  static std::string GetSignParamString(  // line separate
+      const AddScriptHashSignTxInRequest& obj) {  // NOLINT
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
+    return obj.sign_param_.Serialize();
+  }
+  /**
+   * @brief Set json object to signParam field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
+   */
+  static void SetSignParamString(  // line separate
+      AddScriptHashSignTxInRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    obj.sign_param_.DeserializeUniValue(json_value);
+  }
+
+  /**
+   * @brief Get of redeemScript
+   * @return redeemScript
+   */
+  std::string GetRedeemScript() const {
+    return redeem_script_;
+  }
+  /**
+   * @brief Set to redeemScript
+   * @param[in] redeem_script    setting value.
+   */
+  void SetRedeemScript(  // line separate
+    const std::string& redeem_script) {  // NOLINT
+    this->redeem_script_ = redeem_script;
+  }
+  /**
+   * @brief Get data type of redeemScript
+   * @return Data type of redeemScript
+   */
+  static std::string GetRedeemScriptFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of redeemScript field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetRedeemScriptString(  // line separate
+      const AddScriptHashSignTxInRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.redeem_script_);
+  }
+  /**
+   * @brief Set json object to redeemScript field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetRedeemScriptString(  // line separate
+      AddScriptHashSignTxInRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.redeem_script_, json_value);
+  }
+
+  /**
+   * @brief Get of hashType
+   * @return hashType
+   */
+  std::string GetHashType() const {
+    return hash_type_;
+  }
+  /**
+   * @brief Set to hashType
+   * @param[in] hash_type    setting value.
+   */
+  void SetHashType(  // line separate
+    const std::string& hash_type) {  // NOLINT
+    this->hash_type_ = hash_type;
+  }
+  /**
+   * @brief Get data type of hashType
+   * @return Data type of hashType
+   */
+  static std::string GetHashTypeFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of hashType field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetHashTypeString(  // line separate
+      const AddScriptHashSignTxInRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.hash_type_);
+  }
+  /**
+   * @brief Set json object to hashType field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetHashTypeString(  // line separate
+      AddScriptHashSignTxInRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.hash_type_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const AddScriptHashSignTxInRequestStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  AddScriptHashSignTxInRequestStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using AddScriptHashSignTxInRequestMapTable =
+    cfd::core::JsonTableMap<AddScriptHashSignTxInRequest>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const AddScriptHashSignTxInRequestMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static AddScriptHashSignTxInRequestMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(txid) value
+   */
+  std::string txid_ = "";
+  /**
+   * @brief JsonAPI(vout) value
+   */
+  uint32_t vout_ = 0;
+  /**
+   * @brief JsonAPI(signParam) value
+   */
+  JsonObjectVector<ScriptHashSignData, ScriptHashSignDataStruct> sign_param_;  // NOLINT
+  /**
+   * @brief JsonAPI(redeemScript) value
+   */
+  std::string redeem_script_ = "";
+  /**
+   * @brief JsonAPI(hashType) value
+   */
+  std::string hash_type_ = "";
+};
+
+// ------------------------------------------------------------------------
+// AddScriptHashSignRequest
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (AddScriptHashSignRequest) class
+ */
+class AddScriptHashSignRequest
+  : public cfd::core::JsonClassBase<AddScriptHashSignRequest> {
+ public:
+  AddScriptHashSignRequest() {
+    CollectFieldName();
+  }
+  virtual ~AddScriptHashSignRequest() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of isElements
+   * @return isElements
+   */
+  bool GetIsElements() const {
+    return is_elements_;
+  }
+  /**
+   * @brief Set to isElements
+   * @param[in] is_elements    setting value.
+   */
+  void SetIsElements(  // line separate
+    const bool& is_elements) {  // NOLINT
+    this->is_elements_ = is_elements;
+  }
+  /**
+   * @brief Get data type of isElements
+   * @return Data type of isElements
+   */
+  static std::string GetIsElementsFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of isElements field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetIsElementsString(  // line separate
+      const AddScriptHashSignRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.is_elements_);
+  }
+  /**
+   * @brief Set json object to isElements field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetIsElementsString(  // line separate
+      AddScriptHashSignRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.is_elements_, json_value);
+  }
+
+  /**
+   * @brief Get of tx
+   * @return tx
+   */
+  std::string GetTx() const {
+    return tx_;
+  }
+  /**
+   * @brief Set to tx
+   * @param[in] tx    setting value.
+   */
+  void SetTx(  // line separate
+    const std::string& tx) {  // NOLINT
+    this->tx_ = tx;
+  }
+  /**
+   * @brief Get data type of tx
+   * @return Data type of tx
+   */
+  static std::string GetTxFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of tx field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTxString(  // line separate
+      const AddScriptHashSignRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.tx_);
+  }
+  /**
+   * @brief Set json object to tx field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTxString(  // line separate
+      AddScriptHashSignRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.tx_, json_value);
+  }
+
+  /**
+   * @brief Get of txin.
+   * @return txin
+   */
+  AddScriptHashSignTxInRequest& GetTxin() {  // NOLINT
+    return txin_;
+  }
+  /**
+   * @brief Set to txin.
+   * @param[in] txin    setting value.
+   */
+  void SetTxin(  // line separate
+      const AddScriptHashSignTxInRequest& txin) {  // NOLINT
+    this->txin_ = txin;
+  }
+  /**
+   * @brief Get data type of txin.
+   * @return Data type of txin.
+   */
+  static std::string GetTxinFieldType() {
+    return "AddScriptHashSignTxInRequest";  // NOLINT
+  }
+  /**
+   * @brief Get json string of txin field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
+   */
+  static std::string GetTxinString(  // line separate
+      const AddScriptHashSignRequest& obj) {  // NOLINT
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
+    return obj.txin_.Serialize();
+  }
+  /**
+   * @brief Set json object to txin field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
+   */
+  static void SetTxinString(  // line separate
+      AddScriptHashSignRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    obj.txin_.DeserializeUniValue(json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const AddScriptHashSignRequestStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  AddScriptHashSignRequestStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using AddScriptHashSignRequestMapTable =
+    cfd::core::JsonTableMap<AddScriptHashSignRequest>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const AddScriptHashSignRequestMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static AddScriptHashSignRequestMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(isElements) value
+   */
+  bool is_elements_ = false;
+  /**
+   * @brief JsonAPI(tx) value
+   */
+  std::string tx_ = "";
+  /**
+   * @brief JsonAPI(txin) value
+   */
+  AddScriptHashSignTxInRequest txin_;  // NOLINT
+};
+
+// ------------------------------------------------------------------------
+// AddScriptHashSignResponse
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (AddScriptHashSignResponse) class
+ */
+class AddScriptHashSignResponse
+  : public cfd::core::JsonClassBase<AddScriptHashSignResponse> {
+ public:
+  AddScriptHashSignResponse() {
+    CollectFieldName();
+  }
+  virtual ~AddScriptHashSignResponse() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of hex
+   * @return hex
+   */
+  std::string GetHex() const {
+    return hex_;
+  }
+  /**
+   * @brief Set to hex
+   * @param[in] hex    setting value.
+   */
+  void SetHex(  // line separate
+    const std::string& hex) {  // NOLINT
+    this->hex_ = hex;
+  }
+  /**
+   * @brief Get data type of hex
+   * @return Data type of hex
+   */
+  static std::string GetHexFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of hex field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetHexString(  // line separate
+      const AddScriptHashSignResponse& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.hex_);
+  }
+  /**
+   * @brief Set json object to hex field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetHexString(  // line separate
+      AddScriptHashSignResponse& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.hex_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const AddScriptHashSignResponseStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  AddScriptHashSignResponseStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using AddScriptHashSignResponseMapTable =
+    cfd::core::JsonTableMap<AddScriptHashSignResponse>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const AddScriptHashSignResponseMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static AddScriptHashSignResponseMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(hex) value
+   */
+  std::string hex_ = "";
+};
+
+// ------------------------------------------------------------------------
 // SignData
 // ------------------------------------------------------------------------
 /**

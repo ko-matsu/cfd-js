@@ -75,6 +75,32 @@ export interface AddRawTransactionResponse {
     hex: string;
 }
 
+export interface ScriptHashSignData {
+    hex: string;
+    type?: string;
+    derEncode?: boolean;
+    sighashType?: string;
+    sighashAnyoneCanPay?: boolean;
+}
+
+export interface AddScriptHashSignTxInRequest {
+    txid: string;
+    vout: number;
+    signParam: ScriptHashSignData[];
+    redeemScript: string;
+    hashType: string;
+}
+
+export interface AddScriptHashSignRequest {
+    isElements?: boolean;
+    tx: string;
+    txin?: AddScriptHashSignTxInRequest;
+}
+
+export interface AddScriptHashSignResponse {
+    hex: string;
+}
+
 export interface SignData {
     hex: string;
     type?: string;
@@ -1422,6 +1448,8 @@ export function AddMultisigSign(jsonObject: AddMultisigSignRequest): AddMultisig
 export function AddPubkeyHashSign(jsonObject: AddPubkeyHashSignRequest): AddPubkeyHashSignResponse;
 
 export function AddRawTransaction(jsonObject: AddRawTransactionRequest): AddRawTransactionResponse;
+
+export function AddScriptHashSign(jsonObject: AddScriptHashSignRequest): AddScriptHashSignResponse;
 
 export function AddSign(jsonObject: AddSignRequest): AddSignResponse;
 

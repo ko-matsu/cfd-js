@@ -704,6 +704,236 @@ AddRawTransactionResponseStruct AddRawTransactionResponse::ConvertToStruct() con
 }
 
 // ------------------------------------------------------------------------
+// ScriptHashSignData
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<ScriptHashSignData>
+  ScriptHashSignData::json_mapper;
+std::vector<std::string> ScriptHashSignData::item_list;
+
+void ScriptHashSignData::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<ScriptHashSignData> func_table;  // NOLINT
+
+  func_table = {
+    ScriptHashSignData::GetHexString,
+    ScriptHashSignData::SetHexString,
+    ScriptHashSignData::GetHexFieldType,
+  };
+  json_mapper.emplace("hex", func_table);
+  item_list.push_back("hex");
+  func_table = {
+    ScriptHashSignData::GetTypeString,
+    ScriptHashSignData::SetTypeString,
+    ScriptHashSignData::GetTypeFieldType,
+  };
+  json_mapper.emplace("type", func_table);
+  item_list.push_back("type");
+  func_table = {
+    ScriptHashSignData::GetDerEncodeString,
+    ScriptHashSignData::SetDerEncodeString,
+    ScriptHashSignData::GetDerEncodeFieldType,
+  };
+  json_mapper.emplace("derEncode", func_table);
+  item_list.push_back("derEncode");
+  func_table = {
+    ScriptHashSignData::GetSighashTypeString,
+    ScriptHashSignData::SetSighashTypeString,
+    ScriptHashSignData::GetSighashTypeFieldType,
+  };
+  json_mapper.emplace("sighashType", func_table);
+  item_list.push_back("sighashType");
+  func_table = {
+    ScriptHashSignData::GetSighashAnyoneCanPayString,
+    ScriptHashSignData::SetSighashAnyoneCanPayString,
+    ScriptHashSignData::GetSighashAnyoneCanPayFieldType,
+  };
+  json_mapper.emplace("sighashAnyoneCanPay", func_table);
+  item_list.push_back("sighashAnyoneCanPay");
+}
+
+void ScriptHashSignData::ConvertFromStruct(
+    const ScriptHashSignDataStruct& data) {
+  hex_ = data.hex;
+  type_ = data.type;
+  der_encode_ = data.der_encode;
+  sighash_type_ = data.sighash_type;
+  sighash_anyone_can_pay_ = data.sighash_anyone_can_pay;
+  ignore_items = data.ignore_items;
+}
+
+ScriptHashSignDataStruct ScriptHashSignData::ConvertToStruct() const {  // NOLINT
+  ScriptHashSignDataStruct result;
+  result.hex = hex_;
+  result.type = type_;
+  result.der_encode = der_encode_;
+  result.sighash_type = sighash_type_;
+  result.sighash_anyone_can_pay = sighash_anyone_can_pay_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// AddScriptHashSignTxInRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<AddScriptHashSignTxInRequest>
+  AddScriptHashSignTxInRequest::json_mapper;
+std::vector<std::string> AddScriptHashSignTxInRequest::item_list;
+
+void AddScriptHashSignTxInRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<AddScriptHashSignTxInRequest> func_table;  // NOLINT
+
+  func_table = {
+    AddScriptHashSignTxInRequest::GetTxidString,
+    AddScriptHashSignTxInRequest::SetTxidString,
+    AddScriptHashSignTxInRequest::GetTxidFieldType,
+  };
+  json_mapper.emplace("txid", func_table);
+  item_list.push_back("txid");
+  func_table = {
+    AddScriptHashSignTxInRequest::GetVoutString,
+    AddScriptHashSignTxInRequest::SetVoutString,
+    AddScriptHashSignTxInRequest::GetVoutFieldType,
+  };
+  json_mapper.emplace("vout", func_table);
+  item_list.push_back("vout");
+  func_table = {
+    AddScriptHashSignTxInRequest::GetSignParamString,
+    AddScriptHashSignTxInRequest::SetSignParamString,
+    AddScriptHashSignTxInRequest::GetSignParamFieldType,
+  };
+  json_mapper.emplace("signParam", func_table);
+  item_list.push_back("signParam");
+  func_table = {
+    AddScriptHashSignTxInRequest::GetRedeemScriptString,
+    AddScriptHashSignTxInRequest::SetRedeemScriptString,
+    AddScriptHashSignTxInRequest::GetRedeemScriptFieldType,
+  };
+  json_mapper.emplace("redeemScript", func_table);
+  item_list.push_back("redeemScript");
+  func_table = {
+    AddScriptHashSignTxInRequest::GetHashTypeString,
+    AddScriptHashSignTxInRequest::SetHashTypeString,
+    AddScriptHashSignTxInRequest::GetHashTypeFieldType,
+  };
+  json_mapper.emplace("hashType", func_table);
+  item_list.push_back("hashType");
+}
+
+void AddScriptHashSignTxInRequest::ConvertFromStruct(
+    const AddScriptHashSignTxInRequestStruct& data) {
+  txid_ = data.txid;
+  vout_ = data.vout;
+  sign_param_.ConvertFromStruct(data.sign_param);
+  redeem_script_ = data.redeem_script;
+  hash_type_ = data.hash_type;
+  ignore_items = data.ignore_items;
+}
+
+AddScriptHashSignTxInRequestStruct AddScriptHashSignTxInRequest::ConvertToStruct() const {  // NOLINT
+  AddScriptHashSignTxInRequestStruct result;
+  result.txid = txid_;
+  result.vout = vout_;
+  result.sign_param = sign_param_.ConvertToStruct();
+  result.redeem_script = redeem_script_;
+  result.hash_type = hash_type_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// AddScriptHashSignRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<AddScriptHashSignRequest>
+  AddScriptHashSignRequest::json_mapper;
+std::vector<std::string> AddScriptHashSignRequest::item_list;
+
+void AddScriptHashSignRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<AddScriptHashSignRequest> func_table;  // NOLINT
+
+  func_table = {
+    AddScriptHashSignRequest::GetIsElementsString,
+    AddScriptHashSignRequest::SetIsElementsString,
+    AddScriptHashSignRequest::GetIsElementsFieldType,
+  };
+  json_mapper.emplace("isElements", func_table);
+  item_list.push_back("isElements");
+  func_table = {
+    AddScriptHashSignRequest::GetTxString,
+    AddScriptHashSignRequest::SetTxString,
+    AddScriptHashSignRequest::GetTxFieldType,
+  };
+  json_mapper.emplace("tx", func_table);
+  item_list.push_back("tx");
+  func_table = {
+    AddScriptHashSignRequest::GetTxinString,
+    AddScriptHashSignRequest::SetTxinString,
+    AddScriptHashSignRequest::GetTxinFieldType,
+  };
+  json_mapper.emplace("txin", func_table);
+  item_list.push_back("txin");
+}
+
+void AddScriptHashSignRequest::ConvertFromStruct(
+    const AddScriptHashSignRequestStruct& data) {
+  is_elements_ = data.is_elements;
+  tx_ = data.tx;
+  txin_.ConvertFromStruct(data.txin);
+  ignore_items = data.ignore_items;
+}
+
+AddScriptHashSignRequestStruct AddScriptHashSignRequest::ConvertToStruct() const {  // NOLINT
+  AddScriptHashSignRequestStruct result;
+  result.is_elements = is_elements_;
+  result.tx = tx_;
+  result.txin = txin_.ConvertToStruct();
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// AddScriptHashSignResponse
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<AddScriptHashSignResponse>
+  AddScriptHashSignResponse::json_mapper;
+std::vector<std::string> AddScriptHashSignResponse::item_list;
+
+void AddScriptHashSignResponse::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<AddScriptHashSignResponse> func_table;  // NOLINT
+
+  func_table = {
+    AddScriptHashSignResponse::GetHexString,
+    AddScriptHashSignResponse::SetHexString,
+    AddScriptHashSignResponse::GetHexFieldType,
+  };
+  json_mapper.emplace("hex", func_table);
+  item_list.push_back("hex");
+}
+
+void AddScriptHashSignResponse::ConvertFromStruct(
+    const AddScriptHashSignResponseStruct& data) {
+  hex_ = data.hex;
+  ignore_items = data.ignore_items;
+}
+
+AddScriptHashSignResponseStruct AddScriptHashSignResponse::ConvertToStruct() const {  // NOLINT
+  AddScriptHashSignResponseStruct result;
+  result.hex = hex_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
 // SignData
 // ------------------------------------------------------------------------
 cfd::core::JsonTableMap<SignData>

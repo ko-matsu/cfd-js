@@ -679,6 +679,21 @@ std::string JsonMappingApi::SignWithPrivkey(
 #endif
 }
 
+std::string JsonMappingApi::AddScriptHashSign(
+    const std::string &request_message) {
+  return ExecuteElementsCheckApi<
+      api::json::AddScriptHashSignRequest,
+      api::json::AddScriptHashSignResponse,
+      api::AddScriptHashSignRequestStruct,
+      api::AddScriptHashSignResponseStruct>(
+      request_message, TransactionStructApi::AddScriptHashSign,
+#ifndef CFD_DISABLE_ELEMENTS
+      ElementsTransactionStructApi::AddScriptHashSign);
+#else
+      TransactionStructApi::AddScriptHashSign);
+#endif
+}
+
 std::string JsonMappingApi::UpdateWitnessStack(
     const std::string &request_message) {
   return ExecuteElementsCheckApi<

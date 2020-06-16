@@ -7567,6 +7567,470 @@ class CalculateEcSignatureResponse
 };
 
 // ------------------------------------------------------------------------
+// ConvertAesRequest
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (ConvertAesRequest) class
+ */
+class ConvertAesRequest
+  : public cfd::core::JsonClassBase<ConvertAesRequest> {
+ public:
+  ConvertAesRequest() {
+    CollectFieldName();
+  }
+  virtual ~ConvertAesRequest() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of isEncrypt
+   * @return isEncrypt
+   */
+  bool GetIsEncrypt() const {
+    return is_encrypt_;
+  }
+  /**
+   * @brief Set to isEncrypt
+   * @param[in] is_encrypt    setting value.
+   */
+  void SetIsEncrypt(  // line separate
+    const bool& is_encrypt) {  // NOLINT
+    this->is_encrypt_ = is_encrypt;
+  }
+  /**
+   * @brief Get data type of isEncrypt
+   * @return Data type of isEncrypt
+   */
+  static std::string GetIsEncryptFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of isEncrypt field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetIsEncryptString(  // line separate
+      const ConvertAesRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.is_encrypt_);
+  }
+  /**
+   * @brief Set json object to isEncrypt field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetIsEncryptString(  // line separate
+      ConvertAesRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.is_encrypt_, json_value);
+  }
+
+  /**
+   * @brief Get of mode
+   * @return mode
+   */
+  std::string GetMode() const {
+    return mode_;
+  }
+  /**
+   * @brief Set to mode
+   * @param[in] mode    setting value.
+   */
+  void SetMode(  // line separate
+    const std::string& mode) {  // NOLINT
+    this->mode_ = mode;
+  }
+  /**
+   * @brief Get data type of mode
+   * @return Data type of mode
+   */
+  static std::string GetModeFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of mode field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetModeString(  // line separate
+      const ConvertAesRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.mode_);
+  }
+  /**
+   * @brief Set json object to mode field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetModeString(  // line separate
+      ConvertAesRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.mode_, json_value);
+  }
+
+  /**
+   * @brief Get of key
+   * @return key
+   */
+  std::string GetKey() const {
+    return key_;
+  }
+  /**
+   * @brief Set to key
+   * @param[in] key    setting value.
+   */
+  void SetKey(  // line separate
+    const std::string& key) {  // NOLINT
+    this->key_ = key;
+  }
+  /**
+   * @brief Get data type of key
+   * @return Data type of key
+   */
+  static std::string GetKeyFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of key field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetKeyString(  // line separate
+      const ConvertAesRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.key_);
+  }
+  /**
+   * @brief Set json object to key field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetKeyString(  // line separate
+      ConvertAesRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.key_, json_value);
+  }
+
+  /**
+   * @brief Get of iv
+   * @return iv
+   */
+  std::string GetIv() const {
+    return iv_;
+  }
+  /**
+   * @brief Set to iv
+   * @param[in] iv    setting value.
+   */
+  void SetIv(  // line separate
+    const std::string& iv) {  // NOLINT
+    this->iv_ = iv;
+  }
+  /**
+   * @brief Get data type of iv
+   * @return Data type of iv
+   */
+  static std::string GetIvFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of iv field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetIvString(  // line separate
+      const ConvertAesRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.iv_);
+  }
+  /**
+   * @brief Set json object to iv field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetIvString(  // line separate
+      ConvertAesRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.iv_, json_value);
+  }
+
+  /**
+   * @brief Get of data
+   * @return data
+   */
+  std::string GetData() const {
+    return data_;
+  }
+  /**
+   * @brief Set to data
+   * @param[in] data    setting value.
+   */
+  void SetData(  // line separate
+    const std::string& data) {  // NOLINT
+    this->data_ = data;
+  }
+  /**
+   * @brief Get data type of data
+   * @return Data type of data
+   */
+  static std::string GetDataFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of data field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetDataString(  // line separate
+      const ConvertAesRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.data_);
+  }
+  /**
+   * @brief Set json object to data field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetDataString(  // line separate
+      ConvertAesRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.data_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const ConvertAesRequestStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  ConvertAesRequestStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using ConvertAesRequestMapTable =
+    cfd::core::JsonTableMap<ConvertAesRequest>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const ConvertAesRequestMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static ConvertAesRequestMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(isEncrypt) value
+   */
+  bool is_encrypt_ = true;
+  /**
+   * @brief JsonAPI(mode) value
+   */
+  std::string mode_ = "cbc";
+  /**
+   * @brief JsonAPI(key) value
+   */
+  std::string key_ = "";
+  /**
+   * @brief JsonAPI(iv) value
+   */
+  std::string iv_ = "";
+  /**
+   * @brief JsonAPI(data) value
+   */
+  std::string data_ = "";
+};
+
+// ------------------------------------------------------------------------
+// ConvertAesResponse
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (ConvertAesResponse) class
+ */
+class ConvertAesResponse
+  : public cfd::core::JsonClassBase<ConvertAesResponse> {
+ public:
+  ConvertAesResponse() {
+    CollectFieldName();
+  }
+  virtual ~ConvertAesResponse() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of hex
+   * @return hex
+   */
+  std::string GetHex() const {
+    return hex_;
+  }
+  /**
+   * @brief Set to hex
+   * @param[in] hex    setting value.
+   */
+  void SetHex(  // line separate
+    const std::string& hex) {  // NOLINT
+    this->hex_ = hex;
+  }
+  /**
+   * @brief Get data type of hex
+   * @return Data type of hex
+   */
+  static std::string GetHexFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of hex field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetHexString(  // line separate
+      const ConvertAesResponse& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.hex_);
+  }
+  /**
+   * @brief Set json object to hex field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetHexString(  // line separate
+      ConvertAesResponse& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.hex_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const ConvertAesResponseStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  ConvertAesResponseStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using ConvertAesResponseMapTable =
+    cfd::core::JsonTableMap<ConvertAesResponse>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const ConvertAesResponseMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static ConvertAesResponseMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(hex) value
+   */
+  std::string hex_ = "";
+};
+
+// ------------------------------------------------------------------------
 // ConvertEntropyToMnemonicRequest
 // ------------------------------------------------------------------------
 /**
@@ -13910,6 +14374,329 @@ class CreateScriptResponse
   * @brief JsonFunctionMap table
   */
   static CreateScriptResponseMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(hex) value
+   */
+  std::string hex_ = "";
+};
+
+// ------------------------------------------------------------------------
+// DecodeBase58Request
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (DecodeBase58Request) class
+ */
+class DecodeBase58Request
+  : public cfd::core::JsonClassBase<DecodeBase58Request> {
+ public:
+  DecodeBase58Request() {
+    CollectFieldName();
+  }
+  virtual ~DecodeBase58Request() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of data
+   * @return data
+   */
+  std::string GetData() const {
+    return data_;
+  }
+  /**
+   * @brief Set to data
+   * @param[in] data    setting value.
+   */
+  void SetData(  // line separate
+    const std::string& data) {  // NOLINT
+    this->data_ = data;
+  }
+  /**
+   * @brief Get data type of data
+   * @return Data type of data
+   */
+  static std::string GetDataFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of data field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetDataString(  // line separate
+      const DecodeBase58Request& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.data_);
+  }
+  /**
+   * @brief Set json object to data field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetDataString(  // line separate
+      DecodeBase58Request& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.data_, json_value);
+  }
+
+  /**
+   * @brief Get of hasChecksum
+   * @return hasChecksum
+   */
+  bool GetHasChecksum() const {
+    return has_checksum_;
+  }
+  /**
+   * @brief Set to hasChecksum
+   * @param[in] has_checksum    setting value.
+   */
+  void SetHasChecksum(  // line separate
+    const bool& has_checksum) {  // NOLINT
+    this->has_checksum_ = has_checksum;
+  }
+  /**
+   * @brief Get data type of hasChecksum
+   * @return Data type of hasChecksum
+   */
+  static std::string GetHasChecksumFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of hasChecksum field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetHasChecksumString(  // line separate
+      const DecodeBase58Request& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.has_checksum_);
+  }
+  /**
+   * @brief Set json object to hasChecksum field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetHasChecksumString(  // line separate
+      DecodeBase58Request& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.has_checksum_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const DecodeBase58RequestStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  DecodeBase58RequestStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using DecodeBase58RequestMapTable =
+    cfd::core::JsonTableMap<DecodeBase58Request>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const DecodeBase58RequestMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static DecodeBase58RequestMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(data) value
+   */
+  std::string data_ = "";
+  /**
+   * @brief JsonAPI(hasChecksum) value
+   */
+  bool has_checksum_ = true;
+};
+
+// ------------------------------------------------------------------------
+// DecodeBase58Response
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (DecodeBase58Response) class
+ */
+class DecodeBase58Response
+  : public cfd::core::JsonClassBase<DecodeBase58Response> {
+ public:
+  DecodeBase58Response() {
+    CollectFieldName();
+  }
+  virtual ~DecodeBase58Response() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of hex
+   * @return hex
+   */
+  std::string GetHex() const {
+    return hex_;
+  }
+  /**
+   * @brief Set to hex
+   * @param[in] hex    setting value.
+   */
+  void SetHex(  // line separate
+    const std::string& hex) {  // NOLINT
+    this->hex_ = hex;
+  }
+  /**
+   * @brief Get data type of hex
+   * @return Data type of hex
+   */
+  static std::string GetHexFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of hex field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetHexString(  // line separate
+      const DecodeBase58Response& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.hex_);
+  }
+  /**
+   * @brief Set json object to hex field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetHexString(  // line separate
+      DecodeBase58Response& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.hex_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const DecodeBase58ResponseStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  DecodeBase58ResponseStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using DecodeBase58ResponseMapTable =
+    cfd::core::JsonTableMap<DecodeBase58Response>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const DecodeBase58ResponseMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static DecodeBase58ResponseMapTable json_mapper;
   /**
    * @brief field name list.
    */
@@ -34495,6 +35282,329 @@ class UnblindRawTransactionResponse
    * @brief JsonAPI(issuanceOutputs) value
    */
   JsonObjectVector<UnblindIssuanceOutput, UnblindIssuanceOutputStruct> issuance_outputs_;  // NOLINT
+};
+
+// ------------------------------------------------------------------------
+// EncodeBase58Request
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (EncodeBase58Request) class
+ */
+class EncodeBase58Request
+  : public cfd::core::JsonClassBase<EncodeBase58Request> {
+ public:
+  EncodeBase58Request() {
+    CollectFieldName();
+  }
+  virtual ~EncodeBase58Request() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of hex
+   * @return hex
+   */
+  std::string GetHex() const {
+    return hex_;
+  }
+  /**
+   * @brief Set to hex
+   * @param[in] hex    setting value.
+   */
+  void SetHex(  // line separate
+    const std::string& hex) {  // NOLINT
+    this->hex_ = hex;
+  }
+  /**
+   * @brief Get data type of hex
+   * @return Data type of hex
+   */
+  static std::string GetHexFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of hex field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetHexString(  // line separate
+      const EncodeBase58Request& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.hex_);
+  }
+  /**
+   * @brief Set json object to hex field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetHexString(  // line separate
+      EncodeBase58Request& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.hex_, json_value);
+  }
+
+  /**
+   * @brief Get of hasChecksum
+   * @return hasChecksum
+   */
+  bool GetHasChecksum() const {
+    return has_checksum_;
+  }
+  /**
+   * @brief Set to hasChecksum
+   * @param[in] has_checksum    setting value.
+   */
+  void SetHasChecksum(  // line separate
+    const bool& has_checksum) {  // NOLINT
+    this->has_checksum_ = has_checksum;
+  }
+  /**
+   * @brief Get data type of hasChecksum
+   * @return Data type of hasChecksum
+   */
+  static std::string GetHasChecksumFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of hasChecksum field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetHasChecksumString(  // line separate
+      const EncodeBase58Request& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.has_checksum_);
+  }
+  /**
+   * @brief Set json object to hasChecksum field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetHasChecksumString(  // line separate
+      EncodeBase58Request& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.has_checksum_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const EncodeBase58RequestStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  EncodeBase58RequestStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using EncodeBase58RequestMapTable =
+    cfd::core::JsonTableMap<EncodeBase58Request>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const EncodeBase58RequestMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static EncodeBase58RequestMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(hex) value
+   */
+  std::string hex_ = "";
+  /**
+   * @brief JsonAPI(hasChecksum) value
+   */
+  bool has_checksum_ = true;
+};
+
+// ------------------------------------------------------------------------
+// EncodeBase58Response
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (EncodeBase58Response) class
+ */
+class EncodeBase58Response
+  : public cfd::core::JsonClassBase<EncodeBase58Response> {
+ public:
+  EncodeBase58Response() {
+    CollectFieldName();
+  }
+  virtual ~EncodeBase58Response() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of data
+   * @return data
+   */
+  std::string GetData() const {
+    return data_;
+  }
+  /**
+   * @brief Set to data
+   * @param[in] data    setting value.
+   */
+  void SetData(  // line separate
+    const std::string& data) {  // NOLINT
+    this->data_ = data;
+  }
+  /**
+   * @brief Get data type of data
+   * @return Data type of data
+   */
+  static std::string GetDataFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of data field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetDataString(  // line separate
+      const EncodeBase58Response& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.data_);
+  }
+  /**
+   * @brief Set json object to data field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetDataString(  // line separate
+      EncodeBase58Response& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.data_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const EncodeBase58ResponseStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  EncodeBase58ResponseStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using EncodeBase58ResponseMapTable =
+    cfd::core::JsonTableMap<EncodeBase58Response>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const EncodeBase58ResponseMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mnapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static EncodeBase58ResponseMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(data) value
+   */
+  std::string data_ = "";
 };
 
 // ------------------------------------------------------------------------

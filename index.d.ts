@@ -190,6 +190,18 @@ export interface CalculateEcSignatureResponse {
     signature: string;
 }
 
+export interface ConvertAesRequest {
+    isEncrypt: boolean;
+    mode?: string;
+    key: string;
+    iv?: string;
+    data: string;
+}
+
+export interface ConvertAesResponse {
+    hex: string;
+}
+
 export interface ConvertEntropyToMnemonicRequest {
     entropy: string;
     language?: string;
@@ -353,6 +365,15 @@ export interface CreateScriptRequest {
 }
 
 export interface CreateScriptResponse {
+    hex: string;
+}
+
+export interface DecodeBase58Request {
+    data: string;
+    hasChecksum?: boolean;
+}
+
+export interface DecodeBase58Response {
     hex: string;
 }
 
@@ -862,6 +883,15 @@ export interface UnblindRawTransactionResponse {
     hex: string;
     outputs?: UnblindOutput[];
     issuanceOutputs?: UnblindIssuanceOutput[];
+}
+
+export interface EncodeBase58Request {
+    hex: string;
+    hasChecksum?: boolean;
+}
+
+export interface EncodeBase58Response {
+    data: string;
 }
 
 export interface EncodeSignatureByDerRequest {
@@ -1459,6 +1489,8 @@ export function BlindRawTransaction(jsonObject: BlindRawTransactionRequest): Bli
 
 export function CalculateEcSignature(jsonObject: CalculateEcSignatureRequest): CalculateEcSignatureResponse;
 
+export function ConvertAes(jsonObject: ConvertAesRequest): ConvertAesResponse;
+
 export function ConvertEntropyToMnemonic(jsonObject: ConvertEntropyToMnemonicRequest): ConvertEntropyToMnemonicResponse;
 
 export function ConvertMnemonicToSeed(jsonObject: ConvertMnemonicToSeedRequest): ConvertMnemonicToSeedResponse;
@@ -1484,6 +1516,8 @@ export function CreateKeyPair(jsonObject: CreateKeyPairRequest): CreateKeyPairRe
 export function CreateMultisigScriptSig(jsonObject: CreateMultisigScriptSigRequest): CreateMultisigScriptSigResponse;
 
 export function CreateScript(jsonObject: CreateScriptRequest): CreateScriptResponse;
+
+export function DecodeBase58(jsonObject: DecodeBase58Request): DecodeBase58Response;
 
 export function DecodeDerSignatureToRaw(jsonObject: DecodeDerSignatureToRawRequest): DecodeDerSignatureToRawResponse;
 
@@ -1512,6 +1546,8 @@ export function SetRawIssueAsset(jsonObject: SetRawIssueAssetRequest): SetRawIss
 export function SetRawReissueAsset(jsonObject: SetRawReissueAssetRequest): SetRawReissueAssetResponse;
 
 export function UnblindRawTransaction(jsonObject: UnblindRawTransactionRequest): UnblindRawTransactionResponse;
+
+export function EncodeBase58(jsonObject: EncodeBase58Request): EncodeBase58Response;
 
 export function EncodeSignatureByDer(jsonObject: EncodeSignatureByDerRequest): EncodeSignatureByDerResponse;
 

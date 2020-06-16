@@ -127,6 +127,27 @@ class CFD_JS_API_EXPORT JsonMappingApi {
   static std::string CreateSignatureHash(const std::string &request_message);
 
   /**
+   * @brief Convert data by AES.
+   * @param[in] request   request json string.
+   * @return response struct including encoded string.
+   */
+  static std::string ConvertAes(const std::string &request);
+
+  /**
+   * @brief Encode the data by base58.
+   * @param[in] request   request json string.
+   * @return response struct including encoded string.
+   */
+  static std::string EncodeBase58(const std::string &request);
+
+  /**
+   * @brief Decode the data by base58.
+   * @param[in] request   request json string.
+   * @return response json string.
+   */
+  static std::string DecodeBase58(const std::string &request);
+
+  /**
    * @brief EncodeSignatureByDer の JSON API関数(request, response).
    * @param[in] request_message     リクエストされたjson文字列
    * @return 戻り値(JSON文字列)

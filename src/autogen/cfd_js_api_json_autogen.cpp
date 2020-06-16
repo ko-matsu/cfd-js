@@ -1722,6 +1722,112 @@ CalculateEcSignatureResponseStruct CalculateEcSignatureResponse::ConvertToStruct
 }
 
 // ------------------------------------------------------------------------
+// ConvertAesRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<ConvertAesRequest>
+  ConvertAesRequest::json_mapper;
+std::vector<std::string> ConvertAesRequest::item_list;
+
+void ConvertAesRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<ConvertAesRequest> func_table;  // NOLINT
+
+  func_table = {
+    ConvertAesRequest::GetIsEncryptString,
+    ConvertAesRequest::SetIsEncryptString,
+    ConvertAesRequest::GetIsEncryptFieldType,
+  };
+  json_mapper.emplace("isEncrypt", func_table);
+  item_list.push_back("isEncrypt");
+  func_table = {
+    ConvertAesRequest::GetModeString,
+    ConvertAesRequest::SetModeString,
+    ConvertAesRequest::GetModeFieldType,
+  };
+  json_mapper.emplace("mode", func_table);
+  item_list.push_back("mode");
+  func_table = {
+    ConvertAesRequest::GetKeyString,
+    ConvertAesRequest::SetKeyString,
+    ConvertAesRequest::GetKeyFieldType,
+  };
+  json_mapper.emplace("key", func_table);
+  item_list.push_back("key");
+  func_table = {
+    ConvertAesRequest::GetIvString,
+    ConvertAesRequest::SetIvString,
+    ConvertAesRequest::GetIvFieldType,
+  };
+  json_mapper.emplace("iv", func_table);
+  item_list.push_back("iv");
+  func_table = {
+    ConvertAesRequest::GetDataString,
+    ConvertAesRequest::SetDataString,
+    ConvertAesRequest::GetDataFieldType,
+  };
+  json_mapper.emplace("data", func_table);
+  item_list.push_back("data");
+}
+
+void ConvertAesRequest::ConvertFromStruct(
+    const ConvertAesRequestStruct& data) {
+  is_encrypt_ = data.is_encrypt;
+  mode_ = data.mode;
+  key_ = data.key;
+  iv_ = data.iv;
+  data_ = data.data;
+  ignore_items = data.ignore_items;
+}
+
+ConvertAesRequestStruct ConvertAesRequest::ConvertToStruct() const {  // NOLINT
+  ConvertAesRequestStruct result;
+  result.is_encrypt = is_encrypt_;
+  result.mode = mode_;
+  result.key = key_;
+  result.iv = iv_;
+  result.data = data_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// ConvertAesResponse
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<ConvertAesResponse>
+  ConvertAesResponse::json_mapper;
+std::vector<std::string> ConvertAesResponse::item_list;
+
+void ConvertAesResponse::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<ConvertAesResponse> func_table;  // NOLINT
+
+  func_table = {
+    ConvertAesResponse::GetHexString,
+    ConvertAesResponse::SetHexString,
+    ConvertAesResponse::GetHexFieldType,
+  };
+  json_mapper.emplace("hex", func_table);
+  item_list.push_back("hex");
+}
+
+void ConvertAesResponse::ConvertFromStruct(
+    const ConvertAesResponseStruct& data) {
+  hex_ = data.hex;
+  ignore_items = data.ignore_items;
+}
+
+ConvertAesResponseStruct ConvertAesResponse::ConvertToStruct() const {  // NOLINT
+  ConvertAesResponseStruct result;
+  result.hex = hex_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
 // ConvertEntropyToMnemonicRequest
 // ------------------------------------------------------------------------
 cfd::core::JsonTableMap<ConvertEntropyToMnemonicRequest>
@@ -3181,6 +3287,85 @@ void CreateScriptResponse::ConvertFromStruct(
 
 CreateScriptResponseStruct CreateScriptResponse::ConvertToStruct() const {  // NOLINT
   CreateScriptResponseStruct result;
+  result.hex = hex_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// DecodeBase58Request
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<DecodeBase58Request>
+  DecodeBase58Request::json_mapper;
+std::vector<std::string> DecodeBase58Request::item_list;
+
+void DecodeBase58Request::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<DecodeBase58Request> func_table;  // NOLINT
+
+  func_table = {
+    DecodeBase58Request::GetDataString,
+    DecodeBase58Request::SetDataString,
+    DecodeBase58Request::GetDataFieldType,
+  };
+  json_mapper.emplace("data", func_table);
+  item_list.push_back("data");
+  func_table = {
+    DecodeBase58Request::GetHasChecksumString,
+    DecodeBase58Request::SetHasChecksumString,
+    DecodeBase58Request::GetHasChecksumFieldType,
+  };
+  json_mapper.emplace("hasChecksum", func_table);
+  item_list.push_back("hasChecksum");
+}
+
+void DecodeBase58Request::ConvertFromStruct(
+    const DecodeBase58RequestStruct& data) {
+  data_ = data.data;
+  has_checksum_ = data.has_checksum;
+  ignore_items = data.ignore_items;
+}
+
+DecodeBase58RequestStruct DecodeBase58Request::ConvertToStruct() const {  // NOLINT
+  DecodeBase58RequestStruct result;
+  result.data = data_;
+  result.has_checksum = has_checksum_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// DecodeBase58Response
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<DecodeBase58Response>
+  DecodeBase58Response::json_mapper;
+std::vector<std::string> DecodeBase58Response::item_list;
+
+void DecodeBase58Response::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<DecodeBase58Response> func_table;  // NOLINT
+
+  func_table = {
+    DecodeBase58Response::GetHexString,
+    DecodeBase58Response::SetHexString,
+    DecodeBase58Response::GetHexFieldType,
+  };
+  json_mapper.emplace("hex", func_table);
+  item_list.push_back("hex");
+}
+
+void DecodeBase58Response::ConvertFromStruct(
+    const DecodeBase58ResponseStruct& data) {
+  hex_ = data.hex;
+  ignore_items = data.ignore_items;
+}
+
+DecodeBase58ResponseStruct DecodeBase58Response::ConvertToStruct() const {  // NOLINT
+  DecodeBase58ResponseStruct result;
   result.hex = hex_;
   result.ignore_items = ignore_items;
   return result;
@@ -7687,6 +7872,85 @@ UnblindRawTransactionResponseStruct UnblindRawTransactionResponse::ConvertToStru
   result.hex = hex_;
   result.outputs = outputs_.ConvertToStruct();
   result.issuance_outputs = issuance_outputs_.ConvertToStruct();
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// EncodeBase58Request
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<EncodeBase58Request>
+  EncodeBase58Request::json_mapper;
+std::vector<std::string> EncodeBase58Request::item_list;
+
+void EncodeBase58Request::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<EncodeBase58Request> func_table;  // NOLINT
+
+  func_table = {
+    EncodeBase58Request::GetHexString,
+    EncodeBase58Request::SetHexString,
+    EncodeBase58Request::GetHexFieldType,
+  };
+  json_mapper.emplace("hex", func_table);
+  item_list.push_back("hex");
+  func_table = {
+    EncodeBase58Request::GetHasChecksumString,
+    EncodeBase58Request::SetHasChecksumString,
+    EncodeBase58Request::GetHasChecksumFieldType,
+  };
+  json_mapper.emplace("hasChecksum", func_table);
+  item_list.push_back("hasChecksum");
+}
+
+void EncodeBase58Request::ConvertFromStruct(
+    const EncodeBase58RequestStruct& data) {
+  hex_ = data.hex;
+  has_checksum_ = data.has_checksum;
+  ignore_items = data.ignore_items;
+}
+
+EncodeBase58RequestStruct EncodeBase58Request::ConvertToStruct() const {  // NOLINT
+  EncodeBase58RequestStruct result;
+  result.hex = hex_;
+  result.has_checksum = has_checksum_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// EncodeBase58Response
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<EncodeBase58Response>
+  EncodeBase58Response::json_mapper;
+std::vector<std::string> EncodeBase58Response::item_list;
+
+void EncodeBase58Response::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<EncodeBase58Response> func_table;  // NOLINT
+
+  func_table = {
+    EncodeBase58Response::GetDataString,
+    EncodeBase58Response::SetDataString,
+    EncodeBase58Response::GetDataFieldType,
+  };
+  json_mapper.emplace("data", func_table);
+  item_list.push_back("data");
+}
+
+void EncodeBase58Response::ConvertFromStruct(
+    const EncodeBase58ResponseStruct& data) {
+  data_ = data.data;
+  ignore_items = data.ignore_items;
+}
+
+EncodeBase58ResponseStruct EncodeBase58Response::ConvertToStruct() const {  // NOLINT
+  EncodeBase58ResponseStruct result;
+  result.data = data_;
   result.ignore_items = ignore_items;
   return result;
 }

@@ -442,6 +442,33 @@ struct CalculateEcSignatureResponseStruct {
 };
 
 // ------------------------------------------------------------------------
+// ConvertAesRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief ConvertAesRequestStruct struct
+ */
+struct ConvertAesRequestStruct {
+  bool is_encrypt = true;    //!< is_encrypt  // NOLINT
+  std::string mode = "cbc";  //!< mode  // NOLINT
+  std::string key = "";      //!< key  // NOLINT
+  std::string iv = "";       //!< iv  // NOLINT
+  std::string data = "";     //!< data  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// ConvertAesResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief ConvertAesResponseStruct struct
+ */
+struct ConvertAesResponseStruct {
+  std::string hex = "";  //!< hex  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
 // ConvertEntropyToMnemonicRequestStruct
 // ------------------------------------------------------------------------
 /**
@@ -818,6 +845,30 @@ struct CreateScriptRequestStruct {
  * @brief CreateScriptResponseStruct struct
  */
 struct CreateScriptResponseStruct {
+  std::string hex = "";  //!< hex  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// DecodeBase58RequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief DecodeBase58RequestStruct struct
+ */
+struct DecodeBase58RequestStruct {
+  std::string data = "";     //!< data  // NOLINT
+  bool has_checksum = true;  //!< has_checksum  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// DecodeBase58ResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief DecodeBase58ResponseStruct struct
+ */
+struct DecodeBase58ResponseStruct {
   std::string hex = "";  //!< hex  // NOLINT
   cfd::js::api::InnerErrorResponseStruct error;   //!< error information
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
@@ -1812,6 +1863,30 @@ struct UnblindRawTransactionResponseStruct {
   std::string hex = "";                                       //!< hex  // NOLINT
   std::vector<UnblindOutputStruct> outputs;                   //!< outputs  // NOLINT
   std::vector<UnblindIssuanceOutputStruct> issuance_outputs;  //!< issuance_outputs  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// EncodeBase58RequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief EncodeBase58RequestStruct struct
+ */
+struct EncodeBase58RequestStruct {
+  std::string hex = "";      //!< hex  // NOLINT
+  bool has_checksum = true;  //!< has_checksum  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// EncodeBase58ResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief EncodeBase58ResponseStruct struct
+ */
+struct EncodeBase58ResponseStruct {
+  std::string data = "";  //!< data  // NOLINT
   cfd::js::api::InnerErrorResponseStruct error;   //!< error information
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };

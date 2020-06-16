@@ -221,6 +221,33 @@ Value CreateSignatureHash(const CallbackInfo &information) {
 }
 
 /**
+ * @brief ConvertAes の JSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value ConvertAes(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::ConvertAes);
+}
+
+/**
+ * @brief EncodeBase58 の JSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value EncodeBase58(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::EncodeBase58);
+}
+
+/**
+ * @brief DecodeBase58 の JSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value DecodeBase58(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::DecodeBase58);
+}
+
+/**
  * @brief EncodeSignatureByDer の JSON API関数(request, response).
  * @param[in] information     node addon apiのコールバック情報
  * @return 戻り値(JSON文字列)
@@ -745,6 +772,11 @@ void InitializeJsonApi(Env env, Object *exports) {
   exports->Set(
       String::New(env, "CreateSignatureHash"),
       Function::New(env, CreateSignatureHash));
+  exports->Set(String::New(env, "ConvertAes"), Function::New(env, ConvertAes));
+  exports->Set(
+      String::New(env, "EncodeBase58"), Function::New(env, EncodeBase58));
+  exports->Set(
+      String::New(env, "DecodeBase58"), Function::New(env, DecodeBase58));
   exports->Set(
       String::New(env, "EncodeSignatureByDer"),
       Function::New(env, EncodeSignatureByDer));

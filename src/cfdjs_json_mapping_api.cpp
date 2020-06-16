@@ -449,6 +449,27 @@ std::string JsonMappingApi::CreateSignatureHash(
       request_message, TransactionStructApi::CreateSignatureHash);
 }
 
+std::string JsonMappingApi::ConvertAes(const std::string &request_message) {
+  return ExecuteJsonApi<
+      api::json::ConvertAesRequest, api::json::ConvertAesResponse,
+      api::ConvertAesRequestStruct, api::ConvertAesResponseStruct>(
+      request_message, UtilStructApi::ConvertAes);
+}
+
+std::string JsonMappingApi::EncodeBase58(const std::string &request_message) {
+  return ExecuteJsonApi<
+      api::json::EncodeBase58Request, api::json::EncodeBase58Response,
+      api::EncodeBase58RequestStruct, api::EncodeBase58ResponseStruct>(
+      request_message, UtilStructApi::EncodeBase58);
+}
+
+std::string JsonMappingApi::DecodeBase58(const std::string &request_message) {
+  return ExecuteJsonApi<
+      api::json::DecodeBase58Request, api::json::DecodeBase58Response,
+      api::DecodeBase58RequestStruct, api::DecodeBase58ResponseStruct>(
+      request_message, UtilStructApi::DecodeBase58);
+}
+
 std::string JsonMappingApi::EncodeSignatureByDer(
     const std::string &request_message) {
   return ExecuteJsonApi<

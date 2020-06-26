@@ -4,6 +4,8 @@
  *
  * @brief cfdのnode.js向けAPI実装ファイル
  */
+#include <functional>
+#include <map>
 #include <string>
 
 #include "cfd/cfd_common.h"
@@ -1006,6 +1008,135 @@ std::string JsonMappingApi::GetCommitment(const std::string &request_message) {
 }
 
 #endif  // CFD_DISABLE_ELEMENTS
+
+void JsonMappingApi::LoadFunctions(
+    RequestFunctionMap *request_map,
+    ResponseOnlyFunctionMap *response_only_map) {
+  if (response_only_map != nullptr) {
+    response_only_map->emplace(
+        "GetSupportedFunction", JsonMappingApi::GetSupportedFunction);
+  }
+
+  if (request_map != nullptr) {
+    request_map->emplace(
+        "CreateRawTransaction", JsonMappingApi::CreateRawTransaction);
+    request_map->emplace(
+        "AddRawTransaction", JsonMappingApi::AddRawTransaction);
+    request_map->emplace(
+        "DecodeRawTransaction", JsonMappingApi::DecodeRawTransaction);
+    request_map->emplace(
+        "ConvertEntropyToMnemonic", JsonMappingApi::ConvertEntropyToMnemonic);
+    request_map->emplace(
+        "ConvertMnemonicToSeed", JsonMappingApi::ConvertMnemonicToSeed);
+    request_map->emplace("CreateAddress", JsonMappingApi::CreateAddress);
+    request_map->emplace("CreateMultisig", JsonMappingApi::CreateMultisig);
+    request_map->emplace(
+        "GetAddressesFromMultisig", JsonMappingApi::GetAddressesFromMultisig);
+    request_map->emplace("GetAddressInfo", JsonMappingApi::GetAddressInfo);
+    request_map->emplace("ParseDescriptor", JsonMappingApi::ParseDescriptor);
+    request_map->emplace("CreateDescriptor", JsonMappingApi::CreateDescriptor);
+    request_map->emplace(
+        "AppendDescriptorChecksum", JsonMappingApi::AppendDescriptorChecksum);
+    request_map->emplace(
+        "CreateSignatureHash", JsonMappingApi::CreateSignatureHash);
+    request_map->emplace("ConvertAes", JsonMappingApi::ConvertAes);
+    request_map->emplace("EncodeBase58", JsonMappingApi::EncodeBase58);
+    request_map->emplace("DecodeBase58", JsonMappingApi::DecodeBase58);
+    request_map->emplace(
+        "EncodeSignatureByDer", JsonMappingApi::EncodeSignatureByDer);
+    request_map->emplace(
+        "DecodeDerSignatureToRaw", JsonMappingApi::DecodeDerSignatureToRaw);
+    request_map->emplace(
+        "GetWitnessStackNum", JsonMappingApi::GetWitnessStackNum);
+    request_map->emplace("AddSign", JsonMappingApi::AddSign);
+    request_map->emplace(
+        "AddPubkeyHashSign", JsonMappingApi::AddPubkeyHashSign);
+    request_map->emplace("SignWithPrivkey", JsonMappingApi::SignWithPrivkey);
+    request_map->emplace(
+        "AddScriptHashSign", JsonMappingApi::AddScriptHashSign);
+    request_map->emplace(
+        "UpdateWitnessStack", JsonMappingApi::UpdateWitnessStack);
+    request_map->emplace("AddMultisigSign", JsonMappingApi::AddMultisigSign);
+    request_map->emplace("VerifySignature", JsonMappingApi::VerifySignature);
+    request_map->emplace("VerifySign", JsonMappingApi::VerifySign);
+    request_map->emplace(
+        "GetMnemonicWordlist", JsonMappingApi::GetMnemonicWordlist);
+    request_map->emplace("GetExtkeyInfo", JsonMappingApi::GetExtkeyInfo);
+    request_map->emplace(
+        "GetPrivkeyFromExtkey", JsonMappingApi::GetPrivkeyFromExtkey);
+    request_map->emplace(
+        "GetPubkeyFromExtkey", JsonMappingApi::GetPubkeyFromExtkey);
+    request_map->emplace(
+        "GetPrivkeyFromWif", JsonMappingApi::GetPrivkeyFromWif);
+    request_map->emplace("GetPrivkeyWif", JsonMappingApi::GetPrivkeyWif);
+    request_map->emplace(
+        "GetPubkeyFromPrivkey", JsonMappingApi::GetPubkeyFromPrivkey);
+    request_map->emplace(
+        "GetCompressedPubkey", JsonMappingApi::GetCompressedPubkey);
+    request_map->emplace(
+        "CreateExtkeyFromSeed", JsonMappingApi::CreateExtkeyFromSeed);
+    request_map->emplace(
+        "CreateExtkeyFromParent", JsonMappingApi::CreateExtkeyFromParent);
+    request_map->emplace(
+        "CreateExtkeyFromParentPath",
+        JsonMappingApi::CreateExtkeyFromParentPath);
+    request_map->emplace(
+        "CreateExtkeyFromParentKey",
+        JsonMappingApi::CreateExtkeyFromParentKey);
+    request_map->emplace("CreateExtkey", JsonMappingApi::CreateExtkey);
+    request_map->emplace("CreateKeyPair", JsonMappingApi::CreateKeyPair);
+    request_map->emplace("ParseScript", JsonMappingApi::ParseScript);
+    request_map->emplace("CreateScript", JsonMappingApi::CreateScript);
+    request_map->emplace(
+        "CreateMultisigScriptSig", JsonMappingApi::CreateMultisigScriptSig);
+    request_map->emplace(
+        "CalculateEcSignature", JsonMappingApi::CalculateEcSignature);
+    request_map->emplace("EstimateFee", JsonMappingApi::EstimateFee);
+    request_map->emplace("SelectUtxos", JsonMappingApi::SelectUtxos);
+    request_map->emplace(
+        "FundRawTransaction", JsonMappingApi::FundRawTransaction);
+    request_map->emplace(
+        "UpdateTxOutAmount", JsonMappingApi::UpdateTxOutAmount);
+#ifndef CFD_DISABLE_ELEMENTS
+    request_map->emplace(
+        "GetConfidentialAddress", JsonMappingApi::GetConfidentialAddress);
+    request_map->emplace(
+        "GetUnblindedAddress", JsonMappingApi::GetUnblindedAddress);
+    request_map->emplace(
+        "CreatePegInAddress", JsonMappingApi::CreatePegInAddress);
+    request_map->emplace(
+        "ElementsCreateRawTransaction",
+        JsonMappingApi::ElementsCreateRawTransaction);
+    request_map->emplace(
+        "ElementsAddRawTransaction",
+        JsonMappingApi::ElementsAddRawTransaction);
+    request_map->emplace(
+        "ElementsDecodeRawTransaction",
+        JsonMappingApi::ElementsDecodeRawTransaction);
+    request_map->emplace(
+        "BlindRawTransaction", JsonMappingApi::BlindRawTransaction);
+    request_map->emplace(
+        "UnblindRawTransaction", JsonMappingApi::UnblindRawTransaction);
+    request_map->emplace("SetRawIssueAsset", JsonMappingApi::SetRawIssueAsset);
+    request_map->emplace(
+        "SetRawReissueAsset", JsonMappingApi::SetRawReissueAsset);
+    request_map->emplace(
+        "CreateElementsSignatureHash",
+        JsonMappingApi::CreateElementsSignatureHash);
+    request_map->emplace("CreateRawPegin", JsonMappingApi::CreateRawPegin);
+    request_map->emplace("CreateRawPegout", JsonMappingApi::CreateRawPegout);
+    request_map->emplace(
+        "GetIssuanceBlindingKey", JsonMappingApi::GetIssuanceBlindingKey);
+    request_map->emplace(
+        "GetDefaultBlindingKey", JsonMappingApi::GetDefaultBlindingKey);
+    request_map->emplace(
+        "CreateDestroyAmount", JsonMappingApi::CreateDestroyAmount);
+    request_map->emplace(
+        "SerializeLedgerFormat", JsonMappingApi::SerializeLedgerFormat);
+    request_map->emplace("GetCommitment", JsonMappingApi::GetCommitment);
+#endif  // CFD_DISABLE_ELEMENTS
+  }
+}
 
 }  // namespace json
 }  // namespace api

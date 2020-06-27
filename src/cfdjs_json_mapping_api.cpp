@@ -1084,6 +1084,7 @@ void JsonMappingApi::LoadFunctions(
         "CreateExtkeyFromParentKey",
         JsonMappingApi::CreateExtkeyFromParentKey);
     request_map->emplace("CreateExtkey", JsonMappingApi::CreateExtkey);
+    request_map->emplace("CreateExtPubkey", JsonMappingApi::CreateExtPubkey);
     request_map->emplace("CreateKeyPair", JsonMappingApi::CreateKeyPair);
     request_map->emplace("ParseScript", JsonMappingApi::ParseScript);
     request_map->emplace("CreateScript", JsonMappingApi::CreateScript);

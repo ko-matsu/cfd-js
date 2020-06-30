@@ -5,6 +5,7 @@
  * @brief cfd node.js API implements file.
  */
 #include <napi.h>  // NOLINT
+
 #include <string>
 
 #include "cfd/cfd_common.h"

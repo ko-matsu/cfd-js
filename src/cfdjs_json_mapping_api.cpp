@@ -9,6 +9,9 @@
 #include <string>
 
 #include "cfd/cfd_common.h"
+#include "cfd_js_api_json_autogen.h"           // NOLINT
+#include "cfdapi_error_json.h"                 // NOLINT
+#include "cfdapi_select_utxos_wrapper_json.h"  // NOLINT
 #include "cfdjs/cfdjs_api_address.h"
 #include "cfdjs/cfdjs_api_common.h"
 #include "cfdjs/cfdjs_api_elements_address.h"
@@ -19,13 +22,9 @@
 #include "cfdjs/cfdjs_api_script.h"
 #include "cfdjs/cfdjs_api_transaction.h"
 #include "cfdjs/cfdjs_api_utility.h"
-
-#include "cfd_js_api_json_autogen.h"           // NOLINT
-#include "cfdapi_error_json.h"                 // NOLINT
-#include "cfdapi_select_utxos_wrapper_json.h"  // NOLINT
-#include "cfdjs_coin.h"                        // NOLINT
-#include "cfdjs_json_elements_transaction.h"   // NOLINT
-#include "cfdjs_json_transaction.h"            // NOLINT
+#include "cfdjs_coin.h"                       // NOLINT
+#include "cfdjs_json_elements_transaction.h"  // NOLINT
+#include "cfdjs_json_transaction.h"           // NOLINT
 
 // using
 using cfd::js::api::AddressStructApi;

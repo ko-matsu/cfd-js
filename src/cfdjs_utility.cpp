@@ -7,12 +7,11 @@
 #include <string>
 #include <vector>
 
+#include "cfd/cfd_common.h"
 #include "cfdcore/cfdcore_bytedata.h"
 #include "cfdcore/cfdcore_exception.h"
 #include "cfdcore/cfdcore_logger.h"
 #include "cfdcore/cfdcore_util.h"
-
-#include "cfd/cfd_common.h"
 #include "cfdjs/cfdjs_api_utility.h"
 #include "cfdjs_internal.h"          // NOLINT
 #include "cfdjs_transaction_base.h"  // NOLINT

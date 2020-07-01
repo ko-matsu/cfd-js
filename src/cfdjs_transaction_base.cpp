@@ -4,14 +4,14 @@
  *
  * @brief cfd-apiで利用するTransaction作成の実装ファイル
  */
+#include "cfdjs_transaction_base.h"  // NOLINT
+
 #include <algorithm>
 #include <string>
 #include <vector>
 
 #include "cfdcore/cfdcore_iterator.h"
-
-#include "cfdjs_internal.h"          // NOLINT
-#include "cfdjs_transaction_base.h"  // NOLINT
+#include "cfdjs_internal.h"  // NOLINT
 
 namespace cfd {
 namespace js {

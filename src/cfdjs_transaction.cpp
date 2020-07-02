@@ -716,24 +716,23 @@ VerifySignResponseStruct TransactionStructApi::VerifySign(
     }
     ctx.CollectInputUtxo(utxos);
 
-    bool is_success = true;
+    response.success = !utxos.empty();
     for (auto& utxo : utxos) {
       OutPoint outpoint(utxo.txid, utxo.vout);
       try {
         ctx.Verify(outpoint);
       } catch (const CfdException& except) {
-        warn(
-            CFD_LOG_SOURCE, "Failed to VerifySign. {}",
-            std::string(except.what()));
-        is_success = false;
+        std::string error_msg = std::string(except.what());
+        warn(CFD_LOG_SOURCE, "Failed to VerifySign. {}", error_msg);
+        response.success = false;
         FailSignTxInStruct fail_data;
         fail_data.txid = outpoint.GetTxid().GetHex();
         fail_data.vout = outpoint.GetVout();
-        response.fail_txins.push_back(fail_data);
+        fail_data.reason = error_msg;
+        response.fail_txins.emplace_back(fail_data);
       }
     }
 
-    response.success = is_success;
     return response;
   };
 

@@ -1443,6 +1443,7 @@ export interface VerifySignRequest {
 export interface FailSignTxIn {
     txid: string;
     vout: number;
+    reason: string;
 }
 
 export interface VerifySignResponse {

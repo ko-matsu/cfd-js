@@ -56683,6 +56683,49 @@ class FailSignTxIn
   }
 
   /**
+   * @brief Get of reason
+   * @return reason
+   */
+  std::string GetReason() const {
+    return reason_;
+  }
+  /**
+   * @brief Set to reason
+   * @param[in] reason    setting value.
+   */
+  void SetReason(  // line separate
+    const std::string& reason) {  // NOLINT
+    this->reason_ = reason;
+  }
+  /**
+   * @brief Get data type of reason
+   * @return Data type of reason
+   */
+  static std::string GetReasonFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of reason field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetReasonString(  // line separate
+      const FailSignTxIn& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.reason_);
+  }
+  /**
+   * @brief Set json object to reason field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetReasonString(  // line separate
+      FailSignTxIn& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.reason_, json_value);
+  }
+
+  /**
    * @brief Set ignore item.
    * @param[in] key   ignore target key name.
    */
@@ -56759,6 +56802,10 @@ class FailSignTxIn
    * @brief JsonAPI(vout) value
    */
   uint32_t vout_ = 0;
+  /**
+   * @brief JsonAPI(reason) value
+   */
+  std::string reason_ = "";
 };
 
 // ------------------------------------------------------------------------

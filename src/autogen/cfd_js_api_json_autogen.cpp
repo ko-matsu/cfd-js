@@ -12692,12 +12692,20 @@ void FailSignTxIn::CollectFieldName() {
   };
   json_mapper.emplace("vout", func_table);
   item_list.push_back("vout");
+  func_table = {
+    FailSignTxIn::GetReasonString,
+    FailSignTxIn::SetReasonString,
+    FailSignTxIn::GetReasonFieldType,
+  };
+  json_mapper.emplace("reason", func_table);
+  item_list.push_back("reason");
 }
 
 void FailSignTxIn::ConvertFromStruct(
     const FailSignTxInStruct& data) {
   txid_ = data.txid;
   vout_ = data.vout;
+  reason_ = data.reason;
   ignore_items = data.ignore_items;
 }
 
@@ -12705,6 +12713,7 @@ FailSignTxInStruct FailSignTxIn::ConvertToStruct() const {  // NOLINT
   FailSignTxInStruct result;
   result.txid = txid_;
   result.vout = vout_;
+  result.reason = reason_;
   result.ignore_items = ignore_items;
   return result;
 }

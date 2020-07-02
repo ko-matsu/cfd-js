@@ -3018,8 +3018,9 @@ struct VerifySignRequestStruct {
  * @brief FailSignTxInStruct struct
  */
 struct FailSignTxInStruct {
-  std::string txid = "";  //!< txid  // NOLINT
-  uint32_t vout = 0;      //!< vout  // NOLINT
+  std::string txid = "";    //!< txid  // NOLINT
+  uint32_t vout = 0;        //!< vout  // NOLINT
+  std::string reason = "";  //!< reason  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 

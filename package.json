@@ -1,6 +1,6 @@
 {
   "name": "cfd-js",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "domain": "ko-matsu",
   "repository": {
     "type": "git",
@@ -35,7 +35,7 @@
     "install_cmake": "run-s download_object cmake_install_configure cmake_compile",
     "prebuild_all": "run-s prebuild_nodejs prebuild_electron",
     "prebuild_nodejs": "prebuild --backend cmake-js -t -t 12.16.3 -t 14.3.0 -r node --verbose --include-regex \".*(node|a|so|dll|dylib)$\" --  -O build --CDENABLE_SHARED=off --CDENABLE_CAPI=off --CDENABLE_TESTS=off --CDTARGET_RPATH=\"@executable_path;/usr/local/lib;/usr/local/lib64;./node_modules/cfd-js/build/Release;../node_modules/cfd-js/build/Release;../../node_modules/cfd-js/build/Release;../../../node_modules/cfd-js/build/Release;../../../../node_modules/cfd-js/build/Release;../../../../../node_modules/cfd-js/build/Release;../../../../../../node_modules/cfd-js/build/Release;./build/Release;./build/Release;./wrap_js/dl_lib/lib\" -C --CDnapi_build_version=3",
-    "prebuild_electron": "prebuild --backend cmake-js -t 7.0.0 -t 8.0.0 -r electron --verbose --include-regex \".*(node|a|so|dll|dylib)$\" --  -O build --CDENABLE_SHARED=off --CDENABLE_CAPI=off --CDENABLE_TESTS=off --CDCMAKE_BUILD_RPATH_USE_ORIGIN=on --CDTARGET_RPATH=\"@executable_path;/usr/local/lib;/usr/local/lib64;./node_modules/cfd-js/build/Release;../node_modules/cfd-js/build/Release;../../node_modules/cfd-js/build/Release;../../../node_modules/cfd-js/build/Release;../../../../node_modules/cfd-js/build/Release;../../../../../node_modules/cfd-js/build/Release;../../../../../../node_modules/cfd-js/build/Release;./build/Release;./build/Release;./wrap_js/dl_lib/lib;./resources/app.asar.unpacked/node_modules/cfd-js/build/Release;./resources/app.asar/node_modules/cfd-js/build/Release\" -C --CDnapi_build_version=3",
+    "prebuild_electron": "prebuild --backend cmake-js -t 7.0.0 -t 8.0.0 -r electron --verbose --include-regex \".*(node|a|so|dll|dylib)$\" --  -O build --CDENABLE_SHARED=off --CDENABLE_CAPI=off --CDENABLE_TESTS=off --CDCMAKE_BUILD_RPATH_USE_ORIGIN=on --CDTARGET_RPATH=\"@executable_path;/usr/local/lib;/usr/local/lib64;./node_modules/cfd-js/build/Release;../node_modules/cfd-js/build/Release;../../node_modules/cfd-js/build/Release;../../../node_modules/cfd-js/build/Release;../../../../node_modules/cfd-js/build/Release;../../../../../node_modules/cfd-js/build/Release;../../../../../../node_modules/cfd-js/build/Release;./build/Release;./build/Release;./wrap_js/dl_lib/lib;./resources/app.asar.unpacked/node_modules/cfd-js/build/Release;./resources/app.asar/node_modules/cfd-js/build/Release;./out\" -C --CDnapi_build_version=3",
     "prebuild_upload_all": "prebuild --upload-all",
     "check_version": "node ./tools/checker.js version",
     "download_object": "node ./pkg_getter.js",

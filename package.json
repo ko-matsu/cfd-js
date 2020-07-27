@@ -1,6 +1,6 @@
 {
   "name": "cfd-js",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "domain": "cryptogarageinc",
   "repository": {
     "type": "git",
@@ -43,9 +43,10 @@
     "cmake_compile": "cmake-js compile -O build",
     "cmake_install_configure": "cmake-js configure -O build --CDENABLE_SHARED=off --CDENABLE_CAPI=off --CDENABLE_TESTS=off --CDTARGET_RPATH=\"@executable_path;/usr/local/lib;/usr/local/lib64;\\$\\$ORIGIN/node_modules/cfd-js/build/Release;\\$ORIGIN/node_modules/cfd-js/build/Release;\\$ORIGIN/../node_modules/cfd-js/build/Release;\\$ORIGIN/../../node_modules/cfd-js/build/Release;\\$ORIGIN/../../../node_modules/cfd-js/build/Release;\\$ORIGIN/../../../../node_modules/cfd-js/build/Release;\\$ORIGIN/../../../../../node_modules/cfd-js/build/Release;\\$ORIGIN/../../../../../../node_modules/cfd-js/build/Release;\\$ORIGIN/build/Release;\\$ORIGIN/wrap_js/dl_lib/lib\" -C",
     "cmake_release_parallel": "run-s cmake_clean cmake_install_configure cmake_build_parallel",
-    "example": "node wrap_js/example.js",
+    "example": "node wrap_js/example.js example",
     "elements_example": "node wrap_js/elements_example.js",
     "elements_pegin_example": "node wrap_js/elements_pegin_example.js",
+    "util_example": "node wrap_js/cfdjs_util_example.js",
     "ts_example": "ts-node wrap_js/ts_example.ts",
     "test": "jest --no-cache",
     "test_watch": "jest --no-cache --watch",
@@ -154,8 +155,8 @@
     "eslint_check": "eslint --ext .js,.ts *.ts *.js wrap_js/",
     "git_subm_update": "git submodule -q foreach git fetch -q && git submodule -q update -i",
     "check_local": "run-p doxygen_dev format_cpp_all format_js_all",
-    "check": "run-s doxygen_check lint_all ctest_quiet test_quiet example elements_example ts_example",
-    "check_all": "run-s cmake_clean git_subm_update cmake_quiet doxygen_check ctest_quiet test_quiet example elements_example ts_example lint_all",
+    "check": "run-s doxygen_check lint_all ctest_quiet test_quiet example elements_example ts_example util_example",
+    "check_all": "run-s cmake_clean git_subm_update cmake_quiet doxygen_check ctest_quiet test_quiet example elements_example ts_example util_example lint_all",
     "convert_json": "ts-node ./tools/generate_json_map_class.ts",
     "convert_json_debug": "ts-node ./tools/generate_json_map_class.ts mode=debug"
   },

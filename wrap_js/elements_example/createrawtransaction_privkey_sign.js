@@ -11,7 +11,7 @@ const {
 
 const ASSET_LBTC = '5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225';
 const NET_TYPE = 'elementsregtest';
-const MAINCHAIN_NET_TYPE = 'regtest';
+// const MAINCHAIN_NET_TYPE = 'regtest';
 const PRIVKEY_WIF = 'cQSMk598rXepDZzYjExTPaSpVvFqJJY8x4ZY9JQutoSEFUqzNVdq';
 const TXID = '985930b3c0d5b34d8f750c8b879cde6480224c5d39f093d66489e4d98ceb4a42';
 const VOUT = 1;

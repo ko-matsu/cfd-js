@@ -9,7 +9,7 @@ const {
 
 const ASSET_LBTC = '5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225';
 const NET_TYPE = 'elementsregtest';
-const MAINCHAIN_NET_TYPE = 'regtest';
+// const MAINCHAIN_NET_TYPE = 'regtest';
 const SELECT_UTXO_LIST = [{
   txid: 'ab05c759d35eca58d2f1fe973b0282654a610c4ddc0566356dff96fb06e3c5ff',
   vout: 0,

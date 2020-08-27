@@ -39,8 +39,10 @@ set(CFDJS_API_INSTALLED   TRUE)
 endif()  # find_package
 endif()
 
-find_package(cfd  QUIET CONFIG)
+find_package(univalue QUIET CONFIG)
+find_package(wally  QUIET CONFIG)
 find_package(cfdcore  QUIET CONFIG)
+find_package(cfd  QUIET CONFIG)
 if((NOT CFDJS_API_INSTALLED) OR (NOT cfd_FOUND) OR (NOT ${cfd_FOUND}) OR (NOT cfdcore_FOUND) OR (NOT ${cfdcore_FOUND}))
 # load and compile libwally
 else()

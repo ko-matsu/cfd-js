@@ -446,6 +446,31 @@ const elementsTestCase = [
       '{\"feeAmount\":1513,\"txFeeAmount\":1311,\"utxoFeeAmount\":202}',
     );
   })(),
+  (() => {
+    const selectUtxos = [{
+      txid: '1234567890123456789012345678901234567890123456789012345678901234',
+      vout: 0,
+      amount: 600000000,
+      asset: DEFAULT_ASSET,
+      descriptor: FIXED_DESCRIPTOR,
+      isPegin: true,
+      peginBtcTxSize: 210,
+      fedpegScript: '51',
+    }];
+    return TestHelper.createElementsTestCase(
+      'EstimateFee Elements - 13[6,7]coins-pegin, tx: 2 output, feeRate: 0.1',
+      EstimateFee,
+      [JSON.stringify({
+        selectUtxos,
+        feeRate: 0.1,
+        tx: '020000000002d4b91f8ea0be3d89d33f9588884a843e78688152f4dff8aca5abc6f5973a83ae0000000000feffffff140510708ffd1fc8bea09e204d36b0d5b9402a31767a4f6c36f23b40cd0cbaf70a00000000faffffff0301f38611eb688e6fcd06f25e2faf52b9f98364dc14c379ab085f1b57d56b4b1a6f01000000003b9328e0001976a9146d715ab3da8090fd8f9e7aada1588e531b16b7da88ac0151f799a22a9375b31c2f20edce025f0df5231306e81222a0061bde342dc447ef010000000008f0d1800255fb6295bfd3bbf4760776a59d9476fac2e52f9c0c16549aea5c2ca5f1c15e6f1976a9147cafacbfc72f3682b1055b3a6b8711f3622eabfd88ac01f38611eb688e6fcd06f25e2faf52b9f98364dc14c379ab085f1b57d56b4b1a6f01000000000007a120000090000000',
+        isElements: true,
+        feeAsset: FEE_ASSET,
+        isBlind: false,
+      })],
+      '{\"feeAmount\":153,\"txFeeAmount\":132,\"utxoFeeAmount\":21}',
+    );
+  })(),
 ];
 
 const elementsErrorCase = [

@@ -944,6 +944,7 @@ export interface EstimateFeeRequest {
 export interface EstimateFeeResponse {
     feeAmount: bigint;
     txFeeAmount?: bigint;
+    txoutFeeAmount?: bigint;
     utxoFeeAmount?: bigint;
 }
 

@@ -37520,6 +37520,49 @@ class EstimateFeeResponse
   }
 
   /**
+   * @brief Get of txoutFeeAmount
+   * @return txoutFeeAmount
+   */
+  int64_t GetTxoutFeeAmount() const {
+    return txout_fee_amount_;
+  }
+  /**
+   * @brief Set to txoutFeeAmount
+   * @param[in] txout_fee_amount    setting value.
+   */
+  void SetTxoutFeeAmount(  // line separate
+    const int64_t& txout_fee_amount) {  // NOLINT
+    this->txout_fee_amount_ = txout_fee_amount;
+  }
+  /**
+   * @brief Get data type of txoutFeeAmount
+   * @return Data type of txoutFeeAmount
+   */
+  static std::string GetTxoutFeeAmountFieldType() {
+    return "int64_t";
+  }
+  /**
+   * @brief Get json string of txoutFeeAmount field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTxoutFeeAmountString(  // line separate
+      const EstimateFeeResponse& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.txout_fee_amount_);
+  }
+  /**
+   * @brief Set json object to txoutFeeAmount field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTxoutFeeAmountString(  // line separate
+      EstimateFeeResponse& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.txout_fee_amount_, json_value);
+  }
+
+  /**
    * @brief Get of utxoFeeAmount
    * @return utxoFeeAmount
    */
@@ -37639,6 +37682,10 @@ class EstimateFeeResponse
    * @brief JsonAPI(txFeeAmount) value
    */
   int64_t tx_fee_amount_ = 0;
+  /**
+   * @brief JsonAPI(txoutFeeAmount) value
+   */
+  int64_t txout_fee_amount_ = 0;
   /**
    * @brief JsonAPI(utxoFeeAmount) value
    */

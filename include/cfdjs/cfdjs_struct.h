@@ -287,8 +287,8 @@ struct AddSignTxInRequestStruct {
  * @brief AddSignRequestStruct struct
  */
 struct AddSignRequestStruct {
-  std::string tx = "";            //!< tx  // NOLINT
   bool is_elements = false;       //!< is_elements  // NOLINT
+  std::string tx = "";            //!< tx  // NOLINT
   AddSignTxInRequestStruct txin;  //!< txin  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };

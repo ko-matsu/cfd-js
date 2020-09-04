@@ -1501,6 +1501,9 @@ const generateTsData = (dirname: string, filename: string,
         tags.push({tagName: 'param', text: `\{${type}\} ${name} - ${prop.comment}`});
       }
     }
+    if (retType && retType != 'void') {
+      tags.push({tagName: 'return', text: `\{${retType}\} - ${retType} data.`});
+    }
     file.addFunction({
       name: funcName,
       isExported: true,

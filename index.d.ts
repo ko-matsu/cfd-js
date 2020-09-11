@@ -1847,6 +1847,18 @@ export function CreateAddress(jsonObject: CreateAddressRequest): CreateAddressRe
 export function CreateDescriptor(jsonObject: CreateDescriptorRequest): CreateDescriptorResponse;
 
 /**
+ * @param {CreateDestroyAmountRequest} jsonObject - request data.
+ * @return {CreateDestroyAmountResponse} - response data.
+ */
+export function CreateDestroyAmount(jsonObject: CreateDestroyAmountRequest): CreateDestroyAmountResponse;
+
+/**
+ * @param {CreateElementsSignatureHashRequest} jsonObject - request data.
+ * @return {CreateElementsSignatureHashResponse} - response data.
+ */
+export function CreateElementsSignatureHash(jsonObject: CreateElementsSignatureHashRequest): CreateElementsSignatureHashResponse;
+
+/**
  * @param {CreateExtkeyRequest} jsonObject - request data.
  * @return {CreateExtkeyResponse} - response data.
  */
@@ -1889,16 +1901,52 @@ export function CreateExtPubkey(jsonObject: CreateExtPubkeyRequest): CreateExtPu
 export function CreateKeyPair(jsonObject: CreateKeyPairRequest): CreateKeyPairResponse;
 
 /**
+ * @param {CreateMultisigRequest} jsonObject - request data.
+ * @return {CreateMultisigResponse} - response data.
+ */
+export function CreateMultisig(jsonObject: CreateMultisigRequest): CreateMultisigResponse;
+
+/**
  * @param {CreateMultisigScriptSigRequest} jsonObject - request data.
  * @return {CreateMultisigScriptSigResponse} - response data.
  */
 export function CreateMultisigScriptSig(jsonObject: CreateMultisigScriptSigRequest): CreateMultisigScriptSigResponse;
 
 /**
+ * @param {CreatePegInAddressRequest} jsonObject - request data.
+ * @return {CreatePegInAddressResponse} - response data.
+ */
+export function CreatePegInAddress(jsonObject: CreatePegInAddressRequest): CreatePegInAddressResponse;
+
+/**
+ * @param {CreateRawPeginRequest} jsonObject - request data.
+ * @return {CreateRawPeginResponse} - response data.
+ */
+export function CreateRawPegin(jsonObject: CreateRawPeginRequest): CreateRawPeginResponse;
+
+/**
+ * @param {CreateRawPegoutRequest} jsonObject - request data.
+ * @return {CreateRawPegoutResponse} - response data.
+ */
+export function CreateRawPegout(jsonObject: CreateRawPegoutRequest): CreateRawPegoutResponse;
+
+/**
+ * @param {CreateRawTransactionRequest} jsonObject - request data.
+ * @return {CreateRawTransactionResponse} - response data.
+ */
+export function CreateRawTransaction(jsonObject: CreateRawTransactionRequest): CreateRawTransactionResponse;
+
+/**
  * @param {CreateScriptRequest} jsonObject - request data.
  * @return {CreateScriptResponse} - response data.
  */
 export function CreateScript(jsonObject: CreateScriptRequest): CreateScriptResponse;
+
+/**
+ * @param {CreateSignatureHashRequest} jsonObject - request data.
+ * @return {CreateSignatureHashResponse} - response data.
+ */
+export function CreateSignatureHash(jsonObject: CreateSignatureHashRequest): CreateSignatureHashResponse;
 
 /**
  * @param {DecodeBase58Request} jsonObject - request data.
@@ -1925,30 +1973,6 @@ export function DecodeRawTransaction(jsonObject: DecodeRawTransactionRequest): D
 export function ElementsAddRawTransaction(jsonObject: ElementsAddRawTransactionRequest): ElementsAddRawTransactionResponse;
 
 /**
- * @param {CreateDestroyAmountRequest} jsonObject - request data.
- * @return {CreateDestroyAmountResponse} - response data.
- */
-export function CreateDestroyAmount(jsonObject: CreateDestroyAmountRequest): CreateDestroyAmountResponse;
-
-/**
- * @param {CreatePegInAddressRequest} jsonObject - request data.
- * @return {CreatePegInAddressResponse} - response data.
- */
-export function CreatePegInAddress(jsonObject: CreatePegInAddressRequest): CreatePegInAddressResponse;
-
-/**
- * @param {CreateRawPeginRequest} jsonObject - request data.
- * @return {CreateRawPeginResponse} - response data.
- */
-export function CreateRawPegin(jsonObject: CreateRawPeginRequest): CreateRawPeginResponse;
-
-/**
- * @param {CreateRawPegoutRequest} jsonObject - request data.
- * @return {CreateRawPegoutResponse} - response data.
- */
-export function CreateRawPegout(jsonObject: CreateRawPegoutRequest): CreateRawPegoutResponse;
-
-/**
  * @param {ElementsCreateRawTransactionRequest} jsonObject - request data.
  * @return {ElementsCreateRawTransactionResponse} - response data.
  */
@@ -1959,36 +1983,6 @@ export function ElementsCreateRawTransaction(jsonObject: ElementsCreateRawTransa
  * @return {ElementsDecodeRawTransactionResponse} - response data.
  */
 export function ElementsDecodeRawTransaction(jsonObject: ElementsDecodeRawTransactionRequest): ElementsDecodeRawTransactionResponse;
-
-/**
- * @param {GetConfidentialAddressRequest} jsonObject - request data.
- * @return {GetConfidentialAddressResponse} - response data.
- */
-export function GetConfidentialAddress(jsonObject: GetConfidentialAddressRequest): GetConfidentialAddressResponse;
-
-/**
- * @param {GetUnblindedAddressRequest} jsonObject - request data.
- * @return {GetUnblindedAddressResponse} - response data.
- */
-export function GetUnblindedAddress(jsonObject: GetUnblindedAddressRequest): GetUnblindedAddressResponse;
-
-/**
- * @param {SetRawIssueAssetRequest} jsonObject - request data.
- * @return {SetRawIssueAssetResponse} - response data.
- */
-export function SetRawIssueAsset(jsonObject: SetRawIssueAssetRequest): SetRawIssueAssetResponse;
-
-/**
- * @param {SetRawReissueAssetRequest} jsonObject - request data.
- * @return {SetRawReissueAssetResponse} - response data.
- */
-export function SetRawReissueAsset(jsonObject: SetRawReissueAssetRequest): SetRawReissueAssetResponse;
-
-/**
- * @param {UnblindRawTransactionRequest} jsonObject - request data.
- * @return {UnblindRawTransactionResponse} - response data.
- */
-export function UnblindRawTransaction(jsonObject: UnblindRawTransactionRequest): UnblindRawTransactionResponse;
 
 /**
  * @param {EncodeBase58Request} jsonObject - request data.
@@ -2037,6 +2031,12 @@ export function GetCommitment(jsonObject: GetCommitmentRequest): GetCommitmentRe
  * @return {GetCompressedPubkeyResponse} - response data.
  */
 export function GetCompressedPubkey(jsonObject: GetCompressedPubkeyRequest): GetCompressedPubkeyResponse;
+
+/**
+ * @param {GetConfidentialAddressRequest} jsonObject - request data.
+ * @return {GetConfidentialAddressResponse} - response data.
+ */
+export function GetConfidentialAddress(jsonObject: GetConfidentialAddressRequest): GetConfidentialAddressResponse;
 
 /**
  * @param {GetDefaultBlindingKeyRequest} jsonObject - request data.
@@ -2092,17 +2092,20 @@ export function GetPubkeyFromExtkey(jsonObject: GetPubkeyFromExtkeyRequest): Get
  */
 export function GetPubkeyFromPrivkey(jsonObject: GetPubkeyFromPrivkeyRequest): GetPubkeyFromPrivkeyResponse;
 
+/** @return {GetSupportedFunctionResponse} - response data. */
+export function GetSupportedFunction(): GetSupportedFunctionResponse;
+
+/**
+ * @param {GetUnblindedAddressRequest} jsonObject - request data.
+ * @return {GetUnblindedAddressResponse} - response data.
+ */
+export function GetUnblindedAddress(jsonObject: GetUnblindedAddressRequest): GetUnblindedAddressResponse;
+
 /**
  * @param {GetWitnessStackNumRequest} jsonObject - request data.
  * @return {GetWitnessStackNumResponse} - response data.
  */
 export function GetWitnessStackNum(jsonObject: GetWitnessStackNumRequest): GetWitnessStackNumResponse;
-
-/**
- * @param {CreateMultisigRequest} jsonObject - request data.
- * @return {CreateMultisigResponse} - response data.
- */
-export function CreateMultisig(jsonObject: CreateMultisigRequest): CreateMultisigResponse;
 
 /**
  * @param {ParseDescriptorRequest} jsonObject - request data.
@@ -2129,16 +2132,16 @@ export function SelectUtxos(jsonObject: SelectUtxosRequest): SelectUtxosResponse
 export function SerializeLedgerFormat(jsonObject: SerializeLedgerFormatRequest): SerializeLedgerFormatResponse;
 
 /**
- * @param {CreateSignatureHashRequest} jsonObject - request data.
- * @return {CreateSignatureHashResponse} - response data.
+ * @param {SetRawIssueAssetRequest} jsonObject - request data.
+ * @return {SetRawIssueAssetResponse} - response data.
  */
-export function CreateSignatureHash(jsonObject: CreateSignatureHashRequest): CreateSignatureHashResponse;
+export function SetRawIssueAsset(jsonObject: SetRawIssueAssetRequest): SetRawIssueAssetResponse;
 
 /**
- * @param {CreateElementsSignatureHashRequest} jsonObject - request data.
- * @return {CreateElementsSignatureHashResponse} - response data.
+ * @param {SetRawReissueAssetRequest} jsonObject - request data.
+ * @return {SetRawReissueAssetResponse} - response data.
  */
-export function CreateElementsSignatureHash(jsonObject: CreateElementsSignatureHashRequest): CreateElementsSignatureHashResponse;
+export function SetRawReissueAsset(jsonObject: SetRawReissueAssetRequest): SetRawReissueAssetResponse;
 
 /**
  * @param {SignWithPrivkeyRequest} jsonObject - request data.
@@ -2146,14 +2149,11 @@ export function CreateElementsSignatureHash(jsonObject: CreateElementsSignatureH
  */
 export function SignWithPrivkey(jsonObject: SignWithPrivkeyRequest): SignWithPrivkeyResponse;
 
-/** @return {GetSupportedFunctionResponse} - response data. */
-export function GetSupportedFunction(): GetSupportedFunctionResponse;
-
 /**
- * @param {CreateRawTransactionRequest} jsonObject - request data.
- * @return {CreateRawTransactionResponse} - response data.
+ * @param {UnblindRawTransactionRequest} jsonObject - request data.
+ * @return {UnblindRawTransactionResponse} - response data.
  */
-export function CreateRawTransaction(jsonObject: CreateRawTransactionRequest): CreateRawTransactionResponse;
+export function UnblindRawTransaction(jsonObject: UnblindRawTransactionRequest): UnblindRawTransactionResponse;
 
 /**
  * @param {UpdateTxOutAmountRequest} jsonObject - request data.

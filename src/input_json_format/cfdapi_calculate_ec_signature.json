@@ -29,10 +29,10 @@
     "isGrindR:comment": "Grind-R flag"
   },
   "response": {
-    ":class": "CalculateEcSignatureResponse",
-    ":class:comment": "response ec signature data.",
+    ":class": "SignatureDataResponse",
+    ":class:comment": "The data containing signature.",
     "signature": "",
     "signature:require": "require",
-    "signature:comment": "ec signature"
+    "signature:comment": "signature"
   }
 }

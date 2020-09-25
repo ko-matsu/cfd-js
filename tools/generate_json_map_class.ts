@@ -61,6 +61,7 @@ interface ReferenceClassInfo {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 let debugLog = function(...args: any | any[]) {
   // do nothing
+  // console.log(...args);
 };
 
 // eslint-disable-next-line prefer-const
@@ -214,9 +215,10 @@ class JsonMappingData {
         if (this.childList[key]) {
           const ret = this.childList[key].collectMapData(
               map, list, isRequest, parentInfo);
+          const comment = ret['comment'] || this.comment;
           return {
             type: ret['type'] + '[]',
-            comment: ret['comment'],
+            comment,
           };
         }
         break;

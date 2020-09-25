@@ -274,6 +274,7 @@ class JsonMappingData {
         // property check
         const appendProps = [];
         const existDataProps = map[this.type].childList;
+        const removeProps: string[] = [];
         for (const newProp of props) {
           let exist = false;
           const srcName = newProp.param.name.replace('?', '');
@@ -286,8 +287,9 @@ class JsonMappingData {
               if (newProp.param.type != prop.param.type) {
                 if ((newProp.param.type.indexOf('bigint') >= 0) &&
                     (prop.param.type.indexOf('bigint') >= 0)) {
-                  if (prop.param.type == 'bigint') {
-                    prop.param.type = newProp.param.type;
+                  if (newProp.param.type == 'bigint') {
+                    // removeProps.push(prop.param.name);
+                    exist = true;
                   }
                   break;
                 }
@@ -306,16 +308,20 @@ class JsonMappingData {
           if (!exist) appendProps.push(newProp);
         }
         if (appendProps) {
+          const newProps = (!removeProps) ? existDataProps :
+            existDataProps.filter(
+                (value: DetailParameterType) =>
+                  (removeProps.indexOf(value.param.name) == -1));
           const parentList = map[this.type].parentList;
           if (parentInfo != null) {
             parentList.push(parentInfo.type);
           }
           const joinData = map[this.type].data.join(this);
           for (const prop of appendProps) {
-            existDataProps.push(prop);
+            newProps.push(prop);
           }
           map[this.type] = {
-            data: joinData, childList: existDataProps,
+            data: joinData, childList: newProps,
             parentList: parentList,
           };
         }

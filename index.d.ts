@@ -1596,7 +1596,6 @@ export interface SignWithPrivkeyTxInRequest {
 export interface TargetAmountMapData {
     asset?: string;
     amount: bigint | number;
-    amount: bigint;
 }
 
 export interface TxInRequest {
@@ -1696,7 +1695,6 @@ export interface UtxoJsonData {
     asset?: string;
     descriptor?: string;
     scriptSigTemplate?: string;
-    amount: bigint;
 }
 
 export interface VerifyignTxInUtxoData {

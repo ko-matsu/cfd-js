@@ -60,11 +60,11 @@ CreateKeyPairResponseStruct KeyStructApi::CreateKeyPair(
   return result;
 }
 
-CalculateEcSignatureResponseStruct KeyStructApi::CalculateEcSignature(
+SignatureDataResponseStruct KeyStructApi::CalculateEcSignature(
     const CalculateEcSignatureRequestStruct& request) {
   auto call_func = [](const CalculateEcSignatureRequestStruct& request)
-      -> CalculateEcSignatureResponseStruct {  // NOLINT
-    CalculateEcSignatureResponseStruct response;
+      -> SignatureDataResponseStruct {  // NOLINT
+    SignatureDataResponseStruct response;
 
     std::string privkey_data = request.privkey_data.privkey;
     const bool is_wif = request.privkey_data.wif;
@@ -85,18 +85,18 @@ CalculateEcSignatureResponseStruct KeyStructApi::CalculateEcSignature(
     return response;
   };
 
-  CalculateEcSignatureResponseStruct result;
+  SignatureDataResponseStruct result;
   result = ExecuteStructApi<
-      CalculateEcSignatureRequestStruct, CalculateEcSignatureResponseStruct>(
+      CalculateEcSignatureRequestStruct, SignatureDataResponseStruct>(
       request, call_func, std::string(__FUNCTION__));
   return result;
 }
 
-GetPrivkeyFromWifResponseStruct KeyStructApi::GetPrivkeyFromWif(
-    const GetPrivkeyFromWifRequestStruct& request) {
-  auto call_func = [](const GetPrivkeyFromWifRequestStruct& request)
-      -> GetPrivkeyFromWifResponseStruct {
-    GetPrivkeyFromWifResponseStruct response;
+PrivkeyHexDataStruct KeyStructApi::GetPrivkeyFromWif(
+    const PrivkeyWifDataStruct& request) {
+  auto call_func =
+      [](const PrivkeyWifDataStruct& request) -> PrivkeyHexDataStruct {
+    PrivkeyHexDataStruct response;
 
     NetType net_type = NetType::kMainnet;
     KeyApi api;
@@ -107,18 +107,17 @@ GetPrivkeyFromWifResponseStruct KeyStructApi::GetPrivkeyFromWif(
     return response;
   };
 
-  GetPrivkeyFromWifResponseStruct result;
-  result = ExecuteStructApi<
-      GetPrivkeyFromWifRequestStruct, GetPrivkeyFromWifResponseStruct>(
+  PrivkeyHexDataStruct result;
+  result = ExecuteStructApi<PrivkeyWifDataStruct, PrivkeyHexDataStruct>(
       request, call_func, std::string(__FUNCTION__));
   return result;
 }
 
-GetPrivkeyWifResponseStruct KeyStructApi::GetPrivkeyWif(
-    const GetPrivkeyWifRequestStruct& request) {
-  auto call_func = [](const GetPrivkeyWifRequestStruct& request)
-      -> GetPrivkeyWifResponseStruct {
-    GetPrivkeyWifResponseStruct response;
+PrivkeyWifDataStruct KeyStructApi::GetPrivkeyWif(
+    const PrivkeyHexDataStruct& request) {
+  auto call_func =
+      [](const PrivkeyHexDataStruct& request) -> PrivkeyWifDataStruct {
+    PrivkeyWifDataStruct response;
 
     const NetType net_type = AddressStructApi::ConvertNetType(request.network);
     Privkey privkey(request.hex);
@@ -126,18 +125,17 @@ GetPrivkeyWifResponseStruct KeyStructApi::GetPrivkeyWif(
     return response;
   };
 
-  GetPrivkeyWifResponseStruct result;
-  result = ExecuteStructApi<
-      GetPrivkeyWifRequestStruct, GetPrivkeyWifResponseStruct>(
+  PrivkeyWifDataStruct result;
+  result = ExecuteStructApi<PrivkeyHexDataStruct, PrivkeyWifDataStruct>(
       request, call_func, std::string(__FUNCTION__));
   return result;
 }
 
-GetPubkeyFromPrivkeyResponseStruct KeyStructApi::GetPubkeyFromPrivkey(
+PubkeyDataStruct KeyStructApi::GetPubkeyFromPrivkey(
     const GetPubkeyFromPrivkeyRequestStruct& request) {
   auto call_func = [](const GetPubkeyFromPrivkeyRequestStruct& request)
-      -> GetPubkeyFromPrivkeyResponseStruct {
-    GetPubkeyFromPrivkeyResponseStruct response;
+      -> PubkeyDataStruct {
+    PubkeyDataStruct response;
 
     KeyApi api;
     response.pubkey =
@@ -145,27 +143,25 @@ GetPubkeyFromPrivkeyResponseStruct KeyStructApi::GetPubkeyFromPrivkey(
     return response;
   };
 
-  GetPubkeyFromPrivkeyResponseStruct result;
-  result = ExecuteStructApi<
-      GetPubkeyFromPrivkeyRequestStruct, GetPubkeyFromPrivkeyResponseStruct>(
-      request, call_func, std::string(__FUNCTION__));
+  PubkeyDataStruct result;
+  result =
+      ExecuteStructApi<GetPubkeyFromPrivkeyRequestStruct, PubkeyDataStruct>(
+          request, call_func, std::string(__FUNCTION__));
   return result;
 }
 
-GetCompressedPubkeyResponseStruct KeyStructApi::GetCompressedPubkey(
-    const GetCompressedPubkeyRequestStruct& request) {
-  auto call_func = [](const GetCompressedPubkeyRequestStruct& request)
-      -> GetCompressedPubkeyResponseStruct {
-    GetCompressedPubkeyResponseStruct response;
+PubkeyDataStruct KeyStructApi::GetCompressedPubkey(
+    const PubkeyDataStruct& request) {
+  auto call_func = [](const PubkeyDataStruct& request) -> PubkeyDataStruct {
+    PubkeyDataStruct response;
 
     Pubkey uncompressed_pubkey(request.pubkey);
     response.pubkey = uncompressed_pubkey.Compress().GetHex();
     return response;
   };
 
-  GetCompressedPubkeyResponseStruct result;
-  result = ExecuteStructApi<
-      GetCompressedPubkeyRequestStruct, GetCompressedPubkeyResponseStruct>(
+  PubkeyDataStruct result;
+  result = ExecuteStructApi<PubkeyDataStruct, PubkeyDataStruct>(
       request, call_func, std::string(__FUNCTION__));
   return result;
 }

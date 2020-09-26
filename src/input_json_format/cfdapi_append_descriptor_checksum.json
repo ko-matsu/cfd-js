@@ -12,7 +12,7 @@
     "isElements:comment": "elements transaction flag."
   },
   "response": {
-    ":class": "AppendDescriptorChecksumResponse",
+    ":class": "OutputDescriptorResponse",
     ":class:comment": "The data containing output descriptor.",
     "descriptor": "",
     "descriptor:require": "require",

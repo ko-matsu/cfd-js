@@ -1,16 +1,21 @@
 {
   "namespace": ["cfd","js","api","json"],
+  "comment": "Get seed from mnemonic.",
   "request": {
     ":class": "ConvertMnemonicToSeedRequest",
+    ":class:comment": "Request's data for converting mnemonic to seed.",
     "mnemonic": [""],
     "mnemonic:require": "require",
+    "mnemonic:comment": "mnemonic words",
     "passphrase": "",
     "passphrase:require": "require",
+    "passphrase:comment": "passphrase",
     "strictCheck": false,
     "strictCheck:require": "optional",
     "strictCheck:comment": "Check mnemonic words strictly",
     "language": "",
     "language:require": "optional",
+    "language:comment": "mnemonic language",
     "language:hint": "support [en es fr it jp zhs zht]",
     "useIdeographicSpace": false,
     "useIdeographicSpace:require": "optional",
@@ -18,10 +23,12 @@
   },
   "response": {
     ":class": "ConvertMnemonicToSeedResponse",
+    ":class:comment": "Response data of converting mnemonic to seed.",
     "seed": "",
     "seed:require": "require",
+    "seed:comment": "mnemonic word list",
     "entropy": "",
     "entropy:require": "optional",
-    "entropy:comment": "This field is only set if \"language\" is set in the request"
+    "entropy:comment": "mnemonic's entropy. This field is only set if \"language\" is set in the request"
   }
 }

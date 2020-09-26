@@ -1,19 +1,26 @@
 {
   "namespace": ["cfd","js","api","json"],
+  "comment": "create output descriptor.",
   "request": {
     ":class": "CreateDescriptorRequest",
+    ":class:comment": "Request data for creating descriptor.",
     "scriptType": "",
     "scriptType:require": "require",
     "scriptType:comment": "Script types are joined by '-'. (ex. p2sh-p2wsh-multi)",
+    "keyInfoList:comment": "using pubkey or extpubkey list.",
     "keyInfoList": [
       {
         ":class": "CreateDescriptorKeyRequest",
+        ":class:comment": "descriptor's key data.",
         "key": "",
         "key:require": "require",
+        "key:comment": "pubkey or extpubkey.",
         "parentExtkey": "",
         "parentExtkey:require": "optional",
+        "parentExtkey:comment": "parent extpubkey.",
         "keyPathFromParent": "",
-        "keyPathFromParent:require": "optional"
+        "keyPathFromParent:require": "optional",
+        "keyPathFromParent:comment": "bip32 path from parent key."
       }
     ],
     "requireNum": 0,
@@ -22,8 +29,10 @@
     "requireNum:comment": "multisig require num."
   },
   "response": {
-    ":class": "CreateDescriptorResponse",
+    ":class": "OutputDescriptorResponse",
+    ":class:comment": "The data containing output descriptor.",
     "descriptor": "",
-    "descriptor:require": "require"
+    "descriptor:require": "require",
+    "descriptor:comment": "output descriptor."
   }
 }

@@ -39,7 +39,7 @@ class CFD_JS_API_EXPORT KeyStructApi {
    * @param[in] request ec signatureを計算するためのパラメータ
    * @return ec signature
    */
-  static CalculateEcSignatureResponseStruct CalculateEcSignature(
+  static SignatureDataResponseStruct CalculateEcSignature(
       const CalculateEcSignatureRequestStruct& request);
 
   /**
@@ -47,23 +47,23 @@ class CFD_JS_API_EXPORT KeyStructApi {
    * @param[in] request  parameter into WIF.
    * @return hex, networkType, isCompressed.
    */
-  static GetPrivkeyFromWifResponseStruct GetPrivkeyFromWif(
-      const GetPrivkeyFromWifRequestStruct& request);
+  static PrivkeyHexDataStruct GetPrivkeyFromWif(
+      const PrivkeyWifDataStruct& request);
 
   /**
    * @brief Get WIF from privkey's hex.
    * @param[in] request  pribkey hex, networkType, isCompressed.
    * @return WIF
    */
-  static GetPrivkeyWifResponseStruct GetPrivkeyWif(
-      const GetPrivkeyWifRequestStruct& request);
+  static PrivkeyWifDataStruct GetPrivkeyWif(
+      const PrivkeyHexDataStruct& request);
 
   /**
    * @brief JSONパラメータの情報を元に、秘密鍵から公開鍵を取得する.
    * @param[in] request リクエスト構造体
    * @return pubkeyを含むレスポンス構造体
    */
-  static GetPubkeyFromPrivkeyResponseStruct GetPubkeyFromPrivkey(
+  static PubkeyDataStruct GetPubkeyFromPrivkey(
       const GetPubkeyFromPrivkeyRequestStruct& request);
 
   /**
@@ -71,8 +71,7 @@ class CFD_JS_API_EXPORT KeyStructApi {
    * @param[in] request リクエスト構造体
    * @return pubkeyを含むレスポンス構造体
    */
-  static GetCompressedPubkeyResponseStruct GetCompressedPubkey(
-      const GetCompressedPubkeyRequestStruct& request);
+  static PubkeyDataStruct GetCompressedPubkey(const PubkeyDataStruct& request);
 
  private:
   KeyStructApi();

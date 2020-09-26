@@ -1,15 +1,19 @@
 {
   "namespace": ["cfd","js","api","json"],
+  "comment": "Create extpubkey.",
   "request": {
     ":class": "CreateExtPubkeyRequest",
+    ":class:comment": "Request data for creating extpubkey from extprivkey.",
     "extkey": "",
     "extkey:require": "require",
+    "extkey:comment": "extkey",
     "network": "mainnet",
     "network:require": "require",
+    "network:comment": "network type",
     "network:hint": "mainnet, testnet or regtest"
   },
   "response": {
-    ":class": "CreateExtPubkeyResponse",
+    ":class": "CreateExtkeyResponse",
     "extkey": "",
     "extkey:require": "require"
   }

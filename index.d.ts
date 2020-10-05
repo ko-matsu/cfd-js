@@ -2671,6 +2671,13 @@ export function GetMnemonicWordlist(jsonObject: GetMnemonicWordlistRequest): Get
 export function GetPrivkeyFromExtkey(jsonObject: GetPrivkeyFromExtkeyRequest): GetPrivkeyFromExtkeyResponse;
 
 /**
+ * Get privkey from wif.
+ * @param {PrivkeyWifData} jsonObject - request data.
+ * @return {PrivkeyHexData} - response data.
+ */
+export function GetPrivkeyFromWif(jsonObject: PrivkeyWifData): PrivkeyHexData;
+
+/**
  * Get pubkey from extkey.
  * @param {GetPubkeyFromExtkeyRequest} jsonObject - request data.
  * @return {PubkeyData} - response data.

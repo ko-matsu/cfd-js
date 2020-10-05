@@ -1,6 +1,7 @@
 {
   "namespace": ["cfd","js","api","json"],
   "comment": "Get privkey from wif.",
+  "functionName": "GetPrivkeyFromWif",
   "request": {
     ":class": "PrivkeyWifData",
     ":class:comment": "Request for get privkey from wif.",

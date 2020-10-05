@@ -410,6 +410,31 @@ class CFD_JS_API_EXPORT JsonMappingApi {
    */
   static std::string UpdateTxOutAmount(const std::string &request_message);
 
+  /**
+   * @brief Get a Schnorr Pubkey From a Privkey object
+   *
+   * @param[in] request_message     リクエストされたjson文字列
+   * @return 戻り値(JSON文字列)
+   */
+  static std::string GetSchnorrPubkeyFromPrivkey(
+      const std::string &request_message);
+
+  /**
+   * @brief Get a Schnorr signature for a given message and private key.
+   *
+   * @param[in] request_message     リクエストされたjson文字列
+   * @return 戻り値(JSON文字列)
+   */
+  static std::string SchnorrSign(const std::string &request_message);
+
+  /**
+   * @brief Verify a Schnorr signature for a given message and public key.
+   *
+   * @param[in] request_message     リクエストされたjson文字列
+   * @return 戻り値(JSON文字列)
+   */
+  static std::string SchnorrVerify(const std::string &request_message);
+
 #ifndef CFD_DISABLE_ELEMENTS
 
   /**

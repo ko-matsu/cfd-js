@@ -8117,6 +8117,85 @@ GetPubkeyFromPrivkeyRequestStruct GetPubkeyFromPrivkeyRequest::ConvertToStruct()
 }
 
 // ------------------------------------------------------------------------
+// GetSchnorrPubkeyFromPrivkeyRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<GetSchnorrPubkeyFromPrivkeyRequest>
+  GetSchnorrPubkeyFromPrivkeyRequest::json_mapper;
+std::vector<std::string> GetSchnorrPubkeyFromPrivkeyRequest::item_list;
+
+void GetSchnorrPubkeyFromPrivkeyRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<GetSchnorrPubkeyFromPrivkeyRequest> func_table;  // NOLINT
+
+  func_table = {
+    GetSchnorrPubkeyFromPrivkeyRequest::GetPrivkeyString,
+    GetSchnorrPubkeyFromPrivkeyRequest::SetPrivkeyString,
+    GetSchnorrPubkeyFromPrivkeyRequest::GetPrivkeyFieldType,
+  };
+  json_mapper.emplace("privkey", func_table);
+  item_list.push_back("privkey");
+  func_table = {
+    GetSchnorrPubkeyFromPrivkeyRequest::GetIsCompressedString,
+    GetSchnorrPubkeyFromPrivkeyRequest::SetIsCompressedString,
+    GetSchnorrPubkeyFromPrivkeyRequest::GetIsCompressedFieldType,
+  };
+  json_mapper.emplace("isCompressed", func_table);
+  item_list.push_back("isCompressed");
+}
+
+void GetSchnorrPubkeyFromPrivkeyRequest::ConvertFromStruct(
+    const GetSchnorrPubkeyFromPrivkeyRequestStruct& data) {
+  privkey_ = data.privkey;
+  is_compressed_ = data.is_compressed;
+  ignore_items = data.ignore_items;
+}
+
+GetSchnorrPubkeyFromPrivkeyRequestStruct GetSchnorrPubkeyFromPrivkeyRequest::ConvertToStruct() const {  // NOLINT
+  GetSchnorrPubkeyFromPrivkeyRequestStruct result;
+  result.privkey = privkey_;
+  result.is_compressed = is_compressed_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// SchnorrPubkeyData
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<SchnorrPubkeyData>
+  SchnorrPubkeyData::json_mapper;
+std::vector<std::string> SchnorrPubkeyData::item_list;
+
+void SchnorrPubkeyData::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<SchnorrPubkeyData> func_table;  // NOLINT
+
+  func_table = {
+    SchnorrPubkeyData::GetPubkeyString,
+    SchnorrPubkeyData::SetPubkeyString,
+    SchnorrPubkeyData::GetPubkeyFieldType,
+  };
+  json_mapper.emplace("pubkey", func_table);
+  item_list.push_back("pubkey");
+}
+
+void SchnorrPubkeyData::ConvertFromStruct(
+    const SchnorrPubkeyDataStruct& data) {
+  pubkey_ = data.pubkey;
+  ignore_items = data.ignore_items;
+}
+
+SchnorrPubkeyDataStruct SchnorrPubkeyData::ConvertToStruct() const {  // NOLINT
+  SchnorrPubkeyDataStruct result;
+  result.pubkey = pubkey_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
 // GetWitnessStackNumRequest
 // ------------------------------------------------------------------------
 cfd::core::JsonTableMap<GetWitnessStackNumRequest>
@@ -8696,6 +8775,209 @@ void ParseScriptResponse::ConvertFromStruct(
 ParseScriptResponseStruct ParseScriptResponse::ConvertToStruct() const {  // NOLINT
   ParseScriptResponseStruct result;
   result.script_items = script_items_.ConvertToStruct();
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// SchnorrSignRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<SchnorrSignRequest>
+  SchnorrSignRequest::json_mapper;
+std::vector<std::string> SchnorrSignRequest::item_list;
+
+void SchnorrSignRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<SchnorrSignRequest> func_table;  // NOLINT
+
+  func_table = {
+    SchnorrSignRequest::GetPrivkeyString,
+    SchnorrSignRequest::SetPrivkeyString,
+    SchnorrSignRequest::GetPrivkeyFieldType,
+  };
+  json_mapper.emplace("privkey", func_table);
+  item_list.push_back("privkey");
+  func_table = {
+    SchnorrSignRequest::GetMessageString,
+    SchnorrSignRequest::SetMessageString,
+    SchnorrSignRequest::GetMessageFieldType,
+  };
+  json_mapper.emplace("message", func_table);
+  item_list.push_back("message");
+  func_table = {
+    SchnorrSignRequest::GetIsHashedString,
+    SchnorrSignRequest::SetIsHashedString,
+    SchnorrSignRequest::GetIsHashedFieldType,
+  };
+  json_mapper.emplace("isHashed", func_table);
+  item_list.push_back("isHashed");
+  func_table = {
+    SchnorrSignRequest::GetNonceOrAuxString,
+    SchnorrSignRequest::SetNonceOrAuxString,
+    SchnorrSignRequest::GetNonceOrAuxFieldType,
+  };
+  json_mapper.emplace("nonceOrAux", func_table);
+  item_list.push_back("nonceOrAux");
+  func_table = {
+    SchnorrSignRequest::GetIsNonceString,
+    SchnorrSignRequest::SetIsNonceString,
+    SchnorrSignRequest::GetIsNonceFieldType,
+  };
+  json_mapper.emplace("isNonce", func_table);
+  item_list.push_back("isNonce");
+}
+
+void SchnorrSignRequest::ConvertFromStruct(
+    const SchnorrSignRequestStruct& data) {
+  privkey_ = data.privkey;
+  message_ = data.message;
+  is_hashed_ = data.is_hashed;
+  nonce_or_aux_ = data.nonce_or_aux;
+  is_nonce_ = data.is_nonce;
+  ignore_items = data.ignore_items;
+}
+
+SchnorrSignRequestStruct SchnorrSignRequest::ConvertToStruct() const {  // NOLINT
+  SchnorrSignRequestStruct result;
+  result.privkey = privkey_;
+  result.message = message_;
+  result.is_hashed = is_hashed_;
+  result.nonce_or_aux = nonce_or_aux_;
+  result.is_nonce = is_nonce_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// SchnorrSignResponse
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<SchnorrSignResponse>
+  SchnorrSignResponse::json_mapper;
+std::vector<std::string> SchnorrSignResponse::item_list;
+
+void SchnorrSignResponse::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<SchnorrSignResponse> func_table;  // NOLINT
+
+  func_table = {
+    SchnorrSignResponse::GetHexString,
+    SchnorrSignResponse::SetHexString,
+    SchnorrSignResponse::GetHexFieldType,
+  };
+  json_mapper.emplace("hex", func_table);
+  item_list.push_back("hex");
+}
+
+void SchnorrSignResponse::ConvertFromStruct(
+    const SchnorrSignResponseStruct& data) {
+  hex_ = data.hex;
+  ignore_items = data.ignore_items;
+}
+
+SchnorrSignResponseStruct SchnorrSignResponse::ConvertToStruct() const {  // NOLINT
+  SchnorrSignResponseStruct result;
+  result.hex = hex_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// SchnorrVerifyRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<SchnorrVerifyRequest>
+  SchnorrVerifyRequest::json_mapper;
+std::vector<std::string> SchnorrVerifyRequest::item_list;
+
+void SchnorrVerifyRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<SchnorrVerifyRequest> func_table;  // NOLINT
+
+  func_table = {
+    SchnorrVerifyRequest::GetPubkeyString,
+    SchnorrVerifyRequest::SetPubkeyString,
+    SchnorrVerifyRequest::GetPubkeyFieldType,
+  };
+  json_mapper.emplace("pubkey", func_table);
+  item_list.push_back("pubkey");
+  func_table = {
+    SchnorrVerifyRequest::GetMessageString,
+    SchnorrVerifyRequest::SetMessageString,
+    SchnorrVerifyRequest::GetMessageFieldType,
+  };
+  json_mapper.emplace("message", func_table);
+  item_list.push_back("message");
+  func_table = {
+    SchnorrVerifyRequest::GetIsHashedString,
+    SchnorrVerifyRequest::SetIsHashedString,
+    SchnorrVerifyRequest::GetIsHashedFieldType,
+  };
+  json_mapper.emplace("isHashed", func_table);
+  item_list.push_back("isHashed");
+  func_table = {
+    SchnorrVerifyRequest::GetSignatureString,
+    SchnorrVerifyRequest::SetSignatureString,
+    SchnorrVerifyRequest::GetSignatureFieldType,
+  };
+  json_mapper.emplace("signature", func_table);
+  item_list.push_back("signature");
+}
+
+void SchnorrVerifyRequest::ConvertFromStruct(
+    const SchnorrVerifyRequestStruct& data) {
+  pubkey_ = data.pubkey;
+  message_ = data.message;
+  is_hashed_ = data.is_hashed;
+  signature_ = data.signature;
+  ignore_items = data.ignore_items;
+}
+
+SchnorrVerifyRequestStruct SchnorrVerifyRequest::ConvertToStruct() const {  // NOLINT
+  SchnorrVerifyRequestStruct result;
+  result.pubkey = pubkey_;
+  result.message = message_;
+  result.is_hashed = is_hashed_;
+  result.signature = signature_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// SchnorrVerifyResponse
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<SchnorrVerifyResponse>
+  SchnorrVerifyResponse::json_mapper;
+std::vector<std::string> SchnorrVerifyResponse::item_list;
+
+void SchnorrVerifyResponse::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<SchnorrVerifyResponse> func_table;  // NOLINT
+
+  func_table = {
+    SchnorrVerifyResponse::GetValidString,
+    SchnorrVerifyResponse::SetValidString,
+    SchnorrVerifyResponse::GetValidFieldType,
+  };
+  json_mapper.emplace("valid", func_table);
+  item_list.push_back("valid");
+}
+
+void SchnorrVerifyResponse::ConvertFromStruct(
+    const SchnorrVerifyResponseStruct& data) {
+  valid_ = data.valid;
+  ignore_items = data.ignore_items;
+}
+
+SchnorrVerifyResponseStruct SchnorrVerifyResponse::ConvertToStruct() const {  // NOLINT
+  SchnorrVerifyResponseStruct result;
+  result.valid = valid_;
   result.ignore_items = ignore_items;
   return result;
 }

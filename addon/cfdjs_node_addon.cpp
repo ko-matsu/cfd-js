@@ -558,6 +558,34 @@ Value UpdateTxOutAmount(const CallbackInfo &information) {
   return NodeAddonJsonApi(information, JsonMappingApi::UpdateTxOutAmount);
 }
 
+/**
+ * @brief GetSchnorrPubkeyFromPrivkeyのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value GetSchnorrPubkeyFromPrivkey(const CallbackInfo &information) {
+  return NodeAddonJsonApi(
+      information, JsonMappingApi::GetSchnorrPubkeyFromPrivkey);
+}
+
+/**
+ * @brief SchnorrSignのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value SchnorrSign(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::SchnorrSign);
+}
+
+/**
+ * @brief SchnorrVerifyのJSON API関数(request, response).
+ * @param[in] information     node addon apiのコールバック情報
+ * @return 戻り値(JSON文字列)
+ */
+Value SchnorrVerify(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::SchnorrVerify);
+}
+
 #ifndef CFD_DISABLE_ELEMENTS
 
 /**
@@ -868,6 +896,13 @@ void InitializeJsonApi(Env env, Object *exports) {
   exports->Set(
       String::New(env, "UpdateTxOutAmount"),
       Function::New(env, UpdateTxOutAmount));
+  exports->Set(
+      String::New(env, "GetSchnorrPubkeyFromPrivkey"),
+      Function::New(env, GetSchnorrPubkeyFromPrivkey));
+  exports->Set(
+      String::New(env, "SchnorrSign"), Function::New(env, SchnorrSign));
+  exports->Set(
+      String::New(env, "SchnorrVerify"), Function::New(env, SchnorrVerify));
 #ifndef CFD_DISABLE_ELEMENTS
   exports->Set(
       String::New(env, "GetConfidentialAddress"),

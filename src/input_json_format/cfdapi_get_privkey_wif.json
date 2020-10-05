@@ -1,5 +1,6 @@
 {
   "namespace": ["cfd","js","api","json"],
+  "functionName": "GetPrivkeyWif",
   "comment": "Get privkey on wif.",
   "request": {
     ":class": "PrivkeyHexData",

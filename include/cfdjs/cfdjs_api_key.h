@@ -67,6 +67,14 @@ class CFD_JS_API_EXPORT KeyStructApi {
       const GetPubkeyFromPrivkeyRequestStruct& request);
 
   /**
+   * @brief JSONパラメータの情報を元に、秘密鍵から公開鍵を取得する.
+   * @param[in] request リクエスト構造体
+   * @return pubkeyを含むレスポンス構造体
+   */
+  static SchnorrPubkeyDataStruct GetSchnorrPubkeyFromPrivkey(
+      const GetSchnorrPubkeyFromPrivkeyRequestStruct& request);
+
+  /**
    * @brief JSONパラメータの情報を元に、圧縮公開鍵を取得する.
    * @param[in] request リクエスト構造体
    * @return pubkeyを含むレスポンス構造体

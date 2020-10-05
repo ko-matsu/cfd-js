@@ -1590,6 +1590,16 @@ export interface GetPubkeyFromPrivkeyRequest {
 }
 
 /**
+ * Request to get a Schnorr pubkey from privkey.
+ * @property {string} privkey - privkey (wif or hex)
+ * @property {boolean} isCompressed? - compressed pubkey flag
+ */
+export interface GetSchnorrPubkeyFromPrivkeyRequest {
+    privkey: string;
+    isCompressed?: boolean;
+}
+
+/**
  * Request for get supported function.
  * @property {boolean} bitcoin - bitcoin support flag
  * @property {boolean} elements - elements support flag
@@ -1839,6 +1849,47 @@ export interface ReissuanceDataRequest {
     assetBlindingNonce: string;
     assetEntropy: string;
     isRemoveNonce?: boolean;
+}
+
+/**
+ * Response Schnorr pubkey data.
+ * @property {string} pubkey - pubkey
+ */
+export interface SchnorrPubkeyData {
+    pubkey: string;
+}
+
+/** Request for creating a Schnorr signature. */
+export interface SchnorrSignRequest {
+    privkey: string;
+    message: string;
+    isHashed?: boolean;
+    nonceOrAux: string;
+    isNonce?: boolean;
+}
+
+/**
+ * Contains the generated Schnorr signature.
+ * @property {string} hex - signature hex.
+ */
+export interface SchnorrSignResponse {
+    hex: string;
+}
+
+/** Request for creating a Schnorr signature. */
+export interface SchnorrVerifyRequest {
+    pubkey: string;
+    message: string;
+    isHashed?: boolean;
+    signature: string;
+}
+
+/**
+ * Contains the validation result
+ * @property {boolean} valid - whether the signature is valid.
+ */
+export interface SchnorrVerifyResponse {
+    valid: boolean;
 }
 
 /** The data containing script. */
@@ -2706,6 +2757,13 @@ export function GetPubkeyFromExtkey(jsonObject: GetPubkeyFromExtkeyRequest): Pub
 export function GetPubkeyFromPrivkey(jsonObject: GetPubkeyFromPrivkeyRequest): PubkeyData;
 
 /**
+ * Get a Schnorr pubkey from a privkey.
+ * @param {GetSchnorrPubkeyFromPrivkeyRequest} jsonObject - request data.
+ * @return {SchnorrPubkeyData} - response data.
+ */
+export function GetSchnorrPubkeyFromPrivkey(jsonObject: GetSchnorrPubkeyFromPrivkeyRequest): SchnorrPubkeyData;
+
+/**
  * Get supported function.
  * @return {GetSupportedFunctionResponse} - response data.
  */
@@ -2738,6 +2796,20 @@ export function ParseDescriptor(jsonObject: ParseDescriptorRequest): ParseDescri
  * @return {ParseScriptResponse} - response data.
  */
 export function ParseScript(jsonObject: ParseScriptRequest): ParseScriptResponse;
+
+/**
+ * Create a Schnorr signature for a given message
+ * @param {SchnorrSignRequest} jsonObject - request data.
+ * @return {SchnorrSignResponse} - response data.
+ */
+export function SchnorrSign(jsonObject: SchnorrSignRequest): SchnorrSignResponse;
+
+/**
+ * Verify a Schnorr signature for a given message
+ * @param {SchnorrVerifyRequest} jsonObject - request data.
+ * @return {SchnorrVerifyResponse} - response data.
+ */
+export function SchnorrVerify(jsonObject: SchnorrVerifyRequest): SchnorrVerifyResponse;
 
 /**
  * Select coins.

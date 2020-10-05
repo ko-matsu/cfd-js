@@ -1868,6 +1868,30 @@ struct GetPubkeyFromPrivkeyRequestStruct {
 };
 
 // ------------------------------------------------------------------------
+// GetSchnorrPubkeyFromPrivkeyRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief GetSchnorrPubkeyFromPrivkeyRequestStruct struct
+ */
+struct GetSchnorrPubkeyFromPrivkeyRequestStruct {
+  std::string privkey = "";   //!< privkey  // NOLINT
+  bool is_compressed = true;  //!< is_compressed  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// SchnorrPubkeyDataStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief SchnorrPubkeyDataStruct struct
+ */
+struct SchnorrPubkeyDataStruct {
+  std::string pubkey = "";  //!< pubkey  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
 // GetWitnessStackNumRequestStruct
 // ------------------------------------------------------------------------
 /**
@@ -2003,6 +2027,59 @@ struct ParseScriptRequestStruct {
  */
 struct ParseScriptResponseStruct {
   std::vector<std::string> script_items;  //!< script_items  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// SchnorrSignRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief SchnorrSignRequestStruct struct
+ */
+struct SchnorrSignRequestStruct {
+  std::string privkey = "";       //!< privkey  // NOLINT
+  std::string message = "";       //!< message  // NOLINT
+  bool is_hashed = false;         //!< is_hashed  // NOLINT
+  std::string nonce_or_aux = "";  //!< nonce_or_aux  // NOLINT
+  bool is_nonce = false;          //!< is_nonce  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// SchnorrSignResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief SchnorrSignResponseStruct struct
+ */
+struct SchnorrSignResponseStruct {
+  std::string hex = "";  //!< hex  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// SchnorrVerifyRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief SchnorrVerifyRequestStruct struct
+ */
+struct SchnorrVerifyRequestStruct {
+  std::string pubkey = "";     //!< pubkey  // NOLINT
+  std::string message = "";    //!< message  // NOLINT
+  bool is_hashed = false;      //!< is_hashed  // NOLINT
+  std::string signature = "";  //!< signature  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// SchnorrVerifyResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief SchnorrVerifyResponseStruct struct
+ */
+struct SchnorrVerifyResponseStruct {
+  bool valid = false;  //!< valid  // NOLINT
   cfd::js::api::InnerErrorResponseStruct error;   //!< error information
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };

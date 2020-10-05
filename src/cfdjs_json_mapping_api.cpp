@@ -25,6 +25,7 @@
 #include "cfdjs_coin.h"                       // NOLINT
 #include "cfdjs_json_elements_transaction.h"  // NOLINT
 #include "cfdjs_json_transaction.h"           // NOLINT
+#include "cfdjs_schnorr.h"                    // NOLINT
 
 // using
 using cfd::js::api::AddressStructApi;
@@ -807,6 +808,26 @@ std::string JsonMappingApi::UpdateTxOutAmount(
 #endif
 }
 
+std::string JsonMappingApi::GetSchnorrPubkeyFromPrivkey(
+    const std::string &request_message) {
+  return ExecuteJsonApi<
+      GetSchnorrPubkeyFromPrivkeyRequest, SchnorrPubkeyData,
+      GetSchnorrPubkeyFromPrivkeyRequestStruct, SchnorrPubkeyDataStruct>(
+      request_message, SchnorrApi::GetSchnorrPubkeyFromPrivkey);
+}
+
+std::string JsonMappingApi::SchnorrSign(const std::string &request_message) {
+  return ExecuteJsonApi<
+      SchnorrSignRequest, SchnorrSignResponse, SchnorrSignRequestStruct,
+      SchnorrSignResponseStruct>(request_message, SchnorrApi::SchnorrSign);
+}
+
+std::string JsonMappingApi::SchnorrVerify(const std::string &request_message) {
+  return ExecuteJsonApi<
+      SchnorrVerifyRequest, SchnorrVerifyResponse, SchnorrVerifyRequestStruct,
+      SchnorrVerifyResponseStruct>(request_message, SchnorrApi::SchnorrVerify);
+}
+
 #ifndef CFD_DISABLE_ELEMENTS
 
 std::string JsonMappingApi::GetConfidentialAddress(
@@ -1107,6 +1128,11 @@ void JsonMappingApi::LoadFunctions(
     request_map->emplace(
         "SerializeLedgerFormat", JsonMappingApi::SerializeLedgerFormat);
     request_map->emplace("GetCommitment", JsonMappingApi::GetCommitment);
+    request_map->emplace(
+        "GetSchnorrPubkeyFromPrivkey",
+        JsonMappingApi::GetSchnorrPubkeyFromPrivkey);
+    request_map->emplace("SchnorrSign", JsonMappingApi::SchnorrSign);
+    request_map->emplace("SchnorrVerify", JsonMappingApi::SchnorrVerify);
 #endif  // CFD_DISABLE_ELEMENTS
   }
 }

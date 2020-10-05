@@ -2629,6 +2629,13 @@ export function GetAddressInfo(jsonObject: GetAddressInfoRequest): GetAddressInf
 export function GetCommitment(jsonObject: GetCommitmentRequest): GetCommitmentResponse;
 
 /**
+ * Get compressed pubkey.
+ * @param {PubkeyData} jsonObject - request data.
+ * @return {PubkeyData} - response data.
+ */
+export function GetCompressedPubkey(jsonObject: PubkeyData): PubkeyData;
+
+/**
  * Get confidential address.
  * @param {GetConfidentialAddressRequest} jsonObject - request data.
  * @return {GetConfidentialAddressResponse} - response data.
@@ -2676,6 +2683,13 @@ export function GetPrivkeyFromExtkey(jsonObject: GetPrivkeyFromExtkeyRequest): G
  * @return {PrivkeyHexData} - response data.
  */
 export function GetPrivkeyFromWif(jsonObject: PrivkeyWifData): PrivkeyHexData;
+
+/**
+ * Get privkey on wif.
+ * @param {PrivkeyHexData} jsonObject - request data.
+ * @return {PrivkeyWifData} - response data.
+ */
+export function GetPrivkeyWif(jsonObject: PrivkeyHexData): PrivkeyWifData;
 
 /**
  * Get pubkey from extkey.

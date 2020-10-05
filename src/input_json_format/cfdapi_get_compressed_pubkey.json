@@ -1,5 +1,6 @@
 {
   "namespace": ["cfd","js","api","json"],
+  "functionName": "GetCompressedPubkey",
   "comment": "Get compressed pubkey.",
   "request": {
     ":class": "PubkeyData",

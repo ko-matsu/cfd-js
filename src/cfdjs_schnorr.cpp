@@ -31,8 +31,10 @@ SchnorrPubkeyDataStruct SchnorrApi::GetSchnorrPubkeyFromPrivkey(
     SchnorrPubkeyDataStruct response;
 
     Privkey privkey(request.privkey);
-    auto pubkey = SchnorrPubkey::FromPrivkey(privkey);
+    bool parity = false;
+    auto pubkey = SchnorrPubkey::FromPrivkey(privkey, &parity);
     response.pubkey = pubkey.GetData().GetHex();
+    response.parity = parity;
     return response;
   };
 

@@ -1,0 +1,22 @@
+{
+  "namespace": ["cfd","js","api","json"],
+  "functionName": "AdaptEcdsaAdaptor",
+  "comment": "Adapt signature on ecdsa adaptor.",
+  "request": {
+    ":class": "ExtractSecretEcdsaAdaptorRequest",
+    ":class:comment": "Request for get privkey on wif.",
+    "adaptorSignature": "",
+    "adaptorSignature:require": "require",
+    "adaptorSignature:comment": "adaptor signature hex.",
+    "secret": "",
+    "secret:require": "require",
+    "secret:comment": "secret data"
+  },
+  "response": {
+    ":class": "SignatureDataResponse",
+    ":class:comment": "The data containing signature.",
+    "signature": "",
+    "signature:require": "require",
+    "signature:comment": "signature hex."
+  }
+}

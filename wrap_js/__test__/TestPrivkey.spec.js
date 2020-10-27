@@ -1,19 +1,10 @@
 const TestHelper = require('./JsonTestHelper');
 
-const hasExecTest = (testName) => {
-  switch (testName) {
-  case 'Privkey.AddTweak':
-  case 'Privkey.MulTweak':
-  case 'Privkey.Negate':
-    return false;
-  default:
-    return true;
-  }
-};
-
 const createTestFunc = (helper) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   return async (cfd, testName, req, isError) => {
     let resp;
+    let request = req;
     switch (testName) {
     case 'Privkey.GenerateKeyPair':
       resp = cfd.CreateKeyPair(req);
@@ -36,13 +27,22 @@ const createTestFunc = (helper) => {
       resp = {...req, ...resp};
       break;
     case 'Privkey.AddTweak':
-      // fixme
+      request = {...req, privkey: req.hex};
+      resp = cfd.TweakAddPrivkey(request);
+      resp = await helper.getResponse(resp);
+      resp = {hex: resp.privkey};
       break;
     case 'Privkey.MulTweak':
-      // fixme
+      request = {...req, privkey: req.hex};
+      resp = cfd.TweakMulPrivkey(request);
+      resp = await helper.getResponse(resp);
+      resp = {hex: resp.privkey};
       break;
     case 'Privkey.Negate':
-      // fixme
+      request = {...req, privkey: req.hex};
+      resp = cfd.NegatePrivkey(request);
+      resp = await helper.getResponse(resp);
+      resp = {hex: resp.privkey};
       break;
     case 'Privkey.CalculateEcSignature':
       resp = cfd.CalculateEcSignature(req);
@@ -56,11 +56,12 @@ const createTestFunc = (helper) => {
   };
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const createCheckFunc = (helper) => {
   return (resp, exp, errorData) => {
     if (errorData) {
       const errMsg = TestHelper.getErrorMessage(errorData);
-      expect(errMsg).toEqual(resp);
+      expect(resp).toEqual(errMsg);
       return;
     }
     if (exp.wif) expect(resp.wif).toEqual(exp.wif);
@@ -71,4 +72,4 @@ const createCheckFunc = (helper) => {
   };
 };
 
-TestHelper.doTest('Privkey', 'key_test', createTestFunc, createCheckFunc, hasExecTest);
+TestHelper.doTest('Privkey', 'key_test', createTestFunc, createCheckFunc);

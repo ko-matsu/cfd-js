@@ -2,6 +2,7 @@ const TestHelper = require('./JsonTestHelper');
 const fs = require('fs');
 
 const createTestFunc = (helper) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   return async (cfd, testName, req, isError) => {
     let resp;
     if (testName == 'HDWallet.GetMnemonicWordList') {
@@ -13,6 +14,7 @@ const createTestFunc = (helper) => {
   };
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const createCheckFunc = (helper) => {
   return (resp, exp, errorData) => {
     if (errorData) {

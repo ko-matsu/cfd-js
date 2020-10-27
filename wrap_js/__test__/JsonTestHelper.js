@@ -36,7 +36,9 @@ class TestHelper {
   }
 
   static doTest(keyName, fileName,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     createTestFunc = async (helper) => {},
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     createCheckFunc = (helper) => {},
     hasExecTest = () => true,
     setupFunc = async () => { },
@@ -71,6 +73,20 @@ class TestHelper {
           };
           let testCheckFunc = () => {};
           const testCaseName = testData.name + ':' + testCase.case;
+
+          if (testCase.exclude) {
+            let hasStop = false;
+            for (const excludeName of testCase.exclude) {
+              if (excludeName && ((excludeName == 'js') || (excludeName == 'json'))) {
+                hasStop = true;
+                break;
+              }
+            }
+            if (hasStop) {
+              it.skip(testCaseName, () => { });
+              continue;
+            }
+          }
 
           if (!hasExecTest(testData.name)) {
             it.skip(testCaseName, () => { });

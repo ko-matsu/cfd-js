@@ -1,5 +1,6 @@
 {
   "namespace": ["cfd","js","api","json"],
+  "functionName": "GetPrivkeyFromExtkey",
   "comment": "Get privkey from extkey.",
   "request": {
     ":class": "GetPrivkeyFromExtkeyRequest",

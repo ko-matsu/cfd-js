@@ -5,6 +5,7 @@
  * @brief cfd-apiで利用する鍵関連の実装ファイル
  */
 #include <string>
+#include <vector>
 
 #include "cfd/cfdapi_key.h"
 #include "cfdcore/cfdcore_transaction_common.h"
@@ -131,6 +132,56 @@ PrivkeyWifDataStruct KeyStructApi::GetPrivkeyWif(
   return result;
 }
 
+OutputPrivkeyDataStruct KeyStructApi::TweakAddPrivkey(
+    const TweakPrivkeyDataStruct& request) {
+  auto call_func =
+      [](const TweakPrivkeyDataStruct& request) -> OutputPrivkeyDataStruct {
+    OutputPrivkeyDataStruct response;
+    Privkey privkey(request.privkey);
+    ByteData256 tweak(request.tweak);
+    response.privkey = privkey.CreateTweakAdd(tweak).GetHex();
+    return response;
+  };
+
+  OutputPrivkeyDataStruct result;
+  result = ExecuteStructApi<TweakPrivkeyDataStruct, OutputPrivkeyDataStruct>(
+      request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
+OutputPrivkeyDataStruct KeyStructApi::TweakMulPrivkey(
+    const TweakPrivkeyDataStruct& request) {
+  auto call_func =
+      [](const TweakPrivkeyDataStruct& request) -> OutputPrivkeyDataStruct {
+    OutputPrivkeyDataStruct response;
+    Privkey privkey(request.privkey);
+    ByteData256 tweak(request.tweak);
+    response.privkey = privkey.CreateTweakMul(tweak).GetHex();
+    return response;
+  };
+
+  OutputPrivkeyDataStruct result;
+  result = ExecuteStructApi<TweakPrivkeyDataStruct, OutputPrivkeyDataStruct>(
+      request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
+OutputPrivkeyDataStruct KeyStructApi::NegatePrivkey(
+    const PrivkeyDataStruct& request) {
+  auto call_func =
+      [](const PrivkeyDataStruct& request) -> OutputPrivkeyDataStruct {
+    OutputPrivkeyDataStruct response;
+    Privkey privkey(request.privkey);
+    response.privkey = privkey.CreateNegate().GetHex();
+    return response;
+  };
+
+  OutputPrivkeyDataStruct result;
+  result = ExecuteStructApi<PrivkeyDataStruct, OutputPrivkeyDataStruct>(
+      request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
 PubkeyDataStruct KeyStructApi::GetPubkeyFromPrivkey(
     const GetPubkeyFromPrivkeyRequestStruct& request) {
   auto call_func = [](const GetPubkeyFromPrivkeyRequestStruct& request)
@@ -157,6 +208,90 @@ PubkeyDataStruct KeyStructApi::GetCompressedPubkey(
 
     Pubkey uncompressed_pubkey(request.pubkey);
     response.pubkey = uncompressed_pubkey.Compress().GetHex();
+    return response;
+  };
+
+  PubkeyDataStruct result;
+  result = ExecuteStructApi<PubkeyDataStruct, PubkeyDataStruct>(
+      request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
+PubkeyDataStruct KeyStructApi::GetUncompressedPubkey(
+    const PubkeyDataStruct& request) {
+  auto call_func = [](const PubkeyDataStruct& request) -> PubkeyDataStruct {
+    PubkeyDataStruct response;
+
+    Pubkey compressed_pubkey(request.pubkey);
+    response.pubkey = compressed_pubkey.Uncompress().GetHex();
+    return response;
+  };
+
+  PubkeyDataStruct result;
+  result = ExecuteStructApi<PubkeyDataStruct, PubkeyDataStruct>(
+      request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
+PubkeyDataStruct KeyStructApi::CombinePubkey(
+    const PubkeyListDataStruct& request) {
+  auto call_func =
+      [](const PubkeyListDataStruct& request) -> PubkeyDataStruct {
+    PubkeyDataStruct response;
+
+    std::vector<Pubkey> pk_list;
+    for (const auto& pk : request.pubkeys) {
+      pk_list.push_back(Pubkey(pk));
+    }
+    response.pubkey = Pubkey::CombinePubkey(pk_list).GetHex();
+    return response;
+  };
+
+  PubkeyDataStruct result;
+  result = ExecuteStructApi<PubkeyListDataStruct, PubkeyDataStruct>(
+      request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
+PubkeyDataStruct KeyStructApi::TweakAddPubkey(
+    const TweakPubkeyDataStruct& request) {
+  auto call_func =
+      [](const TweakPubkeyDataStruct& request) -> PubkeyDataStruct {
+    PubkeyDataStruct response;
+    Pubkey pubkey(request.pubkey);
+    ByteData256 tweak(request.tweak);
+    response.pubkey = pubkey.CreateTweakAdd(tweak).GetHex();
+    return response;
+  };
+
+  PubkeyDataStruct result;
+  result = ExecuteStructApi<TweakPubkeyDataStruct, PubkeyDataStruct>(
+      request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
+PubkeyDataStruct KeyStructApi::TweakMulPubkey(
+    const TweakPubkeyDataStruct& request) {
+  auto call_func =
+      [](const TweakPubkeyDataStruct& request) -> PubkeyDataStruct {
+    PubkeyDataStruct response;
+    Pubkey pubkey(request.pubkey);
+    ByteData256 tweak(request.tweak);
+    response.pubkey = pubkey.CreateTweakMul(tweak).GetHex();
+    return response;
+  };
+
+  PubkeyDataStruct result;
+  result = ExecuteStructApi<TweakPubkeyDataStruct, PubkeyDataStruct>(
+      request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
+PubkeyDataStruct KeyStructApi::NegatePubkey(const PubkeyDataStruct& request) {
+  auto call_func = [](const PubkeyDataStruct& request) -> PubkeyDataStruct {
+    PubkeyDataStruct response;
+    Pubkey pubkey(request.pubkey);
+    response.pubkey = pubkey.CreateNegate().GetHex();
     return response;
   };
 

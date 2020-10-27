@@ -3,8 +3,8 @@
   "functionName": "AdaptEcdsaAdaptor",
   "comment": "Adapt signature on ecdsa adaptor.",
   "request": {
-    ":class": "ExtractSecretEcdsaAdaptorRequest",
-    ":class:comment": "Request for get privkey on wif.",
+    ":class": "AdaptEcdsaAdaptorRequest",
+    ":class:comment": "Request for adapt signature on ecdsa adaptor.",
     "adaptorSignature": "",
     "adaptorSignature:require": "require",
     "adaptorSignature:comment": "adaptor signature hex.",

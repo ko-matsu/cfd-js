@@ -1,6 +1,16 @@
 /* eslint-disable max-len */
 /* eslint-disable indent */
 /**
+ * Request for adapt signature on ecdsa adaptor.
+ * @property {string} adaptorSignature - adaptor signature hex.
+ * @property {string} secret - secret data
+ */
+export interface AdaptEcdsaAdaptorRequest {
+    adaptorSignature: string;
+    secret: string;
+}
+
+/**
  * Multisig input data to add to tx.
  * @property {boolean} isElements? - elements transaction flag.
  * @property {string} tx - transaction hex
@@ -1283,15 +1293,13 @@ export interface EstimateFeeResponse {
 }
 
 /**
- * Request for get privkey on wif.
+ * Request for extract secret data on ecdsa adaptor.
  * @property {string} adaptorSignature - adaptor signature hex.
- * @property {string} secret - secret data
  * @property {string} signature - signature hex.
  * @property {string} adaptor - adaptor pubkey
  */
 export interface ExtractSecretEcdsaAdaptorRequest {
     adaptorSignature: string;
-    secret: string;
     signature: string;
     adaptor: string;
 }
@@ -1755,6 +1763,14 @@ export interface OutputDescriptorResponse {
 }
 
 /**
+ * privkey data.
+ * @property {string} privkey - privkey hex
+ */
+export interface OutputPrivkeyData {
+    privkey: string;
+}
+
+/**
  * Request for parse output descriptor.
  * @property {boolean} isElements? - elements flag.
  * @property {string} descriptor - output descriptor
@@ -1823,13 +1839,11 @@ export interface PrivkeyData {
  * @property {string} hex - privkey hex.
  * @property {string} network - network type (mainnet, testnet or regtest)
  * @property {boolean} isCompressed - compressed pubkey flag
- * @property {string} privkey - privkey hex
  */
 export interface PrivkeyHexData {
     hex: string;
     network: string;
     isCompressed: boolean;
-    privkey: string;
 }
 
 /**
@@ -2514,10 +2528,10 @@ export interface WitnessStackData {
 
 /**
  * Adapt signature on ecdsa adaptor.
- * @param {ExtractSecretEcdsaAdaptorRequest} jsonObject - request data.
+ * @param {AdaptEcdsaAdaptorRequest} jsonObject - request data.
  * @return {SignatureDataResponse} - response data.
  */
-export function AdaptEcdsaAdaptor(jsonObject: ExtractSecretEcdsaAdaptorRequest): SignatureDataResponse;
+export function AdaptEcdsaAdaptor(jsonObject: AdaptEcdsaAdaptorRequest): SignatureDataResponse;
 
 /**
  * Add multisig signatures to the transaction.
@@ -2969,9 +2983,9 @@ export function GetWitnessStackNum(jsonObject: GetWitnessStackNumRequest): GetWi
 /**
  * Negate privkey.
  * @param {PrivkeyData} jsonObject - request data.
- * @return {PrivkeyHexData} - response data.
+ * @return {OutputPrivkeyData} - response data.
  */
-export function NegatePrivkey(jsonObject: PrivkeyData): PrivkeyHexData;
+export function NegatePrivkey(jsonObject: PrivkeyData): OutputPrivkeyData;
 
 /**
  * Negate pubkey.
@@ -3053,9 +3067,9 @@ export function SignWithPrivkey(jsonObject: SignWithPrivkeyRequest): RawTransact
 /**
  * TweakAdd privkey.
  * @param {TweakPrivkeyData} jsonObject - request data.
- * @return {PrivkeyHexData} - response data.
+ * @return {OutputPrivkeyData} - response data.
  */
-export function TweakAddPrivkey(jsonObject: TweakPrivkeyData): PrivkeyHexData;
+export function TweakAddPrivkey(jsonObject: TweakPrivkeyData): OutputPrivkeyData;
 
 /**
  * TweakAdd pubkey.
@@ -3081,9 +3095,9 @@ export function TweakAddSchnorrPubkeyFromPubkey(jsonObject: TweakPubkeyData): Sc
 /**
  * TweakMul privkey.
  * @param {TweakPrivkeyData} jsonObject - request data.
- * @return {PrivkeyHexData} - response data.
+ * @return {OutputPrivkeyData} - response data.
  */
-export function TweakMulPrivkey(jsonObject: TweakPrivkeyData): PrivkeyHexData;
+export function TweakMulPrivkey(jsonObject: TweakPrivkeyData): OutputPrivkeyData;
 
 /**
  * TweakMul pubkey.

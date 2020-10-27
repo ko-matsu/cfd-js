@@ -264,12 +264,12 @@ struct UtxoJsonDataStruct {
 };
 
 // ------------------------------------------------------------------------
-// ExtractSecretEcdsaAdaptorRequestStruct
+// AdaptEcdsaAdaptorRequestStruct
 // ------------------------------------------------------------------------
 /**
- * @brief ExtractSecretEcdsaAdaptorRequestStruct struct
+ * @brief AdaptEcdsaAdaptorRequestStruct struct
  */
-struct ExtractSecretEcdsaAdaptorRequestStruct {
+struct AdaptEcdsaAdaptorRequestStruct {
   std::string adaptor_signature = "";  //!< adaptor_signature  // NOLINT
   std::string secret = "";             //!< secret  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
@@ -1579,6 +1579,19 @@ struct EstimateFeeResponseStruct {
 };
 
 // ------------------------------------------------------------------------
+// ExtractSecretEcdsaAdaptorRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief ExtractSecretEcdsaAdaptorRequestStruct struct
+ */
+struct ExtractSecretEcdsaAdaptorRequestStruct {
+  std::string adaptor_signature = "";  //!< adaptor_signature  // NOLINT
+  std::string signature = "";          //!< signature  // NOLINT
+  std::string adaptor = "";            //!< adaptor  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
 // SecretDataStruct
 // ------------------------------------------------------------------------
 /**
@@ -2016,6 +2029,18 @@ struct CreateMultisigResponseStruct {
   std::string address = "";         //!< address  // NOLINT
   std::string redeem_script = "";   //!< redeem_script  // NOLINT
   std::string witness_script = "";  //!< witness_script  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// OutputPrivkeyDataStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief OutputPrivkeyDataStruct struct
+ */
+struct OutputPrivkeyDataStruct {
+  std::string privkey = "";  //!< privkey  // NOLINT
   cfd::js::api::InnerErrorResponseStruct error;   //!< error information
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };

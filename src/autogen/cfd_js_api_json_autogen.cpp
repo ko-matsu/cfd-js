@@ -1087,43 +1087,43 @@ UtxoJsonDataStruct UtxoJsonData::ConvertToStruct() const {  // NOLINT
 }
 
 // ------------------------------------------------------------------------
-// ExtractSecretEcdsaAdaptorRequest
+// AdaptEcdsaAdaptorRequest
 // ------------------------------------------------------------------------
-cfd::core::JsonTableMap<ExtractSecretEcdsaAdaptorRequest>
-  ExtractSecretEcdsaAdaptorRequest::json_mapper;
-std::vector<std::string> ExtractSecretEcdsaAdaptorRequest::item_list;
+cfd::core::JsonTableMap<AdaptEcdsaAdaptorRequest>
+  AdaptEcdsaAdaptorRequest::json_mapper;
+std::vector<std::string> AdaptEcdsaAdaptorRequest::item_list;
 
-void ExtractSecretEcdsaAdaptorRequest::CollectFieldName() {
+void AdaptEcdsaAdaptorRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfd::core::CLASS_FUNCTION_TABLE<ExtractSecretEcdsaAdaptorRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<AdaptEcdsaAdaptorRequest> func_table;  // NOLINT
 
   func_table = {
-    ExtractSecretEcdsaAdaptorRequest::GetAdaptorSignatureString,
-    ExtractSecretEcdsaAdaptorRequest::SetAdaptorSignatureString,
-    ExtractSecretEcdsaAdaptorRequest::GetAdaptorSignatureFieldType,
+    AdaptEcdsaAdaptorRequest::GetAdaptorSignatureString,
+    AdaptEcdsaAdaptorRequest::SetAdaptorSignatureString,
+    AdaptEcdsaAdaptorRequest::GetAdaptorSignatureFieldType,
   };
   json_mapper.emplace("adaptorSignature", func_table);
   item_list.push_back("adaptorSignature");
   func_table = {
-    ExtractSecretEcdsaAdaptorRequest::GetSecretString,
-    ExtractSecretEcdsaAdaptorRequest::SetSecretString,
-    ExtractSecretEcdsaAdaptorRequest::GetSecretFieldType,
+    AdaptEcdsaAdaptorRequest::GetSecretString,
+    AdaptEcdsaAdaptorRequest::SetSecretString,
+    AdaptEcdsaAdaptorRequest::GetSecretFieldType,
   };
   json_mapper.emplace("secret", func_table);
   item_list.push_back("secret");
 }
 
-void ExtractSecretEcdsaAdaptorRequest::ConvertFromStruct(
-    const ExtractSecretEcdsaAdaptorRequestStruct& data) {
+void AdaptEcdsaAdaptorRequest::ConvertFromStruct(
+    const AdaptEcdsaAdaptorRequestStruct& data) {
   adaptor_signature_ = data.adaptor_signature;
   secret_ = data.secret;
   ignore_items = data.ignore_items;
 }
 
-ExtractSecretEcdsaAdaptorRequestStruct ExtractSecretEcdsaAdaptorRequest::ConvertToStruct() const {  // NOLINT
-  ExtractSecretEcdsaAdaptorRequestStruct result;
+AdaptEcdsaAdaptorRequestStruct AdaptEcdsaAdaptorRequest::ConvertToStruct() const {  // NOLINT
+  AdaptEcdsaAdaptorRequestStruct result;
   result.adaptor_signature = adaptor_signature_;
   result.secret = secret_;
   result.ignore_items = ignore_items;
@@ -6876,6 +6876,59 @@ EstimateFeeResponseStruct EstimateFeeResponse::ConvertToStruct() const {  // NOL
 }
 
 // ------------------------------------------------------------------------
+// ExtractSecretEcdsaAdaptorRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<ExtractSecretEcdsaAdaptorRequest>
+  ExtractSecretEcdsaAdaptorRequest::json_mapper;
+std::vector<std::string> ExtractSecretEcdsaAdaptorRequest::item_list;
+
+void ExtractSecretEcdsaAdaptorRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<ExtractSecretEcdsaAdaptorRequest> func_table;  // NOLINT
+
+  func_table = {
+    ExtractSecretEcdsaAdaptorRequest::GetAdaptorSignatureString,
+    ExtractSecretEcdsaAdaptorRequest::SetAdaptorSignatureString,
+    ExtractSecretEcdsaAdaptorRequest::GetAdaptorSignatureFieldType,
+  };
+  json_mapper.emplace("adaptorSignature", func_table);
+  item_list.push_back("adaptorSignature");
+  func_table = {
+    ExtractSecretEcdsaAdaptorRequest::GetSignatureString,
+    ExtractSecretEcdsaAdaptorRequest::SetSignatureString,
+    ExtractSecretEcdsaAdaptorRequest::GetSignatureFieldType,
+  };
+  json_mapper.emplace("signature", func_table);
+  item_list.push_back("signature");
+  func_table = {
+    ExtractSecretEcdsaAdaptorRequest::GetAdaptorString,
+    ExtractSecretEcdsaAdaptorRequest::SetAdaptorString,
+    ExtractSecretEcdsaAdaptorRequest::GetAdaptorFieldType,
+  };
+  json_mapper.emplace("adaptor", func_table);
+  item_list.push_back("adaptor");
+}
+
+void ExtractSecretEcdsaAdaptorRequest::ConvertFromStruct(
+    const ExtractSecretEcdsaAdaptorRequestStruct& data) {
+  adaptor_signature_ = data.adaptor_signature;
+  signature_ = data.signature;
+  adaptor_ = data.adaptor;
+  ignore_items = data.ignore_items;
+}
+
+ExtractSecretEcdsaAdaptorRequestStruct ExtractSecretEcdsaAdaptorRequest::ConvertToStruct() const {  // NOLINT
+  ExtractSecretEcdsaAdaptorRequestStruct result;
+  result.adaptor_signature = adaptor_signature_;
+  result.signature = signature_;
+  result.adaptor = adaptor_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
 // SecretData
 // ------------------------------------------------------------------------
 cfd::core::JsonTableMap<SecretData>
@@ -8683,6 +8736,40 @@ CreateMultisigResponseStruct CreateMultisigResponse::ConvertToStruct() const {  
   return result;
 }
 
+// ------------------------------------------------------------------------
+// OutputPrivkeyData
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<OutputPrivkeyData>
+  OutputPrivkeyData::json_mapper;
+std::vector<std::string> OutputPrivkeyData::item_list;
+
+void OutputPrivkeyData::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<OutputPrivkeyData> func_table;  // NOLINT
+
+  func_table = {
+    OutputPrivkeyData::GetPrivkeyString,
+    OutputPrivkeyData::SetPrivkeyString,
+    OutputPrivkeyData::GetPrivkeyFieldType,
+  };
+  json_mapper.emplace("privkey", func_table);
+  item_list.push_back("privkey");
+}
+
+void OutputPrivkeyData::ConvertFromStruct(
+    const OutputPrivkeyDataStruct& data) {
+  privkey_ = data.privkey;
+  ignore_items = data.ignore_items;
+}
+
+OutputPrivkeyDataStruct OutputPrivkeyData::ConvertToStruct() const {  // NOLINT
+  OutputPrivkeyDataStruct result;
+  result.privkey = privkey_;
+  result.ignore_items = ignore_items;
+  return result;
+}
 
 
 // ------------------------------------------------------------------------

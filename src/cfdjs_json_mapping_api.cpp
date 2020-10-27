@@ -540,6 +540,29 @@ std::string JsonMappingApi::GetPrivkeyWif(const std::string &request_message) {
       request_message, KeyStructApi::GetPrivkeyWif);
 }
 
+std::string JsonMappingApi::TweakAddPrivkey(
+    const std::string &request_message) {
+  return ExecuteJsonApi<
+      api::json::TweakPrivkeyData, api::json::OutputPrivkeyData,
+      api::TweakPrivkeyDataStruct, api::OutputPrivkeyDataStruct>(
+      request_message, KeyStructApi::TweakAddPrivkey);
+}
+
+std::string JsonMappingApi::TweakMulPrivkey(
+    const std::string &request_message) {
+  return ExecuteJsonApi<
+      api::json::TweakPrivkeyData, api::json::OutputPrivkeyData,
+      api::TweakPrivkeyDataStruct, api::OutputPrivkeyDataStruct>(
+      request_message, KeyStructApi::TweakMulPrivkey);
+}
+
+std::string JsonMappingApi::NegatePrivkey(const std::string &request_message) {
+  return ExecuteJsonApi<
+      api::json::PrivkeyData, api::json::OutputPrivkeyData,
+      api::PrivkeyDataStruct, api::OutputPrivkeyDataStruct>(
+      request_message, KeyStructApi::NegatePrivkey);
+}
+
 std::string JsonMappingApi::GetPubkeyFromPrivkey(
     const std::string &request_message) {
   return ExecuteJsonApi<
@@ -554,6 +577,43 @@ std::string JsonMappingApi::GetCompressedPubkey(
       api::json::PubkeyData, api::json::PubkeyData, api::PubkeyDataStruct,
       api::PubkeyDataStruct>(
       request_message, KeyStructApi::GetCompressedPubkey);
+}
+
+std::string JsonMappingApi::GetUncompressedPubkey(
+    const std::string &request_message) {
+  return ExecuteJsonApi<
+      api::json::PubkeyData, api::json::PubkeyData, api::PubkeyDataStruct,
+      api::PubkeyDataStruct>(
+      request_message, KeyStructApi::GetUncompressedPubkey);
+}
+
+std::string JsonMappingApi::CombinePubkey(const std::string &request_message) {
+  return ExecuteJsonApi<
+      api::json::PubkeyListData, api::json::PubkeyData,
+      api::PubkeyListDataStruct, api::PubkeyDataStruct>(
+      request_message, KeyStructApi::CombinePubkey);
+}
+
+std::string JsonMappingApi::TweakAddPubkey(
+    const std::string &request_message) {
+  return ExecuteJsonApi<
+      api::json::TweakPubkeyData, api::json::PubkeyData,
+      api::TweakPubkeyDataStruct, api::PubkeyDataStruct>(
+      request_message, KeyStructApi::TweakAddPubkey);
+}
+
+std::string JsonMappingApi::TweakMulPubkey(
+    const std::string &request_message) {
+  return ExecuteJsonApi<
+      api::json::TweakPubkeyData, api::json::PubkeyData,
+      api::TweakPubkeyDataStruct, api::PubkeyDataStruct>(
+      request_message, KeyStructApi::TweakMulPubkey);
+}
+
+std::string JsonMappingApi::NegatePubkey(const std::string &request_message) {
+  return ExecuteJsonApi<
+      api::json::PubkeyData, api::json::PubkeyData, api::PubkeyDataStruct,
+      api::PubkeyDataStruct>(request_message, KeyStructApi::NegatePubkey);
 }
 
 std::string JsonMappingApi::CreateExtkeyFromSeed(
@@ -816,6 +876,38 @@ std::string JsonMappingApi::GetSchnorrPubkeyFromPrivkey(
       request_message, SchnorrApi::GetSchnorrPubkeyFromPrivkey);
 }
 
+std::string JsonMappingApi::GetSchnorrPubkeyFromPubkey(
+    const std::string &request_message) {
+  return ExecuteJsonApi<
+      PubkeyData, SchnorrPubkeyData, PubkeyDataStruct,
+      SchnorrPubkeyDataStruct>(
+      request_message, SchnorrApi::GetSchnorrPubkeyFromPubkey);
+}
+
+std::string JsonMappingApi::TweakAddSchnorrPubkeyFromPrivkey(
+    const std::string &request_message) {
+  return ExecuteJsonApi<
+      TweakPrivkeyData, SchnorrKeyPairData, TweakPrivkeyDataStruct,
+      SchnorrKeyPairDataStruct>(
+      request_message, SchnorrApi::TweakAddSchnorrPubkeyFromPrivkey);
+}
+
+std::string JsonMappingApi::TweakAddSchnorrPubkeyFromPubkey(
+    const std::string &request_message) {
+  return ExecuteJsonApi<
+      TweakPubkeyData, SchnorrPubkeyData, TweakPubkeyDataStruct,
+      SchnorrPubkeyDataStruct>(
+      request_message, SchnorrApi::TweakAddSchnorrPubkeyFromPubkey);
+}
+
+std::string JsonMappingApi::CheckTweakedSchnorrPubkey(
+    const std::string &request_message) {
+  return ExecuteJsonApi<
+      CheckTweakedSchnorrPubkeyRequest, VerifySignatureResponse,
+      CheckTweakedSchnorrPubkeyRequestStruct, VerifySignatureResponseStruct>(
+      request_message, SchnorrApi::CheckTweakedSchnorrPubkey);
+}
+
 std::string JsonMappingApi::SchnorrSign(const std::string &request_message) {
   return ExecuteJsonApi<
       SchnorrSignRequest, SchnorrSignResponse, SchnorrSignRequestStruct,
@@ -826,6 +918,46 @@ std::string JsonMappingApi::SchnorrVerify(const std::string &request_message) {
   return ExecuteJsonApi<
       SchnorrVerifyRequest, SchnorrVerifyResponse, SchnorrVerifyRequestStruct,
       SchnorrVerifyResponseStruct>(request_message, SchnorrApi::SchnorrVerify);
+}
+
+std::string JsonMappingApi::ComputeSigPointSchnorrPubkey(
+    const std::string &request_message) {
+  return ExecuteJsonApi<
+      ComputeSigPointRequest, PubkeyData, ComputeSigPointRequestStruct,
+      PubkeyDataStruct>(
+      request_message, SchnorrApi::ComputeSigPointSchnorrPubkey);
+}
+
+std::string JsonMappingApi::SignEcdsaAdaptor(
+    const std::string &request_message) {
+  return ExecuteJsonApi<
+      SignEcdsaAdaptorRequest, SignEcdsaAdaptorResponse,
+      SignEcdsaAdaptorRequestStruct, SignEcdsaAdaptorResponseStruct>(
+      request_message, SchnorrApi::SignEcdsaAdaptor);
+}
+
+std::string JsonMappingApi::VerifyEcdsaAdaptor(
+    const std::string &request_message) {
+  return ExecuteJsonApi<
+      VerifyEcdsaAdaptorRequest, VerifySignatureResponse,
+      VerifyEcdsaAdaptorRequestStruct, VerifySignatureResponseStruct>(
+      request_message, SchnorrApi::VerifyEcdsaAdaptor);
+}
+
+std::string JsonMappingApi::AdaptEcdsaAdaptor(
+    const std::string &request_message) {
+  return ExecuteJsonApi<
+      AdaptEcdsaAdaptorRequest, SignatureDataResponse,
+      AdaptEcdsaAdaptorRequestStruct, SignatureDataResponseStruct>(
+      request_message, SchnorrApi::AdaptEcdsaAdaptor);
+}
+
+std::string JsonMappingApi::ExtractSecretEcdsaAdaptor(
+    const std::string &request_message) {
+  return ExecuteJsonApi<
+      ExtractSecretEcdsaAdaptorRequest, SecretData,
+      ExtractSecretEcdsaAdaptorRequestStruct, SecretDataStruct>(
+      request_message, SchnorrApi::ExtractSecretEcdsaAdaptor);
 }
 
 #ifndef CFD_DISABLE_ELEMENTS
@@ -1062,10 +1194,19 @@ void JsonMappingApi::LoadFunctions(
     request_map->emplace(
         "GetPrivkeyFromWif", JsonMappingApi::GetPrivkeyFromWif);
     request_map->emplace("GetPrivkeyWif", JsonMappingApi::GetPrivkeyWif);
+    request_map->emplace("TweakAddPrivkey", JsonMappingApi::TweakAddPrivkey);
+    request_map->emplace("TweakMulPrivkey", JsonMappingApi::TweakMulPrivkey);
+    request_map->emplace("NegatePrivkey", JsonMappingApi::NegatePrivkey);
     request_map->emplace(
         "GetPubkeyFromPrivkey", JsonMappingApi::GetPubkeyFromPrivkey);
     request_map->emplace(
         "GetCompressedPubkey", JsonMappingApi::GetCompressedPubkey);
+    request_map->emplace(
+        "GetUncompressedPubkey", JsonMappingApi::GetUncompressedPubkey);
+    request_map->emplace("CombinePubkey", JsonMappingApi::CombinePubkey);
+    request_map->emplace("TweakAddPubkey", JsonMappingApi::TweakAddPubkey);
+    request_map->emplace("TweakMulPubkey", JsonMappingApi::TweakMulPubkey);
+    request_map->emplace("NegatePubkey", JsonMappingApi::NegatePubkey);
     request_map->emplace(
         "CreateExtkeyFromSeed", JsonMappingApi::CreateExtkeyFromSeed);
     request_map->emplace(
@@ -1091,6 +1232,34 @@ void JsonMappingApi::LoadFunctions(
         "FundRawTransaction", JsonMappingApi::FundRawTransaction);
     request_map->emplace(
         "UpdateTxOutAmount", JsonMappingApi::UpdateTxOutAmount);
+    request_map->emplace(
+        "GetSchnorrPubkeyFromPrivkey",
+        JsonMappingApi::GetSchnorrPubkeyFromPrivkey);
+    request_map->emplace(
+        "GetSchnorrPubkeyFromPubkey",
+        JsonMappingApi::GetSchnorrPubkeyFromPubkey);
+    request_map->emplace(
+        "TweakAddSchnorrPubkeyFromPrivkey",
+        JsonMappingApi::TweakAddSchnorrPubkeyFromPrivkey);
+    request_map->emplace(
+        "TweakAddSchnorrPubkeyFromPubkey",
+        JsonMappingApi::TweakAddSchnorrPubkeyFromPubkey);
+    request_map->emplace(
+        "CheckTweakedSchnorrPubkey",
+        JsonMappingApi::CheckTweakedSchnorrPubkey);
+    request_map->emplace("SchnorrSign", JsonMappingApi::SchnorrSign);
+    request_map->emplace("SchnorrVerify", JsonMappingApi::SchnorrVerify);
+    request_map->emplace(
+        "ComputeSigPointSchnorrPubkey",
+        JsonMappingApi::ComputeSigPointSchnorrPubkey);
+    request_map->emplace("SignEcdsaAdaptor", JsonMappingApi::SignEcdsaAdaptor);
+    request_map->emplace(
+        "VerifyEcdsaAdaptor", JsonMappingApi::VerifyEcdsaAdaptor);
+    request_map->emplace(
+        "AdaptEcdsaAdaptor", JsonMappingApi::AdaptEcdsaAdaptor);
+    request_map->emplace(
+        "ExtractSecretEcdsaAdaptor",
+        JsonMappingApi::ExtractSecretEcdsaAdaptor);
 #ifndef CFD_DISABLE_ELEMENTS
     request_map->emplace(
         "GetConfidentialAddress", JsonMappingApi::GetConfidentialAddress);
@@ -1128,11 +1297,6 @@ void JsonMappingApi::LoadFunctions(
     request_map->emplace(
         "SerializeLedgerFormat", JsonMappingApi::SerializeLedgerFormat);
     request_map->emplace("GetCommitment", JsonMappingApi::GetCommitment);
-    request_map->emplace(
-        "GetSchnorrPubkeyFromPrivkey",
-        JsonMappingApi::GetSchnorrPubkeyFromPrivkey);
-    request_map->emplace("SchnorrSign", JsonMappingApi::SchnorrSign);
-    request_map->emplace("SchnorrVerify", JsonMappingApi::SchnorrVerify);
 #endif  // CFD_DISABLE_ELEMENTS
   }
 }

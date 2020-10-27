@@ -8,7 +8,7 @@ const testCase = [
     [
       '{"privkey":"688c77bc2d5aaff5491cf309d4753b732135470d05b7b2cd21add0744fe97bef"}',
     ],
-    '{"pubkey":"b33cc9edc096d0a83416964bd3c6247b8fecd256e4efa7870d2c854bdeb33390"}',
+    '{"pubkey":"b33cc9edc096d0a83416964bd3c6247b8fecd256e4efa7870d2c854bdeb33390","parity":true}',
   ),
 ];
 

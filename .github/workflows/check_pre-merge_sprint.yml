@@ -26,6 +26,17 @@ jobs:
             node: 8
           - os: macos-latest
             node: 12
+          - os: macos-latest
+            node: 15
+        include:
+          - node: 8
+            always: false
+          - node: 12
+            always: false
+          - node: 14
+            always: false
+          - node: 15
+            always: true
 
     steps:
     - uses: actions/checkout@v2
@@ -71,7 +82,7 @@ jobs:
         npm set progress=false
         npm ci
     - name: build
-      if: steps.node_cache.outputs.cache-hit == 'true'
+      if: steps.node_cache.outputs.cache-hit == 'true' || ${{ matrix.always }} == 'true'
       run: npm run cmake_release_parallel
     - name: test_all
       run: npm run test

@@ -18,10 +18,11 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        # os: [macos-latest, windows-latest, ubuntu-latest]
-        os: [macos-latest, ubuntu-latest]
+        os: [macos-latest, windows-latest, ubuntu-latest]
         node: [8, 12, 14, 15]
         exclude:
+          - os: windows-latest
+            node: 8
           - os: macos-latest
             node: 8
           - os: macos-latest
@@ -40,11 +41,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2.1.1
-      continue-on-error: true
+    - uses: actions/setup-node@v2.1.2
       timeout-minutes: 1
       with:
         node-version: ${{ matrix.node }}
+    - name: update to npm v7
+      if: matrix.os == 'windows-latest'
+      run: npm i -g npm@7
     - name: dump node version
       id: node_ver
       run: |

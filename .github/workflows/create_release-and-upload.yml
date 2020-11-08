@@ -57,6 +57,12 @@ jobs:
     steps:
     - name: checkout
       uses: actions/checkout@v2
+    - uses: actions/setup-node@v2.1.2
+      timeout-minutes: 1
+      with:
+        node-version: 15
+    - name: update to npm v7
+      run: npm i -g npm@7
     - name: output url
       id: get_url
       run: echo "::set-output name=upload_url::${{ needs.create_releases.outputs.release_url }}"
@@ -105,17 +111,16 @@ jobs:
         asset_path: ./cfd.zip
         asset_name: cfdjs-api-${{ steps.get_version.outputs.VERSION }}-win-vs2019-x86_64.zip
         asset_content_type: application/zip
-# Comment out until the node addon's build on windows is possible.
-#    - name: npm install
-#      run: npm install
-#      timeout-minutes: 20
-#    - name: prebuild
-#      run: npm run prebuild_all
-#    - name: prebuild upload
-#      env:
-#        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#      run: npm run prebuild_upload_all -- ${GITHUB_TOKEN}
-#      shell: bash
+    - name: npm install
+      run: npm install
+      timeout-minutes: 20
+    - name: prebuild
+      run: npm run prebuild_all
+    - name: prebuild upload
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: npm run prebuild_upload_all -- ${GITHUB_TOKEN}
+      shell: bash
 
   upload-object-ubuntu:
     name: upload-object-ubuntu

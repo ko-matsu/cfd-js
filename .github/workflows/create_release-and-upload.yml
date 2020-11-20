@@ -11,7 +11,7 @@ env:
 jobs:
   create_releases:
     name: create-releases
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     outputs:
       release_url: ${{ steps.output_url.outputs.upload_url }}
 
@@ -55,7 +55,7 @@ jobs:
   upload-object-windows-vs2019:
     name: upload-object-win-vs2019
     needs: create_releases
-    runs-on: windows-latest
+    runs-on: windows-2019
 
     steps:
     - name: checkout
@@ -128,7 +128,7 @@ jobs:
   upload-object-ubuntu:
     name: upload-object-ubuntu
     needs: create_releases
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
 
     steps:
     - name: checkout

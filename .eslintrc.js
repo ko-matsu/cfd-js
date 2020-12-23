@@ -20,6 +20,14 @@ module.exports = {
     '@typescript-eslint',
   ],
   'rules': {
+    'camelcase': ['error', {
+      'allow': [
+        '^pegout_',
+        '^pegin_',
+        'is_pegin',
+        'commitmentnonce_fully_valid',
+      ],
+    }],
     'new-cap': ['error', {
       'capIsNew': false, // cfd-js function is set because it is PascalCase.
     }],

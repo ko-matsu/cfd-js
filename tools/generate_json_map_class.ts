@@ -1306,7 +1306,7 @@ function generateReferenceClassList(
   let refKeyList: string[] = [];
   while (changeWeight) {
     changeWeight = false;
-    const newRefKeyList = [];
+    // const newRefKeyList = [];
     if (refKeyList.length == 0) {
       for (const [key] of refList) {
         if (key) refKeyList.push(key);
@@ -1321,23 +1321,23 @@ function generateReferenceClassList(
             if (key == ref) continue;
             if (refList.get(ref)) {
               const dst = refList.get(ref);
-              if (dst && (dst.references.size > 1) &&
-                  dst.weight >= src.weight) {
-                src.weight = dst.weight + 1;
-                changeWeight = true;
-                targetCount += 1;
-                console.log(`update weight: ${key} weight=${src.weight}`);
+              if (dst) {
+                if (dst.weight >= src.weight) {  // update ref weight
+                  src.weight = dst.weight + 1;
+                  changeWeight = true;
+                  targetCount += 1;
+                  // console.log(`update weight: ${key} weight=${src.weight}`);
+                }
               }
             }
           }
           if (targetCount > 0) {
             refList.set(key, src);
-            newRefKeyList.push(key);
+            // newRefKeyList.push(key);
           }
         }
       }
     }
-    refKeyList = newRefKeyList;
   }
 
   for (const [key, value] of refList) {
@@ -1548,7 +1548,7 @@ function generateStructItemData(textArray: string[],
 function generateStructHeader(copyright: string, dirname: string,
     filename: string, jsonList: any[], libNamespace: string,
     referenceList: ReferenceClassInfo[], jsonClassMap: ClassMapType,
-    responseTypeSet: Set<string>) {
+    responseTypeSet: Set<string>, hasErrorOutput: boolean) {
   const result = [];
   const processedStructTypes: Set<string> = new Set();
 
@@ -1626,7 +1626,7 @@ function generateStructHeader(copyright: string, dirname: string,
   for (const refData of referenceList) {
     if (refData && jsonClassMap[refData.name]) {
       generateStructItemDataDirect(result,
-          jsonClassMap[refData.name].data, true,
+          jsonClassMap[refData.name].data, hasErrorOutput,
           lastNamespace, libNamespace, responseTypeSet);
       processedStructTypes.add(jsonClassMap[refData.name].data.structType);
     }
@@ -1641,7 +1641,7 @@ function generateStructHeader(copyright: string, dirname: string,
       const req = jsonList[jsonDataIndex].requestData;
       const res = jsonList[jsonDataIndex].responseData;
       generateStructItemData(result, req, res,
-          jsonList[jsonDataIndex].inputJsonData, lastNamespace, true,
+          jsonList[jsonDataIndex].inputJsonData, lastNamespace, hasErrorOutput,
           processedStructTypes, libNamespace, responseTypeSet);
       // const inputJsonData = jsonList[jsonDataIndex].inputJsonData;
       lastNamespace = jsonList[jsonDataIndex].inputJsonData.namespace;
@@ -1907,8 +1907,10 @@ async function convertFile() {
   };
   const libraryName = 'cfd-js';
   const libPrefix = 'cfdjs';
+  const structPrefix = 'cfdjs';
   const libNamespace = 'cfd::js::api';
   const errorClassName = 'CfdError';
+  const hasStructErrorOutput = true;
   const cfdPath = `${__dirname}/../external/${libraryName}/`;
   const cfdPath2 = `${__dirname}/../../${libraryName}/`;
   let folderPath = `src/input_json_format/`;
@@ -2112,7 +2114,7 @@ async function convertFile() {
       const outSourceFile = `${namespaceName}_autogen.cpp`;
       const headerStr = generateFileHeader(copyright, outHeaderFile,
           outJsonHeaderFolderPath,
-          classHeaderList, jsonObjectCommon, `${libPrefix}/${outStructFileName}`);
+          classHeaderList, jsonObjectCommon, `${structPrefix}/${outStructFileName}`);
       fs.writeFileSync(`${outJsonHeaderFolderPath}${outHeaderFile}`, headerStr);
       const srcStr = generateFileSource(copyright, outSourceFile,
           outHeaderFile, classSourceList, jsonObjectCommon);
@@ -2123,7 +2125,7 @@ async function convertFile() {
   if ((jsonDataList.length > 0) && (outStructFileName !== '')) {
     const headerStr = generateStructHeader(copyright, outStructDirPath,
         outStructFileName, jsonDataList, libNamespace,
-        referenceList, jsonClassMap, responseTypeSet);
+        referenceList, jsonClassMap, responseTypeSet, hasStructErrorOutput);
     fs.writeFileSync(path.resolve(`${outStructDirPath}${outStructFileName}`), headerStr);
     console.log(`output: ${outStructFileName}`);
   }

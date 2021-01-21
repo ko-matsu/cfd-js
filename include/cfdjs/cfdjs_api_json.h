@@ -168,6 +168,27 @@ class CFD_JS_API_EXPORT JsonMappingApi {
   static std::string DecodeBase58(const std::string &request);
 
   /**
+   * @brief Encode the data by base64.
+   * @param[in] request   request json string.
+   * @return response json string.
+   */
+  static std::string EncodeBase64(const std::string &request);
+
+  /**
+   * @brief Decode the data by base64.
+   * @param[in] request   request json string.
+   * @return response json string.
+   */
+  static std::string DecodeBase64(const std::string &request);
+
+  /**
+   * @brief Hash message.
+   * @param[in] request   request json string.
+   * @return response json string.
+   */
+  static std::string HashMessage(const std::string &request);
+
+  /**
    * @brief EncodeSignatureByDer の JSON API関数(request, response).
    * @param[in] request_message     リクエストされたjson文字列
    * @return 戻り値(JSON文字列)
@@ -568,6 +589,103 @@ class CFD_JS_API_EXPORT JsonMappingApi {
    */
   static std::string ExtractSecretEcdsaAdaptor(
       const std::string &request_message);
+
+  /**
+   * @brief Decode PSBT.
+   * @param[in] request_message the request json message
+   * @return json string
+   */
+  static std::string DecodePsbt(const std::string &request);
+  /**
+   * @brief Create PSBT.
+   * @param[in] request_message the request json message
+   * @return json string
+   */
+  static std::string CreatePsbt(const std::string &request);
+  /**
+   * @brief Convert transaction to PSBT.
+   * @param[in] request_message the request json message
+   * @return json string
+   */
+  static std::string ConvertToPsbt(const std::string &request);
+  /**
+   * @brief Join PSBTs.
+   * @param[in] request_message the request json message
+   * @return json string
+   */
+  static std::string JoinPsbts(const std::string &request);
+  /**
+   * @brief Combine PSBT.
+   * @param[in] request_message the request json message
+   * @return json string
+   */
+  static std::string CombinePsbt(const std::string &request);
+  /**
+   * @brief Finalize PSBT input.
+   * @param[in] request_message the request json message
+   * @return json string
+   */
+  static std::string FinalizePsbtInput(const std::string &request);
+  /**
+   * @brief Finalize and extract PSBT.
+   * @param[in] request_message the request json message
+   * @return json string
+   */
+  static std::string FinalizePsbt(const std::string &request);
+  /**
+   * @brief Sign PSBT.
+   * @param[in] request_message the request json message
+   * @return json string
+   */
+  static std::string SignPsbt(const std::string &request);
+  /**
+   * @brief Verify PSBT sign.
+   * @param[in] request_message the request json message
+   * @return json string
+   */
+  static std::string VerifyPsbtSign(const std::string &request);
+  /**
+   * @brief Add PSBT input.
+   * @param[in] request_message the request json message
+   * @return json string
+   */
+  static std::string AddPsbtInput(const std::string &request);
+  /**
+   * @brief Add PSBT output.
+   * @param[in] request_message the request json message
+   * @return json string
+   */
+  static std::string AddPsbtOutput(const std::string &request);
+  /**
+   * @brief Set PSBT data.
+   * @param[in] request_message the request json message
+   * @return json string
+   */
+  static std::string SetPsbtData(const std::string &request);
+  /**
+   * @brief Set PSBT record.
+   * @param[in] request_message the request json message
+   * @return json string
+   */
+  static std::string SetPsbtRecord(const std::string &request);
+  /**
+   * @brief Is finalized PSBT.
+   * @param[in] request_message the request json message
+   * @return json string
+   */
+  static std::string IsFinalizedPsbt(const std::string &request);
+  /**
+   * @brief Get PSBT utxos.
+   * @param[in] request_message the request json message
+   * @return json string
+   */
+  static std::string GetPsbtUtxos(const std::string &request);
+  /**
+   * @brief Fund PSBT.
+   * @param[in] request_message the request json message
+   * @return json string
+   */
+  static std::string FundPsbt(const std::string &request);
 
 #ifndef CFD_DISABLE_ELEMENTS
 

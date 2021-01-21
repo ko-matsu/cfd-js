@@ -19,6 +19,7 @@
 #include "cfdjs/cfdjs_api_hdwallet.h"
 #include "cfdjs/cfdjs_api_json.h"
 #include "cfdjs/cfdjs_api_key.h"
+#include "cfdjs/cfdjs_api_psbt.h"
 #include "cfdjs/cfdjs_api_script.h"
 #include "cfdjs/cfdjs_api_transaction.h"
 #include "cfdjs/cfdjs_api_utility.h"
@@ -31,6 +32,7 @@
 using cfd::js::api::AddressStructApi;
 using cfd::js::api::HDWalletStructApi;
 using cfd::js::api::KeyStructApi;
+using cfd::js::api::PsbtStructApi;
 using cfd::js::api::ScriptStructApi;
 using cfd::js::api::TransactionStructApi;
 using cfd::js::api::UtilStructApi;
@@ -468,6 +470,25 @@ std::string JsonMappingApi::DecodeBase58(const std::string &request_message) {
       api::json::DecodeBase58Request, api::json::DecodeBase58Response,
       api::DecodeBase58RequestStruct, api::DecodeBase58ResponseStruct>(
       request_message, UtilStructApi::DecodeBase58);
+}
+
+std::string JsonMappingApi::EncodeBase64(const std::string &request_message) {
+  return ExecuteJsonApi<
+      api::json::HexData, api::json::Base64Data, api::HexDataStruct,
+      api::Base64DataStruct>(request_message, UtilStructApi::EncodeBase64);
+}
+
+std::string JsonMappingApi::DecodeBase64(const std::string &request_message) {
+  return ExecuteJsonApi<
+      api::json::Base64Data, api::json::HexData, api::Base64DataStruct,
+      api::HexDataStruct>(request_message, UtilStructApi::DecodeBase64);
+}
+
+std::string JsonMappingApi::HashMessage(const std::string &request_message) {
+  return ExecuteJsonApi<
+      api::json::HashMessageRequest, api::json::HexData,
+      api::HashMessageRequestStruct, api::HexDataStruct>(
+      request_message, UtilStructApi::HashMessage);
 }
 
 std::string JsonMappingApi::EncodeSignatureByDer(
@@ -958,6 +979,109 @@ std::string JsonMappingApi::ExtractSecretEcdsaAdaptor(
       ExtractSecretEcdsaAdaptorRequest, SecretData,
       ExtractSecretEcdsaAdaptorRequestStruct, SecretDataStruct>(
       request_message, SchnorrApi::ExtractSecretEcdsaAdaptor);
+}
+
+std::string JsonMappingApi::DecodePsbt(const std::string &request_message) {
+  return ExecuteJsonApi<
+      DecodePsbtRequest, DecodePsbtResponse, DecodePsbtRequestStruct,
+      DecodePsbtResponseStruct>(request_message, PsbtStructApi::DecodePsbt);
+}
+
+std::string JsonMappingApi::CreatePsbt(const std::string &request_message) {
+  return ExecuteJsonApi<
+      CreateRawTransactionRequest, PsbtOutputData,
+      CreateRawTransactionRequestStruct, PsbtOutputDataStruct>(
+      request_message, PsbtStructApi::CreatePsbt);
+}
+
+std::string JsonMappingApi::ConvertToPsbt(const std::string &request_message) {
+  return ExecuteJsonApi<
+      ConvertToPsbtRequest, PsbtOutputData, ConvertToPsbtRequestStruct,
+      PsbtOutputDataStruct>(request_message, PsbtStructApi::ConvertToPsbt);
+}
+
+std::string JsonMappingApi::JoinPsbts(const std::string &request_message) {
+  return ExecuteJsonApi<
+      PsbtList, PsbtOutputData, PsbtListStruct, PsbtOutputDataStruct>(
+      request_message, PsbtStructApi::JoinPsbts);
+}
+
+std::string JsonMappingApi::CombinePsbt(const std::string &request_message) {
+  return ExecuteJsonApi<
+      PsbtList, PsbtOutputData, PsbtListStruct, PsbtOutputDataStruct>(
+      request_message, PsbtStructApi::CombinePsbt);
+}
+
+std::string JsonMappingApi::FinalizePsbtInput(
+    const std::string &request_message) {
+  return ExecuteJsonApi<
+      FinalizePsbtInputRequest, PsbtOutputData, FinalizePsbtInputRequestStruct,
+      PsbtOutputDataStruct>(request_message, PsbtStructApi::FinalizePsbtInput);
+}
+
+std::string JsonMappingApi::FinalizePsbt(const std::string &request_message) {
+  return ExecuteJsonApi<
+      FinalizePsbtRequest, FinalizePsbtResponse, FinalizePsbtRequestStruct,
+      FinalizePsbtResponseStruct>(
+      request_message, PsbtStructApi::FinalizePsbt);
+}
+
+std::string JsonMappingApi::SignPsbt(const std::string &request_message) {
+  return ExecuteJsonApi<
+      SignPsbtRequest, PsbtOutputData, SignPsbtRequestStruct,
+      PsbtOutputDataStruct>(request_message, PsbtStructApi::SignPsbt);
+}
+
+std::string JsonMappingApi::VerifyPsbtSign(
+    const std::string &request_message) {
+  return ExecuteJsonApi<
+      VerifyPsbtSignRequest, VerifySignResponse, VerifyPsbtSignRequestStruct,
+      VerifySignResponseStruct>(
+      request_message, PsbtStructApi::VerifyPsbtSign);
+}
+
+std::string JsonMappingApi::AddPsbtInput(const std::string &request_message) {
+  return ExecuteJsonApi<
+      AddPsbtInputRequest, PsbtOutputData, AddPsbtInputRequestStruct,
+      PsbtOutputDataStruct>(request_message, PsbtStructApi::AddPsbtInput);
+}
+
+std::string JsonMappingApi::AddPsbtOutput(const std::string &request_message) {
+  return ExecuteJsonApi<
+      AddPsbtOutputRequest, PsbtOutputData, AddPsbtOutputRequestStruct,
+      PsbtOutputDataStruct>(request_message, PsbtStructApi::AddPsbtOutput);
+}
+
+std::string JsonMappingApi::SetPsbtData(const std::string &request_message) {
+  return ExecuteJsonApi<
+      SetPsbtRequest, PsbtOutputData, SetPsbtRequestStruct,
+      PsbtOutputDataStruct>(request_message, PsbtStructApi::SetPsbtData);
+}
+
+std::string JsonMappingApi::SetPsbtRecord(const std::string &request_message) {
+  return ExecuteJsonApi<
+      SetPsbtRecordRequest, PsbtOutputData, SetPsbtRecordRequestStruct,
+      PsbtOutputDataStruct>(request_message, PsbtStructApi::SetPsbtRecord);
+}
+
+std::string JsonMappingApi::IsFinalizedPsbt(
+    const std::string &request_message) {
+  return ExecuteJsonApi<
+      IsFinalizedPsbtRequest, IsFinalizedPsbtResponse,
+      IsFinalizedPsbtRequestStruct, IsFinalizedPsbtResponseStruct>(
+      request_message, PsbtStructApi::IsFinalizedPsbt);
+}
+
+std::string JsonMappingApi::GetPsbtUtxos(const std::string &request_message) {
+  return ExecuteJsonApi<
+      PsbtData, UtxoListData, PsbtDataStruct, UtxoListDataStruct>(
+      request_message, PsbtStructApi::GetPsbtUtxos);
+}
+
+std::string JsonMappingApi::FundPsbt(const std::string &request_message) {
+  return ExecuteJsonApi<
+      FundPsbtRequest, FundPsbtResponse, FundPsbtRequestStruct,
+      FundPsbtResponseStruct>(request_message, PsbtStructApi::FundPsbt);
 }
 
 #ifndef CFD_DISABLE_ELEMENTS

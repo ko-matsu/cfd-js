@@ -249,6 +249,33 @@ Value DecodeBase58(const CallbackInfo &information) {
 }
 
 /**
+ * @brief Encode the data by base64.
+ * @param[in] request   request json string.
+ * @return response json string.
+ */
+Value EncodeBase64(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::EncodeBase64);
+}
+
+/**
+ * @brief Decode the data by base64.
+ * @param[in] request   request json string.
+ * @return response json string.
+ */
+Value DecodeBase64(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::DecodeBase64);
+}
+
+/**
+ * @brief Hash message.
+ * @param[in] request   request json string.
+ * @return response json string.
+ */
+Value HashMessage(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::HashMessage);
+}
+
+/**
  * @brief EncodeSignatureByDer の JSON API関数(request, response).
  * @param[in] information     node addon apiのコールバック情報
  * @return 戻り値(JSON文字列)
@@ -745,6 +772,150 @@ Value ExtractSecretEcdsaAdaptor(const CallbackInfo &information) {
       information, JsonMappingApi::ExtractSecretEcdsaAdaptor);
 }
 
+/**
+ * @brief Decode PSBT.
+ * @param[in] request_message the request json message
+ * @return json string
+ */
+Value DecodePsbt(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::DecodePsbt);
+}
+
+/**
+ * @brief Create PSBT.
+ * @param[in] request_message the request json message
+ * @return json string
+ */
+Value CreatePsbt(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::CreatePsbt);
+}
+
+/**
+ * @brief Convert transaction to PSBT.
+ * @param[in] request_message the request json message
+ * @return json string
+ */
+Value ConvertToPsbt(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::ConvertToPsbt);
+}
+
+/**
+ * @brief Join PSBTs.
+ * @param[in] request_message the request json message
+ * @return json string
+ */
+Value JoinPsbts(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::JoinPsbts);
+}
+
+/**
+ * @brief Combine PSBT.
+ * @param[in] request_message the request json message
+ * @return json string
+ */
+Value CombinePsbt(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::CombinePsbt);
+}
+
+/**
+ * @brief Finalize PSBT input.
+ * @param[in] request_message the request json message
+ * @return json string
+ */
+Value FinalizePsbtInput(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::FinalizePsbtInput);
+}
+
+/**
+ * @brief Finalize and extract PSBT.
+ * @param[in] request_message the request json message
+ * @return json string
+ */
+Value FinalizePsbt(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::FinalizePsbt);
+}
+
+/**
+ * @brief Sign PSBT.
+ * @param[in] request_message the request json message
+ * @return json string
+ */
+Value SignPsbt(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::SignPsbt);
+}
+
+/**
+ * @brief Verify PSBT sign.
+ * @param[in] request_message the request json message
+ * @return json string
+ */
+Value VerifyPsbtSign(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::VerifyPsbtSign);
+}
+
+/**
+ * @brief Add PSBT input.
+ * @param[in] request_message the request json message
+ * @return json string
+ */
+Value AddPsbtInput(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::AddPsbtInput);
+}
+
+/**
+ * @brief Add PSBT output.
+ * @param[in] request_message the request json message
+ * @return json string
+ */
+Value AddPsbtOutput(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::AddPsbtOutput);
+}
+
+/**
+ * @brief Set PSBT data.
+ * @param[in] request_message the request json message
+ * @return json string
+ */
+Value SetPsbtData(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::SetPsbtData);
+}
+
+/**
+ * @brief Set PSBT record.
+ * @param[in] request_message the request json message
+ * @return json string
+ */
+Value SetPsbtRecord(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::SetPsbtRecord);
+}
+
+/**
+ * @brief Is finalized PSBT.
+ * @param[in] request_message the request json message
+ * @return json string
+ */
+Value IsFinalizedPsbt(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::IsFinalizedPsbt);
+}
+
+/**
+ * @brief Get PSBT utxos.
+ * @param[in] request_message the request json message
+ * @return json string
+ */
+Value GetPsbtUtxos(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::GetPsbtUtxos);
+}
+
+/**
+ * @brief Fund PSBT.
+ * @param[in] request_message the request json message
+ * @return json string
+ */
+Value FundPsbt(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::FundPsbt);
+}
+
 #ifndef CFD_DISABLE_ELEMENTS
 
 /**
@@ -966,6 +1137,12 @@ void InitializeJsonApi(Env env, Object *exports) {
   exports->Set(
       String::New(env, "DecodeBase58"), Function::New(env, DecodeBase58));
   exports->Set(
+      String::New(env, "EncodeBase64"), Function::New(env, EncodeBase64));
+  exports->Set(
+      String::New(env, "DecodeBase64"), Function::New(env, DecodeBase64));
+  exports->Set(
+      String::New(env, "HashMessage"), Function::New(env, HashMessage));
+  exports->Set(
       String::New(env, "EncodeSignatureByDer"),
       Function::New(env, EncodeSignatureByDer));
   exports->Set(
@@ -1108,6 +1285,35 @@ void InitializeJsonApi(Env env, Object *exports) {
   exports->Set(
       String::New(env, "ExtractSecretEcdsaAdaptor"),
       Function::New(env, ExtractSecretEcdsaAdaptor));
+  exports->Set(String::New(env, "DecodePsbt"), Function::New(env, DecodePsbt));
+  exports->Set(String::New(env, "CreatePsbt"), Function::New(env, CreatePsbt));
+  exports->Set(
+      String::New(env, "ConvertToPsbt"), Function::New(env, ConvertToPsbt));
+  exports->Set(String::New(env, "JoinPsbts"), Function::New(env, JoinPsbts));
+  exports->Set(
+      String::New(env, "CombinePsbt"), Function::New(env, CombinePsbt));
+  exports->Set(
+      String::New(env, "FinalizePsbtInput"),
+      Function::New(env, FinalizePsbtInput));
+  exports->Set(
+      String::New(env, "FinalizePsbt"), Function::New(env, FinalizePsbt));
+  exports->Set(String::New(env, "SignPsbt"), Function::New(env, SignPsbt));
+  exports->Set(
+      String::New(env, "VerifyPsbtSign"), Function::New(env, VerifyPsbtSign));
+  exports->Set(
+      String::New(env, "AddPsbtInput"), Function::New(env, AddPsbtInput));
+  exports->Set(
+      String::New(env, "AddPsbtOutput"), Function::New(env, AddPsbtOutput));
+  exports->Set(
+      String::New(env, "SetPsbtData"), Function::New(env, SetPsbtData));
+  exports->Set(
+      String::New(env, "SetPsbtRecord"), Function::New(env, SetPsbtRecord));
+  exports->Set(
+      String::New(env, "IsFinalizedPsbt"),
+      Function::New(env, IsFinalizedPsbt));
+  exports->Set(
+      String::New(env, "GetPsbtUtxos"), Function::New(env, GetPsbtUtxos));
+  exports->Set(String::New(env, "FundPsbt"), Function::New(env, FundPsbt));
 #ifndef CFD_DISABLE_ELEMENTS
   exports->Set(
       String::New(env, "GetConfidentialAddress"),

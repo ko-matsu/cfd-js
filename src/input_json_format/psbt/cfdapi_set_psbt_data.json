@@ -163,9 +163,9 @@
       "xpubs": [{
         ":class": "PsbtGlobalXpubInput",
         ":class:comment": "psbt global xpub data",
-        "descriptor": "",
-        "descriptor:require": "optional",
-        "descriptor:comment": "the descriptor xpub string.",
+        "descriptorXpub": "",
+        "descriptorXpub:require": "optional",
+        "descriptorXpub:comment": "the descriptor xpub string.",
         "xpub": "",
         "xpub:require": "optional",
         "xpub:comment": "xpub (base58 or hex). If the descriptor set, this field not reference.",

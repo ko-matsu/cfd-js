@@ -3,11 +3,15 @@
   "functionName": "GetPsbtUtxos",
   "comment": "Get psbt utxo list.",
   "request": {
-    ":class": "PsbtData",
-    ":class:comment": "psbt data.",
+    ":class": "DecodePsbtRequest",
+    ":class:comment": "request for decode psbt.",
     "psbt": "",
     "psbt:require": "require",
-    "psbt:comment": "psbt data (hex or base64)"
+    "psbt:comment": "psbt data (hex or base64)",
+    "network": "mainnet",
+    "network:require": "optional",
+    "network:comment": "network type",
+    "network:hint": "mainnet, testnet, regtest"
   },
   "response": {
     ":class": "UtxoListData",

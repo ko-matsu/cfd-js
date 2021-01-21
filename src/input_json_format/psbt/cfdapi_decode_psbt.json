@@ -160,9 +160,9 @@
         "path": "",
         "path:require": "require",
         "path:comment": "bip32 path.",
-        "descriptor": "",
-        "descriptor:require": "require",
-        "descriptor:comment": "the descriptor xpub string."
+        "descriptorXpub": "",
+        "descriptorXpub:require": "require",
+        "descriptorXpub:comment": "the descriptor xpub string."
       }
     ],
     "version": 0,
@@ -170,7 +170,7 @@
     "version:require": "optional",
     "version:comment": "If hasDetail is true, psbt version set. (remove from global unknown)",
     "unknown:require": "optional",
-    "unknown:comment": "PSBT global unknowns",
+    "unknown:comment": "PSBT global unknowns. If list is empty and hasSimple is true, exclude list.",
     "unknown": [{
       ":class": "PsbtMapData",
       ":class:comment": "psbt map data.",

@@ -5,13 +5,9 @@
   "request": {
     ":class": "PsbtList",
     ":class:comment": "psbt List.",
-    "psbts": [{
-      ":class": "PsbtData",
-      ":class:comment": "psbt data.",
-      "psbt": "",
-      "psbt:require": "require",
-      "psbt:comment": "psbt data (hex or base64)"
-    }]
+    "psbts:require": "require",
+    "psbts:comment": "psbt list data (hex or base64)",
+    "psbts": [""]
   },
   "response": {
     ":class": "PsbtOutputData",

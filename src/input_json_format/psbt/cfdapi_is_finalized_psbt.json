@@ -25,6 +25,9 @@
   "response": {
     ":class": "IsFinalizedPsbtResponse",
     ":class:comment": "The output finalized check.",
+    "success": false,
+    "success:require": "require",
+    "success:comment": "target all finalized flag.",
     "finalizedAll": false,
     "finalizedAll:require": "require",
     "finalizedAll:comment": "all finalized flag.",

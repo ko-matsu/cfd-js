@@ -47,15 +47,18 @@ class TestHelper {
 
     describe(keyName, () => {
       let cfd;
-      const testTargets = [];
+      let testTargets = [];
+      const testAllTargets = [];
       const jsonObj = JSON.parse(fs.readFileSync(`${__dirname}/data/${fileName}.json`, 'utf8'));
       for (const data of jsonObj) {
         if (data && data.name) {
+          testAllTargets.push(data);
           if (data.name.startsWith(keyName)) {
             testTargets.push(data);
           }
         }
       }
+      if (testTargets.length == 0) testTargets = testAllTargets;
 
       beforeAll(async () => {
         while (!helper.hasLoadedWasm()) {

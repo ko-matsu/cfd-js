@@ -137,6 +137,12 @@ HexDataStruct UtilStructApi::DecodeBase64(const Base64DataStruct& request) {
   auto call_func = [](const Base64DataStruct& request) -> HexDataStruct {
     HexDataStruct result;
     ByteData data = CryptoUtil::DecodeBase64(request.base64);
+    if ((!request.base64.empty()) && data.IsEmpty()) {
+      warn(CFD_LOG_SOURCE, "Failed to parameter. Decode base64 error.");
+      throw CfdException(
+          CfdError::kCfdIllegalArgumentError,
+          "Decode base64 error.");
+    }
     result.hex = data.GetHex();
     return result;
   };

@@ -39,7 +39,6 @@
       ":class": "FundSelectUtxoData",
       ":class:comment": "Txin's utxo data.",
       "txid": "",
-      "txid": "",
       "txid:require": "require",
       "txid:comment": "utxo txid.",
       "vout": 0,

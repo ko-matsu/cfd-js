@@ -1,0 +1,26 @@
+{
+  "namespace": ["cfd","js","api","json"],
+  "functionName": "CombinePsbt",
+  "comment": "Combine psbt.",
+  "request": {
+    ":class": "PsbtList",
+    ":class:comment": "psbt List.",
+    "psbts": [{
+      ":class": "PsbtData",
+      ":class:comment": "psbt data.",
+      "psbt": "",
+      "psbt:require": "require",
+      "psbt:comment": "psbt data (hex or base64)"
+    }]
+  },
+  "response": {
+    ":class": "PsbtOutputData",
+    ":class:comment": "psbt output data.",
+    "psbt": "",
+    "psbt:require": "require",
+    "psbt:comment": "base64 encoded psbt.",
+    "hex": "",
+    "hex:require": "require",
+    "hex:comment": "psbt hex"
+  }
+}

@@ -54,6 +54,7 @@
     "test_quiet": "jest --no-cache --silent",
     "test_logging": "jest --no-cache --silent=false --verbose false",
     "bitcoin_test": "jest -c ./integration_jest.config.js --no-cache",
+    "elements_test": "jest -c ./integration_elements_jest.config.js --no-cache",
     "format": "run-p format_cpp_all format_js_all",
     "format_cpp_all": "run-s code_format lint_check",
     "format_js_all": "run-s js_format eslint_check",
@@ -176,12 +177,15 @@
     "unzipper": "^0.10.11"
   },
   "devDependencies": {
+    "@types/jest": "^26.0.19",
+    "@types/node": "^14.14.14",
     "@typescript-eslint/eslint-plugin": "^4.11.0",
     "@typescript-eslint/parser": "^4.11.0",
     "eslint": "^7.16.0",
     "eslint-config-google": "^0.14.0",
     "jest": "^26.6.3",
     "prebuild": "^10.0.1",
+    "ts-jest": "^26.4.4",
     "ts-morph": "^9.1.0",
     "ts-node": "^9.1.1",
     "wallet-for-testing-js": "github:cryptogarageinc/wallet-for-testing-js#semver:^0.1.5"

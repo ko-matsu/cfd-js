@@ -63,7 +63,6 @@ using cfd::core::logger::warn;
  * @param[in] psbt_string   psbt string (base64 or hex)
  * @param[in] caller        caller function.
  * @param[out] psbt         psbt object
- * @return psbt object
  */
 static void GetPsbtFromString(
     const std::string& psbt_string, const std::string& caller, Psbt* psbt) {
@@ -195,6 +194,11 @@ static void ParsePsbtOutputRequest(
   }
 }
 
+/**
+ * @brief set psbt input data.
+ * @param[in,out] psbt    psbt object
+ * @param[in] request     input request
+ */
 static void SetPsbtInputData(
     Psbt* psbt, const PsbtInputRequestStruct& request) {
   uint32_t index = request.index;
@@ -248,6 +252,11 @@ static void SetPsbtInputData(
   }
 }
 
+/**
+ * @brief set psbt output data.
+ * @param[in,out] psbt    psbt object
+ * @param[in] request     output request
+ */
 static void SetPsbtOutputData(
     Psbt* psbt, const PsbtOutputRequestStruct& request) {
   // output
@@ -271,6 +280,11 @@ static void SetPsbtOutputData(
   }
 }
 
+/**
+ * @brief set psbt global data.
+ * @param[in,out] psbt    psbt object
+ * @param[in] global      global request
+ */
 static void SetPsbtGlobalData(
     Psbt* psbt, const PsbtGlobalRequestDataStruct& global) {
   // global

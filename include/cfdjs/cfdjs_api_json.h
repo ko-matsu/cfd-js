@@ -148,45 +148,45 @@ class CFD_JS_API_EXPORT JsonMappingApi {
 
   /**
    * @brief Convert data by AES.
-   * @param[in] request   request json string.
+   * @param[in] request_message   request json string.
    * @return response struct including encoded string.
    */
-  static std::string ConvertAes(const std::string &request);
+  static std::string ConvertAes(const std::string &request_message);
 
   /**
    * @brief Encode the data by base58.
-   * @param[in] request   request json string.
+   * @param[in] request_message   request json string.
    * @return response struct including encoded string.
    */
-  static std::string EncodeBase58(const std::string &request);
+  static std::string EncodeBase58(const std::string &request_message);
 
   /**
    * @brief Decode the data by base58.
-   * @param[in] request   request json string.
+   * @param[in] request_message   request json string.
    * @return response json string.
    */
-  static std::string DecodeBase58(const std::string &request);
+  static std::string DecodeBase58(const std::string &request_message);
 
   /**
    * @brief Encode the data by base64.
-   * @param[in] request   request json string.
+   * @param[in] request_message   request json string.
    * @return response json string.
    */
-  static std::string EncodeBase64(const std::string &request);
+  static std::string EncodeBase64(const std::string &request_message);
 
   /**
    * @brief Decode the data by base64.
-   * @param[in] request   request json string.
+   * @param[in] request_message   request json string.
    * @return response json string.
    */
-  static std::string DecodeBase64(const std::string &request);
+  static std::string DecodeBase64(const std::string &request_message);
 
   /**
    * @brief Hash message.
-   * @param[in] request   request json string.
+   * @param[in] request_message   request json string.
    * @return response json string.
    */
-  static std::string HashMessage(const std::string &request);
+  static std::string HashMessage(const std::string &request_message);
 
   /**
    * @brief EncodeSignatureByDer の JSON API関数(request, response).
@@ -595,91 +595,91 @@ class CFD_JS_API_EXPORT JsonMappingApi {
    * @param[in] request_message the request json message
    * @return json string
    */
-  static std::string DecodePsbt(const std::string &request);
+  static std::string DecodePsbt(const std::string &request_message);
   /**
    * @brief Create PSBT.
    * @param[in] request_message the request json message
    * @return json string
    */
-  static std::string CreatePsbt(const std::string &request);
+  static std::string CreatePsbt(const std::string &request_message);
   /**
    * @brief Convert transaction to PSBT.
    * @param[in] request_message the request json message
    * @return json string
    */
-  static std::string ConvertToPsbt(const std::string &request);
+  static std::string ConvertToPsbt(const std::string &request_message);
   /**
    * @brief Join PSBTs.
    * @param[in] request_message the request json message
    * @return json string
    */
-  static std::string JoinPsbts(const std::string &request);
+  static std::string JoinPsbts(const std::string &request_message);
   /**
    * @brief Combine PSBT.
    * @param[in] request_message the request json message
    * @return json string
    */
-  static std::string CombinePsbt(const std::string &request);
+  static std::string CombinePsbt(const std::string &request_message);
   /**
    * @brief Finalize PSBT input.
    * @param[in] request_message the request json message
    * @return json string
    */
-  static std::string FinalizePsbtInput(const std::string &request);
+  static std::string FinalizePsbtInput(const std::string &request_message);
   /**
    * @brief Finalize and extract PSBT.
    * @param[in] request_message the request json message
    * @return json string
    */
-  static std::string FinalizePsbt(const std::string &request);
+  static std::string FinalizePsbt(const std::string &request_message);
   /**
    * @brief Sign PSBT.
    * @param[in] request_message the request json message
    * @return json string
    */
-  static std::string SignPsbt(const std::string &request);
+  static std::string SignPsbt(const std::string &request_message);
   /**
    * @brief Verify PSBT sign.
    * @param[in] request_message the request json message
    * @return json string
    */
-  static std::string VerifyPsbtSign(const std::string &request);
+  static std::string VerifyPsbtSign(const std::string &request_message);
   /**
    * @brief Add PSBT input/output data.
    * @param[in] request_message the request json message
    * @return json string
    */
-  static std::string AddPsbtData(const std::string &request);
+  static std::string AddPsbtData(const std::string &request_message);
   /**
    * @brief Set PSBT data.
    * @param[in] request_message the request json message
    * @return json string
    */
-  static std::string SetPsbtData(const std::string &request);
+  static std::string SetPsbtData(const std::string &request_message);
   /**
    * @brief Set PSBT record.
    * @param[in] request_message the request json message
    * @return json string
    */
-  static std::string SetPsbtRecord(const std::string &request);
+  static std::string SetPsbtRecord(const std::string &request_message);
   /**
    * @brief Is finalized PSBT.
    * @param[in] request_message the request json message
    * @return json string
    */
-  static std::string IsFinalizedPsbt(const std::string &request);
+  static std::string IsFinalizedPsbt(const std::string &request_message);
   /**
    * @brief Get PSBT utxos.
    * @param[in] request_message the request json message
    * @return json string
    */
-  static std::string GetPsbtUtxos(const std::string &request);
+  static std::string GetPsbtUtxos(const std::string &request_message);
   /**
    * @brief Fund PSBT.
    * @param[in] request_message the request json message
    * @return json string
    */
-  static std::string FundPsbt(const std::string &request);
+  static std::string FundPsbt(const std::string &request_message);
 
 #ifndef CFD_DISABLE_ELEMENTS
 

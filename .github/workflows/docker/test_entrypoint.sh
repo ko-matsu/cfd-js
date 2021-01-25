@@ -47,4 +47,6 @@ if [ ! -d node_modules ]; then
 fi
 chmod 777 node_modules
 node --version
-npm install && npm test
+npm install
+npm run cmake_release_parallel
+npm run elements_test

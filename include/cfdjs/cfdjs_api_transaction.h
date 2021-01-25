@@ -12,6 +12,7 @@
 #include <string>
 #include <vector>
 
+#include "cfd/cfd_address.h"
 #include "cfdcore/cfdcore_script.h"
 #include "cfdjs/cfdjs_api_common.h"
 #include "cfdjs/cfdjs_struct.h"
@@ -19,6 +20,8 @@
 namespace cfd {
 namespace js {
 namespace api {
+
+using cfd::AddressFactory;
 
 /**
  * @brief Transaction関連のJSON APIクラス
@@ -141,6 +144,18 @@ class CFD_JS_API_EXPORT TransactionStructApi {
    */
   static RawTransactionResponseStruct UpdateTxOutAmount(
       const UpdateTxOutAmountRequestStruct& request);
+
+  /**
+   * @brief Convert from locking script.
+   * @param[in] factory     address factory
+   * @param[in] script      locking script
+   * @param[out] script_type    script type
+   * @param[out] require_num    multisig require num
+   * @return address list
+   */
+  static std::vector<Address> ConvertFromLockingScript(
+      const AddressFactory& factory, const Script& script,
+      std::string* script_type, int64_t* require_num);
 
  private:
   TransactionStructApi();

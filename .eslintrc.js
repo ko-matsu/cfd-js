@@ -26,6 +26,13 @@ module.exports = {
         '^pegin_',
         'is_pegin',
         'commitmentnonce_fully_valid',
+        'witness_',
+        'redeem_script',
+        'bip32_derivs',
+        '^final_',
+        '^master_fingerprint',
+        '^partial_signatures',
+        '^tx_hex',
       ],
     }],
     'new-cap': ['error', {

@@ -165,8 +165,7 @@ DecodeRawTransactionResponseStruct TransactionStructApi::DecodeRawTransaction(
           CfdError::kCfdIllegalArgumentError,
           "Invalid hex string. empty data.");
     }
-    // TODO(k-matsuzawa): 引数のiswitness未使用。bitcoincoreの指定方法が不明瞭
-    // // NOLINT
+    // TODO(k-matsuzawa): The argument iswitness is unused. The method of specifying bitcoin core is unknown. NOLINT
 
     NetType net_type = AddressStructApi::ConvertNetType(request.network);
 
@@ -841,6 +840,59 @@ bool TransactionStructApi::CheckNullDataScript(const Script& script) {
     }
   }
   return is_match;
+}
+
+std::vector<Address> TransactionStructApi::ConvertFromLockingScript(
+    const AddressFactory& factory, const Script& script,
+    std::string* script_type, int64_t* require_num) {
+  ExtractScriptData extract_data =
+      TransactionStructApiBase::ExtractLockingScript(script);
+  LockingScriptType type = extract_data.script_type;
+  if (script_type != nullptr) {
+    std::string type_str = "nonstandard";
+    if (type != LockingScriptType::kFee) {
+      type_str =
+          TransactionStructApiBase::ConvertLockingScriptTypeString(type);
+    }
+    *script_type = type_str;
+  }
+  if (require_num != nullptr) {
+    *require_num = static_cast<int64_t>(extract_data.pushed_datas.size());
+  }
+
+  std::vector<Address> addr_list;
+  Address address;
+  if (type == LockingScriptType::kMultisig) {
+    if (require_num != nullptr) {
+      *require_num = extract_data.req_sigs;
+    }
+    for (ByteData pubkey_bytes : extract_data.pushed_datas) {
+      Pubkey pubkey = Pubkey(pubkey_bytes);
+      address = factory.CreateP2pkhAddress(pubkey);
+      addr_list.push_back(address);
+    }
+  } else if (type == LockingScriptType::kPayToPubkey) {
+    Pubkey pubkey = Pubkey(extract_data.pushed_datas[0]);
+    address = factory.CreateP2pkhAddress(pubkey);
+    addr_list.push_back(address);
+  } else if (type == LockingScriptType::kPayToPubkeyHash) {
+    ByteData160 hash = ByteData160(extract_data.pushed_datas[0].GetBytes());
+    address = factory.GetAddressByHash(AddressType::kP2pkhAddress, hash);
+    addr_list.push_back(address);
+  } else if (type == LockingScriptType::kPayToScriptHash) {
+    ByteData160 hash = ByteData160(extract_data.pushed_datas[0].GetBytes());
+    address = factory.GetAddressByHash(AddressType::kP2shAddress, hash);
+    addr_list.push_back(address);
+  } else if (type == LockingScriptType::kWitnessV0KeyHash) {
+    address = factory.GetSegwitAddressByHash(extract_data.pushed_datas[0]);
+    addr_list.push_back(address);
+  } else if (type == LockingScriptType::kWitnessV0ScriptHash) {
+    address = factory.GetSegwitAddressByHash(extract_data.pushed_datas[0]);
+    addr_list.push_back(address);
+  } else {
+    // do nothing
+  }
+  return addr_list;
 }
 
 namespace json {

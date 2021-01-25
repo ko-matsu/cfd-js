@@ -1233,12 +1233,12 @@ void PsbtGlobalXpubInput::CollectFieldName() {
   cfd::core::CLASS_FUNCTION_TABLE<PsbtGlobalXpubInput> func_table;  // NOLINT
 
   func_table = {
-    PsbtGlobalXpubInput::GetDescriptorString,
-    PsbtGlobalXpubInput::SetDescriptorString,
-    PsbtGlobalXpubInput::GetDescriptorFieldType,
+    PsbtGlobalXpubInput::GetDescriptorXpubString,
+    PsbtGlobalXpubInput::SetDescriptorXpubString,
+    PsbtGlobalXpubInput::GetDescriptorXpubFieldType,
   };
-  json_mapper.emplace("descriptor", func_table);
-  item_list.push_back("descriptor");
+  json_mapper.emplace("descriptorXpub", func_table);
+  item_list.push_back("descriptorXpub");
   func_table = {
     PsbtGlobalXpubInput::GetXpubString,
     PsbtGlobalXpubInput::SetXpubString,
@@ -1264,7 +1264,7 @@ void PsbtGlobalXpubInput::CollectFieldName() {
 
 void PsbtGlobalXpubInput::ConvertFromStruct(
     const PsbtGlobalXpubInputStruct& data) {
-  descriptor_ = data.descriptor;
+  descriptor_xpub_ = data.descriptor_xpub;
   xpub_ = data.xpub;
   master_fingerprint_ = data.master_fingerprint;
   path_ = data.path;
@@ -1273,7 +1273,7 @@ void PsbtGlobalXpubInput::ConvertFromStruct(
 
 PsbtGlobalXpubInputStruct PsbtGlobalXpubInput::ConvertToStruct() const {  // NOLINT
   PsbtGlobalXpubInputStruct result;
-  result.descriptor = descriptor_;
+  result.descriptor_xpub = descriptor_xpub_;
   result.xpub = xpub_;
   result.master_fingerprint = master_fingerprint_;
   result.path = path_;
@@ -1623,6 +1623,59 @@ SignDataStruct SignData::ConvertToStruct() const {  // NOLINT
   result.der_encode = der_encode_;
   result.sighash_type = sighash_type_;
   result.sighash_anyone_can_pay = sighash_anyone_can_pay_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// TxInRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<TxInRequest>
+  TxInRequest::json_mapper;
+std::vector<std::string> TxInRequest::item_list;
+
+void TxInRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<TxInRequest> func_table;  // NOLINT
+
+  func_table = {
+    TxInRequest::GetTxidString,
+    TxInRequest::SetTxidString,
+    TxInRequest::GetTxidFieldType,
+  };
+  json_mapper.emplace("txid", func_table);
+  item_list.push_back("txid");
+  func_table = {
+    TxInRequest::GetVoutString,
+    TxInRequest::SetVoutString,
+    TxInRequest::GetVoutFieldType,
+  };
+  json_mapper.emplace("vout", func_table);
+  item_list.push_back("vout");
+  func_table = {
+    TxInRequest::GetSequenceString,
+    TxInRequest::SetSequenceString,
+    TxInRequest::GetSequenceFieldType,
+  };
+  json_mapper.emplace("sequence", func_table);
+  item_list.push_back("sequence");
+}
+
+void TxInRequest::ConvertFromStruct(
+    const TxInRequestStruct& data) {
+  txid_ = data.txid;
+  vout_ = data.vout;
+  sequence_ = data.sequence;
+  ignore_items = data.ignore_items;
+}
+
+TxInRequestStruct TxInRequest::ConvertToStruct() const {  // NOLINT
+  TxInRequestStruct result;
+  result.txid = txid_;
+  result.vout = vout_;
+  result.sequence = sequence_;
   result.ignore_items = ignore_items;
   return result;
 }
@@ -4251,36 +4304,89 @@ PrivkeyDataStruct PrivkeyData::ConvertToStruct() const {  // NOLINT
 }
 
 // ------------------------------------------------------------------------
-// PsbtData
+// PsbtAddInputRequest
 // ------------------------------------------------------------------------
-cfd::core::JsonTableMap<PsbtData>
-  PsbtData::json_mapper;
-std::vector<std::string> PsbtData::item_list;
+cfd::core::JsonTableMap<PsbtAddInputRequest>
+  PsbtAddInputRequest::json_mapper;
+std::vector<std::string> PsbtAddInputRequest::item_list;
 
-void PsbtData::CollectFieldName() {
+void PsbtAddInputRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfd::core::CLASS_FUNCTION_TABLE<PsbtData> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<PsbtAddInputRequest> func_table;  // NOLINT
 
   func_table = {
-    PsbtData::GetPsbtString,
-    PsbtData::SetPsbtString,
-    PsbtData::GetPsbtFieldType,
+    PsbtAddInputRequest::GetTxinString,
+    PsbtAddInputRequest::SetTxinString,
+    PsbtAddInputRequest::GetTxinFieldType,
   };
-  json_mapper.emplace("psbt", func_table);
-  item_list.push_back("psbt");
+  json_mapper.emplace("txin", func_table);
+  item_list.push_back("txin");
+  func_table = {
+    PsbtAddInputRequest::GetInputString,
+    PsbtAddInputRequest::SetInputString,
+    PsbtAddInputRequest::GetInputFieldType,
+  };
+  json_mapper.emplace("input", func_table);
+  item_list.push_back("input");
 }
 
-void PsbtData::ConvertFromStruct(
-    const PsbtDataStruct& data) {
-  psbt_ = data.psbt;
+void PsbtAddInputRequest::ConvertFromStruct(
+    const PsbtAddInputRequestStruct& data) {
+  txin_.ConvertFromStruct(data.txin);
+  input_.ConvertFromStruct(data.input);
   ignore_items = data.ignore_items;
 }
 
-PsbtDataStruct PsbtData::ConvertToStruct() const {  // NOLINT
-  PsbtDataStruct result;
-  result.psbt = psbt_;
+PsbtAddInputRequestStruct PsbtAddInputRequest::ConvertToStruct() const {  // NOLINT
+  PsbtAddInputRequestStruct result;
+  result.txin = txin_.ConvertToStruct();
+  result.input = input_.ConvertToStruct();
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// PsbtAddOutputRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<PsbtAddOutputRequest>
+  PsbtAddOutputRequest::json_mapper;
+std::vector<std::string> PsbtAddOutputRequest::item_list;
+
+void PsbtAddOutputRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<PsbtAddOutputRequest> func_table;  // NOLINT
+
+  func_table = {
+    PsbtAddOutputRequest::GetTxoutString,
+    PsbtAddOutputRequest::SetTxoutString,
+    PsbtAddOutputRequest::GetTxoutFieldType,
+  };
+  json_mapper.emplace("txout", func_table);
+  item_list.push_back("txout");
+  func_table = {
+    PsbtAddOutputRequest::GetOutputString,
+    PsbtAddOutputRequest::SetOutputString,
+    PsbtAddOutputRequest::GetOutputFieldType,
+  };
+  json_mapper.emplace("output", func_table);
+  item_list.push_back("output");
+}
+
+void PsbtAddOutputRequest::ConvertFromStruct(
+    const PsbtAddOutputRequestStruct& data) {
+  txout_.ConvertFromStruct(data.txout);
+  output_.ConvertFromStruct(data.output);
+  ignore_items = data.ignore_items;
+}
+
+PsbtAddOutputRequestStruct PsbtAddOutputRequest::ConvertToStruct() const {  // NOLINT
+  PsbtAddOutputRequestStruct result;
+  result.txout = txout_.ConvertToStruct();
+  result.output = output_.ConvertToStruct();
   result.ignore_items = ignore_items;
   return result;
 }
@@ -4364,12 +4470,12 @@ void PsbtGlobalXpub::CollectFieldName() {
   json_mapper.emplace("path", func_table);
   item_list.push_back("path");
   func_table = {
-    PsbtGlobalXpub::GetDescriptorString,
-    PsbtGlobalXpub::SetDescriptorString,
-    PsbtGlobalXpub::GetDescriptorFieldType,
+    PsbtGlobalXpub::GetDescriptorXpubString,
+    PsbtGlobalXpub::SetDescriptorXpubString,
+    PsbtGlobalXpub::GetDescriptorXpubFieldType,
   };
-  json_mapper.emplace("descriptor", func_table);
-  item_list.push_back("descriptor");
+  json_mapper.emplace("descriptorXpub", func_table);
+  item_list.push_back("descriptorXpub");
 }
 
 void PsbtGlobalXpub::ConvertFromStruct(
@@ -4377,7 +4483,7 @@ void PsbtGlobalXpub::ConvertFromStruct(
   xpub_.ConvertFromStruct(data.xpub);
   master_fingerprint_ = data.master_fingerprint;
   path_ = data.path;
-  descriptor_ = data.descriptor;
+  descriptor_xpub_ = data.descriptor_xpub;
   ignore_items = data.ignore_items;
 }
 
@@ -4386,7 +4492,7 @@ PsbtGlobalXpubStruct PsbtGlobalXpub::ConvertToStruct() const {  // NOLINT
   result.xpub = xpub_.ConvertToStruct();
   result.master_fingerprint = master_fingerprint_;
   result.path = path_;
-  result.descriptor = descriptor_;
+  result.descriptor_xpub = descriptor_xpub_;
   result.ignore_items = ignore_items;
   return result;
 }
@@ -4973,59 +5079,6 @@ TargetAmountMapDataStruct TargetAmountMapData::ConvertToStruct() const {  // NOL
   TargetAmountMapDataStruct result;
   result.asset = asset_;
   result.amount = amount_;
-  result.ignore_items = ignore_items;
-  return result;
-}
-
-// ------------------------------------------------------------------------
-// TxInRequest
-// ------------------------------------------------------------------------
-cfd::core::JsonTableMap<TxInRequest>
-  TxInRequest::json_mapper;
-std::vector<std::string> TxInRequest::item_list;
-
-void TxInRequest::CollectFieldName() {
-  if (!json_mapper.empty()) {
-    return;
-  }
-  cfd::core::CLASS_FUNCTION_TABLE<TxInRequest> func_table;  // NOLINT
-
-  func_table = {
-    TxInRequest::GetTxidString,
-    TxInRequest::SetTxidString,
-    TxInRequest::GetTxidFieldType,
-  };
-  json_mapper.emplace("txid", func_table);
-  item_list.push_back("txid");
-  func_table = {
-    TxInRequest::GetVoutString,
-    TxInRequest::SetVoutString,
-    TxInRequest::GetVoutFieldType,
-  };
-  json_mapper.emplace("vout", func_table);
-  item_list.push_back("vout");
-  func_table = {
-    TxInRequest::GetSequenceString,
-    TxInRequest::SetSequenceString,
-    TxInRequest::GetSequenceFieldType,
-  };
-  json_mapper.emplace("sequence", func_table);
-  item_list.push_back("sequence");
-}
-
-void TxInRequest::ConvertFromStruct(
-    const TxInRequestStruct& data) {
-  txid_ = data.txid;
-  vout_ = data.vout;
-  sequence_ = data.sequence;
-  ignore_items = data.ignore_items;
-}
-
-TxInRequestStruct TxInRequest::ConvertToStruct() const {  // NOLINT
-  TxInRequestStruct result;
-  result.txid = txid_;
-  result.vout = vout_;
-  result.sequence = sequence_;
   result.ignore_items = ignore_items;
   return result;
 }
@@ -5864,54 +5917,54 @@ RawTransactionResponseStruct RawTransactionResponse::ConvertToStruct() const {  
 }
 
 // ------------------------------------------------------------------------
-// AddPsbtInputRequest
+// AddPsbtDataRequest
 // ------------------------------------------------------------------------
-cfd::core::JsonTableMap<AddPsbtInputRequest>
-  AddPsbtInputRequest::json_mapper;
-std::vector<std::string> AddPsbtInputRequest::item_list;
+cfd::core::JsonTableMap<AddPsbtDataRequest>
+  AddPsbtDataRequest::json_mapper;
+std::vector<std::string> AddPsbtDataRequest::item_list;
 
-void AddPsbtInputRequest::CollectFieldName() {
+void AddPsbtDataRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfd::core::CLASS_FUNCTION_TABLE<AddPsbtInputRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<AddPsbtDataRequest> func_table;  // NOLINT
 
   func_table = {
-    AddPsbtInputRequest::GetPsbtString,
-    AddPsbtInputRequest::SetPsbtString,
-    AddPsbtInputRequest::GetPsbtFieldType,
+    AddPsbtDataRequest::GetPsbtString,
+    AddPsbtDataRequest::SetPsbtString,
+    AddPsbtDataRequest::GetPsbtFieldType,
   };
   json_mapper.emplace("psbt", func_table);
   item_list.push_back("psbt");
   func_table = {
-    AddPsbtInputRequest::GetTxinString,
-    AddPsbtInputRequest::SetTxinString,
-    AddPsbtInputRequest::GetTxinFieldType,
+    AddPsbtDataRequest::GetInputsString,
+    AddPsbtDataRequest::SetInputsString,
+    AddPsbtDataRequest::GetInputsFieldType,
   };
-  json_mapper.emplace("txin", func_table);
-  item_list.push_back("txin");
+  json_mapper.emplace("inputs", func_table);
+  item_list.push_back("inputs");
   func_table = {
-    AddPsbtInputRequest::GetInputString,
-    AddPsbtInputRequest::SetInputString,
-    AddPsbtInputRequest::GetInputFieldType,
+    AddPsbtDataRequest::GetOutputsString,
+    AddPsbtDataRequest::SetOutputsString,
+    AddPsbtDataRequest::GetOutputsFieldType,
   };
-  json_mapper.emplace("input", func_table);
-  item_list.push_back("input");
+  json_mapper.emplace("outputs", func_table);
+  item_list.push_back("outputs");
 }
 
-void AddPsbtInputRequest::ConvertFromStruct(
-    const AddPsbtInputRequestStruct& data) {
+void AddPsbtDataRequest::ConvertFromStruct(
+    const AddPsbtDataRequestStruct& data) {
   psbt_ = data.psbt;
-  txin_.ConvertFromStruct(data.txin);
-  input_.ConvertFromStruct(data.input);
+  inputs_.ConvertFromStruct(data.inputs);
+  outputs_.ConvertFromStruct(data.outputs);
   ignore_items = data.ignore_items;
 }
 
-AddPsbtInputRequestStruct AddPsbtInputRequest::ConvertToStruct() const {  // NOLINT
-  AddPsbtInputRequestStruct result;
+AddPsbtDataRequestStruct AddPsbtDataRequest::ConvertToStruct() const {  // NOLINT
+  AddPsbtDataRequestStruct result;
   result.psbt = psbt_;
-  result.txin = txin_.ConvertToStruct();
-  result.input = input_.ConvertToStruct();
+  result.inputs = inputs_.ConvertToStruct();
+  result.outputs = outputs_.ConvertToStruct();
   result.ignore_items = ignore_items;
   return result;
 }
@@ -5956,59 +6009,6 @@ PsbtOutputDataStruct PsbtOutputData::ConvertToStruct() const {  // NOLINT
   PsbtOutputDataStruct result;
   result.psbt = psbt_;
   result.hex = hex_;
-  result.ignore_items = ignore_items;
-  return result;
-}
-
-// ------------------------------------------------------------------------
-// AddPsbtOutputRequest
-// ------------------------------------------------------------------------
-cfd::core::JsonTableMap<AddPsbtOutputRequest>
-  AddPsbtOutputRequest::json_mapper;
-std::vector<std::string> AddPsbtOutputRequest::item_list;
-
-void AddPsbtOutputRequest::CollectFieldName() {
-  if (!json_mapper.empty()) {
-    return;
-  }
-  cfd::core::CLASS_FUNCTION_TABLE<AddPsbtOutputRequest> func_table;  // NOLINT
-
-  func_table = {
-    AddPsbtOutputRequest::GetPsbtString,
-    AddPsbtOutputRequest::SetPsbtString,
-    AddPsbtOutputRequest::GetPsbtFieldType,
-  };
-  json_mapper.emplace("psbt", func_table);
-  item_list.push_back("psbt");
-  func_table = {
-    AddPsbtOutputRequest::GetTxoutString,
-    AddPsbtOutputRequest::SetTxoutString,
-    AddPsbtOutputRequest::GetTxoutFieldType,
-  };
-  json_mapper.emplace("txout", func_table);
-  item_list.push_back("txout");
-  func_table = {
-    AddPsbtOutputRequest::GetOutputString,
-    AddPsbtOutputRequest::SetOutputString,
-    AddPsbtOutputRequest::GetOutputFieldType,
-  };
-  json_mapper.emplace("output", func_table);
-  item_list.push_back("output");
-}
-
-void AddPsbtOutputRequest::ConvertFromStruct(
-    const AddPsbtOutputRequestStruct& data) {
-  psbt_ = data.psbt;
-  txout_.ConvertFromStruct(data.txout);
-  output_.ConvertFromStruct(data.output);
-  ignore_items = data.ignore_items;
-}
-
-AddPsbtOutputRequestStruct AddPsbtOutputRequest::ConvertToStruct() const {  // NOLINT
-  AddPsbtOutputRequestStruct result;
-  result.psbt = psbt_;
-  result.txout = txout_.ConvertToStruct();
-  result.output = output_.ConvertToStruct();
   result.ignore_items = ignore_items;
   return result;
 }
@@ -11895,6 +11895,13 @@ void IsFinalizedPsbtResponse::CollectFieldName() {
   cfd::core::CLASS_FUNCTION_TABLE<IsFinalizedPsbtResponse> func_table;  // NOLINT
 
   func_table = {
+    IsFinalizedPsbtResponse::GetSuccessString,
+    IsFinalizedPsbtResponse::SetSuccessString,
+    IsFinalizedPsbtResponse::GetSuccessFieldType,
+  };
+  json_mapper.emplace("success", func_table);
+  item_list.push_back("success");
+  func_table = {
     IsFinalizedPsbtResponse::GetFinalizedAllString,
     IsFinalizedPsbtResponse::SetFinalizedAllString,
     IsFinalizedPsbtResponse::GetFinalizedAllFieldType,
@@ -11912,6 +11919,7 @@ void IsFinalizedPsbtResponse::CollectFieldName() {
 
 void IsFinalizedPsbtResponse::ConvertFromStruct(
     const IsFinalizedPsbtResponseStruct& data) {
+  success_ = data.success;
   finalized_all_ = data.finalized_all;
   fail_inputs_.ConvertFromStruct(data.fail_inputs);
   ignore_items = data.ignore_items;
@@ -11919,6 +11927,7 @@ void IsFinalizedPsbtResponse::ConvertFromStruct(
 
 IsFinalizedPsbtResponseStruct IsFinalizedPsbtResponse::ConvertToStruct() const {  // NOLINT
   IsFinalizedPsbtResponseStruct result;
+  result.success = success_;
   result.finalized_all = finalized_all_;
   result.fail_inputs = fail_inputs_.ConvertToStruct();
   result.ignore_items = ignore_items;

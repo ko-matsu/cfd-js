@@ -43,27 +43,15 @@ export interface AddMultisigSignTxInRequest {
 }
 
 /**
- * request for add psbt input.
+ * request for add psbt data.
  * @property {string} psbt - psbt data (hex or base64)
- * @property {TxInRequest} txin - This is added to the transaction input.
- * @property {PsbtInputRequestData} input - psbt input data
+ * @property {PsbtAddInputRequest[]} inputs? - request for add psbt input.
+ * @property {PsbtAddOutputRequest[]} outputs? - request for add psbt output.
  */
-export interface AddPsbtInputRequest {
+export interface AddPsbtDataRequest {
     psbt: string;
-    txin: TxInRequest;
-    input: PsbtInputRequestData;
-}
-
-/**
- * request for add psbt output data.
- * @property {string} psbt - psbt data (hex or base64)
- * @property {TxOutRequest} txout? - This is added to the transaction output.
- * @property {PsbtOutputRequestData} output - psbt output data
- */
-export interface AddPsbtOutputRequest {
-    psbt: string;
-    txout?: TxOutRequest;
-    output: PsbtOutputRequestData;
+    inputs?: PsbtAddInputRequest[];
+    outputs?: PsbtAddOutputRequest[];
 }
 
 /**
@@ -1980,10 +1968,12 @@ export interface IsFinalizedPsbtRequest {
 
 /**
  * The output finalized check.
+ * @property {boolean} success - target all finalized flag.
  * @property {boolean} finalizedAll - all finalized flag.
  * @property {OutPoint[]} failInputs? - OutPoint data.
  */
 export interface IsFinalizedPsbtResponse {
+    success: boolean;
     finalizedAll: boolean;
     failInputs?: OutPoint[];
 }
@@ -2139,6 +2129,26 @@ export interface PrivkeyWifData {
 }
 
 /**
+ * request for add psbt input.
+ * @property {TxInRequest} txin - This is added to the transaction input.
+ * @property {PsbtInputRequestData} input - psbt input data
+ */
+export interface PsbtAddInputRequest {
+    txin: TxInRequest;
+    input: PsbtInputRequestData;
+}
+
+/**
+ * request for add psbt output.
+ * @property {TxOutRequest} txout - This is added to the transaction output.
+ * @property {PsbtOutputRequestData} output - psbt output data
+ */
+export interface PsbtAddOutputRequest {
+    txout: TxOutRequest;
+    output: PsbtOutputRequestData;
+}
+
+/**
  * psbt script data
  * @property {string} pubkey - pubkey hex
  * @property {string} master_fingerprint - master pubkey fingerprint.
@@ -2167,14 +2177,6 @@ export interface PsbtBip32PubkeyInput {
 }
 
 /**
- * psbt data.
- * @property {string} psbt - psbt data (hex or base64)
- */
-export interface PsbtData {
-    psbt: string;
-}
-
-/**
  * psbt global request data.
  * @property {PsbtGlobalXpubInput[]} xpubs? - psbt global xpub data
  * @property {PsbtMapData[]} unknown? - psbt map data.
@@ -2189,24 +2191,24 @@ export interface PsbtGlobalRequestData {
  * @property {XpubData} xpub - xpub data
  * @property {string} master_fingerprint - master pubkey fingerprint.
  * @property {string} path - bip32 path.
- * @property {string} descriptor - the descriptor xpub string.
+ * @property {string} descriptorXpub - the descriptor xpub string.
  */
 export interface PsbtGlobalXpub {
     xpub: XpubData;
     master_fingerprint: string;
     path: string;
-    descriptor: string;
+    descriptorXpub: string;
 }
 
 /**
  * psbt global xpub data
- * @property {string} descriptor? - the descriptor xpub string.
+ * @property {string} descriptorXpub? - the descriptor xpub string.
  * @property {string} xpub? - xpub (base58 or hex). If the descriptor set, this field not reference.
  * @property {string} master_fingerprint? - master pubkey fingerprint. If the descriptor set, this field not reference.
  * @property {string} path? - bip32 path. If the descriptor set, this field not reference.
  */
 export interface PsbtGlobalXpubInput {
-    descriptor?: string;
+    descriptorXpub?: string;
     xpub?: string;
     master_fingerprint?: string;
     path?: string;
@@ -2246,10 +2248,10 @@ export interface PsbtInputRequestData {
 
 /**
  * psbt List.
- * @property {PsbtData[]} psbts? - psbt data.
+ * @property {string[]} psbts - psbt list data (hex or base64)
  */
 export interface PsbtList {
-    psbts?: PsbtData[];
+    psbts: string[];
 }
 
 /**
@@ -3083,18 +3085,11 @@ export function AdaptEcdsaAdaptor(jsonObject: AdaptEcdsaAdaptorRequest): Signatu
 export function AddMultisigSign(jsonObject: AddMultisigSignRequest): RawTransactionResponse;
 
 /**
- * Add psbt input.
- * @param {AddPsbtInputRequest} jsonObject - request data.
+ * Add psbt input/output data.
+ * @param {AddPsbtDataRequest} jsonObject - request data.
  * @return {PsbtOutputData} - response data.
  */
-export function AddPsbtInput(jsonObject: AddPsbtInputRequest): PsbtOutputData;
-
-/**
- * Add psbt output.
- * @param {AddPsbtOutputRequest} jsonObject - request data.
- * @return {PsbtOutputData} - response data.
- */
-export function AddPsbtOutput(jsonObject: AddPsbtOutputRequest): PsbtOutputData;
+export function AddPsbtData(jsonObject: AddPsbtDataRequest): PsbtOutputData;
 
 /**
  * Add a signature and pubkey to the transaction.
@@ -3545,10 +3540,10 @@ export function GetPrivkeyWif(jsonObject: PrivkeyHexData): PrivkeyWifData;
 
 /**
  * Get psbt utxo list.
- * @param {PsbtData} jsonObject - request data.
+ * @param {DecodePsbtRequest} jsonObject - request data.
  * @return {UtxoListData} - response data.
  */
-export function GetPsbtUtxos(jsonObject: PsbtData): UtxoListData;
+export function GetPsbtUtxos(jsonObject: DecodePsbtRequest): UtxoListData;
 
 /**
  * Get pubkey from extkey.

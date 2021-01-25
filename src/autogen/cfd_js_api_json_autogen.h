@@ -5502,46 +5502,46 @@ class PsbtGlobalXpubInput
   static void CollectFieldName();
 
   /**
-   * @brief Get of descriptor
-   * @return descriptor
+   * @brief Get of descriptorXpub
+   * @return descriptorXpub
    */
-  std::string GetDescriptor() const {
-    return descriptor_;
+  std::string GetDescriptorXpub() const {
+    return descriptor_xpub_;
   }
   /**
-   * @brief Set to descriptor
-   * @param[in] descriptor    setting value.
+   * @brief Set to descriptorXpub
+   * @param[in] descriptor_xpub    setting value.
    */
-  void SetDescriptor(  // line separate
-    const std::string& descriptor) {  // NOLINT
-    this->descriptor_ = descriptor;
+  void SetDescriptorXpub(  // line separate
+    const std::string& descriptor_xpub) {  // NOLINT
+    this->descriptor_xpub_ = descriptor_xpub;
   }
   /**
-   * @brief Get data type of descriptor
-   * @return Data type of descriptor
+   * @brief Get data type of descriptorXpub
+   * @return Data type of descriptorXpub
    */
-  static std::string GetDescriptorFieldType() {
+  static std::string GetDescriptorXpubFieldType() {
     return "std::string";
   }
   /**
-   * @brief Get json string of descriptor field.
+   * @brief Get json string of descriptorXpub field.
    * @param[in,out] obj     class object.
    * @return JSON string
    */
-  static std::string GetDescriptorString(  // line separate
+  static std::string GetDescriptorXpubString(  // line separate
       const PsbtGlobalXpubInput& obj) {  // NOLINT
-    return cfd::core::ConvertToString(obj.descriptor_);
+    return cfd::core::ConvertToString(obj.descriptor_xpub_);
   }
   /**
-   * @brief Set json object to descriptor field.
+   * @brief Set json object to descriptorXpub field.
    * @param[in,out] obj     class object.
    * @param[in] json_value  JSON object.
    */
-  static void SetDescriptorString(  // line separate
+  static void SetDescriptorXpubString(  // line separate
       PsbtGlobalXpubInput& obj,  // NOLINT
       const UniValue& json_value) {
     cfd::core::ConvertFromUniValue(  // line separate
-      obj.descriptor_, json_value);
+      obj.descriptor_xpub_, json_value);
   }
 
   /**
@@ -5743,9 +5743,9 @@ class PsbtGlobalXpubInput
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(descriptor) value
+   * @brief JsonAPI(descriptorXpub) value
    */
-  std::string descriptor_ = "";
+  std::string descriptor_xpub_ = "";
   /**
    * @brief JsonAPI(xpub) value
    */
@@ -7347,6 +7347,238 @@ class SignData
    * @brief JsonAPI(sighashAnyoneCanPay) value
    */
   bool sighash_anyone_can_pay_ = false;
+};
+
+// ------------------------------------------------------------------------
+// TxInRequest
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (TxInRequest) class
+ */
+class TxInRequest
+  : public cfd::core::JsonClassBase<TxInRequest> {
+ public:
+  TxInRequest() {
+    CollectFieldName();
+  }
+  virtual ~TxInRequest() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of txid
+   * @return txid
+   */
+  std::string GetTxid() const {
+    return txid_;
+  }
+  /**
+   * @brief Set to txid
+   * @param[in] txid    setting value.
+   */
+  void SetTxid(  // line separate
+    const std::string& txid) {  // NOLINT
+    this->txid_ = txid;
+  }
+  /**
+   * @brief Get data type of txid
+   * @return Data type of txid
+   */
+  static std::string GetTxidFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of txid field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTxidString(  // line separate
+      const TxInRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.txid_);
+  }
+  /**
+   * @brief Set json object to txid field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTxidString(  // line separate
+      TxInRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.txid_, json_value);
+  }
+
+  /**
+   * @brief Get of vout
+   * @return vout
+   */
+  uint32_t GetVout() const {
+    return vout_;
+  }
+  /**
+   * @brief Set to vout
+   * @param[in] vout    setting value.
+   */
+  void SetVout(  // line separate
+    const uint32_t& vout) {  // NOLINT
+    this->vout_ = vout;
+  }
+  /**
+   * @brief Get data type of vout
+   * @return Data type of vout
+   */
+  static std::string GetVoutFieldType() {
+    return "uint32_t";
+  }
+  /**
+   * @brief Get json string of vout field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetVoutString(  // line separate
+      const TxInRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.vout_);
+  }
+  /**
+   * @brief Set json object to vout field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetVoutString(  // line separate
+      TxInRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.vout_, json_value);
+  }
+
+  /**
+   * @brief Get of sequence
+   * @return sequence
+   */
+  uint32_t GetSequence() const {
+    return sequence_;
+  }
+  /**
+   * @brief Set to sequence
+   * @param[in] sequence    setting value.
+   */
+  void SetSequence(  // line separate
+    const uint32_t& sequence) {  // NOLINT
+    this->sequence_ = sequence;
+  }
+  /**
+   * @brief Get data type of sequence
+   * @return Data type of sequence
+   */
+  static std::string GetSequenceFieldType() {
+    return "uint32_t";
+  }
+  /**
+   * @brief Get json string of sequence field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetSequenceString(  // line separate
+      const TxInRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.sequence_);
+  }
+  /**
+   * @brief Set json object to sequence field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetSequenceString(  // line separate
+      TxInRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.sequence_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const TxInRequestStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  TxInRequestStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using TxInRequestMapTable =
+    cfd::core::JsonTableMap<TxInRequest>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const TxInRequestMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static TxInRequestMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(txid) value
+   */
+  std::string txid_ = "";
+  /**
+   * @brief JsonAPI(vout) value
+   */
+  uint32_t vout_ = 0;
+  /**
+   * @brief JsonAPI(sequence) value
+   */
+  uint32_t sequence_ = 4294967295;
 };
 
 // ------------------------------------------------------------------------
@@ -19642,18 +19874,18 @@ class PrivkeyData
 };
 
 // ------------------------------------------------------------------------
-// PsbtData
+// PsbtAddInputRequest
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API (PsbtData) class
+ * @brief JSON-API (PsbtAddInputRequest) class
  */
-class PsbtData
-  : public cfd::core::JsonClassBase<PsbtData> {
+class PsbtAddInputRequest
+  : public cfd::core::JsonClassBase<PsbtAddInputRequest> {
  public:
-  PsbtData() {
+  PsbtAddInputRequest() {
     CollectFieldName();
   }
-  virtual ~PsbtData() {
+  virtual ~PsbtAddInputRequest() {
     // do nothing
   }
   /**
@@ -19662,46 +19894,91 @@ class PsbtData
   static void CollectFieldName();
 
   /**
-   * @brief Get of psbt
-   * @return psbt
+   * @brief Get of txin.
+   * @return txin
    */
-  std::string GetPsbt() const {
-    return psbt_;
+  TxInRequest& GetTxin() {  // NOLINT
+    return txin_;
   }
   /**
-   * @brief Set to psbt
-   * @param[in] psbt    setting value.
+   * @brief Set to txin.
+   * @param[in] txin    setting value.
    */
-  void SetPsbt(  // line separate
-    const std::string& psbt) {  // NOLINT
-    this->psbt_ = psbt;
+  void SetTxin(  // line separate
+      const TxInRequest& txin) {  // NOLINT
+    this->txin_ = txin;
   }
   /**
-   * @brief Get data type of psbt
-   * @return Data type of psbt
+   * @brief Get data type of txin.
+   * @return Data type of txin.
    */
-  static std::string GetPsbtFieldType() {
-    return "std::string";
+  static std::string GetTxinFieldType() {
+    return "TxInRequest";  // NOLINT
   }
   /**
-   * @brief Get json string of psbt field.
-   * @param[in,out] obj     class object.
-   * @return JSON string
+   * @brief Get json string of txin field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
    */
-  static std::string GetPsbtString(  // line separate
-      const PsbtData& obj) {  // NOLINT
-    return cfd::core::ConvertToString(obj.psbt_);
+  static std::string GetTxinString(  // line separate
+      const PsbtAddInputRequest& obj) {  // NOLINT
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
+    return obj.txin_.Serialize();
   }
   /**
-   * @brief Set json object to psbt field.
-   * @param[in,out] obj     class object.
-   * @param[in] json_value  JSON object.
+   * @brief Set json object to txin field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
    */
-  static void SetPsbtString(  // line separate
-      PsbtData& obj,  // NOLINT
+  static void SetTxinString(  // line separate
+      PsbtAddInputRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    cfd::core::ConvertFromUniValue(  // line separate
-      obj.psbt_, json_value);
+    obj.txin_.DeserializeUniValue(json_value);
+  }
+
+  /**
+   * @brief Get of input.
+   * @return input
+   */
+  PsbtInputRequestData& GetInput() {  // NOLINT
+    return input_;
+  }
+  /**
+   * @brief Set to input.
+   * @param[in] input    setting value.
+   */
+  void SetInput(  // line separate
+      const PsbtInputRequestData& input) {  // NOLINT
+    this->input_ = input;
+  }
+  /**
+   * @brief Get data type of input.
+   * @return Data type of input.
+   */
+  static std::string GetInputFieldType() {
+    return "PsbtInputRequestData";  // NOLINT
+  }
+  /**
+   * @brief Get json string of input field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
+   */
+  static std::string GetInputString(  // line separate
+      const PsbtAddInputRequest& obj) {  // NOLINT
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
+    return obj.input_.Serialize();
+  }
+  /**
+   * @brief Set json object to input field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
+   */
+  static void SetInputString(  // line separate
+      PsbtAddInputRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    obj.input_.DeserializeUniValue(json_value);
   }
 
   /**
@@ -19717,27 +19994,27 @@ class PsbtData
    * @param[in] data   struct data.
    */
   void ConvertFromStruct(
-      const PsbtDataStruct& data);
+      const PsbtAddInputRequestStruct& data);
 
   /**
    * @brief Convert class to struct.
    * @return  struct data.
    */
-  PsbtDataStruct ConvertToStruct()  const;
+  PsbtAddInputRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
    * @brief definition type of Map table.
    */
-  using PsbtDataMapTable =
-    cfd::core::JsonTableMap<PsbtData>;
+  using PsbtAddInputRequestMapTable =
+    cfd::core::JsonTableMap<PsbtAddInputRequest>;
 
   /**
    * @brief Get JSON mapping object.
    * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
-  virtual const PsbtDataMapTable& GetJsonMapper() const {  // NOLINT
+  virtual const PsbtAddInputRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
@@ -19763,7 +20040,7 @@ class PsbtData
  /**
   * @brief JsonFunctionMap table
   */
-  static PsbtDataMapTable json_mapper;
+  static PsbtAddInputRequestMapTable json_mapper;
   /**
    * @brief field name list.
    */
@@ -19774,9 +20051,200 @@ class PsbtData
   std::set<std::string> ignore_items;
 
   /**
-   * @brief JsonAPI(psbt) value
+   * @brief JsonAPI(txin) value
    */
-  std::string psbt_ = "";
+  TxInRequest txin_;  // NOLINT
+  /**
+   * @brief JsonAPI(input) value
+   */
+  PsbtInputRequestData input_;  // NOLINT
+};
+
+// ------------------------------------------------------------------------
+// PsbtAddOutputRequest
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (PsbtAddOutputRequest) class
+ */
+class PsbtAddOutputRequest
+  : public cfd::core::JsonClassBase<PsbtAddOutputRequest> {
+ public:
+  PsbtAddOutputRequest() {
+    CollectFieldName();
+  }
+  virtual ~PsbtAddOutputRequest() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of txout.
+   * @return txout
+   */
+  TxOutRequest& GetTxout() {  // NOLINT
+    return txout_;
+  }
+  /**
+   * @brief Set to txout.
+   * @param[in] txout    setting value.
+   */
+  void SetTxout(  // line separate
+      const TxOutRequest& txout) {  // NOLINT
+    this->txout_ = txout;
+  }
+  /**
+   * @brief Get data type of txout.
+   * @return Data type of txout.
+   */
+  static std::string GetTxoutFieldType() {
+    return "TxOutRequest";  // NOLINT
+  }
+  /**
+   * @brief Get json string of txout field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
+   */
+  static std::string GetTxoutString(  // line separate
+      const PsbtAddOutputRequest& obj) {  // NOLINT
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
+    return obj.txout_.Serialize();
+  }
+  /**
+   * @brief Set json object to txout field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
+   */
+  static void SetTxoutString(  // line separate
+      PsbtAddOutputRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    obj.txout_.DeserializeUniValue(json_value);
+  }
+
+  /**
+   * @brief Get of output.
+   * @return output
+   */
+  PsbtOutputRequestData& GetOutput() {  // NOLINT
+    return output_;
+  }
+  /**
+   * @brief Set to output.
+   * @param[in] output    setting value.
+   */
+  void SetOutput(  // line separate
+      const PsbtOutputRequestData& output) {  // NOLINT
+    this->output_ = output;
+  }
+  /**
+   * @brief Get data type of output.
+   * @return Data type of output.
+   */
+  static std::string GetOutputFieldType() {
+    return "PsbtOutputRequestData";  // NOLINT
+  }
+  /**
+   * @brief Get json string of output field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
+   */
+  static std::string GetOutputString(  // line separate
+      const PsbtAddOutputRequest& obj) {  // NOLINT
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
+    return obj.output_.Serialize();
+  }
+  /**
+   * @brief Set json object to output field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
+   */
+  static void SetOutputString(  // line separate
+      PsbtAddOutputRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    obj.output_.DeserializeUniValue(json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const PsbtAddOutputRequestStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  PsbtAddOutputRequestStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using PsbtAddOutputRequestMapTable =
+    cfd::core::JsonTableMap<PsbtAddOutputRequest>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const PsbtAddOutputRequestMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static PsbtAddOutputRequestMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(txout) value
+   */
+  TxOutRequest txout_;  // NOLINT
+  /**
+   * @brief JsonAPI(output) value
+   */
+  PsbtOutputRequestData output_;  // NOLINT
 };
 
 // ------------------------------------------------------------------------
@@ -20117,46 +20585,46 @@ class PsbtGlobalXpub
   }
 
   /**
-   * @brief Get of descriptor
-   * @return descriptor
+   * @brief Get of descriptorXpub
+   * @return descriptorXpub
    */
-  std::string GetDescriptor() const {
-    return descriptor_;
+  std::string GetDescriptorXpub() const {
+    return descriptor_xpub_;
   }
   /**
-   * @brief Set to descriptor
-   * @param[in] descriptor    setting value.
+   * @brief Set to descriptorXpub
+   * @param[in] descriptor_xpub    setting value.
    */
-  void SetDescriptor(  // line separate
-    const std::string& descriptor) {  // NOLINT
-    this->descriptor_ = descriptor;
+  void SetDescriptorXpub(  // line separate
+    const std::string& descriptor_xpub) {  // NOLINT
+    this->descriptor_xpub_ = descriptor_xpub;
   }
   /**
-   * @brief Get data type of descriptor
-   * @return Data type of descriptor
+   * @brief Get data type of descriptorXpub
+   * @return Data type of descriptorXpub
    */
-  static std::string GetDescriptorFieldType() {
+  static std::string GetDescriptorXpubFieldType() {
     return "std::string";
   }
   /**
-   * @brief Get json string of descriptor field.
+   * @brief Get json string of descriptorXpub field.
    * @param[in,out] obj     class object.
    * @return JSON string
    */
-  static std::string GetDescriptorString(  // line separate
+  static std::string GetDescriptorXpubString(  // line separate
       const PsbtGlobalXpub& obj) {  // NOLINT
-    return cfd::core::ConvertToString(obj.descriptor_);
+    return cfd::core::ConvertToString(obj.descriptor_xpub_);
   }
   /**
-   * @brief Set json object to descriptor field.
+   * @brief Set json object to descriptorXpub field.
    * @param[in,out] obj     class object.
    * @param[in] json_value  JSON object.
    */
-  static void SetDescriptorString(  // line separate
+  static void SetDescriptorXpubString(  // line separate
       PsbtGlobalXpub& obj,  // NOLINT
       const UniValue& json_value) {
     cfd::core::ConvertFromUniValue(  // line separate
-      obj.descriptor_, json_value);
+      obj.descriptor_xpub_, json_value);
   }
 
   /**
@@ -20241,9 +20709,9 @@ class PsbtGlobalXpub
    */
   std::string path_ = "";
   /**
-   * @brief JsonAPI(descriptor) value
+   * @brief JsonAPI(descriptorXpub) value
    */
-  std::string descriptor_ = "";
+  std::string descriptor_xpub_ = "";
 };
 
 // ------------------------------------------------------------------------
@@ -22949,238 +23417,6 @@ class TargetAmountMapData
    * @brief JsonAPI(amount) value
    */
   int64_t amount_ = 0;
-};
-
-// ------------------------------------------------------------------------
-// TxInRequest
-// ------------------------------------------------------------------------
-/**
- * @brief JSON-API (TxInRequest) class
- */
-class TxInRequest
-  : public cfd::core::JsonClassBase<TxInRequest> {
- public:
-  TxInRequest() {
-    CollectFieldName();
-  }
-  virtual ~TxInRequest() {
-    // do nothing
-  }
-  /**
-   * @brief collect field name.
-   */
-  static void CollectFieldName();
-
-  /**
-   * @brief Get of txid
-   * @return txid
-   */
-  std::string GetTxid() const {
-    return txid_;
-  }
-  /**
-   * @brief Set to txid
-   * @param[in] txid    setting value.
-   */
-  void SetTxid(  // line separate
-    const std::string& txid) {  // NOLINT
-    this->txid_ = txid;
-  }
-  /**
-   * @brief Get data type of txid
-   * @return Data type of txid
-   */
-  static std::string GetTxidFieldType() {
-    return "std::string";
-  }
-  /**
-   * @brief Get json string of txid field.
-   * @param[in,out] obj     class object.
-   * @return JSON string
-   */
-  static std::string GetTxidString(  // line separate
-      const TxInRequest& obj) {  // NOLINT
-    return cfd::core::ConvertToString(obj.txid_);
-  }
-  /**
-   * @brief Set json object to txid field.
-   * @param[in,out] obj     class object.
-   * @param[in] json_value  JSON object.
-   */
-  static void SetTxidString(  // line separate
-      TxInRequest& obj,  // NOLINT
-      const UniValue& json_value) {
-    cfd::core::ConvertFromUniValue(  // line separate
-      obj.txid_, json_value);
-  }
-
-  /**
-   * @brief Get of vout
-   * @return vout
-   */
-  uint32_t GetVout() const {
-    return vout_;
-  }
-  /**
-   * @brief Set to vout
-   * @param[in] vout    setting value.
-   */
-  void SetVout(  // line separate
-    const uint32_t& vout) {  // NOLINT
-    this->vout_ = vout;
-  }
-  /**
-   * @brief Get data type of vout
-   * @return Data type of vout
-   */
-  static std::string GetVoutFieldType() {
-    return "uint32_t";
-  }
-  /**
-   * @brief Get json string of vout field.
-   * @param[in,out] obj     class object.
-   * @return JSON string
-   */
-  static std::string GetVoutString(  // line separate
-      const TxInRequest& obj) {  // NOLINT
-    return cfd::core::ConvertToString(obj.vout_);
-  }
-  /**
-   * @brief Set json object to vout field.
-   * @param[in,out] obj     class object.
-   * @param[in] json_value  JSON object.
-   */
-  static void SetVoutString(  // line separate
-      TxInRequest& obj,  // NOLINT
-      const UniValue& json_value) {
-    cfd::core::ConvertFromUniValue(  // line separate
-      obj.vout_, json_value);
-  }
-
-  /**
-   * @brief Get of sequence
-   * @return sequence
-   */
-  uint32_t GetSequence() const {
-    return sequence_;
-  }
-  /**
-   * @brief Set to sequence
-   * @param[in] sequence    setting value.
-   */
-  void SetSequence(  // line separate
-    const uint32_t& sequence) {  // NOLINT
-    this->sequence_ = sequence;
-  }
-  /**
-   * @brief Get data type of sequence
-   * @return Data type of sequence
-   */
-  static std::string GetSequenceFieldType() {
-    return "uint32_t";
-  }
-  /**
-   * @brief Get json string of sequence field.
-   * @param[in,out] obj     class object.
-   * @return JSON string
-   */
-  static std::string GetSequenceString(  // line separate
-      const TxInRequest& obj) {  // NOLINT
-    return cfd::core::ConvertToString(obj.sequence_);
-  }
-  /**
-   * @brief Set json object to sequence field.
-   * @param[in,out] obj     class object.
-   * @param[in] json_value  JSON object.
-   */
-  static void SetSequenceString(  // line separate
-      TxInRequest& obj,  // NOLINT
-      const UniValue& json_value) {
-    cfd::core::ConvertFromUniValue(  // line separate
-      obj.sequence_, json_value);
-  }
-
-  /**
-   * @brief Set ignore item.
-   * @param[in] key   ignore target key name.
-   */
-  void SetIgnoreItem(const std::string& key) {
-    ignore_items.insert(key);
-  }
-
-  /**
-   * @brief Convert struct to class.
-   * @param[in] data   struct data.
-   */
-  void ConvertFromStruct(
-      const TxInRequestStruct& data);
-
-  /**
-   * @brief Convert class to struct.
-   * @return  struct data.
-   */
-  TxInRequestStruct ConvertToStruct()  const;
-
- protected:
-  /**
-   * @brief definition type of Map table.
-   */
-  using TxInRequestMapTable =
-    cfd::core::JsonTableMap<TxInRequest>;
-
-  /**
-   * @brief Get JSON mapping object.
-   * @return JSON mapping object.
-   * @see cfd::core::JsonClassBase::GetJsonMapper()
-   */
-  virtual const TxInRequestMapTable& GetJsonMapper() const {  // NOLINT
-    return json_mapper;
-  }
-  /**
-   * @brief Get item lists of JSON mapping.
-   * Fetch a list of target variable names in the order of definition.
-   * @return Item lists of JSON mapping.
-   * @see cfd::core::JsonClassBase::GetJsonItemList()
-   */
-  virtual const std::vector<std::string>& GetJsonItemList() const {
-    return item_list;
-  }
-  /**
-   * @brief Get ignore item lists of JSON mapping.
-   * Ignore the target variable at Serialize.
-   * @return Item list of JSON mapping.
-   * @see cfd::core::JsonClassBase::GetIgnoreItem()
-   */
-  virtual const std::set<std::string>& GetIgnoreItem() const {
-    return ignore_items;
-  }
-
- private:
- /**
-  * @brief JsonFunctionMap table
-  */
-  static TxInRequestMapTable json_mapper;
-  /**
-   * @brief field name list.
-   */
-  static std::vector<std::string> item_list;
-  /**
-   * @brief ignore item list.
-   */
-  std::set<std::string> ignore_items;
-
-  /**
-   * @brief JsonAPI(txid) value
-   */
-  std::string txid_ = "";
-  /**
-   * @brief JsonAPI(vout) value
-   */
-  uint32_t vout_ = 0;
-  /**
-   * @brief JsonAPI(sequence) value
-   */
-  uint32_t sequence_ = 4294967295;
 };
 
 // ------------------------------------------------------------------------
@@ -26954,18 +27190,18 @@ class RawTransactionResponse
 };
 
 // ------------------------------------------------------------------------
-// AddPsbtInputRequest
+// AddPsbtDataRequest
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API (AddPsbtInputRequest) class
+ * @brief JSON-API (AddPsbtDataRequest) class
  */
-class AddPsbtInputRequest
-  : public cfd::core::JsonClassBase<AddPsbtInputRequest> {
+class AddPsbtDataRequest
+  : public cfd::core::JsonClassBase<AddPsbtDataRequest> {
  public:
-  AddPsbtInputRequest() {
+  AddPsbtDataRequest() {
     CollectFieldName();
   }
-  virtual ~AddPsbtInputRequest() {
+  virtual ~AddPsbtDataRequest() {
     // do nothing
   }
   /**
@@ -27001,7 +27237,7 @@ class AddPsbtInputRequest
    * @return JSON string
    */
   static std::string GetPsbtString(  // line separate
-      const AddPsbtInputRequest& obj) {  // NOLINT
+      const AddPsbtDataRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.psbt_);
   }
   /**
@@ -27010,98 +27246,98 @@ class AddPsbtInputRequest
    * @param[in] json_value  JSON object.
    */
   static void SetPsbtString(  // line separate
-      AddPsbtInputRequest& obj,  // NOLINT
+      AddPsbtDataRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfd::core::ConvertFromUniValue(  // line separate
       obj.psbt_, json_value);
   }
 
   /**
-   * @brief Get of txin.
-   * @return txin
+   * @brief Get of inputs.
+   * @return inputs
    */
-  TxInRequest& GetTxin() {  // NOLINT
-    return txin_;
+  JsonObjectVector<PsbtAddInputRequest, PsbtAddInputRequestStruct>& GetInputs() {  // NOLINT
+    return inputs_;
   }
   /**
-   * @brief Set to txin.
-   * @param[in] txin    setting value.
+   * @brief Set to inputs.
+   * @param[in] inputs    setting value.
    */
-  void SetTxin(  // line separate
-      const TxInRequest& txin) {  // NOLINT
-    this->txin_ = txin;
+  void SetInputs(  // line separate
+      const JsonObjectVector<PsbtAddInputRequest, PsbtAddInputRequestStruct>& inputs) {  // NOLINT
+    this->inputs_ = inputs;
   }
   /**
-   * @brief Get data type of txin.
-   * @return Data type of txin.
+   * @brief Get data type of inputs.
+   * @return Data type of inputs.
    */
-  static std::string GetTxinFieldType() {
-    return "TxInRequest";  // NOLINT
+  static std::string GetInputsFieldType() {
+    return "JsonObjectVector<PsbtAddInputRequest, PsbtAddInputRequestStruct>";  // NOLINT
   }
   /**
-   * @brief Get json string of txin field.
+   * @brief Get json string of inputs field.
    * @param[in,out] obj     class object
    * @return JSON string.
    */
-  static std::string GetTxinString(  // line separate
-      const AddPsbtInputRequest& obj) {  // NOLINT
+  static std::string GetInputsString(  // line separate
+      const AddPsbtDataRequest& obj) {  // NOLINT
     // Do not set to const, because substitution of member variables
     // may occur in pre / post processing inside Serialize
-    return obj.txin_.Serialize();
+    return obj.inputs_.Serialize();
   }
   /**
-   * @brief Set json object to txin field.
+   * @brief Set json object to inputs field.
    * @param[in,out] obj     class object
    * @param[in] json_value  JSON object
    */
-  static void SetTxinString(  // line separate
-      AddPsbtInputRequest& obj,  // NOLINT
+  static void SetInputsString(  // line separate
+      AddPsbtDataRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    obj.txin_.DeserializeUniValue(json_value);
+    obj.inputs_.DeserializeUniValue(json_value);
   }
 
   /**
-   * @brief Get of input.
-   * @return input
+   * @brief Get of outputs.
+   * @return outputs
    */
-  PsbtInputRequestData& GetInput() {  // NOLINT
-    return input_;
+  JsonObjectVector<PsbtAddOutputRequest, PsbtAddOutputRequestStruct>& GetOutputs() {  // NOLINT
+    return outputs_;
   }
   /**
-   * @brief Set to input.
-   * @param[in] input    setting value.
+   * @brief Set to outputs.
+   * @param[in] outputs    setting value.
    */
-  void SetInput(  // line separate
-      const PsbtInputRequestData& input) {  // NOLINT
-    this->input_ = input;
+  void SetOutputs(  // line separate
+      const JsonObjectVector<PsbtAddOutputRequest, PsbtAddOutputRequestStruct>& outputs) {  // NOLINT
+    this->outputs_ = outputs;
   }
   /**
-   * @brief Get data type of input.
-   * @return Data type of input.
+   * @brief Get data type of outputs.
+   * @return Data type of outputs.
    */
-  static std::string GetInputFieldType() {
-    return "PsbtInputRequestData";  // NOLINT
+  static std::string GetOutputsFieldType() {
+    return "JsonObjectVector<PsbtAddOutputRequest, PsbtAddOutputRequestStruct>";  // NOLINT
   }
   /**
-   * @brief Get json string of input field.
+   * @brief Get json string of outputs field.
    * @param[in,out] obj     class object
    * @return JSON string.
    */
-  static std::string GetInputString(  // line separate
-      const AddPsbtInputRequest& obj) {  // NOLINT
+  static std::string GetOutputsString(  // line separate
+      const AddPsbtDataRequest& obj) {  // NOLINT
     // Do not set to const, because substitution of member variables
     // may occur in pre / post processing inside Serialize
-    return obj.input_.Serialize();
+    return obj.outputs_.Serialize();
   }
   /**
-   * @brief Set json object to input field.
+   * @brief Set json object to outputs field.
    * @param[in,out] obj     class object
    * @param[in] json_value  JSON object
    */
-  static void SetInputString(  // line separate
-      AddPsbtInputRequest& obj,  // NOLINT
+  static void SetOutputsString(  // line separate
+      AddPsbtDataRequest& obj,  // NOLINT
       const UniValue& json_value) {
-    obj.input_.DeserializeUniValue(json_value);
+    obj.outputs_.DeserializeUniValue(json_value);
   }
 
   /**
@@ -27117,27 +27353,27 @@ class AddPsbtInputRequest
    * @param[in] data   struct data.
    */
   void ConvertFromStruct(
-      const AddPsbtInputRequestStruct& data);
+      const AddPsbtDataRequestStruct& data);
 
   /**
    * @brief Convert class to struct.
    * @return  struct data.
    */
-  AddPsbtInputRequestStruct ConvertToStruct()  const;
+  AddPsbtDataRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
    * @brief definition type of Map table.
    */
-  using AddPsbtInputRequestMapTable =
-    cfd::core::JsonTableMap<AddPsbtInputRequest>;
+  using AddPsbtDataRequestMapTable =
+    cfd::core::JsonTableMap<AddPsbtDataRequest>;
 
   /**
    * @brief Get JSON mapping object.
    * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
-  virtual const AddPsbtInputRequestMapTable& GetJsonMapper() const {  // NOLINT
+  virtual const AddPsbtDataRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
@@ -27163,7 +27399,7 @@ class AddPsbtInputRequest
  /**
   * @brief JsonFunctionMap table
   */
-  static AddPsbtInputRequestMapTable json_mapper;
+  static AddPsbtDataRequestMapTable json_mapper;
   /**
    * @brief field name list.
    */
@@ -27178,13 +27414,13 @@ class AddPsbtInputRequest
    */
   std::string psbt_ = "";
   /**
-   * @brief JsonAPI(txin) value
+   * @brief JsonAPI(inputs) value
    */
-  TxInRequest txin_;  // NOLINT
+  JsonObjectVector<PsbtAddInputRequest, PsbtAddInputRequestStruct> inputs_;  // NOLINT
   /**
-   * @brief JsonAPI(input) value
+   * @brief JsonAPI(outputs) value
    */
-  PsbtInputRequestData input_;  // NOLINT
+  JsonObjectVector<PsbtAddOutputRequest, PsbtAddOutputRequestStruct> outputs_;  // NOLINT
 };
 
 // ------------------------------------------------------------------------
@@ -27370,240 +27606,6 @@ class PsbtOutputData
    * @brief JsonAPI(hex) value
    */
   std::string hex_ = "";
-};
-
-// ------------------------------------------------------------------------
-// AddPsbtOutputRequest
-// ------------------------------------------------------------------------
-/**
- * @brief JSON-API (AddPsbtOutputRequest) class
- */
-class AddPsbtOutputRequest
-  : public cfd::core::JsonClassBase<AddPsbtOutputRequest> {
- public:
-  AddPsbtOutputRequest() {
-    CollectFieldName();
-  }
-  virtual ~AddPsbtOutputRequest() {
-    // do nothing
-  }
-  /**
-   * @brief collect field name.
-   */
-  static void CollectFieldName();
-
-  /**
-   * @brief Get of psbt
-   * @return psbt
-   */
-  std::string GetPsbt() const {
-    return psbt_;
-  }
-  /**
-   * @brief Set to psbt
-   * @param[in] psbt    setting value.
-   */
-  void SetPsbt(  // line separate
-    const std::string& psbt) {  // NOLINT
-    this->psbt_ = psbt;
-  }
-  /**
-   * @brief Get data type of psbt
-   * @return Data type of psbt
-   */
-  static std::string GetPsbtFieldType() {
-    return "std::string";
-  }
-  /**
-   * @brief Get json string of psbt field.
-   * @param[in,out] obj     class object.
-   * @return JSON string
-   */
-  static std::string GetPsbtString(  // line separate
-      const AddPsbtOutputRequest& obj) {  // NOLINT
-    return cfd::core::ConvertToString(obj.psbt_);
-  }
-  /**
-   * @brief Set json object to psbt field.
-   * @param[in,out] obj     class object.
-   * @param[in] json_value  JSON object.
-   */
-  static void SetPsbtString(  // line separate
-      AddPsbtOutputRequest& obj,  // NOLINT
-      const UniValue& json_value) {
-    cfd::core::ConvertFromUniValue(  // line separate
-      obj.psbt_, json_value);
-  }
-
-  /**
-   * @brief Get of txout.
-   * @return txout
-   */
-  TxOutRequest& GetTxout() {  // NOLINT
-    return txout_;
-  }
-  /**
-   * @brief Set to txout.
-   * @param[in] txout    setting value.
-   */
-  void SetTxout(  // line separate
-      const TxOutRequest& txout) {  // NOLINT
-    this->txout_ = txout;
-  }
-  /**
-   * @brief Get data type of txout.
-   * @return Data type of txout.
-   */
-  static std::string GetTxoutFieldType() {
-    return "TxOutRequest";  // NOLINT
-  }
-  /**
-   * @brief Get json string of txout field.
-   * @param[in,out] obj     class object
-   * @return JSON string.
-   */
-  static std::string GetTxoutString(  // line separate
-      const AddPsbtOutputRequest& obj) {  // NOLINT
-    // Do not set to const, because substitution of member variables
-    // may occur in pre / post processing inside Serialize
-    return obj.txout_.Serialize();
-  }
-  /**
-   * @brief Set json object to txout field.
-   * @param[in,out] obj     class object
-   * @param[in] json_value  JSON object
-   */
-  static void SetTxoutString(  // line separate
-      AddPsbtOutputRequest& obj,  // NOLINT
-      const UniValue& json_value) {
-    obj.txout_.DeserializeUniValue(json_value);
-  }
-
-  /**
-   * @brief Get of output.
-   * @return output
-   */
-  PsbtOutputRequestData& GetOutput() {  // NOLINT
-    return output_;
-  }
-  /**
-   * @brief Set to output.
-   * @param[in] output    setting value.
-   */
-  void SetOutput(  // line separate
-      const PsbtOutputRequestData& output) {  // NOLINT
-    this->output_ = output;
-  }
-  /**
-   * @brief Get data type of output.
-   * @return Data type of output.
-   */
-  static std::string GetOutputFieldType() {
-    return "PsbtOutputRequestData";  // NOLINT
-  }
-  /**
-   * @brief Get json string of output field.
-   * @param[in,out] obj     class object
-   * @return JSON string.
-   */
-  static std::string GetOutputString(  // line separate
-      const AddPsbtOutputRequest& obj) {  // NOLINT
-    // Do not set to const, because substitution of member variables
-    // may occur in pre / post processing inside Serialize
-    return obj.output_.Serialize();
-  }
-  /**
-   * @brief Set json object to output field.
-   * @param[in,out] obj     class object
-   * @param[in] json_value  JSON object
-   */
-  static void SetOutputString(  // line separate
-      AddPsbtOutputRequest& obj,  // NOLINT
-      const UniValue& json_value) {
-    obj.output_.DeserializeUniValue(json_value);
-  }
-
-  /**
-   * @brief Set ignore item.
-   * @param[in] key   ignore target key name.
-   */
-  void SetIgnoreItem(const std::string& key) {
-    ignore_items.insert(key);
-  }
-
-  /**
-   * @brief Convert struct to class.
-   * @param[in] data   struct data.
-   */
-  void ConvertFromStruct(
-      const AddPsbtOutputRequestStruct& data);
-
-  /**
-   * @brief Convert class to struct.
-   * @return  struct data.
-   */
-  AddPsbtOutputRequestStruct ConvertToStruct()  const;
-
- protected:
-  /**
-   * @brief definition type of Map table.
-   */
-  using AddPsbtOutputRequestMapTable =
-    cfd::core::JsonTableMap<AddPsbtOutputRequest>;
-
-  /**
-   * @brief Get JSON mapping object.
-   * @return JSON mapping object.
-   * @see cfd::core::JsonClassBase::GetJsonMapper()
-   */
-  virtual const AddPsbtOutputRequestMapTable& GetJsonMapper() const {  // NOLINT
-    return json_mapper;
-  }
-  /**
-   * @brief Get item lists of JSON mapping.
-   * Fetch a list of target variable names in the order of definition.
-   * @return Item lists of JSON mapping.
-   * @see cfd::core::JsonClassBase::GetJsonItemList()
-   */
-  virtual const std::vector<std::string>& GetJsonItemList() const {
-    return item_list;
-  }
-  /**
-   * @brief Get ignore item lists of JSON mapping.
-   * Ignore the target variable at Serialize.
-   * @return Item list of JSON mapping.
-   * @see cfd::core::JsonClassBase::GetIgnoreItem()
-   */
-  virtual const std::set<std::string>& GetIgnoreItem() const {
-    return ignore_items;
-  }
-
- private:
- /**
-  * @brief JsonFunctionMap table
-  */
-  static AddPsbtOutputRequestMapTable json_mapper;
-  /**
-   * @brief field name list.
-   */
-  static std::vector<std::string> item_list;
-  /**
-   * @brief ignore item list.
-   */
-  std::set<std::string> ignore_items;
-
-  /**
-   * @brief JsonAPI(psbt) value
-   */
-  std::string psbt_ = "";
-  /**
-   * @brief JsonAPI(txout) value
-   */
-  TxOutRequest txout_;  // NOLINT
-  /**
-   * @brief JsonAPI(output) value
-   */
-  PsbtOutputRequestData output_;  // NOLINT
 };
 
 // ------------------------------------------------------------------------
@@ -30288,7 +30290,7 @@ class PsbtList
    * @brief Get of psbts.
    * @return psbts
    */
-  JsonObjectVector<PsbtData, PsbtDataStruct>& GetPsbts() {  // NOLINT
+  JsonValueVector<std::string>& GetPsbts() {  // NOLINT
     return psbts_;
   }
   /**
@@ -30296,7 +30298,7 @@ class PsbtList
    * @param[in] psbts    setting value.
    */
   void SetPsbts(  // line separate
-      const JsonObjectVector<PsbtData, PsbtDataStruct>& psbts) {  // NOLINT
+      const JsonValueVector<std::string>& psbts) {  // NOLINT
     this->psbts_ = psbts;
   }
   /**
@@ -30304,7 +30306,7 @@ class PsbtList
    * @return Data type of psbts.
    */
   static std::string GetPsbtsFieldType() {
-    return "JsonObjectVector<PsbtData, PsbtDataStruct>";  // NOLINT
+    return "JsonValueVector<std::string>";  // NOLINT
   }
   /**
    * @brief Get json string of psbts field.
@@ -30400,7 +30402,7 @@ class PsbtList
   /**
    * @brief JsonAPI(psbts) value
    */
-  JsonObjectVector<PsbtData, PsbtDataStruct> psbts_;  // NOLINT
+  JsonValueVector<std::string> psbts_;  // NOLINT
 };
 
 // ------------------------------------------------------------------------
@@ -53452,6 +53454,49 @@ class IsFinalizedPsbtResponse
   static void CollectFieldName();
 
   /**
+   * @brief Get of success
+   * @return success
+   */
+  bool GetSuccess() const {
+    return success_;
+  }
+  /**
+   * @brief Set to success
+   * @param[in] success    setting value.
+   */
+  void SetSuccess(  // line separate
+    const bool& success) {  // NOLINT
+    this->success_ = success;
+  }
+  /**
+   * @brief Get data type of success
+   * @return Data type of success
+   */
+  static std::string GetSuccessFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of success field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetSuccessString(  // line separate
+      const IsFinalizedPsbtResponse& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.success_);
+  }
+  /**
+   * @brief Set json object to success field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetSuccessString(  // line separate
+      IsFinalizedPsbtResponse& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.success_, json_value);
+  }
+
+  /**
    * @brief Get of finalizedAll
    * @return finalizedAll
    */
@@ -53607,6 +53652,10 @@ class IsFinalizedPsbtResponse
    */
   std::set<std::string> ignore_items;
 
+  /**
+   * @brief JsonAPI(success) value
+   */
+  bool success_ = false;
   /**
    * @brief JsonAPI(finalizedAll) value
    */

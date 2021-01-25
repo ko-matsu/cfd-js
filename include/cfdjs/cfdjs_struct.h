@@ -300,7 +300,7 @@ struct PsbtBip32DataStruct {
  * @brief PsbtGlobalXpubInputStruct struct
  */
 struct PsbtGlobalXpubInputStruct {
-  std::string descriptor = "";          //!< descriptor  // NOLINT
+  std::string descriptor_xpub = "";     //!< descriptor_xpub  // NOLINT
   std::string xpub = "";                //!< xpub  // NOLINT
   std::string master_fingerprint = "";  //!< master_fingerprint  // NOLINT
   std::string path = "";                //!< path  // NOLINT
@@ -378,6 +378,19 @@ struct SignDataStruct {
   bool der_encode = false;              //!< der_encode  // NOLINT
   std::string sighash_type = "all";     //!< sighash_type  // NOLINT
   bool sighash_anyone_can_pay = false;  //!< sighash_anyone_can_pay  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// TxInRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief TxInRequestStruct struct
+ */
+struct TxInRequestStruct {
+  std::string txid = "";           //!< txid  // NOLINT
+  uint32_t vout = 0;               //!< vout  // NOLINT
+  uint32_t sequence = 4294967295;  //!< sequence  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -901,13 +914,26 @@ struct PrivkeyDataStruct {
 };
 
 // ------------------------------------------------------------------------
-// PsbtDataStruct
+// PsbtAddInputRequestStruct
 // ------------------------------------------------------------------------
 /**
- * @brief PsbtDataStruct struct
+ * @brief PsbtAddInputRequestStruct struct
  */
-struct PsbtDataStruct {
-  std::string psbt = "";  //!< psbt  // NOLINT
+struct PsbtAddInputRequestStruct {
+  TxInRequestStruct txin;            //!< txin  // NOLINT
+  PsbtInputRequestDataStruct input;  //!< input  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// PsbtAddOutputRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief PsbtAddOutputRequestStruct struct
+ */
+struct PsbtAddOutputRequestStruct {
+  TxOutRequestStruct txout;            //!< txout  // NOLINT
+  PsbtOutputRequestDataStruct output;  //!< output  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -933,7 +959,7 @@ struct PsbtGlobalXpubStruct {
   XpubDataStruct xpub;                  //!< xpub  // NOLINT
   std::string master_fingerprint = "";  //!< master_fingerprint  // NOLINT
   std::string path = "";                //!< path  // NOLINT
-  std::string descriptor = "";          //!< descriptor  // NOLINT
+  std::string descriptor_xpub = "";     //!< descriptor_xpub  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -1056,19 +1082,6 @@ struct SignWithPrivkeyTxInRequestStruct {
 struct TargetAmountMapDataStruct {
   std::string asset = "";  //!< asset  // NOLINT
   int64_t amount = 0;      //!< amount  // NOLINT
-  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
-};
-
-// ------------------------------------------------------------------------
-// TxInRequestStruct
-// ------------------------------------------------------------------------
-/**
- * @brief TxInRequestStruct struct
- */
-struct TxInRequestStruct {
-  std::string txid = "";           //!< txid  // NOLINT
-  uint32_t vout = 0;               //!< vout  // NOLINT
-  uint32_t sequence = 4294967295;  //!< sequence  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -1260,15 +1273,15 @@ struct RawTransactionResponseStruct {
 };
 
 // ------------------------------------------------------------------------
-// AddPsbtInputRequestStruct
+// AddPsbtDataRequestStruct
 // ------------------------------------------------------------------------
 /**
- * @brief AddPsbtInputRequestStruct struct
+ * @brief AddPsbtDataRequestStruct struct
  */
-struct AddPsbtInputRequestStruct {
-  std::string psbt = "";             //!< psbt  // NOLINT
-  TxInRequestStruct txin;            //!< txin  // NOLINT
-  PsbtInputRequestDataStruct input;  //!< input  // NOLINT
+struct AddPsbtDataRequestStruct {
+  std::string psbt = "";                            //!< psbt  // NOLINT
+  std::vector<PsbtAddInputRequestStruct> inputs;    //!< inputs  // NOLINT
+  std::vector<PsbtAddOutputRequestStruct> outputs;  //!< outputs  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -1282,19 +1295,6 @@ struct PsbtOutputDataStruct {
   std::string psbt = "";  //!< psbt  // NOLINT
   std::string hex = "";   //!< hex  // NOLINT
   cfd::js::api::InnerErrorResponseStruct error;   //!< error information
-  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
-};
-
-// ------------------------------------------------------------------------
-// AddPsbtOutputRequestStruct
-// ------------------------------------------------------------------------
-/**
- * @brief AddPsbtOutputRequestStruct struct
- */
-struct AddPsbtOutputRequestStruct {
-  std::string psbt = "";               //!< psbt  // NOLINT
-  TxOutRequestStruct txout;            //!< txout  // NOLINT
-  PsbtOutputRequestDataStruct output;  //!< output  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -1453,7 +1453,7 @@ struct VerifySignatureResponseStruct {
  * @brief PsbtListStruct struct
  */
 struct PsbtListStruct {
-  std::vector<PsbtDataStruct> psbts;  //!< psbts  // NOLINT
+  std::vector<std::string> psbts;  //!< psbts  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -2759,6 +2759,7 @@ struct IsFinalizedPsbtRequestStruct {
  * @brief IsFinalizedPsbtResponseStruct struct
  */
 struct IsFinalizedPsbtResponseStruct {
+  bool success = false;                     //!< success  // NOLINT
   bool finalized_all = false;               //!< finalized_all  // NOLINT
   std::vector<OutPointStruct> fail_inputs;  //!< fail_inputs  // NOLINT
   cfd::js::api::InnerErrorResponseStruct error;   //!< error information

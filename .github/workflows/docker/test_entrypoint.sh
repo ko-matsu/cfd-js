@@ -1,8 +1,8 @@
 #!/bin/bash -u
 
 # while :; do sleep 10; done
-export WORKDIR_ROOT=root
-export WORK_DIR=wallet-test
+export WORKDIR_ROOT=github
+export WORK_DIR=workspace
 export WORKDIR_PATH=/${WORKDIR_ROOT}/${WORK_DIR}
 
 cd /${WORKDIR_ROOT}
@@ -17,11 +17,11 @@ rm -rf elementsd_datadir
 mkdir bitcoind_datadir
 chmod 777 bitcoind_datadir
 # cp /root/.bitcoin/bitcoin.conf bitcoind_datadir/
-cp ./__tests__/bitcoin.conf bitcoind_datadir/
+cp ./wrap_js/__integration_test__/bitcoin.conf bitcoind_datadir/
 mkdir elementsd_datadir
 chmod 777 elementsd_datadir
 # cp /root/.elements/elements.conf elementsd_datadir/
-cp ./__tests__/elements.conf elementsd_datadir/
+cp ./wrap_js/__integration_test__/elements.conf elementsd_datadir/
 
 # boot daemon
 bitcoind --regtest -datadir=${WORKDIR_PATH}/bitcoind_datadir
@@ -42,11 +42,9 @@ echo "start elements node"
 
 set -e
 
-if [ -d node_modules ]; then
-  rm -rf node_modules
+if [ ! -d node_modules ]; then
+  mkdir node_modules
 fi
-mkdir node_modules
 chmod 777 node_modules
 node --version
 npm install && npm test
-rm -rf node_modules

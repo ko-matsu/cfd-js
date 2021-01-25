@@ -1040,16 +1040,10 @@ std::string JsonMappingApi::VerifyPsbtSign(
       request_message, PsbtStructApi::VerifyPsbtSign);
 }
 
-std::string JsonMappingApi::AddPsbtInput(const std::string &request_message) {
+std::string JsonMappingApi::AddPsbtData(const std::string &request_message) {
   return ExecuteJsonApi<
-      AddPsbtInputRequest, PsbtOutputData, AddPsbtInputRequestStruct,
-      PsbtOutputDataStruct>(request_message, PsbtStructApi::AddPsbtInput);
-}
-
-std::string JsonMappingApi::AddPsbtOutput(const std::string &request_message) {
-  return ExecuteJsonApi<
-      AddPsbtOutputRequest, PsbtOutputData, AddPsbtOutputRequestStruct,
-      PsbtOutputDataStruct>(request_message, PsbtStructApi::AddPsbtOutput);
+      AddPsbtDataRequest, PsbtOutputData, AddPsbtDataRequestStruct,
+      PsbtOutputDataStruct>(request_message, PsbtStructApi::AddPsbtData);
 }
 
 std::string JsonMappingApi::SetPsbtData(const std::string &request_message) {
@@ -1074,8 +1068,8 @@ std::string JsonMappingApi::IsFinalizedPsbt(
 
 std::string JsonMappingApi::GetPsbtUtxos(const std::string &request_message) {
   return ExecuteJsonApi<
-      PsbtData, UtxoListData, PsbtDataStruct, UtxoListDataStruct>(
-      request_message, PsbtStructApi::GetPsbtUtxos);
+      DecodePsbtRequest, UtxoListData, DecodePsbtRequestStruct,
+      UtxoListDataStruct>(request_message, PsbtStructApi::GetPsbtUtxos);
 }
 
 std::string JsonMappingApi::FundPsbt(const std::string &request_message) {

@@ -14,6 +14,7 @@
 #include "autogen/cfd_js_api_json_autogen.h"
 #include "cfd/cfd_address.h"
 #include "cfd/cfd_psbt.h"
+#include "cfdcore/cfdcore_script.h"
 #include "cfdcore/cfdcore_util.h"
 #include "cfdjs/cfdjs_api_address.h"
 #include "cfdjs/cfdjs_api_psbt.h"
@@ -44,6 +45,7 @@ using cfd::core::NetType;
 using cfd::core::Privkey;
 using cfd::core::Pubkey;
 using cfd::core::Script;
+using cfd::core::ScriptBuilder;
 using cfd::core::ScriptElement;
 using cfd::core::ScriptUtil;
 using cfd::core::SigHashAlgorithm;
@@ -140,7 +142,16 @@ static void ParsePsbtInputRequest(
 
   for (const auto& bip32_data : data.bip32_derives) {
     if (!bip32_data.descriptor.empty()) {
-      key_list->emplace_back(KeyData(bip32_data.descriptor));
+      try {
+        auto desc = Descriptor::Parse(bip32_data.descriptor);
+        auto key = desc.GetKeyData();
+        key_list->emplace_back(key);
+      } catch (const CfdException& except) {
+        if (except.GetErrorCode() != CfdError::kCfdIllegalArgumentError) {
+          throw except;
+        }
+        key_list->emplace_back(KeyData(bip32_data.descriptor));
+      }
     } else {
       key_list->emplace_back(KeyData(
           Pubkey(bip32_data.pubkey), bip32_data.path,
@@ -163,7 +174,16 @@ static void ParsePsbtOutputRequest(
     Script* redeem_script) {
   for (const auto& bip32_data : data.bip32_derives) {
     if (!bip32_data.descriptor.empty()) {
-      key_list->emplace_back(KeyData(bip32_data.descriptor));
+      try {
+        auto desc = Descriptor::Parse(bip32_data.descriptor);
+        auto key = desc.GetKeyData();
+        key_list->emplace_back(key);
+      } catch (const CfdException& except) {
+        if (except.GetErrorCode() != CfdError::kCfdIllegalArgumentError) {
+          throw except;
+        }
+        key_list->emplace_back(KeyData(bip32_data.descriptor));
+      }
     } else {
       key_list->emplace_back(KeyData(
           Pubkey(bip32_data.pubkey), bip32_data.path,
@@ -256,8 +276,8 @@ static void SetPsbtGlobalData(
   // global
   for (const auto& xpub : global.xpubs) {
     KeyData key_data;
-    if (!xpub.descriptor.empty()) {
-      key_data = KeyData(xpub.descriptor);
+    if (!xpub.descriptor_xpub.empty()) {
+      key_data = KeyData(xpub.descriptor_xpub);
     } else {
       ExtPubkey ext_pubkey;
       if (xpub.xpub.length() == (ExtPrivkey::kSerializeSize * 2)) {
@@ -272,6 +292,84 @@ static void SetPsbtGlobalData(
   }
   for (const auto& record : global.unknown) {
     psbt->SetGlobalRecord(ByteData(record.key), ByteData(record.value));
+  }
+}
+
+/**
+ * @brief add psbt input.
+ * @param[in,out] psbt      psbt object.
+ * @param[in] request       input request.
+ */
+void AddPsbtInput(Psbt* psbt, const PsbtAddInputRequestStruct& request) {
+  uint32_t index = psbt->GetTxInCount();
+
+  TxOut witness_utxo;
+  Transaction utxo_full_tx;
+  std::vector<SignParameter> signatures;
+  SigHashType sighash_type(SigHashAlgorithm::kSigHashAll, false, true);
+  std::vector<KeyData> key_list;
+  Script redeem_script;
+  ParsePsbtInputRequest(
+      request.input, &witness_utxo, &utxo_full_tx, &signatures, &sighash_type,
+      &key_list, &redeem_script);
+
+  OutPoint outpoint(Txid(request.txin.txid), request.txin.vout);
+  psbt->AddTxIn(outpoint, request.txin.sequence);
+  if (utxo_full_tx.GetTotalSize() > Transaction::kTransactionMinimumSize) {
+    psbt->SetTxInUtxo(index, utxo_full_tx, redeem_script, key_list);
+  } else if (!witness_utxo.GetLockingScript().IsEmpty()) {
+    psbt->SetTxInUtxo(
+        index, TxOutReference(witness_utxo), redeem_script, key_list);
+  } else if ((!redeem_script.IsEmpty()) || (!key_list.empty())) {
+    std::string err_msg =
+        "Failed to parameter. UTXO data is required to "
+        "register Bip32Key or RedeemScript.";  // NOLINT
+    warn(CFD_LOG_SOURCE, "{}", err_msg);
+    throw CfdException(CfdError::kCfdIllegalArgumentError, err_msg);
+  }
+
+  for (const auto& signature : signatures) {
+    if (signature.GetRelatedPubkey().IsValid()) {
+      psbt->SetTxInSignature(
+          index, KeyData(signature.GetRelatedPubkey(), "", ByteData()),
+          signature.GetData());
+    }
+  }
+  if (!sighash_type.IsForkId()) {
+    psbt->SetTxInSighashType(index, sighash_type);
+  }
+
+  for (const auto& data : request.input.unknown) {
+    psbt->SetTxInRecord(index, ByteData(data.key), ByteData(data.value));
+  }
+}
+
+/**
+ * @brief add psbt output.
+ * @param[in,out] psbt      psbt object.
+ * @param[in] request       output request.
+ */
+void AddPsbtOutput(Psbt* psbt, const PsbtAddOutputRequestStruct& request) {
+  uint32_t index = psbt->GetTxOutCount();
+
+  std::vector<KeyData> key_list;
+  Script redeem_script;
+  ParsePsbtOutputRequest(request.output, &key_list, &redeem_script);
+
+  if (!request.txout.address.empty()) {
+    AddressFactory factory;
+    auto addr = factory.GetAddress(request.txout.address);
+    psbt->AddTxOutData(
+        Amount(request.txout.amount), addr, redeem_script, key_list);
+  } else {
+    psbt->AddTxOut(
+        Script(request.txout.direct_locking_script),
+        Amount(request.txout.amount));
+    psbt->SetTxOutData(index, redeem_script, key_list);
+  }
+
+  for (const auto& data : request.output.unknown) {
+    psbt->SetTxOutRecord(index, ByteData(data.key), ByteData(data.value));
   }
 }
 
@@ -317,9 +415,10 @@ DecodePsbtResponseStruct PsbtStructApi::DecodePsbt(
         item.xpub.hex = extkey.GetData().GetHex();
         item.path = xpub.GetBip32Path();
         item.master_fingerprint = xpub.GetFingerprint().GetHex();
-        item.descriptor = xpub.ToString();
+        item.descriptor_xpub = xpub.ToString();
         response.xpubs.emplace_back(item);
       }
+      if (response.xpubs.empty()) response.ignore_items.emplace("xpubs");
     } else {
       response.ignore_items.emplace("version");
       response.ignore_items.emplace("xpubs");
@@ -337,7 +436,9 @@ DecodePsbtResponseStruct PsbtStructApi::DecodePsbt(
       item.value = data.GetHex();
       unknown_list.emplace_back(item);
     }
-    if (unknown_list.empty()) response.ignore_items.emplace("unknown");
+    if (request.has_simple && unknown_list.empty()) {
+      response.ignore_items.emplace("unknown");
+    }
 
     Amount total_input;
     bool is_unset_utxo = false;
@@ -345,9 +446,10 @@ DecodePsbtResponseStruct PsbtStructApi::DecodePsbt(
       DecodePsbtInputStruct input;
       auto tx_input = tx.GetTxIn(index);
       bool has_amount = false;
+      bool is_witness = false;
 
-      auto utxo = psbt.GetTxInUtxo(index, true);
-      if (utxo.GetLockingScript().IsEmpty()) {
+      auto utxo = psbt.GetTxInUtxo(index, true, &is_witness);
+      if (utxo.GetLockingScript().IsEmpty() || (!is_witness)) {
         input.ignore_items.emplace("witness_utxo");
       } else {
         has_amount = true;
@@ -369,6 +471,7 @@ DecodePsbtResponseStruct PsbtStructApi::DecodePsbt(
       auto full_utxo = psbt.GetTxInUtxoFull(index, true);
       if (!full_utxo.GetTxid().Equals(tx_input.GetTxid())) {
         input.ignore_items.emplace("non_witness_utxo");
+        input.ignore_items.emplace("non_witness_utxo_hex");
         if (!has_amount) is_unset_utxo = true;
       } else {
         tx_req.hex = full_utxo.GetHex();
@@ -377,8 +480,12 @@ DecodePsbtResponseStruct PsbtStructApi::DecodePsbt(
         input.non_witness_utxo = tx_res;
         if (request.has_detail) {
           input.non_witness_utxo_hex = tx_req.hex;
-          if (request.has_simple)
+          if (input.non_witness_utxo_hex.empty()) {
+            input.ignore_items.emplace("non_witness_utxo_hex");
+          }
+          if (request.has_simple) {
             input.ignore_items.emplace("non_witness_utxo");
+          }
         } else {
           input.ignore_items.emplace("non_witness_utxo_hex");
         }
@@ -621,12 +728,11 @@ PsbtOutputDataStruct PsbtStructApi::JoinPsbts(const PsbtListStruct& request) {
           CfdError::kCfdIllegalArgumentError, "psbt list is empty.");
     }
     Psbt psbt;
-    GetPsbtFromString(request.psbts.at(0).psbt, "JoinPsbts", &psbt);
+    GetPsbtFromString(request.psbts.at(0), "JoinPsbts", &psbt);
 
     for (size_t index = 1; index < request.psbts.size(); ++index) {
       Psbt append_psbt;
-      GetPsbtFromString(
-          request.psbts.at(index).psbt, "JoinPsbts", &append_psbt);
+      GetPsbtFromString(request.psbts.at(index), "JoinPsbts", &append_psbt);
       psbt.Join(append_psbt);
     }
 
@@ -652,11 +758,11 @@ PsbtOutputDataStruct PsbtStructApi::CombinePsbt(
           CfdError::kCfdIllegalArgumentError, "psbt list is empty.");
     }
     Psbt psbt;
-    GetPsbtFromString(request.psbts.at(0).psbt, "CombinePsbt", &psbt);
+    GetPsbtFromString(request.psbts.at(0), "CombinePsbt", &psbt);
 
     for (size_t index = 1; index < request.psbts.size(); ++index) {
       Psbt append_psbt;
-      GetPsbtFromString(request.psbts.at(0).psbt, "CombinePsbt", &append_psbt);
+      GetPsbtFromString(request.psbts.at(index), "CombinePsbt", &append_psbt);
       psbt.Combine(append_psbt);
     }
 
@@ -698,10 +804,12 @@ PsbtOutputDataStruct PsbtStructApi::FinalizePsbtInput(
           auto key = Psbt::CreateRecordKey(Psbt::kPsbtInputFinalScriptsig);
           psbt.SetTxInRecord(outpoint, key, ByteData(input.final_scriptsig));
         }
+        psbt.ClearTxInSignData(outpoint);
       } else if (!input.final_scriptsig.empty()) {
         std::vector<ByteData> stack;
         stack.emplace_back(input.final_scriptsig);
         psbt.SetTxInFinalScript(outpoint, stack);
+        psbt.ClearTxInSignData(outpoint);
       }
     }
 
@@ -781,7 +889,7 @@ VerifySignResponseStruct PsbtStructApi::VerifyPsbtSign(
     Psbt psbt;
     GetPsbtFromString(request.psbt, "VerifyPsbtSign", &psbt);
     VerifySignResponseStruct response;
-    auto tx = psbt.GetTransactionContext();
+    auto tx = psbt.GetTransaction();
     std::vector<OutPoint> outpoints;
     if (request.out_point_list.empty()) {
       for (const auto& txin : tx.GetTxInList()) {
@@ -795,7 +903,7 @@ VerifySignResponseStruct PsbtStructApi::VerifyPsbtSign(
 
     for (const auto& outpoint : outpoints) {
       try {
-        tx.Verify(outpoint);
+        psbt.Verify(outpoint);
       } catch (const CfdException& except) {
         std::string error_msg = std::string(except.what());
         warn(CFD_LOG_SOURCE, "Failed to VerifyPsbtSign. {}", error_msg);
@@ -809,6 +917,7 @@ VerifySignResponseStruct PsbtStructApi::VerifyPsbtSign(
     }
 
     response.success = response.fail_txins.empty();
+    if (response.success) response.ignore_items.emplace("failTxins");
     return response;
   };
 
@@ -819,52 +928,18 @@ VerifySignResponseStruct PsbtStructApi::VerifyPsbtSign(
   return result;
 }
 
-PsbtOutputDataStruct PsbtStructApi::AddPsbtInput(
-    const AddPsbtInputRequestStruct& request) {
-  auto call_func = [](const AddPsbtInputRequestStruct& request)
+PsbtOutputDataStruct PsbtStructApi::AddPsbtData(
+    const AddPsbtDataRequestStruct& request) {
+  auto call_func = [](const AddPsbtDataRequestStruct& request)
       -> PsbtOutputDataStruct {  // NOLINT
     Psbt psbt;
-    GetPsbtFromString(request.psbt, "AddPsbtInput", &psbt);
-    uint32_t index = psbt.GetTxInCount();
+    GetPsbtFromString(request.psbt, "AddPsbtData", &psbt);
 
-    TxOut witness_utxo;
-    Transaction utxo_full_tx;
-    std::vector<SignParameter> signatures;
-    SigHashType sighash_type(SigHashAlgorithm::kSigHashAll, false, true);
-    std::vector<KeyData> key_list;
-    Script redeem_script;
-    ParsePsbtInputRequest(
-        request.input, &witness_utxo, &utxo_full_tx, &signatures,
-        &sighash_type, &key_list, &redeem_script);
-
-    OutPoint outpoint(Txid(request.txin.txid), request.txin.vout);
-    psbt.AddTxIn(outpoint, request.txin.sequence);
-    if (utxo_full_tx.GetTotalSize() > Transaction::kTransactionMinimumSize) {
-      psbt.SetTxInUtxo(index, utxo_full_tx, redeem_script, key_list);
-    } else if (!witness_utxo.GetLockingScript().IsEmpty()) {
-      psbt.SetTxInUtxo(
-          index, TxOutReference(witness_utxo), redeem_script, key_list);
-    } else if ((!redeem_script.IsEmpty()) || (!key_list.empty())) {
-      std::string err_msg =
-          "Failed to parameter. UTXO data is required to "
-          "register Bip32Key or RedeemScript.";  // NOLINT
-      warn(CFD_LOG_SOURCE, "{}", err_msg);
-      throw CfdException(CfdError::kCfdIllegalArgumentError, err_msg);
+    for (const auto& input_request : request.inputs) {
+      AddPsbtInput(&psbt, input_request);
     }
-
-    for (const auto& signature : signatures) {
-      if (signature.GetRelatedPubkey().IsValid()) {
-        psbt.SetTxInSignature(
-            index, KeyData(signature.GetRelatedPubkey(), "", ByteData()),
-            signature.GetData());
-      }
-    }
-    if (!sighash_type.IsForkId()) {
-      psbt.SetTxInSighashType(index, sighash_type);
-    }
-
-    for (const auto& data : request.input.unknown) {
-      psbt.SetTxInRecord(index, ByteData(data.key), ByteData(data.value));
+    for (const auto& output_request : request.outputs) {
+      AddPsbtOutput(&psbt, output_request);
     }
 
     PsbtOutputDataStruct response;
@@ -874,40 +949,7 @@ PsbtOutputDataStruct PsbtStructApi::AddPsbtInput(
   };
 
   PsbtOutputDataStruct result;
-  result = ExecuteStructApi<AddPsbtInputRequestStruct, PsbtOutputDataStruct>(
-      request, call_func, std::string(__FUNCTION__));
-  return result;
-}
-
-PsbtOutputDataStruct PsbtStructApi::AddPsbtOutput(
-    const AddPsbtOutputRequestStruct& request) {
-  auto call_func = [](const AddPsbtOutputRequestStruct& request)
-      -> PsbtOutputDataStruct {  // NOLINT
-    Psbt psbt;
-    GetPsbtFromString(request.psbt, "AddPsbtOutput", &psbt);
-    uint32_t index = psbt.GetTxOutCount();
-
-    std::vector<KeyData> key_list;
-    Script redeem_script;
-    ParsePsbtOutputRequest(request.output, &key_list, &redeem_script);
-
-    AddressFactory factory;
-    auto addr = factory.GetAddress(request.txout.address);
-    psbt.AddTxOutData(
-        Amount(request.txout.amount), addr, redeem_script, key_list);
-
-    for (const auto& data : request.output.unknown) {
-      psbt.SetTxOutRecord(index, ByteData(data.key), ByteData(data.value));
-    }
-
-    PsbtOutputDataStruct response;
-    response.psbt = psbt.GetBase64();
-    response.hex = psbt.GetData().GetHex();
-    return response;
-  };
-
-  PsbtOutputDataStruct result;
-  result = ExecuteStructApi<AddPsbtOutputRequestStruct, PsbtOutputDataStruct>(
+  result = ExecuteStructApi<AddPsbtDataRequestStruct, PsbtOutputDataStruct>(
       request, call_func, std::string(__FUNCTION__));
   return result;
 }
@@ -998,14 +1040,18 @@ IsFinalizedPsbtResponseStruct PsbtStructApi::IsFinalizedPsbt(
       }
     }
 
+    response.success = true;
     for (const auto& outpoint : outpoints) {
       if (!psbt.IsFinalizedInput(outpoint)) {
         OutPointStruct fail_target;
         fail_target.txid = outpoint.GetTxid().GetHex();
         fail_target.vout = outpoint.GetVout();
         response.fail_inputs.emplace_back(fail_target);
+        response.success = false;
       }
     }
+
+    if (response.success) response.ignore_items.emplace("failInputs");
     return response;
   };
 
@@ -1016,9 +1062,10 @@ IsFinalizedPsbtResponseStruct PsbtStructApi::IsFinalizedPsbt(
   return result;
 }
 
-UtxoListDataStruct PsbtStructApi::GetPsbtUtxos(const PsbtDataStruct& request) {
-  auto call_func =
-      [](const PsbtDataStruct& request) -> UtxoListDataStruct {  // NOLINT
+UtxoListDataStruct PsbtStructApi::GetPsbtUtxos(
+    const DecodePsbtRequestStruct& request) {
+  auto call_func = [](const DecodePsbtRequestStruct& request)
+      -> UtxoListDataStruct {  // NOLINT
     Psbt psbt;
     GetPsbtFromString(request.psbt, "GetPsbtUtxos", &psbt);
     UtxoListDataStruct response;
@@ -1030,13 +1077,16 @@ UtxoListDataStruct PsbtStructApi::GetPsbtUtxos(const PsbtDataStruct& request) {
       data.amount = utxo.amount.GetSatoshiValue();
       data.descriptor = utxo.descriptor;
       data.address = utxo.address.GetAddress();
-      response.utxos.emplace_back();
+      if (data.descriptor.empty()) data.ignore_items.emplace("descriptor");
+      data.ignore_items.emplace("asset");
+      data.ignore_items.emplace("scriptSigTemplate");
+      response.utxos.emplace_back(data);
     }
     return response;
   };
 
   UtxoListDataStruct result;
-  result = ExecuteStructApi<PsbtDataStruct, UtxoListDataStruct>(
+  result = ExecuteStructApi<DecodePsbtRequestStruct, UtxoListDataStruct>(
       request, call_func, std::string(__FUNCTION__));
   return result;
 }

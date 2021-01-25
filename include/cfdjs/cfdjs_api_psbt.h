@@ -80,19 +80,12 @@ class CFD_JS_API_EXPORT PsbtStructApi {
   static VerifySignResponseStruct VerifyPsbtSign(
       const VerifyPsbtSignRequestStruct& request);
   /**
-   * @brief Add PSBT input.
+   * @brief Add PSBT input/output data.
    * @param[in] request  request data
    * @return response data
    */
-  static PsbtOutputDataStruct AddPsbtInput(
-      const AddPsbtInputRequestStruct& request);
-  /**
-   * @brief Add PSBT output.
-   * @param[in] request  request data
-   * @return response data
-   */
-  static PsbtOutputDataStruct AddPsbtOutput(
-      const AddPsbtOutputRequestStruct& request);
+  static PsbtOutputDataStruct AddPsbtData(
+      const AddPsbtDataRequestStruct& request);
   /**
    * @brief Set PSBT data.
    * @param[in] request  request data
@@ -118,7 +111,8 @@ class CFD_JS_API_EXPORT PsbtStructApi {
    * @param[in] request  request data
    * @return response data
    */
-  static UtxoListDataStruct GetPsbtUtxos(const PsbtDataStruct& request);
+  static UtxoListDataStruct GetPsbtUtxos(
+      const DecodePsbtRequestStruct& request);
   /**
    * @brief Fund PSBT.
    * @param[in] request  request data

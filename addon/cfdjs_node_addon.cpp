@@ -854,21 +854,12 @@ Value VerifyPsbtSign(const CallbackInfo &information) {
 }
 
 /**
- * @brief Add PSBT input.
+ * @brief Add PSBT input/output data.
  * @param[in] request_message the request json message
  * @return json string
  */
-Value AddPsbtInput(const CallbackInfo &information) {
-  return NodeAddonJsonApi(information, JsonMappingApi::AddPsbtInput);
-}
-
-/**
- * @brief Add PSBT output.
- * @param[in] request_message the request json message
- * @return json string
- */
-Value AddPsbtOutput(const CallbackInfo &information) {
-  return NodeAddonJsonApi(information, JsonMappingApi::AddPsbtOutput);
+Value AddPsbtData(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::AddPsbtData);
 }
 
 /**
@@ -1301,9 +1292,7 @@ void InitializeJsonApi(Env env, Object *exports) {
   exports->Set(
       String::New(env, "VerifyPsbtSign"), Function::New(env, VerifyPsbtSign));
   exports->Set(
-      String::New(env, "AddPsbtInput"), Function::New(env, AddPsbtInput));
-  exports->Set(
-      String::New(env, "AddPsbtOutput"), Function::New(env, AddPsbtOutput));
+      String::New(env, "AddPsbtData"), Function::New(env, AddPsbtData));
   exports->Set(
       String::New(env, "SetPsbtData"), Function::New(env, SetPsbtData));
   exports->Set(

@@ -140,8 +140,7 @@ HexDataStruct UtilStructApi::DecodeBase64(const Base64DataStruct& request) {
     if ((!request.base64.empty()) && data.IsEmpty()) {
       warn(CFD_LOG_SOURCE, "Failed to parameter. Decode base64 error.");
       throw CfdException(
-          CfdError::kCfdIllegalArgumentError,
-          "Decode base64 error.");
+          CfdError::kCfdIllegalArgumentError, "Decode base64 error.");
     }
     result.hex = data.GetHex();
     return result;

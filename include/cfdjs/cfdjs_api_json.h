@@ -645,17 +645,11 @@ class CFD_JS_API_EXPORT JsonMappingApi {
    */
   static std::string VerifyPsbtSign(const std::string &request);
   /**
-   * @brief Add PSBT input.
+   * @brief Add PSBT input/output data.
    * @param[in] request_message the request json message
    * @return json string
    */
-  static std::string AddPsbtInput(const std::string &request);
-  /**
-   * @brief Add PSBT output.
-   * @param[in] request_message the request json message
-   * @return json string
-   */
-  static std::string AddPsbtOutput(const std::string &request);
+  static std::string AddPsbtData(const std::string &request);
   /**
    * @brief Set PSBT data.
    * @param[in] request_message the request json message

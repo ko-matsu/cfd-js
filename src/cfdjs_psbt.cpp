@@ -882,7 +882,7 @@ PsbtOutputDataStruct PsbtStructApi::SignPsbt(
     } else {
       privkey = Privkey::FromWif(request.privkey);
     }
-    psbt.Sign(privkey);
+    psbt.Sign(privkey, request.has_grind_r);
 
     PsbtOutputDataStruct response;
     response.psbt = psbt.GetBase64();
@@ -1082,8 +1082,9 @@ UtxoListDataStruct PsbtStructApi::GetPsbtUtxos(
       -> UtxoListDataStruct {  // NOLINT
     Psbt psbt;
     GetPsbtFromString(request.psbt, "GetPsbtUtxos", &psbt);
+    NetType net_type = AddressStructApi::ConvertNetType(request.network);
     UtxoListDataStruct response;
-    auto utxos = psbt.GetUtxoDataAll();
+    auto utxos = psbt.GetUtxoDataAll(net_type);
     for (const auto& utxo : utxos) {
       FundUtxoJsonDataStruct data;
       data.txid = utxo.txid.GetHex();

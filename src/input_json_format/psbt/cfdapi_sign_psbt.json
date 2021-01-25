@@ -10,7 +10,10 @@
     "psbt:comment": "psbt data (hex or base64)",
     "privkey": "",
     "privkey:require": "require",
-    "privkey:comment": "private key. hex or wif format."
+    "privkey:comment": "private key. hex or wif format.",
+    "hasGrindR": true,
+    "hasGrindR:require": "optional",
+    "hasGrindR:comment": "grind-r option"
   },
   "response": {
     ":class": "PsbtOutputData",

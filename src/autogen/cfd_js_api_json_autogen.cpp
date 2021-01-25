@@ -13129,12 +13129,20 @@ void SignPsbtRequest::CollectFieldName() {
   };
   json_mapper.emplace("privkey", func_table);
   item_list.push_back("privkey");
+  func_table = {
+    SignPsbtRequest::GetHasGrindRString,
+    SignPsbtRequest::SetHasGrindRString,
+    SignPsbtRequest::GetHasGrindRFieldType,
+  };
+  json_mapper.emplace("hasGrindR", func_table);
+  item_list.push_back("hasGrindR");
 }
 
 void SignPsbtRequest::ConvertFromStruct(
     const SignPsbtRequestStruct& data) {
   psbt_ = data.psbt;
   privkey_ = data.privkey;
+  has_grind_r_ = data.has_grind_r;
   ignore_items = data.ignore_items;
 }
 
@@ -13142,6 +13150,7 @@ SignPsbtRequestStruct SignPsbtRequest::ConvertToStruct() const {  // NOLINT
   SignPsbtRequestStruct result;
   result.psbt = psbt_;
   result.privkey = privkey_;
+  result.has_grind_r = has_grind_r_;
   result.ignore_items = ignore_items;
   return result;
 }

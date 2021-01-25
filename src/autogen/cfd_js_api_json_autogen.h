@@ -58894,6 +58894,49 @@ class SignPsbtRequest
   }
 
   /**
+   * @brief Get of hasGrindR
+   * @return hasGrindR
+   */
+  bool GetHasGrindR() const {
+    return has_grind_r_;
+  }
+  /**
+   * @brief Set to hasGrindR
+   * @param[in] has_grind_r    setting value.
+   */
+  void SetHasGrindR(  // line separate
+    const bool& has_grind_r) {  // NOLINT
+    this->has_grind_r_ = has_grind_r;
+  }
+  /**
+   * @brief Get data type of hasGrindR
+   * @return Data type of hasGrindR
+   */
+  static std::string GetHasGrindRFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of hasGrindR field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetHasGrindRString(  // line separate
+      const SignPsbtRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.has_grind_r_);
+  }
+  /**
+   * @brief Set json object to hasGrindR field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetHasGrindRString(  // line separate
+      SignPsbtRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.has_grind_r_, json_value);
+  }
+
+  /**
    * @brief Set ignore item.
    * @param[in] key   ignore target key name.
    */
@@ -58970,6 +59013,10 @@ class SignPsbtRequest
    * @brief JsonAPI(privkey) value
    */
   std::string privkey_ = "";
+  /**
+   * @brief JsonAPI(hasGrindR) value
+   */
+  bool has_grind_r_ = true;
 };
 
 // ------------------------------------------------------------------------

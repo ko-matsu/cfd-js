@@ -40,7 +40,8 @@ class TestHelper {
     createTestFunc = async (helper) => {},
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     createCheckFunc = (helper) => {},
-    hasExecTest = () => true,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    hasExecTest = (testName) => true,
     setupFunc = async () => { },
     teardownFunc = async () => { }) {
     const helper = new TestHelper();
@@ -99,7 +100,7 @@ class TestHelper {
           beforeEach(async () => {
             // await Helper.waitInitialized();
             testFunc = createTestFunc(helper);
-            testCheckFunc = createCheckFunc(helper);
+            testCheckFunc = createCheckFunc(helper, testData.name);
             await setupFunc();
           });
           it(testCaseName, async () => {

@@ -23,22 +23,22 @@ const createTestFunc = (helper) => {
       resp = await helper.getResponse(resp);
       break;
     case 'Hash.Hash256':
-      req2 = {...req, algorithm: 'hash256'}
+      req2 = {...req, algorithm: 'hash256'};
       resp = cfd.HashMessage(req2);
       resp = await helper.getResponse(resp);
       break;
     case 'Hash.Hash160':
-      req2 = {...req, algorithm: 'hash160'}
+      req2 = {...req, algorithm: 'hash160'};
       resp = cfd.HashMessage(req2);
       resp = await helper.getResponse(resp);
       break;
     case 'Hash.Sha256':
-      req2 = {...req, algorithm: 'sha256'}
+      req2 = {...req, algorithm: 'sha256'};
       resp = cfd.HashMessage(req2);
       resp = await helper.getResponse(resp);
       break;
     case 'Hash.Ripemd160':
-      req2 = {...req, algorithm: 'ripemd160'}
+      req2 = {...req, algorithm: 'ripemd160'};
       resp = cfd.HashMessage(req2);
       resp = await helper.getResponse(resp);
       break;

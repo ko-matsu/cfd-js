@@ -3071,6 +3071,7 @@ struct SignEcdsaAdaptorResponseStruct {
 struct SignPsbtRequestStruct {
   std::string psbt = "";     //!< psbt  // NOLINT
   std::string privkey = "";  //!< privkey  // NOLINT
+  bool has_grind_r = true;   //!< has_grind_r  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 

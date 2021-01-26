@@ -2677,10 +2677,12 @@ export interface SignEcdsaAdaptorResponse {
  * Sign psbt data.
  * @property {string} psbt - psbt data (hex or base64)
  * @property {string} privkey - private key. hex or wif format.
+ * @property {boolean} hasGrindR? - grind-r option
  */
 export interface SignPsbtRequest {
     psbt: string;
     privkey: string;
+    hasGrindR?: boolean;
 }
 
 /**

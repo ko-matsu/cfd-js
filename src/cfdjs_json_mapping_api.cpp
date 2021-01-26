@@ -1286,6 +1286,9 @@ void JsonMappingApi::LoadFunctions(
     request_map->emplace("ConvertAes", JsonMappingApi::ConvertAes);
     request_map->emplace("EncodeBase58", JsonMappingApi::EncodeBase58);
     request_map->emplace("DecodeBase58", JsonMappingApi::DecodeBase58);
+    request_map->emplace("EncodeBase64", JsonMappingApi::EncodeBase64);
+    request_map->emplace("DecodeBase64", JsonMappingApi::DecodeBase64);
+    request_map->emplace("HashMessage", JsonMappingApi::HashMessage);
     request_map->emplace(
         "EncodeSignatureByDer", JsonMappingApi::EncodeSignatureByDer);
     request_map->emplace(
@@ -1379,6 +1382,22 @@ void JsonMappingApi::LoadFunctions(
     request_map->emplace(
         "ExtractSecretEcdsaAdaptor",
         JsonMappingApi::ExtractSecretEcdsaAdaptor);
+    request_map->emplace("DecodePsbt", JsonMappingApi::DecodePsbt);
+    request_map->emplace("CreatePsbt", JsonMappingApi::CreatePsbt);
+    request_map->emplace("ConvertToPsbt", JsonMappingApi::ConvertToPsbt);
+    request_map->emplace("JoinPsbts", JsonMappingApi::JoinPsbts);
+    request_map->emplace("CombinePsbt", JsonMappingApi::CombinePsbt);
+    request_map->emplace(
+        "FinalizePsbtInput", JsonMappingApi::FinalizePsbtInput);
+    request_map->emplace("FinalizePsbt", JsonMappingApi::FinalizePsbt);
+    request_map->emplace("SignPsbt", JsonMappingApi::SignPsbt);
+    request_map->emplace("VerifyPsbtSign", JsonMappingApi::VerifyPsbtSign);
+    request_map->emplace("AddPsbtData", JsonMappingApi::AddPsbtData);
+    request_map->emplace("SetPsbtData", JsonMappingApi::SetPsbtData);
+    request_map->emplace("SetPsbtRecord", JsonMappingApi::SetPsbtRecord);
+    request_map->emplace("IsFinalizedPsbt", JsonMappingApi::IsFinalizedPsbt);
+    request_map->emplace("GetPsbtUtxos", JsonMappingApi::GetPsbtUtxos);
+    request_map->emplace("FundPsbt", JsonMappingApi::FundPsbt);
 #ifndef CFD_DISABLE_ELEMENTS
     request_map->emplace(
         "GetConfidentialAddress", JsonMappingApi::GetConfidentialAddress);

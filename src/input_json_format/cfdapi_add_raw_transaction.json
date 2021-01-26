@@ -27,7 +27,7 @@
       }
     ],
     "txouts:require": "optional",
-    "txins:comment": "This list is added to the transaction output.",
+    "txouts:comment": "This list is added to the transaction output.",
     "txouts": [
       {
         ":class": "TxOutRequest",

@@ -149,7 +149,7 @@ ExtractScriptData TransactionStructApiBase::ExtractLockingScript(
 
   std::string script_type;
   std::vector<ScriptElement> elems = locking_script.GetElementList();
-  // FIXME(fujita-cg): anyonecanspent_aremineフラグの判定
+  // FIXME(fujita-cg): judge anycanspent_aremine flag
   if (elems.size() == 1 && elems[0].GetOpCode() == ScriptOperator::OP_TRUE) {
     extract_data.script_type = LockingScriptType::kTrue;
     return extract_data;

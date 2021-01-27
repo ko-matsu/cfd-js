@@ -7,6 +7,7 @@ import {assert} from 'console';
 
 const isDebug = false;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let cfd: any;
 const mainchainNetwork = NetworkType.Regtest;
 const network = NetworkType.LiquidRegtest;

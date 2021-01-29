@@ -559,7 +559,7 @@ DecodePsbtResponseStruct PsbtStructApi::DecodePsbt(
       }
 
       auto bip32_pubkey_list = psbt.GetTxInKeyDataList(index);
-      if (sig_pubkey_list.empty()) {
+      if (bip32_pubkey_list.empty()) {
         input.ignore_items.emplace("bip32_derivs");
       } else {
         auto& bip32_list = input.bip32_derivs;

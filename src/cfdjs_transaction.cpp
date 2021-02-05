@@ -77,14 +77,14 @@ RawTransactionResponseStruct TransactionStructApi::CreateRawTransaction(
     RawTransactionResponseStruct response;
 
     std::vector<TxIn> txins;
-    for (TxInRequestStruct txin_req : request.txins) {
+    for (const TxInRequestStruct& txin_req : request.txins) {
       // TxInのunlocking_scriptは空で作成
       TxIn txin(Txid(txin_req.txid), txin_req.vout, txin_req.sequence);
       txins.push_back(txin);
     }
 
     std::vector<TxOut> txouts;
-    for (TxOutRequestStruct txout_req : request.txouts) {
+    for (const TxOutRequestStruct& txout_req : request.txouts) {
       Amount amount = Amount::CreateBySatoshiAmount(txout_req.amount);
       if (!txout_req.direct_locking_script.empty()) {
         TxOut txout(amount, Script(txout_req.direct_locking_script));

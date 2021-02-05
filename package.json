@@ -1,6 +1,6 @@
 {
   "name": "cfd-js",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "domain": "cryptogarageinc",
   "repository": {
     "type": "git",
@@ -47,6 +47,7 @@
     "cmake_release_parallel": "run-s cmake_clean cmake_install_configure cmake_build_parallel",
     "example": "node wrap_js/example.js example",
     "elements_example": "node wrap_js/example.js elements_example",
+    "testing_example": "node wrap_js/example.js testing_example",
     "util_example": "node wrap_js/cfdjs_util_example.js",
     "ts_example": "ts-node wrap_js/ts_example.ts",
     "test": "jest --no-cache",

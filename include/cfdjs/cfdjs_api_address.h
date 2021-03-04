@@ -25,8 +25,8 @@ namespace cfd {
 namespace js {
 namespace api {
 
-using cfd::api::DescriptorKeyData;
-using cfd::api::DescriptorScriptData;
+using cfd::DescriptorKeyData;
+using cfd::DescriptorScriptData;
 using cfd::core::AddressType;
 using cfd::core::NetType;
 

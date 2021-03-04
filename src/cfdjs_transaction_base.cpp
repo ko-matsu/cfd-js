@@ -18,7 +18,6 @@ namespace js {
 namespace api {
 
 using cfd::SignParameter;
-using cfd::TransactionController;
 using cfd::core::AddressType;
 using cfd::core::ByteData;
 using cfd::core::CfdError;

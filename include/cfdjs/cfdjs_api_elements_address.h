@@ -25,8 +25,8 @@ namespace cfd {
 namespace js {
 namespace api {
 
-using cfd::api::DescriptorKeyData;
-using cfd::api::DescriptorScriptData;
+using cfd::DescriptorKeyData;
+using cfd::DescriptorScriptData;
 
 /**
  * @brief ElementsAddress関連の関数群クラス

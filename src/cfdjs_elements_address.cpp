@@ -21,9 +21,9 @@ namespace cfd {
 namespace js {
 namespace api {
 
+using cfd::DescriptorKeyData;
+using cfd::DescriptorScriptData;
 using cfd::ElementsAddressFactory;
-using cfd::api::DescriptorKeyData;
-using cfd::api::DescriptorScriptData;
 using cfd::api::ElementsAddressApi;
 using cfd::core::Address;
 using cfd::core::CfdError;

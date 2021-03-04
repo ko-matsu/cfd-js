@@ -387,8 +387,7 @@ ElementsTransactionStructApi::DecodeRawTransaction(  // NOLINT
     // FIXME(fujita-cg): 引数のiswitness未使用。elementsでの利用シーンが不明瞭
 
     // Decode transaction hex
-    ConfidentialTransactionController ctxc(hex_string);
-    const ConfidentialTransaction& ctx = ctxc.GetTransaction();
+    ConfidentialTransactionContext ctx(hex_string);
 
     response.txid = ctx.GetTxid().GetHex();
     response.hash = Txid(ctx.GetWitnessHash()).GetHex();
@@ -990,7 +989,7 @@ ElementsTransactionStructApi::CreateSignatureHash(  // NOLINT
     const std::string& value_hex = request.txin.confidential_value_commitment;
     const Txid& txid = Txid(request.txin.txid);
     uint32_t vout = request.txin.vout;
-    ConfidentialTransactionController txc(request.tx);
+    ConfidentialTransactionContext txc(request.tx);
     SigHashType sighashtype = TransactionStructApiBase::ConvertSigHashType(
         request.txin.sighash_type, request.txin.sighash_anyone_can_pay);
 
@@ -1065,7 +1064,7 @@ VerifySignatureResponseStruct ElementsTransactionStructApi::VerifySignature(
     ByteData signature = ByteData(request.txin.signature);
     Script script;
 
-    ConfidentialTransactionController ctx(request.tx);
+    ConfidentialTransactionContext ctx(request.tx);
     bool is_success = false;
     WitnessVersion version;
     ConfidentialValue value =
@@ -1076,13 +1075,15 @@ VerifySignatureResponseStruct ElementsTransactionStructApi::VerifySignature(
       version = (hashtype_str == "p2wpkh") ? WitnessVersion::kVersion0
                                            : WitnessVersion::kVersionNone;
       is_success = ctx.VerifyInputSignature(
-          signature, pubkey, txid, vout, sighashtype, value, version);
+          signature, pubkey, OutPoint(txid, vout), sighashtype, value,
+          version);
     } else if ((hashtype_str == "p2sh") || (hashtype_str == "p2wsh")) {
       script = Script(request.txin.redeem_script);
       version = (hashtype_str == "p2wsh") ? WitnessVersion::kVersion0
                                           : WitnessVersion::kVersionNone;
       is_success = ctx.VerifyInputSignature(
-          signature, pubkey, txid, vout, script, sighashtype, value, version);
+          signature, pubkey, OutPoint(txid, vout), script, sighashtype, value,
+          version);
     } else {
       warn(
           CFD_LOG_SOURCE,

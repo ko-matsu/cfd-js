@@ -2,7 +2,7 @@
 /**
  * @file cfdjs_address.cpp
  *
- * @brief cfd-apiで利用するAddress操作の実装ファイル
+ * @brief Implementation file of Address operation used in cfd-api.
  */
 #include <string>
 #include <vector>
@@ -20,11 +20,8 @@ namespace js {
 namespace api {
 
 using cfd::AddressFactory;
-using cfd::api::AddressApi;
-using cfd::api::DescriptorKeyData;
-using cfd::api::DescriptorKeyType;
-using cfd::api::DescriptorScriptData;
-using cfd::api::DescriptorScriptType;
+using cfd::DescriptorKeyData;
+using cfd::DescriptorScriptData;
 using cfd::core::Address;
 using cfd::core::AddressFormatData;
 using cfd::core::AddressType;
@@ -32,6 +29,7 @@ using cfd::core::CfdError;
 using cfd::core::CfdException;
 using cfd::core::Descriptor;
 using cfd::core::DescriptorKeyInfo;
+using cfd::core::DescriptorKeyType;
 using cfd::core::DescriptorScriptType;
 using cfd::core::ExtPrivkey;
 using cfd::core::ExtPubkey;
@@ -39,18 +37,19 @@ using cfd::core::NetType;
 using cfd::core::Privkey;
 using cfd::core::Pubkey;
 using cfd::core::Script;
+using cfd::core::ScriptUtil;
 using cfd::core::StringUtil;
 
 /**
- * @brief Descriptorの名称テーブル用構造体.
+ * @brief Descriptor name table.
  */
 struct DescriptorNameData {
-  std::string name;           //!< 名称
-  DescriptorScriptType type;  //!< 種別
+  std::string name;           //!< name
+  DescriptorScriptType type;  //!< type
 };
 
 /**
- * @brief Descriptorの名称テーブル.
+ * @brief Descriptor name table.
  */
 static const DescriptorNameData kDescriptorNameDataTable[] = {
     {"sh", DescriptorScriptType::kDescriptorScriptSh},
@@ -142,10 +141,9 @@ CreateAddressResponseStruct AddressStructApi::CreateAddress(
       script = Script(request.key_data.hex);
     }
 
-    AddressApi api;
+    AddressFactory api(net_type);
     addr = api.CreateAddress(
-        net_type, addr_type, &pubkey, &script, &locking_script,
-        &redeem_script);
+        addr_type, &pubkey, &script, &locking_script, &redeem_script);
 
     // レスポンスとなるモデルへ変換
     response.error.code = 0;
@@ -171,7 +169,6 @@ CreateMultisigResponseStruct AddressStructApi::CreateMultisig(
   auto call_func = [](const CreateMultisigRequestStruct& request)
       -> CreateMultisigResponseStruct {  // NOLINT
     CreateMultisigResponseStruct response;
-    // pubkeyモデルへの変換
     std::vector<Pubkey> pubkeys;
     for (std::string key : request.keys) {
       pubkeys.push_back(Pubkey(key));
@@ -183,12 +180,22 @@ CreateMultisigResponseStruct AddressStructApi::CreateMultisig(
     Script witness_script;
     Script redeem_script;
 
-    AddressApi api;
-    Address addr = api.CreateMultisig(
-        net_type, addr_type, req_sig_num, pubkeys, &redeem_script,
-        &witness_script);
+    AddressFactory factory(net_type);
+    Script multisig_script =
+        ScriptUtil::CreateMultisigRedeemScript(req_sig_num, pubkeys);
+    Script locking_script;
+    Script scriptsig;
+    Address addr = factory.CreateAddress(
+        addr_type, nullptr, &multisig_script, &locking_script, &scriptsig);
+    if (addr_type == AddressType::kP2wshAddress) {
+      witness_script = multisig_script;
+    } else if (!scriptsig.IsEmpty()) {
+      witness_script = multisig_script;
+      redeem_script = scriptsig;
+    } else {
+      redeem_script = multisig_script;
+    }
 
-    // レスポンスとなるモデルへ変換
     response.address = addr.GetAddress();
     if (redeem_script.IsEmpty()) {
       response.ignore_items.insert("redeemScript");
@@ -221,10 +228,10 @@ AddressStructApi::GetAddressesFromMultisig(
     AddressType addr_type = ConvertAddressType(request.hash_type);
     Script redeem_script(request.redeem_script);
 
-    AddressApi api;
+    AddressFactory api(net_type);
     std::vector<Pubkey> pubkeys;
-    std::vector<Address> addresses = api.GetAddressesFromMultisig(
-        net_type, addr_type, redeem_script, &pubkeys);
+    std::vector<Address> addresses =
+        api.GetAddressesFromMultisig(addr_type, redeem_script, &pubkeys);
 
     // レスポンスとなるモデルへ変換
     for (const auto& addr : addresses) {
@@ -281,12 +288,12 @@ ParseDescriptorResponseStruct AddressStructApi::ParseDescriptor(
 
     NetType net_type = ConvertNetType(request.network);
 
-    AddressApi api;
+    AddressFactory api(net_type);
     std::vector<DescriptorScriptData> script_list;
     std::vector<DescriptorKeyData> multisig_key_list;
     DescriptorScriptData data = api.ParseOutputDescriptor(
-        request.descriptor, net_type, request.bip32_derivation_path,
-        &script_list, &multisig_key_list);
+        request.descriptor, request.bip32_derivation_path, &script_list,
+        &multisig_key_list);
 
     // レスポンスとなるモデルへ変換
     response = AddressStructApi::ConvertDescriptorData(

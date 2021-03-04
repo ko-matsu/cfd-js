@@ -169,9 +169,7 @@ DecodeRawTransactionResponseStruct TransactionStructApi::DecodeRawTransaction(
 
     NetType net_type = AddressStructApi::ConvertNetType(request.network);
 
-    // TransactionController作成
-    TransactionController txc(hex_string);
-    const Transaction& tx = txc.GetTransaction();
+    TransactionContext tx(hex_string);
 
     response.txid = tx.GetTxid().GetHex();
     // Decode時はTxidと同様にリバースで出力
@@ -636,7 +634,7 @@ VerifySignatureResponseStruct TransactionStructApi::VerifySignature(
     ByteData signature = ByteData(request.txin.signature);
     Script script;
 
-    TransactionController tx(request.tx);
+    TransactionContext tx(request.tx);
     bool is_success = false;
     WitnessVersion version;
     Amount value = Amount::CreateBySatoshiAmount(amount);
@@ -644,13 +642,15 @@ VerifySignatureResponseStruct TransactionStructApi::VerifySignature(
       version = (hashtype_str == "p2wpkh") ? WitnessVersion::kVersion0
                                            : WitnessVersion::kVersionNone;
       is_success = tx.VerifyInputSignature(
-          signature, pubkey, txid, vout, sighashtype, value, version);
+          signature, pubkey, OutPoint(txid, vout), sighashtype, value,
+          version);
     } else if ((hashtype_str == "p2sh") || (hashtype_str == "p2wsh")) {
       script = Script(request.txin.redeem_script);
       version = (hashtype_str == "p2wsh") ? WitnessVersion::kVersion0
                                           : WitnessVersion::kVersionNone;
       is_success = tx.VerifyInputSignature(
-          signature, pubkey, txid, vout, script, sighashtype, value, version);
+          signature, pubkey, OutPoint(txid, vout), script, sighashtype, value,
+          version);
     } else {
       warn(
           CFD_LOG_SOURCE,

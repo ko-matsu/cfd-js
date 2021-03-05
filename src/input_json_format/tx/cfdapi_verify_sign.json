@@ -1,5 +1,6 @@
 {
   "namespace": ["cfd","js","api","json"],
+  "functionName": "VerifySign",
   "comment": "Verify transaction sign. (only pubkey hash or multisig script.)",
   "request": {
     ":class": "VerifySignRequest",
@@ -31,7 +32,9 @@
       "descriptor": "",
       "descriptor:require": "optional",
       "descriptor:comment": "output descriptor.",
-      "descriptor:hint": "descriptor is required, you needs to consider fee amount",
+      "lockingScript": "",
+      "lockingScript:require": "optional",
+      "lockingScript:comment": "txout locking script. Set either the address or the locking script or the descriptor.",
       "confidentialValueCommitment": "",
       "confidentialValueCommitment:require": "optional",
       "confidentialValueCommitment:comment": "elements value commitment."

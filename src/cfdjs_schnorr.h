@@ -57,14 +57,6 @@ class SchnorrApi {
       const TweakPubkeyDataStruct& request);
 
   /**
-   * @brief Get the combined schnorr private key.
-   * @param[in] request the request
-   * @return OutputPrivkeyDataStruct
-   */
-  static OutputPrivkeyDataStruct TweakAddSchnorrPrivkey(
-      const TweakPrivkeyDataStruct& request);
-
-  /**
    * @brief Check a tweaked SchnorrPubkey from a base pubkey.
    *
    * @param[in] request the request

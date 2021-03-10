@@ -4001,13 +4001,6 @@ export function TweakAddPrivkey(jsonObject: TweakPrivkeyData): OutputPrivkeyData
 export function TweakAddPubkey(jsonObject: TweakPubkeyData): PubkeyData;
 
 /**
- * TweakAdd schnorr privkey.
- * @param {TweakPrivkeyData} jsonObject - request data.
- * @return {OutputPrivkeyData} - response data.
- */
-export function TweakAddSchnorrPrivkey(jsonObject: TweakPrivkeyData): OutputPrivkeyData;
-
-/**
  * TweakAdd schnorr pubkey from privkey.
  * @param {TweakPrivkeyData} jsonObject - request data.
  * @return {SchnorrKeyPairData} - response data.

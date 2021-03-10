@@ -725,15 +725,6 @@ Value TweakAddSchnorrPubkeyFromPubkey(const CallbackInfo &information) {
 }
 
 /**
- * @brief The JSON parameter function of TweakAddSchnorrPrivkey.
- * @param[in] information   node add on api callback information
- * @return json string
- */
-Value TweakAddSchnorrPrivkey(const CallbackInfo &information) {
-  return NodeAddonJsonApi(information, JsonMappingApi::TweakAddSchnorrPrivkey);
-}
-
-/**
  * @brief The JSON parameter function of CheckTweakedSchnorrPubkey.
  * @param[in] information   node add on api callback information
  * @return json string
@@ -1316,9 +1307,6 @@ void InitializeJsonApi(Env env, Object *exports) {
   exports->Set(
       String::New(env, "TweakAddSchnorrPubkeyFromPubkey"),
       Function::New(env, TweakAddSchnorrPubkeyFromPubkey));
-  exports->Set(
-      String::New(env, "TweakAddSchnorrPrivkey"),
-      Function::New(env, TweakAddSchnorrPrivkey));
   exports->Set(
       String::New(env, "CheckTweakedSchnorrPubkey"),
       Function::New(env, CheckTweakedSchnorrPubkey));

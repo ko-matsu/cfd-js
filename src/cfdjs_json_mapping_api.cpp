@@ -961,14 +961,6 @@ std::string JsonMappingApi::TweakAddSchnorrPubkeyFromPubkey(
       request_message, SchnorrApi::TweakAddSchnorrPubkeyFromPubkey);
 }
 
-std::string JsonMappingApi::TweakAddSchnorrPrivkey(
-    const std::string &request_message) {
-  return ExecuteJsonApi<
-      TweakPrivkeyData, OutputPrivkeyData, TweakPrivkeyDataStruct,
-      OutputPrivkeyDataStruct>(
-      request_message, SchnorrApi::TweakAddSchnorrPrivkey);
-}
-
 std::string JsonMappingApi::CheckTweakedSchnorrPubkey(
     const std::string &request_message) {
   return ExecuteJsonApi<
@@ -1444,8 +1436,6 @@ void JsonMappingApi::LoadFunctions(
     request_map->emplace(
         "TweakAddSchnorrPubkeyFromPubkey",
         JsonMappingApi::TweakAddSchnorrPubkeyFromPubkey);
-    request_map->emplace(
-        "TweakAddSchnorrPrivkey", JsonMappingApi::TweakAddSchnorrPrivkey);
     request_map->emplace(
         "CheckTweakedSchnorrPubkey",
         JsonMappingApi::CheckTweakedSchnorrPubkey);

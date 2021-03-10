@@ -1018,7 +1018,7 @@ describe('wallet test', () => {
       pubkey: schnorrPubkey12.pubkey,
       tweak: schnorrPubkey22.pubkey,
     });
-    const tweakedPrivkey2 = cfdjs.TweakAddSchnorrPrivkey({
+    const tweakedPrivkey2 = cfdjs.TweakAddSchnorrPubkeyFromPrivkey({
       privkey: cfdjs.GetPrivkeyFromWif({wif: privkey12}).hex,
       tweak: schnorrPubkey22.pubkey,
     });

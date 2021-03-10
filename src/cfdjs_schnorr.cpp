@@ -119,32 +119,6 @@ SchnorrPubkeyDataStruct SchnorrApi::TweakAddSchnorrPubkeyFromPubkey(
   return result;
 }
 
-OutputPrivkeyDataStruct SchnorrApi::TweakAddSchnorrPrivkey(
-    const TweakPrivkeyDataStruct& request) {
-  auto call_func =
-      [](const TweakPrivkeyDataStruct& request) -> OutputPrivkeyDataStruct {
-    OutputPrivkeyDataStruct response;
-
-    Privkey privkey;
-    if (Privkey::HasWif(request.privkey)) {
-      privkey = Privkey::FromWif(request.privkey);
-    } else {
-      privkey = Privkey(request.privkey);
-    }
-    bool parity = false;
-    SchnorrPubkey::FromPrivkey(privkey, &parity);
-    if (parity) privkey = privkey.CreateNegate();
-    privkey = privkey.CreateTweakAdd(ByteData256(request.tweak));
-    response.privkey = privkey.GetHex();
-    return response;
-  };
-
-  OutputPrivkeyDataStruct result;
-  result = ExecuteStructApi<TweakPrivkeyDataStruct, OutputPrivkeyDataStruct>(
-      request, call_func, std::string(__FUNCTION__));
-  return result;
-}
-
 VerifySignatureResponseStruct SchnorrApi::CheckTweakedSchnorrPubkey(
     const CheckTweakedSchnorrPubkeyRequestStruct& request) {
   auto call_func = [](const CheckTweakedSchnorrPubkeyRequestStruct& request)

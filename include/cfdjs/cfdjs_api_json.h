@@ -545,14 +545,6 @@ class CFD_JS_API_EXPORT JsonMappingApi {
       const std::string &request_message);
 
   /**
-   * @brief Get the tweak add schnorr private key based on the JSON parameter information.
-   * @param[in] request_message the request json message
-   * @return json string
-   */
-  static std::string TweakAddSchnorrPrivkey(
-      const std::string &request_message);
-
-  /**
    * @brief Check a tweaked SchnorrPubkey from a base pubkey.
    *
    * @param[in] request_message the request json message

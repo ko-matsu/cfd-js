@@ -14328,7 +14328,6 @@ TweakPubkeyDataStruct TweakPubkeyData::ConvertToStruct() const {  // NOLINT
   return result;
 }
 
-
 // ------------------------------------------------------------------------
 // SchnorrKeyPairData
 // ------------------------------------------------------------------------

@@ -42,8 +42,9 @@ const createTestFunc = (helper) => {
       break;
     case 'Schnorr.TweakAddPrivkey':
       request = req;
-      resp = cfd.TweakAddSchnorrPrivkey(request);
+      resp = cfd.TweakAddSchnorrPubkeyFromPrivkey(request);
       resp = await helper.getResponse(resp);
+      resp = {privkey: resp.privkey};
       break;
     default:
       throw new Error('unknown name: ' + testName);

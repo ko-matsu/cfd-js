@@ -40,6 +40,11 @@ const createTestFunc = (helper) => {
       resp = cfd.ComputeSigPointSchnorrPubkey(request);
       resp = await helper.getResponse(resp);
       break;
+    case 'Schnorr.TweakAddPrivkey':
+      request = req;
+      resp = cfd.TweakAddSchnorrPrivkey(request);
+      resp = await helper.getResponse(resp);
+      break;
     default:
       throw new Error('unknown name: ' + testName);
     }

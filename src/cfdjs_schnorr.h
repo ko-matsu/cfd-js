@@ -7,7 +7,7 @@
 #ifndef CFD_JS_SRC_CFDJS_SCHNORR_H_
 #define CFD_JS_SRC_CFDJS_SCHNORR_H_
 
-#include "cfd_js_api_json_autogen.h"  // NOLINT
+#include "cfdjs/cfdjs_struct.h"
 
 namespace cfd {
 namespace js {
@@ -55,6 +55,14 @@ class SchnorrApi {
    */
   static SchnorrPubkeyDataStruct TweakAddSchnorrPubkeyFromPubkey(
       const TweakPubkeyDataStruct& request);
+
+  /**
+   * @brief Get the combined schnorr private key.
+   * @param[in] request the request
+   * @return OutputPrivkeyDataStruct
+   */
+  static OutputPrivkeyDataStruct TweakAddSchnorrPrivkey(
+      const TweakPrivkeyDataStruct& request);
 
   /**
    * @brief Check a tweaked SchnorrPubkey from a base pubkey.

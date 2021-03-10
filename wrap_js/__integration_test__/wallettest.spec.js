@@ -722,4 +722,643 @@ describe('wallet test', () => {
     expect(wData12.spent).toBe(true);
     expect(wData22.spent).toBe(true);
   });
+
+  it('send taproot-schnorr test', async () => {
+    jest.setTimeout(90000);
+
+    await btcWallet2.generate(100, '', false); // for using coinbase utxo
+    await btcWallet1.forceUpdateUtxoData();
+    await btcWallet2.forceUpdateUtxoData(); // after nowait generate
+
+    btcWallet1.estimateSmartFee(6, 'ECONOMICAL');
+
+    const addr1 = await btcWallet1.getNewAddress('p2wpkh', 'taproot1');
+    const pubkey1 = addr1.pubkey;
+    const privkey1 = await btcWallet1.dumpPrivkey(addr1.address);
+    if (!privkey1) {
+      throw Error('Failed to collect privkey1.');
+    }
+    const taprootAddr1 = cfdjs.CreateAddress({
+      hashType: 'taproot',
+      network,
+      keyData: {hex: pubkey1, type: 'pubkey'},
+    });
+
+    // send to taproot address
+    const amount1 = 100000;
+    const tx1 = cfdjs.CreateRawTransaction({
+      txouts: [{
+        address: taprootAddr1.address,
+        amount: amount1,
+      }],
+    });
+    const fundTx1 = await btcWallet2.fundRawTransaction(tx1.hex);
+    const signTx1 = await btcWallet2.signRawTransactionWithWallet(
+        fundTx1.hex, false);
+    const txid1 = await btcWallet2.sendRawTransaction(signTx1.hex);
+    const decTx1 = await btcWallet2.decodeRawTransaction(signTx1.hex);
+    console.log('[script] sendRawTransaction1 -> ',
+        {txid: txid1, hex: signTx1.hex});
+    expect(decTx1.vout[0].value).toBe(amount1);
+
+    await btcWallet2.generate(1); // for using coinbase utxo
+    await btcWallet1.forceUpdateUtxoData();
+
+    const utxo1 = {
+      txid: txid1,
+      vout: 0,
+      address: taprootAddr1.address,
+      amount: amount1,
+      lockingScript: taprootAddr1.lockingScript,
+      descriptor: 'raw(' + taprootAddr1.lockingScript + ')',
+      scriptSigTemplate: '',
+    };
+
+    // send from taproot address
+    const addr2 = await btcWallet2.getNewAddress('p2wpkh', 'taproot2');
+    const pubkey2 = addr2.pubkey;
+    const privkey2 = await btcWallet2.dumpPrivkey(addr2.address);
+    if (!privkey2) {
+      throw Error('Failed to collect privkey2.');
+    }
+    const taprootAddr2 = cfdjs.CreateAddress({
+      hashType: 'taproot',
+      network,
+      keyData: {hex: pubkey2, type: 'pubkey'},
+    });
+
+    const changeAddr1 = await btcWallet1.getNewAddress(
+        'p2wpkh', 'label-c1', -1, true);
+    const wallet1Utxos = await btcWallet1.listUnspent();
+    const tx2 = cfdjs.CreateRawTransaction({
+      txins: [utxo1],
+      txouts: [{
+        address: taprootAddr2.address,
+        amount: amount1,
+      }],
+    });
+    const fundTx2 = cfdjs.FundRawTransaction({
+      tx: tx2.hex,
+      utxos: wallet1Utxos,
+      selectUtxos: [utxo1],
+      network,
+      targetAmount: 0,
+      reserveAddress: changeAddr1.address,
+      feeInfo: {
+        feeRate: 2.0,
+        longTermFeeRate: 2.0,
+        knapsackMinChange: 0,
+      },
+    });
+    let decTx2 = cfdjs.DecodeRawTransaction({hex: fundTx2.hex});
+    const outpoints = [];
+    const selectedUtxos2 = [utxo1];
+    for (const index in decTx2.vin) {
+      if (index > 0) {
+        const txid = decTx2.vin[index].txid;
+        const vout = decTx2.vin[index].vout;
+        outpoints.push({txid, vout});
+        for (const utxo of wallet1Utxos) {
+          if (utxo.txid == txid && utxo.vout == vout) {
+            selectedUtxos2.push(utxo);
+            break;
+          }
+        }
+      }
+    }
+    const randomBytes = cfdjs.CreateKeyPair({wif: false}).privkey;
+    const signTx2 = await btcWallet1.signRawTransactionWithWallet(
+        fundTx2.hex, true, outpoints);
+    const taprootSignTx2 = cfdjs.SignWithPrivkey({
+      tx: signTx2.hex,
+      utxos: selectedUtxos2,
+      txin: {
+        txid: utxo1.txid,
+        vout: utxo1.vout,
+        privkey: privkey1,
+        hashType: 'taproot',
+        sighashType: 'all',
+        amount: utxo1.amount,
+        auxRand: randomBytes,
+      },
+    });
+    const verify2 = cfdjs.VerifySign({
+      tx: taprootSignTx2.hex,
+      txins: selectedUtxos2,
+    });
+    console.log({
+      tx: taprootSignTx2.hex,
+      txins: selectedUtxos2,
+    });
+    console.log(verify2);
+    const txid2 = await btcWallet1.sendRawTransaction(taprootSignTx2.hex);
+    decTx2 = await btcWallet1.decodeRawTransaction(taprootSignTx2.hex);
+    console.log('[script] sendRawTransaction2 -> ',
+        {txid: txid2, hex: taprootSignTx2.hex});
+    expect(decTx2.vout[0].value).toBe(amount1);
+
+    await btcWallet1.generate(1); // for using coinbase utxo
+    await btcWallet2.forceUpdateUtxoData();
+
+    const utxo2 = {
+      txid: txid2,
+      vout: 0,
+      address: taprootAddr2.address,
+      descriptor: 'raw(' + taprootAddr2.lockingScript + ')',
+      amount: amount1,
+      scriptSigTemplate: '',
+    };
+
+    // send from taproot address (direct sign and use annexTag)
+    const addr3 = await btcWallet1.getNewAddress('p2wpkh', 'label-t1');
+    const changeAddr2 = await btcWallet2.getNewAddress(
+        'p2wpkh', 'label-c2', -1, true);
+    const wallet2Utxos = await btcWallet2.listUnspent();
+    const tx3 = cfdjs.CreateRawTransaction({
+      txins: [utxo2],
+      txouts: [{
+        address: addr3.address,
+        amount: amount1,
+      }],
+    });
+    const fundTx3 = cfdjs.FundRawTransaction({
+      tx: tx3.hex,
+      utxos: wallet2Utxos,
+      selectUtxos: [utxo2],
+      network,
+      targetAmount: 0,
+      reserveAddress: changeAddr2.address,
+      feeInfo: {
+        feeRate: 2.0,
+        longTermFeeRate: 2.0,
+        knapsackMinChange: 0,
+      },
+    });
+    console.log('fund:', fundTx3);
+    let decTx3 = cfdjs.DecodeRawTransaction({hex: fundTx3.hex});
+    const outpoints3 = [];
+    const selectedUtxos3 = [utxo2];
+    for (const index in decTx3.vin) {
+      if (index > 0) {
+        const txid = decTx3.vin[index].txid;
+        const vout = decTx3.vin[index].vout;
+        outpoints3.push({txid, vout});
+        for (const utxo of wallet2Utxos) {
+          if (utxo.txid == txid && utxo.vout == vout) {
+            selectedUtxos3.push(utxo);
+            break;
+          }
+        }
+      }
+    }
+    const randomBytes3 = cfdjs.CreateKeyPair({wif: false}).privkey;
+    const signTx3 = await btcWallet2.signRawTransactionWithWallet(
+        fundTx3.hex, true, outpoints3);
+    // annex is bad-witness-nonstandard
+    // const randomBytes2 = cfdjs.CreateKeyPair({wif: false}).privkey;
+    // const annex = '50' + cfdjs.CreateScript({items: [randomBytes2]}).hex;
+    const annex = '';
+    const schnorrPubkey2 = cfdjs.GetSchnorrPubkeyFromPubkey({
+      pubkey: pubkey2,
+    }).pubkey;
+    const sighash3 = cfdjs.GetSighash({
+      tx: fundTx3.hex,
+      utxos: selectedUtxos3,
+      txin: {
+        txid: utxo2.txid,
+        vout: utxo2.vout,
+        keyData: {
+          hex: schnorrPubkey2,
+          type: 'pubkey',
+        },
+        hashType: 'taproot',
+        sighashType: 'default',
+        annex,
+      },
+    });
+    const privkeyHex2 = cfdjs.GetPrivkeyFromWif({wif: privkey2}).hex;
+    const schnorrSign3 = cfdjs.SchnorrSign({
+      privkey: privkeyHex2,
+      message: sighash3.sighash,
+      isHashed: true,
+      isNonce: false,
+      nonceOrAux: randomBytes3,
+    });
+    const taprootSignTx3 = cfdjs.AddTaprootSchnorrSign({
+      tx: signTx3.hex,
+      txin: {
+        txid: utxo2.txid,
+        vout: utxo2.vout,
+        hashType: 'taproot',
+        signature: schnorrSign3.hex,
+        sighashType: 'default',
+        annex,
+      },
+    });
+    const txid3 = await btcWallet2.sendRawTransaction(taprootSignTx3.hex);
+    decTx3 = await btcWallet2.decodeRawTransaction(taprootSignTx3.hex);
+    console.log('[script] sendRawTransaction3 -> ',
+        {txid: txid3, hex: taprootSignTx3.hex});
+    expect(decTx3.vout[0].value).toBe(amount1);
+
+    await btcWallet2.generate(1); // for using coinbase utxo
+    await btcWallet1.forceUpdateUtxoData();
+  });
+
+  it('send taproot-tapscript test1', async () => {
+    jest.setTimeout(90000);
+
+    await btcWallet2.generate(100, '', false); // for using coinbase utxo
+    await btcWallet1.forceUpdateUtxoData();
+    await btcWallet2.forceUpdateUtxoData(); // after nowait generate
+
+    btcWallet1.estimateSmartFee(6, 'ECONOMICAL');
+
+    const addr11 = await btcWallet1.getNewAddress('p2wpkh', 'taproot211');
+    const pubkey11 = addr11.pubkey;
+    const privkey11 = await btcWallet1.dumpPrivkey(addr11.address);
+    if (!privkey11) {
+      throw Error('Failed to collect privkey11.');
+    }
+    const schnorrPubkey11 = cfdjs.GetSchnorrPubkeyFromPubkey({
+      pubkey: pubkey11,
+    });
+
+    const addr12 = await btcWallet1.getNewAddress('p2wpkh', 'taproot212');
+    const pubkey12 = addr12.pubkey;
+    const privkey12 = await btcWallet1.dumpPrivkey(addr12.address);
+    if (!privkey12) {
+      throw Error('Failed to collect privkey12.');
+    }
+    const schnorrPubkey12 = cfdjs.GetSchnorrPubkeyFromPubkey({
+      pubkey: pubkey12,
+    });
+
+    const addr21 = await btcWallet2.getNewAddress('p2wpkh', 'taproot221');
+    const pubkey21 = addr21.pubkey;
+    const privkey21 = await btcWallet2.dumpPrivkey(addr21.address);
+    if (!privkey21) {
+      throw Error('Failed to collect privkey21.');
+    }
+    const schnorrPubkey21 = cfdjs.GetSchnorrPubkeyFromPubkey({
+      pubkey: pubkey21,
+    });
+
+    const addr22 = await btcWallet2.getNewAddress('p2wpkh', 'taproot222');
+    const pubkey22 = addr22.pubkey;
+    const privkey22 = await btcWallet2.dumpPrivkey(addr22.address);
+    if (!privkey22) {
+      throw Error('Failed to collect privkey22.');
+    }
+    const schnorrPubkey22 = cfdjs.GetSchnorrPubkeyFromPubkey({
+      pubkey: pubkey22,
+    });
+
+    const tweakedPubkey2 = cfdjs.TweakAddSchnorrPubkeyFromPubkey({
+      pubkey: schnorrPubkey12.pubkey,
+      tweak: schnorrPubkey22.pubkey,
+    });
+    const tweakedPrivkey2 = cfdjs.TweakAddSchnorrPrivkey({
+      privkey: cfdjs.GetPrivkeyFromWif({wif: privkey12}).hex,
+      tweak: schnorrPubkey22.pubkey,
+    });
+    const pk = cfdjs.GetSchnorrPubkeyFromPrivkey({
+      privkey: tweakedPrivkey2.privkey,
+    });
+    expect(tweakedPubkey2.pubkey).toBe(pk.pubkey);
+
+    const unlockPubkey11Script = cfdjs.CreateScript({
+      items: [schnorrPubkey11.pubkey, 'OP_CHECKSIG'],
+    }).hex;
+    const unlockPubkey21Script = cfdjs.CreateScript({
+      items: [schnorrPubkey21.pubkey, 'OP_CHECKSIG'],
+    }).hex;
+
+    const opTrueSubTree = cfdjs.GetTapScriptTreeInfo({
+      tree: [{
+        tapscript: unlockPubkey11Script,
+      }, {
+        tapscript: '51',
+      }],
+    });
+
+    const unlockPubkey11Tree = cfdjs.GetTapScriptTreeInfo({
+      internalPubkey: tweakedPubkey2.pubkey,
+      tree: [{
+        tapscript: unlockPubkey21Script,
+      }, {
+        tapscript: '51',
+      }, {
+        tapscript: unlockPubkey11Script,
+      }],
+    });
+
+    const opTrueTree = cfdjs.GetTapScriptTreeInfo({
+      internalPubkey: tweakedPubkey2.pubkey,
+      tree: [{
+        tapscript: unlockPubkey21Script,
+      }, {
+        tapscript: unlockPubkey11Script,
+      }, {
+        tapscript: '51',
+      }],
+    });
+
+    const unlockPubkey21Tree = cfdjs.GetTapScriptTreeInfo({
+      internalPubkey: tweakedPubkey2.pubkey,
+      internalPrivkey: tweakedPrivkey2.privkey,
+      tree: [{
+        branchHash: opTrueSubTree.topBranchHash,
+      }, {
+        tapscript: unlockPubkey21Script,
+      }],
+    });
+
+    // send to taproot address
+    const amount1 = 100000;
+    const amount2 = 150000;
+    const amount3 = 200000;
+    const tx1 = cfdjs.CreateRawTransaction({
+      txouts: [{
+        address: unlockPubkey11Tree.address,
+        amount: amount1,
+      }, {
+        address: opTrueTree.address,
+        amount: amount2,
+      }, {
+        address: unlockPubkey21Tree.address,
+        amount: amount3,
+      }],
+    });
+    const fundTx1 = await btcWallet2.fundRawTransaction(tx1.hex);
+    const signTx1 = await btcWallet2.signRawTransactionWithWallet(
+        fundTx1.hex, false);
+    const txid1 = await btcWallet2.sendRawTransaction(signTx1.hex);
+    const decTx1 = await btcWallet2.decodeRawTransaction(signTx1.hex);
+    console.log('[script] sendRawTransaction1 -> ',
+        {txid: txid1, hex: signTx1.hex});
+    expect(decTx1.vout[0].value).toBe(amount1);
+
+    await btcWallet2.generate(1); // for using coinbase utxo
+    await btcWallet1.forceUpdateUtxoData();
+
+    const scriptSigTemplateBase = cfdjs.CreateScript({
+      items: [
+        '0000000000000000000000000000000000000000000000000000000000000000' + 
+        '000000000000000000000000000000000000000000000000000000000000000000',
+        unlockPubkey11Tree.tapscript,
+        unlockPubkey11Tree.controlBlock,
+      ],
+    }).hex;
+    const utxo1 = {
+      txid: txid1,
+      vout: 0,
+      address: unlockPubkey11Tree.address,
+      amount: amount1,
+      lockingScript: unlockPubkey11Tree.lockingScript,
+      descriptor: 'raw(' + unlockPubkey11Tree.lockingScript + ')',
+      redeemScript: unlockPubkey11Tree.tapscript,
+      scriptSigTemplate: scriptSigTemplateBase,  // for estimate-fee
+    };
+    const utxo2 = {
+      txid: txid1,
+      vout: 1,
+      address: opTrueTree.address,
+      amount: amount2,
+      lockingScript: opTrueTree.lockingScript,
+      descriptor: 'raw(' + opTrueTree.lockingScript + ')',
+      redeemScript: opTrueTree.tapscript,
+      scriptSigTemplate: scriptSigTemplateBase,
+    };
+    const utxo3 = {
+      txid: txid1,
+      vout: 2,
+      address: unlockPubkey21Tree.address,
+      amount: amount3,
+      lockingScript: unlockPubkey21Tree.lockingScript,
+      descriptor: 'raw(' + unlockPubkey21Tree.lockingScript + ')',
+      redeemScript: unlockPubkey21Tree.tapscript,
+      scriptSigTemplate: scriptSigTemplateBase,
+    };
+
+    const addr231 = await btcWallet1.getNewAddress('p2wpkh', 'label-t21');
+    const addr232 = await btcWallet1.getNewAddress('p2wpkh', 'label-t21');
+    const addr233 = await btcWallet1.getNewAddress('p2wpkh', 'label-t21');
+
+    const changeAddr1 = await btcWallet2.getNewAddress(
+        'p2wpkh', 'label-c1', -1, true);
+    const changeAddr2 = await btcWallet2.getNewAddress(
+        'p2wpkh', 'label-c2', -1, true);
+    const changeAddr3 = await btcWallet2.getNewAddress(
+        'p2wpkh', 'label-c3', -1, true);
+
+    // send tapscript OP_CHECKSIG
+    const wallet2Utxos2 = await btcWallet2.listUnspent();
+    const tx2 = cfdjs.CreateRawTransaction({
+      txins: [utxo1],
+      txouts: [{
+        address: addr231.address,
+        amount: utxo1.amount,
+      }],
+    });
+    const fundTx2 = cfdjs.FundRawTransaction({
+      tx: tx2.hex,
+      utxos: wallet2Utxos2,
+      selectUtxos: [utxo1],
+      network,
+      targetAmount: 0,
+      reserveAddress: changeAddr1.address,
+      feeInfo: {
+        feeRate: 2.0,
+        longTermFeeRate: 2.0,
+        knapsackMinChange: 0,
+      },
+    });
+    let decTx2 = cfdjs.DecodeRawTransaction({hex: fundTx2.hex});
+    const outpoints2 = [];
+    const selectedUtxos2 = [utxo1];
+    for (const index in decTx2.vin) {
+      if (index > 0) {
+        const txid = decTx2.vin[index].txid;
+        const vout = decTx2.vin[index].vout;
+        outpoints2.push({txid, vout});
+        for (const utxo of wallet2Utxos2) {
+          if (utxo.txid == txid && utxo.vout == vout) {
+            selectedUtxos2.push(utxo);
+            break;
+          }
+        }
+      }
+    }
+    const randomBytes2 = cfdjs.CreateKeyPair({wif: false}).privkey;
+    const signTx2 = await btcWallet2.signRawTransactionWithWallet(
+        fundTx2.hex, true, outpoints2);
+    const sighash2 = cfdjs.GetSighash({
+      tx: fundTx2.hex,
+      utxos: selectedUtxos2,
+      txin: {
+        txid: utxo1.txid,
+        vout: utxo1.vout,
+        keyData: {
+          hex: utxo1.redeemScript,
+          type: 'redeem_script',
+        },
+        hashType: 'taproot',
+        sighashType: 'default',
+      },
+    });
+    const privkeyHex11 = cfdjs.GetPrivkeyFromWif({wif: privkey11}).hex;
+    const schnorrSign2 = cfdjs.SchnorrSign({
+      privkey: privkeyHex11,
+      message: sighash2.sighash,
+      isHashed: true,
+      isNonce: false,
+      nonceOrAux: randomBytes2,
+    });
+    const taprootSignTx2 = cfdjs.AddTapscriptSign({
+      tx: signTx2.hex,
+      txin: {
+        txid: utxo1.txid,
+        vout: utxo1.vout,
+        signParams: [{
+          hex: schnorrSign2.hex,
+          type: 'sign',
+          sighashType: 'default',
+        }],
+        sighashType: 'default',
+        tapscript: utxo1.redeemScript,
+        controlBlock: unlockPubkey11Tree.controlBlock,
+      },
+    });
+    const txid2 = await btcWallet1.sendRawTransaction(taprootSignTx2.hex);
+    decTx2 = await btcWallet1.decodeRawTransaction(taprootSignTx2.hex);
+    console.log('[script] sendRawTransaction2 -> ',
+        {txid: txid2, hex: taprootSignTx2.hex});
+    expect(decTx2.vout[0].value).toBe(amount1);
+
+    await btcWallet1.generate(1); // for using coinbase utxo
+    await btcWallet2.forceUpdateUtxoData();
+
+    // send tapscript OP_TRUE
+    const wallet2Utxos3 = await btcWallet2.listUnspent();
+    const tx3 = cfdjs.CreateRawTransaction({
+      txins: [utxo2],
+      txouts: [{
+        address: addr232.address,
+        amount: utxo2.amount,
+      }],
+    });
+    const fundTx3 = cfdjs.FundRawTransaction({
+      tx: tx3.hex,
+      utxos: wallet2Utxos3,
+      selectUtxos: [utxo2],
+      network,
+      targetAmount: 0,
+      reserveAddress: changeAddr2.address,
+      feeInfo: {
+        feeRate: 2.0,
+        longTermFeeRate: 2.0,
+        knapsackMinChange: 0,
+      },
+    });
+    let decTx3 = cfdjs.DecodeRawTransaction({hex: fundTx3.hex});
+    const outpoints3 = [];
+    const selectedUtxos3 = [utxo2];
+    for (const index in decTx3.vin) {
+      if (index > 0) {
+        const txid = decTx3.vin[index].txid;
+        const vout = decTx3.vin[index].vout;
+        outpoints3.push({txid, vout});
+        for (const utxo of wallet2Utxos3) {
+          if (utxo.txid == txid && utxo.vout == vout) {
+            selectedUtxos3.push(utxo);
+            break;
+          }
+        }
+      }
+    }
+    const signTx3 = await btcWallet2.signRawTransactionWithWallet(
+        fundTx3.hex, true, outpoints3);
+    const taprootSignTx3 = cfdjs.AddTapscriptSign({
+      tx: signTx3.hex,
+      txin: {
+        txid: utxo2.txid,
+        vout: utxo2.vout,
+        sighashType: 'default',
+        tapscript: utxo2.redeemScript,
+        controlBlock: opTrueTree.controlBlock,
+      },
+    });
+    const txid3 = await btcWallet1.sendRawTransaction(taprootSignTx3.hex);
+    decTx3 = await btcWallet1.decodeRawTransaction(taprootSignTx3.hex);
+    console.log('[script] sendRawTransaction3 -> ',
+        {txid: txid3, hex: taprootSignTx3.hex});
+    expect(decTx3.vout[0].value).toBe(amount2);
+
+    await btcWallet2.generate(1); // for using coinbase utxo
+    await btcWallet1.forceUpdateUtxoData();
+
+    // send tapscript with schnorr sign
+    const wallet2Utxos4 = await btcWallet2.listUnspent();
+    const tx4 = cfdjs.CreateRawTransaction({
+      txins: [utxo3],
+      txouts: [{
+        address: addr233.address,
+        amount: utxo3.amount,
+      }],
+    });
+    const fundTx4 = cfdjs.FundRawTransaction({
+      tx: tx4.hex,
+      utxos: wallet2Utxos4,
+      selectUtxos: [utxo3],
+      network,
+      targetAmount: 0,
+      reserveAddress: changeAddr3.address,
+      feeInfo: {
+        feeRate: 2.0,
+        longTermFeeRate: 2.0,
+        knapsackMinChange: 0,
+      },
+    });
+    let decTx4 = cfdjs.DecodeRawTransaction({hex: fundTx4.hex});
+    const outpoints4 = [];
+    const selectedUtxos4 = [utxo3];
+    for (const index in decTx4.vin) {
+      if (index > 0) {
+        const txid = decTx4.vin[index].txid;
+        const vout = decTx4.vin[index].vout;
+        outpoints4.push({txid, vout});
+        for (const utxo of wallet2Utxos4) {
+          if (utxo.txid == txid && utxo.vout == vout) {
+            selectedUtxos4.push(utxo);
+            break;
+          }
+        }
+      }
+    }
+    const randomBytes5 = cfdjs.CreateKeyPair({wif: false}).privkey;
+    const signTx4 = await btcWallet2.signRawTransactionWithWallet(
+        fundTx4.hex, true, outpoints4);
+    const taprootSignTx4 = cfdjs.SignWithPrivkey({
+      tx: signTx4.hex,
+      txin: {
+        txid: utxo3.txid,
+        vout: utxo3.vout,
+        privkey: unlockPubkey21Tree.tweakedPrivkey,
+        amount: utxo3.amount,
+        hashType: 'taproot',
+        sighashType: 'default',
+        auxRand: randomBytes5,
+      },
+      utxos: selectedUtxos4,
+    });
+    const txid4 = await btcWallet1.sendRawTransaction(taprootSignTx4.hex);
+    decTx4 = await btcWallet1.decodeRawTransaction(taprootSignTx4.hex);
+    console.log('[script] sendRawTransaction4 -> ',
+        {txid: txid4, hex: taprootSignTx4.hex});
+    expect(decTx4.vout[0].value).toBe(amount3);
+
+    await btcWallet2.generate(1); // for using coinbase utxo
+    await btcWallet1.forceUpdateUtxoData();
+  });
 });

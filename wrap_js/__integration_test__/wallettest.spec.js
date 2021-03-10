@@ -1104,7 +1104,7 @@ describe('wallet test', () => {
 
     const scriptSigTemplateBase = cfdjs.CreateScript({
       items: [
-        '0000000000000000000000000000000000000000000000000000000000000000' + 
+        '0000000000000000000000000000000000000000000000000000000000000000' +
         '000000000000000000000000000000000000000000000000000000000000000000',
         unlockPubkey11Tree.tapscript,
         unlockPubkey11Tree.controlBlock,
@@ -1118,7 +1118,7 @@ describe('wallet test', () => {
       lockingScript: unlockPubkey11Tree.lockingScript,
       descriptor: 'raw(' + unlockPubkey11Tree.lockingScript + ')',
       redeemScript: unlockPubkey11Tree.tapscript,
-      scriptSigTemplate: scriptSigTemplateBase,  // for estimate-fee
+      scriptSigTemplate: scriptSigTemplateBase, // for estimate-fee
     };
     const utxo2 = {
       txid: txid1,

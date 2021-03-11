@@ -382,6 +382,20 @@ struct SignDataStruct {
 };
 
 // ------------------------------------------------------------------------
+// TapScriptSignDataStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief TapScriptSignDataStruct struct
+ */
+struct TapScriptSignDataStruct {
+  std::string hex = "";                  //!< hex  // NOLINT
+  std::string type = "binary";           //!< type  // NOLINT
+  std::string sighash_type = "default";  //!< sighash_type  // NOLINT
+  bool sighash_anyone_can_pay = false;   //!< sighash_anyone_can_pay  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
 // TxInRequestStruct
 // ------------------------------------------------------------------------
 /**
@@ -461,11 +475,12 @@ struct AddPubkeyHashSignTxInRequestStruct {
  * @brief AddScriptHashSignTxInRequestStruct struct
  */
 struct AddScriptHashSignTxInRequestStruct {
-  std::string txid = "";                   //!< txid  // NOLINT
-  uint32_t vout = 0;                       //!< vout  // NOLINT
-  std::vector<SignDataStruct> sign_param;  //!< sign_param  // NOLINT
-  std::string redeem_script = "";          //!< redeem_script  // NOLINT
-  std::string hash_type = "";              //!< hash_type  // NOLINT
+  std::string txid = "";                    //!< txid  // NOLINT
+  uint32_t vout = 0;                        //!< vout  // NOLINT
+  std::vector<SignDataStruct> sign_params;  //!< sign_params  // NOLINT
+  std::vector<SignDataStruct> sign_param;   //!< sign_param  // NOLINT
+  std::string redeem_script = "";           //!< redeem_script  // NOLINT
+  std::string hash_type = "";               //!< hash_type  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -476,11 +491,44 @@ struct AddScriptHashSignTxInRequestStruct {
  * @brief AddSignTxInRequestStruct struct
  */
 struct AddSignTxInRequestStruct {
-  std::string txid = "";                   //!< txid  // NOLINT
-  uint32_t vout = 0;                       //!< vout  // NOLINT
-  bool is_witness = true;                  //!< is_witness  // NOLINT
-  std::vector<SignDataStruct> sign_param;  //!< sign_param  // NOLINT
-  bool clear_stack = true;                 //!< clear_stack  // NOLINT
+  std::string txid = "";                    //!< txid  // NOLINT
+  uint32_t vout = 0;                        //!< vout  // NOLINT
+  bool is_witness = true;                   //!< is_witness  // NOLINT
+  std::vector<SignDataStruct> sign_params;  //!< sign_params  // NOLINT
+  std::vector<SignDataStruct> sign_param;   //!< sign_param  // NOLINT
+  bool clear_stack = true;                  //!< clear_stack  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// AddTaprootSchnorrSignTxInRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief AddTaprootSchnorrSignTxInRequestStruct struct
+ */
+struct AddTaprootSchnorrSignTxInRequestStruct {
+  std::string txid = "";                 //!< txid  // NOLINT
+  uint32_t vout = 0;                     //!< vout  // NOLINT
+  std::string signature = "";            //!< signature  // NOLINT
+  std::string sighash_type = "default";  //!< sighash_type  // NOLINT
+  bool sighash_anyone_can_pay = false;   //!< sighash_anyone_can_pay  // NOLINT
+  std::string annex = "";                //!< annex  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// AddTapscriptSignTxInRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief AddTapscriptSignTxInRequestStruct struct
+ */
+struct AddTapscriptSignTxInRequestStruct {
+  std::string txid = "";                             //!< txid  // NOLINT
+  uint32_t vout = 0;                                 //!< vout  // NOLINT
+  std::vector<TapScriptSignDataStruct> sign_params;  //!< sign_params  // NOLINT
+  std::string tapscript = "";                        //!< tapscript  // NOLINT
+  std::string control_block = "";                    //!< control_block  // NOLINT
+  std::string annex = "";                            //!< annex  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -866,6 +914,24 @@ struct FundUtxoJsonDataStruct {
 };
 
 // ------------------------------------------------------------------------
+// GetSighashTxInStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief GetSighashTxInStruct struct
+ */
+struct GetSighashTxInStruct {
+  std::string txid = "";                 //!< txid  // NOLINT
+  uint32_t vout = 0;                     //!< vout  // NOLINT
+  HashKeyDataStruct key_data;            //!< key_data  // NOLINT
+  std::string hash_type = "taproot";     //!< hash_type  // NOLINT
+  std::string sighash_type = "all";      //!< sighash_type  // NOLINT
+  bool sighash_anyone_can_pay = false;   //!< sighash_anyone_can_pay  // NOLINT
+  std::string annex = "";                //!< annex  // NOLINT
+  int64_t code_separator_position = -1;  //!< code_separator_position  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
 // IssuanceDataRequestStruct
 // ------------------------------------------------------------------------
 /**
@@ -1070,6 +1136,20 @@ struct SignWithPrivkeyTxInRequestStruct {
   int64_t amount = 0;                              //!< amount  // NOLINT
   std::string confidential_value_commitment = "";  //!< confidential_value_commitment  // NOLINT
   bool is_grind_r = true;                          //!< is_grind_r  // NOLINT
+  std::string aux_rand = "";                       //!< aux_rand  // NOLINT
+  std::string annex = "";                          //!< annex  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// TapBranchDataStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief TapBranchDataStruct struct
+ */
+struct TapBranchDataStruct {
+  std::string branch_hash = "";  //!< branch_hash  // NOLINT
+  std::string tapscript = "";    //!< tapscript  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -1188,6 +1268,28 @@ struct UtxoJsonDataStruct {
 };
 
 // ------------------------------------------------------------------------
+// UtxoObjectStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief UtxoObjectStruct struct
+ */
+struct UtxoObjectStruct {
+  std::string txid = "";                           //!< txid  // NOLINT
+  uint32_t vout = 0;                               //!< vout  // NOLINT
+  std::string address = "";                        //!< address  // NOLINT
+  std::string locking_script = "";                 //!< locking_script  // NOLINT
+  std::string descriptor = "";                     //!< descriptor  // NOLINT
+  int64_t amount = 0;                              //!< amount  // NOLINT
+  std::string confidential_value_commitment = "";  //!< confidential_value_commitment  // NOLINT
+  std::string asset = "";                          //!< asset  // NOLINT
+  std::string confidential_asset_commitment = "";  //!< confidential_asset_commitment  // NOLINT
+  std::string blind_factor = "";                   //!< blind_factor  // NOLINT
+  std::string asset_blind_factor = "";             //!< asset_blind_factor  // NOLINT
+  std::string script_sig_template = "";            //!< script_sig_template  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
 // VerifySignatureTxInRequestStruct
 // ------------------------------------------------------------------------
 /**
@@ -1204,6 +1306,8 @@ struct VerifySignatureTxInRequestStruct {
   bool sighash_anyone_can_pay = false;             //!< sighash_anyone_can_pay  // NOLINT
   int64_t amount = 0;                              //!< amount  // NOLINT
   std::string confidential_value_commitment = "";  //!< confidential_value_commitment  // NOLINT
+  std::string annex = "";                          //!< annex  // NOLINT
+  int64_t code_separator_position = -1;            //!< code_separator_position  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -1219,6 +1323,7 @@ struct VerifySignTxInUtxoDataStruct {
   std::string address = "";                        //!< address  // NOLINT
   int64_t amount = 0;                              //!< amount  // NOLINT
   std::string descriptor = "";                     //!< descriptor  // NOLINT
+  std::string locking_script = "";                 //!< locking_script  // NOLINT
   std::string confidential_value_commitment = "";  //!< confidential_value_commitment  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
@@ -1347,6 +1452,32 @@ struct AddSignRequestStruct {
   bool is_elements = false;       //!< is_elements  // NOLINT
   std::string tx = "";            //!< tx  // NOLINT
   AddSignTxInRequestStruct txin;  //!< txin  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// AddTaprootSchnorrSignRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief AddTaprootSchnorrSignRequestStruct struct
+ */
+struct AddTaprootSchnorrSignRequestStruct {
+  bool is_elements = false;                     //!< is_elements  // NOLINT
+  std::string tx = "";                          //!< tx  // NOLINT
+  AddTaprootSchnorrSignTxInRequestStruct txin;  //!< txin  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// AddTapscriptSignRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief AddTapscriptSignRequestStruct struct
+ */
+struct AddTapscriptSignRequestStruct {
+  bool is_elements = false;                //!< is_elements  // NOLINT
+  std::string tx = "";                     //!< tx  // NOLINT
+  AddTapscriptSignTxInRequestStruct txin;  //!< txin  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -2703,6 +2834,82 @@ struct SchnorrPubkeyDataStruct {
 };
 
 // ------------------------------------------------------------------------
+// GetSighashRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief GetSighashRequestStruct struct
+ */
+struct GetSighashRequestStruct {
+  std::string tx = "";                  //!< tx  // NOLINT
+  bool is_elements = false;             //!< is_elements  // NOLINT
+  GetSighashTxInStruct txin;            //!< txin  // NOLINT
+  std::vector<UtxoObjectStruct> utxos;  //!< utxos  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// CreateSignatureHashResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief CreateSignatureHashResponseStruct struct
+ */
+struct CreateSignatureHashResponseStruct {
+  std::string sighash = "";  //!< sighash  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// TapScriptInfoByControlRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief TapScriptInfoByControlRequestStruct struct
+ */
+struct TapScriptInfoByControlRequestStruct {
+  std::string network = "mainnet";    //!< network  // NOLINT
+  bool is_elements = false;           //!< is_elements  // NOLINT
+  std::string tapscript = "";         //!< tapscript  // NOLINT
+  std::string control_block = "";     //!< control_block  // NOLINT
+  std::string internal_privkey = "";  //!< internal_privkey  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// TapScriptInfoStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief TapScriptInfoStruct struct
+ */
+struct TapScriptInfoStruct {
+  std::string tap_leaf_hash = "";    //!< tap_leaf_hash  // NOLINT
+  std::string top_branch_hash = "";  //!< top_branch_hash  // NOLINT
+  std::string tweaked_pubkey = "";   //!< tweaked_pubkey  // NOLINT
+  std::string tweaked_privkey = "";  //!< tweaked_privkey  // NOLINT
+  std::string address = "";          //!< address  // NOLINT
+  std::string locking_script = "";   //!< locking_script  // NOLINT
+  std::string control_block = "";    //!< control_block  // NOLINT
+  std::string tapscript = "";        //!< tapscript  // NOLINT
+  std::vector<std::string> nodes;    //!< nodes  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// GetTapScriptTreeInfoRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief GetTapScriptTreeInfoRequestStruct struct
+ */
+struct GetTapScriptTreeInfoRequestStruct {
+  std::string network = "mainnet";        //!< network  // NOLINT
+  bool is_elements = false;               //!< is_elements  // NOLINT
+  std::string internal_pubkey = "";       //!< internal_pubkey  // NOLINT
+  std::string internal_privkey = "";      //!< internal_privkey  // NOLINT
+  std::vector<TapBranchDataStruct> tree;  //!< tree  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
 // GetWitnessStackNumRequestStruct
 // ------------------------------------------------------------------------
 /**
@@ -3012,18 +3219,6 @@ struct CreateSignatureHashRequestStruct {
 };
 
 // ------------------------------------------------------------------------
-// CreateSignatureHashResponseStruct
-// ------------------------------------------------------------------------
-/**
- * @brief CreateSignatureHashResponseStruct struct
- */
-struct CreateSignatureHashResponseStruct {
-  std::string sighash = "";  //!< sighash  // NOLINT
-  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
-  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
-};
-
-// ------------------------------------------------------------------------
 // CreateElementsSignatureHashRequestStruct
 // ------------------------------------------------------------------------
 /**
@@ -3085,6 +3280,7 @@ struct SignWithPrivkeyRequestStruct {
   bool is_elements = false;               //!< is_elements  // NOLINT
   std::string tx = "";                    //!< tx  // NOLINT
   SignWithPrivkeyTxInRequestStruct txin;  //!< txin  // NOLINT
+  std::vector<UtxoObjectStruct> utxos;    //!< utxos  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -3229,6 +3425,7 @@ struct VerifySignatureRequestStruct {
   std::string tx = "";                    //!< tx  // NOLINT
   bool is_elements = false;               //!< is_elements  // NOLINT
   VerifySignatureTxInRequestStruct txin;  //!< txin  // NOLINT
+  std::vector<UtxoObjectStruct> utxos;    //!< utxos  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 

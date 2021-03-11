@@ -25,8 +25,33 @@
       "isWitness": true,
       "isWitness:require": "optional",
       "isWitness:comment": "use witness stack flag.",
-      "signParam:require": "require",
-      "signParam:comment": "sign parameter list.",
+      "signParams:require": "require",
+      "signParams:comment": "sign parameter list.",
+      "signParams": [
+        {
+          ":class": "SignData",
+          ":class:comment": "The sign data.",
+          "hex": "",
+          "hex:require": "require",
+          "hex:comment": "If the type is auto or op_code, character string input is enabled. Others are hex byte array only.",
+          "type": "auto",
+          "type:require": "optional",
+          "type:comment": "parameter type.",
+          "type:hint": "auto, binary, sign, pubkey, redeem_script, op_code",
+          "derEncode": false,
+          "derEncode:require": "optional",
+          "derEncode:comment": "der encode option flag. Valid when type is auto or sign.",
+          "sighashType": "all",
+          "sighashType:require": "optional",
+          "sighashType:comment": "signature hash type.",
+          "sighashType:hint": "all, none, single",
+          "sighashAnyoneCanPay": false,
+          "sighashAnyoneCanPay:require": "optional",
+          "sighashAnyoneCanPay:comment": "sighashType anyone can pay flag."
+        }
+      ],
+      "signParam:require": "optional",
+      "signParam:comment": "sign parameter list.(deprecated)",
       "signParam": [
         {
           ":class": "SignData",

@@ -25,8 +25,8 @@ namespace cfd {
 namespace js {
 namespace api {
 
-using cfd::api::DescriptorKeyData;
-using cfd::api::DescriptorScriptData;
+using cfd::DescriptorKeyData;
+using cfd::DescriptorScriptData;
 
 /**
  * @brief ElementsAddress関連の関数群クラス
@@ -107,6 +107,22 @@ class CFD_JS_API_EXPORT ElementsAddressStructApi {
    */
   static OutputDescriptorResponseStruct AppendDescriptorChecksum(
       const AppendDescriptorChecksumRequestStruct& request);
+
+  /**
+   * @brief Get tapscript tree information by control block.
+   * @param[in] request     tapscript data
+   * @return tapscript information
+   */
+  static TapScriptInfoStruct GetTapScriptTreeInfo(
+      const GetTapScriptTreeInfoRequestStruct& request);
+
+  /**
+   * @brief Get tapscript tree information by control block.
+   * @param[in] request     tapscript data
+   * @return tapscript information
+   */
+  static TapScriptInfoStruct GetTapScriptTreeInfoByControlBlock(
+      const TapScriptInfoByControlRequestStruct& request);
 
   /**
    * @brief elementsネットワーク文字列を、ElementsNetType構造体へ変換する.

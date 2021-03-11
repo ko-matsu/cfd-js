@@ -1628,6 +1628,68 @@ SignDataStruct SignData::ConvertToStruct() const {  // NOLINT
 }
 
 // ------------------------------------------------------------------------
+// TapScriptSignData
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<TapScriptSignData>
+  TapScriptSignData::json_mapper;
+std::vector<std::string> TapScriptSignData::item_list;
+
+void TapScriptSignData::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<TapScriptSignData> func_table;  // NOLINT
+
+  func_table = {
+    TapScriptSignData::GetHexString,
+    TapScriptSignData::SetHexString,
+    TapScriptSignData::GetHexFieldType,
+  };
+  json_mapper.emplace("hex", func_table);
+  item_list.push_back("hex");
+  func_table = {
+    TapScriptSignData::GetTypeString,
+    TapScriptSignData::SetTypeString,
+    TapScriptSignData::GetTypeFieldType,
+  };
+  json_mapper.emplace("type", func_table);
+  item_list.push_back("type");
+  func_table = {
+    TapScriptSignData::GetSighashTypeString,
+    TapScriptSignData::SetSighashTypeString,
+    TapScriptSignData::GetSighashTypeFieldType,
+  };
+  json_mapper.emplace("sighashType", func_table);
+  item_list.push_back("sighashType");
+  func_table = {
+    TapScriptSignData::GetSighashAnyoneCanPayString,
+    TapScriptSignData::SetSighashAnyoneCanPayString,
+    TapScriptSignData::GetSighashAnyoneCanPayFieldType,
+  };
+  json_mapper.emplace("sighashAnyoneCanPay", func_table);
+  item_list.push_back("sighashAnyoneCanPay");
+}
+
+void TapScriptSignData::ConvertFromStruct(
+    const TapScriptSignDataStruct& data) {
+  hex_ = data.hex;
+  type_ = data.type;
+  sighash_type_ = data.sighash_type;
+  sighash_anyone_can_pay_ = data.sighash_anyone_can_pay;
+  ignore_items = data.ignore_items;
+}
+
+TapScriptSignDataStruct TapScriptSignData::ConvertToStruct() const {  // NOLINT
+  TapScriptSignDataStruct result;
+  result.hex = hex_;
+  result.type = type_;
+  result.sighash_type = sighash_type_;
+  result.sighash_anyone_can_pay = sighash_anyone_can_pay_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
 // TxInRequest
 // ------------------------------------------------------------------------
 cfd::core::JsonTableMap<TxInRequest>
@@ -1992,6 +2054,13 @@ void AddScriptHashSignTxInRequest::CollectFieldName() {
   json_mapper.emplace("vout", func_table);
   item_list.push_back("vout");
   func_table = {
+    AddScriptHashSignTxInRequest::GetSignParamsString,
+    AddScriptHashSignTxInRequest::SetSignParamsString,
+    AddScriptHashSignTxInRequest::GetSignParamsFieldType,
+  };
+  json_mapper.emplace("signParams", func_table);
+  item_list.push_back("signParams");
+  func_table = {
     AddScriptHashSignTxInRequest::GetSignParamString,
     AddScriptHashSignTxInRequest::SetSignParamString,
     AddScriptHashSignTxInRequest::GetSignParamFieldType,
@@ -2018,6 +2087,7 @@ void AddScriptHashSignTxInRequest::ConvertFromStruct(
     const AddScriptHashSignTxInRequestStruct& data) {
   txid_ = data.txid;
   vout_ = data.vout;
+  sign_params_.ConvertFromStruct(data.sign_params);
   sign_param_.ConvertFromStruct(data.sign_param);
   redeem_script_ = data.redeem_script;
   hash_type_ = data.hash_type;
@@ -2028,6 +2098,7 @@ AddScriptHashSignTxInRequestStruct AddScriptHashSignTxInRequest::ConvertToStruct
   AddScriptHashSignTxInRequestStruct result;
   result.txid = txid_;
   result.vout = vout_;
+  result.sign_params = sign_params_.ConvertToStruct();
   result.sign_param = sign_param_.ConvertToStruct();
   result.redeem_script = redeem_script_;
   result.hash_type = hash_type_;
@@ -2070,6 +2141,13 @@ void AddSignTxInRequest::CollectFieldName() {
   json_mapper.emplace("isWitness", func_table);
   item_list.push_back("isWitness");
   func_table = {
+    AddSignTxInRequest::GetSignParamsString,
+    AddSignTxInRequest::SetSignParamsString,
+    AddSignTxInRequest::GetSignParamsFieldType,
+  };
+  json_mapper.emplace("signParams", func_table);
+  item_list.push_back("signParams");
+  func_table = {
     AddSignTxInRequest::GetSignParamString,
     AddSignTxInRequest::SetSignParamString,
     AddSignTxInRequest::GetSignParamFieldType,
@@ -2090,6 +2168,7 @@ void AddSignTxInRequest::ConvertFromStruct(
   txid_ = data.txid;
   vout_ = data.vout;
   is_witness_ = data.is_witness;
+  sign_params_.ConvertFromStruct(data.sign_params);
   sign_param_.ConvertFromStruct(data.sign_param);
   clear_stack_ = data.clear_stack;
   ignore_items = data.ignore_items;
@@ -2100,8 +2179,169 @@ AddSignTxInRequestStruct AddSignTxInRequest::ConvertToStruct() const {  // NOLIN
   result.txid = txid_;
   result.vout = vout_;
   result.is_witness = is_witness_;
+  result.sign_params = sign_params_.ConvertToStruct();
   result.sign_param = sign_param_.ConvertToStruct();
   result.clear_stack = clear_stack_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// AddTaprootSchnorrSignTxInRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<AddTaprootSchnorrSignTxInRequest>
+  AddTaprootSchnorrSignTxInRequest::json_mapper;
+std::vector<std::string> AddTaprootSchnorrSignTxInRequest::item_list;
+
+void AddTaprootSchnorrSignTxInRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<AddTaprootSchnorrSignTxInRequest> func_table;  // NOLINT
+
+  func_table = {
+    AddTaprootSchnorrSignTxInRequest::GetTxidString,
+    AddTaprootSchnorrSignTxInRequest::SetTxidString,
+    AddTaprootSchnorrSignTxInRequest::GetTxidFieldType,
+  };
+  json_mapper.emplace("txid", func_table);
+  item_list.push_back("txid");
+  func_table = {
+    AddTaprootSchnorrSignTxInRequest::GetVoutString,
+    AddTaprootSchnorrSignTxInRequest::SetVoutString,
+    AddTaprootSchnorrSignTxInRequest::GetVoutFieldType,
+  };
+  json_mapper.emplace("vout", func_table);
+  item_list.push_back("vout");
+  func_table = {
+    AddTaprootSchnorrSignTxInRequest::GetSignatureString,
+    AddTaprootSchnorrSignTxInRequest::SetSignatureString,
+    AddTaprootSchnorrSignTxInRequest::GetSignatureFieldType,
+  };
+  json_mapper.emplace("signature", func_table);
+  item_list.push_back("signature");
+  func_table = {
+    AddTaprootSchnorrSignTxInRequest::GetSighashTypeString,
+    AddTaprootSchnorrSignTxInRequest::SetSighashTypeString,
+    AddTaprootSchnorrSignTxInRequest::GetSighashTypeFieldType,
+  };
+  json_mapper.emplace("sighashType", func_table);
+  item_list.push_back("sighashType");
+  func_table = {
+    AddTaprootSchnorrSignTxInRequest::GetSighashAnyoneCanPayString,
+    AddTaprootSchnorrSignTxInRequest::SetSighashAnyoneCanPayString,
+    AddTaprootSchnorrSignTxInRequest::GetSighashAnyoneCanPayFieldType,
+  };
+  json_mapper.emplace("sighashAnyoneCanPay", func_table);
+  item_list.push_back("sighashAnyoneCanPay");
+  func_table = {
+    AddTaprootSchnorrSignTxInRequest::GetAnnexString,
+    AddTaprootSchnorrSignTxInRequest::SetAnnexString,
+    AddTaprootSchnorrSignTxInRequest::GetAnnexFieldType,
+  };
+  json_mapper.emplace("annex", func_table);
+  item_list.push_back("annex");
+}
+
+void AddTaprootSchnorrSignTxInRequest::ConvertFromStruct(
+    const AddTaprootSchnorrSignTxInRequestStruct& data) {
+  txid_ = data.txid;
+  vout_ = data.vout;
+  signature_ = data.signature;
+  sighash_type_ = data.sighash_type;
+  sighash_anyone_can_pay_ = data.sighash_anyone_can_pay;
+  annex_ = data.annex;
+  ignore_items = data.ignore_items;
+}
+
+AddTaprootSchnorrSignTxInRequestStruct AddTaprootSchnorrSignTxInRequest::ConvertToStruct() const {  // NOLINT
+  AddTaprootSchnorrSignTxInRequestStruct result;
+  result.txid = txid_;
+  result.vout = vout_;
+  result.signature = signature_;
+  result.sighash_type = sighash_type_;
+  result.sighash_anyone_can_pay = sighash_anyone_can_pay_;
+  result.annex = annex_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// AddTapscriptSignTxInRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<AddTapscriptSignTxInRequest>
+  AddTapscriptSignTxInRequest::json_mapper;
+std::vector<std::string> AddTapscriptSignTxInRequest::item_list;
+
+void AddTapscriptSignTxInRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<AddTapscriptSignTxInRequest> func_table;  // NOLINT
+
+  func_table = {
+    AddTapscriptSignTxInRequest::GetTxidString,
+    AddTapscriptSignTxInRequest::SetTxidString,
+    AddTapscriptSignTxInRequest::GetTxidFieldType,
+  };
+  json_mapper.emplace("txid", func_table);
+  item_list.push_back("txid");
+  func_table = {
+    AddTapscriptSignTxInRequest::GetVoutString,
+    AddTapscriptSignTxInRequest::SetVoutString,
+    AddTapscriptSignTxInRequest::GetVoutFieldType,
+  };
+  json_mapper.emplace("vout", func_table);
+  item_list.push_back("vout");
+  func_table = {
+    AddTapscriptSignTxInRequest::GetSignParamsString,
+    AddTapscriptSignTxInRequest::SetSignParamsString,
+    AddTapscriptSignTxInRequest::GetSignParamsFieldType,
+  };
+  json_mapper.emplace("signParams", func_table);
+  item_list.push_back("signParams");
+  func_table = {
+    AddTapscriptSignTxInRequest::GetTapscriptString,
+    AddTapscriptSignTxInRequest::SetTapscriptString,
+    AddTapscriptSignTxInRequest::GetTapscriptFieldType,
+  };
+  json_mapper.emplace("tapscript", func_table);
+  item_list.push_back("tapscript");
+  func_table = {
+    AddTapscriptSignTxInRequest::GetControlBlockString,
+    AddTapscriptSignTxInRequest::SetControlBlockString,
+    AddTapscriptSignTxInRequest::GetControlBlockFieldType,
+  };
+  json_mapper.emplace("controlBlock", func_table);
+  item_list.push_back("controlBlock");
+  func_table = {
+    AddTapscriptSignTxInRequest::GetAnnexString,
+    AddTapscriptSignTxInRequest::SetAnnexString,
+    AddTapscriptSignTxInRequest::GetAnnexFieldType,
+  };
+  json_mapper.emplace("annex", func_table);
+  item_list.push_back("annex");
+}
+
+void AddTapscriptSignTxInRequest::ConvertFromStruct(
+    const AddTapscriptSignTxInRequestStruct& data) {
+  txid_ = data.txid;
+  vout_ = data.vout;
+  sign_params_.ConvertFromStruct(data.sign_params);
+  tapscript_ = data.tapscript;
+  control_block_ = data.control_block;
+  annex_ = data.annex;
+  ignore_items = data.ignore_items;
+}
+
+AddTapscriptSignTxInRequestStruct AddTapscriptSignTxInRequest::ConvertToStruct() const {  // NOLINT
+  AddTapscriptSignTxInRequestStruct result;
+  result.txid = txid_;
+  result.vout = vout_;
+  result.sign_params = sign_params_.ConvertToStruct();
+  result.tapscript = tapscript_;
+  result.control_block = control_block_;
+  result.annex = annex_;
   result.ignore_items = ignore_items;
   return result;
 }
@@ -4064,6 +4304,104 @@ FundUtxoJsonDataStruct FundUtxoJsonData::ConvertToStruct() const {  // NOLINT
 }
 
 // ------------------------------------------------------------------------
+// GetSighashTxIn
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<GetSighashTxIn>
+  GetSighashTxIn::json_mapper;
+std::vector<std::string> GetSighashTxIn::item_list;
+
+void GetSighashTxIn::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<GetSighashTxIn> func_table;  // NOLINT
+
+  func_table = {
+    GetSighashTxIn::GetTxidString,
+    GetSighashTxIn::SetTxidString,
+    GetSighashTxIn::GetTxidFieldType,
+  };
+  json_mapper.emplace("txid", func_table);
+  item_list.push_back("txid");
+  func_table = {
+    GetSighashTxIn::GetVoutString,
+    GetSighashTxIn::SetVoutString,
+    GetSighashTxIn::GetVoutFieldType,
+  };
+  json_mapper.emplace("vout", func_table);
+  item_list.push_back("vout");
+  func_table = {
+    GetSighashTxIn::GetKeyDataString,
+    GetSighashTxIn::SetKeyDataString,
+    GetSighashTxIn::GetKeyDataFieldType,
+  };
+  json_mapper.emplace("keyData", func_table);
+  item_list.push_back("keyData");
+  func_table = {
+    GetSighashTxIn::GetHashTypeString,
+    GetSighashTxIn::SetHashTypeString,
+    GetSighashTxIn::GetHashTypeFieldType,
+  };
+  json_mapper.emplace("hashType", func_table);
+  item_list.push_back("hashType");
+  func_table = {
+    GetSighashTxIn::GetSighashTypeString,
+    GetSighashTxIn::SetSighashTypeString,
+    GetSighashTxIn::GetSighashTypeFieldType,
+  };
+  json_mapper.emplace("sighashType", func_table);
+  item_list.push_back("sighashType");
+  func_table = {
+    GetSighashTxIn::GetSighashAnyoneCanPayString,
+    GetSighashTxIn::SetSighashAnyoneCanPayString,
+    GetSighashTxIn::GetSighashAnyoneCanPayFieldType,
+  };
+  json_mapper.emplace("sighashAnyoneCanPay", func_table);
+  item_list.push_back("sighashAnyoneCanPay");
+  func_table = {
+    GetSighashTxIn::GetAnnexString,
+    GetSighashTxIn::SetAnnexString,
+    GetSighashTxIn::GetAnnexFieldType,
+  };
+  json_mapper.emplace("annex", func_table);
+  item_list.push_back("annex");
+  func_table = {
+    GetSighashTxIn::GetCodeSeparatorPositionString,
+    GetSighashTxIn::SetCodeSeparatorPositionString,
+    GetSighashTxIn::GetCodeSeparatorPositionFieldType,
+  };
+  json_mapper.emplace("codeSeparatorPosition", func_table);
+  item_list.push_back("codeSeparatorPosition");
+}
+
+void GetSighashTxIn::ConvertFromStruct(
+    const GetSighashTxInStruct& data) {
+  txid_ = data.txid;
+  vout_ = data.vout;
+  key_data_.ConvertFromStruct(data.key_data);
+  hash_type_ = data.hash_type;
+  sighash_type_ = data.sighash_type;
+  sighash_anyone_can_pay_ = data.sighash_anyone_can_pay;
+  annex_ = data.annex;
+  code_separator_position_ = data.code_separator_position;
+  ignore_items = data.ignore_items;
+}
+
+GetSighashTxInStruct GetSighashTxIn::ConvertToStruct() const {  // NOLINT
+  GetSighashTxInStruct result;
+  result.txid = txid_;
+  result.vout = vout_;
+  result.key_data = key_data_.ConvertToStruct();
+  result.hash_type = hash_type_;
+  result.sighash_type = sighash_type_;
+  result.sighash_anyone_can_pay = sighash_anyone_can_pay_;
+  result.annex = annex_;
+  result.code_separator_position = code_separator_position_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
 // IssuanceDataRequest
 // ------------------------------------------------------------------------
 cfd::core::JsonTableMap<IssuanceDataRequest>
@@ -5006,6 +5344,20 @@ void SignWithPrivkeyTxInRequest::CollectFieldName() {
   };
   json_mapper.emplace("isGrindR", func_table);
   item_list.push_back("isGrindR");
+  func_table = {
+    SignWithPrivkeyTxInRequest::GetAuxRandString,
+    SignWithPrivkeyTxInRequest::SetAuxRandString,
+    SignWithPrivkeyTxInRequest::GetAuxRandFieldType,
+  };
+  json_mapper.emplace("auxRand", func_table);
+  item_list.push_back("auxRand");
+  func_table = {
+    SignWithPrivkeyTxInRequest::GetAnnexString,
+    SignWithPrivkeyTxInRequest::SetAnnexString,
+    SignWithPrivkeyTxInRequest::GetAnnexFieldType,
+  };
+  json_mapper.emplace("annex", func_table);
+  item_list.push_back("annex");
 }
 
 void SignWithPrivkeyTxInRequest::ConvertFromStruct(
@@ -5020,6 +5372,8 @@ void SignWithPrivkeyTxInRequest::ConvertFromStruct(
   amount_ = data.amount;
   confidential_value_commitment_ = data.confidential_value_commitment;
   is_grind_r_ = data.is_grind_r;
+  aux_rand_ = data.aux_rand;
+  annex_ = data.annex;
   ignore_items = data.ignore_items;
 }
 
@@ -5035,6 +5389,52 @@ SignWithPrivkeyTxInRequestStruct SignWithPrivkeyTxInRequest::ConvertToStruct() c
   result.amount = amount_;
   result.confidential_value_commitment = confidential_value_commitment_;
   result.is_grind_r = is_grind_r_;
+  result.aux_rand = aux_rand_;
+  result.annex = annex_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// TapBranchData
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<TapBranchData>
+  TapBranchData::json_mapper;
+std::vector<std::string> TapBranchData::item_list;
+
+void TapBranchData::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<TapBranchData> func_table;  // NOLINT
+
+  func_table = {
+    TapBranchData::GetBranchHashString,
+    TapBranchData::SetBranchHashString,
+    TapBranchData::GetBranchHashFieldType,
+  };
+  json_mapper.emplace("branchHash", func_table);
+  item_list.push_back("branchHash");
+  func_table = {
+    TapBranchData::GetTapscriptString,
+    TapBranchData::SetTapscriptString,
+    TapBranchData::GetTapscriptFieldType,
+  };
+  json_mapper.emplace("tapscript", func_table);
+  item_list.push_back("tapscript");
+}
+
+void TapBranchData::ConvertFromStruct(
+    const TapBranchDataStruct& data) {
+  branch_hash_ = data.branch_hash;
+  tapscript_ = data.tapscript;
+  ignore_items = data.ignore_items;
+}
+
+TapBranchDataStruct TapBranchData::ConvertToStruct() const {  // NOLINT
+  TapBranchDataStruct result;
+  result.branch_hash = branch_hash_;
+  result.tapscript = tapscript_;
   result.ignore_items = ignore_items;
   return result;
 }
@@ -5554,6 +5954,140 @@ UtxoJsonDataStruct UtxoJsonData::ConvertToStruct() const {  // NOLINT
 }
 
 // ------------------------------------------------------------------------
+// UtxoObject
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<UtxoObject>
+  UtxoObject::json_mapper;
+std::vector<std::string> UtxoObject::item_list;
+
+void UtxoObject::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<UtxoObject> func_table;  // NOLINT
+
+  func_table = {
+    UtxoObject::GetTxidString,
+    UtxoObject::SetTxidString,
+    UtxoObject::GetTxidFieldType,
+  };
+  json_mapper.emplace("txid", func_table);
+  item_list.push_back("txid");
+  func_table = {
+    UtxoObject::GetVoutString,
+    UtxoObject::SetVoutString,
+    UtxoObject::GetVoutFieldType,
+  };
+  json_mapper.emplace("vout", func_table);
+  item_list.push_back("vout");
+  func_table = {
+    UtxoObject::GetAddressString,
+    UtxoObject::SetAddressString,
+    UtxoObject::GetAddressFieldType,
+  };
+  json_mapper.emplace("address", func_table);
+  item_list.push_back("address");
+  func_table = {
+    UtxoObject::GetLockingScriptString,
+    UtxoObject::SetLockingScriptString,
+    UtxoObject::GetLockingScriptFieldType,
+  };
+  json_mapper.emplace("lockingScript", func_table);
+  item_list.push_back("lockingScript");
+  func_table = {
+    UtxoObject::GetDescriptorString,
+    UtxoObject::SetDescriptorString,
+    UtxoObject::GetDescriptorFieldType,
+  };
+  json_mapper.emplace("descriptor", func_table);
+  item_list.push_back("descriptor");
+  func_table = {
+    UtxoObject::GetAmountString,
+    UtxoObject::SetAmountString,
+    UtxoObject::GetAmountFieldType,
+  };
+  json_mapper.emplace("amount", func_table);
+  item_list.push_back("amount");
+  func_table = {
+    UtxoObject::GetConfidentialValueCommitmentString,
+    UtxoObject::SetConfidentialValueCommitmentString,
+    UtxoObject::GetConfidentialValueCommitmentFieldType,
+  };
+  json_mapper.emplace("confidentialValueCommitment", func_table);
+  item_list.push_back("confidentialValueCommitment");
+  func_table = {
+    UtxoObject::GetAssetString,
+    UtxoObject::SetAssetString,
+    UtxoObject::GetAssetFieldType,
+  };
+  json_mapper.emplace("asset", func_table);
+  item_list.push_back("asset");
+  func_table = {
+    UtxoObject::GetConfidentialAssetCommitmentString,
+    UtxoObject::SetConfidentialAssetCommitmentString,
+    UtxoObject::GetConfidentialAssetCommitmentFieldType,
+  };
+  json_mapper.emplace("confidentialAssetCommitment", func_table);
+  item_list.push_back("confidentialAssetCommitment");
+  func_table = {
+    UtxoObject::GetBlindFactorString,
+    UtxoObject::SetBlindFactorString,
+    UtxoObject::GetBlindFactorFieldType,
+  };
+  json_mapper.emplace("blindFactor", func_table);
+  item_list.push_back("blindFactor");
+  func_table = {
+    UtxoObject::GetAssetBlindFactorString,
+    UtxoObject::SetAssetBlindFactorString,
+    UtxoObject::GetAssetBlindFactorFieldType,
+  };
+  json_mapper.emplace("assetBlindFactor", func_table);
+  item_list.push_back("assetBlindFactor");
+  func_table = {
+    UtxoObject::GetScriptSigTemplateString,
+    UtxoObject::SetScriptSigTemplateString,
+    UtxoObject::GetScriptSigTemplateFieldType,
+  };
+  json_mapper.emplace("scriptSigTemplate", func_table);
+  item_list.push_back("scriptSigTemplate");
+}
+
+void UtxoObject::ConvertFromStruct(
+    const UtxoObjectStruct& data) {
+  txid_ = data.txid;
+  vout_ = data.vout;
+  address_ = data.address;
+  locking_script_ = data.locking_script;
+  descriptor_ = data.descriptor;
+  amount_ = data.amount;
+  confidential_value_commitment_ = data.confidential_value_commitment;
+  asset_ = data.asset;
+  confidential_asset_commitment_ = data.confidential_asset_commitment;
+  blind_factor_ = data.blind_factor;
+  asset_blind_factor_ = data.asset_blind_factor;
+  script_sig_template_ = data.script_sig_template;
+  ignore_items = data.ignore_items;
+}
+
+UtxoObjectStruct UtxoObject::ConvertToStruct() const {  // NOLINT
+  UtxoObjectStruct result;
+  result.txid = txid_;
+  result.vout = vout_;
+  result.address = address_;
+  result.locking_script = locking_script_;
+  result.descriptor = descriptor_;
+  result.amount = amount_;
+  result.confidential_value_commitment = confidential_value_commitment_;
+  result.asset = asset_;
+  result.confidential_asset_commitment = confidential_asset_commitment_;
+  result.blind_factor = blind_factor_;
+  result.asset_blind_factor = asset_blind_factor_;
+  result.script_sig_template = script_sig_template_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
 // VerifySignatureTxInRequest
 // ------------------------------------------------------------------------
 cfd::core::JsonTableMap<VerifySignatureTxInRequest>
@@ -5636,6 +6170,20 @@ void VerifySignatureTxInRequest::CollectFieldName() {
   };
   json_mapper.emplace("confidentialValueCommitment", func_table);
   item_list.push_back("confidentialValueCommitment");
+  func_table = {
+    VerifySignatureTxInRequest::GetAnnexString,
+    VerifySignatureTxInRequest::SetAnnexString,
+    VerifySignatureTxInRequest::GetAnnexFieldType,
+  };
+  json_mapper.emplace("annex", func_table);
+  item_list.push_back("annex");
+  func_table = {
+    VerifySignatureTxInRequest::GetCodeSeparatorPositionString,
+    VerifySignatureTxInRequest::SetCodeSeparatorPositionString,
+    VerifySignatureTxInRequest::GetCodeSeparatorPositionFieldType,
+  };
+  json_mapper.emplace("codeSeparatorPosition", func_table);
+  item_list.push_back("codeSeparatorPosition");
 }
 
 void VerifySignatureTxInRequest::ConvertFromStruct(
@@ -5650,6 +6198,8 @@ void VerifySignatureTxInRequest::ConvertFromStruct(
   sighash_anyone_can_pay_ = data.sighash_anyone_can_pay;
   amount_ = data.amount;
   confidential_value_commitment_ = data.confidential_value_commitment;
+  annex_ = data.annex;
+  code_separator_position_ = data.code_separator_position;
   ignore_items = data.ignore_items;
 }
 
@@ -5665,6 +6215,8 @@ VerifySignatureTxInRequestStruct VerifySignatureTxInRequest::ConvertToStruct() c
   result.sighash_anyone_can_pay = sighash_anyone_can_pay_;
   result.amount = amount_;
   result.confidential_value_commitment = confidential_value_commitment_;
+  result.annex = annex_;
+  result.code_separator_position = code_separator_position_;
   result.ignore_items = ignore_items;
   return result;
 }
@@ -5718,6 +6270,13 @@ void VerifySignTxInUtxoData::CollectFieldName() {
   json_mapper.emplace("descriptor", func_table);
   item_list.push_back("descriptor");
   func_table = {
+    VerifySignTxInUtxoData::GetLockingScriptString,
+    VerifySignTxInUtxoData::SetLockingScriptString,
+    VerifySignTxInUtxoData::GetLockingScriptFieldType,
+  };
+  json_mapper.emplace("lockingScript", func_table);
+  item_list.push_back("lockingScript");
+  func_table = {
     VerifySignTxInUtxoData::GetConfidentialValueCommitmentString,
     VerifySignTxInUtxoData::SetConfidentialValueCommitmentString,
     VerifySignTxInUtxoData::GetConfidentialValueCommitmentFieldType,
@@ -5733,6 +6292,7 @@ void VerifySignTxInUtxoData::ConvertFromStruct(
   address_ = data.address;
   amount_ = data.amount;
   descriptor_ = data.descriptor;
+  locking_script_ = data.locking_script;
   confidential_value_commitment_ = data.confidential_value_commitment;
   ignore_items = data.ignore_items;
 }
@@ -5744,6 +6304,7 @@ VerifySignTxInUtxoDataStruct VerifySignTxInUtxoData::ConvertToStruct() const {  
   result.address = address_;
   result.amount = amount_;
   result.descriptor = descriptor_;
+  result.locking_script = locking_script_;
   result.confidential_value_commitment = confidential_value_commitment_;
   result.ignore_items = ignore_items;
   return result;
@@ -6218,6 +6779,112 @@ void AddSignRequest::ConvertFromStruct(
 
 AddSignRequestStruct AddSignRequest::ConvertToStruct() const {  // NOLINT
   AddSignRequestStruct result;
+  result.is_elements = is_elements_;
+  result.tx = tx_;
+  result.txin = txin_.ConvertToStruct();
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// AddTaprootSchnorrSignRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<AddTaprootSchnorrSignRequest>
+  AddTaprootSchnorrSignRequest::json_mapper;
+std::vector<std::string> AddTaprootSchnorrSignRequest::item_list;
+
+void AddTaprootSchnorrSignRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<AddTaprootSchnorrSignRequest> func_table;  // NOLINT
+
+  func_table = {
+    AddTaprootSchnorrSignRequest::GetIsElementsString,
+    AddTaprootSchnorrSignRequest::SetIsElementsString,
+    AddTaprootSchnorrSignRequest::GetIsElementsFieldType,
+  };
+  json_mapper.emplace("isElements", func_table);
+  item_list.push_back("isElements");
+  func_table = {
+    AddTaprootSchnorrSignRequest::GetTxString,
+    AddTaprootSchnorrSignRequest::SetTxString,
+    AddTaprootSchnorrSignRequest::GetTxFieldType,
+  };
+  json_mapper.emplace("tx", func_table);
+  item_list.push_back("tx");
+  func_table = {
+    AddTaprootSchnorrSignRequest::GetTxinString,
+    AddTaprootSchnorrSignRequest::SetTxinString,
+    AddTaprootSchnorrSignRequest::GetTxinFieldType,
+  };
+  json_mapper.emplace("txin", func_table);
+  item_list.push_back("txin");
+}
+
+void AddTaprootSchnorrSignRequest::ConvertFromStruct(
+    const AddTaprootSchnorrSignRequestStruct& data) {
+  is_elements_ = data.is_elements;
+  tx_ = data.tx;
+  txin_.ConvertFromStruct(data.txin);
+  ignore_items = data.ignore_items;
+}
+
+AddTaprootSchnorrSignRequestStruct AddTaprootSchnorrSignRequest::ConvertToStruct() const {  // NOLINT
+  AddTaprootSchnorrSignRequestStruct result;
+  result.is_elements = is_elements_;
+  result.tx = tx_;
+  result.txin = txin_.ConvertToStruct();
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// AddTapscriptSignRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<AddTapscriptSignRequest>
+  AddTapscriptSignRequest::json_mapper;
+std::vector<std::string> AddTapscriptSignRequest::item_list;
+
+void AddTapscriptSignRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<AddTapscriptSignRequest> func_table;  // NOLINT
+
+  func_table = {
+    AddTapscriptSignRequest::GetIsElementsString,
+    AddTapscriptSignRequest::SetIsElementsString,
+    AddTapscriptSignRequest::GetIsElementsFieldType,
+  };
+  json_mapper.emplace("isElements", func_table);
+  item_list.push_back("isElements");
+  func_table = {
+    AddTapscriptSignRequest::GetTxString,
+    AddTapscriptSignRequest::SetTxString,
+    AddTapscriptSignRequest::GetTxFieldType,
+  };
+  json_mapper.emplace("tx", func_table);
+  item_list.push_back("tx");
+  func_table = {
+    AddTapscriptSignRequest::GetTxinString,
+    AddTapscriptSignRequest::SetTxinString,
+    AddTapscriptSignRequest::GetTxinFieldType,
+  };
+  json_mapper.emplace("txin", func_table);
+  item_list.push_back("txin");
+}
+
+void AddTapscriptSignRequest::ConvertFromStruct(
+    const AddTapscriptSignRequestStruct& data) {
+  is_elements_ = data.is_elements;
+  tx_ = data.tx;
+  txin_.ConvertFromStruct(data.txin);
+  ignore_items = data.ignore_items;
+}
+
+AddTapscriptSignRequestStruct AddTapscriptSignRequest::ConvertToStruct() const {  // NOLINT
+  AddTapscriptSignRequestStruct result;
   result.is_elements = is_elements_;
   result.tx = tx_;
   result.txin = txin_.ConvertToStruct();
@@ -11695,6 +12362,352 @@ SchnorrPubkeyDataStruct SchnorrPubkeyData::ConvertToStruct() const {  // NOLINT
 }
 
 
+// ------------------------------------------------------------------------
+// GetSighashRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<GetSighashRequest>
+  GetSighashRequest::json_mapper;
+std::vector<std::string> GetSighashRequest::item_list;
+
+void GetSighashRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<GetSighashRequest> func_table;  // NOLINT
+
+  func_table = {
+    GetSighashRequest::GetTxString,
+    GetSighashRequest::SetTxString,
+    GetSighashRequest::GetTxFieldType,
+  };
+  json_mapper.emplace("tx", func_table);
+  item_list.push_back("tx");
+  func_table = {
+    GetSighashRequest::GetIsElementsString,
+    GetSighashRequest::SetIsElementsString,
+    GetSighashRequest::GetIsElementsFieldType,
+  };
+  json_mapper.emplace("isElements", func_table);
+  item_list.push_back("isElements");
+  func_table = {
+    GetSighashRequest::GetTxinString,
+    GetSighashRequest::SetTxinString,
+    GetSighashRequest::GetTxinFieldType,
+  };
+  json_mapper.emplace("txin", func_table);
+  item_list.push_back("txin");
+  func_table = {
+    GetSighashRequest::GetUtxosString,
+    GetSighashRequest::SetUtxosString,
+    GetSighashRequest::GetUtxosFieldType,
+  };
+  json_mapper.emplace("utxos", func_table);
+  item_list.push_back("utxos");
+}
+
+void GetSighashRequest::ConvertFromStruct(
+    const GetSighashRequestStruct& data) {
+  tx_ = data.tx;
+  is_elements_ = data.is_elements;
+  txin_.ConvertFromStruct(data.txin);
+  utxos_.ConvertFromStruct(data.utxos);
+  ignore_items = data.ignore_items;
+}
+
+GetSighashRequestStruct GetSighashRequest::ConvertToStruct() const {  // NOLINT
+  GetSighashRequestStruct result;
+  result.tx = tx_;
+  result.is_elements = is_elements_;
+  result.txin = txin_.ConvertToStruct();
+  result.utxos = utxos_.ConvertToStruct();
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// CreateSignatureHashResponse
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<CreateSignatureHashResponse>
+  CreateSignatureHashResponse::json_mapper;
+std::vector<std::string> CreateSignatureHashResponse::item_list;
+
+void CreateSignatureHashResponse::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<CreateSignatureHashResponse> func_table;  // NOLINT
+
+  func_table = {
+    CreateSignatureHashResponse::GetSighashString,
+    CreateSignatureHashResponse::SetSighashString,
+    CreateSignatureHashResponse::GetSighashFieldType,
+  };
+  json_mapper.emplace("sighash", func_table);
+  item_list.push_back("sighash");
+}
+
+void CreateSignatureHashResponse::ConvertFromStruct(
+    const CreateSignatureHashResponseStruct& data) {
+  sighash_ = data.sighash;
+  ignore_items = data.ignore_items;
+}
+
+CreateSignatureHashResponseStruct CreateSignatureHashResponse::ConvertToStruct() const {  // NOLINT
+  CreateSignatureHashResponseStruct result;
+  result.sighash = sighash_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// TapScriptInfoByControlRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<TapScriptInfoByControlRequest>
+  TapScriptInfoByControlRequest::json_mapper;
+std::vector<std::string> TapScriptInfoByControlRequest::item_list;
+
+void TapScriptInfoByControlRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<TapScriptInfoByControlRequest> func_table;  // NOLINT
+
+  func_table = {
+    TapScriptInfoByControlRequest::GetNetworkString,
+    TapScriptInfoByControlRequest::SetNetworkString,
+    TapScriptInfoByControlRequest::GetNetworkFieldType,
+  };
+  json_mapper.emplace("network", func_table);
+  item_list.push_back("network");
+  func_table = {
+    TapScriptInfoByControlRequest::GetIsElementsString,
+    TapScriptInfoByControlRequest::SetIsElementsString,
+    TapScriptInfoByControlRequest::GetIsElementsFieldType,
+  };
+  json_mapper.emplace("isElements", func_table);
+  item_list.push_back("isElements");
+  func_table = {
+    TapScriptInfoByControlRequest::GetTapscriptString,
+    TapScriptInfoByControlRequest::SetTapscriptString,
+    TapScriptInfoByControlRequest::GetTapscriptFieldType,
+  };
+  json_mapper.emplace("tapscript", func_table);
+  item_list.push_back("tapscript");
+  func_table = {
+    TapScriptInfoByControlRequest::GetControlBlockString,
+    TapScriptInfoByControlRequest::SetControlBlockString,
+    TapScriptInfoByControlRequest::GetControlBlockFieldType,
+  };
+  json_mapper.emplace("controlBlock", func_table);
+  item_list.push_back("controlBlock");
+  func_table = {
+    TapScriptInfoByControlRequest::GetInternalPrivkeyString,
+    TapScriptInfoByControlRequest::SetInternalPrivkeyString,
+    TapScriptInfoByControlRequest::GetInternalPrivkeyFieldType,
+  };
+  json_mapper.emplace("internalPrivkey", func_table);
+  item_list.push_back("internalPrivkey");
+}
+
+void TapScriptInfoByControlRequest::ConvertFromStruct(
+    const TapScriptInfoByControlRequestStruct& data) {
+  network_ = data.network;
+  is_elements_ = data.is_elements;
+  tapscript_ = data.tapscript;
+  control_block_ = data.control_block;
+  internal_privkey_ = data.internal_privkey;
+  ignore_items = data.ignore_items;
+}
+
+TapScriptInfoByControlRequestStruct TapScriptInfoByControlRequest::ConvertToStruct() const {  // NOLINT
+  TapScriptInfoByControlRequestStruct result;
+  result.network = network_;
+  result.is_elements = is_elements_;
+  result.tapscript = tapscript_;
+  result.control_block = control_block_;
+  result.internal_privkey = internal_privkey_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// TapScriptInfo
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<TapScriptInfo>
+  TapScriptInfo::json_mapper;
+std::vector<std::string> TapScriptInfo::item_list;
+
+void TapScriptInfo::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<TapScriptInfo> func_table;  // NOLINT
+
+  func_table = {
+    TapScriptInfo::GetTapLeafHashString,
+    TapScriptInfo::SetTapLeafHashString,
+    TapScriptInfo::GetTapLeafHashFieldType,
+  };
+  json_mapper.emplace("tapLeafHash", func_table);
+  item_list.push_back("tapLeafHash");
+  func_table = {
+    TapScriptInfo::GetTopBranchHashString,
+    TapScriptInfo::SetTopBranchHashString,
+    TapScriptInfo::GetTopBranchHashFieldType,
+  };
+  json_mapper.emplace("topBranchHash", func_table);
+  item_list.push_back("topBranchHash");
+  func_table = {
+    TapScriptInfo::GetTweakedPubkeyString,
+    TapScriptInfo::SetTweakedPubkeyString,
+    TapScriptInfo::GetTweakedPubkeyFieldType,
+  };
+  json_mapper.emplace("tweakedPubkey", func_table);
+  item_list.push_back("tweakedPubkey");
+  func_table = {
+    TapScriptInfo::GetTweakedPrivkeyString,
+    TapScriptInfo::SetTweakedPrivkeyString,
+    TapScriptInfo::GetTweakedPrivkeyFieldType,
+  };
+  json_mapper.emplace("tweakedPrivkey", func_table);
+  item_list.push_back("tweakedPrivkey");
+  func_table = {
+    TapScriptInfo::GetAddressString,
+    TapScriptInfo::SetAddressString,
+    TapScriptInfo::GetAddressFieldType,
+  };
+  json_mapper.emplace("address", func_table);
+  item_list.push_back("address");
+  func_table = {
+    TapScriptInfo::GetLockingScriptString,
+    TapScriptInfo::SetLockingScriptString,
+    TapScriptInfo::GetLockingScriptFieldType,
+  };
+  json_mapper.emplace("lockingScript", func_table);
+  item_list.push_back("lockingScript");
+  func_table = {
+    TapScriptInfo::GetControlBlockString,
+    TapScriptInfo::SetControlBlockString,
+    TapScriptInfo::GetControlBlockFieldType,
+  };
+  json_mapper.emplace("controlBlock", func_table);
+  item_list.push_back("controlBlock");
+  func_table = {
+    TapScriptInfo::GetTapscriptString,
+    TapScriptInfo::SetTapscriptString,
+    TapScriptInfo::GetTapscriptFieldType,
+  };
+  json_mapper.emplace("tapscript", func_table);
+  item_list.push_back("tapscript");
+  func_table = {
+    TapScriptInfo::GetNodesString,
+    TapScriptInfo::SetNodesString,
+    TapScriptInfo::GetNodesFieldType,
+  };
+  json_mapper.emplace("nodes", func_table);
+  item_list.push_back("nodes");
+}
+
+void TapScriptInfo::ConvertFromStruct(
+    const TapScriptInfoStruct& data) {
+  tap_leaf_hash_ = data.tap_leaf_hash;
+  top_branch_hash_ = data.top_branch_hash;
+  tweaked_pubkey_ = data.tweaked_pubkey;
+  tweaked_privkey_ = data.tweaked_privkey;
+  address_ = data.address;
+  locking_script_ = data.locking_script;
+  control_block_ = data.control_block;
+  tapscript_ = data.tapscript;
+  nodes_.ConvertFromStruct(data.nodes);
+  ignore_items = data.ignore_items;
+}
+
+TapScriptInfoStruct TapScriptInfo::ConvertToStruct() const {  // NOLINT
+  TapScriptInfoStruct result;
+  result.tap_leaf_hash = tap_leaf_hash_;
+  result.top_branch_hash = top_branch_hash_;
+  result.tweaked_pubkey = tweaked_pubkey_;
+  result.tweaked_privkey = tweaked_privkey_;
+  result.address = address_;
+  result.locking_script = locking_script_;
+  result.control_block = control_block_;
+  result.tapscript = tapscript_;
+  result.nodes = nodes_.ConvertToStruct();
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// GetTapScriptTreeInfoRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<GetTapScriptTreeInfoRequest>
+  GetTapScriptTreeInfoRequest::json_mapper;
+std::vector<std::string> GetTapScriptTreeInfoRequest::item_list;
+
+void GetTapScriptTreeInfoRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<GetTapScriptTreeInfoRequest> func_table;  // NOLINT
+
+  func_table = {
+    GetTapScriptTreeInfoRequest::GetNetworkString,
+    GetTapScriptTreeInfoRequest::SetNetworkString,
+    GetTapScriptTreeInfoRequest::GetNetworkFieldType,
+  };
+  json_mapper.emplace("network", func_table);
+  item_list.push_back("network");
+  func_table = {
+    GetTapScriptTreeInfoRequest::GetIsElementsString,
+    GetTapScriptTreeInfoRequest::SetIsElementsString,
+    GetTapScriptTreeInfoRequest::GetIsElementsFieldType,
+  };
+  json_mapper.emplace("isElements", func_table);
+  item_list.push_back("isElements");
+  func_table = {
+    GetTapScriptTreeInfoRequest::GetInternalPubkeyString,
+    GetTapScriptTreeInfoRequest::SetInternalPubkeyString,
+    GetTapScriptTreeInfoRequest::GetInternalPubkeyFieldType,
+  };
+  json_mapper.emplace("internalPubkey", func_table);
+  item_list.push_back("internalPubkey");
+  func_table = {
+    GetTapScriptTreeInfoRequest::GetInternalPrivkeyString,
+    GetTapScriptTreeInfoRequest::SetInternalPrivkeyString,
+    GetTapScriptTreeInfoRequest::GetInternalPrivkeyFieldType,
+  };
+  json_mapper.emplace("internalPrivkey", func_table);
+  item_list.push_back("internalPrivkey");
+  func_table = {
+    GetTapScriptTreeInfoRequest::GetTreeString,
+    GetTapScriptTreeInfoRequest::SetTreeString,
+    GetTapScriptTreeInfoRequest::GetTreeFieldType,
+  };
+  json_mapper.emplace("tree", func_table);
+  item_list.push_back("tree");
+}
+
+void GetTapScriptTreeInfoRequest::ConvertFromStruct(
+    const GetTapScriptTreeInfoRequestStruct& data) {
+  network_ = data.network;
+  is_elements_ = data.is_elements;
+  internal_pubkey_ = data.internal_pubkey;
+  internal_privkey_ = data.internal_privkey;
+  tree_.ConvertFromStruct(data.tree);
+  ignore_items = data.ignore_items;
+}
+
+GetTapScriptTreeInfoRequestStruct GetTapScriptTreeInfoRequest::ConvertToStruct() const {  // NOLINT
+  GetTapScriptTreeInfoRequestStruct result;
+  result.network = network_;
+  result.is_elements = is_elements_;
+  result.internal_pubkey = internal_pubkey_;
+  result.internal_privkey = internal_privkey_;
+  result.tree = tree_.ConvertToStruct();
+  result.ignore_items = ignore_items;
+  return result;
+}
+
 
 // ------------------------------------------------------------------------
 // GetWitnessStackNumRequest
@@ -12918,41 +13931,6 @@ CreateSignatureHashRequestStruct CreateSignatureHashRequest::ConvertToStruct() c
 }
 
 // ------------------------------------------------------------------------
-// CreateSignatureHashResponse
-// ------------------------------------------------------------------------
-cfd::core::JsonTableMap<CreateSignatureHashResponse>
-  CreateSignatureHashResponse::json_mapper;
-std::vector<std::string> CreateSignatureHashResponse::item_list;
-
-void CreateSignatureHashResponse::CollectFieldName() {
-  if (!json_mapper.empty()) {
-    return;
-  }
-  cfd::core::CLASS_FUNCTION_TABLE<CreateSignatureHashResponse> func_table;  // NOLINT
-
-  func_table = {
-    CreateSignatureHashResponse::GetSighashString,
-    CreateSignatureHashResponse::SetSighashString,
-    CreateSignatureHashResponse::GetSighashFieldType,
-  };
-  json_mapper.emplace("sighash", func_table);
-  item_list.push_back("sighash");
-}
-
-void CreateSignatureHashResponse::ConvertFromStruct(
-    const CreateSignatureHashResponseStruct& data) {
-  sighash_ = data.sighash;
-  ignore_items = data.ignore_items;
-}
-
-CreateSignatureHashResponseStruct CreateSignatureHashResponse::ConvertToStruct() const {  // NOLINT
-  CreateSignatureHashResponseStruct result;
-  result.sighash = sighash_;
-  result.ignore_items = ignore_items;
-  return result;
-}
-
-// ------------------------------------------------------------------------
 // CreateElementsSignatureHashRequest
 // ------------------------------------------------------------------------
 cfd::core::JsonTableMap<CreateElementsSignatureHashRequest>
@@ -13189,6 +14167,13 @@ void SignWithPrivkeyRequest::CollectFieldName() {
   };
   json_mapper.emplace("txin", func_table);
   item_list.push_back("txin");
+  func_table = {
+    SignWithPrivkeyRequest::GetUtxosString,
+    SignWithPrivkeyRequest::SetUtxosString,
+    SignWithPrivkeyRequest::GetUtxosFieldType,
+  };
+  json_mapper.emplace("utxos", func_table);
+  item_list.push_back("utxos");
 }
 
 void SignWithPrivkeyRequest::ConvertFromStruct(
@@ -13196,6 +14181,7 @@ void SignWithPrivkeyRequest::ConvertFromStruct(
   is_elements_ = data.is_elements;
   tx_ = data.tx;
   txin_.ConvertFromStruct(data.txin);
+  utxos_.ConvertFromStruct(data.utxos);
   ignore_items = data.ignore_items;
 }
 
@@ -13204,6 +14190,7 @@ SignWithPrivkeyRequestStruct SignWithPrivkeyRequest::ConvertToStruct() const {  
   result.is_elements = is_elements_;
   result.tx = tx_;
   result.txin = txin_.ConvertToStruct();
+  result.utxos = utxos_.ConvertToStruct();
   result.ignore_items = ignore_items;
   return result;
 }
@@ -13758,6 +14745,13 @@ void VerifySignatureRequest::CollectFieldName() {
   };
   json_mapper.emplace("txin", func_table);
   item_list.push_back("txin");
+  func_table = {
+    VerifySignatureRequest::GetUtxosString,
+    VerifySignatureRequest::SetUtxosString,
+    VerifySignatureRequest::GetUtxosFieldType,
+  };
+  json_mapper.emplace("utxos", func_table);
+  item_list.push_back("utxos");
 }
 
 void VerifySignatureRequest::ConvertFromStruct(
@@ -13765,6 +14759,7 @@ void VerifySignatureRequest::ConvertFromStruct(
   tx_ = data.tx;
   is_elements_ = data.is_elements;
   txin_.ConvertFromStruct(data.txin);
+  utxos_.ConvertFromStruct(data.utxos);
   ignore_items = data.ignore_items;
 }
 
@@ -13773,6 +14768,7 @@ VerifySignatureRequestStruct VerifySignatureRequest::ConvertToStruct() const {  
   result.tx = tx_;
   result.is_elements = is_elements_;
   result.txin = txin_.ConvertToStruct();
+  result.utxos = utxos_.ConvertToStruct();
   result.ignore_items = ignore_items;
   return result;
 }

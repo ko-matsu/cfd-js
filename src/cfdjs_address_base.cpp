@@ -226,24 +226,22 @@ TapScriptInfoStruct AddressApiBase::GetTapScriptTreeInfo(
     warn(CFD_LOG_SOURCE, "Failed to parameter. tree is empty.");
     throw CfdException(CfdError::kCfdIllegalArgumentError, "tree is empty.");
   }
-  auto& end_item = request.tree.back();
-  if (end_item.tapscript.empty()) {
+  auto& first_item = request.tree.front();
+  if (first_item.tapscript.empty()) {
     warn(
         CFD_LOG_SOURCE,
-        "Failed to parameter. The end of the tree is need tapleaf.");
+        "Failed to parameter. The first of the tree is need tapleaf.");
     throw CfdException(
         CfdError::kCfdIllegalArgumentError,
         "The end of the tree is need tapleaf.");
   }
-  TaprootScriptTree tree(Script(end_item.tapscript));
-  if (request.tree.size() > 1) {
-    for (size_t index = request.tree.size() - 1; index > 0; --index) {
-      auto& item = request.tree.at(index - 1);
-      if (!item.tapscript.empty()) {
-        tree.AddBranch(TaprootScriptTree(Script(item.tapscript)));
-      } else {
-        tree.AddBranch(ByteData256(item.branch_hash));
-      }
+  TaprootScriptTree tree(Script(first_item.tapscript));
+  for (size_t index = 1; index < request.tree.size(); ++index) {
+    auto& item = request.tree.at(index);
+    if (!item.tapscript.empty()) {
+      tree.AddBranch(TaprootScriptTree(Script(item.tapscript)));
+    } else {
+      tree.AddBranch(ByteData256(item.branch_hash));
     }
   }
 

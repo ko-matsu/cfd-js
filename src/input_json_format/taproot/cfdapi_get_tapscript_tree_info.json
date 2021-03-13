@@ -19,7 +19,7 @@
     "internalPrivkey:require": "optional",
     "internalPrivkey:comment": "internal privkey. Specify only when it is necessary to calculate.",
     "tree:require": "require",
-    "tree:comment": "tapscript tree. Set in order from the branch, so that tapleaf comes at the end.",
+    "tree:comment": "tapscript tree. Set tapleaf first, then add branches after that. If you want to connect different trees, after creating that tree, set the topBranchHash of the tree to the branchHash in this tree.",
     "tree": [{
       ":class": "TapBranchData",
       ":class:comment": "TapBranch data.",

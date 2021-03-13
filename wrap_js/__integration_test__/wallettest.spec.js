@@ -1036,31 +1036,31 @@ describe('wallet test', () => {
 
     const opTrueSubTree = cfdjs.GetTapScriptTreeInfo({
       tree: [{
-        tapscript: unlockPubkey11Script,
-      }, {
         tapscript: '51',
+      }, {
+        tapscript: unlockPubkey11Script,
       }],
     });
 
     const unlockPubkey11Tree = cfdjs.GetTapScriptTreeInfo({
       internalPubkey: tweakedPubkey2.pubkey,
       tree: [{
-        tapscript: unlockPubkey21Script,
+        tapscript: unlockPubkey11Script,
       }, {
         tapscript: '51',
       }, {
-        tapscript: unlockPubkey11Script,
+        tapscript: unlockPubkey21Script,
       }],
     });
 
     const opTrueTree = cfdjs.GetTapScriptTreeInfo({
       internalPubkey: tweakedPubkey2.pubkey,
       tree: [{
-        tapscript: unlockPubkey21Script,
+        tapscript: '51',
       }, {
         tapscript: unlockPubkey11Script,
       }, {
-        tapscript: '51',
+        tapscript: unlockPubkey21Script,
       }],
     });
 
@@ -1068,9 +1068,9 @@ describe('wallet test', () => {
       internalPubkey: tweakedPubkey2.pubkey,
       internalPrivkey: tweakedPrivkey2.privkey,
       tree: [{
-        branchHash: opTrueSubTree.topBranchHash,
-      }, {
         tapscript: unlockPubkey21Script,
+      }, {
+        branchHash: opTrueSubTree.topBranchHash,
       }],
     });
 

@@ -1998,7 +1998,8 @@
                 "error": {
                     "code": 1,
                     "type": "illegal_argument",
-                    "message": "CreateMultisigScript pubkeys array size is over."
+                    "message": "CreateMultisigScript pubkeys array size is over.",
+                    "capi": "The number of pubkey has reached the upper limit."
                 }
             },
             {
@@ -2228,7 +2229,8 @@
                 "error": {
                     "code": 1,
                     "type": "illegal_argument",
-                    "message": "CreateMultisigScript pubkeys array size is over."
+                    "message": "CreateMultisigScript pubkeys array size is over.",
+                    "capi": "The number of pubkey has reached the upper limit."
                 }
             },
             {
@@ -2302,6 +2304,17 @@
                     "address": "1PMycacnJaSqwwJqjawXBErnLsZ7RkXUAs",
                     "hashType": "p2pkh"
                 }
+            },
+            {
+                "case": "taproot regtest",
+                "request": {
+                    "lockingScript": "51201777701648fa4dd93c74edd9d58cfcc7bdc2fa30a2f6fa908b6fd70c92833cfb",
+                    "network": "regtest"
+                },
+                "expect": {
+                    "address": "bcrt1pzamhq9jglfxaj0r5ahvatr8uc77u973s5tm04yytdltsey5r8nasmsdlvq",
+                    "hashType": "taproot"
+                }
             }
         ]
     },
@@ -2316,13 +2329,13 @@
                     "internalPubkey": "1777701648fa4dd93c74edd9d58cfcc7bdc2fa30a2f6fa908b6fd70c92833cfb",
                     "tree": [
                         {
-                            "branchHash": "dc82121e4ff8d23745f3859e8939ecb0a38af63e6ddea2fff97a7fd61a1d2d54"
+                            "tapscript": "201777701648fa4dd93c74edd9d58cfcc7bdc2fa30a2f6fa908b6fd70c92833cfbac"
                         },
                         {
                             "branchHash": "4d18084bb47027f47d428b2ed67e1ccace5520fdc36f308e272394e288d53b6d"
                         },
                         {
-                            "tapscript": "201777701648fa4dd93c74edd9d58cfcc7bdc2fa30a2f6fa908b6fd70c92833cfbac"
+                            "branchHash": "dc82121e4ff8d23745f3859e8939ecb0a38af63e6ddea2fff97a7fd61a1d2d54"
                         }
                     ]
                 },
@@ -2349,13 +2362,13 @@
                     "internalPrivkey": "305e293b010d29bf3c888b617763a438fee9054c8cab66eb12ad078f819d9f27",
                     "tree": [
                         {
-                            "branchHash": "dc82121e4ff8d23745f3859e8939ecb0a38af63e6ddea2fff97a7fd61a1d2d54"
+                            "tapscript": "201777701648fa4dd93c74edd9d58cfcc7bdc2fa30a2f6fa908b6fd70c92833cfbac"
                         },
                         {
                             "branchHash": "4d18084bb47027f47d428b2ed67e1ccace5520fdc36f308e272394e288d53b6d"
                         },
                         {
-                            "tapscript": "201777701648fa4dd93c74edd9d58cfcc7bdc2fa30a2f6fa908b6fd70c92833cfbac"
+                            "branchHash": "dc82121e4ff8d23745f3859e8939ecb0a38af63e6ddea2fff97a7fd61a1d2d54"
                         }
                     ]
                 },
@@ -2379,10 +2392,10 @@
                 "request": {
                     "tree": [
                         {
-                            "tapscript": "51"
+                            "tapscript": "20ac52f50b28cdd4d3bcb7f0d5cb533f232e4c4ef12fbf3e718420b84d4e3c3440ac"
                         },
                         {
-                            "tapscript": "20ac52f50b28cdd4d3bcb7f0d5cb533f232e4c4ef12fbf3e718420b84d4e3c3440ac"
+                            "tapscript": "51"
                         }
                     ]
                 },
@@ -2400,10 +2413,10 @@
                 "request": {
                     "tree": [
                         {
-                            "branchHash": "af151388d3bfbebcdc87e4a0b4a97bbfa378f2e5a909eb38a6978cb2a71f39c4"
+                            "tapscript": "2057bf643684f6c5c75e1cdf45990036502a0d897394013210858cdabcbb95a05aad205bec1a08fa3443176edd0a08e2a64642f45e57543b62bffe43ec350edc33dc22ac"
                         },
                         {
-                            "tapscript": "2057bf643684f6c5c75e1cdf45990036502a0d897394013210858cdabcbb95a05aad205bec1a08fa3443176edd0a08e2a64642f45e57543b62bffe43ec350edc33dc22ac"
+                            "branchHash": "af151388d3bfbebcdc87e4a0b4a97bbfa378f2e5a909eb38a6978cb2a71f39c4"
                         }
                     ]
                 },

@@ -3290,8 +3290,7 @@
                 "error": {
                     "code": 1,
                     "type": "illegal_argument",
-                    "capi": "Failed to parameter. pubkey is null or empty.",
-                    "cfd": "Invalid Pubkey data."
+                    "message": "Invalid Pubkey data."
                 }
             },
             {
@@ -3821,7 +3820,8 @@
                 "error": {
                     "code": 2,
                     "type": "illegal_state",
-                    "message": "Utxo is not found. CreateSignatureHashByTaproot fail."
+                    "message": "Utxo is not found. CreateSignatureHashByTaproot fail.",
+                    "capi": "unsupport witness version on ECDSA."
                 }
             }
         ]
@@ -7801,8 +7801,7 @@
                 "request": {
                     "tx": "020000000116d975e4c2cea30f72f4f5fe528f5a0727d9ea149892a50c030d44423088ea2f0000000000ffffffff0130f1029500000000160014164e985d0fc92c927a66c0cbaf78e6ea389629d500000000",
                     "isElements": false,
-                    "txin": 
-                    {
+                    "txin": {
                         "txid": "2fea883042440d030ca5929814ead927075a8f52fef5f4720fa3cec2e475d916",
                         "vout": 0,
                         "signature": "61f75636003a870b7a1685abae84eedf8c9527227ac70183c376f7b3a35b07ebcbea14749e58ce1a87565b035b2f3963baa5ae3ede95e89fd607ab7849f20872",
@@ -7818,8 +7817,7 @@
                 "request": {
                     "tx": "020000000116d975e4c2cea30f72f4f5fe528f5a0727d9ea149892a50c030d44423088ea2f0000000000ffffffff0130f1029500000000160014164e985d0fc92c927a66c0cbaf78e6ea389629d500000000",
                     "isElements": false,
-                    "txin": 
-                    {
+                    "txin": {
                         "txid": "2fea883042440d030ca5929814ead927075a8f52fef5f4720fa3cec2e475d916",
                         "vout": 0,
                         "signature": "61f75636003a870b7a1685abae84eedf8c9527227ac70183c376f7b3a35b07ebcbea14749e58ce1a87565b035b2f3963baa5ae3ede95e89fd607ab7849f20872",
@@ -7840,15 +7838,16 @@
                 "request": {
                     "tx": "02000000015b80a1af0e00c700bee9c8e4442bec933fcdc0c686dac2dc336caaaf186c5d190000000000ffffffff0130f1029500000000160014164e985d0fc92c927a66c0cbaf78e6ea389629d500000000",
                     "isElements": false,
-                    "txin": 
-                    {
+                    "txin": {
                         "txid": "195d6c18afaa6c33dcc2da86c6c0cd3f93ec2b44e4c8e9be00c7000eafa1805b",
                         "vout": 0,
-                        "signParams": [{
-                            "hex": "f5aa6b260f9df687786cd3813ba83b476e195041bccea800f2571212f4aae9848a538b6175a4f8ea291d38e351ea7f612a3d700dca63cd3aff05d315c5698ee901",
-                            "type": "sign",
-                            "sighashType": "all"
-                        }],
+                        "signParams": [
+                            {
+                                "hex": "f5aa6b260f9df687786cd3813ba83b476e195041bccea800f2571212f4aae9848a538b6175a4f8ea291d38e351ea7f612a3d700dca63cd3aff05d315c5698ee901",
+                                "type": "sign",
+                                "sighashType": "all"
+                            }
+                        ],
                         "tapscript": "201777701648fa4dd93c74edd9d58cfcc7bdc2fa30a2f6fa908b6fd70c92833cfbac",
                         "controlBlock": "c01777701648fa4dd93c74edd9d58cfcc7bdc2fa30a2f6fa908b6fd70c92833cfb4d18084bb47027f47d428b2ed67e1ccace5520fdc36f308e272394e288d53b6ddc82121e4ff8d23745f3859e8939ecb0a38af63e6ddea2fff97a7fd61a1d2d54"
                     }

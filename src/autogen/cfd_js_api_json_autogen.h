@@ -7350,6 +7350,285 @@ class SignData
 };
 
 // ------------------------------------------------------------------------
+// TapScriptSignData
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (TapScriptSignData) class
+ */
+class TapScriptSignData
+  : public cfd::core::JsonClassBase<TapScriptSignData> {
+ public:
+  TapScriptSignData() {
+    CollectFieldName();
+  }
+  virtual ~TapScriptSignData() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of hex
+   * @return hex
+   */
+  std::string GetHex() const {
+    return hex_;
+  }
+  /**
+   * @brief Set to hex
+   * @param[in] hex    setting value.
+   */
+  void SetHex(  // line separate
+    const std::string& hex) {  // NOLINT
+    this->hex_ = hex;
+  }
+  /**
+   * @brief Get data type of hex
+   * @return Data type of hex
+   */
+  static std::string GetHexFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of hex field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetHexString(  // line separate
+      const TapScriptSignData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.hex_);
+  }
+  /**
+   * @brief Set json object to hex field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetHexString(  // line separate
+      TapScriptSignData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.hex_, json_value);
+  }
+
+  /**
+   * @brief Get of type
+   * @return type
+   */
+  std::string GetType() const {
+    return type_;
+  }
+  /**
+   * @brief Set to type
+   * @param[in] type    setting value.
+   */
+  void SetType(  // line separate
+    const std::string& type) {  // NOLINT
+    this->type_ = type;
+  }
+  /**
+   * @brief Get data type of type
+   * @return Data type of type
+   */
+  static std::string GetTypeFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of type field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTypeString(  // line separate
+      const TapScriptSignData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.type_);
+  }
+  /**
+   * @brief Set json object to type field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTypeString(  // line separate
+      TapScriptSignData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.type_, json_value);
+  }
+
+  /**
+   * @brief Get of sighashType
+   * @return sighashType
+   */
+  std::string GetSighashType() const {
+    return sighash_type_;
+  }
+  /**
+   * @brief Set to sighashType
+   * @param[in] sighash_type    setting value.
+   */
+  void SetSighashType(  // line separate
+    const std::string& sighash_type) {  // NOLINT
+    this->sighash_type_ = sighash_type;
+  }
+  /**
+   * @brief Get data type of sighashType
+   * @return Data type of sighashType
+   */
+  static std::string GetSighashTypeFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of sighashType field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetSighashTypeString(  // line separate
+      const TapScriptSignData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.sighash_type_);
+  }
+  /**
+   * @brief Set json object to sighashType field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetSighashTypeString(  // line separate
+      TapScriptSignData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.sighash_type_, json_value);
+  }
+
+  /**
+   * @brief Get of sighashAnyoneCanPay
+   * @return sighashAnyoneCanPay
+   */
+  bool GetSighashAnyoneCanPay() const {
+    return sighash_anyone_can_pay_;
+  }
+  /**
+   * @brief Set to sighashAnyoneCanPay
+   * @param[in] sighash_anyone_can_pay    setting value.
+   */
+  void SetSighashAnyoneCanPay(  // line separate
+    const bool& sighash_anyone_can_pay) {  // NOLINT
+    this->sighash_anyone_can_pay_ = sighash_anyone_can_pay;
+  }
+  /**
+   * @brief Get data type of sighashAnyoneCanPay
+   * @return Data type of sighashAnyoneCanPay
+   */
+  static std::string GetSighashAnyoneCanPayFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of sighashAnyoneCanPay field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetSighashAnyoneCanPayString(  // line separate
+      const TapScriptSignData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.sighash_anyone_can_pay_);
+  }
+  /**
+   * @brief Set json object to sighashAnyoneCanPay field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetSighashAnyoneCanPayString(  // line separate
+      TapScriptSignData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.sighash_anyone_can_pay_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const TapScriptSignDataStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  TapScriptSignDataStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using TapScriptSignDataMapTable =
+    cfd::core::JsonTableMap<TapScriptSignData>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const TapScriptSignDataMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static TapScriptSignDataMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(hex) value
+   */
+  std::string hex_ = "";
+  /**
+   * @brief JsonAPI(type) value
+   */
+  std::string type_ = "binary";
+  /**
+   * @brief JsonAPI(sighashType) value
+   */
+  std::string sighash_type_ = "default";
+  /**
+   * @brief JsonAPI(sighashAnyoneCanPay) value
+   */
+  bool sighash_anyone_can_pay_ = false;
+};
+
+// ------------------------------------------------------------------------
 // TxInRequest
 // ------------------------------------------------------------------------
 /**
@@ -8994,6 +9273,50 @@ class AddScriptHashSignTxInRequest
   }
 
   /**
+   * @brief Get of signParams.
+   * @return signParams
+   */
+  JsonObjectVector<SignData, SignDataStruct>& GetSignParams() {  // NOLINT
+    return sign_params_;
+  }
+  /**
+   * @brief Set to signParams.
+   * @param[in] sign_params    setting value.
+   */
+  void SetSignParams(  // line separate
+      const JsonObjectVector<SignData, SignDataStruct>& sign_params) {  // NOLINT
+    this->sign_params_ = sign_params;
+  }
+  /**
+   * @brief Get data type of signParams.
+   * @return Data type of signParams.
+   */
+  static std::string GetSignParamsFieldType() {
+    return "JsonObjectVector<SignData, SignDataStruct>";  // NOLINT
+  }
+  /**
+   * @brief Get json string of signParams field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
+   */
+  static std::string GetSignParamsString(  // line separate
+      const AddScriptHashSignTxInRequest& obj) {  // NOLINT
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
+    return obj.sign_params_.Serialize();
+  }
+  /**
+   * @brief Set json object to signParams field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
+   */
+  static void SetSignParamsString(  // line separate
+      AddScriptHashSignTxInRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    obj.sign_params_.DeserializeUniValue(json_value);
+  }
+
+  /**
    * @brief Get of signParam.
    * @return signParam
    */
@@ -9201,6 +9524,10 @@ class AddScriptHashSignTxInRequest
    */
   uint32_t vout_ = 0;
   /**
+   * @brief JsonAPI(signParams) value
+   */
+  JsonObjectVector<SignData, SignDataStruct> sign_params_;  // NOLINT
+  /**
    * @brief JsonAPI(signParam) value
    */
   JsonObjectVector<SignData, SignDataStruct> sign_param_;  // NOLINT
@@ -9361,6 +9688,50 @@ class AddSignTxInRequest
       const UniValue& json_value) {
     cfd::core::ConvertFromUniValue(  // line separate
       obj.is_witness_, json_value);
+  }
+
+  /**
+   * @brief Get of signParams.
+   * @return signParams
+   */
+  JsonObjectVector<SignData, SignDataStruct>& GetSignParams() {  // NOLINT
+    return sign_params_;
+  }
+  /**
+   * @brief Set to signParams.
+   * @param[in] sign_params    setting value.
+   */
+  void SetSignParams(  // line separate
+      const JsonObjectVector<SignData, SignDataStruct>& sign_params) {  // NOLINT
+    this->sign_params_ = sign_params;
+  }
+  /**
+   * @brief Get data type of signParams.
+   * @return Data type of signParams.
+   */
+  static std::string GetSignParamsFieldType() {
+    return "JsonObjectVector<SignData, SignDataStruct>";  // NOLINT
+  }
+  /**
+   * @brief Get json string of signParams field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
+   */
+  static std::string GetSignParamsString(  // line separate
+      const AddSignTxInRequest& obj) {  // NOLINT
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
+    return obj.sign_params_.Serialize();
+  }
+  /**
+   * @brief Set json object to signParams field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
+   */
+  static void SetSignParamsString(  // line separate
+      AddSignTxInRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    obj.sign_params_.DeserializeUniValue(json_value);
   }
 
   /**
@@ -9532,6 +9903,10 @@ class AddSignTxInRequest
    */
   bool is_witness_ = true;
   /**
+   * @brief JsonAPI(signParams) value
+   */
+  JsonObjectVector<SignData, SignDataStruct> sign_params_;  // NOLINT
+  /**
    * @brief JsonAPI(signParam) value
    */
   JsonObjectVector<SignData, SignDataStruct> sign_param_;  // NOLINT
@@ -9539,6 +9914,753 @@ class AddSignTxInRequest
    * @brief JsonAPI(clearStack) value
    */
   bool clear_stack_ = true;
+};
+
+// ------------------------------------------------------------------------
+// AddTaprootSchnorrSignTxInRequest
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (AddTaprootSchnorrSignTxInRequest) class
+ */
+class AddTaprootSchnorrSignTxInRequest
+  : public cfd::core::JsonClassBase<AddTaprootSchnorrSignTxInRequest> {
+ public:
+  AddTaprootSchnorrSignTxInRequest() {
+    CollectFieldName();
+  }
+  virtual ~AddTaprootSchnorrSignTxInRequest() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of txid
+   * @return txid
+   */
+  std::string GetTxid() const {
+    return txid_;
+  }
+  /**
+   * @brief Set to txid
+   * @param[in] txid    setting value.
+   */
+  void SetTxid(  // line separate
+    const std::string& txid) {  // NOLINT
+    this->txid_ = txid;
+  }
+  /**
+   * @brief Get data type of txid
+   * @return Data type of txid
+   */
+  static std::string GetTxidFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of txid field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTxidString(  // line separate
+      const AddTaprootSchnorrSignTxInRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.txid_);
+  }
+  /**
+   * @brief Set json object to txid field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTxidString(  // line separate
+      AddTaprootSchnorrSignTxInRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.txid_, json_value);
+  }
+
+  /**
+   * @brief Get of vout
+   * @return vout
+   */
+  uint32_t GetVout() const {
+    return vout_;
+  }
+  /**
+   * @brief Set to vout
+   * @param[in] vout    setting value.
+   */
+  void SetVout(  // line separate
+    const uint32_t& vout) {  // NOLINT
+    this->vout_ = vout;
+  }
+  /**
+   * @brief Get data type of vout
+   * @return Data type of vout
+   */
+  static std::string GetVoutFieldType() {
+    return "uint32_t";
+  }
+  /**
+   * @brief Get json string of vout field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetVoutString(  // line separate
+      const AddTaprootSchnorrSignTxInRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.vout_);
+  }
+  /**
+   * @brief Set json object to vout field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetVoutString(  // line separate
+      AddTaprootSchnorrSignTxInRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.vout_, json_value);
+  }
+
+  /**
+   * @brief Get of signature
+   * @return signature
+   */
+  std::string GetSignature() const {
+    return signature_;
+  }
+  /**
+   * @brief Set to signature
+   * @param[in] signature    setting value.
+   */
+  void SetSignature(  // line separate
+    const std::string& signature) {  // NOLINT
+    this->signature_ = signature;
+  }
+  /**
+   * @brief Get data type of signature
+   * @return Data type of signature
+   */
+  static std::string GetSignatureFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of signature field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetSignatureString(  // line separate
+      const AddTaprootSchnorrSignTxInRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.signature_);
+  }
+  /**
+   * @brief Set json object to signature field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetSignatureString(  // line separate
+      AddTaprootSchnorrSignTxInRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.signature_, json_value);
+  }
+
+  /**
+   * @brief Get of sighashType
+   * @return sighashType
+   */
+  std::string GetSighashType() const {
+    return sighash_type_;
+  }
+  /**
+   * @brief Set to sighashType
+   * @param[in] sighash_type    setting value.
+   */
+  void SetSighashType(  // line separate
+    const std::string& sighash_type) {  // NOLINT
+    this->sighash_type_ = sighash_type;
+  }
+  /**
+   * @brief Get data type of sighashType
+   * @return Data type of sighashType
+   */
+  static std::string GetSighashTypeFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of sighashType field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetSighashTypeString(  // line separate
+      const AddTaprootSchnorrSignTxInRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.sighash_type_);
+  }
+  /**
+   * @brief Set json object to sighashType field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetSighashTypeString(  // line separate
+      AddTaprootSchnorrSignTxInRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.sighash_type_, json_value);
+  }
+
+  /**
+   * @brief Get of sighashAnyoneCanPay
+   * @return sighashAnyoneCanPay
+   */
+  bool GetSighashAnyoneCanPay() const {
+    return sighash_anyone_can_pay_;
+  }
+  /**
+   * @brief Set to sighashAnyoneCanPay
+   * @param[in] sighash_anyone_can_pay    setting value.
+   */
+  void SetSighashAnyoneCanPay(  // line separate
+    const bool& sighash_anyone_can_pay) {  // NOLINT
+    this->sighash_anyone_can_pay_ = sighash_anyone_can_pay;
+  }
+  /**
+   * @brief Get data type of sighashAnyoneCanPay
+   * @return Data type of sighashAnyoneCanPay
+   */
+  static std::string GetSighashAnyoneCanPayFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of sighashAnyoneCanPay field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetSighashAnyoneCanPayString(  // line separate
+      const AddTaprootSchnorrSignTxInRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.sighash_anyone_can_pay_);
+  }
+  /**
+   * @brief Set json object to sighashAnyoneCanPay field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetSighashAnyoneCanPayString(  // line separate
+      AddTaprootSchnorrSignTxInRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.sighash_anyone_can_pay_, json_value);
+  }
+
+  /**
+   * @brief Get of annex
+   * @return annex
+   */
+  std::string GetAnnex() const {
+    return annex_;
+  }
+  /**
+   * @brief Set to annex
+   * @param[in] annex    setting value.
+   */
+  void SetAnnex(  // line separate
+    const std::string& annex) {  // NOLINT
+    this->annex_ = annex;
+  }
+  /**
+   * @brief Get data type of annex
+   * @return Data type of annex
+   */
+  static std::string GetAnnexFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of annex field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetAnnexString(  // line separate
+      const AddTaprootSchnorrSignTxInRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.annex_);
+  }
+  /**
+   * @brief Set json object to annex field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetAnnexString(  // line separate
+      AddTaprootSchnorrSignTxInRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.annex_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const AddTaprootSchnorrSignTxInRequestStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  AddTaprootSchnorrSignTxInRequestStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using AddTaprootSchnorrSignTxInRequestMapTable =
+    cfd::core::JsonTableMap<AddTaprootSchnorrSignTxInRequest>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const AddTaprootSchnorrSignTxInRequestMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static AddTaprootSchnorrSignTxInRequestMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(txid) value
+   */
+  std::string txid_ = "";
+  /**
+   * @brief JsonAPI(vout) value
+   */
+  uint32_t vout_ = 0;
+  /**
+   * @brief JsonAPI(signature) value
+   */
+  std::string signature_ = "";
+  /**
+   * @brief JsonAPI(sighashType) value
+   */
+  std::string sighash_type_ = "default";
+  /**
+   * @brief JsonAPI(sighashAnyoneCanPay) value
+   */
+  bool sighash_anyone_can_pay_ = false;
+  /**
+   * @brief JsonAPI(annex) value
+   */
+  std::string annex_ = "";
+};
+
+// ------------------------------------------------------------------------
+// AddTapscriptSignTxInRequest
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (AddTapscriptSignTxInRequest) class
+ */
+class AddTapscriptSignTxInRequest
+  : public cfd::core::JsonClassBase<AddTapscriptSignTxInRequest> {
+ public:
+  AddTapscriptSignTxInRequest() {
+    CollectFieldName();
+  }
+  virtual ~AddTapscriptSignTxInRequest() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of txid
+   * @return txid
+   */
+  std::string GetTxid() const {
+    return txid_;
+  }
+  /**
+   * @brief Set to txid
+   * @param[in] txid    setting value.
+   */
+  void SetTxid(  // line separate
+    const std::string& txid) {  // NOLINT
+    this->txid_ = txid;
+  }
+  /**
+   * @brief Get data type of txid
+   * @return Data type of txid
+   */
+  static std::string GetTxidFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of txid field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTxidString(  // line separate
+      const AddTapscriptSignTxInRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.txid_);
+  }
+  /**
+   * @brief Set json object to txid field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTxidString(  // line separate
+      AddTapscriptSignTxInRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.txid_, json_value);
+  }
+
+  /**
+   * @brief Get of vout
+   * @return vout
+   */
+  uint32_t GetVout() const {
+    return vout_;
+  }
+  /**
+   * @brief Set to vout
+   * @param[in] vout    setting value.
+   */
+  void SetVout(  // line separate
+    const uint32_t& vout) {  // NOLINT
+    this->vout_ = vout;
+  }
+  /**
+   * @brief Get data type of vout
+   * @return Data type of vout
+   */
+  static std::string GetVoutFieldType() {
+    return "uint32_t";
+  }
+  /**
+   * @brief Get json string of vout field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetVoutString(  // line separate
+      const AddTapscriptSignTxInRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.vout_);
+  }
+  /**
+   * @brief Set json object to vout field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetVoutString(  // line separate
+      AddTapscriptSignTxInRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.vout_, json_value);
+  }
+
+  /**
+   * @brief Get of signParams.
+   * @return signParams
+   */
+  JsonObjectVector<TapScriptSignData, TapScriptSignDataStruct>& GetSignParams() {  // NOLINT
+    return sign_params_;
+  }
+  /**
+   * @brief Set to signParams.
+   * @param[in] sign_params    setting value.
+   */
+  void SetSignParams(  // line separate
+      const JsonObjectVector<TapScriptSignData, TapScriptSignDataStruct>& sign_params) {  // NOLINT
+    this->sign_params_ = sign_params;
+  }
+  /**
+   * @brief Get data type of signParams.
+   * @return Data type of signParams.
+   */
+  static std::string GetSignParamsFieldType() {
+    return "JsonObjectVector<TapScriptSignData, TapScriptSignDataStruct>";  // NOLINT
+  }
+  /**
+   * @brief Get json string of signParams field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
+   */
+  static std::string GetSignParamsString(  // line separate
+      const AddTapscriptSignTxInRequest& obj) {  // NOLINT
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
+    return obj.sign_params_.Serialize();
+  }
+  /**
+   * @brief Set json object to signParams field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
+   */
+  static void SetSignParamsString(  // line separate
+      AddTapscriptSignTxInRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    obj.sign_params_.DeserializeUniValue(json_value);
+  }
+
+  /**
+   * @brief Get of tapscript
+   * @return tapscript
+   */
+  std::string GetTapscript() const {
+    return tapscript_;
+  }
+  /**
+   * @brief Set to tapscript
+   * @param[in] tapscript    setting value.
+   */
+  void SetTapscript(  // line separate
+    const std::string& tapscript) {  // NOLINT
+    this->tapscript_ = tapscript;
+  }
+  /**
+   * @brief Get data type of tapscript
+   * @return Data type of tapscript
+   */
+  static std::string GetTapscriptFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of tapscript field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTapscriptString(  // line separate
+      const AddTapscriptSignTxInRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.tapscript_);
+  }
+  /**
+   * @brief Set json object to tapscript field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTapscriptString(  // line separate
+      AddTapscriptSignTxInRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.tapscript_, json_value);
+  }
+
+  /**
+   * @brief Get of controlBlock
+   * @return controlBlock
+   */
+  std::string GetControlBlock() const {
+    return control_block_;
+  }
+  /**
+   * @brief Set to controlBlock
+   * @param[in] control_block    setting value.
+   */
+  void SetControlBlock(  // line separate
+    const std::string& control_block) {  // NOLINT
+    this->control_block_ = control_block;
+  }
+  /**
+   * @brief Get data type of controlBlock
+   * @return Data type of controlBlock
+   */
+  static std::string GetControlBlockFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of controlBlock field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetControlBlockString(  // line separate
+      const AddTapscriptSignTxInRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.control_block_);
+  }
+  /**
+   * @brief Set json object to controlBlock field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetControlBlockString(  // line separate
+      AddTapscriptSignTxInRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.control_block_, json_value);
+  }
+
+  /**
+   * @brief Get of annex
+   * @return annex
+   */
+  std::string GetAnnex() const {
+    return annex_;
+  }
+  /**
+   * @brief Set to annex
+   * @param[in] annex    setting value.
+   */
+  void SetAnnex(  // line separate
+    const std::string& annex) {  // NOLINT
+    this->annex_ = annex;
+  }
+  /**
+   * @brief Get data type of annex
+   * @return Data type of annex
+   */
+  static std::string GetAnnexFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of annex field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetAnnexString(  // line separate
+      const AddTapscriptSignTxInRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.annex_);
+  }
+  /**
+   * @brief Set json object to annex field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetAnnexString(  // line separate
+      AddTapscriptSignTxInRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.annex_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const AddTapscriptSignTxInRequestStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  AddTapscriptSignTxInRequestStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using AddTapscriptSignTxInRequestMapTable =
+    cfd::core::JsonTableMap<AddTapscriptSignTxInRequest>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const AddTapscriptSignTxInRequestMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static AddTapscriptSignTxInRequestMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(txid) value
+   */
+  std::string txid_ = "";
+  /**
+   * @brief JsonAPI(vout) value
+   */
+  uint32_t vout_ = 0;
+  /**
+   * @brief JsonAPI(signParams) value
+   */
+  JsonObjectVector<TapScriptSignData, TapScriptSignDataStruct> sign_params_;  // NOLINT
+  /**
+   * @brief JsonAPI(tapscript) value
+   */
+  std::string tapscript_ = "";
+  /**
+   * @brief JsonAPI(controlBlock) value
+   */
+  std::string control_block_ = "";
+  /**
+   * @brief JsonAPI(annex) value
+   */
+  std::string annex_ = "";
 };
 
 // ------------------------------------------------------------------------
@@ -18755,6 +19877,474 @@ class FundUtxoJsonData
 };
 
 // ------------------------------------------------------------------------
+// GetSighashTxIn
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (GetSighashTxIn) class
+ */
+class GetSighashTxIn
+  : public cfd::core::JsonClassBase<GetSighashTxIn> {
+ public:
+  GetSighashTxIn() {
+    CollectFieldName();
+  }
+  virtual ~GetSighashTxIn() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of txid
+   * @return txid
+   */
+  std::string GetTxid() const {
+    return txid_;
+  }
+  /**
+   * @brief Set to txid
+   * @param[in] txid    setting value.
+   */
+  void SetTxid(  // line separate
+    const std::string& txid) {  // NOLINT
+    this->txid_ = txid;
+  }
+  /**
+   * @brief Get data type of txid
+   * @return Data type of txid
+   */
+  static std::string GetTxidFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of txid field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTxidString(  // line separate
+      const GetSighashTxIn& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.txid_);
+  }
+  /**
+   * @brief Set json object to txid field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTxidString(  // line separate
+      GetSighashTxIn& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.txid_, json_value);
+  }
+
+  /**
+   * @brief Get of vout
+   * @return vout
+   */
+  uint32_t GetVout() const {
+    return vout_;
+  }
+  /**
+   * @brief Set to vout
+   * @param[in] vout    setting value.
+   */
+  void SetVout(  // line separate
+    const uint32_t& vout) {  // NOLINT
+    this->vout_ = vout;
+  }
+  /**
+   * @brief Get data type of vout
+   * @return Data type of vout
+   */
+  static std::string GetVoutFieldType() {
+    return "uint32_t";
+  }
+  /**
+   * @brief Get json string of vout field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetVoutString(  // line separate
+      const GetSighashTxIn& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.vout_);
+  }
+  /**
+   * @brief Set json object to vout field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetVoutString(  // line separate
+      GetSighashTxIn& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.vout_, json_value);
+  }
+
+  /**
+   * @brief Get of keyData.
+   * @return keyData
+   */
+  HashKeyData& GetKeyData() {  // NOLINT
+    return key_data_;
+  }
+  /**
+   * @brief Set to keyData.
+   * @param[in] key_data    setting value.
+   */
+  void SetKeyData(  // line separate
+      const HashKeyData& key_data) {  // NOLINT
+    this->key_data_ = key_data;
+  }
+  /**
+   * @brief Get data type of keyData.
+   * @return Data type of keyData.
+   */
+  static std::string GetKeyDataFieldType() {
+    return "HashKeyData";  // NOLINT
+  }
+  /**
+   * @brief Get json string of keyData field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
+   */
+  static std::string GetKeyDataString(  // line separate
+      const GetSighashTxIn& obj) {  // NOLINT
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
+    return obj.key_data_.Serialize();
+  }
+  /**
+   * @brief Set json object to keyData field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
+   */
+  static void SetKeyDataString(  // line separate
+      GetSighashTxIn& obj,  // NOLINT
+      const UniValue& json_value) {
+    obj.key_data_.DeserializeUniValue(json_value);
+  }
+
+  /**
+   * @brief Get of hashType
+   * @return hashType
+   */
+  std::string GetHashType() const {
+    return hash_type_;
+  }
+  /**
+   * @brief Set to hashType
+   * @param[in] hash_type    setting value.
+   */
+  void SetHashType(  // line separate
+    const std::string& hash_type) {  // NOLINT
+    this->hash_type_ = hash_type;
+  }
+  /**
+   * @brief Get data type of hashType
+   * @return Data type of hashType
+   */
+  static std::string GetHashTypeFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of hashType field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetHashTypeString(  // line separate
+      const GetSighashTxIn& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.hash_type_);
+  }
+  /**
+   * @brief Set json object to hashType field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetHashTypeString(  // line separate
+      GetSighashTxIn& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.hash_type_, json_value);
+  }
+
+  /**
+   * @brief Get of sighashType
+   * @return sighashType
+   */
+  std::string GetSighashType() const {
+    return sighash_type_;
+  }
+  /**
+   * @brief Set to sighashType
+   * @param[in] sighash_type    setting value.
+   */
+  void SetSighashType(  // line separate
+    const std::string& sighash_type) {  // NOLINT
+    this->sighash_type_ = sighash_type;
+  }
+  /**
+   * @brief Get data type of sighashType
+   * @return Data type of sighashType
+   */
+  static std::string GetSighashTypeFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of sighashType field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetSighashTypeString(  // line separate
+      const GetSighashTxIn& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.sighash_type_);
+  }
+  /**
+   * @brief Set json object to sighashType field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetSighashTypeString(  // line separate
+      GetSighashTxIn& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.sighash_type_, json_value);
+  }
+
+  /**
+   * @brief Get of sighashAnyoneCanPay
+   * @return sighashAnyoneCanPay
+   */
+  bool GetSighashAnyoneCanPay() const {
+    return sighash_anyone_can_pay_;
+  }
+  /**
+   * @brief Set to sighashAnyoneCanPay
+   * @param[in] sighash_anyone_can_pay    setting value.
+   */
+  void SetSighashAnyoneCanPay(  // line separate
+    const bool& sighash_anyone_can_pay) {  // NOLINT
+    this->sighash_anyone_can_pay_ = sighash_anyone_can_pay;
+  }
+  /**
+   * @brief Get data type of sighashAnyoneCanPay
+   * @return Data type of sighashAnyoneCanPay
+   */
+  static std::string GetSighashAnyoneCanPayFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of sighashAnyoneCanPay field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetSighashAnyoneCanPayString(  // line separate
+      const GetSighashTxIn& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.sighash_anyone_can_pay_);
+  }
+  /**
+   * @brief Set json object to sighashAnyoneCanPay field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetSighashAnyoneCanPayString(  // line separate
+      GetSighashTxIn& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.sighash_anyone_can_pay_, json_value);
+  }
+
+  /**
+   * @brief Get of annex
+   * @return annex
+   */
+  std::string GetAnnex() const {
+    return annex_;
+  }
+  /**
+   * @brief Set to annex
+   * @param[in] annex    setting value.
+   */
+  void SetAnnex(  // line separate
+    const std::string& annex) {  // NOLINT
+    this->annex_ = annex;
+  }
+  /**
+   * @brief Get data type of annex
+   * @return Data type of annex
+   */
+  static std::string GetAnnexFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of annex field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetAnnexString(  // line separate
+      const GetSighashTxIn& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.annex_);
+  }
+  /**
+   * @brief Set json object to annex field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetAnnexString(  // line separate
+      GetSighashTxIn& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.annex_, json_value);
+  }
+
+  /**
+   * @brief Get of codeSeparatorPosition
+   * @return codeSeparatorPosition
+   */
+  int64_t GetCodeSeparatorPosition() const {
+    return code_separator_position_;
+  }
+  /**
+   * @brief Set to codeSeparatorPosition
+   * @param[in] code_separator_position    setting value.
+   */
+  void SetCodeSeparatorPosition(  // line separate
+    const int64_t& code_separator_position) {  // NOLINT
+    this->code_separator_position_ = code_separator_position;
+  }
+  /**
+   * @brief Get data type of codeSeparatorPosition
+   * @return Data type of codeSeparatorPosition
+   */
+  static std::string GetCodeSeparatorPositionFieldType() {
+    return "int64_t";
+  }
+  /**
+   * @brief Get json string of codeSeparatorPosition field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetCodeSeparatorPositionString(  // line separate
+      const GetSighashTxIn& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.code_separator_position_);
+  }
+  /**
+   * @brief Set json object to codeSeparatorPosition field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetCodeSeparatorPositionString(  // line separate
+      GetSighashTxIn& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.code_separator_position_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const GetSighashTxInStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  GetSighashTxInStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using GetSighashTxInMapTable =
+    cfd::core::JsonTableMap<GetSighashTxIn>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const GetSighashTxInMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static GetSighashTxInMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(txid) value
+   */
+  std::string txid_ = "";
+  /**
+   * @brief JsonAPI(vout) value
+   */
+  uint32_t vout_ = 0;
+  /**
+   * @brief JsonAPI(keyData) value
+   */
+  HashKeyData key_data_;  // NOLINT
+  /**
+   * @brief JsonAPI(hashType) value
+   */
+  std::string hash_type_ = "taproot";
+  /**
+   * @brief JsonAPI(sighashType) value
+   */
+  std::string sighash_type_ = "all";
+  /**
+   * @brief JsonAPI(sighashAnyoneCanPay) value
+   */
+  bool sighash_anyone_can_pay_ = false;
+  /**
+   * @brief JsonAPI(annex) value
+   */
+  std::string annex_ = "";
+  /**
+   * @brief JsonAPI(codeSeparatorPosition) value
+   */
+  int64_t code_separator_position_ = -1;
+};
+
+// ------------------------------------------------------------------------
 // IssuanceDataRequest
 // ------------------------------------------------------------------------
 /**
@@ -23124,6 +24714,92 @@ class SignWithPrivkeyTxInRequest
   }
 
   /**
+   * @brief Get of auxRand
+   * @return auxRand
+   */
+  std::string GetAuxRand() const {
+    return aux_rand_;
+  }
+  /**
+   * @brief Set to auxRand
+   * @param[in] aux_rand    setting value.
+   */
+  void SetAuxRand(  // line separate
+    const std::string& aux_rand) {  // NOLINT
+    this->aux_rand_ = aux_rand;
+  }
+  /**
+   * @brief Get data type of auxRand
+   * @return Data type of auxRand
+   */
+  static std::string GetAuxRandFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of auxRand field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetAuxRandString(  // line separate
+      const SignWithPrivkeyTxInRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.aux_rand_);
+  }
+  /**
+   * @brief Set json object to auxRand field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetAuxRandString(  // line separate
+      SignWithPrivkeyTxInRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.aux_rand_, json_value);
+  }
+
+  /**
+   * @brief Get of annex
+   * @return annex
+   */
+  std::string GetAnnex() const {
+    return annex_;
+  }
+  /**
+   * @brief Set to annex
+   * @param[in] annex    setting value.
+   */
+  void SetAnnex(  // line separate
+    const std::string& annex) {  // NOLINT
+    this->annex_ = annex;
+  }
+  /**
+   * @brief Get data type of annex
+   * @return Data type of annex
+   */
+  static std::string GetAnnexFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of annex field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetAnnexString(  // line separate
+      const SignWithPrivkeyTxInRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.annex_);
+  }
+  /**
+   * @brief Set json object to annex field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetAnnexString(  // line separate
+      SignWithPrivkeyTxInRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.annex_, json_value);
+  }
+
+  /**
    * @brief Set ignore item.
    * @param[in] key   ignore target key name.
    */
@@ -23232,6 +24908,246 @@ class SignWithPrivkeyTxInRequest
    * @brief JsonAPI(isGrindR) value
    */
   bool is_grind_r_ = true;
+  /**
+   * @brief JsonAPI(auxRand) value
+   */
+  std::string aux_rand_ = "";
+  /**
+   * @brief JsonAPI(annex) value
+   */
+  std::string annex_ = "";
+};
+
+// ------------------------------------------------------------------------
+// TapBranchData
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (TapBranchData) class
+ */
+class TapBranchData
+  : public cfd::core::JsonClassBase<TapBranchData> {
+ public:
+  TapBranchData() {
+    CollectFieldName();
+  }
+  virtual ~TapBranchData() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of tapscript
+   * @return tapscript
+   */
+  std::string GetTapscript() const {
+    return tapscript_;
+  }
+  /**
+   * @brief Set to tapscript
+   * @param[in] tapscript    setting value.
+   */
+  void SetTapscript(  // line separate
+    const std::string& tapscript) {  // NOLINT
+    this->tapscript_ = tapscript;
+  }
+  /**
+   * @brief Get data type of tapscript
+   * @return Data type of tapscript
+   */
+  static std::string GetTapscriptFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of tapscript field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTapscriptString(  // line separate
+      const TapBranchData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.tapscript_);
+  }
+  /**
+   * @brief Set json object to tapscript field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTapscriptString(  // line separate
+      TapBranchData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.tapscript_, json_value);
+  }
+
+  /**
+   * @brief Get of branchHash
+   * @return branchHash
+   */
+  std::string GetBranchHash() const {
+    return branch_hash_;
+  }
+  /**
+   * @brief Set to branchHash
+   * @param[in] branch_hash    setting value.
+   */
+  void SetBranchHash(  // line separate
+    const std::string& branch_hash) {  // NOLINT
+    this->branch_hash_ = branch_hash;
+  }
+  /**
+   * @brief Get data type of branchHash
+   * @return Data type of branchHash
+   */
+  static std::string GetBranchHashFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of branchHash field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetBranchHashString(  // line separate
+      const TapBranchData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.branch_hash_);
+  }
+  /**
+   * @brief Set json object to branchHash field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetBranchHashString(  // line separate
+      TapBranchData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.branch_hash_, json_value);
+  }
+
+  /**
+   * @brief Get of treeString
+   * @return treeString
+   */
+  std::string GetTreeString() const {
+    return tree_string_;
+  }
+  /**
+   * @brief Set to treeString
+   * @param[in] tree_string    setting value.
+   */
+  void SetTreeString(  // line separate
+    const std::string& tree_string) {  // NOLINT
+    this->tree_string_ = tree_string;
+  }
+  /**
+   * @brief Get data type of treeString
+   * @return Data type of treeString
+   */
+  static std::string GetTreeStringFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of treeString field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTreeStringString(  // line separate
+      const TapBranchData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.tree_string_);
+  }
+  /**
+   * @brief Set json object to treeString field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTreeStringString(  // line separate
+      TapBranchData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.tree_string_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const TapBranchDataStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  TapBranchDataStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using TapBranchDataMapTable =
+    cfd::core::JsonTableMap<TapBranchData>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const TapBranchDataMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static TapBranchDataMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(tapscript) value
+   */
+  std::string tapscript_ = "";
+  /**
+   * @brief JsonAPI(branchHash) value
+   */
+  std::string branch_hash_ = "";
+  /**
+   * @brief JsonAPI(treeString) value
+   */
+  std::string tree_string_ = "";
 };
 
 // ------------------------------------------------------------------------
@@ -25562,6 +27478,661 @@ class UtxoJsonData
 };
 
 // ------------------------------------------------------------------------
+// UtxoObject
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (UtxoObject) class
+ */
+class UtxoObject
+  : public cfd::core::JsonClassBase<UtxoObject> {
+ public:
+  UtxoObject() {
+    CollectFieldName();
+  }
+  virtual ~UtxoObject() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of txid
+   * @return txid
+   */
+  std::string GetTxid() const {
+    return txid_;
+  }
+  /**
+   * @brief Set to txid
+   * @param[in] txid    setting value.
+   */
+  void SetTxid(  // line separate
+    const std::string& txid) {  // NOLINT
+    this->txid_ = txid;
+  }
+  /**
+   * @brief Get data type of txid
+   * @return Data type of txid
+   */
+  static std::string GetTxidFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of txid field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTxidString(  // line separate
+      const UtxoObject& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.txid_);
+  }
+  /**
+   * @brief Set json object to txid field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTxidString(  // line separate
+      UtxoObject& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.txid_, json_value);
+  }
+
+  /**
+   * @brief Get of vout
+   * @return vout
+   */
+  uint32_t GetVout() const {
+    return vout_;
+  }
+  /**
+   * @brief Set to vout
+   * @param[in] vout    setting value.
+   */
+  void SetVout(  // line separate
+    const uint32_t& vout) {  // NOLINT
+    this->vout_ = vout;
+  }
+  /**
+   * @brief Get data type of vout
+   * @return Data type of vout
+   */
+  static std::string GetVoutFieldType() {
+    return "uint32_t";
+  }
+  /**
+   * @brief Get json string of vout field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetVoutString(  // line separate
+      const UtxoObject& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.vout_);
+  }
+  /**
+   * @brief Set json object to vout field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetVoutString(  // line separate
+      UtxoObject& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.vout_, json_value);
+  }
+
+  /**
+   * @brief Get of address
+   * @return address
+   */
+  std::string GetAddress() const {
+    return address_;
+  }
+  /**
+   * @brief Set to address
+   * @param[in] address    setting value.
+   */
+  void SetAddress(  // line separate
+    const std::string& address) {  // NOLINT
+    this->address_ = address;
+  }
+  /**
+   * @brief Get data type of address
+   * @return Data type of address
+   */
+  static std::string GetAddressFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of address field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetAddressString(  // line separate
+      const UtxoObject& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.address_);
+  }
+  /**
+   * @brief Set json object to address field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetAddressString(  // line separate
+      UtxoObject& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.address_, json_value);
+  }
+
+  /**
+   * @brief Get of lockingScript
+   * @return lockingScript
+   */
+  std::string GetLockingScript() const {
+    return locking_script_;
+  }
+  /**
+   * @brief Set to lockingScript
+   * @param[in] locking_script    setting value.
+   */
+  void SetLockingScript(  // line separate
+    const std::string& locking_script) {  // NOLINT
+    this->locking_script_ = locking_script;
+  }
+  /**
+   * @brief Get data type of lockingScript
+   * @return Data type of lockingScript
+   */
+  static std::string GetLockingScriptFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of lockingScript field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetLockingScriptString(  // line separate
+      const UtxoObject& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.locking_script_);
+  }
+  /**
+   * @brief Set json object to lockingScript field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetLockingScriptString(  // line separate
+      UtxoObject& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.locking_script_, json_value);
+  }
+
+  /**
+   * @brief Get of descriptor
+   * @return descriptor
+   */
+  std::string GetDescriptor() const {
+    return descriptor_;
+  }
+  /**
+   * @brief Set to descriptor
+   * @param[in] descriptor    setting value.
+   */
+  void SetDescriptor(  // line separate
+    const std::string& descriptor) {  // NOLINT
+    this->descriptor_ = descriptor;
+  }
+  /**
+   * @brief Get data type of descriptor
+   * @return Data type of descriptor
+   */
+  static std::string GetDescriptorFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of descriptor field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetDescriptorString(  // line separate
+      const UtxoObject& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.descriptor_);
+  }
+  /**
+   * @brief Set json object to descriptor field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetDescriptorString(  // line separate
+      UtxoObject& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.descriptor_, json_value);
+  }
+
+  /**
+   * @brief Get of amount
+   * @return amount
+   */
+  int64_t GetAmount() const {
+    return amount_;
+  }
+  /**
+   * @brief Set to amount
+   * @param[in] amount    setting value.
+   */
+  void SetAmount(  // line separate
+    const int64_t& amount) {  // NOLINT
+    this->amount_ = amount;
+  }
+  /**
+   * @brief Get data type of amount
+   * @return Data type of amount
+   */
+  static std::string GetAmountFieldType() {
+    return "int64_t";
+  }
+  /**
+   * @brief Get json string of amount field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetAmountString(  // line separate
+      const UtxoObject& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.amount_);
+  }
+  /**
+   * @brief Set json object to amount field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetAmountString(  // line separate
+      UtxoObject& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.amount_, json_value);
+  }
+
+  /**
+   * @brief Get of confidentialValueCommitment
+   * @return confidentialValueCommitment
+   */
+  std::string GetConfidentialValueCommitment() const {
+    return confidential_value_commitment_;
+  }
+  /**
+   * @brief Set to confidentialValueCommitment
+   * @param[in] confidential_value_commitment    setting value.
+   */
+  void SetConfidentialValueCommitment(  // line separate
+    const std::string& confidential_value_commitment) {  // NOLINT
+    this->confidential_value_commitment_ = confidential_value_commitment;
+  }
+  /**
+   * @brief Get data type of confidentialValueCommitment
+   * @return Data type of confidentialValueCommitment
+   */
+  static std::string GetConfidentialValueCommitmentFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of confidentialValueCommitment field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetConfidentialValueCommitmentString(  // line separate
+      const UtxoObject& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.confidential_value_commitment_);
+  }
+  /**
+   * @brief Set json object to confidentialValueCommitment field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetConfidentialValueCommitmentString(  // line separate
+      UtxoObject& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.confidential_value_commitment_, json_value);
+  }
+
+  /**
+   * @brief Get of asset
+   * @return asset
+   */
+  std::string GetAsset() const {
+    return asset_;
+  }
+  /**
+   * @brief Set to asset
+   * @param[in] asset    setting value.
+   */
+  void SetAsset(  // line separate
+    const std::string& asset) {  // NOLINT
+    this->asset_ = asset;
+  }
+  /**
+   * @brief Get data type of asset
+   * @return Data type of asset
+   */
+  static std::string GetAssetFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of asset field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetAssetString(  // line separate
+      const UtxoObject& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.asset_);
+  }
+  /**
+   * @brief Set json object to asset field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetAssetString(  // line separate
+      UtxoObject& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.asset_, json_value);
+  }
+
+  /**
+   * @brief Get of confidentialAssetCommitment
+   * @return confidentialAssetCommitment
+   */
+  std::string GetConfidentialAssetCommitment() const {
+    return confidential_asset_commitment_;
+  }
+  /**
+   * @brief Set to confidentialAssetCommitment
+   * @param[in] confidential_asset_commitment    setting value.
+   */
+  void SetConfidentialAssetCommitment(  // line separate
+    const std::string& confidential_asset_commitment) {  // NOLINT
+    this->confidential_asset_commitment_ = confidential_asset_commitment;
+  }
+  /**
+   * @brief Get data type of confidentialAssetCommitment
+   * @return Data type of confidentialAssetCommitment
+   */
+  static std::string GetConfidentialAssetCommitmentFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of confidentialAssetCommitment field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetConfidentialAssetCommitmentString(  // line separate
+      const UtxoObject& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.confidential_asset_commitment_);
+  }
+  /**
+   * @brief Set json object to confidentialAssetCommitment field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetConfidentialAssetCommitmentString(  // line separate
+      UtxoObject& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.confidential_asset_commitment_, json_value);
+  }
+
+  /**
+   * @brief Get of blindFactor
+   * @return blindFactor
+   */
+  std::string GetBlindFactor() const {
+    return blind_factor_;
+  }
+  /**
+   * @brief Set to blindFactor
+   * @param[in] blind_factor    setting value.
+   */
+  void SetBlindFactor(  // line separate
+    const std::string& blind_factor) {  // NOLINT
+    this->blind_factor_ = blind_factor;
+  }
+  /**
+   * @brief Get data type of blindFactor
+   * @return Data type of blindFactor
+   */
+  static std::string GetBlindFactorFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of blindFactor field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetBlindFactorString(  // line separate
+      const UtxoObject& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.blind_factor_);
+  }
+  /**
+   * @brief Set json object to blindFactor field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetBlindFactorString(  // line separate
+      UtxoObject& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.blind_factor_, json_value);
+  }
+
+  /**
+   * @brief Get of assetBlindFactor
+   * @return assetBlindFactor
+   */
+  std::string GetAssetBlindFactor() const {
+    return asset_blind_factor_;
+  }
+  /**
+   * @brief Set to assetBlindFactor
+   * @param[in] asset_blind_factor    setting value.
+   */
+  void SetAssetBlindFactor(  // line separate
+    const std::string& asset_blind_factor) {  // NOLINT
+    this->asset_blind_factor_ = asset_blind_factor;
+  }
+  /**
+   * @brief Get data type of assetBlindFactor
+   * @return Data type of assetBlindFactor
+   */
+  static std::string GetAssetBlindFactorFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of assetBlindFactor field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetAssetBlindFactorString(  // line separate
+      const UtxoObject& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.asset_blind_factor_);
+  }
+  /**
+   * @brief Set json object to assetBlindFactor field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetAssetBlindFactorString(  // line separate
+      UtxoObject& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.asset_blind_factor_, json_value);
+  }
+
+  /**
+   * @brief Get of scriptSigTemplate
+   * @return scriptSigTemplate
+   */
+  std::string GetScriptSigTemplate() const {
+    return script_sig_template_;
+  }
+  /**
+   * @brief Set to scriptSigTemplate
+   * @param[in] script_sig_template    setting value.
+   */
+  void SetScriptSigTemplate(  // line separate
+    const std::string& script_sig_template) {  // NOLINT
+    this->script_sig_template_ = script_sig_template;
+  }
+  /**
+   * @brief Get data type of scriptSigTemplate
+   * @return Data type of scriptSigTemplate
+   */
+  static std::string GetScriptSigTemplateFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of scriptSigTemplate field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetScriptSigTemplateString(  // line separate
+      const UtxoObject& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.script_sig_template_);
+  }
+  /**
+   * @brief Set json object to scriptSigTemplate field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetScriptSigTemplateString(  // line separate
+      UtxoObject& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.script_sig_template_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const UtxoObjectStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  UtxoObjectStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using UtxoObjectMapTable =
+    cfd::core::JsonTableMap<UtxoObject>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const UtxoObjectMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static UtxoObjectMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(txid) value
+   */
+  std::string txid_ = "";
+  /**
+   * @brief JsonAPI(vout) value
+   */
+  uint32_t vout_ = 0;
+  /**
+   * @brief JsonAPI(address) value
+   */
+  std::string address_ = "";
+  /**
+   * @brief JsonAPI(lockingScript) value
+   */
+  std::string locking_script_ = "";
+  /**
+   * @brief JsonAPI(descriptor) value
+   */
+  std::string descriptor_ = "";
+  /**
+   * @brief JsonAPI(amount) value
+   */
+  int64_t amount_ = 0;
+  /**
+   * @brief JsonAPI(confidentialValueCommitment) value
+   */
+  std::string confidential_value_commitment_ = "";
+  /**
+   * @brief JsonAPI(asset) value
+   */
+  std::string asset_ = "";
+  /**
+   * @brief JsonAPI(confidentialAssetCommitment) value
+   */
+  std::string confidential_asset_commitment_ = "";
+  /**
+   * @brief JsonAPI(blindFactor) value
+   */
+  std::string blind_factor_ = "";
+  /**
+   * @brief JsonAPI(assetBlindFactor) value
+   */
+  std::string asset_blind_factor_ = "";
+  /**
+   * @brief JsonAPI(scriptSigTemplate) value
+   */
+  std::string script_sig_template_ = "";
+};
+
+// ------------------------------------------------------------------------
 // VerifySignatureTxInRequest
 // ------------------------------------------------------------------------
 /**
@@ -26012,6 +28583,92 @@ class VerifySignatureTxInRequest
   }
 
   /**
+   * @brief Get of annex
+   * @return annex
+   */
+  std::string GetAnnex() const {
+    return annex_;
+  }
+  /**
+   * @brief Set to annex
+   * @param[in] annex    setting value.
+   */
+  void SetAnnex(  // line separate
+    const std::string& annex) {  // NOLINT
+    this->annex_ = annex;
+  }
+  /**
+   * @brief Get data type of annex
+   * @return Data type of annex
+   */
+  static std::string GetAnnexFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of annex field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetAnnexString(  // line separate
+      const VerifySignatureTxInRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.annex_);
+  }
+  /**
+   * @brief Set json object to annex field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetAnnexString(  // line separate
+      VerifySignatureTxInRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.annex_, json_value);
+  }
+
+  /**
+   * @brief Get of codeSeparatorPosition
+   * @return codeSeparatorPosition
+   */
+  int64_t GetCodeSeparatorPosition() const {
+    return code_separator_position_;
+  }
+  /**
+   * @brief Set to codeSeparatorPosition
+   * @param[in] code_separator_position    setting value.
+   */
+  void SetCodeSeparatorPosition(  // line separate
+    const int64_t& code_separator_position) {  // NOLINT
+    this->code_separator_position_ = code_separator_position;
+  }
+  /**
+   * @brief Get data type of codeSeparatorPosition
+   * @return Data type of codeSeparatorPosition
+   */
+  static std::string GetCodeSeparatorPositionFieldType() {
+    return "int64_t";
+  }
+  /**
+   * @brief Get json string of codeSeparatorPosition field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetCodeSeparatorPositionString(  // line separate
+      const VerifySignatureTxInRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.code_separator_position_);
+  }
+  /**
+   * @brief Set json object to codeSeparatorPosition field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetCodeSeparatorPositionString(  // line separate
+      VerifySignatureTxInRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.code_separator_position_, json_value);
+  }
+
+  /**
    * @brief Set ignore item.
    * @param[in] key   ignore target key name.
    */
@@ -26120,6 +28777,14 @@ class VerifySignatureTxInRequest
    * @brief JsonAPI(confidentialValueCommitment) value
    */
   std::string confidential_value_commitment_ = "";
+  /**
+   * @brief JsonAPI(annex) value
+   */
+  std::string annex_ = "";
+  /**
+   * @brief JsonAPI(codeSeparatorPosition) value
+   */
+  int64_t code_separator_position_ = -1;
 };
 
 // ------------------------------------------------------------------------
@@ -26358,6 +29023,49 @@ class VerifySignTxInUtxoData
   }
 
   /**
+   * @brief Get of lockingScript
+   * @return lockingScript
+   */
+  std::string GetLockingScript() const {
+    return locking_script_;
+  }
+  /**
+   * @brief Set to lockingScript
+   * @param[in] locking_script    setting value.
+   */
+  void SetLockingScript(  // line separate
+    const std::string& locking_script) {  // NOLINT
+    this->locking_script_ = locking_script;
+  }
+  /**
+   * @brief Get data type of lockingScript
+   * @return Data type of lockingScript
+   */
+  static std::string GetLockingScriptFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of lockingScript field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetLockingScriptString(  // line separate
+      const VerifySignTxInUtxoData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.locking_script_);
+  }
+  /**
+   * @brief Set json object to lockingScript field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetLockingScriptString(  // line separate
+      VerifySignTxInUtxoData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.locking_script_, json_value);
+  }
+
+  /**
    * @brief Get of confidentialValueCommitment
    * @return confidentialValueCommitment
    */
@@ -26489,6 +29197,10 @@ class VerifySignTxInUtxoData
    * @brief JsonAPI(descriptor) value
    */
   std::string descriptor_ = "";
+  /**
+   * @brief JsonAPI(lockingScript) value
+   */
+  std::string locking_script_ = "";
   /**
    * @brief JsonAPI(confidentialValueCommitment) value
    */
@@ -28539,6 +31251,472 @@ class AddSignRequest
    * @brief JsonAPI(txin) value
    */
   AddSignTxInRequest txin_;  // NOLINT
+};
+
+// ------------------------------------------------------------------------
+// AddTaprootSchnorrSignRequest
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (AddTaprootSchnorrSignRequest) class
+ */
+class AddTaprootSchnorrSignRequest
+  : public cfd::core::JsonClassBase<AddTaprootSchnorrSignRequest> {
+ public:
+  AddTaprootSchnorrSignRequest() {
+    CollectFieldName();
+  }
+  virtual ~AddTaprootSchnorrSignRequest() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of isElements
+   * @return isElements
+   */
+  bool GetIsElements() const {
+    return is_elements_;
+  }
+  /**
+   * @brief Set to isElements
+   * @param[in] is_elements    setting value.
+   */
+  void SetIsElements(  // line separate
+    const bool& is_elements) {  // NOLINT
+    this->is_elements_ = is_elements;
+  }
+  /**
+   * @brief Get data type of isElements
+   * @return Data type of isElements
+   */
+  static std::string GetIsElementsFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of isElements field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetIsElementsString(  // line separate
+      const AddTaprootSchnorrSignRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.is_elements_);
+  }
+  /**
+   * @brief Set json object to isElements field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetIsElementsString(  // line separate
+      AddTaprootSchnorrSignRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.is_elements_, json_value);
+  }
+
+  /**
+   * @brief Get of tx
+   * @return tx
+   */
+  std::string GetTx() const {
+    return tx_;
+  }
+  /**
+   * @brief Set to tx
+   * @param[in] tx    setting value.
+   */
+  void SetTx(  // line separate
+    const std::string& tx) {  // NOLINT
+    this->tx_ = tx;
+  }
+  /**
+   * @brief Get data type of tx
+   * @return Data type of tx
+   */
+  static std::string GetTxFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of tx field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTxString(  // line separate
+      const AddTaprootSchnorrSignRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.tx_);
+  }
+  /**
+   * @brief Set json object to tx field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTxString(  // line separate
+      AddTaprootSchnorrSignRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.tx_, json_value);
+  }
+
+  /**
+   * @brief Get of txin.
+   * @return txin
+   */
+  AddTaprootSchnorrSignTxInRequest& GetTxin() {  // NOLINT
+    return txin_;
+  }
+  /**
+   * @brief Set to txin.
+   * @param[in] txin    setting value.
+   */
+  void SetTxin(  // line separate
+      const AddTaprootSchnorrSignTxInRequest& txin) {  // NOLINT
+    this->txin_ = txin;
+  }
+  /**
+   * @brief Get data type of txin.
+   * @return Data type of txin.
+   */
+  static std::string GetTxinFieldType() {
+    return "AddTaprootSchnorrSignTxInRequest";  // NOLINT
+  }
+  /**
+   * @brief Get json string of txin field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
+   */
+  static std::string GetTxinString(  // line separate
+      const AddTaprootSchnorrSignRequest& obj) {  // NOLINT
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
+    return obj.txin_.Serialize();
+  }
+  /**
+   * @brief Set json object to txin field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
+   */
+  static void SetTxinString(  // line separate
+      AddTaprootSchnorrSignRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    obj.txin_.DeserializeUniValue(json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const AddTaprootSchnorrSignRequestStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  AddTaprootSchnorrSignRequestStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using AddTaprootSchnorrSignRequestMapTable =
+    cfd::core::JsonTableMap<AddTaprootSchnorrSignRequest>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const AddTaprootSchnorrSignRequestMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static AddTaprootSchnorrSignRequestMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(isElements) value
+   */
+  bool is_elements_ = false;
+  /**
+   * @brief JsonAPI(tx) value
+   */
+  std::string tx_ = "";
+  /**
+   * @brief JsonAPI(txin) value
+   */
+  AddTaprootSchnorrSignTxInRequest txin_;  // NOLINT
+};
+
+// ------------------------------------------------------------------------
+// AddTapscriptSignRequest
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (AddTapscriptSignRequest) class
+ */
+class AddTapscriptSignRequest
+  : public cfd::core::JsonClassBase<AddTapscriptSignRequest> {
+ public:
+  AddTapscriptSignRequest() {
+    CollectFieldName();
+  }
+  virtual ~AddTapscriptSignRequest() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of isElements
+   * @return isElements
+   */
+  bool GetIsElements() const {
+    return is_elements_;
+  }
+  /**
+   * @brief Set to isElements
+   * @param[in] is_elements    setting value.
+   */
+  void SetIsElements(  // line separate
+    const bool& is_elements) {  // NOLINT
+    this->is_elements_ = is_elements;
+  }
+  /**
+   * @brief Get data type of isElements
+   * @return Data type of isElements
+   */
+  static std::string GetIsElementsFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of isElements field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetIsElementsString(  // line separate
+      const AddTapscriptSignRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.is_elements_);
+  }
+  /**
+   * @brief Set json object to isElements field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetIsElementsString(  // line separate
+      AddTapscriptSignRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.is_elements_, json_value);
+  }
+
+  /**
+   * @brief Get of tx
+   * @return tx
+   */
+  std::string GetTx() const {
+    return tx_;
+  }
+  /**
+   * @brief Set to tx
+   * @param[in] tx    setting value.
+   */
+  void SetTx(  // line separate
+    const std::string& tx) {  // NOLINT
+    this->tx_ = tx;
+  }
+  /**
+   * @brief Get data type of tx
+   * @return Data type of tx
+   */
+  static std::string GetTxFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of tx field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTxString(  // line separate
+      const AddTapscriptSignRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.tx_);
+  }
+  /**
+   * @brief Set json object to tx field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTxString(  // line separate
+      AddTapscriptSignRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.tx_, json_value);
+  }
+
+  /**
+   * @brief Get of txin.
+   * @return txin
+   */
+  AddTapscriptSignTxInRequest& GetTxin() {  // NOLINT
+    return txin_;
+  }
+  /**
+   * @brief Set to txin.
+   * @param[in] txin    setting value.
+   */
+  void SetTxin(  // line separate
+      const AddTapscriptSignTxInRequest& txin) {  // NOLINT
+    this->txin_ = txin;
+  }
+  /**
+   * @brief Get data type of txin.
+   * @return Data type of txin.
+   */
+  static std::string GetTxinFieldType() {
+    return "AddTapscriptSignTxInRequest";  // NOLINT
+  }
+  /**
+   * @brief Get json string of txin field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
+   */
+  static std::string GetTxinString(  // line separate
+      const AddTapscriptSignRequest& obj) {  // NOLINT
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
+    return obj.txin_.Serialize();
+  }
+  /**
+   * @brief Set json object to txin field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
+   */
+  static void SetTxinString(  // line separate
+      AddTapscriptSignRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    obj.txin_.DeserializeUniValue(json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const AddTapscriptSignRequestStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  AddTapscriptSignRequestStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using AddTapscriptSignRequestMapTable =
+    cfd::core::JsonTableMap<AddTapscriptSignRequest>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const AddTapscriptSignRequestMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static AddTapscriptSignRequestMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(isElements) value
+   */
+  bool is_elements_ = false;
+  /**
+   * @brief JsonAPI(tx) value
+   */
+  std::string tx_ = "";
+  /**
+   * @brief JsonAPI(txin) value
+   */
+  AddTapscriptSignTxInRequest txin_;  // NOLINT
 };
 
 // ------------------------------------------------------------------------
@@ -52643,6 +55821,2061 @@ class SchnorrPubkeyData
 };
 
 
+// ------------------------------------------------------------------------
+// GetSighashRequest
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (GetSighashRequest) class
+ */
+class GetSighashRequest
+  : public cfd::core::JsonClassBase<GetSighashRequest> {
+ public:
+  GetSighashRequest() {
+    CollectFieldName();
+  }
+  virtual ~GetSighashRequest() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of tx
+   * @return tx
+   */
+  std::string GetTx() const {
+    return tx_;
+  }
+  /**
+   * @brief Set to tx
+   * @param[in] tx    setting value.
+   */
+  void SetTx(  // line separate
+    const std::string& tx) {  // NOLINT
+    this->tx_ = tx;
+  }
+  /**
+   * @brief Get data type of tx
+   * @return Data type of tx
+   */
+  static std::string GetTxFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of tx field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTxString(  // line separate
+      const GetSighashRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.tx_);
+  }
+  /**
+   * @brief Set json object to tx field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTxString(  // line separate
+      GetSighashRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.tx_, json_value);
+  }
+
+  /**
+   * @brief Get of isElements
+   * @return isElements
+   */
+  bool GetIsElements() const {
+    return is_elements_;
+  }
+  /**
+   * @brief Set to isElements
+   * @param[in] is_elements    setting value.
+   */
+  void SetIsElements(  // line separate
+    const bool& is_elements) {  // NOLINT
+    this->is_elements_ = is_elements;
+  }
+  /**
+   * @brief Get data type of isElements
+   * @return Data type of isElements
+   */
+  static std::string GetIsElementsFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of isElements field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetIsElementsString(  // line separate
+      const GetSighashRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.is_elements_);
+  }
+  /**
+   * @brief Set json object to isElements field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetIsElementsString(  // line separate
+      GetSighashRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.is_elements_, json_value);
+  }
+
+  /**
+   * @brief Get of txin.
+   * @return txin
+   */
+  GetSighashTxIn& GetTxin() {  // NOLINT
+    return txin_;
+  }
+  /**
+   * @brief Set to txin.
+   * @param[in] txin    setting value.
+   */
+  void SetTxin(  // line separate
+      const GetSighashTxIn& txin) {  // NOLINT
+    this->txin_ = txin;
+  }
+  /**
+   * @brief Get data type of txin.
+   * @return Data type of txin.
+   */
+  static std::string GetTxinFieldType() {
+    return "GetSighashTxIn";  // NOLINT
+  }
+  /**
+   * @brief Get json string of txin field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
+   */
+  static std::string GetTxinString(  // line separate
+      const GetSighashRequest& obj) {  // NOLINT
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
+    return obj.txin_.Serialize();
+  }
+  /**
+   * @brief Set json object to txin field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
+   */
+  static void SetTxinString(  // line separate
+      GetSighashRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    obj.txin_.DeserializeUniValue(json_value);
+  }
+
+  /**
+   * @brief Get of utxos.
+   * @return utxos
+   */
+  JsonObjectVector<UtxoObject, UtxoObjectStruct>& GetUtxos() {  // NOLINT
+    return utxos_;
+  }
+  /**
+   * @brief Set to utxos.
+   * @param[in] utxos    setting value.
+   */
+  void SetUtxos(  // line separate
+      const JsonObjectVector<UtxoObject, UtxoObjectStruct>& utxos) {  // NOLINT
+    this->utxos_ = utxos;
+  }
+  /**
+   * @brief Get data type of utxos.
+   * @return Data type of utxos.
+   */
+  static std::string GetUtxosFieldType() {
+    return "JsonObjectVector<UtxoObject, UtxoObjectStruct>";  // NOLINT
+  }
+  /**
+   * @brief Get json string of utxos field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
+   */
+  static std::string GetUtxosString(  // line separate
+      const GetSighashRequest& obj) {  // NOLINT
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
+    return obj.utxos_.Serialize();
+  }
+  /**
+   * @brief Set json object to utxos field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
+   */
+  static void SetUtxosString(  // line separate
+      GetSighashRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    obj.utxos_.DeserializeUniValue(json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const GetSighashRequestStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  GetSighashRequestStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using GetSighashRequestMapTable =
+    cfd::core::JsonTableMap<GetSighashRequest>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const GetSighashRequestMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static GetSighashRequestMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(tx) value
+   */
+  std::string tx_ = "";
+  /**
+   * @brief JsonAPI(isElements) value
+   */
+  bool is_elements_ = false;
+  /**
+   * @brief JsonAPI(txin) value
+   */
+  GetSighashTxIn txin_;  // NOLINT
+  /**
+   * @brief JsonAPI(utxos) value
+   */
+  JsonObjectVector<UtxoObject, UtxoObjectStruct> utxos_;  // NOLINT
+};
+
+// ------------------------------------------------------------------------
+// CreateSignatureHashResponse
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (CreateSignatureHashResponse) class
+ */
+class CreateSignatureHashResponse
+  : public cfd::core::JsonClassBase<CreateSignatureHashResponse> {
+ public:
+  CreateSignatureHashResponse() {
+    CollectFieldName();
+  }
+  virtual ~CreateSignatureHashResponse() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of sighash
+   * @return sighash
+   */
+  std::string GetSighash() const {
+    return sighash_;
+  }
+  /**
+   * @brief Set to sighash
+   * @param[in] sighash    setting value.
+   */
+  void SetSighash(  // line separate
+    const std::string& sighash) {  // NOLINT
+    this->sighash_ = sighash;
+  }
+  /**
+   * @brief Get data type of sighash
+   * @return Data type of sighash
+   */
+  static std::string GetSighashFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of sighash field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetSighashString(  // line separate
+      const CreateSignatureHashResponse& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.sighash_);
+  }
+  /**
+   * @brief Set json object to sighash field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetSighashString(  // line separate
+      CreateSignatureHashResponse& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.sighash_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const CreateSignatureHashResponseStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  CreateSignatureHashResponseStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using CreateSignatureHashResponseMapTable =
+    cfd::core::JsonTableMap<CreateSignatureHashResponse>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const CreateSignatureHashResponseMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static CreateSignatureHashResponseMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(sighash) value
+   */
+  std::string sighash_ = "";
+};
+
+// ------------------------------------------------------------------------
+// TapScriptFromStringRequest
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (TapScriptFromStringRequest) class
+ */
+class TapScriptFromStringRequest
+  : public cfd::core::JsonClassBase<TapScriptFromStringRequest> {
+ public:
+  TapScriptFromStringRequest() {
+    CollectFieldName();
+  }
+  virtual ~TapScriptFromStringRequest() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of network
+   * @return network
+   */
+  std::string GetNetwork() const {
+    return network_;
+  }
+  /**
+   * @brief Set to network
+   * @param[in] network    setting value.
+   */
+  void SetNetwork(  // line separate
+    const std::string& network) {  // NOLINT
+    this->network_ = network;
+  }
+  /**
+   * @brief Get data type of network
+   * @return Data type of network
+   */
+  static std::string GetNetworkFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of network field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetNetworkString(  // line separate
+      const TapScriptFromStringRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.network_);
+  }
+  /**
+   * @brief Set json object to network field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetNetworkString(  // line separate
+      TapScriptFromStringRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.network_, json_value);
+  }
+
+  /**
+   * @brief Get of isElements
+   * @return isElements
+   */
+  bool GetIsElements() const {
+    return is_elements_;
+  }
+  /**
+   * @brief Set to isElements
+   * @param[in] is_elements    setting value.
+   */
+  void SetIsElements(  // line separate
+    const bool& is_elements) {  // NOLINT
+    this->is_elements_ = is_elements;
+  }
+  /**
+   * @brief Get data type of isElements
+   * @return Data type of isElements
+   */
+  static std::string GetIsElementsFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of isElements field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetIsElementsString(  // line separate
+      const TapScriptFromStringRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.is_elements_);
+  }
+  /**
+   * @brief Set json object to isElements field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetIsElementsString(  // line separate
+      TapScriptFromStringRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.is_elements_, json_value);
+  }
+
+  /**
+   * @brief Get of treeString
+   * @return treeString
+   */
+  std::string GetTreeString() const {
+    return tree_string_;
+  }
+  /**
+   * @brief Set to treeString
+   * @param[in] tree_string    setting value.
+   */
+  void SetTreeString(  // line separate
+    const std::string& tree_string) {  // NOLINT
+    this->tree_string_ = tree_string;
+  }
+  /**
+   * @brief Get data type of treeString
+   * @return Data type of treeString
+   */
+  static std::string GetTreeStringFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of treeString field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTreeStringString(  // line separate
+      const TapScriptFromStringRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.tree_string_);
+  }
+  /**
+   * @brief Set json object to treeString field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTreeStringString(  // line separate
+      TapScriptFromStringRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.tree_string_, json_value);
+  }
+
+  /**
+   * @brief Get of tapscript
+   * @return tapscript
+   */
+  std::string GetTapscript() const {
+    return tapscript_;
+  }
+  /**
+   * @brief Set to tapscript
+   * @param[in] tapscript    setting value.
+   */
+  void SetTapscript(  // line separate
+    const std::string& tapscript) {  // NOLINT
+    this->tapscript_ = tapscript;
+  }
+  /**
+   * @brief Get data type of tapscript
+   * @return Data type of tapscript
+   */
+  static std::string GetTapscriptFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of tapscript field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTapscriptString(  // line separate
+      const TapScriptFromStringRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.tapscript_);
+  }
+  /**
+   * @brief Set json object to tapscript field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTapscriptString(  // line separate
+      TapScriptFromStringRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.tapscript_, json_value);
+  }
+
+  /**
+   * @brief Get of internalPubkey
+   * @return internalPubkey
+   */
+  std::string GetInternalPubkey() const {
+    return internal_pubkey_;
+  }
+  /**
+   * @brief Set to internalPubkey
+   * @param[in] internal_pubkey    setting value.
+   */
+  void SetInternalPubkey(  // line separate
+    const std::string& internal_pubkey) {  // NOLINT
+    this->internal_pubkey_ = internal_pubkey;
+  }
+  /**
+   * @brief Get data type of internalPubkey
+   * @return Data type of internalPubkey
+   */
+  static std::string GetInternalPubkeyFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of internalPubkey field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetInternalPubkeyString(  // line separate
+      const TapScriptFromStringRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.internal_pubkey_);
+  }
+  /**
+   * @brief Set json object to internalPubkey field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetInternalPubkeyString(  // line separate
+      TapScriptFromStringRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.internal_pubkey_, json_value);
+  }
+
+  /**
+   * @brief Get of internalPrivkey
+   * @return internalPrivkey
+   */
+  std::string GetInternalPrivkey() const {
+    return internal_privkey_;
+  }
+  /**
+   * @brief Set to internalPrivkey
+   * @param[in] internal_privkey    setting value.
+   */
+  void SetInternalPrivkey(  // line separate
+    const std::string& internal_privkey) {  // NOLINT
+    this->internal_privkey_ = internal_privkey;
+  }
+  /**
+   * @brief Get data type of internalPrivkey
+   * @return Data type of internalPrivkey
+   */
+  static std::string GetInternalPrivkeyFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of internalPrivkey field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetInternalPrivkeyString(  // line separate
+      const TapScriptFromStringRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.internal_privkey_);
+  }
+  /**
+   * @brief Set json object to internalPrivkey field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetInternalPrivkeyString(  // line separate
+      TapScriptFromStringRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.internal_privkey_, json_value);
+  }
+
+  /**
+   * @brief Get of nodes.
+   * @return nodes
+   */
+  JsonValueVector<std::string>& GetNodes() {  // NOLINT
+    return nodes_;
+  }
+  /**
+   * @brief Set to nodes.
+   * @param[in] nodes    setting value.
+   */
+  void SetNodes(  // line separate
+      const JsonValueVector<std::string>& nodes) {  // NOLINT
+    this->nodes_ = nodes;
+  }
+  /**
+   * @brief Get data type of nodes.
+   * @return Data type of nodes.
+   */
+  static std::string GetNodesFieldType() {
+    return "JsonValueVector<std::string>";  // NOLINT
+  }
+  /**
+   * @brief Get json string of nodes field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
+   */
+  static std::string GetNodesString(  // line separate
+      const TapScriptFromStringRequest& obj) {  // NOLINT
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
+    return obj.nodes_.Serialize();
+  }
+  /**
+   * @brief Set json object to nodes field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
+   */
+  static void SetNodesString(  // line separate
+      TapScriptFromStringRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    obj.nodes_.DeserializeUniValue(json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const TapScriptFromStringRequestStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  TapScriptFromStringRequestStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using TapScriptFromStringRequestMapTable =
+    cfd::core::JsonTableMap<TapScriptFromStringRequest>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const TapScriptFromStringRequestMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static TapScriptFromStringRequestMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(network) value
+   */
+  std::string network_ = "mainnet";
+  /**
+   * @brief JsonAPI(isElements) value
+   */
+  bool is_elements_ = false;
+  /**
+   * @brief JsonAPI(treeString) value
+   */
+  std::string tree_string_ = "";
+  /**
+   * @brief JsonAPI(tapscript) value
+   */
+  std::string tapscript_ = "";
+  /**
+   * @brief JsonAPI(internalPubkey) value
+   */
+  std::string internal_pubkey_ = "";
+  /**
+   * @brief JsonAPI(internalPrivkey) value
+   */
+  std::string internal_privkey_ = "";
+  /**
+   * @brief JsonAPI(nodes) value
+   */
+  JsonValueVector<std::string> nodes_;  // NOLINT
+};
+
+// ------------------------------------------------------------------------
+// TapScriptInfo
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (TapScriptInfo) class
+ */
+class TapScriptInfo
+  : public cfd::core::JsonClassBase<TapScriptInfo> {
+ public:
+  TapScriptInfo() {
+    CollectFieldName();
+  }
+  virtual ~TapScriptInfo() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of tapLeafHash
+   * @return tapLeafHash
+   */
+  std::string GetTapLeafHash() const {
+    return tap_leaf_hash_;
+  }
+  /**
+   * @brief Set to tapLeafHash
+   * @param[in] tap_leaf_hash    setting value.
+   */
+  void SetTapLeafHash(  // line separate
+    const std::string& tap_leaf_hash) {  // NOLINT
+    this->tap_leaf_hash_ = tap_leaf_hash;
+  }
+  /**
+   * @brief Get data type of tapLeafHash
+   * @return Data type of tapLeafHash
+   */
+  static std::string GetTapLeafHashFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of tapLeafHash field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTapLeafHashString(  // line separate
+      const TapScriptInfo& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.tap_leaf_hash_);
+  }
+  /**
+   * @brief Set json object to tapLeafHash field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTapLeafHashString(  // line separate
+      TapScriptInfo& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.tap_leaf_hash_, json_value);
+  }
+
+  /**
+   * @brief Get of topBranchHash
+   * @return topBranchHash
+   */
+  std::string GetTopBranchHash() const {
+    return top_branch_hash_;
+  }
+  /**
+   * @brief Set to topBranchHash
+   * @param[in] top_branch_hash    setting value.
+   */
+  void SetTopBranchHash(  // line separate
+    const std::string& top_branch_hash) {  // NOLINT
+    this->top_branch_hash_ = top_branch_hash;
+  }
+  /**
+   * @brief Get data type of topBranchHash
+   * @return Data type of topBranchHash
+   */
+  static std::string GetTopBranchHashFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of topBranchHash field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTopBranchHashString(  // line separate
+      const TapScriptInfo& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.top_branch_hash_);
+  }
+  /**
+   * @brief Set json object to topBranchHash field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTopBranchHashString(  // line separate
+      TapScriptInfo& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.top_branch_hash_, json_value);
+  }
+
+  /**
+   * @brief Get of tweakedPubkey
+   * @return tweakedPubkey
+   */
+  std::string GetTweakedPubkey() const {
+    return tweaked_pubkey_;
+  }
+  /**
+   * @brief Set to tweakedPubkey
+   * @param[in] tweaked_pubkey    setting value.
+   */
+  void SetTweakedPubkey(  // line separate
+    const std::string& tweaked_pubkey) {  // NOLINT
+    this->tweaked_pubkey_ = tweaked_pubkey;
+  }
+  /**
+   * @brief Get data type of tweakedPubkey
+   * @return Data type of tweakedPubkey
+   */
+  static std::string GetTweakedPubkeyFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of tweakedPubkey field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTweakedPubkeyString(  // line separate
+      const TapScriptInfo& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.tweaked_pubkey_);
+  }
+  /**
+   * @brief Set json object to tweakedPubkey field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTweakedPubkeyString(  // line separate
+      TapScriptInfo& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.tweaked_pubkey_, json_value);
+  }
+
+  /**
+   * @brief Get of tweakedPrivkey
+   * @return tweakedPrivkey
+   */
+  std::string GetTweakedPrivkey() const {
+    return tweaked_privkey_;
+  }
+  /**
+   * @brief Set to tweakedPrivkey
+   * @param[in] tweaked_privkey    setting value.
+   */
+  void SetTweakedPrivkey(  // line separate
+    const std::string& tweaked_privkey) {  // NOLINT
+    this->tweaked_privkey_ = tweaked_privkey;
+  }
+  /**
+   * @brief Get data type of tweakedPrivkey
+   * @return Data type of tweakedPrivkey
+   */
+  static std::string GetTweakedPrivkeyFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of tweakedPrivkey field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTweakedPrivkeyString(  // line separate
+      const TapScriptInfo& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.tweaked_privkey_);
+  }
+  /**
+   * @brief Set json object to tweakedPrivkey field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTweakedPrivkeyString(  // line separate
+      TapScriptInfo& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.tweaked_privkey_, json_value);
+  }
+
+  /**
+   * @brief Get of address
+   * @return address
+   */
+  std::string GetAddress() const {
+    return address_;
+  }
+  /**
+   * @brief Set to address
+   * @param[in] address    setting value.
+   */
+  void SetAddress(  // line separate
+    const std::string& address) {  // NOLINT
+    this->address_ = address;
+  }
+  /**
+   * @brief Get data type of address
+   * @return Data type of address
+   */
+  static std::string GetAddressFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of address field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetAddressString(  // line separate
+      const TapScriptInfo& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.address_);
+  }
+  /**
+   * @brief Set json object to address field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetAddressString(  // line separate
+      TapScriptInfo& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.address_, json_value);
+  }
+
+  /**
+   * @brief Get of lockingScript
+   * @return lockingScript
+   */
+  std::string GetLockingScript() const {
+    return locking_script_;
+  }
+  /**
+   * @brief Set to lockingScript
+   * @param[in] locking_script    setting value.
+   */
+  void SetLockingScript(  // line separate
+    const std::string& locking_script) {  // NOLINT
+    this->locking_script_ = locking_script;
+  }
+  /**
+   * @brief Get data type of lockingScript
+   * @return Data type of lockingScript
+   */
+  static std::string GetLockingScriptFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of lockingScript field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetLockingScriptString(  // line separate
+      const TapScriptInfo& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.locking_script_);
+  }
+  /**
+   * @brief Set json object to lockingScript field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetLockingScriptString(  // line separate
+      TapScriptInfo& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.locking_script_, json_value);
+  }
+
+  /**
+   * @brief Get of controlBlock
+   * @return controlBlock
+   */
+  std::string GetControlBlock() const {
+    return control_block_;
+  }
+  /**
+   * @brief Set to controlBlock
+   * @param[in] control_block    setting value.
+   */
+  void SetControlBlock(  // line separate
+    const std::string& control_block) {  // NOLINT
+    this->control_block_ = control_block;
+  }
+  /**
+   * @brief Get data type of controlBlock
+   * @return Data type of controlBlock
+   */
+  static std::string GetControlBlockFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of controlBlock field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetControlBlockString(  // line separate
+      const TapScriptInfo& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.control_block_);
+  }
+  /**
+   * @brief Set json object to controlBlock field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetControlBlockString(  // line separate
+      TapScriptInfo& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.control_block_, json_value);
+  }
+
+  /**
+   * @brief Get of tapscript
+   * @return tapscript
+   */
+  std::string GetTapscript() const {
+    return tapscript_;
+  }
+  /**
+   * @brief Set to tapscript
+   * @param[in] tapscript    setting value.
+   */
+  void SetTapscript(  // line separate
+    const std::string& tapscript) {  // NOLINT
+    this->tapscript_ = tapscript;
+  }
+  /**
+   * @brief Get data type of tapscript
+   * @return Data type of tapscript
+   */
+  static std::string GetTapscriptFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of tapscript field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTapscriptString(  // line separate
+      const TapScriptInfo& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.tapscript_);
+  }
+  /**
+   * @brief Set json object to tapscript field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTapscriptString(  // line separate
+      TapScriptInfo& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.tapscript_, json_value);
+  }
+
+  /**
+   * @brief Get of nodes.
+   * @return nodes
+   */
+  JsonValueVector<std::string>& GetNodes() {  // NOLINT
+    return nodes_;
+  }
+  /**
+   * @brief Set to nodes.
+   * @param[in] nodes    setting value.
+   */
+  void SetNodes(  // line separate
+      const JsonValueVector<std::string>& nodes) {  // NOLINT
+    this->nodes_ = nodes;
+  }
+  /**
+   * @brief Get data type of nodes.
+   * @return Data type of nodes.
+   */
+  static std::string GetNodesFieldType() {
+    return "JsonValueVector<std::string>";  // NOLINT
+  }
+  /**
+   * @brief Get json string of nodes field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
+   */
+  static std::string GetNodesString(  // line separate
+      const TapScriptInfo& obj) {  // NOLINT
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
+    return obj.nodes_.Serialize();
+  }
+  /**
+   * @brief Set json object to nodes field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
+   */
+  static void SetNodesString(  // line separate
+      TapScriptInfo& obj,  // NOLINT
+      const UniValue& json_value) {
+    obj.nodes_.DeserializeUniValue(json_value);
+  }
+
+  /**
+   * @brief Get of treeString
+   * @return treeString
+   */
+  std::string GetTreeString() const {
+    return tree_string_;
+  }
+  /**
+   * @brief Set to treeString
+   * @param[in] tree_string    setting value.
+   */
+  void SetTreeString(  // line separate
+    const std::string& tree_string) {  // NOLINT
+    this->tree_string_ = tree_string;
+  }
+  /**
+   * @brief Get data type of treeString
+   * @return Data type of treeString
+   */
+  static std::string GetTreeStringFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of treeString field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTreeStringString(  // line separate
+      const TapScriptInfo& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.tree_string_);
+  }
+  /**
+   * @brief Set json object to treeString field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTreeStringString(  // line separate
+      TapScriptInfo& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.tree_string_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const TapScriptInfoStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  TapScriptInfoStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using TapScriptInfoMapTable =
+    cfd::core::JsonTableMap<TapScriptInfo>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const TapScriptInfoMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static TapScriptInfoMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(tapLeafHash) value
+   */
+  std::string tap_leaf_hash_ = "";
+  /**
+   * @brief JsonAPI(topBranchHash) value
+   */
+  std::string top_branch_hash_ = "";
+  /**
+   * @brief JsonAPI(tweakedPubkey) value
+   */
+  std::string tweaked_pubkey_ = "";
+  /**
+   * @brief JsonAPI(tweakedPrivkey) value
+   */
+  std::string tweaked_privkey_ = "";
+  /**
+   * @brief JsonAPI(address) value
+   */
+  std::string address_ = "";
+  /**
+   * @brief JsonAPI(lockingScript) value
+   */
+  std::string locking_script_ = "";
+  /**
+   * @brief JsonAPI(controlBlock) value
+   */
+  std::string control_block_ = "";
+  /**
+   * @brief JsonAPI(tapscript) value
+   */
+  std::string tapscript_ = "";
+  /**
+   * @brief JsonAPI(nodes) value
+   */
+  JsonValueVector<std::string> nodes_;  // NOLINT
+  /**
+   * @brief JsonAPI(treeString) value
+   */
+  std::string tree_string_ = "";
+};
+
+// ------------------------------------------------------------------------
+// TapScriptInfoByControlRequest
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (TapScriptInfoByControlRequest) class
+ */
+class TapScriptInfoByControlRequest
+  : public cfd::core::JsonClassBase<TapScriptInfoByControlRequest> {
+ public:
+  TapScriptInfoByControlRequest() {
+    CollectFieldName();
+  }
+  virtual ~TapScriptInfoByControlRequest() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of network
+   * @return network
+   */
+  std::string GetNetwork() const {
+    return network_;
+  }
+  /**
+   * @brief Set to network
+   * @param[in] network    setting value.
+   */
+  void SetNetwork(  // line separate
+    const std::string& network) {  // NOLINT
+    this->network_ = network;
+  }
+  /**
+   * @brief Get data type of network
+   * @return Data type of network
+   */
+  static std::string GetNetworkFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of network field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetNetworkString(  // line separate
+      const TapScriptInfoByControlRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.network_);
+  }
+  /**
+   * @brief Set json object to network field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetNetworkString(  // line separate
+      TapScriptInfoByControlRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.network_, json_value);
+  }
+
+  /**
+   * @brief Get of isElements
+   * @return isElements
+   */
+  bool GetIsElements() const {
+    return is_elements_;
+  }
+  /**
+   * @brief Set to isElements
+   * @param[in] is_elements    setting value.
+   */
+  void SetIsElements(  // line separate
+    const bool& is_elements) {  // NOLINT
+    this->is_elements_ = is_elements;
+  }
+  /**
+   * @brief Get data type of isElements
+   * @return Data type of isElements
+   */
+  static std::string GetIsElementsFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of isElements field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetIsElementsString(  // line separate
+      const TapScriptInfoByControlRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.is_elements_);
+  }
+  /**
+   * @brief Set json object to isElements field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetIsElementsString(  // line separate
+      TapScriptInfoByControlRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.is_elements_, json_value);
+  }
+
+  /**
+   * @brief Get of tapscript
+   * @return tapscript
+   */
+  std::string GetTapscript() const {
+    return tapscript_;
+  }
+  /**
+   * @brief Set to tapscript
+   * @param[in] tapscript    setting value.
+   */
+  void SetTapscript(  // line separate
+    const std::string& tapscript) {  // NOLINT
+    this->tapscript_ = tapscript;
+  }
+  /**
+   * @brief Get data type of tapscript
+   * @return Data type of tapscript
+   */
+  static std::string GetTapscriptFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of tapscript field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTapscriptString(  // line separate
+      const TapScriptInfoByControlRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.tapscript_);
+  }
+  /**
+   * @brief Set json object to tapscript field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTapscriptString(  // line separate
+      TapScriptInfoByControlRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.tapscript_, json_value);
+  }
+
+  /**
+   * @brief Get of controlBlock
+   * @return controlBlock
+   */
+  std::string GetControlBlock() const {
+    return control_block_;
+  }
+  /**
+   * @brief Set to controlBlock
+   * @param[in] control_block    setting value.
+   */
+  void SetControlBlock(  // line separate
+    const std::string& control_block) {  // NOLINT
+    this->control_block_ = control_block;
+  }
+  /**
+   * @brief Get data type of controlBlock
+   * @return Data type of controlBlock
+   */
+  static std::string GetControlBlockFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of controlBlock field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetControlBlockString(  // line separate
+      const TapScriptInfoByControlRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.control_block_);
+  }
+  /**
+   * @brief Set json object to controlBlock field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetControlBlockString(  // line separate
+      TapScriptInfoByControlRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.control_block_, json_value);
+  }
+
+  /**
+   * @brief Get of internalPrivkey
+   * @return internalPrivkey
+   */
+  std::string GetInternalPrivkey() const {
+    return internal_privkey_;
+  }
+  /**
+   * @brief Set to internalPrivkey
+   * @param[in] internal_privkey    setting value.
+   */
+  void SetInternalPrivkey(  // line separate
+    const std::string& internal_privkey) {  // NOLINT
+    this->internal_privkey_ = internal_privkey;
+  }
+  /**
+   * @brief Get data type of internalPrivkey
+   * @return Data type of internalPrivkey
+   */
+  static std::string GetInternalPrivkeyFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of internalPrivkey field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetInternalPrivkeyString(  // line separate
+      const TapScriptInfoByControlRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.internal_privkey_);
+  }
+  /**
+   * @brief Set json object to internalPrivkey field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetInternalPrivkeyString(  // line separate
+      TapScriptInfoByControlRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.internal_privkey_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const TapScriptInfoByControlRequestStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  TapScriptInfoByControlRequestStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using TapScriptInfoByControlRequestMapTable =
+    cfd::core::JsonTableMap<TapScriptInfoByControlRequest>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const TapScriptInfoByControlRequestMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static TapScriptInfoByControlRequestMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(network) value
+   */
+  std::string network_ = "mainnet";
+  /**
+   * @brief JsonAPI(isElements) value
+   */
+  bool is_elements_ = false;
+  /**
+   * @brief JsonAPI(tapscript) value
+   */
+  std::string tapscript_ = "";
+  /**
+   * @brief JsonAPI(controlBlock) value
+   */
+  std::string control_block_ = "";
+  /**
+   * @brief JsonAPI(internalPrivkey) value
+   */
+  std::string internal_privkey_ = "";
+};
+
+// ------------------------------------------------------------------------
+// GetTapScriptTreeInfoRequest
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (GetTapScriptTreeInfoRequest) class
+ */
+class GetTapScriptTreeInfoRequest
+  : public cfd::core::JsonClassBase<GetTapScriptTreeInfoRequest> {
+ public:
+  GetTapScriptTreeInfoRequest() {
+    CollectFieldName();
+  }
+  virtual ~GetTapScriptTreeInfoRequest() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of network
+   * @return network
+   */
+  std::string GetNetwork() const {
+    return network_;
+  }
+  /**
+   * @brief Set to network
+   * @param[in] network    setting value.
+   */
+  void SetNetwork(  // line separate
+    const std::string& network) {  // NOLINT
+    this->network_ = network;
+  }
+  /**
+   * @brief Get data type of network
+   * @return Data type of network
+   */
+  static std::string GetNetworkFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of network field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetNetworkString(  // line separate
+      const GetTapScriptTreeInfoRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.network_);
+  }
+  /**
+   * @brief Set json object to network field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetNetworkString(  // line separate
+      GetTapScriptTreeInfoRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.network_, json_value);
+  }
+
+  /**
+   * @brief Get of isElements
+   * @return isElements
+   */
+  bool GetIsElements() const {
+    return is_elements_;
+  }
+  /**
+   * @brief Set to isElements
+   * @param[in] is_elements    setting value.
+   */
+  void SetIsElements(  // line separate
+    const bool& is_elements) {  // NOLINT
+    this->is_elements_ = is_elements;
+  }
+  /**
+   * @brief Get data type of isElements
+   * @return Data type of isElements
+   */
+  static std::string GetIsElementsFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of isElements field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetIsElementsString(  // line separate
+      const GetTapScriptTreeInfoRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.is_elements_);
+  }
+  /**
+   * @brief Set json object to isElements field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetIsElementsString(  // line separate
+      GetTapScriptTreeInfoRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.is_elements_, json_value);
+  }
+
+  /**
+   * @brief Get of internalPubkey
+   * @return internalPubkey
+   */
+  std::string GetInternalPubkey() const {
+    return internal_pubkey_;
+  }
+  /**
+   * @brief Set to internalPubkey
+   * @param[in] internal_pubkey    setting value.
+   */
+  void SetInternalPubkey(  // line separate
+    const std::string& internal_pubkey) {  // NOLINT
+    this->internal_pubkey_ = internal_pubkey;
+  }
+  /**
+   * @brief Get data type of internalPubkey
+   * @return Data type of internalPubkey
+   */
+  static std::string GetInternalPubkeyFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of internalPubkey field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetInternalPubkeyString(  // line separate
+      const GetTapScriptTreeInfoRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.internal_pubkey_);
+  }
+  /**
+   * @brief Set json object to internalPubkey field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetInternalPubkeyString(  // line separate
+      GetTapScriptTreeInfoRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.internal_pubkey_, json_value);
+  }
+
+  /**
+   * @brief Get of internalPrivkey
+   * @return internalPrivkey
+   */
+  std::string GetInternalPrivkey() const {
+    return internal_privkey_;
+  }
+  /**
+   * @brief Set to internalPrivkey
+   * @param[in] internal_privkey    setting value.
+   */
+  void SetInternalPrivkey(  // line separate
+    const std::string& internal_privkey) {  // NOLINT
+    this->internal_privkey_ = internal_privkey;
+  }
+  /**
+   * @brief Get data type of internalPrivkey
+   * @return Data type of internalPrivkey
+   */
+  static std::string GetInternalPrivkeyFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of internalPrivkey field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetInternalPrivkeyString(  // line separate
+      const GetTapScriptTreeInfoRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.internal_privkey_);
+  }
+  /**
+   * @brief Set json object to internalPrivkey field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetInternalPrivkeyString(  // line separate
+      GetTapScriptTreeInfoRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.internal_privkey_, json_value);
+  }
+
+  /**
+   * @brief Get of tree.
+   * @return tree
+   */
+  JsonObjectVector<TapBranchData, TapBranchDataStruct>& GetTree() {  // NOLINT
+    return tree_;
+  }
+  /**
+   * @brief Set to tree.
+   * @param[in] tree    setting value.
+   */
+  void SetTree(  // line separate
+      const JsonObjectVector<TapBranchData, TapBranchDataStruct>& tree) {  // NOLINT
+    this->tree_ = tree;
+  }
+  /**
+   * @brief Get data type of tree.
+   * @return Data type of tree.
+   */
+  static std::string GetTreeFieldType() {
+    return "JsonObjectVector<TapBranchData, TapBranchDataStruct>";  // NOLINT
+  }
+  /**
+   * @brief Get json string of tree field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
+   */
+  static std::string GetTreeString(  // line separate
+      const GetTapScriptTreeInfoRequest& obj) {  // NOLINT
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
+    return obj.tree_.Serialize();
+  }
+  /**
+   * @brief Set json object to tree field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
+   */
+  static void SetTreeString(  // line separate
+      GetTapScriptTreeInfoRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    obj.tree_.DeserializeUniValue(json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const GetTapScriptTreeInfoRequestStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  GetTapScriptTreeInfoRequestStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using GetTapScriptTreeInfoRequestMapTable =
+    cfd::core::JsonTableMap<GetTapScriptTreeInfoRequest>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const GetTapScriptTreeInfoRequestMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static GetTapScriptTreeInfoRequestMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(network) value
+   */
+  std::string network_ = "mainnet";
+  /**
+   * @brief JsonAPI(isElements) value
+   */
+  bool is_elements_ = false;
+  /**
+   * @brief JsonAPI(internalPubkey) value
+   */
+  std::string internal_pubkey_ = "";
+  /**
+   * @brief JsonAPI(internalPrivkey) value
+   */
+  std::string internal_privkey_ = "";
+  /**
+   * @brief JsonAPI(tree) value
+   */
+  JsonObjectVector<TapBranchData, TapBranchDataStruct> tree_;  // NOLINT
+};
+
 
 // ------------------------------------------------------------------------
 // GetWitnessStackNumRequest
@@ -58000,144 +63233,6 @@ class CreateSignatureHashRequest
 };
 
 // ------------------------------------------------------------------------
-// CreateSignatureHashResponse
-// ------------------------------------------------------------------------
-/**
- * @brief JSON-API (CreateSignatureHashResponse) class
- */
-class CreateSignatureHashResponse
-  : public cfd::core::JsonClassBase<CreateSignatureHashResponse> {
- public:
-  CreateSignatureHashResponse() {
-    CollectFieldName();
-  }
-  virtual ~CreateSignatureHashResponse() {
-    // do nothing
-  }
-  /**
-   * @brief collect field name.
-   */
-  static void CollectFieldName();
-
-  /**
-   * @brief Get of sighash
-   * @return sighash
-   */
-  std::string GetSighash() const {
-    return sighash_;
-  }
-  /**
-   * @brief Set to sighash
-   * @param[in] sighash    setting value.
-   */
-  void SetSighash(  // line separate
-    const std::string& sighash) {  // NOLINT
-    this->sighash_ = sighash;
-  }
-  /**
-   * @brief Get data type of sighash
-   * @return Data type of sighash
-   */
-  static std::string GetSighashFieldType() {
-    return "std::string";
-  }
-  /**
-   * @brief Get json string of sighash field.
-   * @param[in,out] obj     class object.
-   * @return JSON string
-   */
-  static std::string GetSighashString(  // line separate
-      const CreateSignatureHashResponse& obj) {  // NOLINT
-    return cfd::core::ConvertToString(obj.sighash_);
-  }
-  /**
-   * @brief Set json object to sighash field.
-   * @param[in,out] obj     class object.
-   * @param[in] json_value  JSON object.
-   */
-  static void SetSighashString(  // line separate
-      CreateSignatureHashResponse& obj,  // NOLINT
-      const UniValue& json_value) {
-    cfd::core::ConvertFromUniValue(  // line separate
-      obj.sighash_, json_value);
-  }
-
-  /**
-   * @brief Set ignore item.
-   * @param[in] key   ignore target key name.
-   */
-  void SetIgnoreItem(const std::string& key) {
-    ignore_items.insert(key);
-  }
-
-  /**
-   * @brief Convert struct to class.
-   * @param[in] data   struct data.
-   */
-  void ConvertFromStruct(
-      const CreateSignatureHashResponseStruct& data);
-
-  /**
-   * @brief Convert class to struct.
-   * @return  struct data.
-   */
-  CreateSignatureHashResponseStruct ConvertToStruct()  const;
-
- protected:
-  /**
-   * @brief definition type of Map table.
-   */
-  using CreateSignatureHashResponseMapTable =
-    cfd::core::JsonTableMap<CreateSignatureHashResponse>;
-
-  /**
-   * @brief Get JSON mapping object.
-   * @return JSON mapping object.
-   * @see cfd::core::JsonClassBase::GetJsonMapper()
-   */
-  virtual const CreateSignatureHashResponseMapTable& GetJsonMapper() const {  // NOLINT
-    return json_mapper;
-  }
-  /**
-   * @brief Get item lists of JSON mapping.
-   * Fetch a list of target variable names in the order of definition.
-   * @return Item lists of JSON mapping.
-   * @see cfd::core::JsonClassBase::GetJsonItemList()
-   */
-  virtual const std::vector<std::string>& GetJsonItemList() const {
-    return item_list;
-  }
-  /**
-   * @brief Get ignore item lists of JSON mapping.
-   * Ignore the target variable at Serialize.
-   * @return Item list of JSON mapping.
-   * @see cfd::core::JsonClassBase::GetIgnoreItem()
-   */
-  virtual const std::set<std::string>& GetIgnoreItem() const {
-    return ignore_items;
-  }
-
- private:
- /**
-  * @brief JsonFunctionMap table
-  */
-  static CreateSignatureHashResponseMapTable json_mapper;
-  /**
-   * @brief field name list.
-   */
-  static std::vector<std::string> item_list;
-  /**
-   * @brief ignore item list.
-   */
-  std::set<std::string> ignore_items;
-
-  /**
-   * @brief JsonAPI(sighash) value
-   */
-  std::string sighash_ = "";
-};
-
-// ------------------------------------------------------------------------
 // CreateElementsSignatureHashRequest
 // ------------------------------------------------------------------------
 /**
@@ -59170,6 +64265,50 @@ class SignWithPrivkeyRequest
   }
 
   /**
+   * @brief Get of utxos.
+   * @return utxos
+   */
+  JsonObjectVector<UtxoObject, UtxoObjectStruct>& GetUtxos() {  // NOLINT
+    return utxos_;
+  }
+  /**
+   * @brief Set to utxos.
+   * @param[in] utxos    setting value.
+   */
+  void SetUtxos(  // line separate
+      const JsonObjectVector<UtxoObject, UtxoObjectStruct>& utxos) {  // NOLINT
+    this->utxos_ = utxos;
+  }
+  /**
+   * @brief Get data type of utxos.
+   * @return Data type of utxos.
+   */
+  static std::string GetUtxosFieldType() {
+    return "JsonObjectVector<UtxoObject, UtxoObjectStruct>";  // NOLINT
+  }
+  /**
+   * @brief Get json string of utxos field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
+   */
+  static std::string GetUtxosString(  // line separate
+      const SignWithPrivkeyRequest& obj) {  // NOLINT
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
+    return obj.utxos_.Serialize();
+  }
+  /**
+   * @brief Set json object to utxos field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
+   */
+  static void SetUtxosString(  // line separate
+      SignWithPrivkeyRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    obj.utxos_.DeserializeUniValue(json_value);
+  }
+
+  /**
    * @brief Set ignore item.
    * @param[in] key   ignore target key name.
    */
@@ -59250,6 +64389,10 @@ class SignWithPrivkeyRequest
    * @brief JsonAPI(txin) value
    */
   SignWithPrivkeyTxInRequest txin_;  // NOLINT
+  /**
+   * @brief JsonAPI(utxos) value
+   */
+  JsonObjectVector<UtxoObject, UtxoObjectStruct> utxos_;  // NOLINT
 };
 
 // ------------------------------------------------------------------------
@@ -61638,6 +66781,50 @@ class VerifySignatureRequest
   }
 
   /**
+   * @brief Get of utxos.
+   * @return utxos
+   */
+  JsonObjectVector<UtxoObject, UtxoObjectStruct>& GetUtxos() {  // NOLINT
+    return utxos_;
+  }
+  /**
+   * @brief Set to utxos.
+   * @param[in] utxos    setting value.
+   */
+  void SetUtxos(  // line separate
+      const JsonObjectVector<UtxoObject, UtxoObjectStruct>& utxos) {  // NOLINT
+    this->utxos_ = utxos;
+  }
+  /**
+   * @brief Get data type of utxos.
+   * @return Data type of utxos.
+   */
+  static std::string GetUtxosFieldType() {
+    return "JsonObjectVector<UtxoObject, UtxoObjectStruct>";  // NOLINT
+  }
+  /**
+   * @brief Get json string of utxos field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
+   */
+  static std::string GetUtxosString(  // line separate
+      const VerifySignatureRequest& obj) {  // NOLINT
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
+    return obj.utxos_.Serialize();
+  }
+  /**
+   * @brief Set json object to utxos field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
+   */
+  static void SetUtxosString(  // line separate
+      VerifySignatureRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    obj.utxos_.DeserializeUniValue(json_value);
+  }
+
+  /**
    * @brief Set ignore item.
    * @param[in] key   ignore target key name.
    */
@@ -61718,6 +66905,10 @@ class VerifySignatureRequest
    * @brief JsonAPI(txin) value
    */
   VerifySignatureTxInRequest txin_;  // NOLINT
+  /**
+   * @brief JsonAPI(utxos) value
+   */
+  JsonObjectVector<UtxoObject, UtxoObjectStruct> utxos_;  // NOLINT
 };
 
 // @formatter:on

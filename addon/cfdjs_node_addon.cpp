@@ -222,6 +222,15 @@ Value CreateSignatureHash(const CallbackInfo &information) {
 }
 
 /**
+ * @brief Implements getting sighash api for JSON.
+ * @param[in] information     JSON data.
+ * @return json string.
+ */
+Value GetSighash(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::GetSighash);
+}
+
+/**
  * @brief ConvertAes の JSON API関数(request, response).
  * @param[in] information     node addon apiのコールバック情報
  * @return 戻り値(JSON文字列)
@@ -577,6 +586,24 @@ Value AddScriptHashSign(const CallbackInfo &information) {
 }
 
 /**
+ * @brief Implements taproot sign api for JSON.
+ * @param[in] information     JSON data.
+ * @return json string.
+ */
+Value AddTaprootSchnorrSign(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::AddTaprootSchnorrSign);
+}
+
+/**
+ * @brief Implements tapscript sign api for JSON.
+ * @param[in] information     JSON data.
+ * @return json string.
+ */
+Value AddTapscriptSign(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::AddTapscriptSign);
+}
+
+/**
  * @brief UpdateWitnessStackのJSON API関数(request, response).
  * @param[in] information     node addon apiのコールバック情報
  * @return 戻り値(JSON文字列)
@@ -668,9 +695,9 @@ Value GetSchnorrPubkeyFromPrivkey(const CallbackInfo &information) {
 }
 
 /**
-  * @brief The JSON parameter function of GetSchnorrPubkeyFromPubkey.
+ * @brief The JSON parameter function of GetSchnorrPubkeyFromPubkey.
  * @param[in] information   node add on api callback information
-  * @return json string
+ * @return json string
  */
 Value GetSchnorrPubkeyFromPubkey(const CallbackInfo &information) {
   return NodeAddonJsonApi(
@@ -678,9 +705,9 @@ Value GetSchnorrPubkeyFromPubkey(const CallbackInfo &information) {
 }
 
 /**
-  * @brief The JSON parameter function of TweakAddSchnorrPubkeyFromPrivkey.
+ * @brief The JSON parameter function of TweakAddSchnorrPubkeyFromPrivkey.
  * @param[in] information   node add on api callback information
-  * @return json string
+ * @return json string
  */
 Value TweakAddSchnorrPubkeyFromPrivkey(const CallbackInfo &information) {
   return NodeAddonJsonApi(
@@ -688,9 +715,9 @@ Value TweakAddSchnorrPubkeyFromPrivkey(const CallbackInfo &information) {
 }
 
 /**
-  * @brief The JSON parameter function of TweakAddSchnorrPubkeyFromPubkey.
+ * @brief The JSON parameter function of TweakAddSchnorrPubkeyFromPubkey.
  * @param[in] information   node add on api callback information
-  * @return json string
+ * @return json string
  */
 Value TweakAddSchnorrPubkeyFromPubkey(const CallbackInfo &information) {
   return NodeAddonJsonApi(
@@ -698,9 +725,9 @@ Value TweakAddSchnorrPubkeyFromPubkey(const CallbackInfo &information) {
 }
 
 /**
-  * @brief The JSON parameter function of CheckTweakedSchnorrPubkey.
+ * @brief The JSON parameter function of CheckTweakedSchnorrPubkey.
  * @param[in] information   node add on api callback information
-  * @return json string
+ * @return json string
  */
 Value CheckTweakedSchnorrPubkey(const CallbackInfo &information) {
   return NodeAddonJsonApi(
@@ -770,6 +797,35 @@ Value AdaptEcdsaAdaptor(const CallbackInfo &information) {
 Value ExtractSecretEcdsaAdaptor(const CallbackInfo &information) {
   return NodeAddonJsonApi(
       information, JsonMappingApi::ExtractSecretEcdsaAdaptor);
+}
+
+/**
+ * @brief Implements getting tapscript tree api for JSON.
+ * @param[in] information     JSON data.
+ * @return json string.
+ */
+Value GetTapScriptTreeInfo(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::GetTapScriptTreeInfo);
+}
+
+/**
+ * @brief Implements getting tapscript tree by control block for JSON.
+ * @param[in] information     JSON data.
+ * @return json string.
+ */
+Value GetTapScriptTreeInfoByControlBlock(const CallbackInfo &information) {
+  return NodeAddonJsonApi(
+      information, JsonMappingApi::GetTapScriptTreeInfoByControlBlock);
+}
+
+/**
+ * @brief Implements getting tapscript tree by string for JSON.
+ * @param[in] information     JSON data.
+ * @return json string.
+ */
+Value GetTapScriptTreeFromString(const CallbackInfo &information) {
+  return NodeAddonJsonApi(
+      information, JsonMappingApi::GetTapScriptTreeFromString);
 }
 
 /**
@@ -1122,6 +1178,7 @@ void InitializeJsonApi(Env env, Object *exports) {
   exports->Set(
       String::New(env, "CreateSignatureHash"),
       Function::New(env, CreateSignatureHash));
+  exports->Set(String::New(env, "GetSighash"), Function::New(env, GetSighash));
   exports->Set(String::New(env, "ConvertAes"), Function::New(env, ConvertAes));
   exports->Set(
       String::New(env, "EncodeBase58"), Function::New(env, EncodeBase58));
@@ -1152,6 +1209,12 @@ void InitializeJsonApi(Env env, Object *exports) {
   exports->Set(
       String::New(env, "AddScriptHashSign"),
       Function::New(env, AddScriptHashSign));
+  exports->Set(
+      String::New(env, "AddTaprootSchnorrSign"),
+      Function::New(env, AddTaprootSchnorrSign));
+  exports->Set(
+      String::New(env, "AddTapscriptSign"),
+      Function::New(env, AddTapscriptSign));
   exports->Set(
       String::New(env, "UpdateWitnessStack"),
       Function::New(env, UpdateWitnessStack));
@@ -1276,6 +1339,15 @@ void InitializeJsonApi(Env env, Object *exports) {
   exports->Set(
       String::New(env, "ExtractSecretEcdsaAdaptor"),
       Function::New(env, ExtractSecretEcdsaAdaptor));
+  exports->Set(
+      String::New(env, "GetTapScriptTreeInfo"),
+      Function::New(env, GetTapScriptTreeInfo));
+  exports->Set(
+      String::New(env, "GetTapScriptTreeInfoByControlBlock"),
+      Function::New(env, GetTapScriptTreeInfoByControlBlock));
+  exports->Set(
+      String::New(env, "GetTapScriptTreeFromString"),
+      Function::New(env, GetTapScriptTreeFromString));
   exports->Set(String::New(env, "DecodePsbt"), Function::New(env, DecodePsbt));
   exports->Set(String::New(env, "CreatePsbt"), Function::New(env, CreatePsbt));
   exports->Set(

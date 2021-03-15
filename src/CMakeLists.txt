@@ -67,6 +67,7 @@ endif()
 target_sources(${PROJECT_NAME}
   PRIVATE
     cfdjs_json_mapping_api.cpp
+    cfdjs_address_base.cpp
     cfdjs_address.cpp
     cfdjs_elements_address.cpp
     cfdjs_elements_transaction.cpp

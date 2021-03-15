@@ -147,6 +147,13 @@ class CFD_JS_API_EXPORT JsonMappingApi {
   static std::string CreateSignatureHash(const std::string &request_message);
 
   /**
+   * @brief Implements getting sighash api for JSON.
+   * @param[in] request_message     request JSON string.
+   * @return json string.
+   */
+  static std::string GetSighash(const std::string &request_message);
+
+  /**
    * @brief Convert data by AES.
    * @param[in] request_message   request json string.
    * @return response struct including encoded string.
@@ -425,6 +432,20 @@ class CFD_JS_API_EXPORT JsonMappingApi {
   static std::string AddScriptHashSign(const std::string &request_message);
 
   /**
+   * @brief Implements taproot sign api for JSON.
+   * @param[in] request_message     request JSON string.
+   * @return json string.
+   */
+  static std::string AddTaprootSchnorrSign(const std::string &request_message);
+
+  /**
+   * @brief Implements tapscript sign api for JSON.
+   * @param[in] request_message     request JSON string.
+   * @return json string.
+   */
+  static std::string AddTapscriptSign(const std::string &request_message);
+
+  /**
    * @brief UpdateWitnessStackのJSON API関数(request, response).
    * @param[in] request_message     リクエストされたjson文字列
    * @return 戻り値(JSON文字列)
@@ -588,6 +609,32 @@ class CFD_JS_API_EXPORT JsonMappingApi {
    * @return json string
    */
   static std::string ExtractSecretEcdsaAdaptor(
+      const std::string &request_message);
+
+  /**
+   * @brief Get a tapscript tree information.
+   *
+   * @param[in] request_message the request json message
+   * @return json string
+   */
+  static std::string GetTapScriptTreeInfo(const std::string &request_message);
+
+  /**
+   * @brief Get a tapscript tree information by control block.
+   *
+   * @param[in] request_message the request json message
+   * @return json string
+   */
+  static std::string GetTapScriptTreeInfoByControlBlock(
+      const std::string &request_message);
+
+  /**
+   * @brief Get a tapscript tree information by string.
+   *
+   * @param[in] request_message the request json message
+   * @return json string
+   */
+  static std::string GetTapScriptTreeFromString(
       const std::string &request_message);
 
   /**

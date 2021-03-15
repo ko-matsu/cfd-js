@@ -19,23 +19,26 @@
     "internalPrivkey:require": "optional",
     "internalPrivkey:comment": "internal privkey. Specify only when it is necessary to calculate.",
     "tree:require": "require",
-    "tree:comment": "tapscript tree. Set in order from the branch, so that tapleaf comes at the end.",
+    "tree:comment": "tapscript tree. Set tapleaf first, then add branches after that. If you want to connect different trees, after creating that tree, set the topBranchHash of the tree to the branchHash in this tree. (Otherwise, use the tree string.)",
     "tree": [{
       ":class": "TapBranchData",
       ":class:comment": "TapBranch data.",
-      "branchHash": "",
-      "branchHash:require": "optional",
-      "branchHash:comment": "tapbranch hash. If there is a subtree under it, create a separate tree and set the topBranchHash here.",
       "tapscript": "",
       "tapscript:require": "optional",
-      "tapscript:comment": "tapscript. hex or asm."
+      "tapscript:comment": "tapscript hex.",
+      "branchHash": "",
+      "branchHash:require": "optional",
+      "branchHash:comment": "tapbranch hash only. (to hide the tapscript)",
+      "treeString": "",
+      "treeString:require": "optional",
+      "treeString:comment": "tree serialize string. (cfd format)"
     }]
   },
   "response": {
     ":class": "TapScriptInfo",
     ":class:comment": "TapScript information",
     "tapLeafHash": "",
-    "tapLeafHash:require": "require",
+    "tapLeafHash:require": "optional",
     "tapLeafHash:comment": "tapleaf hash",
     "topBranchHash": "",
     "topBranchHash:require": "require",
@@ -60,6 +63,9 @@
     "tapscript:comment": "tapscript",
     "nodes": [""],
     "nodes:require": "optional",
-    "nodes:comment": "tapbranch list in this tree."
+    "nodes:comment": "tapbranch list in this tree.",
+    "treeString": "",
+    "treeString:require": "require",
+    "treeString:comment": "tree serialize string. (cfd format)"
   }
 }

@@ -30,6 +30,10 @@ const createTestFunc = (helper) => {
       resp = cfd.GetTapScriptTreeInfoByControlBlock(request);
       resp = await helper.getResponse(resp);
       break;
+    case 'Address.GetTapScriptTreeFromString':
+      resp = cfd.GetTapScriptTreeFromString(request);
+      resp = await helper.getResponse(resp);
+      break;
     default:
       throw new Error('unknown name: ' + testName);
     }

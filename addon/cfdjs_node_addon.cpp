@@ -819,6 +819,16 @@ Value GetTapScriptTreeInfoByControlBlock(const CallbackInfo &information) {
 }
 
 /**
+ * @brief Implements getting tapscript tree by string for JSON.
+ * @param[in] information     JSON data.
+ * @return json string.
+ */
+Value GetTapScriptTreeFromString(const CallbackInfo &information) {
+  return NodeAddonJsonApi(
+      information, JsonMappingApi::GetTapScriptTreeFromString);
+}
+
+/**
  * @brief Decode PSBT.
  * @param[in] request_message the request json message
  * @return json string
@@ -1335,6 +1345,9 @@ void InitializeJsonApi(Env env, Object *exports) {
   exports->Set(
       String::New(env, "GetTapScriptTreeInfoByControlBlock"),
       Function::New(env, GetTapScriptTreeInfoByControlBlock));
+  exports->Set(
+      String::New(env, "GetTapScriptTreeFromString"),
+      Function::New(env, GetTapScriptTreeFromString));
   exports->Set(String::New(env, "DecodePsbt"), Function::New(env, DecodePsbt));
   exports->Set(String::New(env, "CreatePsbt"), Function::New(env, CreatePsbt));
   exports->Set(

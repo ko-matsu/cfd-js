@@ -24939,6 +24939,49 @@ class TapBranchData
   static void CollectFieldName();
 
   /**
+   * @brief Get of tapscript
+   * @return tapscript
+   */
+  std::string GetTapscript() const {
+    return tapscript_;
+  }
+  /**
+   * @brief Set to tapscript
+   * @param[in] tapscript    setting value.
+   */
+  void SetTapscript(  // line separate
+    const std::string& tapscript) {  // NOLINT
+    this->tapscript_ = tapscript;
+  }
+  /**
+   * @brief Get data type of tapscript
+   * @return Data type of tapscript
+   */
+  static std::string GetTapscriptFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of tapscript field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTapscriptString(  // line separate
+      const TapBranchData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.tapscript_);
+  }
+  /**
+   * @brief Set json object to tapscript field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTapscriptString(  // line separate
+      TapBranchData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.tapscript_, json_value);
+  }
+
+  /**
    * @brief Get of branchHash
    * @return branchHash
    */
@@ -24982,46 +25025,46 @@ class TapBranchData
   }
 
   /**
-   * @brief Get of tapscript
-   * @return tapscript
+   * @brief Get of treeString
+   * @return treeString
    */
-  std::string GetTapscript() const {
-    return tapscript_;
+  std::string GetTreeString() const {
+    return tree_string_;
   }
   /**
-   * @brief Set to tapscript
-   * @param[in] tapscript    setting value.
+   * @brief Set to treeString
+   * @param[in] tree_string    setting value.
    */
-  void SetTapscript(  // line separate
-    const std::string& tapscript) {  // NOLINT
-    this->tapscript_ = tapscript;
+  void SetTreeString(  // line separate
+    const std::string& tree_string) {  // NOLINT
+    this->tree_string_ = tree_string;
   }
   /**
-   * @brief Get data type of tapscript
-   * @return Data type of tapscript
+   * @brief Get data type of treeString
+   * @return Data type of treeString
    */
-  static std::string GetTapscriptFieldType() {
+  static std::string GetTreeStringFieldType() {
     return "std::string";
   }
   /**
-   * @brief Get json string of tapscript field.
+   * @brief Get json string of treeString field.
    * @param[in,out] obj     class object.
    * @return JSON string
    */
-  static std::string GetTapscriptString(  // line separate
+  static std::string GetTreeStringString(  // line separate
       const TapBranchData& obj) {  // NOLINT
-    return cfd::core::ConvertToString(obj.tapscript_);
+    return cfd::core::ConvertToString(obj.tree_string_);
   }
   /**
-   * @brief Set json object to tapscript field.
+   * @brief Set json object to treeString field.
    * @param[in,out] obj     class object.
    * @param[in] json_value  JSON object.
    */
-  static void SetTapscriptString(  // line separate
+  static void SetTreeStringString(  // line separate
       TapBranchData& obj,  // NOLINT
       const UniValue& json_value) {
     cfd::core::ConvertFromUniValue(  // line separate
-      obj.tapscript_, json_value);
+      obj.tree_string_, json_value);
   }
 
   /**
@@ -25094,13 +25137,17 @@ class TapBranchData
   std::set<std::string> ignore_items;
 
   /**
+   * @brief JsonAPI(tapscript) value
+   */
+  std::string tapscript_ = "";
+  /**
    * @brief JsonAPI(branchHash) value
    */
   std::string branch_hash_ = "";
   /**
-   * @brief JsonAPI(tapscript) value
+   * @brief JsonAPI(treeString) value
    */
-  std::string tapscript_ = "";
+  std::string tree_string_ = "";
 };
 
 // ------------------------------------------------------------------------
@@ -56194,18 +56241,18 @@ class CreateSignatureHashResponse
 };
 
 // ------------------------------------------------------------------------
-// TapScriptInfoByControlRequest
+// TapScriptFromStringRequest
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API (TapScriptInfoByControlRequest) class
+ * @brief JSON-API (TapScriptFromStringRequest) class
  */
-class TapScriptInfoByControlRequest
-  : public cfd::core::JsonClassBase<TapScriptInfoByControlRequest> {
+class TapScriptFromStringRequest
+  : public cfd::core::JsonClassBase<TapScriptFromStringRequest> {
  public:
-  TapScriptInfoByControlRequest() {
+  TapScriptFromStringRequest() {
     CollectFieldName();
   }
-  virtual ~TapScriptInfoByControlRequest() {
+  virtual ~TapScriptFromStringRequest() {
     // do nothing
   }
   /**
@@ -56241,7 +56288,7 @@ class TapScriptInfoByControlRequest
    * @return JSON string
    */
   static std::string GetNetworkString(  // line separate
-      const TapScriptInfoByControlRequest& obj) {  // NOLINT
+      const TapScriptFromStringRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.network_);
   }
   /**
@@ -56250,7 +56297,7 @@ class TapScriptInfoByControlRequest
    * @param[in] json_value  JSON object.
    */
   static void SetNetworkString(  // line separate
-      TapScriptInfoByControlRequest& obj,  // NOLINT
+      TapScriptFromStringRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfd::core::ConvertFromUniValue(  // line separate
       obj.network_, json_value);
@@ -56284,7 +56331,7 @@ class TapScriptInfoByControlRequest
    * @return JSON string
    */
   static std::string GetIsElementsString(  // line separate
-      const TapScriptInfoByControlRequest& obj) {  // NOLINT
+      const TapScriptFromStringRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.is_elements_);
   }
   /**
@@ -56293,10 +56340,53 @@ class TapScriptInfoByControlRequest
    * @param[in] json_value  JSON object.
    */
   static void SetIsElementsString(  // line separate
-      TapScriptInfoByControlRequest& obj,  // NOLINT
+      TapScriptFromStringRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfd::core::ConvertFromUniValue(  // line separate
       obj.is_elements_, json_value);
+  }
+
+  /**
+   * @brief Get of treeString
+   * @return treeString
+   */
+  std::string GetTreeString() const {
+    return tree_string_;
+  }
+  /**
+   * @brief Set to treeString
+   * @param[in] tree_string    setting value.
+   */
+  void SetTreeString(  // line separate
+    const std::string& tree_string) {  // NOLINT
+    this->tree_string_ = tree_string;
+  }
+  /**
+   * @brief Get data type of treeString
+   * @return Data type of treeString
+   */
+  static std::string GetTreeStringFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of treeString field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTreeStringString(  // line separate
+      const TapScriptFromStringRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.tree_string_);
+  }
+  /**
+   * @brief Set json object to treeString field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTreeStringString(  // line separate
+      TapScriptFromStringRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.tree_string_, json_value);
   }
 
   /**
@@ -56327,7 +56417,7 @@ class TapScriptInfoByControlRequest
    * @return JSON string
    */
   static std::string GetTapscriptString(  // line separate
-      const TapScriptInfoByControlRequest& obj) {  // NOLINT
+      const TapScriptFromStringRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.tapscript_);
   }
   /**
@@ -56336,53 +56426,53 @@ class TapScriptInfoByControlRequest
    * @param[in] json_value  JSON object.
    */
   static void SetTapscriptString(  // line separate
-      TapScriptInfoByControlRequest& obj,  // NOLINT
+      TapScriptFromStringRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfd::core::ConvertFromUniValue(  // line separate
       obj.tapscript_, json_value);
   }
 
   /**
-   * @brief Get of controlBlock
-   * @return controlBlock
+   * @brief Get of internalPubkey
+   * @return internalPubkey
    */
-  std::string GetControlBlock() const {
-    return control_block_;
+  std::string GetInternalPubkey() const {
+    return internal_pubkey_;
   }
   /**
-   * @brief Set to controlBlock
-   * @param[in] control_block    setting value.
+   * @brief Set to internalPubkey
+   * @param[in] internal_pubkey    setting value.
    */
-  void SetControlBlock(  // line separate
-    const std::string& control_block) {  // NOLINT
-    this->control_block_ = control_block;
+  void SetInternalPubkey(  // line separate
+    const std::string& internal_pubkey) {  // NOLINT
+    this->internal_pubkey_ = internal_pubkey;
   }
   /**
-   * @brief Get data type of controlBlock
-   * @return Data type of controlBlock
+   * @brief Get data type of internalPubkey
+   * @return Data type of internalPubkey
    */
-  static std::string GetControlBlockFieldType() {
+  static std::string GetInternalPubkeyFieldType() {
     return "std::string";
   }
   /**
-   * @brief Get json string of controlBlock field.
+   * @brief Get json string of internalPubkey field.
    * @param[in,out] obj     class object.
    * @return JSON string
    */
-  static std::string GetControlBlockString(  // line separate
-      const TapScriptInfoByControlRequest& obj) {  // NOLINT
-    return cfd::core::ConvertToString(obj.control_block_);
+  static std::string GetInternalPubkeyString(  // line separate
+      const TapScriptFromStringRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.internal_pubkey_);
   }
   /**
-   * @brief Set json object to controlBlock field.
+   * @brief Set json object to internalPubkey field.
    * @param[in,out] obj     class object.
    * @param[in] json_value  JSON object.
    */
-  static void SetControlBlockString(  // line separate
-      TapScriptInfoByControlRequest& obj,  // NOLINT
+  static void SetInternalPubkeyString(  // line separate
+      TapScriptFromStringRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfd::core::ConvertFromUniValue(  // line separate
-      obj.control_block_, json_value);
+      obj.internal_pubkey_, json_value);
   }
 
   /**
@@ -56413,7 +56503,7 @@ class TapScriptInfoByControlRequest
    * @return JSON string
    */
   static std::string GetInternalPrivkeyString(  // line separate
-      const TapScriptInfoByControlRequest& obj) {  // NOLINT
+      const TapScriptFromStringRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.internal_privkey_);
   }
   /**
@@ -56422,10 +56512,54 @@ class TapScriptInfoByControlRequest
    * @param[in] json_value  JSON object.
    */
   static void SetInternalPrivkeyString(  // line separate
-      TapScriptInfoByControlRequest& obj,  // NOLINT
+      TapScriptFromStringRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfd::core::ConvertFromUniValue(  // line separate
       obj.internal_privkey_, json_value);
+  }
+
+  /**
+   * @brief Get of nodes.
+   * @return nodes
+   */
+  JsonValueVector<std::string>& GetNodes() {  // NOLINT
+    return nodes_;
+  }
+  /**
+   * @brief Set to nodes.
+   * @param[in] nodes    setting value.
+   */
+  void SetNodes(  // line separate
+      const JsonValueVector<std::string>& nodes) {  // NOLINT
+    this->nodes_ = nodes;
+  }
+  /**
+   * @brief Get data type of nodes.
+   * @return Data type of nodes.
+   */
+  static std::string GetNodesFieldType() {
+    return "JsonValueVector<std::string>";  // NOLINT
+  }
+  /**
+   * @brief Get json string of nodes field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
+   */
+  static std::string GetNodesString(  // line separate
+      const TapScriptFromStringRequest& obj) {  // NOLINT
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
+    return obj.nodes_.Serialize();
+  }
+  /**
+   * @brief Set json object to nodes field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
+   */
+  static void SetNodesString(  // line separate
+      TapScriptFromStringRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    obj.nodes_.DeserializeUniValue(json_value);
   }
 
   /**
@@ -56441,27 +56575,27 @@ class TapScriptInfoByControlRequest
    * @param[in] data   struct data.
    */
   void ConvertFromStruct(
-      const TapScriptInfoByControlRequestStruct& data);
+      const TapScriptFromStringRequestStruct& data);
 
   /**
    * @brief Convert class to struct.
    * @return  struct data.
    */
-  TapScriptInfoByControlRequestStruct ConvertToStruct()  const;
+  TapScriptFromStringRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
    * @brief definition type of Map table.
    */
-  using TapScriptInfoByControlRequestMapTable =
-    cfd::core::JsonTableMap<TapScriptInfoByControlRequest>;
+  using TapScriptFromStringRequestMapTable =
+    cfd::core::JsonTableMap<TapScriptFromStringRequest>;
 
   /**
    * @brief Get JSON mapping object.
    * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
-  virtual const TapScriptInfoByControlRequestMapTable& GetJsonMapper() const {  // NOLINT
+  virtual const TapScriptFromStringRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
@@ -56487,7 +56621,7 @@ class TapScriptInfoByControlRequest
  /**
   * @brief JsonFunctionMap table
   */
-  static TapScriptInfoByControlRequestMapTable json_mapper;
+  static TapScriptFromStringRequestMapTable json_mapper;
   /**
    * @brief field name list.
    */
@@ -56506,17 +56640,25 @@ class TapScriptInfoByControlRequest
    */
   bool is_elements_ = false;
   /**
+   * @brief JsonAPI(treeString) value
+   */
+  std::string tree_string_ = "";
+  /**
    * @brief JsonAPI(tapscript) value
    */
   std::string tapscript_ = "";
   /**
-   * @brief JsonAPI(controlBlock) value
+   * @brief JsonAPI(internalPubkey) value
    */
-  std::string control_block_ = "";
+  std::string internal_pubkey_ = "";
   /**
    * @brief JsonAPI(internalPrivkey) value
    */
   std::string internal_privkey_ = "";
+  /**
+   * @brief JsonAPI(nodes) value
+   */
+  JsonValueVector<std::string> nodes_;  // NOLINT
 };
 
 // ------------------------------------------------------------------------
@@ -56928,6 +57070,49 @@ class TapScriptInfo
   }
 
   /**
+   * @brief Get of treeString
+   * @return treeString
+   */
+  std::string GetTreeString() const {
+    return tree_string_;
+  }
+  /**
+   * @brief Set to treeString
+   * @param[in] tree_string    setting value.
+   */
+  void SetTreeString(  // line separate
+    const std::string& tree_string) {  // NOLINT
+    this->tree_string_ = tree_string;
+  }
+  /**
+   * @brief Get data type of treeString
+   * @return Data type of treeString
+   */
+  static std::string GetTreeStringFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of treeString field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTreeStringString(  // line separate
+      const TapScriptInfo& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.tree_string_);
+  }
+  /**
+   * @brief Set json object to treeString field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTreeStringString(  // line separate
+      TapScriptInfo& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.tree_string_, json_value);
+  }
+
+  /**
    * @brief Set ignore item.
    * @param[in] key   ignore target key name.
    */
@@ -57032,6 +57217,336 @@ class TapScriptInfo
    * @brief JsonAPI(nodes) value
    */
   JsonValueVector<std::string> nodes_;  // NOLINT
+  /**
+   * @brief JsonAPI(treeString) value
+   */
+  std::string tree_string_ = "";
+};
+
+// ------------------------------------------------------------------------
+// TapScriptInfoByControlRequest
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (TapScriptInfoByControlRequest) class
+ */
+class TapScriptInfoByControlRequest
+  : public cfd::core::JsonClassBase<TapScriptInfoByControlRequest> {
+ public:
+  TapScriptInfoByControlRequest() {
+    CollectFieldName();
+  }
+  virtual ~TapScriptInfoByControlRequest() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of network
+   * @return network
+   */
+  std::string GetNetwork() const {
+    return network_;
+  }
+  /**
+   * @brief Set to network
+   * @param[in] network    setting value.
+   */
+  void SetNetwork(  // line separate
+    const std::string& network) {  // NOLINT
+    this->network_ = network;
+  }
+  /**
+   * @brief Get data type of network
+   * @return Data type of network
+   */
+  static std::string GetNetworkFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of network field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetNetworkString(  // line separate
+      const TapScriptInfoByControlRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.network_);
+  }
+  /**
+   * @brief Set json object to network field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetNetworkString(  // line separate
+      TapScriptInfoByControlRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.network_, json_value);
+  }
+
+  /**
+   * @brief Get of isElements
+   * @return isElements
+   */
+  bool GetIsElements() const {
+    return is_elements_;
+  }
+  /**
+   * @brief Set to isElements
+   * @param[in] is_elements    setting value.
+   */
+  void SetIsElements(  // line separate
+    const bool& is_elements) {  // NOLINT
+    this->is_elements_ = is_elements;
+  }
+  /**
+   * @brief Get data type of isElements
+   * @return Data type of isElements
+   */
+  static std::string GetIsElementsFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of isElements field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetIsElementsString(  // line separate
+      const TapScriptInfoByControlRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.is_elements_);
+  }
+  /**
+   * @brief Set json object to isElements field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetIsElementsString(  // line separate
+      TapScriptInfoByControlRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.is_elements_, json_value);
+  }
+
+  /**
+   * @brief Get of tapscript
+   * @return tapscript
+   */
+  std::string GetTapscript() const {
+    return tapscript_;
+  }
+  /**
+   * @brief Set to tapscript
+   * @param[in] tapscript    setting value.
+   */
+  void SetTapscript(  // line separate
+    const std::string& tapscript) {  // NOLINT
+    this->tapscript_ = tapscript;
+  }
+  /**
+   * @brief Get data type of tapscript
+   * @return Data type of tapscript
+   */
+  static std::string GetTapscriptFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of tapscript field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTapscriptString(  // line separate
+      const TapScriptInfoByControlRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.tapscript_);
+  }
+  /**
+   * @brief Set json object to tapscript field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTapscriptString(  // line separate
+      TapScriptInfoByControlRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.tapscript_, json_value);
+  }
+
+  /**
+   * @brief Get of controlBlock
+   * @return controlBlock
+   */
+  std::string GetControlBlock() const {
+    return control_block_;
+  }
+  /**
+   * @brief Set to controlBlock
+   * @param[in] control_block    setting value.
+   */
+  void SetControlBlock(  // line separate
+    const std::string& control_block) {  // NOLINT
+    this->control_block_ = control_block;
+  }
+  /**
+   * @brief Get data type of controlBlock
+   * @return Data type of controlBlock
+   */
+  static std::string GetControlBlockFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of controlBlock field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetControlBlockString(  // line separate
+      const TapScriptInfoByControlRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.control_block_);
+  }
+  /**
+   * @brief Set json object to controlBlock field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetControlBlockString(  // line separate
+      TapScriptInfoByControlRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.control_block_, json_value);
+  }
+
+  /**
+   * @brief Get of internalPrivkey
+   * @return internalPrivkey
+   */
+  std::string GetInternalPrivkey() const {
+    return internal_privkey_;
+  }
+  /**
+   * @brief Set to internalPrivkey
+   * @param[in] internal_privkey    setting value.
+   */
+  void SetInternalPrivkey(  // line separate
+    const std::string& internal_privkey) {  // NOLINT
+    this->internal_privkey_ = internal_privkey;
+  }
+  /**
+   * @brief Get data type of internalPrivkey
+   * @return Data type of internalPrivkey
+   */
+  static std::string GetInternalPrivkeyFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of internalPrivkey field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetInternalPrivkeyString(  // line separate
+      const TapScriptInfoByControlRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.internal_privkey_);
+  }
+  /**
+   * @brief Set json object to internalPrivkey field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetInternalPrivkeyString(  // line separate
+      TapScriptInfoByControlRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.internal_privkey_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const TapScriptInfoByControlRequestStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  TapScriptInfoByControlRequestStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using TapScriptInfoByControlRequestMapTable =
+    cfd::core::JsonTableMap<TapScriptInfoByControlRequest>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const TapScriptInfoByControlRequestMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static TapScriptInfoByControlRequestMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(network) value
+   */
+  std::string network_ = "mainnet";
+  /**
+   * @brief JsonAPI(isElements) value
+   */
+  bool is_elements_ = false;
+  /**
+   * @brief JsonAPI(tapscript) value
+   */
+  std::string tapscript_ = "";
+  /**
+   * @brief JsonAPI(controlBlock) value
+   */
+  std::string control_block_ = "";
+  /**
+   * @brief JsonAPI(internalPrivkey) value
+   */
+  std::string internal_privkey_ = "";
 };
 
 // ------------------------------------------------------------------------

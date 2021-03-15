@@ -1148,8 +1148,9 @@ struct SignWithPrivkeyTxInRequestStruct {
  * @brief TapBranchDataStruct struct
  */
 struct TapBranchDataStruct {
-  std::string branch_hash = "";  //!< branch_hash  // NOLINT
   std::string tapscript = "";    //!< tapscript  // NOLINT
+  std::string branch_hash = "";  //!< branch_hash  // NOLINT
+  std::string tree_string = "";  //!< tree_string  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -2860,17 +2861,19 @@ struct CreateSignatureHashResponseStruct {
 };
 
 // ------------------------------------------------------------------------
-// TapScriptInfoByControlRequestStruct
+// TapScriptFromStringRequestStruct
 // ------------------------------------------------------------------------
 /**
- * @brief TapScriptInfoByControlRequestStruct struct
+ * @brief TapScriptFromStringRequestStruct struct
  */
-struct TapScriptInfoByControlRequestStruct {
+struct TapScriptFromStringRequestStruct {
   std::string network = "mainnet";    //!< network  // NOLINT
   bool is_elements = false;           //!< is_elements  // NOLINT
+  std::string tree_string = "";       //!< tree_string  // NOLINT
   std::string tapscript = "";         //!< tapscript  // NOLINT
-  std::string control_block = "";     //!< control_block  // NOLINT
+  std::string internal_pubkey = "";   //!< internal_pubkey  // NOLINT
   std::string internal_privkey = "";  //!< internal_privkey  // NOLINT
+  std::vector<std::string> nodes;     //!< nodes  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -2890,7 +2893,23 @@ struct TapScriptInfoStruct {
   std::string control_block = "";    //!< control_block  // NOLINT
   std::string tapscript = "";        //!< tapscript  // NOLINT
   std::vector<std::string> nodes;    //!< nodes  // NOLINT
+  std::string tree_string = "";      //!< tree_string  // NOLINT
   cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// TapScriptInfoByControlRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief TapScriptInfoByControlRequestStruct struct
+ */
+struct TapScriptInfoByControlRequestStruct {
+  std::string network = "mainnet";    //!< network  // NOLINT
+  bool is_elements = false;           //!< is_elements  // NOLINT
+  std::string tapscript = "";         //!< tapscript  // NOLINT
+  std::string control_block = "";     //!< control_block  // NOLINT
+  std::string internal_privkey = "";  //!< internal_privkey  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 

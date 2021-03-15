@@ -11,6 +11,7 @@
 
 #include "cfd/cfd_address.h"
 #include "cfd/cfdapi_address.h"
+#include "cfdcore/cfdcore_bytedata.h"
 #include "cfdcore/cfdcore_descriptor.h"
 #include "cfdcore/cfdcore_exception.h"
 #include "cfdcore/cfdcore_hdwallet.h"
@@ -30,6 +31,7 @@ using cfd::DescriptorKeyData;
 using cfd::DescriptorScriptData;
 using cfd::core::Address;
 using cfd::core::AddressType;
+using cfd::core::ByteData256;
 using cfd::core::CfdError;
 using cfd::core::CfdException;
 using cfd::core::DescriptorKeyType;
@@ -40,6 +42,7 @@ using cfd::core::SchnorrPubkey;
 using cfd::core::SchnorrSignature;
 using cfd::core::Script;
 using cfd::core::ScriptUtil;
+using cfd::core::TapBranch;
 using cfd::core::TaprootScriptTree;
 using cfd::core::TaprootUtil;
 using cfd::core::logger::warn;
@@ -226,69 +229,100 @@ TapScriptInfoStruct AddressApiBase::GetTapScriptTreeInfo(
     warn(CFD_LOG_SOURCE, "Failed to parameter. tree is empty.");
     throw CfdException(CfdError::kCfdIllegalArgumentError, "tree is empty.");
   }
-  auto& end_item = request.tree.back();
-  if (end_item.tapscript.empty()) {
-    warn(
-        CFD_LOG_SOURCE,
-        "Failed to parameter. The end of the tree is need tapleaf.");
-    throw CfdException(
-        CfdError::kCfdIllegalArgumentError,
-        "The end of the tree is need tapleaf.");
-  }
-  TaprootScriptTree tree(Script(end_item.tapscript));
-  if (request.tree.size() > 1) {
-    for (size_t index = request.tree.size() - 1; index > 0; --index) {
-      auto& item = request.tree.at(index - 1);
+  TapScriptInfoStruct result;
+  TaprootScriptTree tree;
+  TapBranch branch;
+  TapBranch* branch_ptr;
+  auto& first_item = request.tree.front();
+  if (first_item.tapscript.empty()) {
+    if (first_item.branch_hash.empty() && first_item.tree_string.empty()) {
+      warn(
+          CFD_LOG_SOURCE, "Failed to parameter. The first item is all empty.");
+      throw CfdException(
+          CfdError::kCfdIllegalArgumentError, "The first item is all empty.");
+    }
+    if (!first_item.tree_string.empty()) {
+      branch = TapBranch::FromString(first_item.tree_string);
+    } else {
+      branch = TapBranch(ByteData256(first_item.branch_hash));
+    }
+    for (size_t index = 1; index < request.tree.size(); ++index) {
+      auto& item = request.tree.at(index);
+      if (!item.tapscript.empty()) {
+        branch.AddBranch(TaprootScriptTree(Script(item.tapscript)));
+      } else if (!item.tree_string.empty()) {
+        branch.AddBranch(TapBranch::FromString(item.tree_string));
+      } else {
+        branch.AddBranch(ByteData256(item.branch_hash));
+      }
+    }
+    branch_ptr = &branch;
+  } else {
+    // tapscript tree
+    tree = TaprootScriptTree(Script(first_item.tapscript));
+    for (size_t index = 1; index < request.tree.size(); ++index) {
+      auto& item = request.tree.at(index);
       if (!item.tapscript.empty()) {
         tree.AddBranch(TaprootScriptTree(Script(item.tapscript)));
+      } else if (!item.tree_string.empty()) {
+        tree.AddBranch(TapBranch::FromString(item.tree_string));
       } else {
         tree.AddBranch(ByteData256(item.branch_hash));
       }
     }
+    if ((!request.internal_pubkey.empty()) ||
+        (!request.internal_privkey.empty())) {
+      SchnorrPubkey pubkey;
+      Privkey privkey;
+      if (!request.internal_privkey.empty()) {
+        if (Privkey::HasWif(request.internal_privkey)) {
+          privkey = Privkey::FromWif(request.internal_privkey);
+        } else {
+          privkey = Privkey(request.internal_privkey);
+        }
+        pubkey = SchnorrPubkey::FromPrivkey(privkey);
+      } else {
+        pubkey = SchnorrPubkey(request.internal_pubkey);
+      }
+      SchnorrPubkey hash;
+      Script locking_script;
+      auto control_block = TaprootUtil::CreateTapScriptControl(
+          pubkey, tree, &hash, &locking_script);
+      result.control_block = control_block.GetHex();
+      result.tweaked_pubkey = hash.GetHex();
+      result.locking_script = locking_script.GetHex();
+      result.address =
+          address_factory->CreateTaprootAddress(hash.GetByteData256())
+              .GetAddress();
+      if (privkey.IsValid()) {
+        result.tweaked_privkey = tree.GetTweakedPrivkey(privkey).GetHex();
+      }
+    }
+
+    result.tap_leaf_hash = tree.GetTapLeafHash().GetHex();
+    result.tapscript = tree.GetScript().GetHex();
+    for (const auto& node : tree.GetNodeList()) {
+      result.nodes.emplace_back(node.GetHex());
+    }
+    branch_ptr = &tree;
   }
 
-  TapScriptInfoStruct result;
-  result.tap_leaf_hash = tree.GetTapLeafHash().GetHex();
-  result.top_branch_hash = tree.GetCurrentBranchHash().GetHex();
-  for (const auto& node : tree.GetNodeList()) {
-    result.nodes.emplace_back(node.GetHex());
-  }
-  result.tapscript = tree.GetScript().GetHex();
-  if ((!request.internal_pubkey.empty()) ||
-      (!request.internal_privkey.empty())) {
-    SchnorrPubkey pubkey;
-    Privkey privkey;
-    if (!request.internal_privkey.empty()) {
-      if (Privkey::HasWif(request.internal_privkey)) {
-        privkey = Privkey::FromWif(request.internal_privkey);
-      } else {
-        privkey = Privkey(request.internal_privkey);
-      }
-      pubkey = SchnorrPubkey::FromPrivkey(privkey);
-    } else {
-      pubkey = SchnorrPubkey(request.internal_pubkey);
-    }
-    SchnorrPubkey hash;
-    Script locking_script;
-    auto control_block = TaprootUtil::CreateTapScriptControl(
-        pubkey, tree, &hash, &locking_script);
-    result.control_block = control_block.GetHex();
-    result.tweaked_pubkey = hash.GetHex();
-    result.locking_script = locking_script.GetHex();
-    result.address =
-        address_factory->CreateTaprootAddress(hash.GetByteData256())
-            .GetAddress();
-    if (privkey.IsValid()) {
-      result.tweaked_privkey = tree.GetTweakedPrivkey(privkey).GetHex();
-    } else {
-      result.ignore_items.insert("tweakedPrivkey");
-    }
-  } else {
-    result.ignore_items.insert("tweakedPrivkey");
+  result.top_branch_hash = branch_ptr->GetCurrentBranchHash().GetHex();
+  result.tree_string = branch_ptr->ToString();
+
+  if (result.control_block.empty()) {
     result.ignore_items.insert("tweakedPubkey");
     result.ignore_items.insert("lockingScript");
     result.ignore_items.insert("address");
     result.ignore_items.insert("controlBlock");
+  }
+  if (result.tweaked_privkey.empty()) {
+    result.ignore_items.insert("tweakedPrivkey");
+  }
+  if (result.tapscript.empty()) {
+    result.ignore_items.insert("tapLeafHash");
+    result.ignore_items.insert("tapscript");
+    result.ignore_items.insert("nodes");
   }
   return result;
 }
@@ -350,6 +384,87 @@ TapScriptInfoStruct AddressApiBase::GetTapScriptTreeInfoByControlBlock(
     result.tweaked_privkey = tree.GetTweakedPrivkey(privkey).GetHex();
   } else {
     result.ignore_items.insert("tweakedPrivkey");
+  }
+  result.tree_string = tree.ToString();
+  return result;
+}
+
+TapScriptInfoStruct AddressApiBase::GetTapScriptTreeFromString(
+    const TapScriptFromStringRequestStruct& request,
+    const AddressFactory* address_factory) {
+  if (request.tree_string.empty()) {
+    warn(CFD_LOG_SOURCE, "Failed to parameter. tree string is empty.");
+    throw CfdException(
+        CfdError::kCfdIllegalArgumentError, "tree string is empty.");
+  }
+  TapScriptInfoStruct result;
+  TaprootScriptTree tree;
+  TapBranch branch;
+  TapBranch* branch_ptr;
+  if (request.tapscript.empty()) {
+    branch = TapBranch::FromString(request.tree_string);
+    branch_ptr = &branch;
+  } else {
+    std::vector<ByteData256> nodes;
+    for (const auto& node : request.nodes) {
+      nodes.emplace_back(ByteData256(node));
+    }
+    tree = TaprootScriptTree::FromString(
+        request.tree_string, Script(request.tapscript), nodes);
+
+    if ((!request.internal_pubkey.empty()) ||
+        (!request.internal_privkey.empty())) {
+      SchnorrPubkey pubkey;
+      Privkey privkey;
+      if (!request.internal_privkey.empty()) {
+        if (Privkey::HasWif(request.internal_privkey)) {
+          privkey = Privkey::FromWif(request.internal_privkey);
+        } else {
+          privkey = Privkey(request.internal_privkey);
+        }
+        pubkey = SchnorrPubkey::FromPrivkey(privkey);
+      } else {
+        pubkey = SchnorrPubkey(request.internal_pubkey);
+      }
+      SchnorrPubkey hash;
+      Script locking_script;
+      auto control_block = TaprootUtil::CreateTapScriptControl(
+          pubkey, tree, &hash, &locking_script);
+      result.control_block = control_block.GetHex();
+      result.tweaked_pubkey = hash.GetHex();
+      result.locking_script = locking_script.GetHex();
+      result.address =
+          address_factory->CreateTaprootAddress(hash.GetByteData256())
+              .GetAddress();
+      if (privkey.IsValid()) {
+        result.tweaked_privkey = tree.GetTweakedPrivkey(privkey).GetHex();
+      }
+    }
+
+    result.tap_leaf_hash = tree.GetTapLeafHash().GetHex();
+    result.tapscript = tree.GetScript().GetHex();
+    for (const auto& node : tree.GetNodeList()) {
+      result.nodes.emplace_back(node.GetHex());
+    }
+    branch_ptr = &tree;
+  }
+
+  result.top_branch_hash = branch_ptr->GetCurrentBranchHash().GetHex();
+  result.tree_string = branch_ptr->ToString();
+
+  if (result.control_block.empty()) {
+    result.ignore_items.insert("tweakedPubkey");
+    result.ignore_items.insert("lockingScript");
+    result.ignore_items.insert("address");
+    result.ignore_items.insert("controlBlock");
+  }
+  if (result.tweaked_privkey.empty()) {
+    result.ignore_items.insert("tweakedPrivkey");
+  }
+  if (result.tapscript.empty()) {
+    result.ignore_items.insert("tapLeafHash");
+    result.ignore_items.insert("tapscript");
+    result.ignore_items.insert("nodes");
   }
   return result;
 }

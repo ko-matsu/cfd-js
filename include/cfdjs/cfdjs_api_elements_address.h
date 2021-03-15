@@ -125,6 +125,14 @@ class CFD_JS_API_EXPORT ElementsAddressStructApi {
       const TapScriptInfoByControlRequestStruct& request);
 
   /**
+   * @brief Get tapscript tree information by string.
+   * @param[in] request     tapscript data
+   * @return tapscript information
+   */
+  static TapScriptInfoStruct GetTapScriptTreeFromString(
+      const TapScriptFromStringRequestStruct& request);
+
+  /**
    * @brief elementsネットワーク文字列を、ElementsNetType構造体へ変換する.
    * @param[in] elements_net_type ネットワーク文字列
    * @return 引数に対応するElementsNetType構造体

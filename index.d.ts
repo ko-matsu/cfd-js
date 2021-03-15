@@ -2845,17 +2845,39 @@ export interface SignWithPrivkeyTxInRequest {
 
 /**
  * TapBranch data.
- * @property {string} branchHash? - tapbranch hash. If there is a subtree under it, create a separate tree and set the topBranchHash here.
- * @property {string} tapscript? - tapscript. hex or asm.
+ * @property {string} tapscript? - tapscript hex.
+ * @property {string} branchHash? - tapbranch hash only. (to hide the tapscript)
+ * @property {string} treeString? - tree serialize string. (cfd format)
  */
 export interface TapBranchData {
-    branchHash?: string;
     tapscript?: string;
+    branchHash?: string;
+    treeString?: string;
+}
+
+/**
+ * Request for get tapscript info.
+ * @property {string} network? - network type (bitcoin:'mainnet, testnet, regtest'. elements:'liquidv1, regtest')
+ * @property {boolean} isElements? - elements transaction flag.
+ * @property {string} treeString - tree serialize string. (cfd format)
+ * @property {string} tapscript? - tapscript. hex or asm.
+ * @property {string} internalPubkey? - internal schnorr pubkey.
+ * @property {string} internalPrivkey? - internal privkey. Specify only when it is necessary to calculate.
+ * @property {string[]} nodes? - target tapbranches hash list. If exist the same tapscript in this tree, you can search for the target tapscript by specifying a hash list of tapbranches.
+ */
+export interface TapScriptFromStringRequest {
+    network?: string;
+    isElements?: boolean;
+    treeString: string;
+    tapscript?: string;
+    internalPubkey?: string;
+    internalPrivkey?: string;
+    nodes?: string[];
 }
 
 /**
  * TapScript information
- * @property {string} tapLeafHash - tapleaf hash
+ * @property {string} tapLeafHash? - tapleaf hash
  * @property {string} topBranchHash - branch hash on the top.
  * @property {string} tweakedPubkey? - tweaked schnorr pubkey with internal pubkey.
  * @property {string} tweakedPrivkey? - tweaked privkey with internal privkey.
@@ -2864,9 +2886,10 @@ export interface TapBranchData {
  * @property {string} controlBlock? - control block
  * @property {string} tapscript? - tapscript
  * @property {string[]} nodes? - tapbranch list in this tree.
+ * @property {string} treeString - tree serialize string. (cfd format)
  */
 export interface TapScriptInfo {
-    tapLeafHash: string;
+    tapLeafHash?: string;
     topBranchHash: string;
     tweakedPubkey?: string;
     tweakedPrivkey?: string;
@@ -2875,6 +2898,7 @@ export interface TapScriptInfo {
     controlBlock?: string;
     tapscript?: string;
     nodes?: string[];
+    treeString: string;
 }
 
 /**
@@ -3824,6 +3848,13 @@ export function GetSighash(jsonObject: GetSighashRequest): CreateSignatureHashRe
  * @return {GetSupportedFunctionResponse} - response data.
  */
 export function GetSupportedFunction(): GetSupportedFunctionResponse;
+
+/**
+ * Get TapScript tree from string.
+ * @param {TapScriptFromStringRequest} jsonObject - request data.
+ * @return {TapScriptInfo} - response data.
+ */
+export function GetTapScriptTreeFromString(jsonObject: TapScriptFromStringRequest): TapScriptInfo;
 
 /**
  * Get TapScript tree info.

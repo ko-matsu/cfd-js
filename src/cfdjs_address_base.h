@@ -104,6 +104,16 @@ class AddressApiBase {
       const AddressFactory* address_factory);
 
   /**
+   * @brief Get tapscript tree information by string.
+   * @param[in] request     tapscript data
+   * @param[in] address_factory address factory instance.
+   * @return tapscript information
+   */
+  static TapScriptInfoStruct GetTapScriptTreeFromString(
+      const TapScriptFromStringRequestStruct& request,
+      const AddressFactory* address_factory);
+
+  /**
    * @brief Convert address type from string to AddressType.
    * @param[in] address_type the address type as a string.
    * @return the converted AddressType.

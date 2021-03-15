@@ -1047,6 +1047,19 @@ std::string JsonMappingApi::GetTapScriptTreeInfoByControlBlock(
 #endif
 }
 
+std::string JsonMappingApi::GetTapScriptTreeFromString(
+    const std::string &request_message) {
+  return ExecuteElementsCheckApi<
+      api::json::TapScriptFromStringRequest, api::json::TapScriptInfo,
+      api::TapScriptFromStringRequestStruct, api::TapScriptInfoStruct>(
+      request_message, AddressStructApi::GetTapScriptTreeFromString,
+#ifndef CFD_DISABLE_ELEMENTS
+      ElementsAddressStructApi::GetTapScriptTreeFromString);
+#else
+      AddressStructApi::GetTapScriptTreeFromString);
+#endif
+}
+
 std::string JsonMappingApi::DecodePsbt(const std::string &request_message) {
   return ExecuteJsonApi<
       DecodePsbtRequest, DecodePsbtResponse, DecodePsbtRequestStruct,
@@ -1457,6 +1470,9 @@ void JsonMappingApi::LoadFunctions(
     request_map->emplace(
         "GetTapScriptTreeInfoByControlBlock",
         JsonMappingApi::GetTapScriptTreeInfoByControlBlock);
+    request_map->emplace(
+        "GetTapScriptTreeFromString",
+        JsonMappingApi::GetTapScriptTreeFromString);
     request_map->emplace("DecodePsbt", JsonMappingApi::DecodePsbt);
     request_map->emplace("CreatePsbt", JsonMappingApi::CreatePsbt);
     request_map->emplace("ConvertToPsbt", JsonMappingApi::ConvertToPsbt);

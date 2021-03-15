@@ -629,6 +629,15 @@ class CFD_JS_API_EXPORT JsonMappingApi {
       const std::string &request_message);
 
   /**
+   * @brief Get a tapscript tree information by string.
+   *
+   * @param[in] request_message the request json message
+   * @return json string
+   */
+  static std::string GetTapScriptTreeFromString(
+      const std::string &request_message);
+
+  /**
    * @brief Decode PSBT.
    * @param[in] request_message the request json message
    * @return json string

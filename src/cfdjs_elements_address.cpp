@@ -293,6 +293,22 @@ ElementsAddressStructApi::GetTapScriptTreeInfoByControlBlock(
   return result;
 }
 
+TapScriptInfoStruct ElementsAddressStructApi::GetTapScriptTreeFromString(
+    const TapScriptFromStringRequestStruct& request) {
+  auto call_func = [](const TapScriptFromStringRequestStruct& request)
+      -> TapScriptInfoStruct {  // NOLINT
+    ElementsNetType net_type = ConvertElementsNetType(request.network);
+    ElementsAddressFactory api(net_type);
+    return AddressApiBase::GetTapScriptTreeFromString(request, &api);
+  };
+
+  TapScriptInfoStruct result;
+  result =
+      ExecuteStructApi<TapScriptFromStringRequestStruct, TapScriptInfoStruct>(
+          request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
 ElementsNetType ElementsAddressStructApi::ConvertElementsNetType(
     const std::string& elements_net_type) {
   ElementsNetType net_type;

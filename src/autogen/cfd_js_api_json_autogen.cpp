@@ -5409,6 +5409,13 @@ void TapBranchData::CollectFieldName() {
   cfd::core::CLASS_FUNCTION_TABLE<TapBranchData> func_table;  // NOLINT
 
   func_table = {
+    TapBranchData::GetTapscriptString,
+    TapBranchData::SetTapscriptString,
+    TapBranchData::GetTapscriptFieldType,
+  };
+  json_mapper.emplace("tapscript", func_table);
+  item_list.push_back("tapscript");
+  func_table = {
     TapBranchData::GetBranchHashString,
     TapBranchData::SetBranchHashString,
     TapBranchData::GetBranchHashFieldType,
@@ -5416,25 +5423,27 @@ void TapBranchData::CollectFieldName() {
   json_mapper.emplace("branchHash", func_table);
   item_list.push_back("branchHash");
   func_table = {
-    TapBranchData::GetTapscriptString,
-    TapBranchData::SetTapscriptString,
-    TapBranchData::GetTapscriptFieldType,
+    TapBranchData::GetTreeStringString,
+    TapBranchData::SetTreeStringString,
+    TapBranchData::GetTreeStringFieldType,
   };
-  json_mapper.emplace("tapscript", func_table);
-  item_list.push_back("tapscript");
+  json_mapper.emplace("treeString", func_table);
+  item_list.push_back("treeString");
 }
 
 void TapBranchData::ConvertFromStruct(
     const TapBranchDataStruct& data) {
-  branch_hash_ = data.branch_hash;
   tapscript_ = data.tapscript;
+  branch_hash_ = data.branch_hash;
+  tree_string_ = data.tree_string;
   ignore_items = data.ignore_items;
 }
 
 TapBranchDataStruct TapBranchData::ConvertToStruct() const {  // NOLINT
   TapBranchDataStruct result;
-  result.branch_hash = branch_hash_;
   result.tapscript = tapscript_;
+  result.branch_hash = branch_hash_;
+  result.tree_string = tree_string_;
   result.ignore_items = ignore_items;
   return result;
 }
@@ -12460,72 +12469,90 @@ CreateSignatureHashResponseStruct CreateSignatureHashResponse::ConvertToStruct()
 }
 
 // ------------------------------------------------------------------------
-// TapScriptInfoByControlRequest
+// TapScriptFromStringRequest
 // ------------------------------------------------------------------------
-cfd::core::JsonTableMap<TapScriptInfoByControlRequest>
-  TapScriptInfoByControlRequest::json_mapper;
-std::vector<std::string> TapScriptInfoByControlRequest::item_list;
+cfd::core::JsonTableMap<TapScriptFromStringRequest>
+  TapScriptFromStringRequest::json_mapper;
+std::vector<std::string> TapScriptFromStringRequest::item_list;
 
-void TapScriptInfoByControlRequest::CollectFieldName() {
+void TapScriptFromStringRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfd::core::CLASS_FUNCTION_TABLE<TapScriptInfoByControlRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<TapScriptFromStringRequest> func_table;  // NOLINT
 
   func_table = {
-    TapScriptInfoByControlRequest::GetNetworkString,
-    TapScriptInfoByControlRequest::SetNetworkString,
-    TapScriptInfoByControlRequest::GetNetworkFieldType,
+    TapScriptFromStringRequest::GetNetworkString,
+    TapScriptFromStringRequest::SetNetworkString,
+    TapScriptFromStringRequest::GetNetworkFieldType,
   };
   json_mapper.emplace("network", func_table);
   item_list.push_back("network");
   func_table = {
-    TapScriptInfoByControlRequest::GetIsElementsString,
-    TapScriptInfoByControlRequest::SetIsElementsString,
-    TapScriptInfoByControlRequest::GetIsElementsFieldType,
+    TapScriptFromStringRequest::GetIsElementsString,
+    TapScriptFromStringRequest::SetIsElementsString,
+    TapScriptFromStringRequest::GetIsElementsFieldType,
   };
   json_mapper.emplace("isElements", func_table);
   item_list.push_back("isElements");
   func_table = {
-    TapScriptInfoByControlRequest::GetTapscriptString,
-    TapScriptInfoByControlRequest::SetTapscriptString,
-    TapScriptInfoByControlRequest::GetTapscriptFieldType,
+    TapScriptFromStringRequest::GetTreeStringString,
+    TapScriptFromStringRequest::SetTreeStringString,
+    TapScriptFromStringRequest::GetTreeStringFieldType,
+  };
+  json_mapper.emplace("treeString", func_table);
+  item_list.push_back("treeString");
+  func_table = {
+    TapScriptFromStringRequest::GetTapscriptString,
+    TapScriptFromStringRequest::SetTapscriptString,
+    TapScriptFromStringRequest::GetTapscriptFieldType,
   };
   json_mapper.emplace("tapscript", func_table);
   item_list.push_back("tapscript");
   func_table = {
-    TapScriptInfoByControlRequest::GetControlBlockString,
-    TapScriptInfoByControlRequest::SetControlBlockString,
-    TapScriptInfoByControlRequest::GetControlBlockFieldType,
+    TapScriptFromStringRequest::GetInternalPubkeyString,
+    TapScriptFromStringRequest::SetInternalPubkeyString,
+    TapScriptFromStringRequest::GetInternalPubkeyFieldType,
   };
-  json_mapper.emplace("controlBlock", func_table);
-  item_list.push_back("controlBlock");
+  json_mapper.emplace("internalPubkey", func_table);
+  item_list.push_back("internalPubkey");
   func_table = {
-    TapScriptInfoByControlRequest::GetInternalPrivkeyString,
-    TapScriptInfoByControlRequest::SetInternalPrivkeyString,
-    TapScriptInfoByControlRequest::GetInternalPrivkeyFieldType,
+    TapScriptFromStringRequest::GetInternalPrivkeyString,
+    TapScriptFromStringRequest::SetInternalPrivkeyString,
+    TapScriptFromStringRequest::GetInternalPrivkeyFieldType,
   };
   json_mapper.emplace("internalPrivkey", func_table);
   item_list.push_back("internalPrivkey");
+  func_table = {
+    TapScriptFromStringRequest::GetNodesString,
+    TapScriptFromStringRequest::SetNodesString,
+    TapScriptFromStringRequest::GetNodesFieldType,
+  };
+  json_mapper.emplace("nodes", func_table);
+  item_list.push_back("nodes");
 }
 
-void TapScriptInfoByControlRequest::ConvertFromStruct(
-    const TapScriptInfoByControlRequestStruct& data) {
+void TapScriptFromStringRequest::ConvertFromStruct(
+    const TapScriptFromStringRequestStruct& data) {
   network_ = data.network;
   is_elements_ = data.is_elements;
+  tree_string_ = data.tree_string;
   tapscript_ = data.tapscript;
-  control_block_ = data.control_block;
+  internal_pubkey_ = data.internal_pubkey;
   internal_privkey_ = data.internal_privkey;
+  nodes_.ConvertFromStruct(data.nodes);
   ignore_items = data.ignore_items;
 }
 
-TapScriptInfoByControlRequestStruct TapScriptInfoByControlRequest::ConvertToStruct() const {  // NOLINT
-  TapScriptInfoByControlRequestStruct result;
+TapScriptFromStringRequestStruct TapScriptFromStringRequest::ConvertToStruct() const {  // NOLINT
+  TapScriptFromStringRequestStruct result;
   result.network = network_;
   result.is_elements = is_elements_;
+  result.tree_string = tree_string_;
   result.tapscript = tapscript_;
-  result.control_block = control_block_;
+  result.internal_pubkey = internal_pubkey_;
   result.internal_privkey = internal_privkey_;
+  result.nodes = nodes_.ConvertToStruct();
   result.ignore_items = ignore_items;
   return result;
 }
@@ -12606,6 +12633,13 @@ void TapScriptInfo::CollectFieldName() {
   };
   json_mapper.emplace("nodes", func_table);
   item_list.push_back("nodes");
+  func_table = {
+    TapScriptInfo::GetTreeStringString,
+    TapScriptInfo::SetTreeStringString,
+    TapScriptInfo::GetTreeStringFieldType,
+  };
+  json_mapper.emplace("treeString", func_table);
+  item_list.push_back("treeString");
 }
 
 void TapScriptInfo::ConvertFromStruct(
@@ -12619,6 +12653,7 @@ void TapScriptInfo::ConvertFromStruct(
   control_block_ = data.control_block;
   tapscript_ = data.tapscript;
   nodes_.ConvertFromStruct(data.nodes);
+  tree_string_ = data.tree_string;
   ignore_items = data.ignore_items;
 }
 
@@ -12633,6 +12668,78 @@ TapScriptInfoStruct TapScriptInfo::ConvertToStruct() const {  // NOLINT
   result.control_block = control_block_;
   result.tapscript = tapscript_;
   result.nodes = nodes_.ConvertToStruct();
+  result.tree_string = tree_string_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// TapScriptInfoByControlRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<TapScriptInfoByControlRequest>
+  TapScriptInfoByControlRequest::json_mapper;
+std::vector<std::string> TapScriptInfoByControlRequest::item_list;
+
+void TapScriptInfoByControlRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<TapScriptInfoByControlRequest> func_table;  // NOLINT
+
+  func_table = {
+    TapScriptInfoByControlRequest::GetNetworkString,
+    TapScriptInfoByControlRequest::SetNetworkString,
+    TapScriptInfoByControlRequest::GetNetworkFieldType,
+  };
+  json_mapper.emplace("network", func_table);
+  item_list.push_back("network");
+  func_table = {
+    TapScriptInfoByControlRequest::GetIsElementsString,
+    TapScriptInfoByControlRequest::SetIsElementsString,
+    TapScriptInfoByControlRequest::GetIsElementsFieldType,
+  };
+  json_mapper.emplace("isElements", func_table);
+  item_list.push_back("isElements");
+  func_table = {
+    TapScriptInfoByControlRequest::GetTapscriptString,
+    TapScriptInfoByControlRequest::SetTapscriptString,
+    TapScriptInfoByControlRequest::GetTapscriptFieldType,
+  };
+  json_mapper.emplace("tapscript", func_table);
+  item_list.push_back("tapscript");
+  func_table = {
+    TapScriptInfoByControlRequest::GetControlBlockString,
+    TapScriptInfoByControlRequest::SetControlBlockString,
+    TapScriptInfoByControlRequest::GetControlBlockFieldType,
+  };
+  json_mapper.emplace("controlBlock", func_table);
+  item_list.push_back("controlBlock");
+  func_table = {
+    TapScriptInfoByControlRequest::GetInternalPrivkeyString,
+    TapScriptInfoByControlRequest::SetInternalPrivkeyString,
+    TapScriptInfoByControlRequest::GetInternalPrivkeyFieldType,
+  };
+  json_mapper.emplace("internalPrivkey", func_table);
+  item_list.push_back("internalPrivkey");
+}
+
+void TapScriptInfoByControlRequest::ConvertFromStruct(
+    const TapScriptInfoByControlRequestStruct& data) {
+  network_ = data.network;
+  is_elements_ = data.is_elements;
+  tapscript_ = data.tapscript;
+  control_block_ = data.control_block;
+  internal_privkey_ = data.internal_privkey;
+  ignore_items = data.ignore_items;
+}
+
+TapScriptInfoByControlRequestStruct TapScriptInfoByControlRequest::ConvertToStruct() const {  // NOLINT
+  TapScriptInfoByControlRequestStruct result;
+  result.network = network_;
+  result.is_elements = is_elements_;
+  result.tapscript = tapscript_;
+  result.control_block = control_block_;
+  result.internal_privkey = internal_privkey_;
   result.ignore_items = ignore_items;
   return result;
 }

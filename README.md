@@ -116,18 +116,9 @@ ex)
 
 When npm is installed, the cfd-js build is executed.
 
-### Electron setting (for build)
+### N-API
 
-Add cmake-js setting on caller app's package.json.
-
-ex)
-```
-"cmake-js": {
-  "runtime": "electron",
-  "runtimeVersion": "6.0.11",
-  "arch": "x64"
-},
-```
+cfd-js uses the N-API. Therefore, the same binary can be used for both node.js and electron.
 
 ---
 

@@ -5449,6 +5449,77 @@ TapBranchDataStruct TapBranchData::ConvertToStruct() const {  // NOLINT
 }
 
 // ------------------------------------------------------------------------
+// TapScriptTreeItem
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<TapScriptTreeItem>
+  TapScriptTreeItem::json_mapper;
+std::vector<std::string> TapScriptTreeItem::item_list;
+
+void TapScriptTreeItem::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<TapScriptTreeItem> func_table;  // NOLINT
+
+  func_table = {
+    TapScriptTreeItem::GetDepthString,
+    TapScriptTreeItem::SetDepthString,
+    TapScriptTreeItem::GetDepthFieldType,
+  };
+  json_mapper.emplace("depth", func_table);
+  item_list.push_back("depth");
+  func_table = {
+    TapScriptTreeItem::GetTapBranchHashString,
+    TapScriptTreeItem::SetTapBranchHashString,
+    TapScriptTreeItem::GetTapBranchHashFieldType,
+  };
+  json_mapper.emplace("tapBranchHash", func_table);
+  item_list.push_back("tapBranchHash");
+  func_table = {
+    TapScriptTreeItem::GetTapscriptString,
+    TapScriptTreeItem::SetTapscriptString,
+    TapScriptTreeItem::GetTapscriptFieldType,
+  };
+  json_mapper.emplace("tapscript", func_table);
+  item_list.push_back("tapscript");
+  func_table = {
+    TapScriptTreeItem::GetLeafVersionString,
+    TapScriptTreeItem::SetLeafVersionString,
+    TapScriptTreeItem::GetLeafVersionFieldType,
+  };
+  json_mapper.emplace("leafVersion", func_table);
+  item_list.push_back("leafVersion");
+  func_table = {
+    TapScriptTreeItem::GetRelatedBranchHashString,
+    TapScriptTreeItem::SetRelatedBranchHashString,
+    TapScriptTreeItem::GetRelatedBranchHashFieldType,
+  };
+  json_mapper.emplace("relatedBranchHash", func_table);
+  item_list.push_back("relatedBranchHash");
+}
+
+void TapScriptTreeItem::ConvertFromStruct(
+    const TapScriptTreeItemStruct& data) {
+  depth_ = data.depth;
+  tap_branch_hash_ = data.tap_branch_hash;
+  tapscript_ = data.tapscript;
+  leaf_version_ = data.leaf_version;
+  related_branch_hash_.ConvertFromStruct(data.related_branch_hash);
+  ignore_items = data.ignore_items;
+}
+
+TapScriptTreeItemStruct TapScriptTreeItem::ConvertToStruct() const {  // NOLINT
+  TapScriptTreeItemStruct result;
+  result.depth = depth_;
+  result.tap_branch_hash = tap_branch_hash_;
+  result.tapscript = tapscript_;
+  result.leaf_version = leaf_version_;
+  result.related_branch_hash = related_branch_hash_.ConvertToStruct();
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
 // TargetAmountMapData
 // ------------------------------------------------------------------------
 cfd::core::JsonTableMap<TargetAmountMapData>
@@ -6897,6 +6968,76 @@ AddTapscriptSignRequestStruct AddTapscriptSignRequest::ConvertToStruct() const {
   result.is_elements = is_elements_;
   result.tx = tx_;
   result.txin = txin_.ConvertToStruct();
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// AnalyzeTapScriptTreeRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<AnalyzeTapScriptTreeRequest>
+  AnalyzeTapScriptTreeRequest::json_mapper;
+std::vector<std::string> AnalyzeTapScriptTreeRequest::item_list;
+
+void AnalyzeTapScriptTreeRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<AnalyzeTapScriptTreeRequest> func_table;  // NOLINT
+
+  func_table = {
+    AnalyzeTapScriptTreeRequest::GetTreeStringString,
+    AnalyzeTapScriptTreeRequest::SetTreeStringString,
+    AnalyzeTapScriptTreeRequest::GetTreeStringFieldType,
+  };
+  json_mapper.emplace("treeString", func_table);
+  item_list.push_back("treeString");
+}
+
+void AnalyzeTapScriptTreeRequest::ConvertFromStruct(
+    const AnalyzeTapScriptTreeRequestStruct& data) {
+  tree_string_ = data.tree_string;
+  ignore_items = data.ignore_items;
+}
+
+AnalyzeTapScriptTreeRequestStruct AnalyzeTapScriptTreeRequest::ConvertToStruct() const {  // NOLINT
+  AnalyzeTapScriptTreeRequestStruct result;
+  result.tree_string = tree_string_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// AnalyzeTapScriptTreeInfo
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<AnalyzeTapScriptTreeInfo>
+  AnalyzeTapScriptTreeInfo::json_mapper;
+std::vector<std::string> AnalyzeTapScriptTreeInfo::item_list;
+
+void AnalyzeTapScriptTreeInfo::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<AnalyzeTapScriptTreeInfo> func_table;  // NOLINT
+
+  func_table = {
+    AnalyzeTapScriptTreeInfo::GetBranchesString,
+    AnalyzeTapScriptTreeInfo::SetBranchesString,
+    AnalyzeTapScriptTreeInfo::GetBranchesFieldType,
+  };
+  json_mapper.emplace("branches", func_table);
+  item_list.push_back("branches");
+}
+
+void AnalyzeTapScriptTreeInfo::ConvertFromStruct(
+    const AnalyzeTapScriptTreeInfoStruct& data) {
+  branches_.ConvertFromStruct(data.branches);
+  ignore_items = data.ignore_items;
+}
+
+AnalyzeTapScriptTreeInfoStruct AnalyzeTapScriptTreeInfo::ConvertToStruct() const {  // NOLINT
+  AnalyzeTapScriptTreeInfoStruct result;
+  result.branches = branches_.ConvertToStruct();
   result.ignore_items = ignore_items;
   return result;
 }
@@ -12464,6 +12605,121 @@ void CreateSignatureHashResponse::ConvertFromStruct(
 CreateSignatureHashResponseStruct CreateSignatureHashResponse::ConvertToStruct() const {  // NOLINT
   CreateSignatureHashResponseStruct result;
   result.sighash = sighash_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// GetTapBranchInfoRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<GetTapBranchInfoRequest>
+  GetTapBranchInfoRequest::json_mapper;
+std::vector<std::string> GetTapBranchInfoRequest::item_list;
+
+void GetTapBranchInfoRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<GetTapBranchInfoRequest> func_table;  // NOLINT
+
+  func_table = {
+    GetTapBranchInfoRequest::GetTreeStringString,
+    GetTapBranchInfoRequest::SetTreeStringString,
+    GetTapBranchInfoRequest::GetTreeStringFieldType,
+  };
+  json_mapper.emplace("treeString", func_table);
+  item_list.push_back("treeString");
+  func_table = {
+    GetTapBranchInfoRequest::GetTapscriptString,
+    GetTapBranchInfoRequest::SetTapscriptString,
+    GetTapBranchInfoRequest::GetTapscriptFieldType,
+  };
+  json_mapper.emplace("tapscript", func_table);
+  item_list.push_back("tapscript");
+  func_table = {
+    GetTapBranchInfoRequest::GetNodesString,
+    GetTapBranchInfoRequest::SetNodesString,
+    GetTapBranchInfoRequest::GetNodesFieldType,
+  };
+  json_mapper.emplace("nodes", func_table);
+  item_list.push_back("nodes");
+  func_table = {
+    GetTapBranchInfoRequest::GetIndexString,
+    GetTapBranchInfoRequest::SetIndexString,
+    GetTapBranchInfoRequest::GetIndexFieldType,
+  };
+  json_mapper.emplace("index", func_table);
+  item_list.push_back("index");
+}
+
+void GetTapBranchInfoRequest::ConvertFromStruct(
+    const GetTapBranchInfoRequestStruct& data) {
+  tree_string_ = data.tree_string;
+  tapscript_ = data.tapscript;
+  nodes_.ConvertFromStruct(data.nodes);
+  index_ = data.index;
+  ignore_items = data.ignore_items;
+}
+
+GetTapBranchInfoRequestStruct GetTapBranchInfoRequest::ConvertToStruct() const {  // NOLINT
+  GetTapBranchInfoRequestStruct result;
+  result.tree_string = tree_string_;
+  result.tapscript = tapscript_;
+  result.nodes = nodes_.ConvertToStruct();
+  result.index = index_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// TapBranchInfo
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<TapBranchInfo>
+  TapBranchInfo::json_mapper;
+std::vector<std::string> TapBranchInfo::item_list;
+
+void TapBranchInfo::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<TapBranchInfo> func_table;  // NOLINT
+
+  func_table = {
+    TapBranchInfo::GetTopBranchHashString,
+    TapBranchInfo::SetTopBranchHashString,
+    TapBranchInfo::GetTopBranchHashFieldType,
+  };
+  json_mapper.emplace("topBranchHash", func_table);
+  item_list.push_back("topBranchHash");
+  func_table = {
+    TapBranchInfo::GetNodesString,
+    TapBranchInfo::SetNodesString,
+    TapBranchInfo::GetNodesFieldType,
+  };
+  json_mapper.emplace("nodes", func_table);
+  item_list.push_back("nodes");
+  func_table = {
+    TapBranchInfo::GetTreeStringString,
+    TapBranchInfo::SetTreeStringString,
+    TapBranchInfo::GetTreeStringFieldType,
+  };
+  json_mapper.emplace("treeString", func_table);
+  item_list.push_back("treeString");
+}
+
+void TapBranchInfo::ConvertFromStruct(
+    const TapBranchInfoStruct& data) {
+  top_branch_hash_ = data.top_branch_hash;
+  nodes_.ConvertFromStruct(data.nodes);
+  tree_string_ = data.tree_string;
+  ignore_items = data.ignore_items;
+}
+
+TapBranchInfoStruct TapBranchInfo::ConvertToStruct() const {  // NOLINT
+  TapBranchInfoStruct result;
+  result.top_branch_hash = top_branch_hash_;
+  result.nodes = nodes_.ConvertToStruct();
+  result.tree_string = tree_string_;
   result.ignore_items = ignore_items;
   return result;
 }

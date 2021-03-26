@@ -215,6 +215,22 @@ export interface AddTapscriptSignTxInRequest {
 }
 
 /**
+ * TapScript tree information
+ * @property {TapScriptTreeItem[]} branches - TapScript tree item
+ */
+export interface AnalyzeTapScriptTreeInfo {
+    branches: TapScriptTreeItem[];
+}
+
+/**
+ * Request for get TapBranch info.
+ * @property {string} treeString - tree serialize string. (cfd format)
+ */
+export interface AnalyzeTapScriptTreeRequest {
+    treeString: string;
+}
+
+/**
  * The output descriptor request data.
  * @property {string} descriptor - output descriptor.
  * @property {boolean} isElements? - elements transaction flag.
@@ -1980,6 +1996,20 @@ export interface GetSupportedFunctionResponse {
 }
 
 /**
+ * Request for get TapBranch info.
+ * @property {string} treeString - tree serialize string. (cfd format)
+ * @property {string} tapscript? - tapscript hex.
+ * @property {string[]} nodes? - target tapbranches hash list. If exist the same tapscript in this tree, you can search for the target tapscript by specifying a hash list of tapbranches.
+ * @property {number} index - branch index.
+ */
+export interface GetTapBranchInfoRequest {
+    treeString: string;
+    tapscript?: string;
+    nodes?: string[];
+    index: number;
+}
+
+/**
  * Request for get tapscript info.
  * @property {string} network? - network type (bitcoin:'mainnet, testnet, regtest'. elements:'liquidv1, regtest')
  * @property {boolean} isElements? - elements transaction flag.
@@ -2856,11 +2886,23 @@ export interface TapBranchData {
 }
 
 /**
+ * TapBranch information
+ * @property {string} topBranchHash - branch hash on the top.
+ * @property {string[]} nodes? - tapbranch list in this tree.
+ * @property {string} treeString - tree serialize string. (cfd format)
+ */
+export interface TapBranchInfo {
+    topBranchHash: string;
+    nodes?: string[];
+    treeString: string;
+}
+
+/**
  * Request for get tapscript info.
  * @property {string} network? - network type (bitcoin:'mainnet, testnet, regtest'. elements:'liquidv1, regtest')
  * @property {boolean} isElements? - elements transaction flag.
  * @property {string} treeString - tree serialize string. (cfd format)
- * @property {string} tapscript? - tapscript. hex or asm.
+ * @property {string} tapscript? - tapscript hex.
  * @property {string} internalPubkey? - internal schnorr pubkey.
  * @property {string} internalPrivkey? - internal privkey. Specify only when it is necessary to calculate.
  * @property {string[]} nodes? - target tapbranches hash list. If exist the same tapscript in this tree, you can search for the target tapscript by specifying a hash list of tapbranches.
@@ -2905,7 +2947,7 @@ export interface TapScriptInfo {
  * Request for get tapscript info.
  * @property {string} network? - network type (bitcoin:'mainnet, testnet, regtest'. elements:'liquidv1, regtest')
  * @property {boolean} isElements? - elements transaction flag.
- * @property {string} tapscript - tapscript. hex or asm.
+ * @property {string} tapscript - tapscript hex.
  * @property {string} controlBlock - control block.
  * @property {string} internalPrivkey? - internal privkey. Specify only when it is necessary to calculate.
  */
@@ -2929,6 +2971,22 @@ export interface TapScriptSignData {
     type?: string;
     sighashType?: string;
     sighashAnyoneCanPay?: boolean;
+}
+
+/**
+ * TapScript tree item
+ * @property {number} depth - branch depth
+ * @property {string} tapBranchHash - tapbranch hash or tapleaf hash.
+ * @property {string} tapscript? - tapscript hex.
+ * @property {bigint} leafVersion? - tapleaf version.
+ * @property {string[]} relatedBranchHash? - related tapbranch hash
+ */
+export interface TapScriptTreeItem {
+    depth: number;
+    tapBranchHash: string;
+    tapscript?: string;
+    leafVersion?: bigint;
+    relatedBranchHash?: string[];
 }
 
 /**
@@ -3381,6 +3439,13 @@ export function AddTaprootSchnorrSign(jsonObject: AddTaprootSchnorrSignRequest):
  * @return {RawTransactionResponse} - response data.
  */
 export function AddTapscriptSign(jsonObject: AddTapscriptSignRequest): RawTransactionResponse;
+
+/**
+ * Analyze TapScript tree.
+ * @param {AnalyzeTapScriptTreeRequest} jsonObject - request data.
+ * @return {AnalyzeTapScriptTreeInfo} - response data.
+ */
+export function AnalyzeTapScriptTree(jsonObject: AnalyzeTapScriptTreeRequest): AnalyzeTapScriptTreeInfo;
 
 /**
  * Get output descriptor added checksum.
@@ -3848,6 +3913,13 @@ export function GetSighash(jsonObject: GetSighashRequest): CreateSignatureHashRe
  * @return {GetSupportedFunctionResponse} - response data.
  */
 export function GetSupportedFunction(): GetSupportedFunctionResponse;
+
+/**
+ * Get TapBranch info from tree.
+ * @param {GetTapBranchInfoRequest} jsonObject - request data.
+ * @return {TapBranchInfo} - response data.
+ */
+export function GetTapBranchInfo(jsonObject: GetTapBranchInfoRequest): TapBranchInfo;
 
 /**
  * Get TapScript tree from string.

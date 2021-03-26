@@ -25151,6 +25151,333 @@ class TapBranchData
 };
 
 // ------------------------------------------------------------------------
+// TapScriptTreeItem
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (TapScriptTreeItem) class
+ */
+class TapScriptTreeItem
+  : public cfd::core::JsonClassBase<TapScriptTreeItem> {
+ public:
+  TapScriptTreeItem() {
+    CollectFieldName();
+  }
+  virtual ~TapScriptTreeItem() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of depth
+   * @return depth
+   */
+  uint32_t GetDepth() const {
+    return depth_;
+  }
+  /**
+   * @brief Set to depth
+   * @param[in] depth    setting value.
+   */
+  void SetDepth(  // line separate
+    const uint32_t& depth) {  // NOLINT
+    this->depth_ = depth;
+  }
+  /**
+   * @brief Get data type of depth
+   * @return Data type of depth
+   */
+  static std::string GetDepthFieldType() {
+    return "uint32_t";
+  }
+  /**
+   * @brief Get json string of depth field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetDepthString(  // line separate
+      const TapScriptTreeItem& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.depth_);
+  }
+  /**
+   * @brief Set json object to depth field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetDepthString(  // line separate
+      TapScriptTreeItem& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.depth_, json_value);
+  }
+
+  /**
+   * @brief Get of tapBranchHash
+   * @return tapBranchHash
+   */
+  std::string GetTapBranchHash() const {
+    return tap_branch_hash_;
+  }
+  /**
+   * @brief Set to tapBranchHash
+   * @param[in] tap_branch_hash    setting value.
+   */
+  void SetTapBranchHash(  // line separate
+    const std::string& tap_branch_hash) {  // NOLINT
+    this->tap_branch_hash_ = tap_branch_hash;
+  }
+  /**
+   * @brief Get data type of tapBranchHash
+   * @return Data type of tapBranchHash
+   */
+  static std::string GetTapBranchHashFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of tapBranchHash field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTapBranchHashString(  // line separate
+      const TapScriptTreeItem& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.tap_branch_hash_);
+  }
+  /**
+   * @brief Set json object to tapBranchHash field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTapBranchHashString(  // line separate
+      TapScriptTreeItem& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.tap_branch_hash_, json_value);
+  }
+
+  /**
+   * @brief Get of tapscript
+   * @return tapscript
+   */
+  std::string GetTapscript() const {
+    return tapscript_;
+  }
+  /**
+   * @brief Set to tapscript
+   * @param[in] tapscript    setting value.
+   */
+  void SetTapscript(  // line separate
+    const std::string& tapscript) {  // NOLINT
+    this->tapscript_ = tapscript;
+  }
+  /**
+   * @brief Get data type of tapscript
+   * @return Data type of tapscript
+   */
+  static std::string GetTapscriptFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of tapscript field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTapscriptString(  // line separate
+      const TapScriptTreeItem& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.tapscript_);
+  }
+  /**
+   * @brief Set json object to tapscript field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTapscriptString(  // line separate
+      TapScriptTreeItem& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.tapscript_, json_value);
+  }
+
+  /**
+   * @brief Get of leafVersion
+   * @return leafVersion
+   */
+  int64_t GetLeafVersion() const {
+    return leaf_version_;
+  }
+  /**
+   * @brief Set to leafVersion
+   * @param[in] leaf_version    setting value.
+   */
+  void SetLeafVersion(  // line separate
+    const int64_t& leaf_version) {  // NOLINT
+    this->leaf_version_ = leaf_version;
+  }
+  /**
+   * @brief Get data type of leafVersion
+   * @return Data type of leafVersion
+   */
+  static std::string GetLeafVersionFieldType() {
+    return "int64_t";
+  }
+  /**
+   * @brief Get json string of leafVersion field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetLeafVersionString(  // line separate
+      const TapScriptTreeItem& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.leaf_version_);
+  }
+  /**
+   * @brief Set json object to leafVersion field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetLeafVersionString(  // line separate
+      TapScriptTreeItem& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.leaf_version_, json_value);
+  }
+
+  /**
+   * @brief Get of relatedBranchHash.
+   * @return relatedBranchHash
+   */
+  JsonValueVector<std::string>& GetRelatedBranchHash() {  // NOLINT
+    return related_branch_hash_;
+  }
+  /**
+   * @brief Set to relatedBranchHash.
+   * @param[in] related_branch_hash    setting value.
+   */
+  void SetRelatedBranchHash(  // line separate
+      const JsonValueVector<std::string>& related_branch_hash) {  // NOLINT
+    this->related_branch_hash_ = related_branch_hash;
+  }
+  /**
+   * @brief Get data type of relatedBranchHash.
+   * @return Data type of relatedBranchHash.
+   */
+  static std::string GetRelatedBranchHashFieldType() {
+    return "JsonValueVector<std::string>";  // NOLINT
+  }
+  /**
+   * @brief Get json string of relatedBranchHash field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
+   */
+  static std::string GetRelatedBranchHashString(  // line separate
+      const TapScriptTreeItem& obj) {  // NOLINT
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
+    return obj.related_branch_hash_.Serialize();
+  }
+  /**
+   * @brief Set json object to relatedBranchHash field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
+   */
+  static void SetRelatedBranchHashString(  // line separate
+      TapScriptTreeItem& obj,  // NOLINT
+      const UniValue& json_value) {
+    obj.related_branch_hash_.DeserializeUniValue(json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const TapScriptTreeItemStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  TapScriptTreeItemStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using TapScriptTreeItemMapTable =
+    cfd::core::JsonTableMap<TapScriptTreeItem>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const TapScriptTreeItemMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static TapScriptTreeItemMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(depth) value
+   */
+  uint32_t depth_ = 0;
+  /**
+   * @brief JsonAPI(tapBranchHash) value
+   */
+  std::string tap_branch_hash_ = "";
+  /**
+   * @brief JsonAPI(tapscript) value
+   */
+  std::string tapscript_ = "";
+  /**
+   * @brief JsonAPI(leafVersion) value
+   */
+  int64_t leaf_version_ = 0;
+  /**
+   * @brief JsonAPI(relatedBranchHash) value
+   */
+  JsonValueVector<std::string> related_branch_hash_;  // NOLINT
+};
+
+// ------------------------------------------------------------------------
 // TargetAmountMapData
 // ------------------------------------------------------------------------
 /**
@@ -31717,6 +32044,283 @@ class AddTapscriptSignRequest
    * @brief JsonAPI(txin) value
    */
   AddTapscriptSignTxInRequest txin_;  // NOLINT
+};
+
+// ------------------------------------------------------------------------
+// AnalyzeTapScriptTreeRequest
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (AnalyzeTapScriptTreeRequest) class
+ */
+class AnalyzeTapScriptTreeRequest
+  : public cfd::core::JsonClassBase<AnalyzeTapScriptTreeRequest> {
+ public:
+  AnalyzeTapScriptTreeRequest() {
+    CollectFieldName();
+  }
+  virtual ~AnalyzeTapScriptTreeRequest() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of treeString
+   * @return treeString
+   */
+  std::string GetTreeString() const {
+    return tree_string_;
+  }
+  /**
+   * @brief Set to treeString
+   * @param[in] tree_string    setting value.
+   */
+  void SetTreeString(  // line separate
+    const std::string& tree_string) {  // NOLINT
+    this->tree_string_ = tree_string;
+  }
+  /**
+   * @brief Get data type of treeString
+   * @return Data type of treeString
+   */
+  static std::string GetTreeStringFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of treeString field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTreeStringString(  // line separate
+      const AnalyzeTapScriptTreeRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.tree_string_);
+  }
+  /**
+   * @brief Set json object to treeString field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTreeStringString(  // line separate
+      AnalyzeTapScriptTreeRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.tree_string_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const AnalyzeTapScriptTreeRequestStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  AnalyzeTapScriptTreeRequestStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using AnalyzeTapScriptTreeRequestMapTable =
+    cfd::core::JsonTableMap<AnalyzeTapScriptTreeRequest>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const AnalyzeTapScriptTreeRequestMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static AnalyzeTapScriptTreeRequestMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(treeString) value
+   */
+  std::string tree_string_ = "";
+};
+
+// ------------------------------------------------------------------------
+// AnalyzeTapScriptTreeInfo
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (AnalyzeTapScriptTreeInfo) class
+ */
+class AnalyzeTapScriptTreeInfo
+  : public cfd::core::JsonClassBase<AnalyzeTapScriptTreeInfo> {
+ public:
+  AnalyzeTapScriptTreeInfo() {
+    CollectFieldName();
+  }
+  virtual ~AnalyzeTapScriptTreeInfo() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of branches.
+   * @return branches
+   */
+  JsonObjectVector<TapScriptTreeItem, TapScriptTreeItemStruct>& GetBranches() {  // NOLINT
+    return branches_;
+  }
+  /**
+   * @brief Set to branches.
+   * @param[in] branches    setting value.
+   */
+  void SetBranches(  // line separate
+      const JsonObjectVector<TapScriptTreeItem, TapScriptTreeItemStruct>& branches) {  // NOLINT
+    this->branches_ = branches;
+  }
+  /**
+   * @brief Get data type of branches.
+   * @return Data type of branches.
+   */
+  static std::string GetBranchesFieldType() {
+    return "JsonObjectVector<TapScriptTreeItem, TapScriptTreeItemStruct>";  // NOLINT
+  }
+  /**
+   * @brief Get json string of branches field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
+   */
+  static std::string GetBranchesString(  // line separate
+      const AnalyzeTapScriptTreeInfo& obj) {  // NOLINT
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
+    return obj.branches_.Serialize();
+  }
+  /**
+   * @brief Set json object to branches field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
+   */
+  static void SetBranchesString(  // line separate
+      AnalyzeTapScriptTreeInfo& obj,  // NOLINT
+      const UniValue& json_value) {
+    obj.branches_.DeserializeUniValue(json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const AnalyzeTapScriptTreeInfoStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  AnalyzeTapScriptTreeInfoStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using AnalyzeTapScriptTreeInfoMapTable =
+    cfd::core::JsonTableMap<AnalyzeTapScriptTreeInfo>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const AnalyzeTapScriptTreeInfoMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static AnalyzeTapScriptTreeInfoMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(branches) value
+   */
+  JsonObjectVector<TapScriptTreeItem, TapScriptTreeItemStruct> branches_;  // NOLINT
 };
 
 // ------------------------------------------------------------------------
@@ -56238,6 +56842,519 @@ class CreateSignatureHashResponse
    * @brief JsonAPI(sighash) value
    */
   std::string sighash_ = "";
+};
+
+// ------------------------------------------------------------------------
+// GetTapBranchInfoRequest
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (GetTapBranchInfoRequest) class
+ */
+class GetTapBranchInfoRequest
+  : public cfd::core::JsonClassBase<GetTapBranchInfoRequest> {
+ public:
+  GetTapBranchInfoRequest() {
+    CollectFieldName();
+  }
+  virtual ~GetTapBranchInfoRequest() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of treeString
+   * @return treeString
+   */
+  std::string GetTreeString() const {
+    return tree_string_;
+  }
+  /**
+   * @brief Set to treeString
+   * @param[in] tree_string    setting value.
+   */
+  void SetTreeString(  // line separate
+    const std::string& tree_string) {  // NOLINT
+    this->tree_string_ = tree_string;
+  }
+  /**
+   * @brief Get data type of treeString
+   * @return Data type of treeString
+   */
+  static std::string GetTreeStringFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of treeString field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTreeStringString(  // line separate
+      const GetTapBranchInfoRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.tree_string_);
+  }
+  /**
+   * @brief Set json object to treeString field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTreeStringString(  // line separate
+      GetTapBranchInfoRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.tree_string_, json_value);
+  }
+
+  /**
+   * @brief Get of tapscript
+   * @return tapscript
+   */
+  std::string GetTapscript() const {
+    return tapscript_;
+  }
+  /**
+   * @brief Set to tapscript
+   * @param[in] tapscript    setting value.
+   */
+  void SetTapscript(  // line separate
+    const std::string& tapscript) {  // NOLINT
+    this->tapscript_ = tapscript;
+  }
+  /**
+   * @brief Get data type of tapscript
+   * @return Data type of tapscript
+   */
+  static std::string GetTapscriptFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of tapscript field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTapscriptString(  // line separate
+      const GetTapBranchInfoRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.tapscript_);
+  }
+  /**
+   * @brief Set json object to tapscript field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTapscriptString(  // line separate
+      GetTapBranchInfoRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.tapscript_, json_value);
+  }
+
+  /**
+   * @brief Get of nodes.
+   * @return nodes
+   */
+  JsonValueVector<std::string>& GetNodes() {  // NOLINT
+    return nodes_;
+  }
+  /**
+   * @brief Set to nodes.
+   * @param[in] nodes    setting value.
+   */
+  void SetNodes(  // line separate
+      const JsonValueVector<std::string>& nodes) {  // NOLINT
+    this->nodes_ = nodes;
+  }
+  /**
+   * @brief Get data type of nodes.
+   * @return Data type of nodes.
+   */
+  static std::string GetNodesFieldType() {
+    return "JsonValueVector<std::string>";  // NOLINT
+  }
+  /**
+   * @brief Get json string of nodes field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
+   */
+  static std::string GetNodesString(  // line separate
+      const GetTapBranchInfoRequest& obj) {  // NOLINT
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
+    return obj.nodes_.Serialize();
+  }
+  /**
+   * @brief Set json object to nodes field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
+   */
+  static void SetNodesString(  // line separate
+      GetTapBranchInfoRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    obj.nodes_.DeserializeUniValue(json_value);
+  }
+
+  /**
+   * @brief Get of index
+   * @return index
+   */
+  uint32_t GetIndex() const {
+    return index_;
+  }
+  /**
+   * @brief Set to index
+   * @param[in] index    setting value.
+   */
+  void SetIndex(  // line separate
+    const uint32_t& index) {  // NOLINT
+    this->index_ = index;
+  }
+  /**
+   * @brief Get data type of index
+   * @return Data type of index
+   */
+  static std::string GetIndexFieldType() {
+    return "uint32_t";
+  }
+  /**
+   * @brief Get json string of index field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetIndexString(  // line separate
+      const GetTapBranchInfoRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.index_);
+  }
+  /**
+   * @brief Set json object to index field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetIndexString(  // line separate
+      GetTapBranchInfoRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.index_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const GetTapBranchInfoRequestStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  GetTapBranchInfoRequestStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using GetTapBranchInfoRequestMapTable =
+    cfd::core::JsonTableMap<GetTapBranchInfoRequest>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const GetTapBranchInfoRequestMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static GetTapBranchInfoRequestMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(treeString) value
+   */
+  std::string tree_string_ = "";
+  /**
+   * @brief JsonAPI(tapscript) value
+   */
+  std::string tapscript_ = "";
+  /**
+   * @brief JsonAPI(nodes) value
+   */
+  JsonValueVector<std::string> nodes_;  // NOLINT
+  /**
+   * @brief JsonAPI(index) value
+   */
+  uint32_t index_ = 0;
+};
+
+// ------------------------------------------------------------------------
+// TapBranchInfo
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (TapBranchInfo) class
+ */
+class TapBranchInfo
+  : public cfd::core::JsonClassBase<TapBranchInfo> {
+ public:
+  TapBranchInfo() {
+    CollectFieldName();
+  }
+  virtual ~TapBranchInfo() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of topBranchHash
+   * @return topBranchHash
+   */
+  std::string GetTopBranchHash() const {
+    return top_branch_hash_;
+  }
+  /**
+   * @brief Set to topBranchHash
+   * @param[in] top_branch_hash    setting value.
+   */
+  void SetTopBranchHash(  // line separate
+    const std::string& top_branch_hash) {  // NOLINT
+    this->top_branch_hash_ = top_branch_hash;
+  }
+  /**
+   * @brief Get data type of topBranchHash
+   * @return Data type of topBranchHash
+   */
+  static std::string GetTopBranchHashFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of topBranchHash field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTopBranchHashString(  // line separate
+      const TapBranchInfo& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.top_branch_hash_);
+  }
+  /**
+   * @brief Set json object to topBranchHash field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTopBranchHashString(  // line separate
+      TapBranchInfo& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.top_branch_hash_, json_value);
+  }
+
+  /**
+   * @brief Get of nodes.
+   * @return nodes
+   */
+  JsonValueVector<std::string>& GetNodes() {  // NOLINT
+    return nodes_;
+  }
+  /**
+   * @brief Set to nodes.
+   * @param[in] nodes    setting value.
+   */
+  void SetNodes(  // line separate
+      const JsonValueVector<std::string>& nodes) {  // NOLINT
+    this->nodes_ = nodes;
+  }
+  /**
+   * @brief Get data type of nodes.
+   * @return Data type of nodes.
+   */
+  static std::string GetNodesFieldType() {
+    return "JsonValueVector<std::string>";  // NOLINT
+  }
+  /**
+   * @brief Get json string of nodes field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
+   */
+  static std::string GetNodesString(  // line separate
+      const TapBranchInfo& obj) {  // NOLINT
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
+    return obj.nodes_.Serialize();
+  }
+  /**
+   * @brief Set json object to nodes field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
+   */
+  static void SetNodesString(  // line separate
+      TapBranchInfo& obj,  // NOLINT
+      const UniValue& json_value) {
+    obj.nodes_.DeserializeUniValue(json_value);
+  }
+
+  /**
+   * @brief Get of treeString
+   * @return treeString
+   */
+  std::string GetTreeString() const {
+    return tree_string_;
+  }
+  /**
+   * @brief Set to treeString
+   * @param[in] tree_string    setting value.
+   */
+  void SetTreeString(  // line separate
+    const std::string& tree_string) {  // NOLINT
+    this->tree_string_ = tree_string;
+  }
+  /**
+   * @brief Get data type of treeString
+   * @return Data type of treeString
+   */
+  static std::string GetTreeStringFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of treeString field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTreeStringString(  // line separate
+      const TapBranchInfo& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.tree_string_);
+  }
+  /**
+   * @brief Set json object to treeString field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTreeStringString(  // line separate
+      TapBranchInfo& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.tree_string_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const TapBranchInfoStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  TapBranchInfoStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using TapBranchInfoMapTable =
+    cfd::core::JsonTableMap<TapBranchInfo>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const TapBranchInfoMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static TapBranchInfoMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(topBranchHash) value
+   */
+  std::string top_branch_hash_ = "";
+  /**
+   * @brief JsonAPI(nodes) value
+   */
+  JsonValueVector<std::string> nodes_;  // NOLINT
+  /**
+   * @brief JsonAPI(treeString) value
+   */
+  std::string tree_string_ = "";
 };
 
 // ------------------------------------------------------------------------

@@ -1060,6 +1060,24 @@ std::string JsonMappingApi::GetTapScriptTreeFromString(
 #endif
 }
 
+std::string JsonMappingApi::GetTapBranchInfo(
+    const std::string &request_message) {
+  return ExecuteJsonApi<
+      api::json::GetTapBranchInfoRequest, api::json::TapBranchInfo,
+      api::GetTapBranchInfoRequestStruct, api::TapBranchInfoStruct>(
+      request_message, AddressStructApi::GetTapBranchInfo);
+}
+
+std::string JsonMappingApi::AnalyzeTapScriptTree(
+    const std::string &request_message) {
+  return ExecuteJsonApi<
+      api::json::AnalyzeTapScriptTreeRequest,
+      api::json::AnalyzeTapScriptTreeInfo,
+      api::AnalyzeTapScriptTreeRequestStruct,
+      api::AnalyzeTapScriptTreeInfoStruct>(
+      request_message, AddressStructApi::AnalyzeTapScriptTree);
+}
+
 std::string JsonMappingApi::DecodePsbt(const std::string &request_message) {
   return ExecuteJsonApi<
       DecodePsbtRequest, DecodePsbtResponse, DecodePsbtRequestStruct,
@@ -1473,6 +1491,9 @@ void JsonMappingApi::LoadFunctions(
     request_map->emplace(
         "GetTapScriptTreeFromString",
         JsonMappingApi::GetTapScriptTreeFromString);
+    request_map->emplace("GetTapBranchInfo", JsonMappingApi::GetTapBranchInfo);
+    request_map->emplace(
+        "AnalyzeTapScriptTree", JsonMappingApi::AnalyzeTapScriptTree);
     request_map->emplace("DecodePsbt", JsonMappingApi::DecodePsbt);
     request_map->emplace("CreatePsbt", JsonMappingApi::CreatePsbt);
     request_map->emplace("ConvertToPsbt", JsonMappingApi::ConvertToPsbt);

@@ -366,7 +366,7 @@ static void ParseTapBranch(
   uint32_t branch_max = static_cast<uint32_t>(branches.size());
   TapScriptTreeItemStruct leaf_data;
   leaf_data.depth = branch_max + depth;
-  leaf_data.tap_branch_hash = branch.GetRootHash().GetHex();
+  leaf_data.tap_branch_hash = branch.GetBaseHash().GetHex();
   if (branch.HasTapLeaf()) {
     leaf_data.tapscript = branch.GetScript().GetHex();
     leaf_data.leaf_version = branch.GetLeafVersion();

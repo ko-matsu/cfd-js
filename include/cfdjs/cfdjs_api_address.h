@@ -116,6 +116,22 @@ class CFD_JS_API_EXPORT AddressStructApi {
       const TapScriptFromStringRequestStruct& request);
 
   /**
+   * @brief Get a tapbranch information by string.
+   * @param[in] request     tapbranch data
+   * @return tapbranch information
+   */
+  static TapBranchInfoStruct GetTapBranchInfo(
+      const GetTapBranchInfoRequestStruct& request);
+
+  /**
+   * @brief Analyze a tapscript tree information by string.
+   * @param[in] request     tapscript data
+   * @return tapscript information
+   */
+  static AnalyzeTapScriptTreeInfoStruct AnalyzeTapScriptTree(
+      const AnalyzeTapScriptTreeRequestStruct& request);
+
+  /**
    * @brief bitcoinネットワーク文字列を、NetType情報へ変換する.
    * @param[in] network_type ネットワーク文字列
    * @return 引数に対応するNetType情報

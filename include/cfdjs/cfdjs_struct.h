@@ -1155,6 +1155,21 @@ struct TapBranchDataStruct {
 };
 
 // ------------------------------------------------------------------------
+// TapScriptTreeItemStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief TapScriptTreeItemStruct struct
+ */
+struct TapScriptTreeItemStruct {
+  uint32_t depth = 0;                            //!< depth  // NOLINT
+  std::string tap_branch_hash = "";              //!< tap_branch_hash  // NOLINT
+  std::string tapscript = "";                    //!< tapscript  // NOLINT
+  int64_t leaf_version = 0;                      //!< leaf_version  // NOLINT
+  std::vector<std::string> related_branch_hash;  //!< related_branch_hash  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
 // TargetAmountMapDataStruct
 // ------------------------------------------------------------------------
 /**
@@ -1479,6 +1494,29 @@ struct AddTapscriptSignRequestStruct {
   bool is_elements = false;                //!< is_elements  // NOLINT
   std::string tx = "";                     //!< tx  // NOLINT
   AddTapscriptSignTxInRequestStruct txin;  //!< txin  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// AnalyzeTapScriptTreeRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief AnalyzeTapScriptTreeRequestStruct struct
+ */
+struct AnalyzeTapScriptTreeRequestStruct {
+  std::string tree_string = "";  //!< tree_string  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// AnalyzeTapScriptTreeInfoStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief AnalyzeTapScriptTreeInfoStruct struct
+ */
+struct AnalyzeTapScriptTreeInfoStruct {
+  std::vector<TapScriptTreeItemStruct> branches;  //!< branches  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -2856,6 +2894,34 @@ struct GetSighashRequestStruct {
  */
 struct CreateSignatureHashResponseStruct {
   std::string sighash = "";  //!< sighash  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// GetTapBranchInfoRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief GetTapBranchInfoRequestStruct struct
+ */
+struct GetTapBranchInfoRequestStruct {
+  std::string tree_string = "";    //!< tree_string  // NOLINT
+  std::string tapscript = "";      //!< tapscript  // NOLINT
+  std::vector<std::string> nodes;  //!< nodes  // NOLINT
+  uint32_t index = 0;              //!< index  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// TapBranchInfoStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief TapBranchInfoStruct struct
+ */
+struct TapBranchInfoStruct {
+  std::string top_branch_hash = "";  //!< top_branch_hash  // NOLINT
+  std::vector<std::string> nodes;    //!< nodes  // NOLINT
+  std::string tree_string = "";      //!< tree_string  // NOLINT
   cfd::js::api::InnerErrorResponseStruct error;   //!< error information
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };

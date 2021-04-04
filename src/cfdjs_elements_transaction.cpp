@@ -868,7 +868,8 @@ RawTransactionResponseStruct ElementsTransactionStructApi::SignWithPrivkey(
     AddressType addr_type =
         AddressApiBase::ConvertAddressType(request.txin.hash_type);
     SigHashType sighashtype = TransactionStructApiBase::ConvertSigHashType(
-        request.txin.sighash_type, request.txin.sighash_anyone_can_pay);
+        request.txin.sighash_type, request.txin.sighash_anyone_can_pay,
+        request.txin.sighash_rangeproof);
 
     if (request.txin.privkey.size() == (Privkey::kPrivkeySize * 2)) {
       privkey = Privkey(request.txin.privkey);
@@ -914,7 +915,8 @@ RawTransactionResponseStruct ElementsTransactionStructApi::AddPubkeyHashSign(
         AddressApiBase::ConvertAddressType(request.txin.hash_type);
     SigHashType sighashtype = TransactionStructApiBase::ConvertSigHashType(
         request.txin.sign_param.sighash_type,
-        request.txin.sign_param.sighash_anyone_can_pay);
+        request.txin.sign_param.sighash_anyone_can_pay,
+        request.txin.sign_param.sighash_rangeproof);
     SignParameter signature(
         ByteData(request.txin.sign_param.hex),
         request.txin.sign_param.der_encode, sighashtype);
@@ -1009,7 +1011,8 @@ ElementsTransactionStructApi::CreateSignatureHash(  // NOLINT
     uint32_t vout = request.txin.vout;
     ConfidentialTransactionContext txc(request.tx);
     SigHashType sighashtype = TransactionStructApiBase::ConvertSigHashType(
-        request.txin.sighash_type, request.txin.sighash_anyone_can_pay);
+        request.txin.sighash_type, request.txin.sighash_anyone_can_pay,
+        request.txin.sighash_rangeproof);
 
     Pubkey pubkey;
     Script script;
@@ -1081,7 +1084,7 @@ CreateSignatureHashResponseStruct ElementsTransactionStructApi::GetSighash(
     bool has_taproot = (addr_type == AddressType::kTaprootAddress);
     SigHashType sighashtype = TransactionStructApiBase::ConvertSigHashType(
         request.txin.sighash_type, request.txin.sighash_anyone_can_pay,
-        has_taproot);
+        request.txin.sighash_rangeproof, has_taproot);
 
     Script redeem_script;
     bool is_pubkey = false;
@@ -1138,7 +1141,7 @@ ElementsTransactionStructApi::AddTaprootSchnorrSign(
     if (sig.GetSigHashType().GetSigHashFlag() == 0) {
       auto sighashtype = TransactionStructApiBase::ConvertSigHashType(
           request.txin.sighash_type, request.txin.sighash_anyone_can_pay,
-          true);
+          request.txin.sighash_rangeproof, true);
       sig.SetSigHashType(sighashtype);
     }
 
@@ -1174,7 +1177,8 @@ RawTransactionResponseStruct ElementsTransactionStructApi::AddTapscriptSign(
       SchnorrSignature sig(sign_data.hex);
       if (sig.GetSigHashType().GetSigHashFlag() == 0) {
         auto sighashtype = TransactionStructApiBase::ConvertSigHashType(
-            sign_data.sighash_type, sign_data.sighash_anyone_can_pay, true);
+            sign_data.sighash_type, sign_data.sighash_anyone_can_pay,
+            sign_data.sighash_rangeproof, true);
         sig.SetSigHashType(sighashtype);
       }
       sign_params.emplace_back(sig.GetData(true));
@@ -1218,7 +1222,8 @@ VerifySignatureResponseStruct ElementsTransactionStructApi::VerifySignature(
     const Txid& txid = Txid(request.txin.txid);
     uint32_t vout = request.txin.vout;
     SigHashType sighashtype = TransactionStructApiBase::ConvertSigHashType(
-        request.txin.sighash_type, request.txin.sighash_anyone_can_pay);
+        request.txin.sighash_type, request.txin.sighash_anyone_can_pay,
+        request.txin.sighash_rangeproof);
 
     Pubkey pubkey = Pubkey(request.txin.pubkey);
     ByteData signature = ByteData(request.txin.signature);

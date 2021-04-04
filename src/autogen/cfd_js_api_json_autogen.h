@@ -6886,6 +6886,49 @@ class PubkeySignData
   }
 
   /**
+   * @brief Get of sighashRangeproof
+   * @return sighashRangeproof
+   */
+  bool GetSighashRangeproof() const {
+    return sighash_rangeproof_;
+  }
+  /**
+   * @brief Set to sighashRangeproof
+   * @param[in] sighash_rangeproof    setting value.
+   */
+  void SetSighashRangeproof(  // line separate
+    const bool& sighash_rangeproof) {  // NOLINT
+    this->sighash_rangeproof_ = sighash_rangeproof;
+  }
+  /**
+   * @brief Get data type of sighashRangeproof
+   * @return Data type of sighashRangeproof
+   */
+  static std::string GetSighashRangeproofFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of sighashRangeproof field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetSighashRangeproofString(  // line separate
+      const PubkeySignData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.sighash_rangeproof_);
+  }
+  /**
+   * @brief Set json object to sighashRangeproof field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetSighashRangeproofString(  // line separate
+      PubkeySignData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.sighash_rangeproof_, json_value);
+  }
+
+  /**
    * @brief Get of relatedPubkey
    * @return relatedPubkey
    */
@@ -7017,6 +7060,10 @@ class PubkeySignData
    * @brief JsonAPI(sighashAnyoneCanPay) value
    */
   bool sighash_anyone_can_pay_ = false;
+  /**
+   * @brief JsonAPI(sighashRangeproof) value
+   */
+  bool sighash_rangeproof_ = false;
   /**
    * @brief JsonAPI(relatedPubkey) value
    */
@@ -7259,6 +7306,49 @@ class SignData
   }
 
   /**
+   * @brief Get of sighashRangeproof
+   * @return sighashRangeproof
+   */
+  bool GetSighashRangeproof() const {
+    return sighash_rangeproof_;
+  }
+  /**
+   * @brief Set to sighashRangeproof
+   * @param[in] sighash_rangeproof    setting value.
+   */
+  void SetSighashRangeproof(  // line separate
+    const bool& sighash_rangeproof) {  // NOLINT
+    this->sighash_rangeproof_ = sighash_rangeproof;
+  }
+  /**
+   * @brief Get data type of sighashRangeproof
+   * @return Data type of sighashRangeproof
+   */
+  static std::string GetSighashRangeproofFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of sighashRangeproof field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetSighashRangeproofString(  // line separate
+      const SignData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.sighash_rangeproof_);
+  }
+  /**
+   * @brief Set json object to sighashRangeproof field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetSighashRangeproofString(  // line separate
+      SignData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.sighash_rangeproof_, json_value);
+  }
+
+  /**
    * @brief Set ignore item.
    * @param[in] key   ignore target key name.
    */
@@ -7347,6 +7437,10 @@ class SignData
    * @brief JsonAPI(sighashAnyoneCanPay) value
    */
   bool sighash_anyone_can_pay_ = false;
+  /**
+   * @brief JsonAPI(sighashRangeproof) value
+   */
+  bool sighash_rangeproof_ = false;
 };
 
 // ------------------------------------------------------------------------
@@ -7542,6 +7636,49 @@ class TapScriptSignData
   }
 
   /**
+   * @brief Get of sighashRangeproof
+   * @return sighashRangeproof
+   */
+  bool GetSighashRangeproof() const {
+    return sighash_rangeproof_;
+  }
+  /**
+   * @brief Set to sighashRangeproof
+   * @param[in] sighash_rangeproof    setting value.
+   */
+  void SetSighashRangeproof(  // line separate
+    const bool& sighash_rangeproof) {  // NOLINT
+    this->sighash_rangeproof_ = sighash_rangeproof;
+  }
+  /**
+   * @brief Get data type of sighashRangeproof
+   * @return Data type of sighashRangeproof
+   */
+  static std::string GetSighashRangeproofFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of sighashRangeproof field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetSighashRangeproofString(  // line separate
+      const TapScriptSignData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.sighash_rangeproof_);
+  }
+  /**
+   * @brief Set json object to sighashRangeproof field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetSighashRangeproofString(  // line separate
+      TapScriptSignData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.sighash_rangeproof_, json_value);
+  }
+
+  /**
    * @brief Set ignore item.
    * @param[in] key   ignore target key name.
    */
@@ -7626,6 +7763,10 @@ class TapScriptSignData
    * @brief JsonAPI(sighashAnyoneCanPay) value
    */
   bool sighash_anyone_can_pay_ = false;
+  /**
+   * @brief JsonAPI(sighashRangeproof) value
+   */
+  bool sighash_rangeproof_ = false;
 };
 
 // ------------------------------------------------------------------------
@@ -8139,6 +8280,49 @@ class WitnessStackData
   }
 
   /**
+   * @brief Get of sighashRangeproof
+   * @return sighashRangeproof
+   */
+  bool GetSighashRangeproof() const {
+    return sighash_rangeproof_;
+  }
+  /**
+   * @brief Set to sighashRangeproof
+   * @param[in] sighash_rangeproof    setting value.
+   */
+  void SetSighashRangeproof(  // line separate
+    const bool& sighash_rangeproof) {  // NOLINT
+    this->sighash_rangeproof_ = sighash_rangeproof;
+  }
+  /**
+   * @brief Get data type of sighashRangeproof
+   * @return Data type of sighashRangeproof
+   */
+  static std::string GetSighashRangeproofFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of sighashRangeproof field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetSighashRangeproofString(  // line separate
+      const WitnessStackData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.sighash_rangeproof_);
+  }
+  /**
+   * @brief Set json object to sighashRangeproof field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetSighashRangeproofString(  // line separate
+      WitnessStackData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.sighash_rangeproof_, json_value);
+  }
+
+  /**
    * @brief Set ignore item.
    * @param[in] key   ignore target key name.
    */
@@ -8231,6 +8415,10 @@ class WitnessStackData
    * @brief JsonAPI(sighashAnyoneCanPay) value
    */
   bool sighash_anyone_can_pay_ = false;
+  /**
+   * @brief JsonAPI(sighashRangeproof) value
+   */
+  bool sighash_rangeproof_ = false;
 };
 
 // ------------------------------------------------------------------------
@@ -10152,6 +10340,49 @@ class AddTaprootSchnorrSignTxInRequest
   }
 
   /**
+   * @brief Get of sighashRangeproof
+   * @return sighashRangeproof
+   */
+  bool GetSighashRangeproof() const {
+    return sighash_rangeproof_;
+  }
+  /**
+   * @brief Set to sighashRangeproof
+   * @param[in] sighash_rangeproof    setting value.
+   */
+  void SetSighashRangeproof(  // line separate
+    const bool& sighash_rangeproof) {  // NOLINT
+    this->sighash_rangeproof_ = sighash_rangeproof;
+  }
+  /**
+   * @brief Get data type of sighashRangeproof
+   * @return Data type of sighashRangeproof
+   */
+  static std::string GetSighashRangeproofFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of sighashRangeproof field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetSighashRangeproofString(  // line separate
+      const AddTaprootSchnorrSignTxInRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.sighash_rangeproof_);
+  }
+  /**
+   * @brief Set json object to sighashRangeproof field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetSighashRangeproofString(  // line separate
+      AddTaprootSchnorrSignTxInRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.sighash_rangeproof_, json_value);
+  }
+
+  /**
    * @brief Get of annex
    * @return annex
    */
@@ -10283,6 +10514,10 @@ class AddTaprootSchnorrSignTxInRequest
    * @brief JsonAPI(sighashAnyoneCanPay) value
    */
   bool sighash_anyone_can_pay_ = false;
+  /**
+   * @brief JsonAPI(sighashRangeproof) value
+   */
+  bool sighash_rangeproof_ = false;
   /**
    * @brief JsonAPI(annex) value
    */
@@ -12565,6 +12800,49 @@ class CreateElementsSignatureHashTxIn
   }
 
   /**
+   * @brief Get of sighashRangeproof
+   * @return sighashRangeproof
+   */
+  bool GetSighashRangeproof() const {
+    return sighash_rangeproof_;
+  }
+  /**
+   * @brief Set to sighashRangeproof
+   * @param[in] sighash_rangeproof    setting value.
+   */
+  void SetSighashRangeproof(  // line separate
+    const bool& sighash_rangeproof) {  // NOLINT
+    this->sighash_rangeproof_ = sighash_rangeproof;
+  }
+  /**
+   * @brief Get data type of sighashRangeproof
+   * @return Data type of sighashRangeproof
+   */
+  static std::string GetSighashRangeproofFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of sighashRangeproof field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetSighashRangeproofString(  // line separate
+      const CreateElementsSignatureHashTxIn& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.sighash_rangeproof_);
+  }
+  /**
+   * @brief Set json object to sighashRangeproof field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetSighashRangeproofString(  // line separate
+      CreateElementsSignatureHashTxIn& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.sighash_rangeproof_, json_value);
+  }
+
+  /**
    * @brief Set ignore item.
    * @param[in] key   ignore target key name.
    */
@@ -12665,6 +12943,10 @@ class CreateElementsSignatureHashTxIn
    * @brief JsonAPI(sighashAnyoneCanPay) value
    */
   bool sighash_anyone_can_pay_ = false;
+  /**
+   * @brief JsonAPI(sighashRangeproof) value
+   */
+  bool sighash_rangeproof_ = false;
 };
 
 // ------------------------------------------------------------------------
@@ -20156,6 +20438,49 @@ class GetSighashTxIn
   }
 
   /**
+   * @brief Get of sighashRangeproof
+   * @return sighashRangeproof
+   */
+  bool GetSighashRangeproof() const {
+    return sighash_rangeproof_;
+  }
+  /**
+   * @brief Set to sighashRangeproof
+   * @param[in] sighash_rangeproof    setting value.
+   */
+  void SetSighashRangeproof(  // line separate
+    const bool& sighash_rangeproof) {  // NOLINT
+    this->sighash_rangeproof_ = sighash_rangeproof;
+  }
+  /**
+   * @brief Get data type of sighashRangeproof
+   * @return Data type of sighashRangeproof
+   */
+  static std::string GetSighashRangeproofFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of sighashRangeproof field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetSighashRangeproofString(  // line separate
+      const GetSighashTxIn& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.sighash_rangeproof_);
+  }
+  /**
+   * @brief Set json object to sighashRangeproof field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetSighashRangeproofString(  // line separate
+      GetSighashTxIn& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.sighash_rangeproof_, json_value);
+  }
+
+  /**
    * @brief Get of annex
    * @return annex
    */
@@ -20334,6 +20659,10 @@ class GetSighashTxIn
    * @brief JsonAPI(sighashAnyoneCanPay) value
    */
   bool sighash_anyone_can_pay_ = false;
+  /**
+   * @brief JsonAPI(sighashRangeproof) value
+   */
+  bool sighash_rangeproof_ = false;
   /**
    * @brief JsonAPI(annex) value
    */
@@ -24585,6 +24914,49 @@ class SignWithPrivkeyTxInRequest
   }
 
   /**
+   * @brief Get of sighashRangeproof
+   * @return sighashRangeproof
+   */
+  bool GetSighashRangeproof() const {
+    return sighash_rangeproof_;
+  }
+  /**
+   * @brief Set to sighashRangeproof
+   * @param[in] sighash_rangeproof    setting value.
+   */
+  void SetSighashRangeproof(  // line separate
+    const bool& sighash_rangeproof) {  // NOLINT
+    this->sighash_rangeproof_ = sighash_rangeproof;
+  }
+  /**
+   * @brief Get data type of sighashRangeproof
+   * @return Data type of sighashRangeproof
+   */
+  static std::string GetSighashRangeproofFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of sighashRangeproof field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetSighashRangeproofString(  // line separate
+      const SignWithPrivkeyTxInRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.sighash_rangeproof_);
+  }
+  /**
+   * @brief Set json object to sighashRangeproof field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetSighashRangeproofString(  // line separate
+      SignWithPrivkeyTxInRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.sighash_rangeproof_, json_value);
+  }
+
+  /**
    * @brief Get of amount
    * @return amount
    */
@@ -24896,6 +25268,10 @@ class SignWithPrivkeyTxInRequest
    * @brief JsonAPI(sighashAnyoneCanPay) value
    */
   bool sighash_anyone_can_pay_ = false;
+  /**
+   * @brief JsonAPI(sighashRangeproof) value
+   */
+  bool sighash_rangeproof_ = false;
   /**
    * @brief JsonAPI(amount) value
    */
@@ -28824,6 +29200,49 @@ class VerifySignatureTxInRequest
   }
 
   /**
+   * @brief Get of sighashRangeproof
+   * @return sighashRangeproof
+   */
+  bool GetSighashRangeproof() const {
+    return sighash_rangeproof_;
+  }
+  /**
+   * @brief Set to sighashRangeproof
+   * @param[in] sighash_rangeproof    setting value.
+   */
+  void SetSighashRangeproof(  // line separate
+    const bool& sighash_rangeproof) {  // NOLINT
+    this->sighash_rangeproof_ = sighash_rangeproof;
+  }
+  /**
+   * @brief Get data type of sighashRangeproof
+   * @return Data type of sighashRangeproof
+   */
+  static std::string GetSighashRangeproofFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of sighashRangeproof field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetSighashRangeproofString(  // line separate
+      const VerifySignatureTxInRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.sighash_rangeproof_);
+  }
+  /**
+   * @brief Set json object to sighashRangeproof field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetSighashRangeproofString(  // line separate
+      VerifySignatureTxInRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.sighash_rangeproof_, json_value);
+  }
+
+  /**
    * @brief Get of amount
    * @return amount
    */
@@ -29096,6 +29515,10 @@ class VerifySignatureTxInRequest
    * @brief JsonAPI(sighashAnyoneCanPay) value
    */
   bool sighash_anyone_can_pay_ = false;
+  /**
+   * @brief JsonAPI(sighashRangeproof) value
+   */
+  bool sighash_rangeproof_ = false;
   /**
    * @brief JsonAPI(amount) value
    */
@@ -48219,6 +48642,49 @@ class EncodeSignatureByDerRequest
   }
 
   /**
+   * @brief Get of sighashRangeproof
+   * @return sighashRangeproof
+   */
+  bool GetSighashRangeproof() const {
+    return sighash_rangeproof_;
+  }
+  /**
+   * @brief Set to sighashRangeproof
+   * @param[in] sighash_rangeproof    setting value.
+   */
+  void SetSighashRangeproof(  // line separate
+    const bool& sighash_rangeproof) {  // NOLINT
+    this->sighash_rangeproof_ = sighash_rangeproof;
+  }
+  /**
+   * @brief Get data type of sighashRangeproof
+   * @return Data type of sighashRangeproof
+   */
+  static std::string GetSighashRangeproofFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of sighashRangeproof field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetSighashRangeproofString(  // line separate
+      const EncodeSignatureByDerRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.sighash_rangeproof_);
+  }
+  /**
+   * @brief Set json object to sighashRangeproof field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetSighashRangeproofString(  // line separate
+      EncodeSignatureByDerRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.sighash_rangeproof_, json_value);
+  }
+
+  /**
    * @brief Set ignore item.
    * @param[in] key   ignore target key name.
    */
@@ -48299,6 +48765,10 @@ class EncodeSignatureByDerRequest
    * @brief JsonAPI(sighashAnyoneCanPay) value
    */
   bool sighash_anyone_can_pay_ = false;
+  /**
+   * @brief JsonAPI(sighashRangeproof) value
+   */
+  bool sighash_rangeproof_ = false;
 };
 
 // ------------------------------------------------------------------------

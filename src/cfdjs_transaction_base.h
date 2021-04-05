@@ -72,7 +72,8 @@ class TransactionStructApiBase {
    * @param[in] is_sign                 Whether signature data is provided
    * @param[in] is_der_encode           Whether the signature is DER encoded
    * @param[in] sighash_type            SigHash type
-   * @param[in] sighash_anyone_can_pay  Flag determining if SigHash is
+   * @param[in] sighash_anyone_can_pay  whether or not anyone_can_pay is used
+   * @param[in] sighash_rangeproof      whether or not rangeproof is used
    * anyone_can_pay
    * @return Converted signature information.
    */

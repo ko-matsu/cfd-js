@@ -1015,7 +1015,7 @@ describe('wallet test', () => {
       }],
     });
     const fundTx = await elmWallet1.fundRawTransaction(
-      txBase.hex, peggedAsset);
+        txBase.hex, peggedAsset);
     const blindInput: cfdjs.BlindTxInRequest[] = [];
     for (const utxo of fundTx.utxos) {
       blindInput.push({
@@ -1039,7 +1039,7 @@ describe('wallet test', () => {
     for (const utxo of fundTx.utxos) {
       const key = await elmWallet1.dumpPrivkey(utxo.address);
       const addrInfo = cfdjs.GetAddressInfo({
-        address:utxo.address, isElements: true});
+        address: utxo.address, isElements: true});
       let commitment = '';
       if (utxo.confidentialKey && utxo.asset && utxo.assetBlinder &&
           utxo.amountBlinder) {

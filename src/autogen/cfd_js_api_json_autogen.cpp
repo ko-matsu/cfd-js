@@ -1525,6 +1525,13 @@ void PubkeySignData::CollectFieldName() {
   json_mapper.emplace("sighashAnyoneCanPay", func_table);
   item_list.push_back("sighashAnyoneCanPay");
   func_table = {
+    PubkeySignData::GetSighashRangeproofString,
+    PubkeySignData::SetSighashRangeproofString,
+    PubkeySignData::GetSighashRangeproofFieldType,
+  };
+  json_mapper.emplace("sighashRangeproof", func_table);
+  item_list.push_back("sighashRangeproof");
+  func_table = {
     PubkeySignData::GetRelatedPubkeyString,
     PubkeySignData::SetRelatedPubkeyString,
     PubkeySignData::GetRelatedPubkeyFieldType,
@@ -1540,6 +1547,7 @@ void PubkeySignData::ConvertFromStruct(
   der_encode_ = data.der_encode;
   sighash_type_ = data.sighash_type;
   sighash_anyone_can_pay_ = data.sighash_anyone_can_pay;
+  sighash_rangeproof_ = data.sighash_rangeproof;
   related_pubkey_ = data.related_pubkey;
   ignore_items = data.ignore_items;
 }
@@ -1551,6 +1559,7 @@ PubkeySignDataStruct PubkeySignData::ConvertToStruct() const {  // NOLINT
   result.der_encode = der_encode_;
   result.sighash_type = sighash_type_;
   result.sighash_anyone_can_pay = sighash_anyone_can_pay_;
+  result.sighash_rangeproof = sighash_rangeproof_;
   result.related_pubkey = related_pubkey_;
   result.ignore_items = ignore_items;
   return result;
@@ -1604,6 +1613,13 @@ void SignData::CollectFieldName() {
   };
   json_mapper.emplace("sighashAnyoneCanPay", func_table);
   item_list.push_back("sighashAnyoneCanPay");
+  func_table = {
+    SignData::GetSighashRangeproofString,
+    SignData::SetSighashRangeproofString,
+    SignData::GetSighashRangeproofFieldType,
+  };
+  json_mapper.emplace("sighashRangeproof", func_table);
+  item_list.push_back("sighashRangeproof");
 }
 
 void SignData::ConvertFromStruct(
@@ -1613,6 +1629,7 @@ void SignData::ConvertFromStruct(
   der_encode_ = data.der_encode;
   sighash_type_ = data.sighash_type;
   sighash_anyone_can_pay_ = data.sighash_anyone_can_pay;
+  sighash_rangeproof_ = data.sighash_rangeproof;
   ignore_items = data.ignore_items;
 }
 
@@ -1623,6 +1640,7 @@ SignDataStruct SignData::ConvertToStruct() const {  // NOLINT
   result.der_encode = der_encode_;
   result.sighash_type = sighash_type_;
   result.sighash_anyone_can_pay = sighash_anyone_can_pay_;
+  result.sighash_rangeproof = sighash_rangeproof_;
   result.ignore_items = ignore_items;
   return result;
 }
@@ -1668,6 +1686,13 @@ void TapScriptSignData::CollectFieldName() {
   };
   json_mapper.emplace("sighashAnyoneCanPay", func_table);
   item_list.push_back("sighashAnyoneCanPay");
+  func_table = {
+    TapScriptSignData::GetSighashRangeproofString,
+    TapScriptSignData::SetSighashRangeproofString,
+    TapScriptSignData::GetSighashRangeproofFieldType,
+  };
+  json_mapper.emplace("sighashRangeproof", func_table);
+  item_list.push_back("sighashRangeproof");
 }
 
 void TapScriptSignData::ConvertFromStruct(
@@ -1676,6 +1701,7 @@ void TapScriptSignData::ConvertFromStruct(
   type_ = data.type;
   sighash_type_ = data.sighash_type;
   sighash_anyone_can_pay_ = data.sighash_anyone_can_pay;
+  sighash_rangeproof_ = data.sighash_rangeproof;
   ignore_items = data.ignore_items;
 }
 
@@ -1685,6 +1711,7 @@ TapScriptSignDataStruct TapScriptSignData::ConvertToStruct() const {  // NOLINT
   result.type = type_;
   result.sighash_type = sighash_type_;
   result.sighash_anyone_can_pay = sighash_anyone_can_pay_;
+  result.sighash_rangeproof = sighash_rangeproof_;
   result.ignore_items = ignore_items;
   return result;
 }
@@ -1797,6 +1824,13 @@ void WitnessStackData::CollectFieldName() {
   };
   json_mapper.emplace("sighashAnyoneCanPay", func_table);
   item_list.push_back("sighashAnyoneCanPay");
+  func_table = {
+    WitnessStackData::GetSighashRangeproofString,
+    WitnessStackData::SetSighashRangeproofString,
+    WitnessStackData::GetSighashRangeproofFieldType,
+  };
+  json_mapper.emplace("sighashRangeproof", func_table);
+  item_list.push_back("sighashRangeproof");
 }
 
 void WitnessStackData::ConvertFromStruct(
@@ -1807,6 +1841,7 @@ void WitnessStackData::ConvertFromStruct(
   der_encode_ = data.der_encode;
   sighash_type_ = data.sighash_type;
   sighash_anyone_can_pay_ = data.sighash_anyone_can_pay;
+  sighash_rangeproof_ = data.sighash_rangeproof;
   ignore_items = data.ignore_items;
 }
 
@@ -1818,6 +1853,7 @@ WitnessStackDataStruct WitnessStackData::ConvertToStruct() const {  // NOLINT
   result.der_encode = der_encode_;
   result.sighash_type = sighash_type_;
   result.sighash_anyone_can_pay = sighash_anyone_can_pay_;
+  result.sighash_rangeproof = sighash_rangeproof_;
   result.ignore_items = ignore_items;
   return result;
 }
@@ -2235,6 +2271,13 @@ void AddTaprootSchnorrSignTxInRequest::CollectFieldName() {
   json_mapper.emplace("sighashAnyoneCanPay", func_table);
   item_list.push_back("sighashAnyoneCanPay");
   func_table = {
+    AddTaprootSchnorrSignTxInRequest::GetSighashRangeproofString,
+    AddTaprootSchnorrSignTxInRequest::SetSighashRangeproofString,
+    AddTaprootSchnorrSignTxInRequest::GetSighashRangeproofFieldType,
+  };
+  json_mapper.emplace("sighashRangeproof", func_table);
+  item_list.push_back("sighashRangeproof");
+  func_table = {
     AddTaprootSchnorrSignTxInRequest::GetAnnexString,
     AddTaprootSchnorrSignTxInRequest::SetAnnexString,
     AddTaprootSchnorrSignTxInRequest::GetAnnexFieldType,
@@ -2250,6 +2293,7 @@ void AddTaprootSchnorrSignTxInRequest::ConvertFromStruct(
   signature_ = data.signature;
   sighash_type_ = data.sighash_type;
   sighash_anyone_can_pay_ = data.sighash_anyone_can_pay;
+  sighash_rangeproof_ = data.sighash_rangeproof;
   annex_ = data.annex;
   ignore_items = data.ignore_items;
 }
@@ -2261,6 +2305,7 @@ AddTaprootSchnorrSignTxInRequestStruct AddTaprootSchnorrSignTxInRequest::Convert
   result.signature = signature_;
   result.sighash_type = sighash_type_;
   result.sighash_anyone_can_pay = sighash_anyone_can_pay_;
+  result.sighash_rangeproof = sighash_rangeproof_;
   result.annex = annex_;
   result.ignore_items = ignore_items;
   return result;
@@ -2752,6 +2797,13 @@ void CreateElementsSignatureHashTxIn::CollectFieldName() {
   };
   json_mapper.emplace("sighashAnyoneCanPay", func_table);
   item_list.push_back("sighashAnyoneCanPay");
+  func_table = {
+    CreateElementsSignatureHashTxIn::GetSighashRangeproofString,
+    CreateElementsSignatureHashTxIn::SetSighashRangeproofString,
+    CreateElementsSignatureHashTxIn::GetSighashRangeproofFieldType,
+  };
+  json_mapper.emplace("sighashRangeproof", func_table);
+  item_list.push_back("sighashRangeproof");
 }
 
 void CreateElementsSignatureHashTxIn::ConvertFromStruct(
@@ -2764,6 +2816,7 @@ void CreateElementsSignatureHashTxIn::ConvertFromStruct(
   hash_type_ = data.hash_type;
   sighash_type_ = data.sighash_type;
   sighash_anyone_can_pay_ = data.sighash_anyone_can_pay;
+  sighash_rangeproof_ = data.sighash_rangeproof;
   ignore_items = data.ignore_items;
 }
 
@@ -2777,6 +2830,7 @@ CreateElementsSignatureHashTxInStruct CreateElementsSignatureHashTxIn::ConvertTo
   result.hash_type = hash_type_;
   result.sighash_type = sighash_type_;
   result.sighash_anyone_can_pay = sighash_anyone_can_pay_;
+  result.sighash_rangeproof = sighash_rangeproof_;
   result.ignore_items = ignore_items;
   return result;
 }
@@ -4359,6 +4413,13 @@ void GetSighashTxIn::CollectFieldName() {
   json_mapper.emplace("sighashAnyoneCanPay", func_table);
   item_list.push_back("sighashAnyoneCanPay");
   func_table = {
+    GetSighashTxIn::GetSighashRangeproofString,
+    GetSighashTxIn::SetSighashRangeproofString,
+    GetSighashTxIn::GetSighashRangeproofFieldType,
+  };
+  json_mapper.emplace("sighashRangeproof", func_table);
+  item_list.push_back("sighashRangeproof");
+  func_table = {
     GetSighashTxIn::GetAnnexString,
     GetSighashTxIn::SetAnnexString,
     GetSighashTxIn::GetAnnexFieldType,
@@ -4382,6 +4443,7 @@ void GetSighashTxIn::ConvertFromStruct(
   hash_type_ = data.hash_type;
   sighash_type_ = data.sighash_type;
   sighash_anyone_can_pay_ = data.sighash_anyone_can_pay;
+  sighash_rangeproof_ = data.sighash_rangeproof;
   annex_ = data.annex;
   code_separator_position_ = data.code_separator_position;
   ignore_items = data.ignore_items;
@@ -4395,6 +4457,7 @@ GetSighashTxInStruct GetSighashTxIn::ConvertToStruct() const {  // NOLINT
   result.hash_type = hash_type_;
   result.sighash_type = sighash_type_;
   result.sighash_anyone_can_pay = sighash_anyone_can_pay_;
+  result.sighash_rangeproof = sighash_rangeproof_;
   result.annex = annex_;
   result.code_separator_position = code_separator_position_;
   result.ignore_items = ignore_items;
@@ -5324,6 +5387,13 @@ void SignWithPrivkeyTxInRequest::CollectFieldName() {
   json_mapper.emplace("sighashAnyoneCanPay", func_table);
   item_list.push_back("sighashAnyoneCanPay");
   func_table = {
+    SignWithPrivkeyTxInRequest::GetSighashRangeproofString,
+    SignWithPrivkeyTxInRequest::SetSighashRangeproofString,
+    SignWithPrivkeyTxInRequest::GetSighashRangeproofFieldType,
+  };
+  json_mapper.emplace("sighashRangeproof", func_table);
+  item_list.push_back("sighashRangeproof");
+  func_table = {
     SignWithPrivkeyTxInRequest::GetAmountString,
     SignWithPrivkeyTxInRequest::SetAmountString,
     SignWithPrivkeyTxInRequest::GetAmountFieldType,
@@ -5369,6 +5439,7 @@ void SignWithPrivkeyTxInRequest::ConvertFromStruct(
   hash_type_ = data.hash_type;
   sighash_type_ = data.sighash_type;
   sighash_anyone_can_pay_ = data.sighash_anyone_can_pay;
+  sighash_rangeproof_ = data.sighash_rangeproof;
   amount_ = data.amount;
   confidential_value_commitment_ = data.confidential_value_commitment;
   is_grind_r_ = data.is_grind_r;
@@ -5386,6 +5457,7 @@ SignWithPrivkeyTxInRequestStruct SignWithPrivkeyTxInRequest::ConvertToStruct() c
   result.hash_type = hash_type_;
   result.sighash_type = sighash_type_;
   result.sighash_anyone_can_pay = sighash_anyone_can_pay_;
+  result.sighash_rangeproof = sighash_rangeproof_;
   result.amount = amount_;
   result.confidential_value_commitment = confidential_value_commitment_;
   result.is_grind_r = is_grind_r_;
@@ -6237,6 +6309,13 @@ void VerifySignatureTxInRequest::CollectFieldName() {
   json_mapper.emplace("sighashAnyoneCanPay", func_table);
   item_list.push_back("sighashAnyoneCanPay");
   func_table = {
+    VerifySignatureTxInRequest::GetSighashRangeproofString,
+    VerifySignatureTxInRequest::SetSighashRangeproofString,
+    VerifySignatureTxInRequest::GetSighashRangeproofFieldType,
+  };
+  json_mapper.emplace("sighashRangeproof", func_table);
+  item_list.push_back("sighashRangeproof");
+  func_table = {
     VerifySignatureTxInRequest::GetAmountString,
     VerifySignatureTxInRequest::SetAmountString,
     VerifySignatureTxInRequest::GetAmountFieldType,
@@ -6276,6 +6355,7 @@ void VerifySignatureTxInRequest::ConvertFromStruct(
   hash_type_ = data.hash_type;
   sighash_type_ = data.sighash_type;
   sighash_anyone_can_pay_ = data.sighash_anyone_can_pay;
+  sighash_rangeproof_ = data.sighash_rangeproof;
   amount_ = data.amount;
   confidential_value_commitment_ = data.confidential_value_commitment;
   annex_ = data.annex;
@@ -6293,6 +6373,7 @@ VerifySignatureTxInRequestStruct VerifySignatureTxInRequest::ConvertToStruct() c
   result.hash_type = hash_type_;
   result.sighash_type = sighash_type_;
   result.sighash_anyone_can_pay = sighash_anyone_can_pay_;
+  result.sighash_rangeproof = sighash_rangeproof_;
   result.amount = amount_;
   result.confidential_value_commitment = confidential_value_commitment_;
   result.annex = annex_;
@@ -10640,6 +10721,13 @@ void EncodeSignatureByDerRequest::CollectFieldName() {
   };
   json_mapper.emplace("sighashAnyoneCanPay", func_table);
   item_list.push_back("sighashAnyoneCanPay");
+  func_table = {
+    EncodeSignatureByDerRequest::GetSighashRangeproofString,
+    EncodeSignatureByDerRequest::SetSighashRangeproofString,
+    EncodeSignatureByDerRequest::GetSighashRangeproofFieldType,
+  };
+  json_mapper.emplace("sighashRangeproof", func_table);
+  item_list.push_back("sighashRangeproof");
 }
 
 void EncodeSignatureByDerRequest::ConvertFromStruct(
@@ -10647,6 +10735,7 @@ void EncodeSignatureByDerRequest::ConvertFromStruct(
   signature_ = data.signature;
   sighash_type_ = data.sighash_type;
   sighash_anyone_can_pay_ = data.sighash_anyone_can_pay;
+  sighash_rangeproof_ = data.sighash_rangeproof;
   ignore_items = data.ignore_items;
 }
 
@@ -10655,6 +10744,7 @@ EncodeSignatureByDerRequestStruct EncodeSignatureByDerRequest::ConvertToStruct()
   result.signature = signature_;
   result.sighash_type = sighash_type_;
   result.sighash_anyone_can_pay = sighash_anyone_can_pay_;
+  result.sighash_rangeproof = sighash_rangeproof_;
   result.ignore_items = ignore_items;
   return result;
 }

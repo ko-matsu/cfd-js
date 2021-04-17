@@ -1111,7 +1111,7 @@ export interface DescriptorKeyJson {
  * @property {string} hashType - hash type (p2wpkh, p2wsh, p2pkh, p2sh, p2sh-p2wpkh, p2sh-p2wsh)
  * @property {string} redeemScript? - redeem script for script hash. (This field is only available when hashType is p2wsh, p2sh, or p2sh-p2wsh.)
  * @property {string} keyType? - contain key type (pubkey, extPubkey, extPrivkey)
- * @property {string} key? - key value (hex or base58) (This field is only available when hashType is p2wpkh, p2pkh, or p2pk.)
+ * @property {string} key? - key value (hex or base58) (This field is only available when hashType is taproot, p2wpkh, p2pkh, or p2pk. taproot is xonly-pubkey.)
  * @property {DescriptorKeyJson[]} keys? - keys included in multisig
  * @property {number} reqNum? - number of required signatures to solve multisig script.
  */
@@ -2217,9 +2217,11 @@ export interface ParseDescriptorRequest {
  * @property {string} type - descriptor type.
  * @property {string} address? - address (This field is only available for types other than `raw`.)
  * @property {string} lockingScript - locking script
- * @property {string} hashType? - hash type (p2wpkh, p2wsh, p2pkh, p2sh, p2sh-p2wpkh, p2sh-p2wsh)
+ * @property {string} hashType? - hash type (p2wpkh, p2wsh, p2pkh, p2sh, p2sh-p2wpkh, p2sh-p2wsh, taproot)
  * @property {string} redeemScript? - redeem script on script hash. (This field is only available when hashType is p2wsh, p2sh, or p2sh-p2wsh.)
  * @property {boolean} includeMultisig - multisig flag (whether multisig descriptor is included in scripts stack)
+ * @property {string} treeString? - taproot script tree serialize string. (cfd format)
+ * @property {DescriptorKeyJson[]} keys? - key list
  * @property {DescriptorScriptJson[]} scripts? - descriptor item.
  */
 export interface ParseDescriptorResponse {
@@ -2229,6 +2231,8 @@ export interface ParseDescriptorResponse {
     hashType?: string;
     redeemScript?: string;
     includeMultisig: boolean;
+    treeString?: string;
+    keys?: DescriptorKeyJson[];
     scripts?: DescriptorScriptJson[];
 }
 

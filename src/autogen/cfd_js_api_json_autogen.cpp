@@ -13679,6 +13679,20 @@ void ParseDescriptorResponse::CollectFieldName() {
   json_mapper.emplace("includeMultisig", func_table);
   item_list.push_back("includeMultisig");
   func_table = {
+    ParseDescriptorResponse::GetTreeStringString,
+    ParseDescriptorResponse::SetTreeStringString,
+    ParseDescriptorResponse::GetTreeStringFieldType,
+  };
+  json_mapper.emplace("treeString", func_table);
+  item_list.push_back("treeString");
+  func_table = {
+    ParseDescriptorResponse::GetKeysString,
+    ParseDescriptorResponse::SetKeysString,
+    ParseDescriptorResponse::GetKeysFieldType,
+  };
+  json_mapper.emplace("keys", func_table);
+  item_list.push_back("keys");
+  func_table = {
     ParseDescriptorResponse::GetScriptsString,
     ParseDescriptorResponse::SetScriptsString,
     ParseDescriptorResponse::GetScriptsFieldType,
@@ -13695,6 +13709,8 @@ void ParseDescriptorResponse::ConvertFromStruct(
   hash_type_ = data.hash_type;
   redeem_script_ = data.redeem_script;
   include_multisig_ = data.include_multisig;
+  tree_string_ = data.tree_string;
+  keys_.ConvertFromStruct(data.keys);
   scripts_.ConvertFromStruct(data.scripts);
   ignore_items = data.ignore_items;
 }
@@ -13707,6 +13723,8 @@ ParseDescriptorResponseStruct ParseDescriptorResponse::ConvertToStruct() const {
   result.hash_type = hash_type_;
   result.redeem_script = redeem_script_;
   result.include_multisig = include_multisig_;
+  result.tree_string = tree_string_;
+  result.keys = keys_.ConvertToStruct();
   result.scripts = scripts_.ConvertToStruct();
   result.ignore_items = ignore_items;
   return result;

@@ -3136,6 +3136,8 @@ struct ParseDescriptorResponseStruct {
   std::string hash_type = "";                       //!< hash_type  // NOLINT
   std::string redeem_script = "";                   //!< redeem_script  // NOLINT
   bool include_multisig = false;                    //!< include_multisig  // NOLINT
+  std::string tree_string = "";                     //!< tree_string  // NOLINT
+  std::vector<DescriptorKeyJsonStruct> keys;        //!< keys  // NOLINT
   std::vector<DescriptorScriptJsonStruct> scripts;  //!< scripts  // NOLINT
   cfd::js::api::InnerErrorResponseStruct error;   //!< error information
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.

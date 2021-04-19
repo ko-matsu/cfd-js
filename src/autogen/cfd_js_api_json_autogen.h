@@ -61743,6 +61743,93 @@ class ParseDescriptorResponse
   }
 
   /**
+   * @brief Get of treeString
+   * @return treeString
+   */
+  std::string GetTreeString() const {
+    return tree_string_;
+  }
+  /**
+   * @brief Set to treeString
+   * @param[in] tree_string    setting value.
+   */
+  void SetTreeString(  // line separate
+    const std::string& tree_string) {  // NOLINT
+    this->tree_string_ = tree_string;
+  }
+  /**
+   * @brief Get data type of treeString
+   * @return Data type of treeString
+   */
+  static std::string GetTreeStringFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of treeString field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTreeStringString(  // line separate
+      const ParseDescriptorResponse& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.tree_string_);
+  }
+  /**
+   * @brief Set json object to treeString field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTreeStringString(  // line separate
+      ParseDescriptorResponse& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.tree_string_, json_value);
+  }
+
+  /**
+   * @brief Get of keys.
+   * @return keys
+   */
+  JsonObjectVector<DescriptorKeyJson, DescriptorKeyJsonStruct>& GetKeys() {  // NOLINT
+    return keys_;
+  }
+  /**
+   * @brief Set to keys.
+   * @param[in] keys    setting value.
+   */
+  void SetKeys(  // line separate
+      const JsonObjectVector<DescriptorKeyJson, DescriptorKeyJsonStruct>& keys) {  // NOLINT
+    this->keys_ = keys;
+  }
+  /**
+   * @brief Get data type of keys.
+   * @return Data type of keys.
+   */
+  static std::string GetKeysFieldType() {
+    return "JsonObjectVector<DescriptorKeyJson, DescriptorKeyJsonStruct>";  // NOLINT
+  }
+  /**
+   * @brief Get json string of keys field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
+   */
+  static std::string GetKeysString(  // line separate
+      const ParseDescriptorResponse& obj) {  // NOLINT
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
+    return obj.keys_.Serialize();
+  }
+  /**
+   * @brief Set json object to keys field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
+   */
+  static void SetKeysString(  // line separate
+      ParseDescriptorResponse& obj,  // NOLINT
+      const UniValue& json_value) {
+    obj.keys_.DeserializeUniValue(json_value);
+  }
+
+  /**
    * @brief Get of scripts.
    * @return scripts
    */
@@ -61879,6 +61966,14 @@ class ParseDescriptorResponse
    * @brief JsonAPI(includeMultisig) value
    */
   bool include_multisig_ = false;
+  /**
+   * @brief JsonAPI(treeString) value
+   */
+  std::string tree_string_ = "";
+  /**
+   * @brief JsonAPI(keys) value
+   */
+  JsonObjectVector<DescriptorKeyJson, DescriptorKeyJsonStruct> keys_;  // NOLINT
   /**
    * @brief JsonAPI(scripts) value
    */

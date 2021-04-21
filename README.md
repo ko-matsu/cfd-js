@@ -251,3 +251,12 @@ set CFD_CMAKE_GIT_SKIP_UPDATE=1
 ```
 export CFD_CMAKE_GIT_SKIP_UPDATE=1
 ```
+
+### Build error on windows:
+
+Errors may occur during processing of CMake External project on Windows.
+This is a problem with the Windows environment, but you can work around it by using npm v7.
+If npm is less than v7, please try to cleanup&build after running the following command:
+```bat
+npm i -g npm@7
+```

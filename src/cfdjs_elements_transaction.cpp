@@ -1351,6 +1351,108 @@ RawTransactionResponseStruct ElementsTransactionStructApi::UpdateTxOutAmount(
   return result;
 }
 
+RawTransactionResponseStruct ElementsTransactionStructApi::SplitTxOut(
+    const SplitTxOutRequestStruct& request) {
+  auto call_func = [](const SplitTxOutRequestStruct& request)
+      -> RawTransactionResponseStruct {  // NOLINT
+    RawTransactionResponseStruct response;
+
+    ConfidentialTransactionContext ctx(request.tx);
+    std::vector<Amount> amounts;
+    std::vector<Script> scripts;
+    std::vector<ConfidentialNonce> nonces;
+    ElementsAddressFactory address_factory;
+    for (auto& txout : request.txouts) {
+      ConfidentialNonce nonce;
+      amounts.emplace_back(txout.amount);
+      if (!txout.address.empty()) {
+        if (ElementsConfidentialAddress::IsConfidentialAddress(
+                txout.address)) {
+          ElementsConfidentialAddress confidential_addr(txout.address);
+          scripts.emplace_back(
+              confidential_addr.GetUnblindedAddress().GetLockingScript());
+          nonce = ConfidentialNonce(confidential_addr.GetConfidentialKey());
+        } else {
+          scripts.emplace_back(
+              address_factory.GetAddress(txout.address).GetLockingScript());
+        }
+      } else {
+        scripts.emplace_back(Script(txout.direct_locking_script));
+      }
+      if (nonce.IsEmpty() && (!txout.direct_nonce.empty())) {
+        nonce = ConfidentialNonce(txout.direct_nonce);
+      }
+      nonces.emplace_back(nonce);
+    }
+    ctx.SplitTxOut(request.index, amounts, scripts, nonces);
+
+    response.hex = ctx.GetHex();
+    return response;
+  };
+
+  RawTransactionResponseStruct result;
+  result =
+      ExecuteStructApi<SplitTxOutRequestStruct, RawTransactionResponseStruct>(
+          request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
+GetIndexDataStruct ElementsTransactionStructApi::GetTxInIndex(
+    const GetTxInIndexRequestStruct& request) {
+  auto call_func = [](const GetTxInIndexRequestStruct& request)
+      -> GetIndexDataStruct {  // NOLINT
+    GetIndexDataStruct response;
+    ConfidentialTransactionContext ctx(request.tx);
+    response.index = ctx.GetTxInIndex(Txid(request.txid), request.vout);
+    response.ignore_items.insert("indexes");
+    return response;
+  };
+
+  GetIndexDataStruct result;
+  result = ExecuteStructApi<GetTxInIndexRequestStruct, GetIndexDataStruct>(
+      request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
+GetIndexDataStruct ElementsTransactionStructApi::GetTxOutIndex(
+    const GetTxOutIndexRequestStruct& request) {
+  auto call_func = [](const GetTxOutIndexRequestStruct& request)
+      -> GetIndexDataStruct {  // NOLINT
+    GetIndexDataStruct response;
+
+    ConfidentialTransactionContext ctx(request.tx);
+    if (!request.address.empty()) {
+      ElementsAddressFactory address_factory;
+      if (ElementsConfidentialAddress::IsConfidentialAddress(
+              request.address)) {
+        ElementsConfidentialAddress confidential_addr(request.address);
+        ctx.IsFindTxOut(
+            confidential_addr.GetUnblindedAddress(), &response.index,
+            &response.indexes);
+      } else {
+        ctx.IsFindTxOut(
+            address_factory.GetAddress(request.address), &response.index,
+            &response.indexes);
+      }
+    } else {
+      ctx.IsFindTxOut(
+          Script(request.direct_locking_script), &response.index,
+          &response.indexes);
+    }
+    if (response.indexes.empty()) {
+      warn(CFD_LOG_SOURCE, "target is not found.");
+      throw CfdException(
+          CfdError::kCfdOutOfRangeError, "target is not found.");
+    }
+    return response;
+  };
+
+  GetIndexDataStruct result;
+  result = ExecuteStructApi<GetTxOutIndexRequestStruct, GetIndexDataStruct>(
+      request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
 BlindTransactionResponseStruct ElementsTransactionStructApi::BlindTransaction(
     const BlindRawTransactionRequestStruct& request) {
   auto call_func = [](const BlindRawTransactionRequestStruct& request)

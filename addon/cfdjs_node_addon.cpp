@@ -685,6 +685,33 @@ Value UpdateTxOutAmount(const CallbackInfo &information) {
 }
 
 /**
+ * @brief Implements split txout api for JSON.
+ * @param[in] information     JSON data.
+ * @return json string.
+ */
+Value SplitTxOut(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::SplitTxOut);
+}
+
+/**
+ * @brief Implements get txin index api for JSON.
+ * @param[in] information     JSON data.
+ * @return json string.
+ */
+Value GetTxInIndex(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::GetTxInIndex);
+}
+
+/**
+ * @brief Implements get txout index api for JSON.
+ * @param[in] information     JSON data.
+ * @return json string.
+ */
+Value GetTxOutIndex(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::GetTxOutIndex);
+}
+
+/**
  * @brief GetSchnorrPubkeyFromPrivkeyのJSON API関数(request, response).
  * @param[in] information     node addon apiのコールバック情報
  * @return 戻り値(JSON文字列)
@@ -1323,6 +1350,11 @@ void InitializeJsonApi(Env env, Object *exports) {
   exports->Set(
       String::New(env, "UpdateTxOutAmount"),
       Function::New(env, UpdateTxOutAmount));
+  exports->Set(String::New(env, "SplitTxOut"), Function::New(env, SplitTxOut));
+  exports->Set(
+      String::New(env, "GetTxInIndex"), Function::New(env, GetTxInIndex));
+  exports->Set(
+      String::New(env, "GetTxOutIndex"), Function::New(env, GetTxOutIndex));
   exports->Set(
       String::New(env, "GetSchnorrPubkeyFromPrivkey"),
       Function::New(env, GetSchnorrPubkeyFromPrivkey));

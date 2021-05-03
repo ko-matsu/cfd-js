@@ -1150,6 +1150,20 @@ struct SignWithPrivkeyTxInRequestStruct {
 };
 
 // ------------------------------------------------------------------------
+// SplitTxOutDataStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief SplitTxOutDataStruct struct
+ */
+struct SplitTxOutDataStruct {
+  int64_t amount = 0;                      //!< amount  // NOLINT
+  std::string address = "";                //!< address  // NOLINT
+  std::string direct_locking_script = "";  //!< direct_locking_script  // NOLINT
+  std::string direct_nonce = "";           //!< direct_nonce  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
 // TapBranchDataStruct
 // ------------------------------------------------------------------------
 /**
@@ -3005,6 +3019,47 @@ struct GetTapScriptTreeInfoRequestStruct {
 };
 
 // ------------------------------------------------------------------------
+// GetTxInIndexRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief GetTxInIndexRequestStruct struct
+ */
+struct GetTxInIndexRequestStruct {
+  std::string tx = "";       //!< tx  // NOLINT
+  bool is_elements = false;  //!< is_elements  // NOLINT
+  std::string txid = "";     //!< txid  // NOLINT
+  uint32_t vout = 0;         //!< vout  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// GetIndexDataStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief GetIndexDataStruct struct
+ */
+struct GetIndexDataStruct {
+  uint32_t index = 0;             //!< index  // NOLINT
+  std::vector<uint32_t> indexes;  //!< indexes  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// GetTxOutIndexRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief GetTxOutIndexRequestStruct struct
+ */
+struct GetTxOutIndexRequestStruct {
+  std::string tx = "";                     //!< tx  // NOLINT
+  bool is_elements = false;                //!< is_elements  // NOLINT
+  std::string address = "";                //!< address  // NOLINT
+  std::string direct_locking_script = "";  //!< direct_locking_script  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
 // GetWitnessStackNumRequestStruct
 // ------------------------------------------------------------------------
 /**
@@ -3378,6 +3433,20 @@ struct SignWithPrivkeyRequestStruct {
   std::string tx = "";                    //!< tx  // NOLINT
   SignWithPrivkeyTxInRequestStruct txin;  //!< txin  // NOLINT
   std::vector<UtxoObjectStruct> utxos;    //!< utxos  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// SplitTxOutRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief SplitTxOutRequestStruct struct
+ */
+struct SplitTxOutRequestStruct {
+  std::string tx = "";                       //!< tx  // NOLINT
+  bool is_elements = false;                  //!< is_elements  // NOLINT
+  uint32_t index = 0;                        //!< index  // NOLINT
+  std::vector<SplitTxOutDataStruct> txouts;  //!< txouts  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 

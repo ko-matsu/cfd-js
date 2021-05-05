@@ -5468,6 +5468,68 @@ SignWithPrivkeyTxInRequestStruct SignWithPrivkeyTxInRequest::ConvertToStruct() c
 }
 
 // ------------------------------------------------------------------------
+// SplitTxOutData
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<SplitTxOutData>
+  SplitTxOutData::json_mapper;
+std::vector<std::string> SplitTxOutData::item_list;
+
+void SplitTxOutData::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<SplitTxOutData> func_table;  // NOLINT
+
+  func_table = {
+    SplitTxOutData::GetAmountString,
+    SplitTxOutData::SetAmountString,
+    SplitTxOutData::GetAmountFieldType,
+  };
+  json_mapper.emplace("amount", func_table);
+  item_list.push_back("amount");
+  func_table = {
+    SplitTxOutData::GetAddressString,
+    SplitTxOutData::SetAddressString,
+    SplitTxOutData::GetAddressFieldType,
+  };
+  json_mapper.emplace("address", func_table);
+  item_list.push_back("address");
+  func_table = {
+    SplitTxOutData::GetDirectLockingScriptString,
+    SplitTxOutData::SetDirectLockingScriptString,
+    SplitTxOutData::GetDirectLockingScriptFieldType,
+  };
+  json_mapper.emplace("directLockingScript", func_table);
+  item_list.push_back("directLockingScript");
+  func_table = {
+    SplitTxOutData::GetDirectNonceString,
+    SplitTxOutData::SetDirectNonceString,
+    SplitTxOutData::GetDirectNonceFieldType,
+  };
+  json_mapper.emplace("directNonce", func_table);
+  item_list.push_back("directNonce");
+}
+
+void SplitTxOutData::ConvertFromStruct(
+    const SplitTxOutDataStruct& data) {
+  amount_ = data.amount;
+  address_ = data.address;
+  direct_locking_script_ = data.direct_locking_script;
+  direct_nonce_ = data.direct_nonce;
+  ignore_items = data.ignore_items;
+}
+
+SplitTxOutDataStruct SplitTxOutData::ConvertToStruct() const {  // NOLINT
+  SplitTxOutDataStruct result;
+  result.amount = amount_;
+  result.address = address_;
+  result.direct_locking_script = direct_locking_script_;
+  result.direct_nonce = direct_nonce_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
 // TapBranchData
 // ------------------------------------------------------------------------
 cfd::core::JsonTableMap<TapBranchData>
@@ -13161,6 +13223,174 @@ GetTapScriptTreeInfoRequestStruct GetTapScriptTreeInfoRequest::ConvertToStruct()
   return result;
 }
 
+// ------------------------------------------------------------------------
+// GetTxInIndexRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<GetTxInIndexRequest>
+  GetTxInIndexRequest::json_mapper;
+std::vector<std::string> GetTxInIndexRequest::item_list;
+
+void GetTxInIndexRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<GetTxInIndexRequest> func_table;  // NOLINT
+
+  func_table = {
+    GetTxInIndexRequest::GetTxString,
+    GetTxInIndexRequest::SetTxString,
+    GetTxInIndexRequest::GetTxFieldType,
+  };
+  json_mapper.emplace("tx", func_table);
+  item_list.push_back("tx");
+  func_table = {
+    GetTxInIndexRequest::GetIsElementsString,
+    GetTxInIndexRequest::SetIsElementsString,
+    GetTxInIndexRequest::GetIsElementsFieldType,
+  };
+  json_mapper.emplace("isElements", func_table);
+  item_list.push_back("isElements");
+  func_table = {
+    GetTxInIndexRequest::GetTxidString,
+    GetTxInIndexRequest::SetTxidString,
+    GetTxInIndexRequest::GetTxidFieldType,
+  };
+  json_mapper.emplace("txid", func_table);
+  item_list.push_back("txid");
+  func_table = {
+    GetTxInIndexRequest::GetVoutString,
+    GetTxInIndexRequest::SetVoutString,
+    GetTxInIndexRequest::GetVoutFieldType,
+  };
+  json_mapper.emplace("vout", func_table);
+  item_list.push_back("vout");
+}
+
+void GetTxInIndexRequest::ConvertFromStruct(
+    const GetTxInIndexRequestStruct& data) {
+  tx_ = data.tx;
+  is_elements_ = data.is_elements;
+  txid_ = data.txid;
+  vout_ = data.vout;
+  ignore_items = data.ignore_items;
+}
+
+GetTxInIndexRequestStruct GetTxInIndexRequest::ConvertToStruct() const {  // NOLINT
+  GetTxInIndexRequestStruct result;
+  result.tx = tx_;
+  result.is_elements = is_elements_;
+  result.txid = txid_;
+  result.vout = vout_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// GetIndexData
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<GetIndexData>
+  GetIndexData::json_mapper;
+std::vector<std::string> GetIndexData::item_list;
+
+void GetIndexData::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<GetIndexData> func_table;  // NOLINT
+
+  func_table = {
+    GetIndexData::GetIndexString,
+    GetIndexData::SetIndexString,
+    GetIndexData::GetIndexFieldType,
+  };
+  json_mapper.emplace("index", func_table);
+  item_list.push_back("index");
+  func_table = {
+    GetIndexData::GetIndexesString,
+    GetIndexData::SetIndexesString,
+    GetIndexData::GetIndexesFieldType,
+  };
+  json_mapper.emplace("indexes", func_table);
+  item_list.push_back("indexes");
+}
+
+void GetIndexData::ConvertFromStruct(
+    const GetIndexDataStruct& data) {
+  index_ = data.index;
+  indexes_.ConvertFromStruct(data.indexes);
+  ignore_items = data.ignore_items;
+}
+
+GetIndexDataStruct GetIndexData::ConvertToStruct() const {  // NOLINT
+  GetIndexDataStruct result;
+  result.index = index_;
+  result.indexes = indexes_.ConvertToStruct();
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// GetTxOutIndexRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<GetTxOutIndexRequest>
+  GetTxOutIndexRequest::json_mapper;
+std::vector<std::string> GetTxOutIndexRequest::item_list;
+
+void GetTxOutIndexRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<GetTxOutIndexRequest> func_table;  // NOLINT
+
+  func_table = {
+    GetTxOutIndexRequest::GetTxString,
+    GetTxOutIndexRequest::SetTxString,
+    GetTxOutIndexRequest::GetTxFieldType,
+  };
+  json_mapper.emplace("tx", func_table);
+  item_list.push_back("tx");
+  func_table = {
+    GetTxOutIndexRequest::GetIsElementsString,
+    GetTxOutIndexRequest::SetIsElementsString,
+    GetTxOutIndexRequest::GetIsElementsFieldType,
+  };
+  json_mapper.emplace("isElements", func_table);
+  item_list.push_back("isElements");
+  func_table = {
+    GetTxOutIndexRequest::GetAddressString,
+    GetTxOutIndexRequest::SetAddressString,
+    GetTxOutIndexRequest::GetAddressFieldType,
+  };
+  json_mapper.emplace("address", func_table);
+  item_list.push_back("address");
+  func_table = {
+    GetTxOutIndexRequest::GetDirectLockingScriptString,
+    GetTxOutIndexRequest::SetDirectLockingScriptString,
+    GetTxOutIndexRequest::GetDirectLockingScriptFieldType,
+  };
+  json_mapper.emplace("directLockingScript", func_table);
+  item_list.push_back("directLockingScript");
+}
+
+void GetTxOutIndexRequest::ConvertFromStruct(
+    const GetTxOutIndexRequestStruct& data) {
+  tx_ = data.tx;
+  is_elements_ = data.is_elements;
+  address_ = data.address;
+  direct_locking_script_ = data.direct_locking_script;
+  ignore_items = data.ignore_items;
+}
+
+GetTxOutIndexRequestStruct GetTxOutIndexRequest::ConvertToStruct() const {  // NOLINT
+  GetTxOutIndexRequestStruct result;
+  result.tx = tx_;
+  result.is_elements = is_elements_;
+  result.address = address_;
+  result.direct_locking_script = direct_locking_script_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
 
 // ------------------------------------------------------------------------
 // GetWitnessStackNumRequest
@@ -14662,6 +14892,68 @@ SignWithPrivkeyRequestStruct SignWithPrivkeyRequest::ConvertToStruct() const {  
   result.tx = tx_;
   result.txin = txin_.ConvertToStruct();
   result.utxos = utxos_.ConvertToStruct();
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// SplitTxOutRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<SplitTxOutRequest>
+  SplitTxOutRequest::json_mapper;
+std::vector<std::string> SplitTxOutRequest::item_list;
+
+void SplitTxOutRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<SplitTxOutRequest> func_table;  // NOLINT
+
+  func_table = {
+    SplitTxOutRequest::GetTxString,
+    SplitTxOutRequest::SetTxString,
+    SplitTxOutRequest::GetTxFieldType,
+  };
+  json_mapper.emplace("tx", func_table);
+  item_list.push_back("tx");
+  func_table = {
+    SplitTxOutRequest::GetIsElementsString,
+    SplitTxOutRequest::SetIsElementsString,
+    SplitTxOutRequest::GetIsElementsFieldType,
+  };
+  json_mapper.emplace("isElements", func_table);
+  item_list.push_back("isElements");
+  func_table = {
+    SplitTxOutRequest::GetIndexString,
+    SplitTxOutRequest::SetIndexString,
+    SplitTxOutRequest::GetIndexFieldType,
+  };
+  json_mapper.emplace("index", func_table);
+  item_list.push_back("index");
+  func_table = {
+    SplitTxOutRequest::GetTxoutsString,
+    SplitTxOutRequest::SetTxoutsString,
+    SplitTxOutRequest::GetTxoutsFieldType,
+  };
+  json_mapper.emplace("txouts", func_table);
+  item_list.push_back("txouts");
+}
+
+void SplitTxOutRequest::ConvertFromStruct(
+    const SplitTxOutRequestStruct& data) {
+  tx_ = data.tx;
+  is_elements_ = data.is_elements;
+  index_ = data.index;
+  txouts_.ConvertFromStruct(data.txouts);
+  ignore_items = data.ignore_items;
+}
+
+SplitTxOutRequestStruct SplitTxOutRequest::ConvertToStruct() const {  // NOLINT
+  SplitTxOutRequestStruct result;
+  result.tx = tx_;
+  result.is_elements = is_elements_;
+  result.index = index_;
+  result.txouts = txouts_.ConvertToStruct();
   result.ignore_items = ignore_items;
   return result;
 }

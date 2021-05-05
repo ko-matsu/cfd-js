@@ -1095,7 +1095,7 @@ export interface DecodeUnlockingScript {
 }
 
 /**
- * @property {string} keyType - contain key type (pubkey, extPubkey, extPrivkey)
+ * @property {string} keyType - contain key type (pubkey, extPubkey, extPrivkey, schnorrPubkey)
  * @property {string} key - key value (hex or base58)
  */
 export interface DescriptorKeyJson {
@@ -1110,7 +1110,7 @@ export interface DescriptorKeyJson {
  * @property {string} address - address
  * @property {string} hashType - hash type (p2wpkh, p2wsh, p2pkh, p2sh, p2sh-p2wpkh, p2sh-p2wsh)
  * @property {string} redeemScript? - redeem script for script hash. (This field is only available when hashType is p2wsh, p2sh, or p2sh-p2wsh.)
- * @property {string} keyType? - contain key type (pubkey, extPubkey, extPrivkey)
+ * @property {string} keyType? - contain key type (pubkey, extPubkey, extPrivkey, schnorrPubkey)
  * @property {string} key? - key value (hex or base58) (This field is only available when hashType is taproot, p2wpkh, p2pkh, or p2pk. taproot is xonly-pubkey.)
  * @property {DescriptorKeyJson[]} keys? - keys included in multisig
  * @property {number} reqNum? - number of required signatures to solve multisig script.
@@ -1878,6 +1878,15 @@ export interface GetExtkeyInfoResponse {
 }
 
 /**
+ * @property {number} index - index (on the first)
+ * @property {number[]} indexes? - index list
+ */
+export interface GetIndexData {
+    index: number;
+    indexes?: number[];
+}
+
+/**
  * Request for get issuance blinding key.
  * @property {string} masterBlindingKey - master blinding key
  * @property {string} txid - utxo txid
@@ -2031,6 +2040,34 @@ export interface GetTapScriptTreeInfoRequest {
     internalPubkey?: string;
     internalPrivkey?: string;
     tree: TapBranchData[];
+}
+
+/**
+ * Request for get txin index.
+ * @property {string} tx - transaction hex
+ * @property {boolean} isElements? - elements transaction flag.
+ * @property {string} txid - utxo txid
+ * @property {number} vout - utxo vout
+ */
+export interface GetTxInIndexRequest {
+    tx: string;
+    isElements?: boolean;
+    txid: string;
+    vout: number;
+}
+
+/**
+ * Request for get txout index.
+ * @property {string} tx - transaction hex
+ * @property {boolean} isElements? - elements transaction flag.
+ * @property {string} address? - target address
+ * @property {string} directLockingScript? - target locking script
+ */
+export interface GetTxOutIndexRequest {
+    tx: string;
+    isElements?: boolean;
+    address?: string;
+    directLockingScript?: string;
 }
 
 /**
@@ -2889,6 +2926,34 @@ export interface SignWithPrivkeyTxInRequest {
     isGrindR?: boolean;
     auxRand?: string;
     annex?: string;
+}
+
+/**
+ * add txout data for split
+ * @property {bigint | number} amount - satoshi amount
+ * @property {string} address? - target address (or confidential address)
+ * @property {string} directLockingScript? - target locking script
+ * @property {string} directNonce? - add nonce data (elements only)
+ */
+export interface SplitTxOutData {
+    amount: bigint | number;
+    address?: string;
+    directLockingScript?: string;
+    directNonce?: string;
+}
+
+/**
+ * Request for split txout.
+ * @property {string} tx - transaction hex
+ * @property {boolean} isElements? - elements transaction flag.
+ * @property {number} index - split target txout index.
+ * @property {SplitTxOutData[]} txouts - add txout data for split
+ */
+export interface SplitTxOutRequest {
+    tx: string;
+    isElements?: boolean;
+    index: number;
+    txouts: SplitTxOutData[];
 }
 
 /**
@@ -3967,6 +4032,20 @@ export function GetTapScriptTreeInfo(jsonObject: GetTapScriptTreeInfoRequest): T
 export function GetTapScriptTreeInfoByControlBlock(jsonObject: TapScriptInfoByControlRequest): TapScriptInfo;
 
 /**
+ * Get TxIn Index.
+ * @param {GetTxInIndexRequest} jsonObject - request data.
+ * @return {GetIndexData} - response data.
+ */
+export function GetTxInIndex(jsonObject: GetTxInIndexRequest): GetIndexData;
+
+/**
+ * Get TxOut Index.
+ * @param {GetTxOutIndexRequest} jsonObject - request data.
+ * @return {GetIndexData} - response data.
+ */
+export function GetTxOutIndex(jsonObject: GetTxOutIndexRequest): GetIndexData;
+
+/**
  * Get unblinded address.
  * @param {GetUnblindedAddressRequest} jsonObject - request data.
  * @return {GetUnblindedAddressResponse} - response data.
@@ -4112,6 +4191,13 @@ export function SignPsbt(jsonObject: SignPsbtRequest): PsbtOutputData;
  * @return {RawTransactionResponse} - response data.
  */
 export function SignWithPrivkey(jsonObject: SignWithPrivkeyRequest): RawTransactionResponse;
+
+/**
+ * Split txout.
+ * @param {SplitTxOutRequest} jsonObject - request data.
+ * @return {RawTransactionResponse} - response data.
+ */
+export function SplitTxOut(jsonObject: SplitTxOutRequest): RawTransactionResponse;
 
 /**
  * TweakAdd privkey.

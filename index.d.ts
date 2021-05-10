@@ -3438,6 +3438,7 @@ export interface VerifySignTxInUtxoData {
 }
 
 /**
+ * Updating WitnessStack data. Only index and hex are used in UpdatePeginWitnessStack.
  * @property {number} index - stack index
  * @property {string} hex - update data
  * @property {string} type? - parameter type. (binary, sign, pubkey, redeem_script)
@@ -4247,6 +4248,13 @@ export function TweakMulPubkey(jsonObject: TweakPubkeyData): PubkeyData;
  * @return {UnblindRawTransactionResponse} - response data.
  */
 export function UnblindRawTransaction(jsonObject: UnblindRawTransactionRequest): UnblindRawTransactionResponse;
+
+/**
+ * Update Pegin witness stack. isElements not reference (force true).
+ * @param {UpdateWitnessStackRequest} jsonObject - request data.
+ * @return {RawTransactionResponse} - response data.
+ */
+export function UpdatePeginWitnessStack(jsonObject: UpdateWitnessStackRequest): RawTransactionResponse;
 
 /**
  * Update txout amount.

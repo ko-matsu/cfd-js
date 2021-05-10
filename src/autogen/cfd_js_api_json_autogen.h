@@ -68172,6 +68172,239 @@ class SchnorrKeyPairData
 
 
 // ------------------------------------------------------------------------
+// UpdateWitnessStackRequest
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (UpdateWitnessStackRequest) class
+ */
+class UpdateWitnessStackRequest
+  : public cfd::core::JsonClassBase<UpdateWitnessStackRequest> {
+ public:
+  UpdateWitnessStackRequest() {
+    CollectFieldName();
+  }
+  virtual ~UpdateWitnessStackRequest() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of tx
+   * @return tx
+   */
+  std::string GetTx() const {
+    return tx_;
+  }
+  /**
+   * @brief Set to tx
+   * @param[in] tx    setting value.
+   */
+  void SetTx(  // line separate
+    const std::string& tx) {  // NOLINT
+    this->tx_ = tx;
+  }
+  /**
+   * @brief Get data type of tx
+   * @return Data type of tx
+   */
+  static std::string GetTxFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of tx field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTxString(  // line separate
+      const UpdateWitnessStackRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.tx_);
+  }
+  /**
+   * @brief Set json object to tx field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTxString(  // line separate
+      UpdateWitnessStackRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.tx_, json_value);
+  }
+
+  /**
+   * @brief Get of isElements
+   * @return isElements
+   */
+  bool GetIsElements() const {
+    return is_elements_;
+  }
+  /**
+   * @brief Set to isElements
+   * @param[in] is_elements    setting value.
+   */
+  void SetIsElements(  // line separate
+    const bool& is_elements) {  // NOLINT
+    this->is_elements_ = is_elements;
+  }
+  /**
+   * @brief Get data type of isElements
+   * @return Data type of isElements
+   */
+  static std::string GetIsElementsFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of isElements field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetIsElementsString(  // line separate
+      const UpdateWitnessStackRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.is_elements_);
+  }
+  /**
+   * @brief Set json object to isElements field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetIsElementsString(  // line separate
+      UpdateWitnessStackRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.is_elements_, json_value);
+  }
+
+  /**
+   * @brief Get of txin.
+   * @return txin
+   */
+  UpdateWitnessStackTxInRequest& GetTxin() {  // NOLINT
+    return txin_;
+  }
+  /**
+   * @brief Set to txin.
+   * @param[in] txin    setting value.
+   */
+  void SetTxin(  // line separate
+      const UpdateWitnessStackTxInRequest& txin) {  // NOLINT
+    this->txin_ = txin;
+  }
+  /**
+   * @brief Get data type of txin.
+   * @return Data type of txin.
+   */
+  static std::string GetTxinFieldType() {
+    return "UpdateWitnessStackTxInRequest";  // NOLINT
+  }
+  /**
+   * @brief Get json string of txin field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
+   */
+  static std::string GetTxinString(  // line separate
+      const UpdateWitnessStackRequest& obj) {  // NOLINT
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
+    return obj.txin_.Serialize();
+  }
+  /**
+   * @brief Set json object to txin field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
+   */
+  static void SetTxinString(  // line separate
+      UpdateWitnessStackRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    obj.txin_.DeserializeUniValue(json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const UpdateWitnessStackRequestStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  UpdateWitnessStackRequestStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using UpdateWitnessStackRequestMapTable =
+    cfd::core::JsonTableMap<UpdateWitnessStackRequest>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const UpdateWitnessStackRequestMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static UpdateWitnessStackRequestMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(tx) value
+   */
+  std::string tx_ = "";
+  /**
+   * @brief JsonAPI(isElements) value
+   */
+  bool is_elements_ = false;
+  /**
+   * @brief JsonAPI(txin) value
+   */
+  UpdateWitnessStackTxInRequest txin_;  // NOLINT
+};
+
+// ------------------------------------------------------------------------
 // UpdateTxOutAmountRequest
 // ------------------------------------------------------------------------
 /**
@@ -68404,238 +68637,6 @@ class UpdateTxOutAmountRequest
   JsonObjectVector<UpdateTxOutAmountData, UpdateTxOutAmountDataStruct> txouts_;  // NOLINT
 };
 
-// ------------------------------------------------------------------------
-// UpdateWitnessStackRequest
-// ------------------------------------------------------------------------
-/**
- * @brief JSON-API (UpdateWitnessStackRequest) class
- */
-class UpdateWitnessStackRequest
-  : public cfd::core::JsonClassBase<UpdateWitnessStackRequest> {
- public:
-  UpdateWitnessStackRequest() {
-    CollectFieldName();
-  }
-  virtual ~UpdateWitnessStackRequest() {
-    // do nothing
-  }
-  /**
-   * @brief collect field name.
-   */
-  static void CollectFieldName();
-
-  /**
-   * @brief Get of tx
-   * @return tx
-   */
-  std::string GetTx() const {
-    return tx_;
-  }
-  /**
-   * @brief Set to tx
-   * @param[in] tx    setting value.
-   */
-  void SetTx(  // line separate
-    const std::string& tx) {  // NOLINT
-    this->tx_ = tx;
-  }
-  /**
-   * @brief Get data type of tx
-   * @return Data type of tx
-   */
-  static std::string GetTxFieldType() {
-    return "std::string";
-  }
-  /**
-   * @brief Get json string of tx field.
-   * @param[in,out] obj     class object.
-   * @return JSON string
-   */
-  static std::string GetTxString(  // line separate
-      const UpdateWitnessStackRequest& obj) {  // NOLINT
-    return cfd::core::ConvertToString(obj.tx_);
-  }
-  /**
-   * @brief Set json object to tx field.
-   * @param[in,out] obj     class object.
-   * @param[in] json_value  JSON object.
-   */
-  static void SetTxString(  // line separate
-      UpdateWitnessStackRequest& obj,  // NOLINT
-      const UniValue& json_value) {
-    cfd::core::ConvertFromUniValue(  // line separate
-      obj.tx_, json_value);
-  }
-
-  /**
-   * @brief Get of isElements
-   * @return isElements
-   */
-  bool GetIsElements() const {
-    return is_elements_;
-  }
-  /**
-   * @brief Set to isElements
-   * @param[in] is_elements    setting value.
-   */
-  void SetIsElements(  // line separate
-    const bool& is_elements) {  // NOLINT
-    this->is_elements_ = is_elements;
-  }
-  /**
-   * @brief Get data type of isElements
-   * @return Data type of isElements
-   */
-  static std::string GetIsElementsFieldType() {
-    return "bool";
-  }
-  /**
-   * @brief Get json string of isElements field.
-   * @param[in,out] obj     class object.
-   * @return JSON string
-   */
-  static std::string GetIsElementsString(  // line separate
-      const UpdateWitnessStackRequest& obj) {  // NOLINT
-    return cfd::core::ConvertToString(obj.is_elements_);
-  }
-  /**
-   * @brief Set json object to isElements field.
-   * @param[in,out] obj     class object.
-   * @param[in] json_value  JSON object.
-   */
-  static void SetIsElementsString(  // line separate
-      UpdateWitnessStackRequest& obj,  // NOLINT
-      const UniValue& json_value) {
-    cfd::core::ConvertFromUniValue(  // line separate
-      obj.is_elements_, json_value);
-  }
-
-  /**
-   * @brief Get of txin.
-   * @return txin
-   */
-  UpdateWitnessStackTxInRequest& GetTxin() {  // NOLINT
-    return txin_;
-  }
-  /**
-   * @brief Set to txin.
-   * @param[in] txin    setting value.
-   */
-  void SetTxin(  // line separate
-      const UpdateWitnessStackTxInRequest& txin) {  // NOLINT
-    this->txin_ = txin;
-  }
-  /**
-   * @brief Get data type of txin.
-   * @return Data type of txin.
-   */
-  static std::string GetTxinFieldType() {
-    return "UpdateWitnessStackTxInRequest";  // NOLINT
-  }
-  /**
-   * @brief Get json string of txin field.
-   * @param[in,out] obj     class object
-   * @return JSON string.
-   */
-  static std::string GetTxinString(  // line separate
-      const UpdateWitnessStackRequest& obj) {  // NOLINT
-    // Do not set to const, because substitution of member variables
-    // may occur in pre / post processing inside Serialize
-    return obj.txin_.Serialize();
-  }
-  /**
-   * @brief Set json object to txin field.
-   * @param[in,out] obj     class object
-   * @param[in] json_value  JSON object
-   */
-  static void SetTxinString(  // line separate
-      UpdateWitnessStackRequest& obj,  // NOLINT
-      const UniValue& json_value) {
-    obj.txin_.DeserializeUniValue(json_value);
-  }
-
-  /**
-   * @brief Set ignore item.
-   * @param[in] key   ignore target key name.
-   */
-  void SetIgnoreItem(const std::string& key) {
-    ignore_items.insert(key);
-  }
-
-  /**
-   * @brief Convert struct to class.
-   * @param[in] data   struct data.
-   */
-  void ConvertFromStruct(
-      const UpdateWitnessStackRequestStruct& data);
-
-  /**
-   * @brief Convert class to struct.
-   * @return  struct data.
-   */
-  UpdateWitnessStackRequestStruct ConvertToStruct()  const;
-
- protected:
-  /**
-   * @brief definition type of Map table.
-   */
-  using UpdateWitnessStackRequestMapTable =
-    cfd::core::JsonTableMap<UpdateWitnessStackRequest>;
-
-  /**
-   * @brief Get JSON mapping object.
-   * @return JSON mapping object.
-   * @see cfd::core::JsonClassBase::GetJsonMapper()
-   */
-  virtual const UpdateWitnessStackRequestMapTable& GetJsonMapper() const {  // NOLINT
-    return json_mapper;
-  }
-  /**
-   * @brief Get item lists of JSON mapping.
-   * Fetch a list of target variable names in the order of definition.
-   * @return Item lists of JSON mapping.
-   * @see cfd::core::JsonClassBase::GetJsonItemList()
-   */
-  virtual const std::vector<std::string>& GetJsonItemList() const {
-    return item_list;
-  }
-  /**
-   * @brief Get ignore item lists of JSON mapping.
-   * Ignore the target variable at Serialize.
-   * @return Item list of JSON mapping.
-   * @see cfd::core::JsonClassBase::GetIgnoreItem()
-   */
-  virtual const std::set<std::string>& GetIgnoreItem() const {
-    return ignore_items;
-  }
-
- private:
- /**
-  * @brief JsonFunctionMap table
-  */
-  static UpdateWitnessStackRequestMapTable json_mapper;
-  /**
-   * @brief field name list.
-   */
-  static std::vector<std::string> item_list;
-  /**
-   * @brief ignore item list.
-   */
-  std::set<std::string> ignore_items;
-
-  /**
-   * @brief JsonAPI(tx) value
-   */
-  std::string tx_ = "";
-  /**
-   * @brief JsonAPI(isElements) value
-   */
-  bool is_elements_ = false;
-  /**
-   * @brief JsonAPI(txin) value
-   */
-  UpdateWitnessStackTxInRequest txin_;  // NOLINT
-};
 
 // ------------------------------------------------------------------------
 // VerifyEcdsaAdaptorRequest

@@ -857,6 +857,14 @@ class CFD_JS_API_EXPORT JsonMappingApi {
   static std::string CreateRawPegin(const std::string &request_message);
 
   /**
+   * @brief UpdatePeginWitnessStack.
+   * @param[in] request_message     the request json message
+   * @return json string
+   */
+  static std::string UpdatePeginWitnessStack(
+      const std::string &request_message);
+
+  /**
    * @brief CreateRawPegout.
    * @param[in] request_message     the request json message
    * @return json string

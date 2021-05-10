@@ -15148,6 +15148,59 @@ SchnorrKeyPairDataStruct SchnorrKeyPairData::ConvertToStruct() const {  // NOLIN
 
 
 // ------------------------------------------------------------------------
+// UpdateWitnessStackRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<UpdateWitnessStackRequest>
+  UpdateWitnessStackRequest::json_mapper;
+std::vector<std::string> UpdateWitnessStackRequest::item_list;
+
+void UpdateWitnessStackRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<UpdateWitnessStackRequest> func_table;  // NOLINT
+
+  func_table = {
+    UpdateWitnessStackRequest::GetTxString,
+    UpdateWitnessStackRequest::SetTxString,
+    UpdateWitnessStackRequest::GetTxFieldType,
+  };
+  json_mapper.emplace("tx", func_table);
+  item_list.push_back("tx");
+  func_table = {
+    UpdateWitnessStackRequest::GetIsElementsString,
+    UpdateWitnessStackRequest::SetIsElementsString,
+    UpdateWitnessStackRequest::GetIsElementsFieldType,
+  };
+  json_mapper.emplace("isElements", func_table);
+  item_list.push_back("isElements");
+  func_table = {
+    UpdateWitnessStackRequest::GetTxinString,
+    UpdateWitnessStackRequest::SetTxinString,
+    UpdateWitnessStackRequest::GetTxinFieldType,
+  };
+  json_mapper.emplace("txin", func_table);
+  item_list.push_back("txin");
+}
+
+void UpdateWitnessStackRequest::ConvertFromStruct(
+    const UpdateWitnessStackRequestStruct& data) {
+  tx_ = data.tx;
+  is_elements_ = data.is_elements;
+  txin_.ConvertFromStruct(data.txin);
+  ignore_items = data.ignore_items;
+}
+
+UpdateWitnessStackRequestStruct UpdateWitnessStackRequest::ConvertToStruct() const {  // NOLINT
+  UpdateWitnessStackRequestStruct result;
+  result.tx = tx_;
+  result.is_elements = is_elements_;
+  result.txin = txin_.ConvertToStruct();
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
 // UpdateTxOutAmountRequest
 // ------------------------------------------------------------------------
 cfd::core::JsonTableMap<UpdateTxOutAmountRequest>
@@ -15200,58 +15253,6 @@ UpdateTxOutAmountRequestStruct UpdateTxOutAmountRequest::ConvertToStruct() const
   return result;
 }
 
-// ------------------------------------------------------------------------
-// UpdateWitnessStackRequest
-// ------------------------------------------------------------------------
-cfd::core::JsonTableMap<UpdateWitnessStackRequest>
-  UpdateWitnessStackRequest::json_mapper;
-std::vector<std::string> UpdateWitnessStackRequest::item_list;
-
-void UpdateWitnessStackRequest::CollectFieldName() {
-  if (!json_mapper.empty()) {
-    return;
-  }
-  cfd::core::CLASS_FUNCTION_TABLE<UpdateWitnessStackRequest> func_table;  // NOLINT
-
-  func_table = {
-    UpdateWitnessStackRequest::GetTxString,
-    UpdateWitnessStackRequest::SetTxString,
-    UpdateWitnessStackRequest::GetTxFieldType,
-  };
-  json_mapper.emplace("tx", func_table);
-  item_list.push_back("tx");
-  func_table = {
-    UpdateWitnessStackRequest::GetIsElementsString,
-    UpdateWitnessStackRequest::SetIsElementsString,
-    UpdateWitnessStackRequest::GetIsElementsFieldType,
-  };
-  json_mapper.emplace("isElements", func_table);
-  item_list.push_back("isElements");
-  func_table = {
-    UpdateWitnessStackRequest::GetTxinString,
-    UpdateWitnessStackRequest::SetTxinString,
-    UpdateWitnessStackRequest::GetTxinFieldType,
-  };
-  json_mapper.emplace("txin", func_table);
-  item_list.push_back("txin");
-}
-
-void UpdateWitnessStackRequest::ConvertFromStruct(
-    const UpdateWitnessStackRequestStruct& data) {
-  tx_ = data.tx;
-  is_elements_ = data.is_elements;
-  txin_.ConvertFromStruct(data.txin);
-  ignore_items = data.ignore_items;
-}
-
-UpdateWitnessStackRequestStruct UpdateWitnessStackRequest::ConvertToStruct() const {  // NOLINT
-  UpdateWitnessStackRequestStruct result;
-  result.tx = tx_;
-  result.is_elements = is_elements_;
-  result.txin = txin_.ConvertToStruct();
-  result.ignore_items = ignore_items;
-  return result;
-}
 
 // ------------------------------------------------------------------------
 // VerifyEcdsaAdaptorRequest

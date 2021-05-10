@@ -1127,6 +1127,16 @@ Value CreateRawPegin(const CallbackInfo &information) {
  * @param[in] information     node addon api callback information
  * @return json string.
  */
+Value UpdatePeginWitnessStack(const CallbackInfo &information) {
+  return NodeAddonJsonApi(
+      information, JsonMappingApi::UpdatePeginWitnessStack);
+}
+
+/**
+ * @brief NodeAddon's JSON API.
+ * @param[in] information     node addon api callback information
+ * @return json string.
+ */
 Value CreateRawPegout(const CallbackInfo &information) {
   return NodeAddonJsonApi(information, JsonMappingApi::CreateRawPegout);
 }
@@ -1468,6 +1478,9 @@ void InitializeJsonApi(Env env, Object *exports) {
       Function::New(env, CreateElementsSignatureHash));
   exports->Set(
       String::New(env, "CreateRawPegin"), Function::New(env, CreateRawPegin));
+  exports->Set(
+      String::New(env, "UpdatePeginWitnessStack"),
+      Function::New(env, UpdatePeginWitnessStack));
   exports->Set(
       String::New(env, "CreateRawPegout"),
       Function::New(env, CreateRawPegout));

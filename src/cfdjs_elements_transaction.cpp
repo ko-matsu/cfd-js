@@ -1933,6 +1933,30 @@ ElementsTransactionStructApi::CreateRawPeginTransaction(  // NOLINT
   return result;
 }
 
+RawTransactionResponseStruct
+ElementsTransactionStructApi::UpdatePeginWitnessStack(
+    const UpdateWitnessStackRequestStruct& request) {
+  auto call_func = [](const UpdateWitnessStackRequestStruct& request)
+      -> RawTransactionResponseStruct {  // NOLINT
+    RawTransactionResponseStruct response;
+
+    ConfidentialTransactionContext ctx(request.tx);
+    const WitnessStackDataStruct& stack_req = request.txin.witness_stack;
+    auto sign_data = ByteData(stack_req.hex);
+    auto index = ctx.GetTxInIndex(Txid(request.txin.txid), request.txin.vout);
+    ctx.SetPeginWitnessStack(index, stack_req.index, sign_data);
+
+    response.hex = ctx.GetHex();
+    return response;
+  };
+
+  RawTransactionResponseStruct result;
+  result = ExecuteStructApi<
+      UpdateWitnessStackRequestStruct, RawTransactionResponseStruct>(
+      request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
 CreateRawPegoutResponseStruct
 ElementsTransactionStructApi::CreateRawPegoutTransaction(  // NOLINT
     const CreateRawPegoutRequestStruct& request) {

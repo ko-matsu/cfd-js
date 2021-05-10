@@ -232,6 +232,14 @@ class CFD_JS_API_EXPORT ElementsTransactionStructApi {
       const CreateRawPeginRequestStruct& request);
 
   /**
+   * @brief Update pegin witness stack.
+   * @param[in] request  pegin witness target data.
+   * @return Transaction hex.
+   */
+  static RawTransactionResponseStruct UpdatePeginWitnessStack(
+      const UpdateWitnessStackRequestStruct& request);
+
+  /**
    * @brief パラメータの情報を元に、Elements Pegout用のRaw Transactionを作成する.
    * @param[in] request Transactionを構築するパラメータの構造体
    * @return Transactionのhexデータを格納した構造体

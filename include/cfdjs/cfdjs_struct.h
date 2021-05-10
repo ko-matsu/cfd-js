@@ -3502,19 +3502,6 @@ struct SchnorrKeyPairDataStruct {
 };
 
 // ------------------------------------------------------------------------
-// UpdateTxOutAmountRequestStruct
-// ------------------------------------------------------------------------
-/**
- * @brief UpdateTxOutAmountRequestStruct struct
- */
-struct UpdateTxOutAmountRequestStruct {
-  std::string tx = "";                              //!< tx  // NOLINT
-  bool is_elements = false;                         //!< is_elements  // NOLINT
-  std::vector<UpdateTxOutAmountDataStruct> txouts;  //!< txouts  // NOLINT
-  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
-};
-
-// ------------------------------------------------------------------------
 // UpdateWitnessStackRequestStruct
 // ------------------------------------------------------------------------
 /**
@@ -3524,6 +3511,19 @@ struct UpdateWitnessStackRequestStruct {
   std::string tx = "";                       //!< tx  // NOLINT
   bool is_elements = false;                  //!< is_elements  // NOLINT
   UpdateWitnessStackTxInRequestStruct txin;  //!< txin  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// UpdateTxOutAmountRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief UpdateTxOutAmountRequestStruct struct
+ */
+struct UpdateTxOutAmountRequestStruct {
+  std::string tx = "";                              //!< tx  // NOLINT
+  bool is_elements = false;                         //!< is_elements  // NOLINT
+  std::vector<UpdateTxOutAmountDataStruct> txouts;  //!< txouts  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 

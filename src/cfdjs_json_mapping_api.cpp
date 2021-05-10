@@ -1331,6 +1331,14 @@ std::string JsonMappingApi::CreateRawPegin(
       ElementsTransactionStructApi::CreateRawPeginTransaction);
 }
 
+std::string JsonMappingApi::UpdatePeginWitnessStack(
+    const std::string &request_message) {
+  return ExecuteJsonApi<
+      api::json::UpdateWitnessStackRequest, api::json::RawTransactionResponse,
+      api::UpdateWitnessStackRequestStruct, api::RawTransactionResponseStruct>(
+      request_message, ElementsTransactionStructApi::UpdatePeginWitnessStack);
+}
+
 std::string JsonMappingApi::CreateRawPegout(
     const std::string &request_message) {
   return ExecuteJsonApi<
@@ -1576,6 +1584,8 @@ void JsonMappingApi::LoadFunctions(
         "CreateElementsSignatureHash",
         JsonMappingApi::CreateElementsSignatureHash);
     request_map->emplace("CreateRawPegin", JsonMappingApi::CreateRawPegin);
+    request_map->emplace(
+        "UpdatePeginWitnessStack", JsonMappingApi::UpdatePeginWitnessStack);
     request_map->emplace("CreateRawPegout", JsonMappingApi::CreateRawPegout);
     request_map->emplace(
         "GetIssuanceBlindingKey", JsonMappingApi::GetIssuanceBlindingKey);

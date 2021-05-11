@@ -25,7 +25,7 @@ jobs:
     strategy:
       matrix:
         os: [macos-10.15, windows-2019, ubuntu-18.04]
-        node: [10, 12, 14, 15]
+        node: [10, 12, 14, 16]
         exclude:
           - os: windows-2019
             node: 10
@@ -38,7 +38,7 @@ jobs:
             always: false
           - node: 14
             always: false
-          - node: 15
+          - node: 16
             always: true
 
     steps:
@@ -48,7 +48,7 @@ jobs:
       with:
         node-version: ${{ matrix.node }}
     - name: update to npm v7
-      if: runner.os == 'Windows'
+      if: runner.os == 'Windows' || ${{ matrix.node }} == '16'
       run: npm i -g npm@7
     - name: dump node version
       id: node_ver

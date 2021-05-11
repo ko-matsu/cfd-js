@@ -63,7 +63,7 @@ jobs:
     - uses: actions/setup-node@v2.1.2
       timeout-minutes: 1
       with:
-        node-version: 15
+        node-version: 14
     - name: update to npm v7
       run: npm i -g npm@7
     - name: output url

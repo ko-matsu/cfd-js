@@ -83,12 +83,11 @@ jobs:
     - name: cmake-build
       id: cmake_build
       run: |
-        cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DENABLE_SHARED=on -DENABLE_CAPI=off -DENABLE_TESTS=off
+        cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DENABLE_SHARED=on -DENABLE_CAPI=off -DENABLE_TESTS=off -DCMAKE_INSTALL_PREFIX="./dist"
         cmake --build build --parallel 4 --config Release
       timeout-minutes: 20
     - name: cmake-install
       run: |
-        cmake -DCMAKE_INSTALL_PREFIX="./dist" --install build
         cmake --install build
         cd dist
         del /F /Q cmake\wallycore-*

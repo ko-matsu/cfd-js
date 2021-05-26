@@ -27,15 +27,8 @@ jobs:
     strategy:
       matrix:
         os: [macos-10.15, windows-2019, ubuntu-18.04]
-        node: [10, 12, 14, 16]
-        exclude:
-          - os: windows-2019
-            node: 10
-          - os: macos-10.15
-            node: 10
+        node: [12, 14, 16]
         include:
-          - node: 10
-            always: false
           - node: 12
             always: false
           - node: 14

@@ -93,7 +93,7 @@ beforeAll(async () => {
   elmWallet2 = await elmWalletMgr.createWallet(2, 'testuser', TargetNode.Elements, !isDebug);
 });
 
-afterAll(async() => {
+afterAll(async () => {
   jest.setTimeout(10000);
   btcWalletMgr.shutdown();
   elmWalletMgr.shutdown();

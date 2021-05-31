@@ -56,7 +56,7 @@ beforeAll(async () => {
   // btcWallet3 = await walletMgr.createWallet(3, 'testuser', 'bitcoin');
 });
 
-afterAll(async() => {
+afterAll(async () => {
   jest.setTimeout(10000);
   walletMgr.shutdown();
   await sleep(5000);

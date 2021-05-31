@@ -4,6 +4,7 @@ on:
   push:
     branches:
     - features/sprint*
+    - feature/rollback-package-json
   pull_request:
     branches:
     - features/sprint*

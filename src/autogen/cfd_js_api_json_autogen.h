@@ -53699,6 +53699,706 @@ class GetAddressesFromMultisigResponse
 };
 
 // ------------------------------------------------------------------------
+// BlockData
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (BlockData) class
+ */
+class BlockData
+  : public cfd::core::JsonClassBase<BlockData> {
+ public:
+  BlockData() {
+    CollectFieldName();
+  }
+  virtual ~BlockData() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of isElements
+   * @return isElements
+   */
+  bool GetIsElements() const {
+    return is_elements_;
+  }
+  /**
+   * @brief Set to isElements
+   * @param[in] is_elements    setting value.
+   */
+  void SetIsElements(  // line separate
+    const bool& is_elements) {  // NOLINT
+    this->is_elements_ = is_elements;
+  }
+  /**
+   * @brief Get data type of isElements
+   * @return Data type of isElements
+   */
+  static std::string GetIsElementsFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of isElements field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetIsElementsString(  // line separate
+      const BlockData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.is_elements_);
+  }
+  /**
+   * @brief Set json object to isElements field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetIsElementsString(  // line separate
+      BlockData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.is_elements_, json_value);
+  }
+
+  /**
+   * @brief Get of block
+   * @return block
+   */
+  std::string GetBlock() const {
+    return block_;
+  }
+  /**
+   * @brief Set to block
+   * @param[in] block    setting value.
+   */
+  void SetBlock(  // line separate
+    const std::string& block) {  // NOLINT
+    this->block_ = block;
+  }
+  /**
+   * @brief Get data type of block
+   * @return Data type of block
+   */
+  static std::string GetBlockFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of block field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetBlockString(  // line separate
+      const BlockData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.block_);
+  }
+  /**
+   * @brief Set json object to block field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetBlockString(  // line separate
+      BlockData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.block_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const BlockDataStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  BlockDataStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using BlockDataMapTable =
+    cfd::core::JsonTableMap<BlockData>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const BlockDataMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static BlockDataMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(isElements) value
+   */
+  bool is_elements_ = false;
+  /**
+   * @brief JsonAPI(block) value
+   */
+  std::string block_ = "";
+};
+
+// ------------------------------------------------------------------------
+// BlockInformation
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (BlockInformation) class
+ */
+class BlockInformation
+  : public cfd::core::JsonClassBase<BlockInformation> {
+ public:
+  BlockInformation() {
+    CollectFieldName();
+  }
+  virtual ~BlockInformation() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of blockHash
+   * @return blockHash
+   */
+  std::string GetBlockHash() const {
+    return block_hash_;
+  }
+  /**
+   * @brief Set to blockHash
+   * @param[in] block_hash    setting value.
+   */
+  void SetBlockHash(  // line separate
+    const std::string& block_hash) {  // NOLINT
+    this->block_hash_ = block_hash;
+  }
+  /**
+   * @brief Get data type of blockHash
+   * @return Data type of blockHash
+   */
+  static std::string GetBlockHashFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of blockHash field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetBlockHashString(  // line separate
+      const BlockInformation& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.block_hash_);
+  }
+  /**
+   * @brief Set json object to blockHash field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetBlockHashString(  // line separate
+      BlockInformation& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.block_hash_, json_value);
+  }
+
+  /**
+   * @brief Get of tx.
+   * @return tx
+   */
+  JsonValueVector<std::string>& GetTx() {  // NOLINT
+    return tx_;
+  }
+  /**
+   * @brief Set to tx.
+   * @param[in] tx    setting value.
+   */
+  void SetTx(  // line separate
+      const JsonValueVector<std::string>& tx) {  // NOLINT
+    this->tx_ = tx;
+  }
+  /**
+   * @brief Get data type of tx.
+   * @return Data type of tx.
+   */
+  static std::string GetTxFieldType() {
+    return "JsonValueVector<std::string>";  // NOLINT
+  }
+  /**
+   * @brief Get json string of tx field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
+   */
+  static std::string GetTxString(  // line separate
+      const BlockInformation& obj) {  // NOLINT
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
+    return obj.tx_.Serialize();
+  }
+  /**
+   * @brief Set json object to tx field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
+   */
+  static void SetTxString(  // line separate
+      BlockInformation& obj,  // NOLINT
+      const UniValue& json_value) {
+    obj.tx_.DeserializeUniValue(json_value);
+  }
+
+  /**
+   * @brief Get of version
+   * @return version
+   */
+  uint32_t GetVersion() const {
+    return version_;
+  }
+  /**
+   * @brief Set to version
+   * @param[in] version    setting value.
+   */
+  void SetVersion(  // line separate
+    const uint32_t& version) {  // NOLINT
+    this->version_ = version;
+  }
+  /**
+   * @brief Get data type of version
+   * @return Data type of version
+   */
+  static std::string GetVersionFieldType() {
+    return "uint32_t";
+  }
+  /**
+   * @brief Get json string of version field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetVersionString(  // line separate
+      const BlockInformation& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.version_);
+  }
+  /**
+   * @brief Set json object to version field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetVersionString(  // line separate
+      BlockInformation& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.version_, json_value);
+  }
+
+  /**
+   * @brief Get of versionHex
+   * @return versionHex
+   */
+  std::string GetVersionHex() const {
+    return version_hex_;
+  }
+  /**
+   * @brief Set to versionHex
+   * @param[in] version_hex    setting value.
+   */
+  void SetVersionHex(  // line separate
+    const std::string& version_hex) {  // NOLINT
+    this->version_hex_ = version_hex;
+  }
+  /**
+   * @brief Get data type of versionHex
+   * @return Data type of versionHex
+   */
+  static std::string GetVersionHexFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of versionHex field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetVersionHexString(  // line separate
+      const BlockInformation& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.version_hex_);
+  }
+  /**
+   * @brief Set json object to versionHex field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetVersionHexString(  // line separate
+      BlockInformation& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.version_hex_, json_value);
+  }
+
+  /**
+   * @brief Get of previousblockhash
+   * @return previousblockhash
+   */
+  std::string GetPreviousblockhash() const {
+    return previousblockhash_;
+  }
+  /**
+   * @brief Set to previousblockhash
+   * @param[in] previousblockhash    setting value.
+   */
+  void SetPreviousblockhash(  // line separate
+    const std::string& previousblockhash) {  // NOLINT
+    this->previousblockhash_ = previousblockhash;
+  }
+  /**
+   * @brief Get data type of previousblockhash
+   * @return Data type of previousblockhash
+   */
+  static std::string GetPreviousblockhashFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of previousblockhash field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetPreviousblockhashString(  // line separate
+      const BlockInformation& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.previousblockhash_);
+  }
+  /**
+   * @brief Set json object to previousblockhash field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetPreviousblockhashString(  // line separate
+      BlockInformation& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.previousblockhash_, json_value);
+  }
+
+  /**
+   * @brief Get of merkleroot
+   * @return merkleroot
+   */
+  std::string GetMerkleroot() const {
+    return merkleroot_;
+  }
+  /**
+   * @brief Set to merkleroot
+   * @param[in] merkleroot    setting value.
+   */
+  void SetMerkleroot(  // line separate
+    const std::string& merkleroot) {  // NOLINT
+    this->merkleroot_ = merkleroot;
+  }
+  /**
+   * @brief Get data type of merkleroot
+   * @return Data type of merkleroot
+   */
+  static std::string GetMerklerootFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of merkleroot field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetMerklerootString(  // line separate
+      const BlockInformation& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.merkleroot_);
+  }
+  /**
+   * @brief Set json object to merkleroot field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetMerklerootString(  // line separate
+      BlockInformation& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.merkleroot_, json_value);
+  }
+
+  /**
+   * @brief Get of time
+   * @return time
+   */
+  uint32_t GetTime() const {
+    return time_;
+  }
+  /**
+   * @brief Set to time
+   * @param[in] time    setting value.
+   */
+  void SetTime(  // line separate
+    const uint32_t& time) {  // NOLINT
+    this->time_ = time;
+  }
+  /**
+   * @brief Get data type of time
+   * @return Data type of time
+   */
+  static std::string GetTimeFieldType() {
+    return "uint32_t";
+  }
+  /**
+   * @brief Get json string of time field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTimeString(  // line separate
+      const BlockInformation& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.time_);
+  }
+  /**
+   * @brief Set json object to time field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTimeString(  // line separate
+      BlockInformation& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.time_, json_value);
+  }
+
+  /**
+   * @brief Get of bits
+   * @return bits
+   */
+  uint32_t GetBits() const {
+    return bits_;
+  }
+  /**
+   * @brief Set to bits
+   * @param[in] bits    setting value.
+   */
+  void SetBits(  // line separate
+    const uint32_t& bits) {  // NOLINT
+    this->bits_ = bits;
+  }
+  /**
+   * @brief Get data type of bits
+   * @return Data type of bits
+   */
+  static std::string GetBitsFieldType() {
+    return "uint32_t";
+  }
+  /**
+   * @brief Get json string of bits field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetBitsString(  // line separate
+      const BlockInformation& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.bits_);
+  }
+  /**
+   * @brief Set json object to bits field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetBitsString(  // line separate
+      BlockInformation& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.bits_, json_value);
+  }
+
+  /**
+   * @brief Get of nonce
+   * @return nonce
+   */
+  uint32_t GetNonce() const {
+    return nonce_;
+  }
+  /**
+   * @brief Set to nonce
+   * @param[in] nonce    setting value.
+   */
+  void SetNonce(  // line separate
+    const uint32_t& nonce) {  // NOLINT
+    this->nonce_ = nonce;
+  }
+  /**
+   * @brief Get data type of nonce
+   * @return Data type of nonce
+   */
+  static std::string GetNonceFieldType() {
+    return "uint32_t";
+  }
+  /**
+   * @brief Get json string of nonce field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetNonceString(  // line separate
+      const BlockInformation& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.nonce_);
+  }
+  /**
+   * @brief Set json object to nonce field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetNonceString(  // line separate
+      BlockInformation& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.nonce_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const BlockInformationStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  BlockInformationStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using BlockInformationMapTable =
+    cfd::core::JsonTableMap<BlockInformation>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const BlockInformationMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static BlockInformationMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(blockHash) value
+   */
+  std::string block_hash_ = "";
+  /**
+   * @brief JsonAPI(tx) value
+   */
+  JsonValueVector<std::string> tx_;  // NOLINT
+  /**
+   * @brief JsonAPI(version) value
+   */
+  uint32_t version_ = 0;
+  /**
+   * @brief JsonAPI(versionHex) value
+   */
+  std::string version_hex_ = "";
+  /**
+   * @brief JsonAPI(previousblockhash) value
+   */
+  std::string previousblockhash_ = "";
+  /**
+   * @brief JsonAPI(merkleroot) value
+   */
+  std::string merkleroot_ = "";
+  /**
+   * @brief JsonAPI(time) value
+   */
+  uint32_t time_ = 0;
+  /**
+   * @brief JsonAPI(bits) value
+   */
+  uint32_t bits_ = 0;
+  /**
+   * @brief JsonAPI(nonce) value
+   */
+  uint32_t nonce_ = 0;
+};
+
+// ------------------------------------------------------------------------
 // GetCommitmentRequest
 // ------------------------------------------------------------------------
 /**
@@ -59740,6 +60440,423 @@ class GetTapScriptTreeInfoRequest
    * @brief JsonAPI(tree) value
    */
   JsonObjectVector<TapBranchData, TapBranchDataStruct> tree_;  // NOLINT
+};
+
+// ------------------------------------------------------------------------
+// BlockTxRequest
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (BlockTxRequest) class
+ */
+class BlockTxRequest
+  : public cfd::core::JsonClassBase<BlockTxRequest> {
+ public:
+  BlockTxRequest() {
+    CollectFieldName();
+  }
+  virtual ~BlockTxRequest() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of isElements
+   * @return isElements
+   */
+  bool GetIsElements() const {
+    return is_elements_;
+  }
+  /**
+   * @brief Set to isElements
+   * @param[in] is_elements    setting value.
+   */
+  void SetIsElements(  // line separate
+    const bool& is_elements) {  // NOLINT
+    this->is_elements_ = is_elements;
+  }
+  /**
+   * @brief Get data type of isElements
+   * @return Data type of isElements
+   */
+  static std::string GetIsElementsFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of isElements field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetIsElementsString(  // line separate
+      const BlockTxRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.is_elements_);
+  }
+  /**
+   * @brief Set json object to isElements field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetIsElementsString(  // line separate
+      BlockTxRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.is_elements_, json_value);
+  }
+
+  /**
+   * @brief Get of block
+   * @return block
+   */
+  std::string GetBlock() const {
+    return block_;
+  }
+  /**
+   * @brief Set to block
+   * @param[in] block    setting value.
+   */
+  void SetBlock(  // line separate
+    const std::string& block) {  // NOLINT
+    this->block_ = block;
+  }
+  /**
+   * @brief Get data type of block
+   * @return Data type of block
+   */
+  static std::string GetBlockFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of block field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetBlockString(  // line separate
+      const BlockTxRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.block_);
+  }
+  /**
+   * @brief Set json object to block field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetBlockString(  // line separate
+      BlockTxRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.block_, json_value);
+  }
+
+  /**
+   * @brief Get of txid
+   * @return txid
+   */
+  std::string GetTxid() const {
+    return txid_;
+  }
+  /**
+   * @brief Set to txid
+   * @param[in] txid    setting value.
+   */
+  void SetTxid(  // line separate
+    const std::string& txid) {  // NOLINT
+    this->txid_ = txid;
+  }
+  /**
+   * @brief Get data type of txid
+   * @return Data type of txid
+   */
+  static std::string GetTxidFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of txid field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTxidString(  // line separate
+      const BlockTxRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.txid_);
+  }
+  /**
+   * @brief Set json object to txid field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTxidString(  // line separate
+      BlockTxRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.txid_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const BlockTxRequestStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  BlockTxRequestStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using BlockTxRequestMapTable =
+    cfd::core::JsonTableMap<BlockTxRequest>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const BlockTxRequestMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static BlockTxRequestMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(isElements) value
+   */
+  bool is_elements_ = false;
+  /**
+   * @brief JsonAPI(block) value
+   */
+  std::string block_ = "";
+  /**
+   * @brief JsonAPI(txid) value
+   */
+  std::string txid_ = "";
+};
+
+// ------------------------------------------------------------------------
+// BlockTxData
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (BlockTxData) class
+ */
+class BlockTxData
+  : public cfd::core::JsonClassBase<BlockTxData> {
+ public:
+  BlockTxData() {
+    CollectFieldName();
+  }
+  virtual ~BlockTxData() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of tx
+   * @return tx
+   */
+  std::string GetTx() const {
+    return tx_;
+  }
+  /**
+   * @brief Set to tx
+   * @param[in] tx    setting value.
+   */
+  void SetTx(  // line separate
+    const std::string& tx) {  // NOLINT
+    this->tx_ = tx;
+  }
+  /**
+   * @brief Get data type of tx
+   * @return Data type of tx
+   */
+  static std::string GetTxFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of tx field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTxString(  // line separate
+      const BlockTxData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.tx_);
+  }
+  /**
+   * @brief Set json object to tx field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTxString(  // line separate
+      BlockTxData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.tx_, json_value);
+  }
+
+  /**
+   * @brief Get of txoutproof
+   * @return txoutproof
+   */
+  std::string GetTxoutproof() const {
+    return txoutproof_;
+  }
+  /**
+   * @brief Set to txoutproof
+   * @param[in] txoutproof    setting value.
+   */
+  void SetTxoutproof(  // line separate
+    const std::string& txoutproof) {  // NOLINT
+    this->txoutproof_ = txoutproof;
+  }
+  /**
+   * @brief Get data type of txoutproof
+   * @return Data type of txoutproof
+   */
+  static std::string GetTxoutproofFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of txoutproof field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTxoutproofString(  // line separate
+      const BlockTxData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.txoutproof_);
+  }
+  /**
+   * @brief Set json object to txoutproof field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTxoutproofString(  // line separate
+      BlockTxData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.txoutproof_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const BlockTxDataStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  BlockTxDataStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using BlockTxDataMapTable =
+    cfd::core::JsonTableMap<BlockTxData>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const BlockTxDataMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static BlockTxDataMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(tx) value
+   */
+  std::string tx_ = "";
+  /**
+   * @brief JsonAPI(txoutproof) value
+   */
+  std::string txoutproof_ = "";
 };
 
 // ------------------------------------------------------------------------
@@ -68402,6 +69519,332 @@ class UpdateWitnessStackRequest
    * @brief JsonAPI(txin) value
    */
   UpdateWitnessStackTxInRequest txin_;  // NOLINT
+};
+
+// ------------------------------------------------------------------------
+// UpdateTxInSequenceRequest
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (UpdateTxInSequenceRequest) class
+ */
+class UpdateTxInSequenceRequest
+  : public cfd::core::JsonClassBase<UpdateTxInSequenceRequest> {
+ public:
+  UpdateTxInSequenceRequest() {
+    CollectFieldName();
+  }
+  virtual ~UpdateTxInSequenceRequest() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of tx
+   * @return tx
+   */
+  std::string GetTx() const {
+    return tx_;
+  }
+  /**
+   * @brief Set to tx
+   * @param[in] tx    setting value.
+   */
+  void SetTx(  // line separate
+    const std::string& tx) {  // NOLINT
+    this->tx_ = tx;
+  }
+  /**
+   * @brief Get data type of tx
+   * @return Data type of tx
+   */
+  static std::string GetTxFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of tx field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTxString(  // line separate
+      const UpdateTxInSequenceRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.tx_);
+  }
+  /**
+   * @brief Set json object to tx field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTxString(  // line separate
+      UpdateTxInSequenceRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.tx_, json_value);
+  }
+
+  /**
+   * @brief Get of isElements
+   * @return isElements
+   */
+  bool GetIsElements() const {
+    return is_elements_;
+  }
+  /**
+   * @brief Set to isElements
+   * @param[in] is_elements    setting value.
+   */
+  void SetIsElements(  // line separate
+    const bool& is_elements) {  // NOLINT
+    this->is_elements_ = is_elements;
+  }
+  /**
+   * @brief Get data type of isElements
+   * @return Data type of isElements
+   */
+  static std::string GetIsElementsFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of isElements field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetIsElementsString(  // line separate
+      const UpdateTxInSequenceRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.is_elements_);
+  }
+  /**
+   * @brief Set json object to isElements field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetIsElementsString(  // line separate
+      UpdateTxInSequenceRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.is_elements_, json_value);
+  }
+
+  /**
+   * @brief Get of txid
+   * @return txid
+   */
+  std::string GetTxid() const {
+    return txid_;
+  }
+  /**
+   * @brief Set to txid
+   * @param[in] txid    setting value.
+   */
+  void SetTxid(  // line separate
+    const std::string& txid) {  // NOLINT
+    this->txid_ = txid;
+  }
+  /**
+   * @brief Get data type of txid
+   * @return Data type of txid
+   */
+  static std::string GetTxidFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of txid field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTxidString(  // line separate
+      const UpdateTxInSequenceRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.txid_);
+  }
+  /**
+   * @brief Set json object to txid field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTxidString(  // line separate
+      UpdateTxInSequenceRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.txid_, json_value);
+  }
+
+  /**
+   * @brief Get of vout
+   * @return vout
+   */
+  uint32_t GetVout() const {
+    return vout_;
+  }
+  /**
+   * @brief Set to vout
+   * @param[in] vout    setting value.
+   */
+  void SetVout(  // line separate
+    const uint32_t& vout) {  // NOLINT
+    this->vout_ = vout;
+  }
+  /**
+   * @brief Get data type of vout
+   * @return Data type of vout
+   */
+  static std::string GetVoutFieldType() {
+    return "uint32_t";
+  }
+  /**
+   * @brief Get json string of vout field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetVoutString(  // line separate
+      const UpdateTxInSequenceRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.vout_);
+  }
+  /**
+   * @brief Set json object to vout field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetVoutString(  // line separate
+      UpdateTxInSequenceRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.vout_, json_value);
+  }
+
+  /**
+   * @brief Get of sequence
+   * @return sequence
+   */
+  uint32_t GetSequence() const {
+    return sequence_;
+  }
+  /**
+   * @brief Set to sequence
+   * @param[in] sequence    setting value.
+   */
+  void SetSequence(  // line separate
+    const uint32_t& sequence) {  // NOLINT
+    this->sequence_ = sequence;
+  }
+  /**
+   * @brief Get data type of sequence
+   * @return Data type of sequence
+   */
+  static std::string GetSequenceFieldType() {
+    return "uint32_t";
+  }
+  /**
+   * @brief Get json string of sequence field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetSequenceString(  // line separate
+      const UpdateTxInSequenceRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.sequence_);
+  }
+  /**
+   * @brief Set json object to sequence field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetSequenceString(  // line separate
+      UpdateTxInSequenceRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.sequence_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const UpdateTxInSequenceRequestStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  UpdateTxInSequenceRequestStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using UpdateTxInSequenceRequestMapTable =
+    cfd::core::JsonTableMap<UpdateTxInSequenceRequest>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const UpdateTxInSequenceRequestMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static UpdateTxInSequenceRequestMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(tx) value
+   */
+  std::string tx_ = "";
+  /**
+   * @brief JsonAPI(isElements) value
+   */
+  bool is_elements_ = false;
+  /**
+   * @brief JsonAPI(txid) value
+   */
+  std::string txid_ = "";
+  /**
+   * @brief JsonAPI(vout) value
+   */
+  uint32_t vout_ = 0;
+  /**
+   * @brief JsonAPI(sequence) value
+   */
+  uint32_t sequence_ = 0;
 };
 
 // ------------------------------------------------------------------------

@@ -453,6 +453,13 @@ class CFD_JS_API_EXPORT JsonMappingApi {
   static std::string UpdateWitnessStack(const std::string &request_message);
 
   /**
+   * @brief UpdateTxInSequence.
+   * @param[in] request_message     the request json message
+   * @return json string
+   */
+  static std::string UpdateTxInSequence(const std::string &request_message);
+
+  /**
    * @brief GetWitnessStackNum.
    * @param[in] request_message     the request json message
    * @return json string
@@ -673,6 +680,22 @@ class CFD_JS_API_EXPORT JsonMappingApi {
    * @return json string
    */
   static std::string AnalyzeTapScriptTree(const std::string &request_message);
+
+  /**
+   * @brief Get a block information by string.
+   *
+   * @param[in] request_message the request json message
+   * @return json string
+   */
+  static std::string GetBlockInfo(const std::string &request_message);
+
+  /**
+   * @brief Get a block transaction data by string.
+   *
+   * @param[in] request_message the request json message
+   * @return json string
+   */
+  static std::string GetTxDataFromBlock(const std::string &request_message);
 
   /**
    * @brief Decode PSBT.

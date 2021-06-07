@@ -13,8 +13,10 @@
 #include "cfdapi_error_json.h"                 // NOLINT
 #include "cfdapi_select_utxos_wrapper_json.h"  // NOLINT
 #include "cfdjs/cfdjs_api_address.h"
+#include "cfdjs/cfdjs_api_block.h"
 #include "cfdjs/cfdjs_api_common.h"
 #include "cfdjs/cfdjs_api_elements_address.h"
+#include "cfdjs/cfdjs_api_elements_block.h"
 #include "cfdjs/cfdjs_api_elements_transaction.h"
 #include "cfdjs/cfdjs_api_hdwallet.h"
 #include "cfdjs/cfdjs_api_json.h"
@@ -833,6 +835,19 @@ std::string JsonMappingApi::UpdateWitnessStack(
 #endif
 }
 
+std::string JsonMappingApi::UpdateTxInSequence(
+    const std::string &request_message) {
+  return ExecuteElementsCheckApi<
+      api::json::UpdateTxInSequenceRequest, api::json::RawTransactionResponse,
+      api::UpdateTxInSequenceRequestStruct, api::RawTransactionResponseStruct>(
+      request_message, TransactionStructApi::UpdateTxInSequence,
+#ifndef CFD_DISABLE_ELEMENTS
+      ElementsTransactionStructApi::UpdateTxInSequence);
+#else
+      TransactionStructApi::UpdateTxInSequence);
+#endif
+}
+
 std::string JsonMappingApi::GetWitnessStackNum(
     const std::string &request_message) {
   return ExecuteElementsCheckApi<
@@ -1112,6 +1127,31 @@ std::string JsonMappingApi::AnalyzeTapScriptTree(
       api::AnalyzeTapScriptTreeRequestStruct,
       api::AnalyzeTapScriptTreeInfoStruct>(
       request_message, AddressStructApi::AnalyzeTapScriptTree);
+}
+
+std::string JsonMappingApi::GetBlockInfo(const std::string &request_message) {
+  return ExecuteElementsCheckApi<
+      api::json::BlockData, api::json::BlockInformation, api::BlockDataStruct,
+      api::BlockInformationStruct>(
+      request_message, BlockStructApi::GetBlockInfo,
+#ifndef CFD_DISABLE_ELEMENTS
+      ElementsBlockStructApi::GetBlockInfo);
+#else
+      BlockStructApi::GetBlockInfo);
+#endif
+}
+
+std::string JsonMappingApi::GetTxDataFromBlock(
+    const std::string &request_message) {
+  return ExecuteElementsCheckApi<
+      api::json::BlockTxRequest, api::json::BlockTxData,
+      api::BlockTxRequestStruct, api::BlockTxDataStruct>(
+      request_message, BlockStructApi::GetTxDataFromBlock,
+#ifndef CFD_DISABLE_ELEMENTS
+      ElementsBlockStructApi::GetTxDataFromBlock);
+#else
+      BlockStructApi::GetTxDataFromBlock);
+#endif
 }
 
 std::string JsonMappingApi::DecodePsbt(const std::string &request_message) {
@@ -1448,6 +1488,8 @@ void JsonMappingApi::LoadFunctions(
     request_map->emplace("AddTapscriptSign", JsonMappingApi::AddTapscriptSign);
     request_map->emplace(
         "UpdateWitnessStack", JsonMappingApi::UpdateWitnessStack);
+    request_map->emplace(
+        "UpdateTxInSequence", JsonMappingApi::UpdateTxInSequence);
     request_map->emplace("AddMultisigSign", JsonMappingApi::AddMultisigSign);
     request_map->emplace("VerifySignature", JsonMappingApi::VerifySignature);
     request_map->emplace("VerifySign", JsonMappingApi::VerifySign);
@@ -1541,6 +1583,9 @@ void JsonMappingApi::LoadFunctions(
     request_map->emplace("GetTapBranchInfo", JsonMappingApi::GetTapBranchInfo);
     request_map->emplace(
         "AnalyzeTapScriptTree", JsonMappingApi::AnalyzeTapScriptTree);
+    request_map->emplace("GetBlockInfo", JsonMappingApi::GetBlockInfo);
+    request_map->emplace(
+        "GetTxDataFromBlock", JsonMappingApi::GetTxDataFromBlock);
     request_map->emplace("DecodePsbt", JsonMappingApi::DecodePsbt);
     request_map->emplace("CreatePsbt", JsonMappingApi::CreatePsbt);
     request_map->emplace("ConvertToPsbt", JsonMappingApi::ConvertToPsbt);

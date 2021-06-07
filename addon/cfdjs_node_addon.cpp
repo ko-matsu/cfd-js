@@ -617,6 +617,15 @@ Value UpdateWitnessStack(const CallbackInfo &information) {
  * @param[in] information     node addon api callback information
  * @return json string.
  */
+Value UpdateTxInSequence(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::UpdateTxInSequence);
+}
+
+/**
+ * @brief NodeAddon's JSON API.
+ * @param[in] information     node addon api callback information
+ * @return json string.
+ */
 Value GetWitnessStackNum(const CallbackInfo &information) {
   return NodeAddonJsonApi(information, JsonMappingApi::GetWitnessStackNum);
 }
@@ -871,6 +880,24 @@ Value GetTapBranchInfo(const CallbackInfo &information) {
  */
 Value AnalyzeTapScriptTree(const CallbackInfo &information) {
   return NodeAddonJsonApi(information, JsonMappingApi::AnalyzeTapScriptTree);
+}
+
+/**
+ * @brief Implements get block information by string for JSON.
+ * @param[in] information     JSON data.
+ * @return json string.
+ */
+Value GetBlockInfo(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::GetBlockInfo);
+}
+
+/**
+ * @brief Implements get block transaction data by string for JSON.
+ * @param[in] information     JSON data.
+ * @return json string.
+ */
+Value GetTxDataFromBlock(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::GetTxDataFromBlock);
 }
 
 /**
@@ -1275,6 +1302,9 @@ void InitializeJsonApi(Env env, Object *exports) {
       String::New(env, "UpdateWitnessStack"),
       Function::New(env, UpdateWitnessStack));
   exports->Set(
+      String::New(env, "UpdateTxInSequence"),
+      Function::New(env, UpdateTxInSequence));
+  exports->Set(
       String::New(env, "AddMultisigSign"),
       Function::New(env, AddMultisigSign));
   exports->Set(
@@ -1415,6 +1445,11 @@ void InitializeJsonApi(Env env, Object *exports) {
   exports->Set(
       String::New(env, "AnalyzeTapScriptTree"),
       Function::New(env, AnalyzeTapScriptTree));
+  exports->Set(
+      String::New(env, "GetBlockInfo"), Function::New(env, GetBlockInfo));
+  exports->Set(
+      String::New(env, "GetTxDataFromBlock"),
+      Function::New(env, GetTxDataFromBlock));
   exports->Set(String::New(env, "DecodePsbt"), Function::New(env, DecodePsbt));
   exports->Set(String::New(env, "CreatePsbt"), Function::New(env, CreatePsbt));
   exports->Set(

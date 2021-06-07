@@ -11843,6 +11843,157 @@ GetAddressesFromMultisigResponseStruct GetAddressesFromMultisigResponse::Convert
 }
 
 // ------------------------------------------------------------------------
+// BlockData
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<BlockData>
+  BlockData::json_mapper;
+std::vector<std::string> BlockData::item_list;
+
+void BlockData::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<BlockData> func_table;  // NOLINT
+
+  func_table = {
+    BlockData::GetIsElementsString,
+    BlockData::SetIsElementsString,
+    BlockData::GetIsElementsFieldType,
+  };
+  json_mapper.emplace("isElements", func_table);
+  item_list.push_back("isElements");
+  func_table = {
+    BlockData::GetBlockString,
+    BlockData::SetBlockString,
+    BlockData::GetBlockFieldType,
+  };
+  json_mapper.emplace("block", func_table);
+  item_list.push_back("block");
+}
+
+void BlockData::ConvertFromStruct(
+    const BlockDataStruct& data) {
+  is_elements_ = data.is_elements;
+  block_ = data.block;
+  ignore_items = data.ignore_items;
+}
+
+BlockDataStruct BlockData::ConvertToStruct() const {  // NOLINT
+  BlockDataStruct result;
+  result.is_elements = is_elements_;
+  result.block = block_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// BlockInformation
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<BlockInformation>
+  BlockInformation::json_mapper;
+std::vector<std::string> BlockInformation::item_list;
+
+void BlockInformation::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<BlockInformation> func_table;  // NOLINT
+
+  func_table = {
+    BlockInformation::GetBlockHashString,
+    BlockInformation::SetBlockHashString,
+    BlockInformation::GetBlockHashFieldType,
+  };
+  json_mapper.emplace("blockHash", func_table);
+  item_list.push_back("blockHash");
+  func_table = {
+    BlockInformation::GetTxString,
+    BlockInformation::SetTxString,
+    BlockInformation::GetTxFieldType,
+  };
+  json_mapper.emplace("tx", func_table);
+  item_list.push_back("tx");
+  func_table = {
+    BlockInformation::GetVersionString,
+    BlockInformation::SetVersionString,
+    BlockInformation::GetVersionFieldType,
+  };
+  json_mapper.emplace("version", func_table);
+  item_list.push_back("version");
+  func_table = {
+    BlockInformation::GetVersionHexString,
+    BlockInformation::SetVersionHexString,
+    BlockInformation::GetVersionHexFieldType,
+  };
+  json_mapper.emplace("versionHex", func_table);
+  item_list.push_back("versionHex");
+  func_table = {
+    BlockInformation::GetPreviousblockhashString,
+    BlockInformation::SetPreviousblockhashString,
+    BlockInformation::GetPreviousblockhashFieldType,
+  };
+  json_mapper.emplace("previousblockhash", func_table);
+  item_list.push_back("previousblockhash");
+  func_table = {
+    BlockInformation::GetMerklerootString,
+    BlockInformation::SetMerklerootString,
+    BlockInformation::GetMerklerootFieldType,
+  };
+  json_mapper.emplace("merkleroot", func_table);
+  item_list.push_back("merkleroot");
+  func_table = {
+    BlockInformation::GetTimeString,
+    BlockInformation::SetTimeString,
+    BlockInformation::GetTimeFieldType,
+  };
+  json_mapper.emplace("time", func_table);
+  item_list.push_back("time");
+  func_table = {
+    BlockInformation::GetBitsString,
+    BlockInformation::SetBitsString,
+    BlockInformation::GetBitsFieldType,
+  };
+  json_mapper.emplace("bits", func_table);
+  item_list.push_back("bits");
+  func_table = {
+    BlockInformation::GetNonceString,
+    BlockInformation::SetNonceString,
+    BlockInformation::GetNonceFieldType,
+  };
+  json_mapper.emplace("nonce", func_table);
+  item_list.push_back("nonce");
+}
+
+void BlockInformation::ConvertFromStruct(
+    const BlockInformationStruct& data) {
+  block_hash_ = data.block_hash;
+  tx_.ConvertFromStruct(data.tx);
+  version_ = data.version;
+  version_hex_ = data.version_hex;
+  previousblockhash_ = data.previousblockhash;
+  merkleroot_ = data.merkleroot;
+  time_ = data.time;
+  bits_ = data.bits;
+  nonce_ = data.nonce;
+  ignore_items = data.ignore_items;
+}
+
+BlockInformationStruct BlockInformation::ConvertToStruct() const {  // NOLINT
+  BlockInformationStruct result;
+  result.block_hash = block_hash_;
+  result.tx = tx_.ConvertToStruct();
+  result.version = version_;
+  result.version_hex = version_hex_;
+  result.previousblockhash = previousblockhash_;
+  result.merkleroot = merkleroot_;
+  result.time = time_;
+  result.bits = bits_;
+  result.nonce = nonce_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
 // GetCommitmentRequest
 // ------------------------------------------------------------------------
 cfd::core::JsonTableMap<GetCommitmentRequest>
@@ -13219,6 +13370,103 @@ GetTapScriptTreeInfoRequestStruct GetTapScriptTreeInfoRequest::ConvertToStruct()
   result.internal_pubkey = internal_pubkey_;
   result.internal_privkey = internal_privkey_;
   result.tree = tree_.ConvertToStruct();
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// BlockTxRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<BlockTxRequest>
+  BlockTxRequest::json_mapper;
+std::vector<std::string> BlockTxRequest::item_list;
+
+void BlockTxRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<BlockTxRequest> func_table;  // NOLINT
+
+  func_table = {
+    BlockTxRequest::GetIsElementsString,
+    BlockTxRequest::SetIsElementsString,
+    BlockTxRequest::GetIsElementsFieldType,
+  };
+  json_mapper.emplace("isElements", func_table);
+  item_list.push_back("isElements");
+  func_table = {
+    BlockTxRequest::GetBlockString,
+    BlockTxRequest::SetBlockString,
+    BlockTxRequest::GetBlockFieldType,
+  };
+  json_mapper.emplace("block", func_table);
+  item_list.push_back("block");
+  func_table = {
+    BlockTxRequest::GetTxidString,
+    BlockTxRequest::SetTxidString,
+    BlockTxRequest::GetTxidFieldType,
+  };
+  json_mapper.emplace("txid", func_table);
+  item_list.push_back("txid");
+}
+
+void BlockTxRequest::ConvertFromStruct(
+    const BlockTxRequestStruct& data) {
+  is_elements_ = data.is_elements;
+  block_ = data.block;
+  txid_ = data.txid;
+  ignore_items = data.ignore_items;
+}
+
+BlockTxRequestStruct BlockTxRequest::ConvertToStruct() const {  // NOLINT
+  BlockTxRequestStruct result;
+  result.is_elements = is_elements_;
+  result.block = block_;
+  result.txid = txid_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// BlockTxData
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<BlockTxData>
+  BlockTxData::json_mapper;
+std::vector<std::string> BlockTxData::item_list;
+
+void BlockTxData::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<BlockTxData> func_table;  // NOLINT
+
+  func_table = {
+    BlockTxData::GetTxString,
+    BlockTxData::SetTxString,
+    BlockTxData::GetTxFieldType,
+  };
+  json_mapper.emplace("tx", func_table);
+  item_list.push_back("tx");
+  func_table = {
+    BlockTxData::GetTxoutproofString,
+    BlockTxData::SetTxoutproofString,
+    BlockTxData::GetTxoutproofFieldType,
+  };
+  json_mapper.emplace("txoutproof", func_table);
+  item_list.push_back("txoutproof");
+}
+
+void BlockTxData::ConvertFromStruct(
+    const BlockTxDataStruct& data) {
+  tx_ = data.tx;
+  txoutproof_ = data.txoutproof;
+  ignore_items = data.ignore_items;
+}
+
+BlockTxDataStruct BlockTxData::ConvertToStruct() const {  // NOLINT
+  BlockTxDataStruct result;
+  result.tx = tx_;
+  result.txoutproof = txoutproof_;
   result.ignore_items = ignore_items;
   return result;
 }
@@ -15196,6 +15444,77 @@ UpdateWitnessStackRequestStruct UpdateWitnessStackRequest::ConvertToStruct() con
   result.tx = tx_;
   result.is_elements = is_elements_;
   result.txin = txin_.ConvertToStruct();
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// UpdateTxInSequenceRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<UpdateTxInSequenceRequest>
+  UpdateTxInSequenceRequest::json_mapper;
+std::vector<std::string> UpdateTxInSequenceRequest::item_list;
+
+void UpdateTxInSequenceRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<UpdateTxInSequenceRequest> func_table;  // NOLINT
+
+  func_table = {
+    UpdateTxInSequenceRequest::GetTxString,
+    UpdateTxInSequenceRequest::SetTxString,
+    UpdateTxInSequenceRequest::GetTxFieldType,
+  };
+  json_mapper.emplace("tx", func_table);
+  item_list.push_back("tx");
+  func_table = {
+    UpdateTxInSequenceRequest::GetIsElementsString,
+    UpdateTxInSequenceRequest::SetIsElementsString,
+    UpdateTxInSequenceRequest::GetIsElementsFieldType,
+  };
+  json_mapper.emplace("isElements", func_table);
+  item_list.push_back("isElements");
+  func_table = {
+    UpdateTxInSequenceRequest::GetTxidString,
+    UpdateTxInSequenceRequest::SetTxidString,
+    UpdateTxInSequenceRequest::GetTxidFieldType,
+  };
+  json_mapper.emplace("txid", func_table);
+  item_list.push_back("txid");
+  func_table = {
+    UpdateTxInSequenceRequest::GetVoutString,
+    UpdateTxInSequenceRequest::SetVoutString,
+    UpdateTxInSequenceRequest::GetVoutFieldType,
+  };
+  json_mapper.emplace("vout", func_table);
+  item_list.push_back("vout");
+  func_table = {
+    UpdateTxInSequenceRequest::GetSequenceString,
+    UpdateTxInSequenceRequest::SetSequenceString,
+    UpdateTxInSequenceRequest::GetSequenceFieldType,
+  };
+  json_mapper.emplace("sequence", func_table);
+  item_list.push_back("sequence");
+}
+
+void UpdateTxInSequenceRequest::ConvertFromStruct(
+    const UpdateTxInSequenceRequestStruct& data) {
+  tx_ = data.tx;
+  is_elements_ = data.is_elements;
+  txid_ = data.txid;
+  vout_ = data.vout;
+  sequence_ = data.sequence;
+  ignore_items = data.ignore_items;
+}
+
+UpdateTxInSequenceRequestStruct UpdateTxInSequenceRequest::ConvertToStruct() const {  // NOLINT
+  UpdateTxInSequenceRequestStruct result;
+  result.tx = tx_;
+  result.is_elements = is_elements_;
+  result.txid = txid_;
+  result.vout = vout_;
+  result.sequence = sequence_;
   result.ignore_items = ignore_items;
   return result;
 }

@@ -2669,6 +2669,38 @@ struct GetAddressesFromMultisigResponseStruct {
 };
 
 // ------------------------------------------------------------------------
+// BlockDataStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief BlockDataStruct struct
+ */
+struct BlockDataStruct {
+  bool is_elements = false;  //!< is_elements  // NOLINT
+  std::string block = "";    //!< block  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// BlockInformationStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief BlockInformationStruct struct
+ */
+struct BlockInformationStruct {
+  std::string block_hash = "";         //!< block_hash  // NOLINT
+  std::vector<std::string> tx;         //!< tx  // NOLINT
+  uint32_t version = 0;                //!< version  // NOLINT
+  std::string version_hex = "";        //!< version_hex  // NOLINT
+  std::string previousblockhash = "";  //!< previousblockhash  // NOLINT
+  std::string merkleroot = "";         //!< merkleroot  // NOLINT
+  uint32_t time = 0;                   //!< time  // NOLINT
+  uint32_t bits = 0;                   //!< bits  // NOLINT
+  uint32_t nonce = 0;                  //!< nonce  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
 // GetCommitmentRequestStruct
 // ------------------------------------------------------------------------
 /**
@@ -3015,6 +3047,32 @@ struct GetTapScriptTreeInfoRequestStruct {
   std::string internal_pubkey = "";       //!< internal_pubkey  // NOLINT
   std::string internal_privkey = "";      //!< internal_privkey  // NOLINT
   std::vector<TapBranchDataStruct> tree;  //!< tree  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// BlockTxRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief BlockTxRequestStruct struct
+ */
+struct BlockTxRequestStruct {
+  bool is_elements = false;  //!< is_elements  // NOLINT
+  std::string block = "";    //!< block  // NOLINT
+  std::string txid = "";     //!< txid  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// BlockTxDataStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief BlockTxDataStruct struct
+ */
+struct BlockTxDataStruct {
+  std::string tx = "";          //!< tx  // NOLINT
+  std::string txoutproof = "";  //!< txoutproof  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -3511,6 +3569,21 @@ struct UpdateWitnessStackRequestStruct {
   std::string tx = "";                       //!< tx  // NOLINT
   bool is_elements = false;                  //!< is_elements  // NOLINT
   UpdateWitnessStackTxInRequestStruct txin;  //!< txin  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// UpdateTxInSequenceRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief UpdateTxInSequenceRequestStruct struct
+ */
+struct UpdateTxInSequenceRequestStruct {
+  std::string tx = "";       //!< tx  // NOLINT
+  bool is_elements = false;  //!< is_elements  // NOLINT
+  std::string txid = "";     //!< txid  // NOLINT
+  uint32_t vout = 0;         //!< vout  // NOLINT
+  uint32_t sequence = 0;     //!< sequence  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 

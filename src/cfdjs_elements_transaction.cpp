@@ -997,6 +997,27 @@ RawTransactionResponseStruct ElementsTransactionStructApi::UpdateWitnessStack(
   return result;
 }
 
+RawTransactionResponseStruct ElementsTransactionStructApi::UpdateTxInSequence(
+    const UpdateTxInSequenceRequestStruct& request) {
+  auto call_func = [](const UpdateTxInSequenceRequestStruct& request)
+      -> RawTransactionResponseStruct {  // NOLINT
+    RawTransactionResponseStruct response;
+
+    ConfidentialTransactionContext txc(request.tx);
+    auto index = txc.GetTxInIndex(Txid(request.txid), request.vout);
+    txc.SetTxInSequence(index, request.sequence);
+
+    response.hex = txc.GetHex();
+    return response;
+  };
+
+  RawTransactionResponseStruct result;
+  result = ExecuteStructApi<
+      UpdateTxInSequenceRequestStruct, RawTransactionResponseStruct>(
+      request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
 CreateSignatureHashResponseStruct
 ElementsTransactionStructApi::CreateSignatureHash(  // NOLINT
     const CreateElementsSignatureHashRequestStruct& request) {

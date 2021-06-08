@@ -1,10 +1,10 @@
 {
   "namespace": ["cfd","js","api","json"],
-  "functionName": "SignEcdsaAdaptor",
+  "functionName": "EncryptEcdsaAdaptor",
   "comment": "sign on ecdsa adaptor.",
   "request": {
-    ":class": "SignEcdsaAdaptorRequest",
-    ":class:comment": "Request for sign on ecdsa adaptor",
+    ":class": "EncryptEcdsaAdaptorRequest",
+    ":class:comment": "Request for encrypt on ecdsa adaptor",
     "message": "",
     "message:require": "require",
     "message:comment": "message data.",
@@ -15,18 +15,15 @@
     "privkey": "",
     "privkey:require": "require",
     "privkey:comment": "private key.",
-    "adaptor": "",
-    "adaptor:require": "require",
-    "adaptor:comment": "adaptor public key."
+    "encryptionKey": "",
+    "encryptionKey:require": "require",
+    "encryptionKey:comment": "adaptor encryption key."
   },
   "response": {
-    ":class": "SignEcdsaAdaptorResponse",
-    ":class:comment": "Response of sign on ecdsa adaptor",
+    ":class": "EcdsaAdaptorSignature",
+    ":class:comment": "ecdsa adaptor signature",
     "adaptorSignature": "",
     "adaptorSignature:require": "require",
-    "adaptorSignature:comment": "adaptor signature hex.",
-    "proof": "",
-    "proof:require": "require",
-    "proof:comment": "adaptor proof."
+    "adaptorSignature:comment": "adaptor signature hex."
   }
 }

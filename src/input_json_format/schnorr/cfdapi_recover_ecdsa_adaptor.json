@@ -1,19 +1,19 @@
 {
   "namespace": ["cfd","js","api","json"],
-  "functionName": "ExtractSecretEcdsaAdaptor",
-  "comment": "Extract secret data on ecdsa adaptor.",
+  "functionName": "RecoverEcdsaAdaptor",
+  "comment": "Recover secret data on ecdsa adaptor.",
   "request": {
-    ":class": "ExtractSecretEcdsaAdaptorRequest",
-    ":class:comment": "Request for extract secret data on ecdsa adaptor.",
+    ":class": "RecoverEcdsaAdaptorRequest",
+    ":class:comment": "Request for recover secret data on ecdsa adaptor.",
     "adaptorSignature": "",
     "adaptorSignature:require": "require",
     "adaptorSignature:comment": "adaptor signature hex.",
     "signature": "",
     "signature:require": "require",
     "signature:comment": "signature hex.",
-    "adaptor": "",
-    "adaptor:require": "require",
-    "adaptor:comment": "adaptor pubkey"
+    "encryptionKey": "",
+    "encryptionKey:require": "require",
+    "encryptionKey:comment": "adaptor encryption key"
   },
   "response": {
     ":class": "SecretData",

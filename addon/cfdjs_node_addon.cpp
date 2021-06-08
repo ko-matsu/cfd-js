@@ -799,12 +799,12 @@ Value ComputeSigPointSchnorrPubkey(const CallbackInfo &information) {
 }
 
 /**
- * @brief The JSON parameter function of SignEcdsaAdaptor.
+ * @brief The JSON parameter function of EncryptEcdsaAdaptor.
  * @param[in] information   node add on api callback information
  * @return json string
  */
-Value SignEcdsaAdaptor(const CallbackInfo &information) {
-  return NodeAddonJsonApi(information, JsonMappingApi::SignEcdsaAdaptor);
+Value EncryptEcdsaAdaptor(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::EncryptEcdsaAdaptor);
 }
 
 /**
@@ -817,22 +817,21 @@ Value VerifyEcdsaAdaptor(const CallbackInfo &information) {
 }
 
 /**
- * @brief The JSON parameter function of AdaptEcdsaAdaptor.
+ * @brief The JSON parameter function of DecryptEcdsaAdaptor.
  * @param[in] information   node add on api callback information
  * @return json string
  */
-Value AdaptEcdsaAdaptor(const CallbackInfo &information) {
-  return NodeAddonJsonApi(information, JsonMappingApi::AdaptEcdsaAdaptor);
+Value DecryptEcdsaAdaptor(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::DecryptEcdsaAdaptor);
 }
 
 /**
- * @brief The JSON parameter function of ExtractSecretEcdsaAdaptor.
+ * @brief The JSON parameter function of RecoverEcdsaAdaptor.
  * @param[in] information   node add on api callback information
  * @return json string
  */
-Value ExtractSecretEcdsaAdaptor(const CallbackInfo &information) {
-  return NodeAddonJsonApi(
-      information, JsonMappingApi::ExtractSecretEcdsaAdaptor);
+Value RecoverEcdsaAdaptor(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::RecoverEcdsaAdaptor);
 }
 
 /**
@@ -1419,17 +1418,17 @@ void InitializeJsonApi(Env env, Object *exports) {
       String::New(env, "ComputeSigPointSchnorrPubkey"),
       Function::New(env, ComputeSigPointSchnorrPubkey));
   exports->Set(
-      String::New(env, "SignEcdsaAdaptor"),
-      Function::New(env, SignEcdsaAdaptor));
+      String::New(env, "EncryptEcdsaAdaptor"),
+      Function::New(env, EncryptEcdsaAdaptor));
   exports->Set(
       String::New(env, "VerifyEcdsaAdaptor"),
       Function::New(env, VerifyEcdsaAdaptor));
   exports->Set(
-      String::New(env, "AdaptEcdsaAdaptor"),
-      Function::New(env, AdaptEcdsaAdaptor));
+      String::New(env, "DecryptEcdsaAdaptor"),
+      Function::New(env, DecryptEcdsaAdaptor));
   exports->Set(
-      String::New(env, "ExtractSecretEcdsaAdaptor"),
-      Function::New(env, ExtractSecretEcdsaAdaptor));
+      String::New(env, "RecoverEcdsaAdaptor"),
+      Function::New(env, RecoverEcdsaAdaptor));
   exports->Set(
       String::New(env, "GetTapScriptTreeInfo"),
       Function::New(env, GetTapScriptTreeInfo));

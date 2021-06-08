@@ -93,15 +93,15 @@ class SchnorrApi {
       const ComputeSigPointRequestStruct& request);
 
   /**
-   * @brief Sign a ecdsa adaptor signature.
+   * @brief Encrypt an ecdsa adaptor signature.
    *
    * @param[in] request the request
-   * @return SignEcdsaAdaptorResponseStruct
+   * @return EcdsaAdaptorSignatureStruct
    */
-  static SignEcdsaAdaptorResponseStruct SignEcdsaAdaptor(
-      const SignEcdsaAdaptorRequestStruct& request);
+  static EcdsaAdaptorSignatureStruct EncryptEcdsaAdaptor(
+      const EncryptEcdsaAdaptorRequestStruct& request);
   /**
-   * @brief Verify a ecdsa adaptor signature.
+   * @brief Verify an ecdsa adaptor signature.
    *
    * @param[in] request the request
    * @return VerifySignatureResponseStruct
@@ -109,21 +109,21 @@ class SchnorrApi {
   static VerifySignatureResponseStruct VerifyEcdsaAdaptor(
       const VerifyEcdsaAdaptorRequestStruct& request);
   /**
-   * @brief Adapt a ecdsa adaptor.
+   * @brief Decrypt an ecdsa adaptor.
    *
    * @param[in] request the request
    * @return SignatureDataResponseStruct
    */
-  static SignatureDataResponseStruct AdaptEcdsaAdaptor(
-      const AdaptEcdsaAdaptorRequestStruct& request);
+  static SignatureDataResponseStruct DecryptEcdsaAdaptor(
+      const DecryptEcdsaAdaptorRequestStruct& request);
   /**
-   * @brief Extract a secret data.
+   * @brief Recover an secret data.
    *
    * @param[in] request the request
    * @return SecretDataStruct
    */
-  static SecretDataStruct ExtractSecretEcdsaAdaptor(
-      const ExtractSecretEcdsaAdaptorRequestStruct& request);
+  static SecretDataStruct RecoverEcdsaAdaptor(
+      const RecoverEcdsaAdaptorRequestStruct& request);
 };
 
 }  // namespace json

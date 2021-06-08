@@ -1,16 +1,6 @@
 /* eslint-disable max-len */
 /* eslint-disable indent */
 /**
- * Request for adapt signature on ecdsa adaptor.
- * @property {string} adaptorSignature - adaptor signature hex.
- * @property {string} secret - secret data
- */
-export interface AdaptEcdsaAdaptorRequest {
-    adaptorSignature: string;
-    secret: string;
-}
-
-/**
  * Multisig input data to add to tx.
  * @property {boolean} isElements? - elements transaction flag.
  * @property {string} tx - transaction hex
@@ -1151,6 +1141,16 @@ export interface DecodeUnlockingScript {
 }
 
 /**
+ * Request for decrypt signature on ecdsa adaptor.
+ * @property {string} adaptorSignature - adaptor signature hex.
+ * @property {string} secret - secret data
+ */
+export interface DecryptEcdsaAdaptorRequest {
+    adaptorSignature: string;
+    secret: string;
+}
+
+/**
  * @property {string} keyType - contain key type (pubkey, extPubkey, extPrivkey, schnorrPubkey)
  * @property {string} key - key value (hex or base58)
  */
@@ -1181,6 +1181,14 @@ export interface DescriptorScriptJson {
     key?: string;
     keys?: DescriptorKeyJson[];
     reqNum?: number;
+}
+
+/**
+ * ecdsa adaptor signature
+ * @property {string} adaptorSignature - adaptor signature hex.
+ */
+export interface EcdsaAdaptorSignature {
+    adaptorSignature: string;
 }
 
 /**
@@ -1535,6 +1543,20 @@ export interface EncodeSignatureByDerResponse {
 }
 
 /**
+ * Request for encrypt on ecdsa adaptor
+ * @property {string} message - message data. (32-byte hash, or text message.)
+ * @property {boolean} isHashed? - is 32-byte hashed message.
+ * @property {string} privkey - private key.
+ * @property {string} encryptionKey - adaptor encryption key.
+ */
+export interface EncryptEcdsaAdaptorRequest {
+    message: string;
+    isHashed?: boolean;
+    privkey: string;
+    encryptionKey: string;
+}
+
+/**
  * Error response base interface
  * @property {InnerErrorResponse} error - Inner error information
  */
@@ -1576,18 +1598,6 @@ export interface EstimateFeeResponse {
     txFeeAmount?: bigint;
     txoutFeeAmount?: bigint;
     utxoFeeAmount?: bigint;
-}
-
-/**
- * Request for extract secret data on ecdsa adaptor.
- * @property {string} adaptorSignature - adaptor signature hex.
- * @property {string} signature - signature hex.
- * @property {string} adaptor - adaptor pubkey
- */
-export interface ExtractSecretEcdsaAdaptorRequest {
-    adaptorSignature: string;
-    signature: string;
-    adaptor: string;
 }
 
 /**
@@ -2628,6 +2638,18 @@ export interface RawTransactionResponse {
 }
 
 /**
+ * Request for recover secret data on ecdsa adaptor.
+ * @property {string} adaptorSignature - adaptor signature hex.
+ * @property {string} signature - signature hex.
+ * @property {string} encryptionKey - adaptor encryption key
+ */
+export interface RecoverEcdsaAdaptorRequest {
+    adaptorSignature: string;
+    signature: string;
+    encryptionKey: string;
+}
+
+/**
  * @property {string} txid - utxo txid
  * @property {number} vout - utxo vout
  * @property {bigint | number} amount - asset amount
@@ -2902,30 +2924,6 @@ export interface SignData {
     sighashType?: string;
     sighashAnyoneCanPay?: boolean;
     sighashRangeproof?: boolean;
-}
-
-/**
- * Request for sign on ecdsa adaptor
- * @property {string} message - message data. (32-byte hash, or text message.)
- * @property {boolean} isHashed? - is 32-byte hashed message.
- * @property {string} privkey - private key.
- * @property {string} adaptor - adaptor public key.
- */
-export interface SignEcdsaAdaptorRequest {
-    message: string;
-    isHashed?: boolean;
-    privkey: string;
-    adaptor: string;
-}
-
-/**
- * Response of sign on ecdsa adaptor
- * @property {string} adaptorSignature - adaptor signature hex.
- * @property {string} proof - adaptor proof.
- */
-export interface SignEcdsaAdaptorResponse {
-    adaptorSignature: string;
-    proof: string;
 }
 
 /**
@@ -3393,16 +3391,14 @@ export interface UtxoObject {
 /**
  * Request for verify signature
  * @property {string} adaptorSignature - adaptor signature hex.
- * @property {string} proof - adaptor proof.
- * @property {string} adaptor - adaptor public key.
+ * @property {string} encryptionKey - adaptor encryption key.
  * @property {string} message - message data. (32-byte hash, or text message.)
  * @property {boolean} isHashed? - is 32-byte hashed message.
  * @property {string} pubkey - public key.
  */
 export interface VerifyEcdsaAdaptorRequest {
     adaptorSignature: string;
-    proof: string;
-    adaptor: string;
+    encryptionKey: string;
     message: string;
     isHashed?: boolean;
     pubkey: string;
@@ -3538,13 +3534,6 @@ export interface XpubData {
     base58: string;
     hex: string;
 }
-
-/**
- * Adapt signature on ecdsa adaptor.
- * @param {AdaptEcdsaAdaptorRequest} jsonObject - request data.
- * @return {SignatureDataResponse} - response data.
- */
-export function AdaptEcdsaAdaptor(jsonObject: AdaptEcdsaAdaptorRequest): SignatureDataResponse;
 
 /**
  * Add multisig signatures to the transaction.
@@ -3861,6 +3850,13 @@ export function DecodePsbt(jsonObject: DecodePsbtRequest): DecodePsbtResponse;
 export function DecodeRawTransaction(jsonObject: DecodeRawTransactionRequest): DecodeRawTransactionResponse;
 
 /**
+ * Decrypt signature on ecdsa adaptor.
+ * @param {DecryptEcdsaAdaptorRequest} jsonObject - request data.
+ * @return {SignatureDataResponse} - response data.
+ */
+export function DecryptEcdsaAdaptor(jsonObject: DecryptEcdsaAdaptorRequest): SignatureDataResponse;
+
+/**
  * Add raw transaction.
  * @param {ElementsAddRawTransactionRequest} jsonObject - request data.
  * @return {ElementsAddRawTransactionResponse} - response data.
@@ -3903,18 +3899,18 @@ export function EncodeBase64(jsonObject: HexData): Base64Data;
 export function EncodeSignatureByDer(jsonObject: EncodeSignatureByDerRequest): EncodeSignatureByDerResponse;
 
 /**
+ * sign on ecdsa adaptor.
+ * @param {EncryptEcdsaAdaptorRequest} jsonObject - request data.
+ * @return {EcdsaAdaptorSignature} - response data.
+ */
+export function EncryptEcdsaAdaptor(jsonObject: EncryptEcdsaAdaptorRequest): EcdsaAdaptorSignature;
+
+/**
  * Estimate fee.
  * @param {EstimateFeeRequest} jsonObject - request data.
  * @return {EstimateFeeResponse} - response data.
  */
 export function EstimateFee(jsonObject: EstimateFeeRequest): EstimateFeeResponse;
-
-/**
- * Extract secret data on ecdsa adaptor.
- * @param {ExtractSecretEcdsaAdaptorRequest} jsonObject - request data.
- * @return {SecretData} - response data.
- */
-export function ExtractSecretEcdsaAdaptor(jsonObject: ExtractSecretEcdsaAdaptorRequest): SecretData;
 
 /**
  * Finalize and extract PSBT.
@@ -4203,6 +4199,13 @@ export function ParseDescriptor(jsonObject: ParseDescriptorRequest): ParseDescri
 export function ParseScript(jsonObject: ParseScriptRequest): ParseScriptResponse;
 
 /**
+ * Recover secret data on ecdsa adaptor.
+ * @param {RecoverEcdsaAdaptorRequest} jsonObject - request data.
+ * @return {SecretData} - response data.
+ */
+export function RecoverEcdsaAdaptor(jsonObject: RecoverEcdsaAdaptorRequest): SecretData;
+
+/**
  * Create a Schnorr signature for a given message
  * @param {SchnorrSignRequest} jsonObject - request data.
  * @return {SchnorrSignResponse} - response data.
@@ -4257,13 +4260,6 @@ export function SetRawIssueAsset(jsonObject: SetRawIssueAssetRequest): SetRawIss
  * @return {SetRawReissueAssetResponse} - response data.
  */
 export function SetRawReissueAsset(jsonObject: SetRawReissueAssetRequest): SetRawReissueAssetResponse;
-
-/**
- * sign on ecdsa adaptor.
- * @param {SignEcdsaAdaptorRequest} jsonObject - request data.
- * @return {SignEcdsaAdaptorResponse} - response data.
- */
-export function SignEcdsaAdaptor(jsonObject: SignEcdsaAdaptorRequest): SignEcdsaAdaptorResponse;
 
 /**
  * Sign psbt with privkey.

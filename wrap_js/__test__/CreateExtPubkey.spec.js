@@ -47,13 +47,13 @@ const errorCase = [
     'CreateExtPubkey Error(empty key data)',
     CreateExtPubkey,
     ['{"extkey":"", "network":"mainnet"}'],
-    '{"error":{"code":1,"type":"illegal_argument","message":"ExtPrivkey base58 decode error."}}',
+    '{"error":{"code":2,"type":"illegal_state","message":"Decode base58 error."}}',
   ),
   TestHelper.createTestCase(
     'CreateExtPubkey Error(invalid key data)',
     CreateExtPubkey,
     ['{"extkey":"xprivdummydata", "network":"mainnet"}'],
-    '{"error":{"code":1,"type":"illegal_argument","message":"ExtPrivkey base58 decode error."}}',
+    '{"error":{"code":2,"type":"illegal_state","message":"Decode base58 error."}}',
   ),
   TestHelper.createTestCase(
     'CreateExtPubkey Error(not match network type)',

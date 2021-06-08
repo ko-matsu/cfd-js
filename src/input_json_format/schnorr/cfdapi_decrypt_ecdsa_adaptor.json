@@ -1,10 +1,10 @@
 {
   "namespace": ["cfd","js","api","json"],
-  "functionName": "AdaptEcdsaAdaptor",
-  "comment": "Adapt signature on ecdsa adaptor.",
+  "functionName": "DecryptEcdsaAdaptor",
+  "comment": "Decrypt signature on ecdsa adaptor.",
   "request": {
-    ":class": "AdaptEcdsaAdaptorRequest",
-    ":class:comment": "Request for adapt signature on ecdsa adaptor.",
+    ":class": "DecryptEcdsaAdaptorRequest",
+    ":class:comment": "Request for decrypt signature on ecdsa adaptor.",
     "adaptorSignature": "",
     "adaptorSignature:require": "require",
     "adaptorSignature:comment": "adaptor signature hex.",

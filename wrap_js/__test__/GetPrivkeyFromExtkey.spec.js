@@ -33,19 +33,19 @@ const errorCase = [
     'GetPrivkeyFromExtkey empty extkey.',
     GetPrivkeyFromExtkey,
     ['{"extkey":"","network":"mainnet","wif": true,"isCompressed":true}'],
-    '{"error":{"code":1,"type":"illegal_argument","message":"ExtPrivkey base58 decode error."}}',
+    '{"error":{"code":2,"type":"illegal_state","message":"Decode base58 error."}}',
   ),
   TestHelper.createBitcoinTestCase(
     'GetPrivkeyFromExtkey invalid extkey.',
     GetPrivkeyFromExtkey,
     ['{"extkey":"Ltpv78nmdb9RW2JVn6dGat5MR1edEbTEXKUPH8gmTKk6o6RTGLJXRjRHvYzW6fWzSbRcf4ydLekAGxWr7NFTgjz9MTnjGhjCocnDqg1uoSyMkKV","network":"regtest","wif": true,"isCompressed":true}'],
-    '{"error":{"code":1,"type":"illegal_argument","message":"ExtPrivkey unserialize error."}}',
+    '{"error":{"code":1,"type":"illegal_argument","message":"unsupported extkey version."}}',
   ),
   TestHelper.createBitcoinTestCase(
     'GetPrivkeyFromExtkey pubkey extkey.',
     GetPrivkeyFromExtkey,
     ['{"extkey":"tpubDFuJC65DkWcMzUywYNror526dCRLbHJFvfnJpSrWV1VW3EUfoSPMxq7UQVo1tnYCsUSyF3ezv4FvNA2d74MujFPotW858M2ZZ6RqFJffc9A","network":"testnet","wif": true,"isCompressed":true}'],
-    '{"error":{"code":2,"type":"illegal_state","message":"ExtPrivkey keytype error."}}',
+    '{"error":{"code":1,"type":"illegal_argument","message":"Invalid serialize data. this data is ExtPubkey data."}}',
   ),
   TestHelper.createBitcoinTestCase(
     'GetPrivkeyFromExtkey invalid network.',

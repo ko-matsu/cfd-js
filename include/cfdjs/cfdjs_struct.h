@@ -1368,30 +1368,6 @@ struct VerifySignTxInUtxoDataStruct {
 };
 
 // ------------------------------------------------------------------------
-// AdaptEcdsaAdaptorRequestStruct
-// ------------------------------------------------------------------------
-/**
- * @brief AdaptEcdsaAdaptorRequestStruct struct
- */
-struct AdaptEcdsaAdaptorRequestStruct {
-  std::string adaptor_signature = "";  //!< adaptor_signature  // NOLINT
-  std::string secret = "";             //!< secret  // NOLINT
-  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
-};
-
-// ------------------------------------------------------------------------
-// SignatureDataResponseStruct
-// ------------------------------------------------------------------------
-/**
- * @brief SignatureDataResponseStruct struct
- */
-struct SignatureDataResponseStruct {
-  std::string signature = "";  //!< signature  // NOLINT
-  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
-  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
-};
-
-// ------------------------------------------------------------------------
 // AddMultisigSignRequestStruct
 // ------------------------------------------------------------------------
 /**
@@ -1610,6 +1586,18 @@ struct CalculateEcSignatureRequestStruct {
   std::string sighash = "";        //!< sighash  // NOLINT
   PrivkeyDataStruct privkey_data;  //!< privkey_data  // NOLINT
   bool is_grind_r = true;          //!< is_grind_r  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// SignatureDataResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief SignatureDataResponseStruct struct
+ */
+struct SignatureDataResponseStruct {
+  std::string signature = "";  //!< signature  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -2103,6 +2091,18 @@ struct DecodeRawTransactionRequestStruct {
 };
 
 // ------------------------------------------------------------------------
+// DecryptEcdsaAdaptorRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief DecryptEcdsaAdaptorRequestStruct struct
+ */
+struct DecryptEcdsaAdaptorRequestStruct {
+  std::string adaptor_signature = "";  //!< adaptor_signature  // NOLINT
+  std::string secret = "";             //!< secret  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
 // ElementsAddRawTransactionRequestStruct
 // ------------------------------------------------------------------------
 /**
@@ -2453,6 +2453,32 @@ struct EncodeSignatureByDerResponseStruct {
 };
 
 // ------------------------------------------------------------------------
+// EncryptEcdsaAdaptorRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief EncryptEcdsaAdaptorRequestStruct struct
+ */
+struct EncryptEcdsaAdaptorRequestStruct {
+  std::string message = "";         //!< message  // NOLINT
+  bool is_hashed = true;            //!< is_hashed  // NOLINT
+  std::string privkey = "";         //!< privkey  // NOLINT
+  std::string encryption_key = "";  //!< encryption_key  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// EcdsaAdaptorSignatureStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief EcdsaAdaptorSignatureStruct struct
+ */
+struct EcdsaAdaptorSignatureStruct {
+  std::string adaptor_signature = "";  //!< adaptor_signature  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
 // EstimateFeeRequestStruct
 // ------------------------------------------------------------------------
 /**
@@ -2481,31 +2507,6 @@ struct EstimateFeeResponseStruct {
   int64_t tx_fee_amount = 0;     //!< tx_fee_amount  // NOLINT
   int64_t txout_fee_amount = 0;  //!< txout_fee_amount  // NOLINT
   int64_t utxo_fee_amount = 0;   //!< utxo_fee_amount  // NOLINT
-  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
-  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
-};
-
-// ------------------------------------------------------------------------
-// ExtractSecretEcdsaAdaptorRequestStruct
-// ------------------------------------------------------------------------
-/**
- * @brief ExtractSecretEcdsaAdaptorRequestStruct struct
- */
-struct ExtractSecretEcdsaAdaptorRequestStruct {
-  std::string adaptor_signature = "";  //!< adaptor_signature  // NOLINT
-  std::string signature = "";          //!< signature  // NOLINT
-  std::string adaptor = "";            //!< adaptor  // NOLINT
-  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
-};
-
-// ------------------------------------------------------------------------
-// SecretDataStruct
-// ------------------------------------------------------------------------
-/**
- * @brief SecretDataStruct struct
- */
-struct SecretDataStruct {
-  std::string secret = "";  //!< secret  // NOLINT
   cfd::js::api::InnerErrorResponseStruct error;   //!< error information
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
@@ -3280,6 +3281,31 @@ struct ParseScriptResponseStruct {
 };
 
 // ------------------------------------------------------------------------
+// RecoverEcdsaAdaptorRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief RecoverEcdsaAdaptorRequestStruct struct
+ */
+struct RecoverEcdsaAdaptorRequestStruct {
+  std::string adaptor_signature = "";  //!< adaptor_signature  // NOLINT
+  std::string signature = "";          //!< signature  // NOLINT
+  std::string encryption_key = "";     //!< encryption_key  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// SecretDataStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief SecretDataStruct struct
+ */
+struct SecretDataStruct {
+  std::string secret = "";  //!< secret  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
 // SchnorrSignRequestStruct
 // ------------------------------------------------------------------------
 /**
@@ -3441,33 +3467,6 @@ struct CreateElementsSignatureHashRequestStruct {
 };
 
 // ------------------------------------------------------------------------
-// SignEcdsaAdaptorRequestStruct
-// ------------------------------------------------------------------------
-/**
- * @brief SignEcdsaAdaptorRequestStruct struct
- */
-struct SignEcdsaAdaptorRequestStruct {
-  std::string message = "";  //!< message  // NOLINT
-  bool is_hashed = true;     //!< is_hashed  // NOLINT
-  std::string privkey = "";  //!< privkey  // NOLINT
-  std::string adaptor = "";  //!< adaptor  // NOLINT
-  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
-};
-
-// ------------------------------------------------------------------------
-// SignEcdsaAdaptorResponseStruct
-// ------------------------------------------------------------------------
-/**
- * @brief SignEcdsaAdaptorResponseStruct struct
- */
-struct SignEcdsaAdaptorResponseStruct {
-  std::string adaptor_signature = "";  //!< adaptor_signature  // NOLINT
-  std::string proof = "";              //!< proof  // NOLINT
-  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
-  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
-};
-
-// ------------------------------------------------------------------------
 // SignPsbtRequestStruct
 // ------------------------------------------------------------------------
 /**
@@ -3608,8 +3607,7 @@ struct UpdateTxOutAmountRequestStruct {
  */
 struct VerifyEcdsaAdaptorRequestStruct {
   std::string adaptor_signature = "";  //!< adaptor_signature  // NOLINT
-  std::string proof = "";              //!< proof  // NOLINT
-  std::string adaptor = "";            //!< adaptor  // NOLINT
+  std::string encryption_key = "";     //!< encryption_key  // NOLINT
   std::string message = "";            //!< message  // NOLINT
   bool is_hashed = true;               //!< is_hashed  // NOLINT
   std::string pubkey = "";             //!< pubkey  // NOLINT

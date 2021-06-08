@@ -39,7 +39,7 @@ const errorCase = [
     'GetPubkeyFromExtkey invalid extkey.',
     GetPubkeyFromExtkey,
     ['{"extkey":"Ltpv78nmdb9RW2JVn6dGat5MR1edEbTEXKUPH8gmTKk6o6RTGLJXRjRHvYzW6fWzSbRcf4ydLekAGxWr7NFTgjz9MTnjGhjCocnDqg1uoSyMkKV","network":"regtest"}'],
-    '{"error":{"code":1,"type":"illegal_argument","message":"ExtPrivkey unserialize error."}}',
+    '{"error":{"code":1,"type":"illegal_argument","message":"unsupported extkey version."}}',
   ),
   TestHelper.createBitcoinTestCase(
     'GetPubkeyFromExtkey invalid network.',

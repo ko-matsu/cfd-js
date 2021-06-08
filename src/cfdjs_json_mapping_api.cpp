@@ -1040,12 +1040,12 @@ std::string JsonMappingApi::ComputeSigPointSchnorrPubkey(
       request_message, SchnorrApi::ComputeSigPointSchnorrPubkey);
 }
 
-std::string JsonMappingApi::SignEcdsaAdaptor(
+std::string JsonMappingApi::EncryptEcdsaAdaptor(
     const std::string &request_message) {
   return ExecuteJsonApi<
-      SignEcdsaAdaptorRequest, SignEcdsaAdaptorResponse,
-      SignEcdsaAdaptorRequestStruct, SignEcdsaAdaptorResponseStruct>(
-      request_message, SchnorrApi::SignEcdsaAdaptor);
+      EncryptEcdsaAdaptorRequest, EcdsaAdaptorSignature,
+      EncryptEcdsaAdaptorRequestStruct, EcdsaAdaptorSignatureStruct>(
+      request_message, SchnorrApi::EncryptEcdsaAdaptor);
 }
 
 std::string JsonMappingApi::VerifyEcdsaAdaptor(
@@ -1056,20 +1056,19 @@ std::string JsonMappingApi::VerifyEcdsaAdaptor(
       request_message, SchnorrApi::VerifyEcdsaAdaptor);
 }
 
-std::string JsonMappingApi::AdaptEcdsaAdaptor(
+std::string JsonMappingApi::DecryptEcdsaAdaptor(
     const std::string &request_message) {
   return ExecuteJsonApi<
-      AdaptEcdsaAdaptorRequest, SignatureDataResponse,
-      AdaptEcdsaAdaptorRequestStruct, SignatureDataResponseStruct>(
-      request_message, SchnorrApi::AdaptEcdsaAdaptor);
+      DecryptEcdsaAdaptorRequest, SignatureDataResponse,
+      DecryptEcdsaAdaptorRequestStruct, SignatureDataResponseStruct>(
+      request_message, SchnorrApi::DecryptEcdsaAdaptor);
 }
 
-std::string JsonMappingApi::ExtractSecretEcdsaAdaptor(
+std::string JsonMappingApi::RecoverEcdsaAdaptor(
     const std::string &request_message) {
   return ExecuteJsonApi<
-      ExtractSecretEcdsaAdaptorRequest, SecretData,
-      ExtractSecretEcdsaAdaptorRequestStruct, SecretDataStruct>(
-      request_message, SchnorrApi::ExtractSecretEcdsaAdaptor);
+      RecoverEcdsaAdaptorRequest, SecretData, RecoverEcdsaAdaptorRequestStruct,
+      SecretDataStruct>(request_message, SchnorrApi::RecoverEcdsaAdaptor);
 }
 
 std::string JsonMappingApi::GetTapScriptTreeInfo(
@@ -1564,14 +1563,14 @@ void JsonMappingApi::LoadFunctions(
     request_map->emplace(
         "ComputeSigPointSchnorrPubkey",
         JsonMappingApi::ComputeSigPointSchnorrPubkey);
-    request_map->emplace("SignEcdsaAdaptor", JsonMappingApi::SignEcdsaAdaptor);
+    request_map->emplace(
+        "EncryptEcdsaAdaptor", JsonMappingApi::EncryptEcdsaAdaptor);
     request_map->emplace(
         "VerifyEcdsaAdaptor", JsonMappingApi::VerifyEcdsaAdaptor);
     request_map->emplace(
-        "AdaptEcdsaAdaptor", JsonMappingApi::AdaptEcdsaAdaptor);
+        "DecryptEcdsaAdaptor", JsonMappingApi::DecryptEcdsaAdaptor);
     request_map->emplace(
-        "ExtractSecretEcdsaAdaptor",
-        JsonMappingApi::ExtractSecretEcdsaAdaptor);
+        "RecoverEcdsaAdaptor", JsonMappingApi::RecoverEcdsaAdaptor);
     request_map->emplace(
         "GetTapScriptTreeInfo", JsonMappingApi::GetTapScriptTreeInfo);
     request_map->emplace(

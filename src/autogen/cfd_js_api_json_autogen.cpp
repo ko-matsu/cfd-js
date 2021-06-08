@@ -6534,85 +6534,6 @@ VerifySignTxInUtxoDataStruct VerifySignTxInUtxoData::ConvertToStruct() const {  
 }
 
 // ------------------------------------------------------------------------
-// AdaptEcdsaAdaptorRequest
-// ------------------------------------------------------------------------
-cfd::core::JsonTableMap<AdaptEcdsaAdaptorRequest>
-  AdaptEcdsaAdaptorRequest::json_mapper;
-std::vector<std::string> AdaptEcdsaAdaptorRequest::item_list;
-
-void AdaptEcdsaAdaptorRequest::CollectFieldName() {
-  if (!json_mapper.empty()) {
-    return;
-  }
-  cfd::core::CLASS_FUNCTION_TABLE<AdaptEcdsaAdaptorRequest> func_table;  // NOLINT
-
-  func_table = {
-    AdaptEcdsaAdaptorRequest::GetAdaptorSignatureString,
-    AdaptEcdsaAdaptorRequest::SetAdaptorSignatureString,
-    AdaptEcdsaAdaptorRequest::GetAdaptorSignatureFieldType,
-  };
-  json_mapper.emplace("adaptorSignature", func_table);
-  item_list.push_back("adaptorSignature");
-  func_table = {
-    AdaptEcdsaAdaptorRequest::GetSecretString,
-    AdaptEcdsaAdaptorRequest::SetSecretString,
-    AdaptEcdsaAdaptorRequest::GetSecretFieldType,
-  };
-  json_mapper.emplace("secret", func_table);
-  item_list.push_back("secret");
-}
-
-void AdaptEcdsaAdaptorRequest::ConvertFromStruct(
-    const AdaptEcdsaAdaptorRequestStruct& data) {
-  adaptor_signature_ = data.adaptor_signature;
-  secret_ = data.secret;
-  ignore_items = data.ignore_items;
-}
-
-AdaptEcdsaAdaptorRequestStruct AdaptEcdsaAdaptorRequest::ConvertToStruct() const {  // NOLINT
-  AdaptEcdsaAdaptorRequestStruct result;
-  result.adaptor_signature = adaptor_signature_;
-  result.secret = secret_;
-  result.ignore_items = ignore_items;
-  return result;
-}
-
-// ------------------------------------------------------------------------
-// SignatureDataResponse
-// ------------------------------------------------------------------------
-cfd::core::JsonTableMap<SignatureDataResponse>
-  SignatureDataResponse::json_mapper;
-std::vector<std::string> SignatureDataResponse::item_list;
-
-void SignatureDataResponse::CollectFieldName() {
-  if (!json_mapper.empty()) {
-    return;
-  }
-  cfd::core::CLASS_FUNCTION_TABLE<SignatureDataResponse> func_table;  // NOLINT
-
-  func_table = {
-    SignatureDataResponse::GetSignatureString,
-    SignatureDataResponse::SetSignatureString,
-    SignatureDataResponse::GetSignatureFieldType,
-  };
-  json_mapper.emplace("signature", func_table);
-  item_list.push_back("signature");
-}
-
-void SignatureDataResponse::ConvertFromStruct(
-    const SignatureDataResponseStruct& data) {
-  signature_ = data.signature;
-  ignore_items = data.ignore_items;
-}
-
-SignatureDataResponseStruct SignatureDataResponse::ConvertToStruct() const {  // NOLINT
-  SignatureDataResponseStruct result;
-  result.signature = signature_;
-  result.ignore_items = ignore_items;
-  return result;
-}
-
-// ------------------------------------------------------------------------
 // AddMultisigSignRequest
 // ------------------------------------------------------------------------
 cfd::core::JsonTableMap<AddMultisigSignRequest>
@@ -7474,6 +7395,41 @@ CalculateEcSignatureRequestStruct CalculateEcSignatureRequest::ConvertToStruct()
   result.sighash = sighash_;
   result.privkey_data = privkey_data_.ConvertToStruct();
   result.is_grind_r = is_grind_r_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// SignatureDataResponse
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<SignatureDataResponse>
+  SignatureDataResponse::json_mapper;
+std::vector<std::string> SignatureDataResponse::item_list;
+
+void SignatureDataResponse::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<SignatureDataResponse> func_table;  // NOLINT
+
+  func_table = {
+    SignatureDataResponse::GetSignatureString,
+    SignatureDataResponse::SetSignatureString,
+    SignatureDataResponse::GetSignatureFieldType,
+  };
+  json_mapper.emplace("signature", func_table);
+  item_list.push_back("signature");
+}
+
+void SignatureDataResponse::ConvertFromStruct(
+    const SignatureDataResponseStruct& data) {
+  signature_ = data.signature;
+  ignore_items = data.ignore_items;
+}
+
+SignatureDataResponseStruct SignatureDataResponse::ConvertToStruct() const {  // NOLINT
+  SignatureDataResponseStruct result;
+  result.signature = signature_;
   result.ignore_items = ignore_items;
   return result;
 }
@@ -9395,6 +9351,50 @@ DecodeRawTransactionRequestStruct DecodeRawTransactionRequest::ConvertToStruct()
 }
 
 // ------------------------------------------------------------------------
+// DecryptEcdsaAdaptorRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<DecryptEcdsaAdaptorRequest>
+  DecryptEcdsaAdaptorRequest::json_mapper;
+std::vector<std::string> DecryptEcdsaAdaptorRequest::item_list;
+
+void DecryptEcdsaAdaptorRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<DecryptEcdsaAdaptorRequest> func_table;  // NOLINT
+
+  func_table = {
+    DecryptEcdsaAdaptorRequest::GetAdaptorSignatureString,
+    DecryptEcdsaAdaptorRequest::SetAdaptorSignatureString,
+    DecryptEcdsaAdaptorRequest::GetAdaptorSignatureFieldType,
+  };
+  json_mapper.emplace("adaptorSignature", func_table);
+  item_list.push_back("adaptorSignature");
+  func_table = {
+    DecryptEcdsaAdaptorRequest::GetSecretString,
+    DecryptEcdsaAdaptorRequest::SetSecretString,
+    DecryptEcdsaAdaptorRequest::GetSecretFieldType,
+  };
+  json_mapper.emplace("secret", func_table);
+  item_list.push_back("secret");
+}
+
+void DecryptEcdsaAdaptorRequest::ConvertFromStruct(
+    const DecryptEcdsaAdaptorRequestStruct& data) {
+  adaptor_signature_ = data.adaptor_signature;
+  secret_ = data.secret;
+  ignore_items = data.ignore_items;
+}
+
+DecryptEcdsaAdaptorRequestStruct DecryptEcdsaAdaptorRequest::ConvertToStruct() const {  // NOLINT
+  DecryptEcdsaAdaptorRequestStruct result;
+  result.adaptor_signature = adaptor_signature_;
+  result.secret = secret_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
 // ElementsAddRawTransactionRequest
 // ------------------------------------------------------------------------
 cfd::core::JsonTableMap<ElementsAddRawTransactionRequest>
@@ -10847,6 +10847,103 @@ EncodeSignatureByDerResponseStruct EncodeSignatureByDerResponse::ConvertToStruct
 }
 
 // ------------------------------------------------------------------------
+// EncryptEcdsaAdaptorRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<EncryptEcdsaAdaptorRequest>
+  EncryptEcdsaAdaptorRequest::json_mapper;
+std::vector<std::string> EncryptEcdsaAdaptorRequest::item_list;
+
+void EncryptEcdsaAdaptorRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<EncryptEcdsaAdaptorRequest> func_table;  // NOLINT
+
+  func_table = {
+    EncryptEcdsaAdaptorRequest::GetMessageString,
+    EncryptEcdsaAdaptorRequest::SetMessageString,
+    EncryptEcdsaAdaptorRequest::GetMessageFieldType,
+  };
+  json_mapper.emplace("message", func_table);
+  item_list.push_back("message");
+  func_table = {
+    EncryptEcdsaAdaptorRequest::GetIsHashedString,
+    EncryptEcdsaAdaptorRequest::SetIsHashedString,
+    EncryptEcdsaAdaptorRequest::GetIsHashedFieldType,
+  };
+  json_mapper.emplace("isHashed", func_table);
+  item_list.push_back("isHashed");
+  func_table = {
+    EncryptEcdsaAdaptorRequest::GetPrivkeyString,
+    EncryptEcdsaAdaptorRequest::SetPrivkeyString,
+    EncryptEcdsaAdaptorRequest::GetPrivkeyFieldType,
+  };
+  json_mapper.emplace("privkey", func_table);
+  item_list.push_back("privkey");
+  func_table = {
+    EncryptEcdsaAdaptorRequest::GetEncryptionKeyString,
+    EncryptEcdsaAdaptorRequest::SetEncryptionKeyString,
+    EncryptEcdsaAdaptorRequest::GetEncryptionKeyFieldType,
+  };
+  json_mapper.emplace("encryptionKey", func_table);
+  item_list.push_back("encryptionKey");
+}
+
+void EncryptEcdsaAdaptorRequest::ConvertFromStruct(
+    const EncryptEcdsaAdaptorRequestStruct& data) {
+  message_ = data.message;
+  is_hashed_ = data.is_hashed;
+  privkey_ = data.privkey;
+  encryption_key_ = data.encryption_key;
+  ignore_items = data.ignore_items;
+}
+
+EncryptEcdsaAdaptorRequestStruct EncryptEcdsaAdaptorRequest::ConvertToStruct() const {  // NOLINT
+  EncryptEcdsaAdaptorRequestStruct result;
+  result.message = message_;
+  result.is_hashed = is_hashed_;
+  result.privkey = privkey_;
+  result.encryption_key = encryption_key_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// EcdsaAdaptorSignature
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<EcdsaAdaptorSignature>
+  EcdsaAdaptorSignature::json_mapper;
+std::vector<std::string> EcdsaAdaptorSignature::item_list;
+
+void EcdsaAdaptorSignature::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<EcdsaAdaptorSignature> func_table;  // NOLINT
+
+  func_table = {
+    EcdsaAdaptorSignature::GetAdaptorSignatureString,
+    EcdsaAdaptorSignature::SetAdaptorSignatureString,
+    EcdsaAdaptorSignature::GetAdaptorSignatureFieldType,
+  };
+  json_mapper.emplace("adaptorSignature", func_table);
+  item_list.push_back("adaptorSignature");
+}
+
+void EcdsaAdaptorSignature::ConvertFromStruct(
+    const EcdsaAdaptorSignatureStruct& data) {
+  adaptor_signature_ = data.adaptor_signature;
+  ignore_items = data.ignore_items;
+}
+
+EcdsaAdaptorSignatureStruct EcdsaAdaptorSignature::ConvertToStruct() const {  // NOLINT
+  EcdsaAdaptorSignatureStruct result;
+  result.adaptor_signature = adaptor_signature_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
 // InnerErrorResponse
 // ------------------------------------------------------------------------
 cfd::core::JsonTableMap<InnerErrorResponse>
@@ -11077,94 +11174,6 @@ EstimateFeeResponseStruct EstimateFeeResponse::ConvertToStruct() const {  // NOL
   result.tx_fee_amount = tx_fee_amount_;
   result.txout_fee_amount = txout_fee_amount_;
   result.utxo_fee_amount = utxo_fee_amount_;
-  result.ignore_items = ignore_items;
-  return result;
-}
-
-// ------------------------------------------------------------------------
-// ExtractSecretEcdsaAdaptorRequest
-// ------------------------------------------------------------------------
-cfd::core::JsonTableMap<ExtractSecretEcdsaAdaptorRequest>
-  ExtractSecretEcdsaAdaptorRequest::json_mapper;
-std::vector<std::string> ExtractSecretEcdsaAdaptorRequest::item_list;
-
-void ExtractSecretEcdsaAdaptorRequest::CollectFieldName() {
-  if (!json_mapper.empty()) {
-    return;
-  }
-  cfd::core::CLASS_FUNCTION_TABLE<ExtractSecretEcdsaAdaptorRequest> func_table;  // NOLINT
-
-  func_table = {
-    ExtractSecretEcdsaAdaptorRequest::GetAdaptorSignatureString,
-    ExtractSecretEcdsaAdaptorRequest::SetAdaptorSignatureString,
-    ExtractSecretEcdsaAdaptorRequest::GetAdaptorSignatureFieldType,
-  };
-  json_mapper.emplace("adaptorSignature", func_table);
-  item_list.push_back("adaptorSignature");
-  func_table = {
-    ExtractSecretEcdsaAdaptorRequest::GetSignatureString,
-    ExtractSecretEcdsaAdaptorRequest::SetSignatureString,
-    ExtractSecretEcdsaAdaptorRequest::GetSignatureFieldType,
-  };
-  json_mapper.emplace("signature", func_table);
-  item_list.push_back("signature");
-  func_table = {
-    ExtractSecretEcdsaAdaptorRequest::GetAdaptorString,
-    ExtractSecretEcdsaAdaptorRequest::SetAdaptorString,
-    ExtractSecretEcdsaAdaptorRequest::GetAdaptorFieldType,
-  };
-  json_mapper.emplace("adaptor", func_table);
-  item_list.push_back("adaptor");
-}
-
-void ExtractSecretEcdsaAdaptorRequest::ConvertFromStruct(
-    const ExtractSecretEcdsaAdaptorRequestStruct& data) {
-  adaptor_signature_ = data.adaptor_signature;
-  signature_ = data.signature;
-  adaptor_ = data.adaptor;
-  ignore_items = data.ignore_items;
-}
-
-ExtractSecretEcdsaAdaptorRequestStruct ExtractSecretEcdsaAdaptorRequest::ConvertToStruct() const {  // NOLINT
-  ExtractSecretEcdsaAdaptorRequestStruct result;
-  result.adaptor_signature = adaptor_signature_;
-  result.signature = signature_;
-  result.adaptor = adaptor_;
-  result.ignore_items = ignore_items;
-  return result;
-}
-
-// ------------------------------------------------------------------------
-// SecretData
-// ------------------------------------------------------------------------
-cfd::core::JsonTableMap<SecretData>
-  SecretData::json_mapper;
-std::vector<std::string> SecretData::item_list;
-
-void SecretData::CollectFieldName() {
-  if (!json_mapper.empty()) {
-    return;
-  }
-  cfd::core::CLASS_FUNCTION_TABLE<SecretData> func_table;  // NOLINT
-
-  func_table = {
-    SecretData::GetSecretString,
-    SecretData::SetSecretString,
-    SecretData::GetSecretFieldType,
-  };
-  json_mapper.emplace("secret", func_table);
-  item_list.push_back("secret");
-}
-
-void SecretData::ConvertFromStruct(
-    const SecretDataStruct& data) {
-  secret_ = data.secret;
-  ignore_items = data.ignore_items;
-}
-
-SecretDataStruct SecretData::ConvertToStruct() const {  // NOLINT
-  SecretDataStruct result;
-  result.secret = secret_;
   result.ignore_items = ignore_items;
   return result;
 }
@@ -14279,6 +14288,94 @@ ParseScriptResponseStruct ParseScriptResponse::ConvertToStruct() const {  // NOL
 }
 
 // ------------------------------------------------------------------------
+// RecoverEcdsaAdaptorRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<RecoverEcdsaAdaptorRequest>
+  RecoverEcdsaAdaptorRequest::json_mapper;
+std::vector<std::string> RecoverEcdsaAdaptorRequest::item_list;
+
+void RecoverEcdsaAdaptorRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<RecoverEcdsaAdaptorRequest> func_table;  // NOLINT
+
+  func_table = {
+    RecoverEcdsaAdaptorRequest::GetAdaptorSignatureString,
+    RecoverEcdsaAdaptorRequest::SetAdaptorSignatureString,
+    RecoverEcdsaAdaptorRequest::GetAdaptorSignatureFieldType,
+  };
+  json_mapper.emplace("adaptorSignature", func_table);
+  item_list.push_back("adaptorSignature");
+  func_table = {
+    RecoverEcdsaAdaptorRequest::GetSignatureString,
+    RecoverEcdsaAdaptorRequest::SetSignatureString,
+    RecoverEcdsaAdaptorRequest::GetSignatureFieldType,
+  };
+  json_mapper.emplace("signature", func_table);
+  item_list.push_back("signature");
+  func_table = {
+    RecoverEcdsaAdaptorRequest::GetEncryptionKeyString,
+    RecoverEcdsaAdaptorRequest::SetEncryptionKeyString,
+    RecoverEcdsaAdaptorRequest::GetEncryptionKeyFieldType,
+  };
+  json_mapper.emplace("encryptionKey", func_table);
+  item_list.push_back("encryptionKey");
+}
+
+void RecoverEcdsaAdaptorRequest::ConvertFromStruct(
+    const RecoverEcdsaAdaptorRequestStruct& data) {
+  adaptor_signature_ = data.adaptor_signature;
+  signature_ = data.signature;
+  encryption_key_ = data.encryption_key;
+  ignore_items = data.ignore_items;
+}
+
+RecoverEcdsaAdaptorRequestStruct RecoverEcdsaAdaptorRequest::ConvertToStruct() const {  // NOLINT
+  RecoverEcdsaAdaptorRequestStruct result;
+  result.adaptor_signature = adaptor_signature_;
+  result.signature = signature_;
+  result.encryption_key = encryption_key_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// SecretData
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<SecretData>
+  SecretData::json_mapper;
+std::vector<std::string> SecretData::item_list;
+
+void SecretData::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<SecretData> func_table;  // NOLINT
+
+  func_table = {
+    SecretData::GetSecretString,
+    SecretData::SetSecretString,
+    SecretData::GetSecretFieldType,
+  };
+  json_mapper.emplace("secret", func_table);
+  item_list.push_back("secret");
+}
+
+void SecretData::ConvertFromStruct(
+    const SecretDataStruct& data) {
+  secret_ = data.secret;
+  ignore_items = data.ignore_items;
+}
+
+SecretDataStruct SecretData::ConvertToStruct() const {  // NOLINT
+  SecretDataStruct result;
+  result.secret = secret_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
 // SchnorrSignRequest
 // ------------------------------------------------------------------------
 cfd::core::JsonTableMap<SchnorrSignRequest>
@@ -14924,112 +15021,6 @@ CreateElementsSignatureHashRequestStruct CreateElementsSignatureHashRequest::Con
 }
 
 // ------------------------------------------------------------------------
-// SignEcdsaAdaptorRequest
-// ------------------------------------------------------------------------
-cfd::core::JsonTableMap<SignEcdsaAdaptorRequest>
-  SignEcdsaAdaptorRequest::json_mapper;
-std::vector<std::string> SignEcdsaAdaptorRequest::item_list;
-
-void SignEcdsaAdaptorRequest::CollectFieldName() {
-  if (!json_mapper.empty()) {
-    return;
-  }
-  cfd::core::CLASS_FUNCTION_TABLE<SignEcdsaAdaptorRequest> func_table;  // NOLINT
-
-  func_table = {
-    SignEcdsaAdaptorRequest::GetMessageString,
-    SignEcdsaAdaptorRequest::SetMessageString,
-    SignEcdsaAdaptorRequest::GetMessageFieldType,
-  };
-  json_mapper.emplace("message", func_table);
-  item_list.push_back("message");
-  func_table = {
-    SignEcdsaAdaptorRequest::GetIsHashedString,
-    SignEcdsaAdaptorRequest::SetIsHashedString,
-    SignEcdsaAdaptorRequest::GetIsHashedFieldType,
-  };
-  json_mapper.emplace("isHashed", func_table);
-  item_list.push_back("isHashed");
-  func_table = {
-    SignEcdsaAdaptorRequest::GetPrivkeyString,
-    SignEcdsaAdaptorRequest::SetPrivkeyString,
-    SignEcdsaAdaptorRequest::GetPrivkeyFieldType,
-  };
-  json_mapper.emplace("privkey", func_table);
-  item_list.push_back("privkey");
-  func_table = {
-    SignEcdsaAdaptorRequest::GetAdaptorString,
-    SignEcdsaAdaptorRequest::SetAdaptorString,
-    SignEcdsaAdaptorRequest::GetAdaptorFieldType,
-  };
-  json_mapper.emplace("adaptor", func_table);
-  item_list.push_back("adaptor");
-}
-
-void SignEcdsaAdaptorRequest::ConvertFromStruct(
-    const SignEcdsaAdaptorRequestStruct& data) {
-  message_ = data.message;
-  is_hashed_ = data.is_hashed;
-  privkey_ = data.privkey;
-  adaptor_ = data.adaptor;
-  ignore_items = data.ignore_items;
-}
-
-SignEcdsaAdaptorRequestStruct SignEcdsaAdaptorRequest::ConvertToStruct() const {  // NOLINT
-  SignEcdsaAdaptorRequestStruct result;
-  result.message = message_;
-  result.is_hashed = is_hashed_;
-  result.privkey = privkey_;
-  result.adaptor = adaptor_;
-  result.ignore_items = ignore_items;
-  return result;
-}
-
-// ------------------------------------------------------------------------
-// SignEcdsaAdaptorResponse
-// ------------------------------------------------------------------------
-cfd::core::JsonTableMap<SignEcdsaAdaptorResponse>
-  SignEcdsaAdaptorResponse::json_mapper;
-std::vector<std::string> SignEcdsaAdaptorResponse::item_list;
-
-void SignEcdsaAdaptorResponse::CollectFieldName() {
-  if (!json_mapper.empty()) {
-    return;
-  }
-  cfd::core::CLASS_FUNCTION_TABLE<SignEcdsaAdaptorResponse> func_table;  // NOLINT
-
-  func_table = {
-    SignEcdsaAdaptorResponse::GetAdaptorSignatureString,
-    SignEcdsaAdaptorResponse::SetAdaptorSignatureString,
-    SignEcdsaAdaptorResponse::GetAdaptorSignatureFieldType,
-  };
-  json_mapper.emplace("adaptorSignature", func_table);
-  item_list.push_back("adaptorSignature");
-  func_table = {
-    SignEcdsaAdaptorResponse::GetProofString,
-    SignEcdsaAdaptorResponse::SetProofString,
-    SignEcdsaAdaptorResponse::GetProofFieldType,
-  };
-  json_mapper.emplace("proof", func_table);
-  item_list.push_back("proof");
-}
-
-void SignEcdsaAdaptorResponse::ConvertFromStruct(
-    const SignEcdsaAdaptorResponseStruct& data) {
-  adaptor_signature_ = data.adaptor_signature;
-  proof_ = data.proof;
-  ignore_items = data.ignore_items;
-}
-
-SignEcdsaAdaptorResponseStruct SignEcdsaAdaptorResponse::ConvertToStruct() const {  // NOLINT
-  SignEcdsaAdaptorResponseStruct result;
-  result.adaptor_signature = adaptor_signature_;
-  result.proof = proof_;
-  result.ignore_items = ignore_items;
-  return result;
-}
-
-// ------------------------------------------------------------------------
 // SignPsbtRequest
 // ------------------------------------------------------------------------
 cfd::core::JsonTableMap<SignPsbtRequest>
@@ -15594,19 +15585,12 @@ void VerifyEcdsaAdaptorRequest::CollectFieldName() {
   json_mapper.emplace("adaptorSignature", func_table);
   item_list.push_back("adaptorSignature");
   func_table = {
-    VerifyEcdsaAdaptorRequest::GetProofString,
-    VerifyEcdsaAdaptorRequest::SetProofString,
-    VerifyEcdsaAdaptorRequest::GetProofFieldType,
+    VerifyEcdsaAdaptorRequest::GetEncryptionKeyString,
+    VerifyEcdsaAdaptorRequest::SetEncryptionKeyString,
+    VerifyEcdsaAdaptorRequest::GetEncryptionKeyFieldType,
   };
-  json_mapper.emplace("proof", func_table);
-  item_list.push_back("proof");
-  func_table = {
-    VerifyEcdsaAdaptorRequest::GetAdaptorString,
-    VerifyEcdsaAdaptorRequest::SetAdaptorString,
-    VerifyEcdsaAdaptorRequest::GetAdaptorFieldType,
-  };
-  json_mapper.emplace("adaptor", func_table);
-  item_list.push_back("adaptor");
+  json_mapper.emplace("encryptionKey", func_table);
+  item_list.push_back("encryptionKey");
   func_table = {
     VerifyEcdsaAdaptorRequest::GetMessageString,
     VerifyEcdsaAdaptorRequest::SetMessageString,
@@ -15633,8 +15617,7 @@ void VerifyEcdsaAdaptorRequest::CollectFieldName() {
 void VerifyEcdsaAdaptorRequest::ConvertFromStruct(
     const VerifyEcdsaAdaptorRequestStruct& data) {
   adaptor_signature_ = data.adaptor_signature;
-  proof_ = data.proof;
-  adaptor_ = data.adaptor;
+  encryption_key_ = data.encryption_key;
   message_ = data.message;
   is_hashed_ = data.is_hashed;
   pubkey_ = data.pubkey;
@@ -15644,8 +15627,7 @@ void VerifyEcdsaAdaptorRequest::ConvertFromStruct(
 VerifyEcdsaAdaptorRequestStruct VerifyEcdsaAdaptorRequest::ConvertToStruct() const {  // NOLINT
   VerifyEcdsaAdaptorRequestStruct result;
   result.adaptor_signature = adaptor_signature_;
-  result.proof = proof_;
-  result.adaptor = adaptor_;
+  result.encryption_key = encryption_key_;
   result.message = message_;
   result.is_hashed = is_hashed_;
   result.pubkey = pubkey_;

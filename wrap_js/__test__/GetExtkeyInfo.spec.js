@@ -33,13 +33,13 @@ const errorCase = [
     'GetExtkeyInfo empty extkey.',
     GetExtkeyInfo,
     ['{"extkey":""}'],
-    '{"error":{"code":1,"type":"illegal_argument","message":"ExtPubkey base58 decode error."}}',
+    '{"error":{"code":2,"type":"illegal_state","message":"Decode base58 error."}}',
   ),
   TestHelper.createBitcoinTestCase(
     'GetExtkeyInfo invalid extkey.',
     GetExtkeyInfo,
     ['{"extkey":"Ltpv78nmdb9RW2JVn6dGat5MR1edEbTEXKUPH8gmTKk6o6RTGLJXRjRHvYzW6fWzSbRcf4ydLekAGxWr7NFTgjz9MTnjGhjCocnDqg1uoSyMkKV"}'],
-    '{"error":{"code":1,"type":"illegal_argument","message":"ExtPubkey unserialize error."}}',
+    '{"error":{"code":1,"type":"illegal_argument","message":"unsupported extkey version."}}',
   ),
 ];
 

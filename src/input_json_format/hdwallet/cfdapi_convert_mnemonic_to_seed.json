@@ -16,7 +16,7 @@
     "language": "",
     "language:require": "optional",
     "language:comment": "mnemonic language",
-    "language:hint": "support [en es fr it jp zhs zht]",
+    "language:hint": "support [en]. Other languages are not working properly.",
     "useIdeographicSpace": false,
     "useIdeographicSpace:require": "optional",
     "useIdeographicSpace:comment": "Currently, this flag is valid only the language is set \"jp\"."

@@ -473,6 +473,23 @@ struct AddPubkeyHashSignTxInRequestStruct {
 };
 
 // ------------------------------------------------------------------------
+// AddressPrefixCustomizeDataStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief AddressPrefixCustomizeDataStruct struct
+ */
+struct AddressPrefixCustomizeDataStruct {
+  std::string nettype = "";       //!< nettype  // NOLINT
+  std::string p2pkh = "6f";       //!< p2pkh  // NOLINT
+  std::string p2sh = "c4";        //!< p2sh  // NOLINT
+  std::string bech32 = "bcrt";    //!< bech32  // NOLINT
+  std::string blinded = "";       //!< blinded  // NOLINT
+  std::string blinded_p2sh = "";  //!< blinded_p2sh  // NOLINT
+  std::string blech32 = "";       //!< blech32  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
 // AddScriptHashSignTxInRequestStruct
 // ------------------------------------------------------------------------
 /**
@@ -969,6 +986,24 @@ struct IssuanceDataResponseStruct {
   std::string asset = "";    //!< asset  // NOLINT
   std::string entropy = "";  //!< entropy  // NOLINT
   std::string token = "";    //!< token  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// KeyPrefixCustomizeDataStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief KeyPrefixCustomizeDataStruct struct
+ */
+struct KeyPrefixCustomizeDataStruct {
+  std::string is_mainnet = "false";    //!< is_mainnet  // NOLINT
+  std::string wif = "ef";              //!< wif  // NOLINT
+  std::string bip32xpub = "043587cf";  //!< bip32xpub  // NOLINT
+  std::string bip32xprv = "04358394";  //!< bip32xprv  // NOLINT
+  std::string bip49ypub = "";          //!< bip49ypub  // NOLINT
+  std::string bip49yprv = "";          //!< bip49yprv  // NOLINT
+  std::string bip84zpub = "";          //!< bip84zpub  // NOLINT
+  std::string bip84zprv = "";          //!< bip84zprv  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -1628,6 +1663,18 @@ struct VerifySignatureResponseStruct {
 };
 
 // ------------------------------------------------------------------------
+// VoidFunctionResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief VoidFunctionResponseStruct struct
+ */
+struct VoidFunctionResponseStruct {
+  bool success = false;  //!< success  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
 // PsbtListStruct
 // ------------------------------------------------------------------------
 /**
@@ -1814,15 +1861,16 @@ struct CreateDescriptorRequestStruct {
  * @brief CreateExtkeyRequestStruct struct
  */
 struct CreateExtkeyRequestStruct {
-  std::string network = "mainnet";        //!< network  // NOLINT
-  std::string extkey_type = "extPubkey";  //!< extkey_type  // NOLINT
-  std::string parent_key = "";            //!< parent_key  // NOLINT
-  std::string parent_fingerprint = "";    //!< parent_fingerprint  // NOLINT
-  std::string key = "";                   //!< key  // NOLINT
-  uint8_t depth = 0;                      //!< depth  // NOLINT
-  std::string chain_code = "";            //!< chain_code  // NOLINT
-  uint32_t child_number = 0;              //!< child_number  // NOLINT
-  bool hardened = false;                  //!< hardened  // NOLINT
+  std::string network = "mainnet";          //!< network  // NOLINT
+  std::string extkey_type = "extPubkey";    //!< extkey_type  // NOLINT
+  std::string bip32_format_type = "bip32";  //!< bip32_format_type  // NOLINT
+  std::string parent_key = "";              //!< parent_key  // NOLINT
+  std::string parent_fingerprint = "";      //!< parent_fingerprint  // NOLINT
+  std::string key = "";                     //!< key  // NOLINT
+  uint8_t depth = 0;                        //!< depth  // NOLINT
+  std::string chain_code = "";              //!< chain_code  // NOLINT
+  uint32_t child_number = 0;                //!< child_number  // NOLINT
+  bool hardened = false;                    //!< hardened  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -1860,13 +1908,14 @@ struct CreateExtkeyFromParentRequestStruct {
  * @brief CreateExtkeyFromParentKeyRequestStruct struct
  */
 struct CreateExtkeyFromParentKeyRequestStruct {
-  std::string network = "mainnet";        //!< network  // NOLINT
-  std::string extkey_type = "extPubkey";  //!< extkey_type  // NOLINT
-  std::string parent_key = "";            //!< parent_key  // NOLINT
-  uint8_t parent_depth = 0;               //!< parent_depth  // NOLINT
-  std::string parent_chain_code = "";     //!< parent_chain_code  // NOLINT
-  uint32_t child_number = 0;              //!< child_number  // NOLINT
-  bool hardened = false;                  //!< hardened  // NOLINT
+  std::string network = "mainnet";          //!< network  // NOLINT
+  std::string extkey_type = "extPubkey";    //!< extkey_type  // NOLINT
+  std::string bip32_format_type = "bip32";  //!< bip32_format_type  // NOLINT
+  std::string parent_key = "";              //!< parent_key  // NOLINT
+  uint8_t parent_depth = 0;                 //!< parent_depth  // NOLINT
+  std::string parent_chain_code = "";       //!< parent_chain_code  // NOLINT
+  uint32_t child_number = 0;                //!< child_number  // NOLINT
+  bool hardened = false;                    //!< hardened  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -1892,9 +1941,10 @@ struct CreateExtkeyFromParentPathRequestStruct {
  * @brief CreateExtkeyFromSeedRequestStruct struct
  */
 struct CreateExtkeyFromSeedRequestStruct {
-  std::string seed = "";                   //!< seed  // NOLINT
-  std::string network = "mainnet";         //!< network  // NOLINT
-  std::string extkey_type = "extPrivkey";  //!< extkey_type  // NOLINT
+  std::string seed = "";                    //!< seed  // NOLINT
+  std::string network = "mainnet";          //!< network  // NOLINT
+  std::string extkey_type = "extPrivkey";   //!< extkey_type  // NOLINT
+  std::string bip32_format_type = "bip32";  //!< bip32_format_type  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -3413,6 +3463,18 @@ struct SerializeLedgerFormatResponseStruct {
   std::string serialize = "";  //!< serialize  // NOLINT
   std::string sha256 = "";     //!< sha256  // NOLINT
   cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// SetCustomPrefixRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief SetCustomPrefixRequestStruct struct
+ */
+struct SetCustomPrefixRequestStruct {
+  std::vector<AddressPrefixCustomizeDataStruct> address_json_datas;  //!< address_json_datas  // NOLINT
+  std::vector<KeyPrefixCustomizeDataStruct> key_json_datas;          //!< key_json_datas  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 

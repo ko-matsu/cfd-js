@@ -2063,6 +2063,95 @@ AddPubkeyHashSignTxInRequestStruct AddPubkeyHashSignTxInRequest::ConvertToStruct
 }
 
 // ------------------------------------------------------------------------
+// AddressPrefixCustomizeData
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<AddressPrefixCustomizeData>
+  AddressPrefixCustomizeData::json_mapper;
+std::vector<std::string> AddressPrefixCustomizeData::item_list;
+
+void AddressPrefixCustomizeData::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<AddressPrefixCustomizeData> func_table;  // NOLINT
+
+  func_table = {
+    AddressPrefixCustomizeData::GetNettypeString,
+    AddressPrefixCustomizeData::SetNettypeString,
+    AddressPrefixCustomizeData::GetNettypeFieldType,
+  };
+  json_mapper.emplace("nettype", func_table);
+  item_list.push_back("nettype");
+  func_table = {
+    AddressPrefixCustomizeData::GetP2pkhString,
+    AddressPrefixCustomizeData::SetP2pkhString,
+    AddressPrefixCustomizeData::GetP2pkhFieldType,
+  };
+  json_mapper.emplace("p2pkh", func_table);
+  item_list.push_back("p2pkh");
+  func_table = {
+    AddressPrefixCustomizeData::GetP2shString,
+    AddressPrefixCustomizeData::SetP2shString,
+    AddressPrefixCustomizeData::GetP2shFieldType,
+  };
+  json_mapper.emplace("p2sh", func_table);
+  item_list.push_back("p2sh");
+  func_table = {
+    AddressPrefixCustomizeData::GetBech32String,
+    AddressPrefixCustomizeData::SetBech32String,
+    AddressPrefixCustomizeData::GetBech32FieldType,
+  };
+  json_mapper.emplace("bech32", func_table);
+  item_list.push_back("bech32");
+  func_table = {
+    AddressPrefixCustomizeData::GetBlindedString,
+    AddressPrefixCustomizeData::SetBlindedString,
+    AddressPrefixCustomizeData::GetBlindedFieldType,
+  };
+  json_mapper.emplace("blinded", func_table);
+  item_list.push_back("blinded");
+  func_table = {
+    AddressPrefixCustomizeData::GetBlindedP2shString,
+    AddressPrefixCustomizeData::SetBlindedP2shString,
+    AddressPrefixCustomizeData::GetBlindedP2shFieldType,
+  };
+  json_mapper.emplace("blindedP2sh", func_table);
+  item_list.push_back("blindedP2sh");
+  func_table = {
+    AddressPrefixCustomizeData::GetBlech32String,
+    AddressPrefixCustomizeData::SetBlech32String,
+    AddressPrefixCustomizeData::GetBlech32FieldType,
+  };
+  json_mapper.emplace("blech32", func_table);
+  item_list.push_back("blech32");
+}
+
+void AddressPrefixCustomizeData::ConvertFromStruct(
+    const AddressPrefixCustomizeDataStruct& data) {
+  nettype_ = data.nettype;
+  p2pkh_ = data.p2pkh;
+  p2sh_ = data.p2sh;
+  bech32_ = data.bech32;
+  blinded_ = data.blinded;
+  blinded_p2sh_ = data.blinded_p2sh;
+  blech32_ = data.blech32;
+  ignore_items = data.ignore_items;
+}
+
+AddressPrefixCustomizeDataStruct AddressPrefixCustomizeData::ConvertToStruct() const {  // NOLINT
+  AddressPrefixCustomizeDataStruct result;
+  result.nettype = nettype_;
+  result.p2pkh = p2pkh_;
+  result.p2sh = p2sh_;
+  result.bech32 = bech32_;
+  result.blinded = blinded_;
+  result.blinded_p2sh = blinded_p2sh_;
+  result.blech32 = blech32_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
 // AddScriptHashSignTxInRequest
 // ------------------------------------------------------------------------
 cfd::core::JsonTableMap<AddScriptHashSignTxInRequest>
@@ -4638,6 +4727,104 @@ IssuanceDataResponseStruct IssuanceDataResponse::ConvertToStruct() const {  // N
   result.asset = asset_;
   result.entropy = entropy_;
   result.token = token_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// KeyPrefixCustomizeData
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<KeyPrefixCustomizeData>
+  KeyPrefixCustomizeData::json_mapper;
+std::vector<std::string> KeyPrefixCustomizeData::item_list;
+
+void KeyPrefixCustomizeData::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<KeyPrefixCustomizeData> func_table;  // NOLINT
+
+  func_table = {
+    KeyPrefixCustomizeData::GetIsMainnetString,
+    KeyPrefixCustomizeData::SetIsMainnetString,
+    KeyPrefixCustomizeData::GetIsMainnetFieldType,
+  };
+  json_mapper.emplace("IsMainnet", func_table);
+  item_list.push_back("IsMainnet");
+  func_table = {
+    KeyPrefixCustomizeData::GetWifString,
+    KeyPrefixCustomizeData::SetWifString,
+    KeyPrefixCustomizeData::GetWifFieldType,
+  };
+  json_mapper.emplace("wif", func_table);
+  item_list.push_back("wif");
+  func_table = {
+    KeyPrefixCustomizeData::GetBip32xpubString,
+    KeyPrefixCustomizeData::SetBip32xpubString,
+    KeyPrefixCustomizeData::GetBip32xpubFieldType,
+  };
+  json_mapper.emplace("bip32xpub", func_table);
+  item_list.push_back("bip32xpub");
+  func_table = {
+    KeyPrefixCustomizeData::GetBip32xprvString,
+    KeyPrefixCustomizeData::SetBip32xprvString,
+    KeyPrefixCustomizeData::GetBip32xprvFieldType,
+  };
+  json_mapper.emplace("bip32xprv", func_table);
+  item_list.push_back("bip32xprv");
+  func_table = {
+    KeyPrefixCustomizeData::GetBip49ypubString,
+    KeyPrefixCustomizeData::SetBip49ypubString,
+    KeyPrefixCustomizeData::GetBip49ypubFieldType,
+  };
+  json_mapper.emplace("bip49ypub", func_table);
+  item_list.push_back("bip49ypub");
+  func_table = {
+    KeyPrefixCustomizeData::GetBip49yprvString,
+    KeyPrefixCustomizeData::SetBip49yprvString,
+    KeyPrefixCustomizeData::GetBip49yprvFieldType,
+  };
+  json_mapper.emplace("bip49yprv", func_table);
+  item_list.push_back("bip49yprv");
+  func_table = {
+    KeyPrefixCustomizeData::GetBip84zpubString,
+    KeyPrefixCustomizeData::SetBip84zpubString,
+    KeyPrefixCustomizeData::GetBip84zpubFieldType,
+  };
+  json_mapper.emplace("bip84zpub", func_table);
+  item_list.push_back("bip84zpub");
+  func_table = {
+    KeyPrefixCustomizeData::GetBip84zprvString,
+    KeyPrefixCustomizeData::SetBip84zprvString,
+    KeyPrefixCustomizeData::GetBip84zprvFieldType,
+  };
+  json_mapper.emplace("bip84zprv", func_table);
+  item_list.push_back("bip84zprv");
+}
+
+void KeyPrefixCustomizeData::ConvertFromStruct(
+    const KeyPrefixCustomizeDataStruct& data) {
+  is_mainnet_ = data.is_mainnet;
+  wif_ = data.wif;
+  bip32xpub_ = data.bip32xpub;
+  bip32xprv_ = data.bip32xprv;
+  bip49ypub_ = data.bip49ypub;
+  bip49yprv_ = data.bip49yprv;
+  bip84zpub_ = data.bip84zpub;
+  bip84zprv_ = data.bip84zprv;
+  ignore_items = data.ignore_items;
+}
+
+KeyPrefixCustomizeDataStruct KeyPrefixCustomizeData::ConvertToStruct() const {  // NOLINT
+  KeyPrefixCustomizeDataStruct result;
+  result.is_mainnet = is_mainnet_;
+  result.wif = wif_;
+  result.bip32xpub = bip32xpub_;
+  result.bip32xprv = bip32xprv_;
+  result.bip49ypub = bip49ypub_;
+  result.bip49yprv = bip49yprv_;
+  result.bip84zpub = bip84zpub_;
+  result.bip84zprv = bip84zprv_;
   result.ignore_items = ignore_items;
   return result;
 }
@@ -7532,6 +7719,41 @@ VerifySignatureResponseStruct VerifySignatureResponse::ConvertToStruct() const {
 }
 
 // ------------------------------------------------------------------------
+// VoidFunctionResponse
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<VoidFunctionResponse>
+  VoidFunctionResponse::json_mapper;
+std::vector<std::string> VoidFunctionResponse::item_list;
+
+void VoidFunctionResponse::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<VoidFunctionResponse> func_table;  // NOLINT
+
+  func_table = {
+    VoidFunctionResponse::GetSuccessString,
+    VoidFunctionResponse::SetSuccessString,
+    VoidFunctionResponse::GetSuccessFieldType,
+  };
+  json_mapper.emplace("success", func_table);
+  item_list.push_back("success");
+}
+
+void VoidFunctionResponse::ConvertFromStruct(
+    const VoidFunctionResponseStruct& data) {
+  success_ = data.success;
+  ignore_items = data.ignore_items;
+}
+
+VoidFunctionResponseStruct VoidFunctionResponse::ConvertToStruct() const {  // NOLINT
+  VoidFunctionResponseStruct result;
+  result.success = success_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
 // PsbtList
 // ------------------------------------------------------------------------
 cfd::core::JsonTableMap<PsbtList>
@@ -8238,6 +8460,13 @@ void CreateExtkeyRequest::CollectFieldName() {
   json_mapper.emplace("extkeyType", func_table);
   item_list.push_back("extkeyType");
   func_table = {
+    CreateExtkeyRequest::GetBip32FormatTypeString,
+    CreateExtkeyRequest::SetBip32FormatTypeString,
+    CreateExtkeyRequest::GetBip32FormatTypeFieldType,
+  };
+  json_mapper.emplace("bip32FormatType", func_table);
+  item_list.push_back("bip32FormatType");
+  func_table = {
     CreateExtkeyRequest::GetParentKeyString,
     CreateExtkeyRequest::SetParentKeyString,
     CreateExtkeyRequest::GetParentKeyFieldType,
@@ -8292,6 +8521,7 @@ void CreateExtkeyRequest::ConvertFromStruct(
     const CreateExtkeyRequestStruct& data) {
   network_ = data.network;
   extkey_type_ = data.extkey_type;
+  bip32_format_type_ = data.bip32_format_type;
   parent_key_ = data.parent_key;
   parent_fingerprint_ = data.parent_fingerprint;
   key_ = data.key;
@@ -8306,6 +8536,7 @@ CreateExtkeyRequestStruct CreateExtkeyRequest::ConvertToStruct() const {  // NOL
   CreateExtkeyRequestStruct result;
   result.network = network_;
   result.extkey_type = extkey_type_;
+  result.bip32_format_type = bip32_format_type_;
   result.parent_key = parent_key_;
   result.parent_fingerprint = parent_fingerprint_;
   result.key = key_;
@@ -8451,6 +8682,13 @@ void CreateExtkeyFromParentKeyRequest::CollectFieldName() {
   json_mapper.emplace("extkeyType", func_table);
   item_list.push_back("extkeyType");
   func_table = {
+    CreateExtkeyFromParentKeyRequest::GetBip32FormatTypeString,
+    CreateExtkeyFromParentKeyRequest::SetBip32FormatTypeString,
+    CreateExtkeyFromParentKeyRequest::GetBip32FormatTypeFieldType,
+  };
+  json_mapper.emplace("bip32FormatType", func_table);
+  item_list.push_back("bip32FormatType");
+  func_table = {
     CreateExtkeyFromParentKeyRequest::GetParentKeyString,
     CreateExtkeyFromParentKeyRequest::SetParentKeyString,
     CreateExtkeyFromParentKeyRequest::GetParentKeyFieldType,
@@ -8491,6 +8729,7 @@ void CreateExtkeyFromParentKeyRequest::ConvertFromStruct(
     const CreateExtkeyFromParentKeyRequestStruct& data) {
   network_ = data.network;
   extkey_type_ = data.extkey_type;
+  bip32_format_type_ = data.bip32_format_type;
   parent_key_ = data.parent_key;
   parent_depth_ = data.parent_depth;
   parent_chain_code_ = data.parent_chain_code;
@@ -8503,6 +8742,7 @@ CreateExtkeyFromParentKeyRequestStruct CreateExtkeyFromParentKeyRequest::Convert
   CreateExtkeyFromParentKeyRequestStruct result;
   result.network = network_;
   result.extkey_type = extkey_type_;
+  result.bip32_format_type = bip32_format_type_;
   result.parent_key = parent_key_;
   result.parent_depth = parent_depth_;
   result.parent_chain_code = parent_chain_code_;
@@ -8617,6 +8857,13 @@ void CreateExtkeyFromSeedRequest::CollectFieldName() {
   };
   json_mapper.emplace("extkeyType", func_table);
   item_list.push_back("extkeyType");
+  func_table = {
+    CreateExtkeyFromSeedRequest::GetBip32FormatTypeString,
+    CreateExtkeyFromSeedRequest::SetBip32FormatTypeString,
+    CreateExtkeyFromSeedRequest::GetBip32FormatTypeFieldType,
+  };
+  json_mapper.emplace("bip32FormatType", func_table);
+  item_list.push_back("bip32FormatType");
 }
 
 void CreateExtkeyFromSeedRequest::ConvertFromStruct(
@@ -8624,6 +8871,7 @@ void CreateExtkeyFromSeedRequest::ConvertFromStruct(
   seed_ = data.seed;
   network_ = data.network;
   extkey_type_ = data.extkey_type;
+  bip32_format_type_ = data.bip32_format_type;
   ignore_items = data.ignore_items;
 }
 
@@ -8632,6 +8880,7 @@ CreateExtkeyFromSeedRequestStruct CreateExtkeyFromSeedRequest::ConvertToStruct()
   result.seed = seed_;
   result.network = network_;
   result.extkey_type = extkey_type_;
+  result.bip32_format_type = bip32_format_type_;
   result.ignore_items = ignore_items;
   return result;
 }
@@ -14822,6 +15071,50 @@ SerializeLedgerFormatResponseStruct SerializeLedgerFormatResponse::ConvertToStru
   SerializeLedgerFormatResponseStruct result;
   result.serialize = serialize_;
   result.sha256 = sha256_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// SetCustomPrefixRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<SetCustomPrefixRequest>
+  SetCustomPrefixRequest::json_mapper;
+std::vector<std::string> SetCustomPrefixRequest::item_list;
+
+void SetCustomPrefixRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<SetCustomPrefixRequest> func_table;  // NOLINT
+
+  func_table = {
+    SetCustomPrefixRequest::GetAddressJsonDatasString,
+    SetCustomPrefixRequest::SetAddressJsonDatasString,
+    SetCustomPrefixRequest::GetAddressJsonDatasFieldType,
+  };
+  json_mapper.emplace("addressJsonDatas", func_table);
+  item_list.push_back("addressJsonDatas");
+  func_table = {
+    SetCustomPrefixRequest::GetKeyJsonDatasString,
+    SetCustomPrefixRequest::SetKeyJsonDatasString,
+    SetCustomPrefixRequest::GetKeyJsonDatasFieldType,
+  };
+  json_mapper.emplace("keyJsonDatas", func_table);
+  item_list.push_back("keyJsonDatas");
+}
+
+void SetCustomPrefixRequest::ConvertFromStruct(
+    const SetCustomPrefixRequestStruct& data) {
+  address_json_datas_.ConvertFromStruct(data.address_json_datas);
+  key_json_datas_.ConvertFromStruct(data.key_json_datas);
+  ignore_items = data.ignore_items;
+}
+
+SetCustomPrefixRequestStruct SetCustomPrefixRequest::ConvertToStruct() const {  // NOLINT
+  SetCustomPrefixRequestStruct result;
+  result.address_json_datas = address_json_datas_.ConvertToStruct();
+  result.key_json_datas = key_json_datas_.ConvertToStruct();
   result.ignore_items = ignore_items;
   return result;
 }

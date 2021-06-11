@@ -53,6 +53,18 @@ class CFD_JS_API_EXPORT JsonMappingApi {
   static std::string GetSupportedFunction();
 
   /**
+   * @brief SetCustomPrefix.
+   * @param[in] request_message     the request json message
+   * @return json string
+   */
+  static std::string SetCustomPrefix(const std::string &request_message);
+  /**
+   * @brief ClearCustomPrefix.
+   * @return json string
+   */
+  static std::string ClearCustomPrefix();
+
+  /**
    * @brief CreateRawTransaction.
    * @param[in] request_message     the request json message
    * @return json string

@@ -2,14 +2,17 @@
 /**
  * @file cfdjs_utility.cpp
  *
- * @brief cfd-apiで利用する共通系クラスの実装ファイル
+ * @brief Implementation files for common classes used by cfd-api.
  */
 #include <string>
 #include <vector>
 
 #include "cfd/cfd_common.h"
+#include "cfd_js_api_json_autogen.h"  // NOLINT
+#include "cfdcore/cfdcore_address.h"
 #include "cfdcore/cfdcore_bytedata.h"
 #include "cfdcore/cfdcore_exception.h"
+#include "cfdcore/cfdcore_key.h"
 #include "cfdcore/cfdcore_logger.h"
 #include "cfdcore/cfdcore_util.h"
 #include "cfdjs/cfdjs_api_utility.h"
@@ -246,6 +249,80 @@ SignatureDataResponseStruct UtilStructApi::DecodeDerSignatureToRaw(
   result = ExecuteStructApi<
       DecodeDerSignatureToRawRequestStruct, SignatureDataResponseStruct>(
       request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
+VoidFunctionResponseStruct UtilStructApi::SetCustomPrefix(
+    const SetCustomPrefixRequestStruct& request) {
+  static auto call_func = [](const SetCustomPrefixRequestStruct& request)
+      -> VoidFunctionResponseStruct {
+    using cfd::core::kPrefixBlindP2pkh;
+    using cfd::core::kPrefixBlindP2sh;
+    using cfd::core::kPrefixBlindBech32Hrp;
+    using cfd::core::kBip49Ypub;
+    using cfd::core::kBip49Yprv;
+    using cfd::core::kBip84Zpub;
+    using cfd::core::kBip84Zprv;
+    using cfd::core::AddressFormatData;
+    using cfd::core::KeyFormatData;
+
+    std::string addr_custom_json;
+    for (const auto& data : request.address_json_datas) {
+      json::AddressPrefixCustomizeData addr_obj;
+      addr_obj.ConvertFromStruct(data);
+      if (data.blinded.empty()) addr_obj.SetIgnoreItem(kPrefixBlindP2pkh);
+      if (data.blinded_p2sh.empty()) addr_obj.SetIgnoreItem(kPrefixBlindP2sh);
+      if (data.blech32.empty()) addr_obj.SetIgnoreItem(kPrefixBlindBech32Hrp);
+      if (!addr_custom_json.empty()) addr_custom_json += ",";
+      addr_custom_json += addr_obj.Serialize();
+    }
+    if (!addr_custom_json.empty()) {
+      addr_custom_json = "[" + addr_custom_json + "]";
+      auto list = AddressFormatData::ConvertListFromJson(addr_custom_json);
+      cfd::core::SetCustomAddressFormatList(list);
+    }
+
+    std::string key_custom_json;
+    for (const auto& data : request.key_json_datas) {
+      json::KeyPrefixCustomizeData key_obj;
+      key_obj.ConvertFromStruct(data);
+      if (data.bip49ypub.empty()) key_obj.SetIgnoreItem(kBip49Ypub);
+      if (data.bip49yprv.empty()) key_obj.SetIgnoreItem(kBip49Yprv);
+      if (data.bip84zpub.empty()) key_obj.SetIgnoreItem(kBip84Zpub);
+      if (data.bip84zprv.empty()) key_obj.SetIgnoreItem(kBip84Zprv);
+      if (!key_custom_json.empty()) key_custom_json += ",";
+      key_custom_json += key_obj.Serialize();
+    }
+    if (!key_custom_json.empty()) {
+      key_custom_json = "[" + key_custom_json + "]";
+      auto list = KeyFormatData::ConvertListFromJson(key_custom_json);
+      cfd::core::SetCustomKeyFormatList(list);
+    }
+
+    VoidFunctionResponseStruct result;
+    result.success = true;
+    return result;
+  };
+
+  VoidFunctionResponseStruct result;
+  result = ExecuteStructApi<
+      SetCustomPrefixRequestStruct, VoidFunctionResponseStruct>(
+      request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
+VoidFunctionResponseStruct UtilStructApi::ClearCustomPrefix() {
+  auto call_func = []() -> VoidFunctionResponseStruct {
+    cfd::core::ClearCustomAddressFormatList();
+    cfd::core::ClearCustomKeyFormatList();
+    VoidFunctionResponseStruct result;
+    result.success = true;
+    return result;
+  };
+
+  VoidFunctionResponseStruct result;
+  result = ExecuteResponseStructApi<VoidFunctionResponseStruct>(
+      call_func, std::string(__FUNCTION__));
   return result;
 }
 

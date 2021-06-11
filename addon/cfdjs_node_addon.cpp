@@ -102,6 +102,25 @@ Value GetSupportedFunction(const CallbackInfo &information) {
 }
 
 /**
+ * @brief NodeAddon's JSON API for SetCustomPrefix.
+ * @param[in] information     node addon api callback information
+ * @return json string.
+ */
+Value SetCustomPrefix(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::SetCustomPrefix);
+}
+
+/**
+ * @brief NodeAddon's JSON API for ClearCustomPrefix.
+ * @param[in] information     node addon api callback information
+ * @return json string.
+ */
+Value ClearCustomPrefix(const CallbackInfo &information) {
+  return NodeAddonJsonResponseApi(
+      information, JsonMappingApi::ClearCustomPrefix);
+}
+
+/**
  * @brief NodeAddon's JSON API for CreateRawTransaction.
  * @param[in] information     node addon api callback information
  * @return json string.
@@ -1224,6 +1243,12 @@ void InitializeJsonApi(Env env, Object *exports) {
   exports->Set(
       String::New(env, "GetSupportedFunction"),
       Function::New(env, GetSupportedFunction));
+  exports->Set(
+      String::New(env, "SetCustomPrefix"),
+      Function::New(env, SetCustomPrefix));
+  exports->Set(
+      String::New(env, "ClearCustomPrefix"),
+      Function::New(env, ClearCustomPrefix));
   exports->Set(
       String::New(env, "CreateRawTransaction"),
       Function::New(env, CreateRawTransaction));

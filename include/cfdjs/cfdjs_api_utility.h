@@ -3,8 +3,6 @@
  * @file cfdjs_api_utility.h
  *
  * @brief cfd-apiで利用する共通系のクラス定義
- *
- * JSON形式のAPIを提供する.
  */
 #ifndef CFD_JS_INCLUDE_CFDJS_CFDJS_API_UTILITY_H_
 #define CFD_JS_INCLUDE_CFDJS_CFDJS_API_UTILITY_H_
@@ -92,6 +90,19 @@ class CFD_JS_API_EXPORT UtilStructApi {
    */
   static SignatureDataResponseStruct DecodeDerSignatureToRaw(
       const DecodeDerSignatureToRawRequestStruct &request);
+
+  /**
+   * @brief Set custom prefix setting.
+   * @param[in] request   request struct from json
+   * @return response.
+   */
+  static VoidFunctionResponseStruct SetCustomPrefix(
+      const SetCustomPrefixRequestStruct &request);
+  /**
+   * @brief Clear custom prefix setting.
+   * @return response.
+   */
+  static VoidFunctionResponseStruct ClearCustomPrefix();
 
  private:
   UtilStructApi();

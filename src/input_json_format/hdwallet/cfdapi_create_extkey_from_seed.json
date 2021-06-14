@@ -14,7 +14,11 @@
     "extkeyType": "extPrivkey",
     "extkeyType:require": "optional",
     "extkeyType:comment": "extkey type",
-    "extkeyType:hint": "extPrivkey or extPubkey"
+    "extkeyType:hint": "extPrivkey or extPubkey",
+    "bip32FormatType": "bip32",
+    "bip32FormatType:require": "optional",
+    "bip32FormatType:comment": "bip32 format type",
+    "bip32FormatType:hint": "bip32, bip49, bip84"
   },
   "response": {
     ":class": "CreateExtkeyResponse",

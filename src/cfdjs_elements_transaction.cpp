@@ -2047,15 +2047,13 @@ ElementsTransactionStructApi::CreateRawPegoutTransaction(  // NOLINT
         ElementsAddressStructApi::ConvertElementsNetType(elements_nettype);
     if (!request.pegout.online_pubkey.empty() &&
         !request.pegout.master_online_key.empty()) {
-      if (request.pegout.master_online_key.size() ==
-          Privkey::kPrivkeySize * 2) {
-        // hex
+      if (Privkey::HasWif(request.pegout.master_online_key)) {
+        pegout_data.master_online_key =
+            Privkey::FromWif(request.pegout.master_online_key);
+      } else {
         pegout_data.master_online_key =
             Privkey(request.pegout.master_online_key);
-      } else {
-        // Wif
-        pegout_data.master_online_key = Privkey::FromWif(
-            request.pegout.master_online_key, pegout_data.net_type);
+        pegout_data.master_online_key.SetNetType(pegout_data.net_type);
       }
       pegout_data.online_pubkey = Pubkey(request.pegout.online_pubkey);
       pegout_data.bitcoin_descriptor = request.pegout.bitcoin_descriptor;

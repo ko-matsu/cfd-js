@@ -85,6 +85,26 @@ export interface AddRawTransactionRequest {
 }
 
 /**
+ * address prefix customize data.
+ * @property {string} nettype - network type (mainnet, testnet, regtest, liquidv1, elementsregtest, custom)
+ * @property {string} p2pkh - p2pkh prefix
+ * @property {string} p2sh - p2sh prefix
+ * @property {string} bech32 - bech32 prefix
+ * @property {string} blinded? - (elements only) blinded p2pkh prefix
+ * @property {string} blindedP2sh? - (elements only) blinded p2sh prefix. If not set, use blinded.
+ * @property {string} blech32? - (elements only) blind bech32 prefix
+ */
+export interface AddressPrefixCustomizeData {
+    nettype: string;
+    p2pkh: string;
+    p2sh: string;
+    bech32: string;
+    blinded?: string;
+    blindedP2sh?: string;
+    blech32?: string;
+}
+
+/**
  * script hash input data to add to tx.
  * @property {boolean} isElements? - elements transaction flag.
  * @property {string} tx - transaction hex
@@ -491,7 +511,7 @@ export interface ConvertEntropyToMnemonicResponse {
  * @property {string[]} mnemonic - mnemonic words
  * @property {string} passphrase - passphrase
  * @property {boolean} strictCheck? - Check mnemonic words strictly
- * @property {string} language? - mnemonic language (support [en es fr it jp zhs zht])
+ * @property {string} language? - mnemonic language (support [en]. Other languages are not working properly.)
  * @property {boolean} useIdeographicSpace? - Currently, this flag is valid only the language is set "jp".
  */
 export interface ConvertMnemonicToSeedRequest {
@@ -628,6 +648,7 @@ export interface CreateElementsSignatureHashTxIn {
  * Request data for creating extkey from parent's key.
  * @property {string} network - network type (mainnet, testnet or regtest)
  * @property {string} extkeyType? - extkey type (extPrivkey or extPubkey)
+ * @property {string} bip32FormatType? - bip32 format type (bip32, bip49, bip84)
  * @property {string} parentKey - parent key (pubkey or privkey)
  * @property {number} parentDepth - parent depth
  * @property {string} parentChainCode - parent chain code
@@ -637,6 +658,7 @@ export interface CreateElementsSignatureHashTxIn {
 export interface CreateExtkeyFromParentKeyRequest {
     network: string;
     extkeyType?: string;
+    bip32FormatType?: string;
     parentKey: string;
     parentDepth: number;
     parentChainCode: string;
@@ -681,17 +703,20 @@ export interface CreateExtkeyFromParentRequest {
  * @property {string} seed - seed hex data
  * @property {string} network - network type (mainnet, testnet or regtest)
  * @property {string} extkeyType? - extkey type (extPrivkey or extPubkey)
+ * @property {string} bip32FormatType? - bip32 format type (bip32, bip49, bip84)
  */
 export interface CreateExtkeyFromSeedRequest {
     seed: string;
     network: string;
     extkeyType?: string;
+    bip32FormatType?: string;
 }
 
 /**
  * Request data for creating extkey.
  * @property {string} network - network type (mainnet, testnet or regtest)
  * @property {string} extkeyType? - extkey type (extPrivkey or extPubkey)
+ * @property {string} bip32FormatType? - bip32 format type (bip32, bip49, bip84)
  * @property {string} parentKey? - parent key
  * @property {string} parentFingerprint? - parent key's fingerprint.
  * @property {string} key - key hex. (pubkey or privkey)
@@ -703,6 +728,7 @@ export interface CreateExtkeyFromSeedRequest {
 export interface CreateExtkeyRequest {
     network: string;
     extkeyType?: string;
+    bip32FormatType?: string;
     parentKey?: string;
     parentFingerprint?: string;
     key: string;
@@ -2276,6 +2302,28 @@ export interface IssuanceDataResponse {
 }
 
 /**
+ * key prefix customize data.
+ * @property {string} IsMainnet? - mainnet flag. true is 'true' or empty.
+ * @property {string} wif - wif prefix
+ * @property {string} bip32xpub - bip32xpub version
+ * @property {string} bip32xprv - bip32xprv version
+ * @property {string} bip49ypub? - bip49ypub version
+ * @property {string} bip49yprv? - bip49yprv version
+ * @property {string} bip84zpub? - bip84zpub version
+ * @property {string} bip84zprv? - bip84zprv version
+ */
+export interface KeyPrefixCustomizeData {
+    IsMainnet?: string;
+    wif: string;
+    bip32xpub: string;
+    bip32xprv: string;
+    bip49ypub?: string;
+    bip49yprv?: string;
+    bip84zpub?: string;
+    bip84zprv?: string;
+}
+
+/**
  * OutPoint data.
  * @property {string} txid - utxo txid.
  * @property {number} vout - utxo vout.
@@ -2830,6 +2878,16 @@ export interface SerializeLedgerFormatTxOut {
     index: number;
     asset: string;
     amount: bigint | number;
+}
+
+/**
+ * Request for custom prefix setting.
+ * @property {AddressPrefixCustomizeData[]} addressJsonDatas? - address prefix customize data.
+ * @property {KeyPrefixCustomizeData[]} keyJsonDatas? - key prefix customize data.
+ */
+export interface SetCustomPrefixRequest {
+    addressJsonDatas?: AddressPrefixCustomizeData[];
+    keyJsonDatas?: KeyPrefixCustomizeData[];
 }
 
 /**
@@ -3506,6 +3564,14 @@ export interface VerifySignTxInUtxoData {
 }
 
 /**
+ * Request for void function.
+ * @property {boolean} success - success flag
+ */
+export interface VoidFunctionResponse {
+    success: boolean;
+}
+
+/**
  * Updating WitnessStack data. Only index and hex are used in UpdatePeginWitnessStack.
  * @property {number} index - stack index
  * @property {string} hex - update data
@@ -3625,6 +3691,12 @@ export function CalculateEcSignature(jsonObject: CalculateEcSignatureRequest): S
  * @return {VerifySignatureResponse} - response data.
  */
 export function CheckTweakedSchnorrPubkey(jsonObject: CheckTweakedSchnorrPubkeyRequest): VerifySignatureResponse;
+
+/**
+ * Clear custom prefix function.
+ * @return {VoidFunctionResponse} - response data.
+ */
+export function ClearCustomPrefix(): VoidFunctionResponse;
 
 /**
  * Combine psbt.
@@ -4232,6 +4304,13 @@ export function SelectUtxos(jsonObject: SelectUtxosRequest): SelectUtxosResponse
  * @return {SerializeLedgerFormatResponse} - response data.
  */
 export function SerializeLedgerFormat(jsonObject: SerializeLedgerFormatRequest): SerializeLedgerFormatResponse;
+
+/**
+ * set customize prefix.
+ * @param {SetCustomPrefixRequest} jsonObject - request data.
+ * @return {VoidFunctionResponse} - response data.
+ */
+export function SetCustomPrefix(jsonObject: SetCustomPrefixRequest): VoidFunctionResponse;
 
 /**
  * Set psbt data.

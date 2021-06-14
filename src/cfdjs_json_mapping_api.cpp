@@ -306,6 +306,20 @@ std::string JsonMappingApi::GetSupportedFunction() {
       UtilStructApi::GetSupportedFunction);
 }
 
+std::string JsonMappingApi::SetCustomPrefix(
+    const std::string &request_message) {
+  return ExecuteJsonApi<
+      api::json::SetCustomPrefixRequest, api::json::VoidFunctionResponse,
+      api::SetCustomPrefixRequestStruct, api::VoidFunctionResponseStruct>(
+      request_message, UtilStructApi::SetCustomPrefix);
+}
+
+std::string JsonMappingApi::ClearCustomPrefix() {
+  return ExecuteJsonResponseOnlyApi<
+      api::json::VoidFunctionResponse, api::VoidFunctionResponseStruct>(
+      UtilStructApi::ClearCustomPrefix);
+}
+
 std::string JsonMappingApi::CreateRawTransaction(
     const std::string &request_message) {
   return ExecuteJsonApi<
@@ -1439,9 +1453,12 @@ void JsonMappingApi::LoadFunctions(
   if (response_only_map != nullptr) {
     response_only_map->emplace(
         "GetSupportedFunction", JsonMappingApi::GetSupportedFunction);
+    response_only_map->emplace(
+        "ClearCustomPrefix", JsonMappingApi::ClearCustomPrefix);
   }
 
   if (request_map != nullptr) {
+    request_map->emplace("SetCustomPrefix", JsonMappingApi::SetCustomPrefix);
     request_map->emplace(
         "CreateRawTransaction", JsonMappingApi::CreateRawTransaction);
     request_map->emplace(

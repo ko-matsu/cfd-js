@@ -1069,6 +1069,15 @@ Value CreatePegInAddress(const CallbackInfo &information) {
  * @param[in] information     node addon api callback information
  * @return json string.
  */
+Value CreatePegOutAddress(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::CreatePegOutAddress);
+}
+
+/**
+ * @brief NodeAddon's JSON API.
+ * @param[in] information     node addon api callback information
+ * @return json string.
+ */
 Value ElementsCreateRawTransaction(const CallbackInfo &information) {
   return NodeAddonJsonApi(
       information, JsonMappingApi::ElementsCreateRawTransaction);
@@ -1211,6 +1220,15 @@ Value SerializeLedgerFormat(const CallbackInfo &information) {
  */
 Value GetCommitment(const CallbackInfo &information) {
   return NodeAddonJsonApi(information, JsonMappingApi::GetCommitment);
+}
+
+/**
+ * @brief NodeAddon's JSON API.
+ * @param[in] information     node addon api callback information
+ * @return json string.
+ */
+Value GetUnblindData(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::GetUnblindData);
 }
 #endif  // CFD_DISABLE_ELEMENTS
 
@@ -1488,6 +1506,9 @@ void InitializeJsonApi(Env env, Object *exports) {
       String::New(env, "CreatePegInAddress"),
       Function::New(env, CreatePegInAddress));
   exports->Set(
+      String::New(env, "CreatePegOutAddress"),
+      Function::New(env, CreatePegOutAddress));
+  exports->Set(
       String::New(env, "ElementsCreateRawTransaction"),
       Function::New(env, ElementsCreateRawTransaction));
   exports->Set(
@@ -1533,6 +1554,8 @@ void InitializeJsonApi(Env env, Object *exports) {
       Function::New(env, SerializeLedgerFormat));
   exports->Set(
       String::New(env, "GetCommitment"), Function::New(env, GetCommitment));
+  exports->Set(
+      String::New(env, "GetUnblindData"), Function::New(env, GetUnblindData));
 #endif  // CFD_DISABLE_ELEMENTS
 }
 

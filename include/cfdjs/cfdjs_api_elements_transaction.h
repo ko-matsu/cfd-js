@@ -294,6 +294,14 @@ class CFD_JS_API_EXPORT ElementsTransactionStructApi {
    */
   static GetCommitmentResponseStruct GetCommitment(
       const GetCommitmentRequestStruct& request);
+
+  /**
+   * @brief Get the unblind data.
+   * @param[in] request     request data.
+   * @return unblind data.
+   */
+  static UnblindOutputStruct GetUnblindData(
+      const GetUnblindDataRequestStruct& request);
 };
 
 }  // namespace api

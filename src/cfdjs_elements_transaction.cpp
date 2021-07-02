@@ -2285,6 +2285,37 @@ GetCommitmentResponseStruct ElementsTransactionStructApi::GetCommitment(
   return result;
 }
 
+UnblindOutputStruct ElementsTransactionStructApi::GetUnblindData(
+    const GetUnblindDataRequestStruct& request) {
+  auto call_func = [](const GetUnblindDataRequestStruct& request)
+      -> UnblindOutputStruct {  // NOLINT
+    UnblindOutputStruct response;
+    Script locking_script_obj(request.locking_script);
+    ConfidentialAssetId asset_obj(request.asset_commitment);
+    ConfidentialValue value(request.value_commitment);
+    ConfidentialNonce nonce(request.commitment_nonce);
+    ByteData rangeproof_obj(request.rangeproof);
+    Privkey blinding_key_obj = Privkey::HasWif(request.blinding_key)
+                                   ? Privkey::FromWif(request.blinding_key)
+                                   : Privkey(request.blinding_key);
+    ConfidentialTxOut txout(
+        locking_script_obj, asset_obj, value, nonce, ByteData(),
+        rangeproof_obj);
+    auto unblind_data = txout.Unblind(blinding_key_obj);
+
+    response.amount = unblind_data.value.GetAmount().GetSatoshiValue();
+    response.asset = unblind_data.asset.GetHex();
+    response.blind_factor = unblind_data.vbf.GetHex();
+    response.asset_blind_factor = unblind_data.abf.GetHex();
+    return response;
+  };
+
+  UnblindOutputStruct result;
+  result = ExecuteStructApi<GetUnblindDataRequestStruct, UnblindOutputStruct>(
+      request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
 namespace json {
 
 // -----------------------------------------------------------------------------

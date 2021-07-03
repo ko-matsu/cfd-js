@@ -24,6 +24,7 @@ BlockInformationStruct ElementsBlockStructApi::GetBlockInfo(
     const BlockDataStruct& request) {
   auto call_func =
       [](const BlockDataStruct& request) -> BlockInformationStruct {  // NOLINT
+    warn(CFD_LOG_SOURCE, "not implements. block:{}", request.block);
     throw CfdException(CfdError::kCfdIllegalStateError, "Not implements.");
   };
 
@@ -37,6 +38,7 @@ BlockTxDataStruct ElementsBlockStructApi::GetTxDataFromBlock(
     const BlockTxRequestStruct& request) {
   auto call_func =
       [](const BlockTxRequestStruct& request) -> BlockTxDataStruct {
+    warn(CFD_LOG_SOURCE, "not implements. txidLen:{}", request.txid.size());
     throw CfdException(CfdError::kCfdIllegalStateError, "Not implements.");
   };
 

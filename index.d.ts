@@ -829,6 +829,32 @@ export interface CreatePegInAddressResponse {
 }
 
 /**
+ * Request for CreatePegoutAddress.
+ * @property {string} network? - mainchain network type. (mainnet, testnet or regtest)
+ * @property {string} elementsNetwork? - elements network type. (liquidv1, elementsregtest)
+ * @property {string} descriptor - output descriptor or xpub
+ * @property {bigint | number} bip32Counter? - bip32 derive counter. (0 to 2147483647.)
+ * @property {string} hashType? - pubkey hash type (p2pkh, p2sh-p2pkh, p2wpkh)
+ */
+export interface CreatePegoutAddressRequest {
+    network?: string;
+    elementsNetwork?: string;
+    descriptor: string;
+    bip32Counter?: bigint | number;
+    hashType?: string;
+}
+
+/**
+ * Response data of creating pegout address.
+ * @property {string} mainchainAddress - mainchain address
+ * @property {string} baseDescriptor - base output descriptor
+ */
+export interface CreatePegoutAddressResponse {
+    mainchainAddress: string;
+    baseDescriptor: string;
+}
+
+/**
  * Request for create pegin transaction
  * @property {number} version? - transaction version
  * @property {number} locktime? - locktime
@@ -1923,6 +1949,7 @@ export interface GetExtkeyInfoRequest {
  * @property {string} fingerprint - fingerprint
  * @property {number} childNumber - bip32 child number
  * @property {string} chainCode - chain code
+ * @property {string} keyType - extkey type (extpubkey, extprivkey)
  */
 export interface GetExtkeyInfoResponse {
     network: string;
@@ -1931,6 +1958,7 @@ export interface GetExtkeyInfoResponse {
     fingerprint: string;
     childNumber: number;
     chainCode: string;
+    keyType: string;
 }
 
 /**
@@ -2124,6 +2152,24 @@ export interface GetTxOutIndexRequest {
     isElements?: boolean;
     address?: string;
     directLockingScript?: string;
+}
+
+/**
+ * Request for get unblind data.
+ * @property {string} blindingKey - blinding key
+ * @property {string} lockingScript - locking script
+ * @property {string} assetCommitment - asset commitment
+ * @property {string} valueCommitment - value commitment
+ * @property {string} commitmentNonce - nonce
+ * @property {string} rangeproof - rangeproof
+ */
+export interface GetUnblindDataRequest {
+    blindingKey: string;
+    lockingScript: string;
+    assetCommitment: string;
+    valueCommitment: string;
+    commitmentNonce: string;
+    rangeproof: string;
 }
 
 /**
@@ -3785,6 +3831,13 @@ export function CreateMultisigScriptSig(jsonObject: CreateMultisigScriptSigReque
 export function CreatePegInAddress(jsonObject: CreatePegInAddressRequest): CreatePegInAddressResponse;
 
 /**
+ * create pegout address.
+ * @param {CreatePegoutAddressRequest} jsonObject - request data.
+ * @return {CreatePegoutAddressResponse} - response data.
+ */
+export function CreatePegOutAddress(jsonObject: CreatePegoutAddressRequest): CreatePegoutAddressResponse;
+
+/**
  * Create transaction
  * @param {CreateRawTransactionRequest} jsonObject - request data.
  * @return {PsbtOutputData} - response data.
@@ -4131,6 +4184,13 @@ export function GetTxInIndex(jsonObject: GetTxInIndexRequest): GetIndexData;
  * @return {GetIndexData} - response data.
  */
 export function GetTxOutIndex(jsonObject: GetTxOutIndexRequest): GetIndexData;
+
+/**
+ * Get unblind data.
+ * @param {GetUnblindDataRequest} jsonObject - request data.
+ * @return {UnblindOutput} - response data.
+ */
+export function GetUnblindData(jsonObject: GetUnblindDataRequest): UnblindOutput;
 
 /**
  * Get unblinded address.

@@ -44293,6 +44293,517 @@ class CreatePegInAddressResponse
 };
 
 // ------------------------------------------------------------------------
+// CreatePegoutAddressRequest
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (CreatePegoutAddressRequest) class
+ */
+class CreatePegoutAddressRequest
+  : public cfd::core::JsonClassBase<CreatePegoutAddressRequest> {
+ public:
+  CreatePegoutAddressRequest() {
+    CollectFieldName();
+  }
+  virtual ~CreatePegoutAddressRequest() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of network
+   * @return network
+   */
+  std::string GetNetwork() const {
+    return network_;
+  }
+  /**
+   * @brief Set to network
+   * @param[in] network    setting value.
+   */
+  void SetNetwork(  // line separate
+    const std::string& network) {  // NOLINT
+    this->network_ = network;
+  }
+  /**
+   * @brief Get data type of network
+   * @return Data type of network
+   */
+  static std::string GetNetworkFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of network field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetNetworkString(  // line separate
+      const CreatePegoutAddressRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.network_);
+  }
+  /**
+   * @brief Set json object to network field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetNetworkString(  // line separate
+      CreatePegoutAddressRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.network_, json_value);
+  }
+
+  /**
+   * @brief Get of elementsNetwork
+   * @return elementsNetwork
+   */
+  std::string GetElementsNetwork() const {
+    return elements_network_;
+  }
+  /**
+   * @brief Set to elementsNetwork
+   * @param[in] elements_network    setting value.
+   */
+  void SetElementsNetwork(  // line separate
+    const std::string& elements_network) {  // NOLINT
+    this->elements_network_ = elements_network;
+  }
+  /**
+   * @brief Get data type of elementsNetwork
+   * @return Data type of elementsNetwork
+   */
+  static std::string GetElementsNetworkFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of elementsNetwork field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetElementsNetworkString(  // line separate
+      const CreatePegoutAddressRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.elements_network_);
+  }
+  /**
+   * @brief Set json object to elementsNetwork field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetElementsNetworkString(  // line separate
+      CreatePegoutAddressRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.elements_network_, json_value);
+  }
+
+  /**
+   * @brief Get of descriptor
+   * @return descriptor
+   */
+  std::string GetDescriptor() const {
+    return descriptor_;
+  }
+  /**
+   * @brief Set to descriptor
+   * @param[in] descriptor    setting value.
+   */
+  void SetDescriptor(  // line separate
+    const std::string& descriptor) {  // NOLINT
+    this->descriptor_ = descriptor;
+  }
+  /**
+   * @brief Get data type of descriptor
+   * @return Data type of descriptor
+   */
+  static std::string GetDescriptorFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of descriptor field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetDescriptorString(  // line separate
+      const CreatePegoutAddressRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.descriptor_);
+  }
+  /**
+   * @brief Set json object to descriptor field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetDescriptorString(  // line separate
+      CreatePegoutAddressRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.descriptor_, json_value);
+  }
+
+  /**
+   * @brief Get of bip32Counter
+   * @return bip32Counter
+   */
+  int64_t GetBip32Counter() const {
+    return bip32_counter_;
+  }
+  /**
+   * @brief Set to bip32Counter
+   * @param[in] bip32_counter    setting value.
+   */
+  void SetBip32Counter(  // line separate
+    const int64_t& bip32_counter) {  // NOLINT
+    this->bip32_counter_ = bip32_counter;
+  }
+  /**
+   * @brief Get data type of bip32Counter
+   * @return Data type of bip32Counter
+   */
+  static std::string GetBip32CounterFieldType() {
+    return "int64_t";
+  }
+  /**
+   * @brief Get json string of bip32Counter field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetBip32CounterString(  // line separate
+      const CreatePegoutAddressRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.bip32_counter_);
+  }
+  /**
+   * @brief Set json object to bip32Counter field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetBip32CounterString(  // line separate
+      CreatePegoutAddressRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.bip32_counter_, json_value);
+  }
+
+  /**
+   * @brief Get of hashType
+   * @return hashType
+   */
+  std::string GetHashType() const {
+    return hash_type_;
+  }
+  /**
+   * @brief Set to hashType
+   * @param[in] hash_type    setting value.
+   */
+  void SetHashType(  // line separate
+    const std::string& hash_type) {  // NOLINT
+    this->hash_type_ = hash_type;
+  }
+  /**
+   * @brief Get data type of hashType
+   * @return Data type of hashType
+   */
+  static std::string GetHashTypeFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of hashType field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetHashTypeString(  // line separate
+      const CreatePegoutAddressRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.hash_type_);
+  }
+  /**
+   * @brief Set json object to hashType field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetHashTypeString(  // line separate
+      CreatePegoutAddressRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.hash_type_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const CreatePegoutAddressRequestStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  CreatePegoutAddressRequestStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using CreatePegoutAddressRequestMapTable =
+    cfd::core::JsonTableMap<CreatePegoutAddressRequest>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const CreatePegoutAddressRequestMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static CreatePegoutAddressRequestMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(network) value
+   */
+  std::string network_ = "mainnet";
+  /**
+   * @brief JsonAPI(elementsNetwork) value
+   */
+  std::string elements_network_ = "mainnet";
+  /**
+   * @brief JsonAPI(descriptor) value
+   */
+  std::string descriptor_ = "";
+  /**
+   * @brief JsonAPI(bip32Counter) value
+   */
+  int64_t bip32_counter_ = 0;
+  /**
+   * @brief JsonAPI(hashType) value
+   */
+  std::string hash_type_ = "p2pkh";
+};
+
+// ------------------------------------------------------------------------
+// CreatePegoutAddressResponse
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (CreatePegoutAddressResponse) class
+ */
+class CreatePegoutAddressResponse
+  : public cfd::core::JsonClassBase<CreatePegoutAddressResponse> {
+ public:
+  CreatePegoutAddressResponse() {
+    CollectFieldName();
+  }
+  virtual ~CreatePegoutAddressResponse() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of mainchainAddress
+   * @return mainchainAddress
+   */
+  std::string GetMainchainAddress() const {
+    return mainchain_address_;
+  }
+  /**
+   * @brief Set to mainchainAddress
+   * @param[in] mainchain_address    setting value.
+   */
+  void SetMainchainAddress(  // line separate
+    const std::string& mainchain_address) {  // NOLINT
+    this->mainchain_address_ = mainchain_address;
+  }
+  /**
+   * @brief Get data type of mainchainAddress
+   * @return Data type of mainchainAddress
+   */
+  static std::string GetMainchainAddressFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of mainchainAddress field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetMainchainAddressString(  // line separate
+      const CreatePegoutAddressResponse& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.mainchain_address_);
+  }
+  /**
+   * @brief Set json object to mainchainAddress field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetMainchainAddressString(  // line separate
+      CreatePegoutAddressResponse& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.mainchain_address_, json_value);
+  }
+
+  /**
+   * @brief Get of baseDescriptor
+   * @return baseDescriptor
+   */
+  std::string GetBaseDescriptor() const {
+    return base_descriptor_;
+  }
+  /**
+   * @brief Set to baseDescriptor
+   * @param[in] base_descriptor    setting value.
+   */
+  void SetBaseDescriptor(  // line separate
+    const std::string& base_descriptor) {  // NOLINT
+    this->base_descriptor_ = base_descriptor;
+  }
+  /**
+   * @brief Get data type of baseDescriptor
+   * @return Data type of baseDescriptor
+   */
+  static std::string GetBaseDescriptorFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of baseDescriptor field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetBaseDescriptorString(  // line separate
+      const CreatePegoutAddressResponse& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.base_descriptor_);
+  }
+  /**
+   * @brief Set json object to baseDescriptor field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetBaseDescriptorString(  // line separate
+      CreatePegoutAddressResponse& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.base_descriptor_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const CreatePegoutAddressResponseStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  CreatePegoutAddressResponseStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using CreatePegoutAddressResponseMapTable =
+    cfd::core::JsonTableMap<CreatePegoutAddressResponse>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const CreatePegoutAddressResponseMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static CreatePegoutAddressResponseMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(mainchainAddress) value
+   */
+  std::string mainchain_address_ = "";
+  /**
+   * @brief JsonAPI(baseDescriptor) value
+   */
+  std::string base_descriptor_ = "";
+};
+
+// ------------------------------------------------------------------------
 // CreateRawPeginRequest
 // ------------------------------------------------------------------------
 /**
@@ -55650,6 +56161,49 @@ class GetExtkeyInfoResponse
   }
 
   /**
+   * @brief Get of keyType
+   * @return keyType
+   */
+  std::string GetKeyType() const {
+    return key_type_;
+  }
+  /**
+   * @brief Set to keyType
+   * @param[in] key_type    setting value.
+   */
+  void SetKeyType(  // line separate
+    const std::string& key_type) {  // NOLINT
+    this->key_type_ = key_type;
+  }
+  /**
+   * @brief Get data type of keyType
+   * @return Data type of keyType
+   */
+  static std::string GetKeyTypeFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of keyType field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetKeyTypeString(  // line separate
+      const GetExtkeyInfoResponse& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.key_type_);
+  }
+  /**
+   * @brief Set json object to keyType field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetKeyTypeString(  // line separate
+      GetExtkeyInfoResponse& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.key_type_, json_value);
+  }
+
+  /**
    * @brief Set ignore item.
    * @param[in] key   ignore target key name.
    */
@@ -55742,6 +56296,10 @@ class GetExtkeyInfoResponse
    * @brief JsonAPI(chainCode) value
    */
   std::string chain_code_ = "";
+  /**
+   * @brief JsonAPI(keyType) value
+   */
+  std::string key_type_ = "";
 };
 
 // ------------------------------------------------------------------------
@@ -61601,6 +62159,379 @@ class GetTxOutIndexRequest
    * @brief JsonAPI(directLockingScript) value
    */
   std::string direct_locking_script_ = "";
+};
+
+// ------------------------------------------------------------------------
+// GetUnblindDataRequest
+// ------------------------------------------------------------------------
+/**
+ * @brief JSON-API (GetUnblindDataRequest) class
+ */
+class GetUnblindDataRequest
+  : public cfd::core::JsonClassBase<GetUnblindDataRequest> {
+ public:
+  GetUnblindDataRequest() {
+    CollectFieldName();
+  }
+  virtual ~GetUnblindDataRequest() {
+    // do nothing
+  }
+  /**
+   * @brief collect field name.
+   */
+  static void CollectFieldName();
+
+  /**
+   * @brief Get of blindingKey
+   * @return blindingKey
+   */
+  std::string GetBlindingKey() const {
+    return blinding_key_;
+  }
+  /**
+   * @brief Set to blindingKey
+   * @param[in] blinding_key    setting value.
+   */
+  void SetBlindingKey(  // line separate
+    const std::string& blinding_key) {  // NOLINT
+    this->blinding_key_ = blinding_key;
+  }
+  /**
+   * @brief Get data type of blindingKey
+   * @return Data type of blindingKey
+   */
+  static std::string GetBlindingKeyFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of blindingKey field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetBlindingKeyString(  // line separate
+      const GetUnblindDataRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.blinding_key_);
+  }
+  /**
+   * @brief Set json object to blindingKey field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetBlindingKeyString(  // line separate
+      GetUnblindDataRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.blinding_key_, json_value);
+  }
+
+  /**
+   * @brief Get of lockingScript
+   * @return lockingScript
+   */
+  std::string GetLockingScript() const {
+    return locking_script_;
+  }
+  /**
+   * @brief Set to lockingScript
+   * @param[in] locking_script    setting value.
+   */
+  void SetLockingScript(  // line separate
+    const std::string& locking_script) {  // NOLINT
+    this->locking_script_ = locking_script;
+  }
+  /**
+   * @brief Get data type of lockingScript
+   * @return Data type of lockingScript
+   */
+  static std::string GetLockingScriptFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of lockingScript field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetLockingScriptString(  // line separate
+      const GetUnblindDataRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.locking_script_);
+  }
+  /**
+   * @brief Set json object to lockingScript field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetLockingScriptString(  // line separate
+      GetUnblindDataRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.locking_script_, json_value);
+  }
+
+  /**
+   * @brief Get of assetCommitment
+   * @return assetCommitment
+   */
+  std::string GetAssetCommitment() const {
+    return asset_commitment_;
+  }
+  /**
+   * @brief Set to assetCommitment
+   * @param[in] asset_commitment    setting value.
+   */
+  void SetAssetCommitment(  // line separate
+    const std::string& asset_commitment) {  // NOLINT
+    this->asset_commitment_ = asset_commitment;
+  }
+  /**
+   * @brief Get data type of assetCommitment
+   * @return Data type of assetCommitment
+   */
+  static std::string GetAssetCommitmentFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of assetCommitment field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetAssetCommitmentString(  // line separate
+      const GetUnblindDataRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.asset_commitment_);
+  }
+  /**
+   * @brief Set json object to assetCommitment field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetAssetCommitmentString(  // line separate
+      GetUnblindDataRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.asset_commitment_, json_value);
+  }
+
+  /**
+   * @brief Get of valueCommitment
+   * @return valueCommitment
+   */
+  std::string GetValueCommitment() const {
+    return value_commitment_;
+  }
+  /**
+   * @brief Set to valueCommitment
+   * @param[in] value_commitment    setting value.
+   */
+  void SetValueCommitment(  // line separate
+    const std::string& value_commitment) {  // NOLINT
+    this->value_commitment_ = value_commitment;
+  }
+  /**
+   * @brief Get data type of valueCommitment
+   * @return Data type of valueCommitment
+   */
+  static std::string GetValueCommitmentFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of valueCommitment field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetValueCommitmentString(  // line separate
+      const GetUnblindDataRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.value_commitment_);
+  }
+  /**
+   * @brief Set json object to valueCommitment field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetValueCommitmentString(  // line separate
+      GetUnblindDataRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.value_commitment_, json_value);
+  }
+
+  /**
+   * @brief Get of commitmentNonce
+   * @return commitmentNonce
+   */
+  std::string GetCommitmentNonce() const {
+    return commitment_nonce_;
+  }
+  /**
+   * @brief Set to commitmentNonce
+   * @param[in] commitment_nonce    setting value.
+   */
+  void SetCommitmentNonce(  // line separate
+    const std::string& commitment_nonce) {  // NOLINT
+    this->commitment_nonce_ = commitment_nonce;
+  }
+  /**
+   * @brief Get data type of commitmentNonce
+   * @return Data type of commitmentNonce
+   */
+  static std::string GetCommitmentNonceFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of commitmentNonce field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetCommitmentNonceString(  // line separate
+      const GetUnblindDataRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.commitment_nonce_);
+  }
+  /**
+   * @brief Set json object to commitmentNonce field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetCommitmentNonceString(  // line separate
+      GetUnblindDataRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.commitment_nonce_, json_value);
+  }
+
+  /**
+   * @brief Get of rangeproof
+   * @return rangeproof
+   */
+  std::string GetRangeproof() const {
+    return rangeproof_;
+  }
+  /**
+   * @brief Set to rangeproof
+   * @param[in] rangeproof    setting value.
+   */
+  void SetRangeproof(  // line separate
+    const std::string& rangeproof) {  // NOLINT
+    this->rangeproof_ = rangeproof;
+  }
+  /**
+   * @brief Get data type of rangeproof
+   * @return Data type of rangeproof
+   */
+  static std::string GetRangeproofFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of rangeproof field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetRangeproofString(  // line separate
+      const GetUnblindDataRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.rangeproof_);
+  }
+  /**
+   * @brief Set json object to rangeproof field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetRangeproofString(  // line separate
+      GetUnblindDataRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.rangeproof_, json_value);
+  }
+
+  /**
+   * @brief Set ignore item.
+   * @param[in] key   ignore target key name.
+   */
+  void SetIgnoreItem(const std::string& key) {
+    ignore_items.insert(key);
+  }
+
+  /**
+   * @brief Convert struct to class.
+   * @param[in] data   struct data.
+   */
+  void ConvertFromStruct(
+      const GetUnblindDataRequestStruct& data);
+
+  /**
+   * @brief Convert class to struct.
+   * @return  struct data.
+   */
+  GetUnblindDataRequestStruct ConvertToStruct()  const;
+
+ protected:
+  /**
+   * @brief definition type of Map table.
+   */
+  using GetUnblindDataRequestMapTable =
+    cfd::core::JsonTableMap<GetUnblindDataRequest>;
+
+  /**
+   * @brief Get JSON mapping object.
+   * @return JSON mapping object.
+   * @see cfd::core::JsonClassBase::GetJsonMapper()
+   */
+  virtual const GetUnblindDataRequestMapTable& GetJsonMapper() const {  // NOLINT
+    return json_mapper;
+  }
+  /**
+   * @brief Get item lists of JSON mapping.
+   * Fetch a list of target variable names in the order of definition.
+   * @return Item lists of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetJsonItemList()
+   */
+  virtual const std::vector<std::string>& GetJsonItemList() const {
+    return item_list;
+  }
+  /**
+   * @brief Get ignore item lists of JSON mapping.
+   * Ignore the target variable at Serialize.
+   * @return Item list of JSON mapping.
+   * @see cfd::core::JsonClassBase::GetIgnoreItem()
+   */
+  virtual const std::set<std::string>& GetIgnoreItem() const {
+    return ignore_items;
+  }
+
+ private:
+ /**
+  * @brief JsonFunctionMap table
+  */
+  static GetUnblindDataRequestMapTable json_mapper;
+  /**
+   * @brief field name list.
+   */
+  static std::vector<std::string> item_list;
+  /**
+   * @brief ignore item list.
+   */
+  std::set<std::string> ignore_items;
+
+  /**
+   * @brief JsonAPI(blindingKey) value
+   */
+  std::string blinding_key_ = "";
+  /**
+   * @brief JsonAPI(lockingScript) value
+   */
+  std::string locking_script_ = "";
+  /**
+   * @brief JsonAPI(assetCommitment) value
+   */
+  std::string asset_commitment_ = "";
+  /**
+   * @brief JsonAPI(valueCommitment) value
+   */
+  std::string value_commitment_ = "";
+  /**
+   * @brief JsonAPI(commitmentNonce) value
+   */
+  std::string commitment_nonce_ = "";
+  /**
+   * @brief JsonAPI(rangeproof) value
+   */
+  std::string rangeproof_ = "";
 };
 
 

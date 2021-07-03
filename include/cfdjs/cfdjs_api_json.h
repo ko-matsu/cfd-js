@@ -813,6 +813,13 @@ class CFD_JS_API_EXPORT JsonMappingApi {
   static std::string CreatePegInAddress(const std::string &request_message);
 
   /**
+   * @brief CreatePegOutAddress.
+   * @param[in] request_message     the request json message
+   * @return json string
+   */
+  static std::string CreatePegOutAddress(const std::string &request_message);
+
+  /**
    * @brief ElementsCreateRawTransaction.
    * @param[in] request_message     the request json message
    * @return json string
@@ -929,6 +936,13 @@ class CFD_JS_API_EXPORT JsonMappingApi {
    * @return json string
    */
   static std::string GetCommitment(const std::string &request_message);
+
+  /**
+   * @brief GetUnblindData.
+   * @param[in] request_message     the request json message
+   * @return json string
+   */
+  static std::string GetUnblindData(const std::string &request_message);
 
 #endif  // CFD_DISABLE_ELEMENTS
 

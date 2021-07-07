@@ -4216,6 +4216,20 @@ void FundSelectUtxoData::CollectFieldName() {
   json_mapper.emplace("peginBtcTxSize", func_table);
   item_list.push_back("peginBtcTxSize");
   func_table = {
+    FundSelectUtxoData::GetPeginTxOutProofSizeString,
+    FundSelectUtxoData::SetPeginTxOutProofSizeString,
+    FundSelectUtxoData::GetPeginTxOutProofSizeFieldType,
+  };
+  json_mapper.emplace("peginTxOutProofSize", func_table);
+  item_list.push_back("peginTxOutProofSize");
+  func_table = {
+    FundSelectUtxoData::GetClaimScriptString,
+    FundSelectUtxoData::SetClaimScriptString,
+    FundSelectUtxoData::GetClaimScriptFieldType,
+  };
+  json_mapper.emplace("claimScript", func_table);
+  item_list.push_back("claimScript");
+  func_table = {
     FundSelectUtxoData::GetFedpegScriptString,
     FundSelectUtxoData::SetFedpegScriptString,
     FundSelectUtxoData::GetFedpegScriptFieldType,
@@ -4244,6 +4258,8 @@ void FundSelectUtxoData::ConvertFromStruct(
   is_blind_issuance_ = data.is_blind_issuance;
   is_pegin_ = data.is_pegin;
   pegin_btc_tx_size_ = data.pegin_btc_tx_size;
+  pegin_tx_out_proof_size_ = data.pegin_tx_out_proof_size;
+  claim_script_ = data.claim_script;
   fedpeg_script_ = data.fedpeg_script;
   script_sig_template_ = data.script_sig_template;
   ignore_items = data.ignore_items;
@@ -4262,6 +4278,8 @@ FundSelectUtxoDataStruct FundSelectUtxoData::ConvertToStruct() const {  // NOLIN
   result.is_blind_issuance = is_blind_issuance_;
   result.is_pegin = is_pegin_;
   result.pegin_btc_tx_size = pegin_btc_tx_size_;
+  result.pegin_tx_out_proof_size = pegin_tx_out_proof_size_;
+  result.claim_script = claim_script_;
   result.fedpeg_script = fedpeg_script_;
   result.script_sig_template = script_sig_template_;
   result.ignore_items = ignore_items;
@@ -5223,6 +5241,20 @@ void SelectUtxoData::CollectFieldName() {
   json_mapper.emplace("peginBtcTxSize", func_table);
   item_list.push_back("peginBtcTxSize");
   func_table = {
+    SelectUtxoData::GetPeginTxOutProofSizeString,
+    SelectUtxoData::SetPeginTxOutProofSizeString,
+    SelectUtxoData::GetPeginTxOutProofSizeFieldType,
+  };
+  json_mapper.emplace("peginTxOutProofSize", func_table);
+  item_list.push_back("peginTxOutProofSize");
+  func_table = {
+    SelectUtxoData::GetClaimScriptString,
+    SelectUtxoData::SetClaimScriptString,
+    SelectUtxoData::GetClaimScriptFieldType,
+  };
+  json_mapper.emplace("claimScript", func_table);
+  item_list.push_back("claimScript");
+  func_table = {
     SelectUtxoData::GetFedpegScriptString,
     SelectUtxoData::SetFedpegScriptString,
     SelectUtxoData::GetFedpegScriptFieldType,
@@ -5249,6 +5281,8 @@ void SelectUtxoData::ConvertFromStruct(
   is_blind_issuance_ = data.is_blind_issuance;
   is_pegin_ = data.is_pegin;
   pegin_btc_tx_size_ = data.pegin_btc_tx_size;
+  pegin_tx_out_proof_size_ = data.pegin_tx_out_proof_size;
+  claim_script_ = data.claim_script;
   fedpeg_script_ = data.fedpeg_script;
   script_sig_template_ = data.script_sig_template;
   ignore_items = data.ignore_items;
@@ -5265,6 +5299,8 @@ SelectUtxoDataStruct SelectUtxoData::ConvertToStruct() const {  // NOLINT
   result.is_blind_issuance = is_blind_issuance_;
   result.is_pegin = is_pegin_;
   result.pegin_btc_tx_size = pegin_btc_tx_size_;
+  result.pegin_tx_out_proof_size = pegin_tx_out_proof_size_;
+  result.claim_script = claim_script_;
   result.fedpeg_script = fedpeg_script_;
   result.script_sig_template = script_sig_template_;
   result.ignore_items = ignore_items;

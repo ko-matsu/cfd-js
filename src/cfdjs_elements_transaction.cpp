@@ -2351,8 +2351,11 @@ void ElementsTransactionJsonApi::EstimateFee(
     data.is_blind_issuance = utxo.GetIsBlindIssuance();
     data.is_pegin = utxo.GetIsPegin();
     data.pegin_btc_tx_size = utxo.GetPeginBtcTxSize();
-    if (!utxo.GetFedpegScript().empty()) {
-      data.fedpeg_script = Script(utxo.GetFedpegScript());
+    data.pegin_txoutproof_size = utxo.GetPeginTxOutProofSize();
+    if (!utxo.GetClaimScript().empty()) {
+      data.claim_script = Script(utxo.GetClaimScript());
+    } else if (!utxo.GetFedpegScript().empty()) {
+      data.claim_script = Script(utxo.GetFedpegScript());
     }
     utxos.push_back(data);
   }
@@ -2412,8 +2415,11 @@ void ElementsTransactionJsonApi::FundRawTransaction(
     data.is_blind_issuance = utxo.GetIsBlindIssuance();
     data.is_pegin = utxo.GetIsPegin();
     data.pegin_btc_tx_size = utxo.GetPeginBtcTxSize();
-    if (!utxo.GetFedpegScript().empty()) {
-      data.fedpeg_script = Script(utxo.GetFedpegScript());
+    data.pegin_txoutproof_size = utxo.GetPeginTxOutProofSize();
+    if (!utxo.GetClaimScript().empty()) {
+      data.claim_script = Script(utxo.GetClaimScript());
+    } else if (!utxo.GetFedpegScript().empty()) {
+      data.claim_script = Script(utxo.GetFedpegScript());
     }
     select_utxos.push_back(data);
   }

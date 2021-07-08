@@ -897,6 +897,8 @@ struct FundSelectUtxoDataStruct {
   bool is_blind_issuance = false;        //!< is_blind_issuance  // NOLINT
   bool is_pegin = false;                 //!< is_pegin  // NOLINT
   uint32_t pegin_btc_tx_size = 0;        //!< pegin_btc_tx_size  // NOLINT
+  uint32_t pegin_tx_out_proof_size = 0;  //!< pegin_tx_out_proof_size  // NOLINT
+  std::string claim_script = "";         //!< claim_script  // NOLINT
   std::string fedpeg_script = "";        //!< fedpeg_script  // NOLINT
   std::string script_sig_template = "";  //!< script_sig_template  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
@@ -1108,6 +1110,8 @@ struct SelectUtxoDataStruct {
   bool is_blind_issuance = false;        //!< is_blind_issuance  // NOLINT
   bool is_pegin = false;                 //!< is_pegin  // NOLINT
   int64_t pegin_btc_tx_size = 0;         //!< pegin_btc_tx_size  // NOLINT
+  uint32_t pegin_tx_out_proof_size = 0;  //!< pegin_tx_out_proof_size  // NOLINT
+  std::string claim_script = "";         //!< claim_script  // NOLINT
   std::string fedpeg_script = "";        //!< fedpeg_script  // NOLINT
   std::string script_sig_template = "";  //!< script_sig_template  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.

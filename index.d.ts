@@ -1788,7 +1788,9 @@ export interface FundRawTransactionResponse {
  * @property {boolean} isBlindIssuance? - use issuance's blind (This field is available only elements.)
  * @property {boolean} isPegin? - use pegin (This field is available only elements.)
  * @property {number} peginBtcTxSize? - pegin's btc transaction size (This field is available only elements.)
- * @property {string} fedpegScript? - fedpeg script (This field is available only elements.)
+ * @property {number} peginTxOutProofSize? - pegin's btc txoutproof size (This field is available only elements.)
+ * @property {string} claimScript? - claim script (This field is available only elements.)
+ * @property {string} fedpegScript? - (deprecated)fedpeg script
  * @property {string} scriptSigTemplate? - ScriptSig template is for scriptHash calculation fee.
  */
 export interface FundSelectUtxoData {
@@ -1803,6 +1805,8 @@ export interface FundSelectUtxoData {
     isBlindIssuance?: boolean;
     isPegin?: boolean;
     peginBtcTxSize?: number;
+    peginTxOutProofSize?: number;
+    claimScript?: string;
     fedpegScript?: string;
     scriptSigTemplate?: string;
 }
@@ -2771,7 +2775,9 @@ export interface SecretData {
  * @property {boolean} isBlindIssuance? - blind issuance flag. (This field is available only elements.)
  * @property {boolean} isPegin? - use pegin utxo. (This field is available only elements.)
  * @property {bigint | number} peginBtcTxSize? - pegin btc transaction size (This field is available only elements.)
- * @property {string} fedpegScript? - fedpeg script (This field is available only elements.)
+ * @property {number} peginTxOutProofSize? - pegin's btc txoutproof size (This field is available only elements.)
+ * @property {string} claimScript? - claim script (This field is available only elements.)
+ * @property {string} fedpegScript? - (deprecated)fedpeg script
  * @property {string} scriptSigTemplate? - ScriptSig template is for scriptHash calculation fee.
  */
 export interface SelectUtxoData {
@@ -2784,6 +2790,8 @@ export interface SelectUtxoData {
     isBlindIssuance?: boolean;
     isPegin?: boolean;
     peginBtcTxSize?: bigint | number;
+    peginTxOutProofSize?: number;
+    claimScript?: string;
     fedpegScript?: string;
     scriptSigTemplate?: string;
 }

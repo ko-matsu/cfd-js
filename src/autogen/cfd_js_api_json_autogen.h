@@ -19530,6 +19530,92 @@ class FundSelectUtxoData
   }
 
   /**
+   * @brief Get of peginTxOutProofSize
+   * @return peginTxOutProofSize
+   */
+  uint32_t GetPeginTxOutProofSize() const {
+    return pegin_tx_out_proof_size_;
+  }
+  /**
+   * @brief Set to peginTxOutProofSize
+   * @param[in] pegin_tx_out_proof_size    setting value.
+   */
+  void SetPeginTxOutProofSize(  // line separate
+    const uint32_t& pegin_tx_out_proof_size) {  // NOLINT
+    this->pegin_tx_out_proof_size_ = pegin_tx_out_proof_size;
+  }
+  /**
+   * @brief Get data type of peginTxOutProofSize
+   * @return Data type of peginTxOutProofSize
+   */
+  static std::string GetPeginTxOutProofSizeFieldType() {
+    return "uint32_t";
+  }
+  /**
+   * @brief Get json string of peginTxOutProofSize field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetPeginTxOutProofSizeString(  // line separate
+      const FundSelectUtxoData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.pegin_tx_out_proof_size_);
+  }
+  /**
+   * @brief Set json object to peginTxOutProofSize field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetPeginTxOutProofSizeString(  // line separate
+      FundSelectUtxoData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.pegin_tx_out_proof_size_, json_value);
+  }
+
+  /**
+   * @brief Get of claimScript
+   * @return claimScript
+   */
+  std::string GetClaimScript() const {
+    return claim_script_;
+  }
+  /**
+   * @brief Set to claimScript
+   * @param[in] claim_script    setting value.
+   */
+  void SetClaimScript(  // line separate
+    const std::string& claim_script) {  // NOLINT
+    this->claim_script_ = claim_script;
+  }
+  /**
+   * @brief Get data type of claimScript
+   * @return Data type of claimScript
+   */
+  static std::string GetClaimScriptFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of claimScript field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetClaimScriptString(  // line separate
+      const FundSelectUtxoData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.claim_script_);
+  }
+  /**
+   * @brief Set json object to claimScript field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetClaimScriptString(  // line separate
+      FundSelectUtxoData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.claim_script_, json_value);
+  }
+
+  /**
    * @brief Get of fedpegScript
    * @return fedpegScript
    */
@@ -19728,6 +19814,14 @@ class FundSelectUtxoData
    * @brief JsonAPI(peginBtcTxSize) value
    */
   uint32_t pegin_btc_tx_size_ = 0;
+  /**
+   * @brief JsonAPI(peginTxOutProofSize) value
+   */
+  uint32_t pegin_tx_out_proof_size_ = 0;
+  /**
+   * @brief JsonAPI(claimScript) value
+   */
+  std::string claim_script_ = "";
   /**
    * @brief JsonAPI(fedpegScript) value
    */
@@ -24160,6 +24254,92 @@ class SelectUtxoData
   }
 
   /**
+   * @brief Get of peginTxOutProofSize
+   * @return peginTxOutProofSize
+   */
+  uint32_t GetPeginTxOutProofSize() const {
+    return pegin_tx_out_proof_size_;
+  }
+  /**
+   * @brief Set to peginTxOutProofSize
+   * @param[in] pegin_tx_out_proof_size    setting value.
+   */
+  void SetPeginTxOutProofSize(  // line separate
+    const uint32_t& pegin_tx_out_proof_size) {  // NOLINT
+    this->pegin_tx_out_proof_size_ = pegin_tx_out_proof_size;
+  }
+  /**
+   * @brief Get data type of peginTxOutProofSize
+   * @return Data type of peginTxOutProofSize
+   */
+  static std::string GetPeginTxOutProofSizeFieldType() {
+    return "uint32_t";
+  }
+  /**
+   * @brief Get json string of peginTxOutProofSize field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetPeginTxOutProofSizeString(  // line separate
+      const SelectUtxoData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.pegin_tx_out_proof_size_);
+  }
+  /**
+   * @brief Set json object to peginTxOutProofSize field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetPeginTxOutProofSizeString(  // line separate
+      SelectUtxoData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.pegin_tx_out_proof_size_, json_value);
+  }
+
+  /**
+   * @brief Get of claimScript
+   * @return claimScript
+   */
+  std::string GetClaimScript() const {
+    return claim_script_;
+  }
+  /**
+   * @brief Set to claimScript
+   * @param[in] claim_script    setting value.
+   */
+  void SetClaimScript(  // line separate
+    const std::string& claim_script) {  // NOLINT
+    this->claim_script_ = claim_script;
+  }
+  /**
+   * @brief Get data type of claimScript
+   * @return Data type of claimScript
+   */
+  static std::string GetClaimScriptFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of claimScript field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetClaimScriptString(  // line separate
+      const SelectUtxoData& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.claim_script_);
+  }
+  /**
+   * @brief Set json object to claimScript field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetClaimScriptString(  // line separate
+      SelectUtxoData& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.claim_script_, json_value);
+  }
+
+  /**
    * @brief Get of fedpegScript
    * @return fedpegScript
    */
@@ -24350,6 +24530,14 @@ class SelectUtxoData
    * @brief JsonAPI(peginBtcTxSize) value
    */
   int64_t pegin_btc_tx_size_ = 0;
+  /**
+   * @brief JsonAPI(peginTxOutProofSize) value
+   */
+  uint32_t pegin_tx_out_proof_size_ = 0;
+  /**
+   * @brief JsonAPI(claimScript) value
+   */
+  std::string claim_script_ = "";
   /**
    * @brief JsonAPI(fedpegScript) value
    */

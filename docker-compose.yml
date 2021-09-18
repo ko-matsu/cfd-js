@@ -1,0 +1,16 @@
+version: '3.5'
+
+services:
+  cfd-js-elements-test:
+    image: ghcr.io/cryptogarageinc/elements-testing:v0.1.0
+    volumes:
+      - ./wrap_js/__integration_test__/docker-entrypoint.sh:/root/test_entrypoint.sh
+      - ./:/github/workspace
+    entrypoint: "sh -c \"/root/test_entrypoint.sh\""
+
+  cfd-js-update-package-lock:
+    image: ghcr.io/cryptogarageinc/elements-testing:v0.1.0
+    volumes:
+      - ./tools/update_package.sh:/root/update_package.sh
+      - ./:/github/workspace
+    entrypoint: "sh -c \"/root/update_package.sh\""

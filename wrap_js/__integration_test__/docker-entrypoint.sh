@@ -1,16 +1,14 @@
 #!/bin/bash -u
 
 # while :; do sleep 10; done
-export WORKDIR_ROOT=github
-export WORK_DIR=workspace
-export WORKDIR_PATH=/${WORKDIR_ROOT}/${WORK_DIR}
+export WORKDIR_ROOT=workspace
+export WORKDIR_PATH=/workspace
 
-cd /${WORKDIR_ROOT}
-if [ ! -d ${WORK_DIR} ]; then
-  mkdir ${WORK_DIR}
+if [ ! -d ${WORKDIR_PATH} ]; then
+  mkdir ${WORKDIR_PATH}
 fi
 
-cd ${WORKDIR_PATH}
+cd /${WORKDIR_ROOT}
 rm -rf bitcoind_datadir
 rm -rf elementsd_datadir
 
@@ -42,13 +40,32 @@ echo "start elements node"
 
 set -e
 
-if [ -d node_modules ]; then
+clrFlg="true"
+if [ $# -gt 0 ]; then
+  echo "param: $1"
+  if [ "$1" = "cache" ]; then
+    clrFlg="false"
+  fi
+fi
+echo "clrFlg: $clrFlg"
+
+if [ "$clrFlg" = "true" ]; then
+  if [ -d node_modules ]; then
+    rm -rf node_modules
+  fi
+  mkdir node_modules
+  chmod 777 node_modules
+fi
+
+node --version
+
+if [ "$clrFlg" = "true" ]; then
+  npm install
+  npm run cmake_release_parallel
+fi
+
+npm run elements_test
+
+if [ "$clrFlg" = "true" ]; then
   rm -rf node_modules
 fi
-mkdir node_modules
-chmod 777 node_modules
-node --version
-npm install
-npm run cmake_release_parallel
-npm run elements_test
-rm -rf node_modules

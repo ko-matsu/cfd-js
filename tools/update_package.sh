@@ -2,9 +2,10 @@
 
 # while :; do sleep 10; done
 export WORKDIR_ROOT=workspace
+export WORKDIR_PATH=/workspace
 
-if [ ! -d ${WORKDIR_ROOT} ]; then
-  mkdir ${WORKDIR_ROOT}
+if [ ! -d ${WORKDIR_PATH} ]; then
+  mkdir ${WORKDIR_PATH}
 fi
 
 cd /${WORKDIR_ROOT}

@@ -24,6 +24,7 @@ do
   bitcoin-cli --regtest -datadir=${WORKDIR_PATH}/bitcoind_datadir ping > /dev/null 2>&1
 done
 echo "start bitcoin node"
+bitcoin-cli --regtest -datadir=${WORKDIR_PATH}/bitcoind_datadir createwallet wallet
 
 set -e
 

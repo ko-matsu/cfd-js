@@ -4305,6 +4305,20 @@ void FundSelectUtxoData::CollectFieldName() {
   json_mapper.emplace("peginBtcTxSize", func_table);
   item_list.push_back("peginBtcTxSize");
   func_table = {
+    FundSelectUtxoData::GetPeginTxOutProofSizeString,
+    FundSelectUtxoData::SetPeginTxOutProofSizeString,
+    FundSelectUtxoData::GetPeginTxOutProofSizeFieldType,
+  };
+  json_mapper.emplace("peginTxOutProofSize", func_table);
+  item_list.push_back("peginTxOutProofSize");
+  func_table = {
+    FundSelectUtxoData::GetClaimScriptString,
+    FundSelectUtxoData::SetClaimScriptString,
+    FundSelectUtxoData::GetClaimScriptFieldType,
+  };
+  json_mapper.emplace("claimScript", func_table);
+  item_list.push_back("claimScript");
+  func_table = {
     FundSelectUtxoData::GetFedpegScriptString,
     FundSelectUtxoData::SetFedpegScriptString,
     FundSelectUtxoData::GetFedpegScriptFieldType,
@@ -4333,6 +4347,8 @@ void FundSelectUtxoData::ConvertFromStruct(
   is_blind_issuance_ = data.is_blind_issuance;
   is_pegin_ = data.is_pegin;
   pegin_btc_tx_size_ = data.pegin_btc_tx_size;
+  pegin_tx_out_proof_size_ = data.pegin_tx_out_proof_size;
+  claim_script_ = data.claim_script;
   fedpeg_script_ = data.fedpeg_script;
   script_sig_template_ = data.script_sig_template;
   ignore_items = data.ignore_items;
@@ -4351,6 +4367,8 @@ FundSelectUtxoDataStruct FundSelectUtxoData::ConvertToStruct() const {  // NOLIN
   result.is_blind_issuance = is_blind_issuance_;
   result.is_pegin = is_pegin_;
   result.pegin_btc_tx_size = pegin_btc_tx_size_;
+  result.pegin_tx_out_proof_size = pegin_tx_out_proof_size_;
+  result.claim_script = claim_script_;
   result.fedpeg_script = fedpeg_script_;
   result.script_sig_template = script_sig_template_;
   result.ignore_items = ignore_items;
@@ -5410,6 +5428,20 @@ void SelectUtxoData::CollectFieldName() {
   json_mapper.emplace("peginBtcTxSize", func_table);
   item_list.push_back("peginBtcTxSize");
   func_table = {
+    SelectUtxoData::GetPeginTxOutProofSizeString,
+    SelectUtxoData::SetPeginTxOutProofSizeString,
+    SelectUtxoData::GetPeginTxOutProofSizeFieldType,
+  };
+  json_mapper.emplace("peginTxOutProofSize", func_table);
+  item_list.push_back("peginTxOutProofSize");
+  func_table = {
+    SelectUtxoData::GetClaimScriptString,
+    SelectUtxoData::SetClaimScriptString,
+    SelectUtxoData::GetClaimScriptFieldType,
+  };
+  json_mapper.emplace("claimScript", func_table);
+  item_list.push_back("claimScript");
+  func_table = {
     SelectUtxoData::GetFedpegScriptString,
     SelectUtxoData::SetFedpegScriptString,
     SelectUtxoData::GetFedpegScriptFieldType,
@@ -5436,6 +5468,8 @@ void SelectUtxoData::ConvertFromStruct(
   is_blind_issuance_ = data.is_blind_issuance;
   is_pegin_ = data.is_pegin;
   pegin_btc_tx_size_ = data.pegin_btc_tx_size;
+  pegin_tx_out_proof_size_ = data.pegin_tx_out_proof_size;
+  claim_script_ = data.claim_script;
   fedpeg_script_ = data.fedpeg_script;
   script_sig_template_ = data.script_sig_template;
   ignore_items = data.ignore_items;
@@ -5452,6 +5486,8 @@ SelectUtxoDataStruct SelectUtxoData::ConvertToStruct() const {  // NOLINT
   result.is_blind_issuance = is_blind_issuance_;
   result.is_pegin = is_pegin_;
   result.pegin_btc_tx_size = pegin_btc_tx_size_;
+  result.pegin_tx_out_proof_size = pegin_tx_out_proof_size_;
+  result.claim_script = claim_script_;
   result.fedpeg_script = fedpeg_script_;
   result.script_sig_template = script_sig_template_;
   result.ignore_items = ignore_items;
@@ -9990,6 +10026,121 @@ CreatePegInAddressResponseStruct CreatePegInAddressResponse::ConvertToStruct() c
 }
 
 // ------------------------------------------------------------------------
+// CreatePegoutAddressRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<CreatePegoutAddressRequest>
+  CreatePegoutAddressRequest::json_mapper;
+std::vector<std::string> CreatePegoutAddressRequest::item_list;
+
+void CreatePegoutAddressRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<CreatePegoutAddressRequest> func_table;  // NOLINT
+
+  func_table = {
+    CreatePegoutAddressRequest::GetNetworkString,
+    CreatePegoutAddressRequest::SetNetworkString,
+    CreatePegoutAddressRequest::GetNetworkFieldType,
+  };
+  json_mapper.emplace("network", func_table);
+  item_list.push_back("network");
+  func_table = {
+    CreatePegoutAddressRequest::GetElementsNetworkString,
+    CreatePegoutAddressRequest::SetElementsNetworkString,
+    CreatePegoutAddressRequest::GetElementsNetworkFieldType,
+  };
+  json_mapper.emplace("elementsNetwork", func_table);
+  item_list.push_back("elementsNetwork");
+  func_table = {
+    CreatePegoutAddressRequest::GetDescriptorString,
+    CreatePegoutAddressRequest::SetDescriptorString,
+    CreatePegoutAddressRequest::GetDescriptorFieldType,
+  };
+  json_mapper.emplace("descriptor", func_table);
+  item_list.push_back("descriptor");
+  func_table = {
+    CreatePegoutAddressRequest::GetBip32CounterString,
+    CreatePegoutAddressRequest::SetBip32CounterString,
+    CreatePegoutAddressRequest::GetBip32CounterFieldType,
+  };
+  json_mapper.emplace("bip32Counter", func_table);
+  item_list.push_back("bip32Counter");
+  func_table = {
+    CreatePegoutAddressRequest::GetHashTypeString,
+    CreatePegoutAddressRequest::SetHashTypeString,
+    CreatePegoutAddressRequest::GetHashTypeFieldType,
+  };
+  json_mapper.emplace("hashType", func_table);
+  item_list.push_back("hashType");
+}
+
+void CreatePegoutAddressRequest::ConvertFromStruct(
+    const CreatePegoutAddressRequestStruct& data) {
+  network_ = data.network;
+  elements_network_ = data.elements_network;
+  descriptor_ = data.descriptor;
+  bip32_counter_ = data.bip32_counter;
+  hash_type_ = data.hash_type;
+  ignore_items = data.ignore_items;
+}
+
+CreatePegoutAddressRequestStruct CreatePegoutAddressRequest::ConvertToStruct() const {  // NOLINT
+  CreatePegoutAddressRequestStruct result;
+  result.network = network_;
+  result.elements_network = elements_network_;
+  result.descriptor = descriptor_;
+  result.bip32_counter = bip32_counter_;
+  result.hash_type = hash_type_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// CreatePegoutAddressResponse
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<CreatePegoutAddressResponse>
+  CreatePegoutAddressResponse::json_mapper;
+std::vector<std::string> CreatePegoutAddressResponse::item_list;
+
+void CreatePegoutAddressResponse::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<CreatePegoutAddressResponse> func_table;  // NOLINT
+
+  func_table = {
+    CreatePegoutAddressResponse::GetMainchainAddressString,
+    CreatePegoutAddressResponse::SetMainchainAddressString,
+    CreatePegoutAddressResponse::GetMainchainAddressFieldType,
+  };
+  json_mapper.emplace("mainchainAddress", func_table);
+  item_list.push_back("mainchainAddress");
+  func_table = {
+    CreatePegoutAddressResponse::GetBaseDescriptorString,
+    CreatePegoutAddressResponse::SetBaseDescriptorString,
+    CreatePegoutAddressResponse::GetBaseDescriptorFieldType,
+  };
+  json_mapper.emplace("baseDescriptor", func_table);
+  item_list.push_back("baseDescriptor");
+}
+
+void CreatePegoutAddressResponse::ConvertFromStruct(
+    const CreatePegoutAddressResponseStruct& data) {
+  mainchain_address_ = data.mainchain_address;
+  base_descriptor_ = data.base_descriptor;
+  ignore_items = data.ignore_items;
+}
+
+CreatePegoutAddressResponseStruct CreatePegoutAddressResponse::ConvertToStruct() const {  // NOLINT
+  CreatePegoutAddressResponseStruct result;
+  result.mainchain_address = mainchain_address_;
+  result.base_descriptor = base_descriptor_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
 // CreateRawPeginRequest
 // ------------------------------------------------------------------------
 cfd::core::JsonTableMap<CreateRawPeginRequest>
@@ -12536,6 +12687,13 @@ void GetExtkeyInfoResponse::CollectFieldName() {
   };
   json_mapper.emplace("chainCode", func_table);
   item_list.push_back("chainCode");
+  func_table = {
+    GetExtkeyInfoResponse::GetKeyTypeString,
+    GetExtkeyInfoResponse::SetKeyTypeString,
+    GetExtkeyInfoResponse::GetKeyTypeFieldType,
+  };
+  json_mapper.emplace("keyType", func_table);
+  item_list.push_back("keyType");
 }
 
 void GetExtkeyInfoResponse::ConvertFromStruct(
@@ -12546,6 +12704,7 @@ void GetExtkeyInfoResponse::ConvertFromStruct(
   fingerprint_ = data.fingerprint;
   child_number_ = data.child_number;
   chain_code_ = data.chain_code;
+  key_type_ = data.key_type;
   ignore_items = data.ignore_items;
 }
 
@@ -12557,6 +12716,7 @@ GetExtkeyInfoResponseStruct GetExtkeyInfoResponse::ConvertToStruct() const {  //
   result.fingerprint = fingerprint_;
   result.child_number = child_number_;
   result.chain_code = chain_code_;
+  result.key_type = key_type_;
   result.ignore_items = ignore_items;
   return result;
 }
@@ -13893,6 +14053,86 @@ GetTxOutIndexRequestStruct GetTxOutIndexRequest::ConvertToStruct() const {  // N
   result.is_elements = is_elements_;
   result.address = address_;
   result.direct_locking_script = direct_locking_script_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// GetUnblindDataRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<GetUnblindDataRequest>
+  GetUnblindDataRequest::json_mapper;
+std::vector<std::string> GetUnblindDataRequest::item_list;
+
+void GetUnblindDataRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<GetUnblindDataRequest> func_table;  // NOLINT
+
+  func_table = {
+    GetUnblindDataRequest::GetBlindingKeyString,
+    GetUnblindDataRequest::SetBlindingKeyString,
+    GetUnblindDataRequest::GetBlindingKeyFieldType,
+  };
+  json_mapper.emplace("blindingKey", func_table);
+  item_list.push_back("blindingKey");
+  func_table = {
+    GetUnblindDataRequest::GetLockingScriptString,
+    GetUnblindDataRequest::SetLockingScriptString,
+    GetUnblindDataRequest::GetLockingScriptFieldType,
+  };
+  json_mapper.emplace("lockingScript", func_table);
+  item_list.push_back("lockingScript");
+  func_table = {
+    GetUnblindDataRequest::GetAssetCommitmentString,
+    GetUnblindDataRequest::SetAssetCommitmentString,
+    GetUnblindDataRequest::GetAssetCommitmentFieldType,
+  };
+  json_mapper.emplace("assetCommitment", func_table);
+  item_list.push_back("assetCommitment");
+  func_table = {
+    GetUnblindDataRequest::GetValueCommitmentString,
+    GetUnblindDataRequest::SetValueCommitmentString,
+    GetUnblindDataRequest::GetValueCommitmentFieldType,
+  };
+  json_mapper.emplace("valueCommitment", func_table);
+  item_list.push_back("valueCommitment");
+  func_table = {
+    GetUnblindDataRequest::GetCommitmentNonceString,
+    GetUnblindDataRequest::SetCommitmentNonceString,
+    GetUnblindDataRequest::GetCommitmentNonceFieldType,
+  };
+  json_mapper.emplace("commitmentNonce", func_table);
+  item_list.push_back("commitmentNonce");
+  func_table = {
+    GetUnblindDataRequest::GetRangeproofString,
+    GetUnblindDataRequest::SetRangeproofString,
+    GetUnblindDataRequest::GetRangeproofFieldType,
+  };
+  json_mapper.emplace("rangeproof", func_table);
+  item_list.push_back("rangeproof");
+}
+
+void GetUnblindDataRequest::ConvertFromStruct(
+    const GetUnblindDataRequestStruct& data) {
+  blinding_key_ = data.blinding_key;
+  locking_script_ = data.locking_script;
+  asset_commitment_ = data.asset_commitment;
+  value_commitment_ = data.value_commitment;
+  commitment_nonce_ = data.commitment_nonce;
+  rangeproof_ = data.rangeproof;
+  ignore_items = data.ignore_items;
+}
+
+GetUnblindDataRequestStruct GetUnblindDataRequest::ConvertToStruct() const {  // NOLINT
+  GetUnblindDataRequestStruct result;
+  result.blinding_key = blinding_key_;
+  result.locking_script = locking_script_;
+  result.asset_commitment = asset_commitment_;
+  result.value_commitment = value_commitment_;
+  result.commitment_nonce = commitment_nonce_;
+  result.rangeproof = rangeproof_;
   result.ignore_items = ignore_items;
   return result;
 }

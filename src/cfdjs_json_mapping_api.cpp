@@ -1296,6 +1296,16 @@ std::string JsonMappingApi::CreatePegInAddress(
       request_message, ElementsAddressStructApi::CreatePegInAddress);
 }
 
+std::string JsonMappingApi::CreatePegOutAddress(
+    const std::string &request_message) {
+  return ExecuteJsonApi<
+      api::json::CreatePegoutAddressRequest,
+      api::json::CreatePegoutAddressResponse,
+      api::CreatePegoutAddressRequestStruct,
+      api::CreatePegoutAddressResponseStruct>(
+      request_message, ElementsAddressStructApi::CreatePegoutAddress);
+}
+
 std::string JsonMappingApi::ElementsCreateRawTransaction(
     const std::string &request_message) {
   return ExecuteJsonApi<
@@ -1443,6 +1453,14 @@ std::string JsonMappingApi::GetCommitment(const std::string &request_message) {
       api::json::GetCommitmentRequest, api::json::GetCommitmentResponse,
       api::GetCommitmentRequestStruct, api::GetCommitmentResponseStruct>(
       request_message, ElementsTransactionStructApi::GetCommitment);
+}
+
+std::string JsonMappingApi::GetUnblindData(
+    const std::string &request_message) {
+  return ExecuteJsonApi<
+      api::json::GetUnblindDataRequest, api::json::UnblindOutput,
+      api::GetUnblindDataRequestStruct, api::UnblindOutputStruct>(
+      request_message, ElementsTransactionStructApi::GetUnblindData);
 }
 
 #endif  // CFD_DISABLE_ELEMENTS
@@ -1626,6 +1644,8 @@ void JsonMappingApi::LoadFunctions(
     request_map->emplace(
         "CreatePegInAddress", JsonMappingApi::CreatePegInAddress);
     request_map->emplace(
+        "CreatePegOutAddress", JsonMappingApi::CreatePegOutAddress);
+    request_map->emplace(
         "ElementsCreateRawTransaction",
         JsonMappingApi::ElementsCreateRawTransaction);
     request_map->emplace(
@@ -1657,6 +1677,7 @@ void JsonMappingApi::LoadFunctions(
     request_map->emplace(
         "SerializeLedgerFormat", JsonMappingApi::SerializeLedgerFormat);
     request_map->emplace("GetCommitment", JsonMappingApi::GetCommitment);
+    request_map->emplace("GetUnblindData", JsonMappingApi::GetUnblindData);
 #endif  // CFD_DISABLE_ELEMENTS
   }
 }

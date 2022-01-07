@@ -4,6 +4,7 @@ on:
   push:
     branches:
     - features/sprint*
+    - feature/ci-*
   pull_request:
     branches:
     - features/sprint*
@@ -66,8 +67,8 @@ jobs:
       id: node_cache
       with:
         path: node_modules
-        key: node-${{ runner.os }}-${{ matrix.node }}-${{ steps.node_ver.outputs.node_version }}-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: node-${{ runner.os }}-${{ matrix.node }}-${{ steps.node_ver.outputs.node_version }}-${{ hashFiles('**/package-lock.json') }}
+        key: node-${{ runner.os }}-${{ matrix.node }}-${{ steps.node_ver.outputs.node_version }}-${{ hashFiles('**/package-lock.json') }}-0
+        restore-keys: node-${{ runner.os }}-${{ matrix.node }}-${{ steps.node_ver.outputs.node_version }}-${{ hashFiles('**/package-lock.json') }}-
     - name: npm info
       if: steps.node_cache.outputs.cache-hit != 'true'
       id: npm_info

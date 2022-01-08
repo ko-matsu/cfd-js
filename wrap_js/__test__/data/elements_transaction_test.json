@@ -7313,7 +7313,9 @@
                     }
                 },
                 "error": {
-                    "cfd": "Illegal online key error."
+                    "code": 1,
+                    "type": "illegal_argument",
+                    "message": "Illegal online key error."
                 }
             },
             {
@@ -7519,7 +7521,7 @@
                         "onlinePubkey": "0214156e4ae9168289b4d0c034da94025121d33ad8643663454885032d77640e3d",
                         "masterOnlineKey": "L52AgshDAE14NHJuovwAw8hyrTNK4YQjuiPC9EES4sfM7oBPzU4o",
                         "bip32Counter": 0,
-                        "whitelist": "030e07d4f657c0c169e04fac5d5a8096adb099874834be59ad1e681e22d952ccda0214156e4ae9168289b4d0c034da94025121d33ad8643663454885032d77640e3d",
+                        "whitelist": "0239a36013301597daef41fbe593a02cc513d0b55527ec2df1050e2e8ff49c85c20214156e4ae9168289b4d0c034da94025121d33ad8643663454885032d77640e3d",
                         "bitcoinDescriptor": "wpkh(xpub661MyMwAqRbcFtXgS5sYJABqqG9YLmC4Q1Rdap9gSE8NqtwybGhePY2gZ29ESFjqJoCu1Rupje8YtGqsefD265TMg7usUDFdp6W1EGMcet8/0/*)"
                     },
                     "fee": {
@@ -7527,8 +7529,9 @@
                         "asset": "5ac9f65c0efcc4775e0baec4ec03abdde22473cd3cf33c0419ca290e0751b225"
                     }
                 },
-                "error": {
-                    "cfd": "bitcoin_descriptor is not of any type supported: pkh(<xpub>)"
+                "expect": {
+                    "hex": "020000000001a38845c1a19b389f27217b91e2120273b447db3e595bba628f0be833f301a24a0000000000fdffffff030125b251070e29ca19043cf33ccd7324e2ddab03ecc4ae0b5e77c4fc0e5cf6c95a010000befe33cc397c0017a914001d6db698e75a5a8af771730c4ab258af30546b870125b251070e29ca19043cf33ccd7324e2ddab03ecc4ae0b5e77c4fc0e5cf6c95a01000000003b9aca00009d6a2006226e46111a0b59caaf126043eb5bbf28c34f3a5e332a1fc7b2b73cf188910f1600140d1c9c02a7be9ba8b8842804feb961481ce6561b2102756de182c5dd4b717ea87e693006da62dbb3cddaa4a5cad2ed1f5bbab755f0f541017365e7157465a7cd112d87fe9de1b9d7d5d9ff0d95986a666aa905105f05b3f1fb7408f18eebbb2e2ce191ac0a004ae41260cd08b184c4c12b747bb7af97db120125b251070e29ca19043cf33ccd7324e2ddab03ecc4ae0b5e77c4fc0e5cf6c95a010000000000001c84000000000000",
+                    "btcAddress": "bc1qp5wfcq48h6d63wyy9qz0awtpfqwwv4sma86mhz"
                 }
             }
         ]

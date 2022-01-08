@@ -157,7 +157,8 @@
                     "language": "en"
                 },
                 "error": {
-                    "cfd": "Failed to ConvertEntropyToMnemonic. Convert entropy to mnemonic error."
+                    "cfd": "Convert entropy to mnemonic error.",
+                    "json": "Failed to ConvertEntropyToMnemonic. Convert entropy to mnemonic error."
                 }
             }
         ]
@@ -504,8 +505,7 @@
                     "network": "mainnet"
                 },
                 "error": {
-                    "cfd": "Decode base58 error.",
-                    "python": "Decode base58 error."
+                    "cfd": "Decode base58 error."
                 },
                 "memo": "Different APIs are called, which is why the error messages are different."
             },
@@ -716,8 +716,7 @@
                     "hardened": true
                 },
                 "error": {
-                    "cfd": "Illegal child_number. Hardened is privkey only.",
-                    "json": "hardened child_num can use privkey only."
+                    "cfd": "hardened child_num can use privkey only."
                 }
             },
             {
@@ -730,8 +729,7 @@
                     "hardened": true
                 },
                 "error": {
-                    "cfd": "Illegal child_number. Hardened is privkey only.",
-                    "json": "hardened child_num can use privkey only."
+                    "cfd": "hardened child_num can use privkey only."
                 }
             },
             {
@@ -917,8 +915,8 @@
                     ]
                 },
                 "error": {
-                    "python": "Decode base58 error.",
-                    "cfd": "hex to byte convert error."
+                    "cfd": "Decode base58 error.",
+                    "json": "hex to byte convert error."
                 }
             },
             {
@@ -966,8 +964,7 @@
                     ]
                 },
                 "error": {
-                    "python": "Error: Invalid ext privkey.",
-                    "cfd": "Illegal output_key_type. Cannot create privkey from pubkey.",
+                    "cfd": "Error: Invalid ext privkey.",
                     "json": "Illegal extkey_type. Cannot create privkey from pubkey."
                 }
             },
@@ -982,8 +979,7 @@
                     ]
                 },
                 "error": {
-                    "cfd": "Illegal child_number. Hardened is privkey only.",
-                    "json": "hardened child_num can use privkey only."
+                    "cfd": "hardened child_num can use privkey only."
                 }
             },
             {
@@ -1062,7 +1058,8 @@
                     "depth": 4,
                     "fingerprint": "00378ea0",
                     "childNumber": 1,
-                    "chainCode": "928804713b7d865e18f8d9d8ee345145a0bff865b03e5ac75c893edb6b0a7d4f"
+                    "chainCode": "928804713b7d865e18f8d9d8ee345145a0bff865b03e5ac75c893edb6b0a7d4f",
+                    "keyType": "extpubkey"
                 }
             },
             {
@@ -1076,7 +1073,8 @@
                     "depth": 4,
                     "fingerprint": "00378ea0",
                     "childNumber": 1,
-                    "chainCode": "928804713b7d865e18f8d9d8ee345145a0bff865b03e5ac75c893edb6b0a7d4f"
+                    "chainCode": "928804713b7d865e18f8d9d8ee345145a0bff865b03e5ac75c893edb6b0a7d4f",
+                    "keyType": "extprivkey"
                 }
             },
             {
@@ -1105,7 +1103,8 @@
                     "depth": 0,
                     "fingerprint": "00000000",
                     "childNumber": 0,
-                    "chainCode": "3dff8e4e898ecd7f09dd62023bd6ca129312216b427d4f6b650f456da06b543f"
+                    "chainCode": "3dff8e4e898ecd7f09dd62023bd6ca129312216b427d4f6b650f456da06b543f",
+                    "keyType": "extprivkey"
                 }
             },
             {
@@ -1119,7 +1118,8 @@
                     "depth": 0,
                     "fingerprint": "00000000",
                     "childNumber": 0,
-                    "chainCode": "3dff8e4e898ecd7f09dd62023bd6ca129312216b427d4f6b650f456da06b543f"
+                    "chainCode": "3dff8e4e898ecd7f09dd62023bd6ca129312216b427d4f6b650f456da06b543f",
+                    "keyType": "extpubkey"
                 }
             },
             {
@@ -1133,7 +1133,8 @@
                     "depth": 0,
                     "fingerprint": "00000000",
                     "childNumber": 0,
-                    "chainCode": "3dff8e4e898ecd7f09dd62023bd6ca129312216b427d4f6b650f456da06b543f"
+                    "chainCode": "3dff8e4e898ecd7f09dd62023bd6ca129312216b427d4f6b650f456da06b543f",
+                    "keyType": "extprivkey"
                 }
             },
             {
@@ -1147,7 +1148,8 @@
                     "depth": 0,
                     "fingerprint": "00000000",
                     "childNumber": 0,
-                    "chainCode": "3dff8e4e898ecd7f09dd62023bd6ca129312216b427d4f6b650f456da06b543f"
+                    "chainCode": "3dff8e4e898ecd7f09dd62023bd6ca129312216b427d4f6b650f456da06b543f",
+                    "keyType": "extpubkey"
                 }
             },
             {
@@ -1687,7 +1689,6 @@
                     "isCompressed": true
                 },
                 "error": {
-                    "python": "unsupported extkey version.",
                     "cfd": "unsupported extkey version."
                 }
             },
@@ -1848,7 +1849,6 @@
                     "network": "regtest"
                 },
                 "error": {
-                    "python": "unsupported extkey version.",
                     "cfd": "unsupported extkey version.",
                     "json": "hex to byte convert error."
                 }

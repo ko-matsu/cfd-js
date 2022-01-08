@@ -53,7 +53,7 @@ jobs:
       with:
         node-version: ${{ matrix.node }}
     - name: update to npm v7
-      if: runner.os == 'Windows' || ${{ matrix.npmv7 }} == 'true'
+      if: runner.os == 'Windows' || matrix.npmv7 == 'true'
       run: npm i -g npm@7
     - name: dump node version
       id: node_ver
@@ -92,7 +92,7 @@ jobs:
         npm set progress=false
         npm ci
     - name: build
-      if: steps.node_cache.outputs.cache-hit == 'true' || ${{ matrix.always }} == 'true'
+      if: steps.node_cache.outputs.cache-hit == 'true'
       run: npm run cmake_release_parallel
     - name: test_all
       run: npm run test

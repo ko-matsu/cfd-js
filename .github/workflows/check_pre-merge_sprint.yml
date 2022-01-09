@@ -76,7 +76,7 @@ jobs:
         npm --version
         echo "::set-output name=temp_npm_cachedir::$(npm config get cache)"
     - name: use npm cache
-      if: runner.os != 'Windows' && steps.node_cache.outputs.cache-hit != 'true'
+      if: steps.node_cache.outputs.cache-hit != 'true'
       uses: actions/cache@v1
       id: npm_cache
       with:

@@ -168,7 +168,7 @@
   "dependencies": {
     "@types/node": "^17.0.8",
     "bindings": "^1.5.0",
-    "cmake-js": "github:ko-matsu/cmake-js#v6.3.1-local.1",
+    "cmake-js": "github:cryptogarageinc/cmake-js#semver:^6.3.1",
     "del-cli": "^4.0.1",
     "got": "^12.0.0",
     "node-addon-api": "^4.1.0",
@@ -184,7 +184,7 @@
     "eslint": "^8.6.0",
     "eslint-config-google": "^0.14.0",
     "jest": "^27.1.1",
-    "prebuild": "github:ko-matsu/prebuild#v11.0.0-local.1",
+    "prebuild": "github:cryptogarageinc/prebuild#semver:^11.0.1",
     "ts-jest": "^27.0.5",
     "ts-morph": "^13.0.2",
     "ts-node": "^10.2.1",

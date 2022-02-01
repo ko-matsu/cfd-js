@@ -127,7 +127,7 @@ const main = async function() {
       }
     }
 
-    const got = require('got');
+    const needle = require('needle');
     const exists = await findPath(zipfilepath);
     if (exists) {
       // console.log('already downloaded. path=' + zipfilepath);
@@ -136,9 +136,13 @@ const main = async function() {
     }
     if (!localFile) {
       if (util.promisify) {
+        const options = {
+          follow_max         : 5,    // follow up to five redirects
+          rejectUnauthorized : true  // verify SSL certificate
+        };
         const pipeline = util.promisify(stream.pipeline);
         await pipeline(
-            got.stream(targetUrl),
+            needle.get(targetUrl, options),
             fs.createWriteStream(zipfilepath),
         );
       }

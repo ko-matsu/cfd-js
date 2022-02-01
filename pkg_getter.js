@@ -137,8 +137,7 @@ const main = async function() {
     if (!localFile) {
       if (util.promisify) {
         const options = {
-          follow_max         : 5,    // follow up to five redirects
-          rejectUnauthorized : true  // verify SSL certificate
+          rejectUnauthorized: true, // verify SSL certificate
         };
         const pipeline = util.promisify(stream.pipeline);
         await pipeline(

@@ -61,7 +61,7 @@
     "format_js_all": "run-s js_format eslint_check",
     "format_all": "run-p code_format js_format",
     "code_format": "clang-format -i --style=file src/*.cpp src/*.h include/cfdjs/*.h addon/*.cpp",
-    "js_format": "eslint --ext .js,.ts *.ts index.js cfdjs_util.js tools/ wrap_js/ --fix",
+    "js_format": "eslint --ext .js,.ts *.ts *.js tools/ wrap_js/ --fix",
     "cmake_all": "run-s cmake_configure cmake_build_parallel",
     "cmake_configure": "run-script-os",
     "cmake_configure:win32": "cmake-js configure -O build --CDENABLE_SHARED=on --CDENABLE_CAPI=off --CDENABLE_JSONAPI=off",

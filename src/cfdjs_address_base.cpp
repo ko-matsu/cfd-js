@@ -225,14 +225,14 @@ ParseDescriptorResponseStruct AddressApiBase::ParseDescriptor(
 
 TapScriptInfoStruct AddressApiBase::GetTapScriptTreeInfo(
     const GetTapScriptTreeInfoRequestStruct& request,
-    const AddressFactory* address_factory) {
+    const AddressFactory* address_factory, NetType network) {
   if (request.tree.empty()) {
     warn(CFD_LOG_SOURCE, "Failed to parameter. tree is empty.");
     throw CfdException(CfdError::kCfdIllegalArgumentError, "tree is empty.");
   }
   TapScriptInfoStruct result;
   TaprootScriptTree tree;
-  TapBranch branch;
+  TapBranch branch(network);
   TapBranch* branch_ptr;
   auto& first_item = request.tree.front();
   if (first_item.tapscript.empty()) {
@@ -243,16 +243,16 @@ TapScriptInfoStruct AddressApiBase::GetTapScriptTreeInfo(
           CfdError::kCfdIllegalArgumentError, "The first item is all empty.");
     }
     if (!first_item.tree_string.empty()) {
-      branch = TapBranch::FromString(first_item.tree_string);
+      branch = TapBranch::FromString(first_item.tree_string, network);
     } else if ((!first_item.branch_hash.empty()) || (!request.tree.empty())) {
-      branch = TapBranch(ByteData256(first_item.branch_hash));
+      branch = TapBranch(ByteData256(first_item.branch_hash), network);
     }
     for (size_t index = 1; index < request.tree.size(); ++index) {
       auto& item = request.tree.at(index);
       if (!item.tapscript.empty()) {
         branch.AddBranch(TaprootScriptTree(Script(item.tapscript)));
       } else if (!item.tree_string.empty()) {
-        branch.AddBranch(TapBranch::FromString(item.tree_string));
+        branch.AddBranch(TapBranch::FromString(item.tree_string, network));
       } else {
         branch.AddBranch(ByteData256(item.branch_hash));
       }
@@ -260,13 +260,13 @@ TapScriptInfoStruct AddressApiBase::GetTapScriptTreeInfo(
     branch_ptr = &branch;
   } else {
     // tapscript tree
-    tree = TaprootScriptTree(Script(first_item.tapscript));
+    tree = TaprootScriptTree(Script(first_item.tapscript), network);
     for (size_t index = 1; index < request.tree.size(); ++index) {
       auto& item = request.tree.at(index);
       if (!item.tapscript.empty()) {
-        tree.AddBranch(TaprootScriptTree(Script(item.tapscript)));
+        tree.AddBranch(TaprootScriptTree(Script(item.tapscript), network));
       } else if (!item.tree_string.empty()) {
-        tree.AddBranch(TapBranch::FromString(item.tree_string));
+        tree.AddBranch(TapBranch::FromString(item.tree_string, network));
       } else {
         tree.AddBranch(ByteData256(item.branch_hash));
       }
@@ -334,7 +334,7 @@ TapScriptInfoStruct AddressApiBase::GetTapScriptTreeInfo(
 
 TapScriptInfoStruct AddressApiBase::GetTapScriptTreeInfoByControlBlock(
     const TapScriptInfoByControlRequestStruct& request,
-    const AddressFactory* address_factory) {
+    const AddressFactory* address_factory, NetType network) {
   std::vector<ByteData> witness_stack;
   witness_stack.emplace_back(request.tapscript);
   witness_stack.emplace_back(request.control_block);
@@ -366,7 +366,7 @@ TapScriptInfoStruct AddressApiBase::GetTapScriptTreeInfoByControlBlock(
     }
   }
 
-  TaprootScriptTree tree(tapscript);
+  TaprootScriptTree tree(tapscript, network);
   TapScriptInfoStruct result;
   for (const auto& node : nodes) {
     tree.AddBranch(node);
@@ -396,14 +396,14 @@ TapScriptInfoStruct AddressApiBase::GetTapScriptTreeInfoByControlBlock(
 
 TapScriptInfoStruct AddressApiBase::GetTapScriptTreeFromString(
     const TapScriptFromStringRequestStruct& request,
-    const AddressFactory* address_factory) {
+    const AddressFactory* address_factory, NetType network) {
   TapScriptInfoStruct result;
   TaprootScriptTree tree;
-  TapBranch branch;
+  TapBranch branch(network);
   TapBranch* branch_ptr;
   if (request.tree_string.empty() || request.tapscript.empty()) {
     if (!request.tree_string.empty()) {
-      branch = TapBranch::FromString(request.tree_string);
+      branch = TapBranch::FromString(request.tree_string, network);
     }
     branch_ptr = &branch;
   } else {
@@ -412,7 +412,7 @@ TapScriptInfoStruct AddressApiBase::GetTapScriptTreeFromString(
       nodes.emplace_back(ByteData256(node));
     }
     tree = TaprootScriptTree::FromString(
-        request.tree_string, Script(request.tapscript), nodes);
+        request.tree_string, Script(request.tapscript), nodes, network);
     result.tap_leaf_hash = tree.GetTapLeafHash().GetHex();
     result.tapscript = tree.GetScript().GetHex();
     branch_ptr = &tree;
@@ -471,6 +471,105 @@ TapScriptInfoStruct AddressApiBase::GetTapScriptTreeFromString(
     result.ignore_items.insert("nodes");
   }
   if (result.nodes.empty()) result.ignore_items.insert("nodes");
+  return result;
+}
+
+TapBranchInfoStruct AddressApiBase::GetTapBranchInfo(
+    const GetTapBranchInfoRequestStruct& request, NetType network) {
+  TapBranchInfoStruct result;
+  if (request.tree_string.empty()) {
+    warn(CFD_LOG_SOURCE, "Failed to parameter. tree string is empty.");
+    throw CfdException(
+        CfdError::kCfdIllegalArgumentError, "tree string is empty.");
+  }
+  TaprootScriptTree tree;
+  TapBranch branch;
+  TapBranch* branch_ptr;
+  if (request.tapscript.empty()) {
+    branch = TapBranch::FromString(request.tree_string, network);
+    branch_ptr = &branch;
+  } else {
+    std::vector<ByteData256> nodes;
+    for (const auto& node : request.nodes) {
+      nodes.emplace_back(ByteData256(node));
+    }
+    tree = TaprootScriptTree::FromString(
+        request.tree_string, Script(request.tapscript), nodes, network);
+    branch_ptr = &tree;
+  }
+
+  auto branches = branch_ptr->GetBranchList();
+  if (request.index >= static_cast<uint32_t>(branches.size())) {
+    warn(CFD_LOG_SOURCE, "Failed to parameter. index is out of range.");
+    throw CfdException(
+        CfdError::kCfdOutOfRangeError, "index is out of range.");
+  }
+  auto target_branch = branches[request.index];
+  result.tree_string = target_branch.ToString();
+  result.top_branch_hash = target_branch.GetCurrentBranchHash().GetHex();
+  for (const auto& node : target_branch.GetNodeList()) {
+    result.nodes.emplace_back(node.GetHex());
+  }
+  return result;
+}
+
+/**
+ * @brief parse tapbranch.
+ * @param[in,out] list    output list.
+ * @param[in] branch      target branch.
+ * @param[in] depth       top depth.
+ * @param[in] network     network type.
+ */
+static void ParseTapBranch(
+    std::vector<TapScriptTreeItemStruct>* list, const TapBranch& branch,
+    uint8_t depth, NetType network) {
+  auto branches = branch.GetBranchList();
+  uint32_t branch_max = static_cast<uint32_t>(branches.size());
+  TapScriptTreeItemStruct leaf_data;
+  leaf_data.depth = branch_max + depth;
+  leaf_data.tap_branch_hash = branch.GetBaseHash().GetHex();
+  if (branch.HasTapLeaf()) {
+    leaf_data.tapscript = branch.GetScript().GetHex();
+    leaf_data.leaf_version = branch.GetLeafVersion();
+  } else {
+    leaf_data.ignore_items.insert("tapscript");
+    leaf_data.ignore_items.insert("leafVersion");
+  }
+  leaf_data.ignore_items.insert("relatedBranchHash");
+  list->emplace_back(leaf_data);
+
+  std::string past_branch_hash = leaf_data.tap_branch_hash;
+  for (uint32_t index = 0; index < branch_max; ++index) {
+    uint32_t current_depth = branch_max - 1 - index + depth;
+    auto& target_branch = branches.at(index);
+    // set value (branch hash)
+    TapScriptTreeItemStruct item;
+    item.depth = current_depth;
+    item.tap_branch_hash =
+        branch.GetBranchHash(static_cast<uint8_t>(index)).GetHex();
+    item.related_branch_hash.emplace_back(past_branch_hash);
+    item.related_branch_hash.emplace_back(
+        target_branch.GetCurrentBranchHash().GetHex());
+    item.ignore_items.insert("tapscript");
+    item.ignore_items.insert("leafVersion");
+    list->emplace_back(item);
+    past_branch_hash = item.tap_branch_hash;
+
+    ParseTapBranch(list, target_branch, current_depth + 1, network);
+  }
+}
+
+AnalyzeTapScriptTreeInfoStruct AddressApiBase::AnalyzeTapScriptTree(
+    const AnalyzeTapScriptTreeRequestStruct& request, NetType network) {
+  AnalyzeTapScriptTreeInfoStruct result;
+  if (request.tree_string.empty()) {
+    warn(CFD_LOG_SOURCE, "Failed to parameter. tree string is empty.");
+    throw CfdException(
+        CfdError::kCfdIllegalArgumentError, "tree string is empty.");
+  }
+  auto tree = TapBranch::FromString(request.tree_string, network);
+
+  ParseTapBranch(&result.branches, tree, 0, network);
   return result;
 }
 
@@ -552,16 +651,6 @@ ParseDescriptorResponseStruct AddressApiBase::ConvertDescriptorData(
   } else {
     result.ignore_items.insert("redeemScript");
   }
-  if (script_data.tree.IsValid()) {
-    result.tree_string = script_data.tree.ToString();
-  } else {
-    std::string tree_str = script_data.branch.ToString();
-    if (!tree_str.empty()) {
-      result.tree_string = tree_str;
-    } else {
-      result.ignore_items.insert("treeString");
-    }
-  }
 
   std::vector<DescriptorScriptData> setting_scripts;
   bool is_force_multisig = false;
@@ -639,6 +728,22 @@ ParseDescriptorResponseStruct AddressApiBase::ConvertDescriptorData(
   }
   if (result.keys.empty()) result.ignore_items.insert("keys");
 
+  if ((script_data.type == DescriptorScriptType::kDescriptorScriptTaproot) &&
+      (!script_data.key.empty())) {
+    KeyData key_data(script_data.key, 0, true);
+    SchnorrPubkey pk = SchnorrPubkey::FromPubkey(key_data.GetPubkey());
+    if (script_data.tree.IsValid()) {
+      result.tree_string = script_data.tree.ToString();
+      result.tap_tweak = script_data.tree.GetTapTweak(pk).GetHex();
+    } else {
+      result.tree_string = script_data.branch.ToString();
+      result.tap_tweak = script_data.branch.GetTapTweak(pk).GetHex();
+    }
+  } else {
+    result.ignore_items.insert("treeString");
+    result.ignore_items.insert("tapTweak");
+  }
+
   return result;
 }
 
@@ -670,7 +775,7 @@ AddressType AddressApiBase::ConvertAddressType(
     addr_type = AddressType::kP2shP2wpkhAddress;
   } else if (address_type == "p2sh-p2wsh") {
     addr_type = AddressType::kP2shP2wshAddress;
-  } else if (address_type == "taproot") {
+  } else if ((address_type == "taproot") || (address_type == "p2tr")) {
     addr_type = AddressType::kTaprootAddress;
   } else {
     warn(

@@ -141,6 +141,22 @@ class CFD_JS_API_EXPORT ElementsAddressStructApi {
       const TapScriptFromStringRequestStruct& request);
 
   /**
+   * @brief Get a tapbranch information by string.
+   * @param[in] request     tapbranch data
+   * @return tapbranch information
+   */
+  static TapBranchInfoStruct GetTapBranchInfo(
+      const GetTapBranchInfoRequestStruct& request);
+
+  /**
+   * @brief Analyze a tapscript tree information by string.
+   * @param[in] request     tapscript data
+   * @return tapscript information
+   */
+  static AnalyzeTapScriptTreeInfoStruct AnalyzeTapScriptTree(
+      const AnalyzeTapScriptTreeRequestStruct& request);
+
+  /**
    * @brief elementsネットワーク文字列を、ElementsNetType構造体へ変換する.
    * @param[in] elements_net_type ネットワーク文字列
    * @return 引数に対応するElementsNetType構造体

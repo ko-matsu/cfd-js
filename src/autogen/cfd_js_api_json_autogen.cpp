@@ -7273,6 +7273,20 @@ void AnalyzeTapScriptTreeRequest::CollectFieldName() {
   cfd::core::CLASS_FUNCTION_TABLE<AnalyzeTapScriptTreeRequest> func_table;  // NOLINT
 
   func_table = {
+    AnalyzeTapScriptTreeRequest::GetNetworkString,
+    AnalyzeTapScriptTreeRequest::SetNetworkString,
+    AnalyzeTapScriptTreeRequest::GetNetworkFieldType,
+  };
+  json_mapper.emplace("network", func_table);
+  item_list.push_back("network");
+  func_table = {
+    AnalyzeTapScriptTreeRequest::GetIsElementsString,
+    AnalyzeTapScriptTreeRequest::SetIsElementsString,
+    AnalyzeTapScriptTreeRequest::GetIsElementsFieldType,
+  };
+  json_mapper.emplace("isElements", func_table);
+  item_list.push_back("isElements");
+  func_table = {
     AnalyzeTapScriptTreeRequest::GetTreeStringString,
     AnalyzeTapScriptTreeRequest::SetTreeStringString,
     AnalyzeTapScriptTreeRequest::GetTreeStringFieldType,
@@ -7283,12 +7297,16 @@ void AnalyzeTapScriptTreeRequest::CollectFieldName() {
 
 void AnalyzeTapScriptTreeRequest::ConvertFromStruct(
     const AnalyzeTapScriptTreeRequestStruct& data) {
+  network_ = data.network;
+  is_elements_ = data.is_elements;
   tree_string_ = data.tree_string;
   ignore_items = data.ignore_items;
 }
 
 AnalyzeTapScriptTreeRequestStruct AnalyzeTapScriptTreeRequest::ConvertToStruct() const {  // NOLINT
   AnalyzeTapScriptTreeRequestStruct result;
+  result.network = network_;
+  result.is_elements = is_elements_;
   result.tree_string = tree_string_;
   result.ignore_items = ignore_items;
   return result;
@@ -13274,6 +13292,13 @@ void GetSighashRequest::CollectFieldName() {
   };
   json_mapper.emplace("utxos", func_table);
   item_list.push_back("utxos");
+  func_table = {
+    GetSighashRequest::GetGenesisBlockHashString,
+    GetSighashRequest::SetGenesisBlockHashString,
+    GetSighashRequest::GetGenesisBlockHashFieldType,
+  };
+  json_mapper.emplace("genesisBlockHash", func_table);
+  item_list.push_back("genesisBlockHash");
 }
 
 void GetSighashRequest::ConvertFromStruct(
@@ -13282,6 +13307,7 @@ void GetSighashRequest::ConvertFromStruct(
   is_elements_ = data.is_elements;
   txin_.ConvertFromStruct(data.txin);
   utxos_.ConvertFromStruct(data.utxos);
+  genesis_block_hash_ = data.genesis_block_hash;
   ignore_items = data.ignore_items;
 }
 
@@ -13291,6 +13317,7 @@ GetSighashRequestStruct GetSighashRequest::ConvertToStruct() const {  // NOLINT
   result.is_elements = is_elements_;
   result.txin = txin_.ConvertToStruct();
   result.utxos = utxos_.ConvertToStruct();
+  result.genesis_block_hash = genesis_block_hash_;
   result.ignore_items = ignore_items;
   return result;
 }
@@ -13344,6 +13371,20 @@ void GetTapBranchInfoRequest::CollectFieldName() {
   cfd::core::CLASS_FUNCTION_TABLE<GetTapBranchInfoRequest> func_table;  // NOLINT
 
   func_table = {
+    GetTapBranchInfoRequest::GetNetworkString,
+    GetTapBranchInfoRequest::SetNetworkString,
+    GetTapBranchInfoRequest::GetNetworkFieldType,
+  };
+  json_mapper.emplace("network", func_table);
+  item_list.push_back("network");
+  func_table = {
+    GetTapBranchInfoRequest::GetIsElementsString,
+    GetTapBranchInfoRequest::SetIsElementsString,
+    GetTapBranchInfoRequest::GetIsElementsFieldType,
+  };
+  json_mapper.emplace("isElements", func_table);
+  item_list.push_back("isElements");
+  func_table = {
     GetTapBranchInfoRequest::GetTreeStringString,
     GetTapBranchInfoRequest::SetTreeStringString,
     GetTapBranchInfoRequest::GetTreeStringFieldType,
@@ -13375,6 +13416,8 @@ void GetTapBranchInfoRequest::CollectFieldName() {
 
 void GetTapBranchInfoRequest::ConvertFromStruct(
     const GetTapBranchInfoRequestStruct& data) {
+  network_ = data.network;
+  is_elements_ = data.is_elements;
   tree_string_ = data.tree_string;
   tapscript_ = data.tapscript;
   nodes_.ConvertFromStruct(data.nodes);
@@ -13384,6 +13427,8 @@ void GetTapBranchInfoRequest::ConvertFromStruct(
 
 GetTapBranchInfoRequestStruct GetTapBranchInfoRequest::ConvertToStruct() const {  // NOLINT
   GetTapBranchInfoRequestStruct result;
+  result.network = network_;
+  result.is_elements = is_elements_;
   result.tree_string = tree_string_;
   result.tapscript = tapscript_;
   result.nodes = nodes_.ConvertToStruct();
@@ -14662,6 +14707,13 @@ void ParseDescriptorResponse::CollectFieldName() {
   json_mapper.emplace("treeString", func_table);
   item_list.push_back("treeString");
   func_table = {
+    ParseDescriptorResponse::GetTapTweakString,
+    ParseDescriptorResponse::SetTapTweakString,
+    ParseDescriptorResponse::GetTapTweakFieldType,
+  };
+  json_mapper.emplace("tapTweak", func_table);
+  item_list.push_back("tapTweak");
+  func_table = {
     ParseDescriptorResponse::GetKeysString,
     ParseDescriptorResponse::SetKeysString,
     ParseDescriptorResponse::GetKeysFieldType,
@@ -14686,6 +14738,7 @@ void ParseDescriptorResponse::ConvertFromStruct(
   redeem_script_ = data.redeem_script;
   include_multisig_ = data.include_multisig;
   tree_string_ = data.tree_string;
+  tap_tweak_ = data.tap_tweak;
   keys_.ConvertFromStruct(data.keys);
   scripts_.ConvertFromStruct(data.scripts);
   ignore_items = data.ignore_items;
@@ -14700,6 +14753,7 @@ ParseDescriptorResponseStruct ParseDescriptorResponse::ConvertToStruct() const {
   result.redeem_script = redeem_script_;
   result.include_multisig = include_multisig_;
   result.tree_string = tree_string_;
+  result.tap_tweak = tap_tweak_;
   result.keys = keys_.ConvertToStruct();
   result.scripts = scripts_.ConvertToStruct();
   result.ignore_items = ignore_items;
@@ -15647,6 +15701,13 @@ void SignWithPrivkeyRequest::CollectFieldName() {
   };
   json_mapper.emplace("utxos", func_table);
   item_list.push_back("utxos");
+  func_table = {
+    SignWithPrivkeyRequest::GetGenesisBlockHashString,
+    SignWithPrivkeyRequest::SetGenesisBlockHashString,
+    SignWithPrivkeyRequest::GetGenesisBlockHashFieldType,
+  };
+  json_mapper.emplace("genesisBlockHash", func_table);
+  item_list.push_back("genesisBlockHash");
 }
 
 void SignWithPrivkeyRequest::ConvertFromStruct(
@@ -15655,6 +15716,7 @@ void SignWithPrivkeyRequest::ConvertFromStruct(
   tx_ = data.tx;
   txin_.ConvertFromStruct(data.txin);
   utxos_.ConvertFromStruct(data.utxos);
+  genesis_block_hash_ = data.genesis_block_hash;
   ignore_items = data.ignore_items;
 }
 
@@ -15664,6 +15726,7 @@ SignWithPrivkeyRequestStruct SignWithPrivkeyRequest::ConvertToStruct() const {  
   result.tx = tx_;
   result.txin = txin_.ConvertToStruct();
   result.utxos = utxos_.ConvertToStruct();
+  result.genesis_block_hash = genesis_block_hash_;
   result.ignore_items = ignore_items;
   return result;
 }
@@ -16290,6 +16353,20 @@ void VerifySignRequest::CollectFieldName() {
   };
   json_mapper.emplace("txins", func_table);
   item_list.push_back("txins");
+  func_table = {
+    VerifySignRequest::GetUtxosString,
+    VerifySignRequest::SetUtxosString,
+    VerifySignRequest::GetUtxosFieldType,
+  };
+  json_mapper.emplace("utxos", func_table);
+  item_list.push_back("utxos");
+  func_table = {
+    VerifySignRequest::GetGenesisBlockHashString,
+    VerifySignRequest::SetGenesisBlockHashString,
+    VerifySignRequest::GetGenesisBlockHashFieldType,
+  };
+  json_mapper.emplace("genesisBlockHash", func_table);
+  item_list.push_back("genesisBlockHash");
 }
 
 void VerifySignRequest::ConvertFromStruct(
@@ -16297,6 +16374,8 @@ void VerifySignRequest::ConvertFromStruct(
   tx_ = data.tx;
   is_elements_ = data.is_elements;
   txins_.ConvertFromStruct(data.txins);
+  utxos_.ConvertFromStruct(data.utxos);
+  genesis_block_hash_ = data.genesis_block_hash;
   ignore_items = data.ignore_items;
 }
 
@@ -16305,6 +16384,8 @@ VerifySignRequestStruct VerifySignRequest::ConvertToStruct() const {  // NOLINT
   result.tx = tx_;
   result.is_elements = is_elements_;
   result.txins = txins_.ConvertToStruct();
+  result.utxos = utxos_.ConvertToStruct();
+  result.genesis_block_hash = genesis_block_hash_;
   result.ignore_items = ignore_items;
   return result;
 }
@@ -16350,6 +16431,13 @@ void VerifySignatureRequest::CollectFieldName() {
   };
   json_mapper.emplace("utxos", func_table);
   item_list.push_back("utxos");
+  func_table = {
+    VerifySignatureRequest::GetGenesisBlockHashString,
+    VerifySignatureRequest::SetGenesisBlockHashString,
+    VerifySignatureRequest::GetGenesisBlockHashFieldType,
+  };
+  json_mapper.emplace("genesisBlockHash", func_table);
+  item_list.push_back("genesisBlockHash");
 }
 
 void VerifySignatureRequest::ConvertFromStruct(
@@ -16358,6 +16446,7 @@ void VerifySignatureRequest::ConvertFromStruct(
   is_elements_ = data.is_elements;
   txin_.ConvertFromStruct(data.txin);
   utxos_.ConvertFromStruct(data.utxos);
+  genesis_block_hash_ = data.genesis_block_hash;
   ignore_items = data.ignore_items;
 }
 
@@ -16367,6 +16456,7 @@ VerifySignatureRequestStruct VerifySignatureRequest::ConvertToStruct() const {  
   result.is_elements = is_elements_;
   result.txin = txin_.ConvertToStruct();
   result.utxos = utxos_.ConvertToStruct();
+  result.genesis_block_hash = genesis_block_hash_;
   result.ignore_items = ignore_items;
   return result;
 }

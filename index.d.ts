@@ -236,9 +236,13 @@ export interface AnalyzeTapScriptTreeInfo {
 
 /**
  * Request for get TapBranch info.
+ * @property {string} network? - network type (bitcoin:'mainnet, testnet, regtest'. elements:'liquidv1, regtest')
+ * @property {boolean} isElements? - elements transaction flag.
  * @property {string} treeString - tree serialize string. (cfd format)
  */
 export interface AnalyzeTapScriptTreeRequest {
+    network?: string;
+    isElements?: boolean;
     treeString: string;
 }
 
@@ -2094,12 +2098,14 @@ export interface GetSchnorrPubkeyFromPrivkeyRequest {
  * @property {boolean} isElements? - elements transaction flag.
  * @property {GetSighashTxIn} txin - txin data
  * @property {UtxoObject[]} utxos - UTXO data.
+ * @property {string} genesisBlockHash? - genesis block hash (for elements taproot)
  */
 export interface GetSighashRequest {
     tx: string;
     isElements?: boolean;
     txin: GetSighashTxIn;
     utxos: UtxoObject[];
+    genesisBlockHash?: string;
 }
 
 /**
@@ -2138,12 +2144,16 @@ export interface GetSupportedFunctionResponse {
 
 /**
  * Request for get TapBranch info.
+ * @property {string} network? - network type (bitcoin:'mainnet, testnet, regtest'. elements:'liquidv1, regtest')
+ * @property {boolean} isElements? - elements transaction flag.
  * @property {string} treeString - tree serialize string. (cfd format)
  * @property {string} tapscript? - tapscript hex.
  * @property {string[]} nodes? - target tapbranches hash list. If exist the same tapscript in this tree, you can search for the target tapscript by specifying a hash list of tapbranches.
  * @property {number} index - branch index.
  */
 export interface GetTapBranchInfoRequest {
+    network?: string;
+    isElements?: boolean;
     treeString: string;
     tapscript?: string;
     nodes?: string[];
@@ -2422,6 +2432,7 @@ export interface ParseDescriptorRequest {
  * @property {string} redeemScript? - redeem script on script hash. (This field is only available when hashType is p2wsh, p2sh, or p2sh-p2wsh.)
  * @property {boolean} includeMultisig - multisig flag (whether multisig descriptor is included in scripts stack)
  * @property {string} treeString? - taproot script tree serialize string. (cfd format)
+ * @property {string} tapTweak? - tapTweak by scriptTree & internalPubkey.
  * @property {DescriptorKeyJson[]} keys? - key list
  * @property {DescriptorScriptJson[]} scripts? - descriptor item.
  */
@@ -2433,6 +2444,7 @@ export interface ParseDescriptorResponse {
     redeemScript?: string;
     includeMultisig: boolean;
     treeString?: string;
+    tapTweak?: string;
     keys?: DescriptorKeyJson[];
     scripts?: DescriptorScriptJson[];
 }
@@ -3055,12 +3067,14 @@ export interface SignPsbtRequest {
  * @property {boolean} isElements? - elements transaction flag.
  * @property {string} tx - transaction hex
  * @property {UtxoObject[]} utxos? - UTXO data.
+ * @property {string} genesisBlockHash? - genesis block hash (for elements taproot)
  */
 export interface SignWithPrivkeyRequest {
     isElements?: boolean;
     tx: string;
     txin?: SignWithPrivkeyTxInRequest;
     utxos?: UtxoObject[];
+    genesisBlockHash?: string;
 }
 
 /**
@@ -3532,12 +3546,14 @@ export interface VerifyPsbtSignRequest {
  * @property {boolean} isElements? - elements transaction flag.
  * @property {VerifySignatureTxInRequest} txin - txin data
  * @property {UtxoObject[]} utxos? - UTXO data.
+ * @property {string} genesisBlockHash? - genesis block hash (for elements taproot)
  */
 export interface VerifySignatureRequest {
     tx: string;
     isElements?: boolean;
     txin: VerifySignatureTxInRequest;
     utxos?: UtxoObject[];
+    genesisBlockHash?: string;
 }
 
 /** @property {boolean} success - verify result (true only. If it fails, an error is thrown.) */
@@ -3581,11 +3597,15 @@ export interface VerifySignatureTxInRequest {
  * @property {string} tx - transaction hex
  * @property {boolean} isElements? - elements transaction flag.
  * @property {VerifySignTxInUtxoData[]} txins - target txin list
+ * @property {UtxoObject[]} utxos? - UTXO data.
+ * @property {string} genesisBlockHash? - genesis block hash (for elements taproot)
  */
 export interface VerifySignRequest {
     tx: string;
     isElements?: boolean;
     txins: VerifySignTxInUtxoData[];
+    utxos?: UtxoObject[];
+    genesisBlockHash?: string;
 }
 
 /**

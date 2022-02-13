@@ -141,6 +141,12 @@ std::vector<UtxoData> TransactionStructApiBase::ConvertUtxoList(
     } else if (!utxo.confidential_asset_commitment.empty()) {
       data.asset = ConfidentialAssetId(utxo.confidential_asset_commitment);
     }
+    if (!utxo.confidential_asset_commitment.empty()) {
+      data.asset_commitment =
+          ConfidentialAssetId(utxo.confidential_asset_commitment);
+    } else if (data.asset.HasBlinding()) {
+      data.asset_commitment = data.asset;
+    }
     if (!utxo.asset_blind_factor.empty()) {
       data.asset_blind_factor = BlindFactor(utxo.asset_blind_factor);
     }

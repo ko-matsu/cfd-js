@@ -1543,7 +1543,9 @@ struct AddTapscriptSignRequestStruct {
  * @brief AnalyzeTapScriptTreeRequestStruct struct
  */
 struct AnalyzeTapScriptTreeRequestStruct {
-  std::string tree_string = "";  //!< tree_string  // NOLINT
+  std::string network = "mainnet";  //!< network  // NOLINT
+  bool is_elements = false;         //!< is_elements  // NOLINT
+  std::string tree_string = "";     //!< tree_string  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -3024,6 +3026,7 @@ struct GetSighashRequestStruct {
   bool is_elements = false;             //!< is_elements  // NOLINT
   GetSighashTxInStruct txin;            //!< txin  // NOLINT
   std::vector<UtxoObjectStruct> utxos;  //!< utxos  // NOLINT
+  std::string genesis_block_hash = "";  //!< genesis_block_hash  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -3046,10 +3049,12 @@ struct CreateSignatureHashResponseStruct {
  * @brief GetTapBranchInfoRequestStruct struct
  */
 struct GetTapBranchInfoRequestStruct {
-  std::string tree_string = "";    //!< tree_string  // NOLINT
-  std::string tapscript = "";      //!< tapscript  // NOLINT
-  std::vector<std::string> nodes;  //!< nodes  // NOLINT
-  uint32_t index = 0;              //!< index  // NOLINT
+  std::string network = "mainnet";  //!< network  // NOLINT
+  bool is_elements = false;         //!< is_elements  // NOLINT
+  std::string tree_string = "";     //!< tree_string  // NOLINT
+  std::string tapscript = "";       //!< tapscript  // NOLINT
+  std::vector<std::string> nodes;   //!< nodes  // NOLINT
+  uint32_t index = 0;               //!< index  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -3351,6 +3356,7 @@ struct ParseDescriptorResponseStruct {
   std::string redeem_script = "";                   //!< redeem_script  // NOLINT
   bool include_multisig = false;                    //!< include_multisig  // NOLINT
   std::string tree_string = "";                     //!< tree_string  // NOLINT
+  std::string tap_tweak = "";                       //!< tap_tweak  // NOLINT
   std::vector<DescriptorKeyJsonStruct> keys;        //!< keys  // NOLINT
   std::vector<DescriptorScriptJsonStruct> scripts;  //!< scripts  // NOLINT
   cfd::js::api::InnerErrorResponseStruct error;   //!< error information
@@ -3602,6 +3608,7 @@ struct SignWithPrivkeyRequestStruct {
   std::string tx = "";                    //!< tx  // NOLINT
   SignWithPrivkeyTxInRequestStruct txin;  //!< txin  // NOLINT
   std::vector<UtxoObjectStruct> utxos;    //!< utxos  // NOLINT
+  std::string genesis_block_hash = "";    //!< genesis_block_hash  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -3761,6 +3768,8 @@ struct VerifySignRequestStruct {
   std::string tx = "";                              //!< tx  // NOLINT
   bool is_elements = false;                         //!< is_elements  // NOLINT
   std::vector<VerifySignTxInUtxoDataStruct> txins;  //!< txins  // NOLINT
+  std::vector<UtxoObjectStruct> utxos;              //!< utxos  // NOLINT
+  std::string genesis_block_hash = "";              //!< genesis_block_hash  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 
@@ -3775,6 +3784,7 @@ struct VerifySignatureRequestStruct {
   bool is_elements = false;               //!< is_elements  // NOLINT
   VerifySignatureTxInRequestStruct txin;  //!< txin  // NOLINT
   std::vector<UtxoObjectStruct> utxos;    //!< utxos  // NOLINT
+  std::string genesis_block_hash = "";    //!< genesis_block_hash  // NOLINT
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 

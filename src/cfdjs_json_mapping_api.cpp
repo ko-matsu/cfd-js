@@ -473,7 +473,7 @@ std::string JsonMappingApi::GetSighash(const std::string &request_message) {
       api::GetSighashRequestStruct, api::CreateSignatureHashResponseStruct>(
       request_message, TransactionStructApi::GetSighash,
 #ifndef CFD_DISABLE_ELEMENTS
-      TransactionStructApi::GetSighash);
+      ElementsTransactionStructApi::GetSighash);
 #else
       TransactionStructApi::GetSighash);
 #endif
@@ -1126,20 +1126,30 @@ std::string JsonMappingApi::GetTapScriptTreeFromString(
 
 std::string JsonMappingApi::GetTapBranchInfo(
     const std::string &request_message) {
-  return ExecuteJsonApi<
+  return ExecuteElementsCheckApi<
       api::json::GetTapBranchInfoRequest, api::json::TapBranchInfo,
       api::GetTapBranchInfoRequestStruct, api::TapBranchInfoStruct>(
-      request_message, AddressStructApi::GetTapBranchInfo);
+      request_message, AddressStructApi::GetTapBranchInfo,
+#ifndef CFD_DISABLE_ELEMENTS
+      ElementsAddressStructApi::GetTapBranchInfo);
+#else
+      AddressStructApi::GetTapBranchInfo);
+#endif
 }
 
 std::string JsonMappingApi::AnalyzeTapScriptTree(
     const std::string &request_message) {
-  return ExecuteJsonApi<
+  return ExecuteElementsCheckApi<
       api::json::AnalyzeTapScriptTreeRequest,
       api::json::AnalyzeTapScriptTreeInfo,
       api::AnalyzeTapScriptTreeRequestStruct,
       api::AnalyzeTapScriptTreeInfoStruct>(
-      request_message, AddressStructApi::AnalyzeTapScriptTree);
+      request_message, AddressStructApi::AnalyzeTapScriptTree,
+#ifndef CFD_DISABLE_ELEMENTS
+      ElementsAddressStructApi::AnalyzeTapScriptTree);
+#else
+      AddressStructApi::AnalyzeTapScriptTree);
+#endif
 }
 
 std::string JsonMappingApi::GetBlockInfo(const std::string &request_message) {

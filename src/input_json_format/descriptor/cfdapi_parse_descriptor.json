@@ -46,6 +46,9 @@
     "treeString": "",
     "treeString:require": "optional",
     "treeString:comment": "taproot script tree serialize string. (cfd format)",
+    "tapTweak": "",
+    "tapTweak:require": "optional",
+    "tapTweak:comment": "tapTweak by scriptTree & internalPubkey.",
     "keys:require": "optional",
     "keys": [{
       ":class": "DescriptorKeyJson",

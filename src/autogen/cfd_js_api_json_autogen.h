@@ -33521,6 +33521,92 @@ class AnalyzeTapScriptTreeRequest
   static void CollectFieldName();
 
   /**
+   * @brief Get of network
+   * @return network
+   */
+  std::string GetNetwork() const {
+    return network_;
+  }
+  /**
+   * @brief Set to network
+   * @param[in] network    setting value.
+   */
+  void SetNetwork(  // line separate
+    const std::string& network) {  // NOLINT
+    this->network_ = network;
+  }
+  /**
+   * @brief Get data type of network
+   * @return Data type of network
+   */
+  static std::string GetNetworkFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of network field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetNetworkString(  // line separate
+      const AnalyzeTapScriptTreeRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.network_);
+  }
+  /**
+   * @brief Set json object to network field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetNetworkString(  // line separate
+      AnalyzeTapScriptTreeRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.network_, json_value);
+  }
+
+  /**
+   * @brief Get of isElements
+   * @return isElements
+   */
+  bool GetIsElements() const {
+    return is_elements_;
+  }
+  /**
+   * @brief Set to isElements
+   * @param[in] is_elements    setting value.
+   */
+  void SetIsElements(  // line separate
+    const bool& is_elements) {  // NOLINT
+    this->is_elements_ = is_elements;
+  }
+  /**
+   * @brief Get data type of isElements
+   * @return Data type of isElements
+   */
+  static std::string GetIsElementsFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of isElements field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetIsElementsString(  // line separate
+      const AnalyzeTapScriptTreeRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.is_elements_);
+  }
+  /**
+   * @brief Set json object to isElements field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetIsElementsString(  // line separate
+      AnalyzeTapScriptTreeRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.is_elements_, json_value);
+  }
+
+  /**
    * @brief Get of treeString
    * @return treeString
    */
@@ -33632,6 +33718,14 @@ class AnalyzeTapScriptTreeRequest
    */
   std::set<std::string> ignore_items;
 
+  /**
+   * @brief JsonAPI(network) value
+   */
+  std::string network_ = "mainnet";
+  /**
+   * @brief JsonAPI(isElements) value
+   */
+  bool is_elements_ = false;
   /**
    * @brief JsonAPI(treeString) value
    */
@@ -60028,6 +60122,49 @@ class GetSighashRequest
   }
 
   /**
+   * @brief Get of genesisBlockHash
+   * @return genesisBlockHash
+   */
+  std::string GetGenesisBlockHash() const {
+    return genesis_block_hash_;
+  }
+  /**
+   * @brief Set to genesisBlockHash
+   * @param[in] genesis_block_hash    setting value.
+   */
+  void SetGenesisBlockHash(  // line separate
+    const std::string& genesis_block_hash) {  // NOLINT
+    this->genesis_block_hash_ = genesis_block_hash;
+  }
+  /**
+   * @brief Get data type of genesisBlockHash
+   * @return Data type of genesisBlockHash
+   */
+  static std::string GetGenesisBlockHashFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of genesisBlockHash field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetGenesisBlockHashString(  // line separate
+      const GetSighashRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.genesis_block_hash_);
+  }
+  /**
+   * @brief Set json object to genesisBlockHash field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetGenesisBlockHashString(  // line separate
+      GetSighashRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.genesis_block_hash_, json_value);
+  }
+
+  /**
    * @brief Set ignore item.
    * @param[in] key   ignore target key name.
    */
@@ -60112,6 +60249,10 @@ class GetSighashRequest
    * @brief JsonAPI(utxos) value
    */
   JsonObjectVector<UtxoObject, UtxoObjectStruct> utxos_;  // NOLINT
+  /**
+   * @brief JsonAPI(genesisBlockHash) value
+   */
+  std::string genesis_block_hash_ = "";
 };
 
 // ------------------------------------------------------------------------
@@ -60271,6 +60412,92 @@ class GetTapBranchInfoRequest
    * @brief collect field name.
    */
   static void CollectFieldName();
+
+  /**
+   * @brief Get of network
+   * @return network
+   */
+  std::string GetNetwork() const {
+    return network_;
+  }
+  /**
+   * @brief Set to network
+   * @param[in] network    setting value.
+   */
+  void SetNetwork(  // line separate
+    const std::string& network) {  // NOLINT
+    this->network_ = network;
+  }
+  /**
+   * @brief Get data type of network
+   * @return Data type of network
+   */
+  static std::string GetNetworkFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of network field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetNetworkString(  // line separate
+      const GetTapBranchInfoRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.network_);
+  }
+  /**
+   * @brief Set json object to network field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetNetworkString(  // line separate
+      GetTapBranchInfoRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.network_, json_value);
+  }
+
+  /**
+   * @brief Get of isElements
+   * @return isElements
+   */
+  bool GetIsElements() const {
+    return is_elements_;
+  }
+  /**
+   * @brief Set to isElements
+   * @param[in] is_elements    setting value.
+   */
+  void SetIsElements(  // line separate
+    const bool& is_elements) {  // NOLINT
+    this->is_elements_ = is_elements;
+  }
+  /**
+   * @brief Get data type of isElements
+   * @return Data type of isElements
+   */
+  static std::string GetIsElementsFieldType() {
+    return "bool";
+  }
+  /**
+   * @brief Get json string of isElements field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetIsElementsString(  // line separate
+      const GetTapBranchInfoRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.is_elements_);
+  }
+  /**
+   * @brief Set json object to isElements field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetIsElementsString(  // line separate
+      GetTapBranchInfoRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.is_elements_, json_value);
+  }
 
   /**
    * @brief Get of treeString
@@ -60514,6 +60741,14 @@ class GetTapBranchInfoRequest
    */
   std::set<std::string> ignore_items;
 
+  /**
+   * @brief JsonAPI(network) value
+   */
+  std::string network_ = "mainnet";
+  /**
+   * @brief JsonAPI(isElements) value
+   */
+  bool is_elements_ = false;
   /**
    * @brief JsonAPI(treeString) value
    */
@@ -66258,6 +66493,49 @@ class ParseDescriptorResponse
   }
 
   /**
+   * @brief Get of tapTweak
+   * @return tapTweak
+   */
+  std::string GetTapTweak() const {
+    return tap_tweak_;
+  }
+  /**
+   * @brief Set to tapTweak
+   * @param[in] tap_tweak    setting value.
+   */
+  void SetTapTweak(  // line separate
+    const std::string& tap_tweak) {  // NOLINT
+    this->tap_tweak_ = tap_tweak;
+  }
+  /**
+   * @brief Get data type of tapTweak
+   * @return Data type of tapTweak
+   */
+  static std::string GetTapTweakFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of tapTweak field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetTapTweakString(  // line separate
+      const ParseDescriptorResponse& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.tap_tweak_);
+  }
+  /**
+   * @brief Set json object to tapTweak field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetTapTweakString(  // line separate
+      ParseDescriptorResponse& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.tap_tweak_, json_value);
+  }
+
+  /**
    * @brief Get of keys.
    * @return keys
    */
@@ -66442,6 +66720,10 @@ class ParseDescriptorResponse
    * @brief JsonAPI(treeString) value
    */
   std::string tree_string_ = "";
+  /**
+   * @brief JsonAPI(tapTweak) value
+   */
+  std::string tap_tweak_ = "";
   /**
    * @brief JsonAPI(keys) value
    */
@@ -70556,6 +70838,49 @@ class SignWithPrivkeyRequest
   }
 
   /**
+   * @brief Get of genesisBlockHash
+   * @return genesisBlockHash
+   */
+  std::string GetGenesisBlockHash() const {
+    return genesis_block_hash_;
+  }
+  /**
+   * @brief Set to genesisBlockHash
+   * @param[in] genesis_block_hash    setting value.
+   */
+  void SetGenesisBlockHash(  // line separate
+    const std::string& genesis_block_hash) {  // NOLINT
+    this->genesis_block_hash_ = genesis_block_hash;
+  }
+  /**
+   * @brief Get data type of genesisBlockHash
+   * @return Data type of genesisBlockHash
+   */
+  static std::string GetGenesisBlockHashFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of genesisBlockHash field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetGenesisBlockHashString(  // line separate
+      const SignWithPrivkeyRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.genesis_block_hash_);
+  }
+  /**
+   * @brief Set json object to genesisBlockHash field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetGenesisBlockHashString(  // line separate
+      SignWithPrivkeyRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.genesis_block_hash_, json_value);
+  }
+
+  /**
    * @brief Set ignore item.
    * @param[in] key   ignore target key name.
    */
@@ -70640,6 +70965,10 @@ class SignWithPrivkeyRequest
    * @brief JsonAPI(utxos) value
    */
   JsonObjectVector<UtxoObject, UtxoObjectStruct> utxos_;  // NOLINT
+  /**
+   * @brief JsonAPI(genesisBlockHash) value
+   */
+  std::string genesis_block_hash_ = "";
 };
 
 // ------------------------------------------------------------------------
@@ -73355,6 +73684,93 @@ class VerifySignRequest
   }
 
   /**
+   * @brief Get of utxos.
+   * @return utxos
+   */
+  JsonObjectVector<UtxoObject, UtxoObjectStruct>& GetUtxos() {  // NOLINT
+    return utxos_;
+  }
+  /**
+   * @brief Set to utxos.
+   * @param[in] utxos    setting value.
+   */
+  void SetUtxos(  // line separate
+      const JsonObjectVector<UtxoObject, UtxoObjectStruct>& utxos) {  // NOLINT
+    this->utxos_ = utxos;
+  }
+  /**
+   * @brief Get data type of utxos.
+   * @return Data type of utxos.
+   */
+  static std::string GetUtxosFieldType() {
+    return "JsonObjectVector<UtxoObject, UtxoObjectStruct>";  // NOLINT
+  }
+  /**
+   * @brief Get json string of utxos field.
+   * @param[in,out] obj     class object
+   * @return JSON string.
+   */
+  static std::string GetUtxosString(  // line separate
+      const VerifySignRequest& obj) {  // NOLINT
+    // Do not set to const, because substitution of member variables
+    // may occur in pre / post processing inside Serialize
+    return obj.utxos_.Serialize();
+  }
+  /**
+   * @brief Set json object to utxos field.
+   * @param[in,out] obj     class object
+   * @param[in] json_value  JSON object
+   */
+  static void SetUtxosString(  // line separate
+      VerifySignRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    obj.utxos_.DeserializeUniValue(json_value);
+  }
+
+  /**
+   * @brief Get of genesisBlockHash
+   * @return genesisBlockHash
+   */
+  std::string GetGenesisBlockHash() const {
+    return genesis_block_hash_;
+  }
+  /**
+   * @brief Set to genesisBlockHash
+   * @param[in] genesis_block_hash    setting value.
+   */
+  void SetGenesisBlockHash(  // line separate
+    const std::string& genesis_block_hash) {  // NOLINT
+    this->genesis_block_hash_ = genesis_block_hash;
+  }
+  /**
+   * @brief Get data type of genesisBlockHash
+   * @return Data type of genesisBlockHash
+   */
+  static std::string GetGenesisBlockHashFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of genesisBlockHash field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetGenesisBlockHashString(  // line separate
+      const VerifySignRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.genesis_block_hash_);
+  }
+  /**
+   * @brief Set json object to genesisBlockHash field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetGenesisBlockHashString(  // line separate
+      VerifySignRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.genesis_block_hash_, json_value);
+  }
+
+  /**
    * @brief Set ignore item.
    * @param[in] key   ignore target key name.
    */
@@ -73435,6 +73851,14 @@ class VerifySignRequest
    * @brief JsonAPI(txins) value
    */
   JsonObjectVector<VerifySignTxInUtxoData, VerifySignTxInUtxoDataStruct> txins_;  // NOLINT
+  /**
+   * @brief JsonAPI(utxos) value
+   */
+  JsonObjectVector<UtxoObject, UtxoObjectStruct> utxos_;  // NOLINT
+  /**
+   * @brief JsonAPI(genesisBlockHash) value
+   */
+  std::string genesis_block_hash_ = "";
 };
 
 // ------------------------------------------------------------------------
@@ -73632,6 +74056,49 @@ class VerifySignatureRequest
   }
 
   /**
+   * @brief Get of genesisBlockHash
+   * @return genesisBlockHash
+   */
+  std::string GetGenesisBlockHash() const {
+    return genesis_block_hash_;
+  }
+  /**
+   * @brief Set to genesisBlockHash
+   * @param[in] genesis_block_hash    setting value.
+   */
+  void SetGenesisBlockHash(  // line separate
+    const std::string& genesis_block_hash) {  // NOLINT
+    this->genesis_block_hash_ = genesis_block_hash;
+  }
+  /**
+   * @brief Get data type of genesisBlockHash
+   * @return Data type of genesisBlockHash
+   */
+  static std::string GetGenesisBlockHashFieldType() {
+    return "std::string";
+  }
+  /**
+   * @brief Get json string of genesisBlockHash field.
+   * @param[in,out] obj     class object.
+   * @return JSON string
+   */
+  static std::string GetGenesisBlockHashString(  // line separate
+      const VerifySignatureRequest& obj) {  // NOLINT
+    return cfd::core::ConvertToString(obj.genesis_block_hash_);
+  }
+  /**
+   * @brief Set json object to genesisBlockHash field.
+   * @param[in,out] obj     class object.
+   * @param[in] json_value  JSON object.
+   */
+  static void SetGenesisBlockHashString(  // line separate
+      VerifySignatureRequest& obj,  // NOLINT
+      const UniValue& json_value) {
+    cfd::core::ConvertFromUniValue(  // line separate
+      obj.genesis_block_hash_, json_value);
+  }
+
+  /**
    * @brief Set ignore item.
    * @param[in] key   ignore target key name.
    */
@@ -73716,6 +74183,10 @@ class VerifySignatureRequest
    * @brief JsonAPI(utxos) value
    */
   JsonObjectVector<UtxoObject, UtxoObjectStruct> utxos_;  // NOLINT
+  /**
+   * @brief JsonAPI(genesisBlockHash) value
+   */
+  std::string genesis_block_hash_ = "";
 };
 
 // @formatter:on

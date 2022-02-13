@@ -387,6 +387,20 @@ class CFD_JS_API_EXPORT JsonMappingApi {
   static std::string CreateKeyPair(const std::string &request_message);
 
   /**
+   * @brief SignMessage.
+   * @param[in] request_message the request json message
+   * @return json string
+   */
+  static std::string SignMessage(const std::string &request_message);
+
+  /**
+   * @brief VerifyMessage.
+   * @param[in] request_message the request json message
+   * @return json string
+   */
+  static std::string VerifyMessage(const std::string &request_message);
+
+  /**
    * @brief ParseScript.
    * @param[in] request_message     the request json message
    * @return json string

@@ -536,6 +536,24 @@ Value CreateKeyPair(const CallbackInfo &information) {
  * @param[in] information     node addon api callback information
  * @return json string.
  */
+Value SignMessage(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::SignMessage);
+}
+
+/**
+ * @brief NodeAddon's JSON API.
+ * @param[in] information     node addon api callback information
+ * @return json string.
+ */
+Value VerifyMessage(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::VerifyMessage);
+}
+
+/**
+ * @brief NodeAddon's JSON API.
+ * @param[in] information     node addon api callback information
+ * @return json string.
+ */
 Value ParseScript(const CallbackInfo &information) {
   return NodeAddonJsonApi(information, JsonMappingApi::ParseScript);
 }
@@ -1413,6 +1431,10 @@ void InitializeJsonApi(Env env, Object *exports) {
       Function::New(env, CreateExtPubkey));
   exports->Set(
       String::New(env, "CreateKeyPair"), Function::New(env, CreateKeyPair));
+  exports->Set(
+      String::New(env, "SignMessage"), Function::New(env, SignMessage));
+  exports->Set(
+      String::New(env, "VerifyMessage"), Function::New(env, VerifyMessage));
   exports->Set(
       String::New(env, "ParseScript"), Function::New(env, ParseScript));
   exports->Set(

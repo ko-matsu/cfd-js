@@ -3051,6 +3051,28 @@ export interface SignData {
 }
 
 /**
+ * Request for sign message.
+ * @property {string} privkey - private key. set is wif or hex.
+ * @property {string} message - message
+ * @property {string} magic? - message magic word. default is empty (set bitcoin magic word.)
+ */
+export interface SignMessageRequest {
+    privkey: string;
+    message: string;
+    magic?: string;
+}
+
+/**
+ * Response of signed message.
+ * @property {string} signature - signature
+ * @property {string} base64 - base64 encoded signature
+ */
+export interface SignMessageResponse {
+    signature: string;
+    base64: string;
+}
+
+/**
  * Sign psbt data.
  * @property {string} psbt - psbt data (hex or base64)
  * @property {string} privkey - private key. hex or wif format.
@@ -3528,6 +3550,32 @@ export interface VerifyEcdsaAdaptorRequest {
     message: string;
     isHashed?: boolean;
     pubkey: string;
+}
+
+/**
+ * Request for verify message.
+ * @property {string} signature - message signature. hex or base64.
+ * @property {string} pubkey - public key.
+ * @property {string} message - message
+ * @property {string} magic? - message magic word. default is empty (set bitcoin magic word.)
+ * @property {boolean} ignoreError? - ignore error option. If set to true, response success is true/false.
+ */
+export interface VerifyMessageRequest {
+    signature: string;
+    pubkey: string;
+    message: string;
+    magic?: string;
+    ignoreError?: boolean;
+}
+
+/**
+ * Response of verify message.
+ * @property {boolean} success - signature
+ * @property {string} pubkey? - recovered public key
+ */
+export interface VerifyMessageResponse {
+    success: boolean;
+    pubkey?: string;
 }
 
 /**
@@ -4429,6 +4477,13 @@ export function SetRawIssueAsset(jsonObject: SetRawIssueAssetRequest): SetRawIss
 export function SetRawReissueAsset(jsonObject: SetRawReissueAssetRequest): SetRawReissueAssetResponse;
 
 /**
+ * Sign bitcoin message.
+ * @param {SignMessageRequest} jsonObject - request data.
+ * @return {SignMessageResponse} - response data.
+ */
+export function SignMessage(jsonObject: SignMessageRequest): SignMessageResponse;
+
+/**
  * Sign psbt with privkey.
  * @param {SignPsbtRequest} jsonObject - request data.
  * @return {PsbtOutputData} - response data.
@@ -4532,6 +4587,13 @@ export function UpdateWitnessStack(jsonObject: UpdateWitnessStackRequest): RawTr
  * @return {VerifySignatureResponse} - response data.
  */
 export function VerifyEcdsaAdaptor(jsonObject: VerifyEcdsaAdaptorRequest): VerifySignatureResponse;
+
+/**
+ * Verify bitcoin message.
+ * @param {VerifyMessageRequest} jsonObject - request data.
+ * @return {VerifyMessageResponse} - response data.
+ */
+export function VerifyMessage(jsonObject: VerifyMessageRequest): VerifyMessageResponse;
 
 /**
  * Verify the sign of psbt.

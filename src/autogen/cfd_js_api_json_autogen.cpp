@@ -15608,6 +15608,103 @@ CreateElementsSignatureHashRequestStruct CreateElementsSignatureHashRequest::Con
 }
 
 // ------------------------------------------------------------------------
+// SignMessageRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<SignMessageRequest>
+  SignMessageRequest::json_mapper;
+std::vector<std::string> SignMessageRequest::item_list;
+
+void SignMessageRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<SignMessageRequest> func_table;  // NOLINT
+
+  func_table = {
+    SignMessageRequest::GetPrivkeyString,
+    SignMessageRequest::SetPrivkeyString,
+    SignMessageRequest::GetPrivkeyFieldType,
+  };
+  json_mapper.emplace("privkey", func_table);
+  item_list.push_back("privkey");
+  func_table = {
+    SignMessageRequest::GetMessageString,
+    SignMessageRequest::SetMessageString,
+    SignMessageRequest::GetMessageFieldType,
+  };
+  json_mapper.emplace("message", func_table);
+  item_list.push_back("message");
+  func_table = {
+    SignMessageRequest::GetMagicString,
+    SignMessageRequest::SetMagicString,
+    SignMessageRequest::GetMagicFieldType,
+  };
+  json_mapper.emplace("magic", func_table);
+  item_list.push_back("magic");
+}
+
+void SignMessageRequest::ConvertFromStruct(
+    const SignMessageRequestStruct& data) {
+  privkey_ = data.privkey;
+  message_ = data.message;
+  magic_ = data.magic;
+  ignore_items = data.ignore_items;
+}
+
+SignMessageRequestStruct SignMessageRequest::ConvertToStruct() const {  // NOLINT
+  SignMessageRequestStruct result;
+  result.privkey = privkey_;
+  result.message = message_;
+  result.magic = magic_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// SignMessageResponse
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<SignMessageResponse>
+  SignMessageResponse::json_mapper;
+std::vector<std::string> SignMessageResponse::item_list;
+
+void SignMessageResponse::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<SignMessageResponse> func_table;  // NOLINT
+
+  func_table = {
+    SignMessageResponse::GetSignatureString,
+    SignMessageResponse::SetSignatureString,
+    SignMessageResponse::GetSignatureFieldType,
+  };
+  json_mapper.emplace("signature", func_table);
+  item_list.push_back("signature");
+  func_table = {
+    SignMessageResponse::GetBase64String,
+    SignMessageResponse::SetBase64String,
+    SignMessageResponse::GetBase64FieldType,
+  };
+  json_mapper.emplace("base64", func_table);
+  item_list.push_back("base64");
+}
+
+void SignMessageResponse::ConvertFromStruct(
+    const SignMessageResponseStruct& data) {
+  signature_ = data.signature;
+  base64_ = data.base64;
+  ignore_items = data.ignore_items;
+}
+
+SignMessageResponseStruct SignMessageResponse::ConvertToStruct() const {  // NOLINT
+  SignMessageResponseStruct result;
+  result.signature = signature_;
+  result.base64 = base64_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
 // SignPsbtRequest
 // ------------------------------------------------------------------------
 cfd::core::JsonTableMap<SignPsbtRequest>
@@ -16226,6 +16323,121 @@ VerifyEcdsaAdaptorRequestStruct VerifyEcdsaAdaptorRequest::ConvertToStruct() con
   result.encryption_key = encryption_key_;
   result.message = message_;
   result.is_hashed = is_hashed_;
+  result.pubkey = pubkey_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// VerifyMessageRequest
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<VerifyMessageRequest>
+  VerifyMessageRequest::json_mapper;
+std::vector<std::string> VerifyMessageRequest::item_list;
+
+void VerifyMessageRequest::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<VerifyMessageRequest> func_table;  // NOLINT
+
+  func_table = {
+    VerifyMessageRequest::GetSignatureString,
+    VerifyMessageRequest::SetSignatureString,
+    VerifyMessageRequest::GetSignatureFieldType,
+  };
+  json_mapper.emplace("signature", func_table);
+  item_list.push_back("signature");
+  func_table = {
+    VerifyMessageRequest::GetPubkeyString,
+    VerifyMessageRequest::SetPubkeyString,
+    VerifyMessageRequest::GetPubkeyFieldType,
+  };
+  json_mapper.emplace("pubkey", func_table);
+  item_list.push_back("pubkey");
+  func_table = {
+    VerifyMessageRequest::GetMessageString,
+    VerifyMessageRequest::SetMessageString,
+    VerifyMessageRequest::GetMessageFieldType,
+  };
+  json_mapper.emplace("message", func_table);
+  item_list.push_back("message");
+  func_table = {
+    VerifyMessageRequest::GetMagicString,
+    VerifyMessageRequest::SetMagicString,
+    VerifyMessageRequest::GetMagicFieldType,
+  };
+  json_mapper.emplace("magic", func_table);
+  item_list.push_back("magic");
+  func_table = {
+    VerifyMessageRequest::GetIgnoreErrorString,
+    VerifyMessageRequest::SetIgnoreErrorString,
+    VerifyMessageRequest::GetIgnoreErrorFieldType,
+  };
+  json_mapper.emplace("ignoreError", func_table);
+  item_list.push_back("ignoreError");
+}
+
+void VerifyMessageRequest::ConvertFromStruct(
+    const VerifyMessageRequestStruct& data) {
+  signature_ = data.signature;
+  pubkey_ = data.pubkey;
+  message_ = data.message;
+  magic_ = data.magic;
+  ignore_error_ = data.ignore_error;
+  ignore_items = data.ignore_items;
+}
+
+VerifyMessageRequestStruct VerifyMessageRequest::ConvertToStruct() const {  // NOLINT
+  VerifyMessageRequestStruct result;
+  result.signature = signature_;
+  result.pubkey = pubkey_;
+  result.message = message_;
+  result.magic = magic_;
+  result.ignore_error = ignore_error_;
+  result.ignore_items = ignore_items;
+  return result;
+}
+
+// ------------------------------------------------------------------------
+// VerifyMessageResponse
+// ------------------------------------------------------------------------
+cfd::core::JsonTableMap<VerifyMessageResponse>
+  VerifyMessageResponse::json_mapper;
+std::vector<std::string> VerifyMessageResponse::item_list;
+
+void VerifyMessageResponse::CollectFieldName() {
+  if (!json_mapper.empty()) {
+    return;
+  }
+  cfd::core::CLASS_FUNCTION_TABLE<VerifyMessageResponse> func_table;  // NOLINT
+
+  func_table = {
+    VerifyMessageResponse::GetSuccessString,
+    VerifyMessageResponse::SetSuccessString,
+    VerifyMessageResponse::GetSuccessFieldType,
+  };
+  json_mapper.emplace("success", func_table);
+  item_list.push_back("success");
+  func_table = {
+    VerifyMessageResponse::GetPubkeyString,
+    VerifyMessageResponse::SetPubkeyString,
+    VerifyMessageResponse::GetPubkeyFieldType,
+  };
+  json_mapper.emplace("pubkey", func_table);
+  item_list.push_back("pubkey");
+}
+
+void VerifyMessageResponse::ConvertFromStruct(
+    const VerifyMessageResponseStruct& data) {
+  success_ = data.success;
+  pubkey_ = data.pubkey;
+  ignore_items = data.ignore_items;
+}
+
+VerifyMessageResponseStruct VerifyMessageResponse::ConvertToStruct() const {  // NOLINT
+  VerifyMessageResponseStruct result;
+  result.success = success_;
   result.pubkey = pubkey_;
   result.ignore_items = ignore_items;
   return result;

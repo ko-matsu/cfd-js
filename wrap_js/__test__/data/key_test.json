@@ -606,6 +606,34 @@
         ]
     },
     {
+        "name": "Privkey.SignMessage",
+        "cases": [
+            {
+                "case": "magic is empty",
+                "request": {
+                    "privkey": "cUUuHBXPzhaFnny2gCBzZZzYtFyps9B1sDJbtJMC8ssjUhNMq9xk",
+                    "message": "This is just a test message"
+                },
+                "expect": {
+                    "signature": "1fd0e4f98d77c9b0fe847ee891825e996b3437d708276dd99f94fe943168f993b71bd4126fa4256b64c04d71638b6f6e8a9eaf2ac8bc4c94594076c24eef39ffbe",
+                    "base64": "H9Dk+Y13ybD+hH7okYJemWs0N9cIJ23Zn5T+lDFo+ZO3G9QSb6Qla2TATXFji29uip6vKsi8TJRZQHbCTu85/74="
+                }
+            },
+            {
+                "case": "magic is bitcoin",
+                "request": {
+                    "privkey": "cUUuHBXPzhaFnny2gCBzZZzYtFyps9B1sDJbtJMC8ssjUhNMq9xk",
+                    "message": "This is just a test message",
+                    "magic": "Bitcoin Signed Message:\n"
+                },
+                "expect": {
+                    "signature": "1fd0e4f98d77c9b0fe847ee891825e996b3437d708276dd99f94fe943168f993b71bd4126fa4256b64c04d71638b6f6e8a9eaf2ac8bc4c94594076c24eef39ffbe",
+                    "base64": "H9Dk+Y13ybD+hH7okYJemWs0N9cIJ23Zn5T+lDFo+ZO3G9QSb6Qla2TATXFji29uip6vKsi8TJRZQHbCTu85/74="
+                }
+            }
+        ]
+    },
+    {
         "name": "Pubkey",
         "cases": [
             {
@@ -821,6 +849,95 @@
                 "exclude": [
                     "json"
                 ]
+            }
+        ]
+    },
+    {
+        "name": "Pubkey.VerifyMessage",
+        "cases": [
+            {
+                "case": "magic is empty",
+                "request": {
+                    "signature": "H9Dk+Y13ybD+hH7okYJemWs0N9cIJ23Zn5T+lDFo+ZO3G9QSb6Qla2TATXFji29uip6vKsi8TJRZQHbCTu85/74=",
+                    "pubkey": "0278bfaa4e045cc450ce9397136ac9bac1914147d85945dd9c8c3b2edc0108249d",
+                    "message": "This is just a test message",
+                    "magic": "",
+                    "ignoreError": false
+                },
+                "expect": {
+                    "success": true,
+                    "pubkey": "0278bfaa4e045cc450ce9397136ac9bac1914147d85945dd9c8c3b2edc0108249d"
+                }
+            },
+            {
+                "case": "magic is bitcoin",
+                "request": {
+                    "signature": "1fd0e4f98d77c9b0fe847ee891825e996b3437d708276dd99f94fe943168f993b71bd4126fa4256b64c04d71638b6f6e8a9eaf2ac8bc4c94594076c24eef39ffbe",
+                    "pubkey": "0278bfaa4e045cc450ce9397136ac9bac1914147d85945dd9c8c3b2edc0108249d",
+                    "message": "This is just a test message",
+                    "magic": "Bitcoin Signed Message:\n",
+                    "ignoreError": false
+                },
+                "expect": {
+                    "success": true,
+                    "pubkey": "0278bfaa4e045cc450ce9397136ac9bac1914147d85945dd9c8c3b2edc0108249d"
+                }
+            },
+            {
+                "case": "Error: invalid pubkey",
+                "request": {
+                    "signature": "H9Dk+Y13ybD+hH7okYJemWs0N9cIJ23Zn5T+lDFo+ZO3G9QSb6Qla2TATXFji29uip6vKsi8TJRZQHbCTu85/74=",
+                    "pubkey": "0378bfaa4e045cc450ce9397136ac9bac1914147d85945dd9c8c3b2edc0108249d",
+                    "message": "This is just a test message",
+                    "magic": "Bitcoin Signed Message:\n",
+                    "ignoreError": true
+                },
+                "expect": {
+                    "success": false,
+                    "pubkey": "0278bfaa4e045cc450ce9397136ac9bac1914147d85945dd9c8c3b2edc0108249d"
+                }
+            },
+            {
+                "case": "Error: invalid signature",
+                "request": {
+                    "signature": "H9Dk+Y13ybD+hH7okYJemWs0N9cIJ23Zn5T+lDFo+ZO3G9QSb6Qla2TATXFji29uip6vKsi8TJRZQHbCTu85/7a=",
+                    "pubkey": "0278bfaa4e045cc450ce9397136ac9bac1914147d85945dd9c8c3b2edc0108249d",
+                    "message": "This is just a test message",
+                    "magic": "",
+                    "ignoreError": true
+                },
+                "expect": {
+                    "success": false,
+                    "pubkey": ""
+                }
+            },
+            {
+                "case": "Error: invalid message",
+                "request": {
+                    "signature": "H9Dk+Y13ybD+hH7okYJemWs0N9cIJ23Zn5T+lDFo+ZO3G9QSb6Qla2TATXFji29uip6vKsi8TJRZQHbCTu85/74=",
+                    "pubkey": "0278bfaa4e045cc450ce9397136ac9bac1914147d85945dd9c8c3b2edc0108249d",
+                    "message": "This is just a test message2",
+                    "magic": "",
+                    "ignoreError": true
+                },
+                "expect": {
+                    "success": false,
+                    "pubkey": ""
+                }
+            },
+            {
+                "case": "Error: invalid message (ignoreError=false)",
+                "request": {
+                    "signature": "H9Dk+Y13ybD+hH7okYJemWs0N9cIJ23Zn5T+lDFo+ZO3G9QSb6Qla2TATXFji29uip6vKsi8TJRZQHbCTu85/74=",
+                    "pubkey": "0278bfaa4e045cc450ce9397136ac9bac1914147d85945dd9c8c3b2edc0108249d",
+                    "message": "This is just a test message2",
+                    "magic": "",
+                    "ignoreError": false
+                },
+                "error": {
+                    "capi": "hex to byte convert error.",
+                    "json": "failed to verify message."
+                }
             }
         ]
     },

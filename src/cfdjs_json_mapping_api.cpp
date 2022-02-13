@@ -725,6 +725,20 @@ std::string JsonMappingApi::CreateKeyPair(const std::string &request_message) {
       request_message, KeyStructApi::CreateKeyPair);
 }
 
+std::string JsonMappingApi::SignMessage(const std::string &request_message) {
+  return ExecuteJsonApi<
+      api::json::SignMessageRequest, api::json::SignMessageResponse,
+      api::SignMessageRequestStruct, api::SignMessageResponseStruct>(
+      request_message, KeyStructApi::SignMessage);
+}
+
+std::string JsonMappingApi::VerifyMessage(const std::string &request_message) {
+  return ExecuteJsonApi<
+      api::json::VerifyMessageRequest, api::json::VerifyMessageResponse,
+      api::VerifyMessageRequestStruct, api::VerifyMessageResponseStruct>(
+      request_message, KeyStructApi::VerifyMessage);
+}
+
 std::string JsonMappingApi::ParseScript(const std::string &request_message) {
   return ExecuteJsonApi<
       api::json::ParseScriptRequest, api::json::ParseScriptResponse,
@@ -1573,6 +1587,8 @@ void JsonMappingApi::LoadFunctions(
     request_map->emplace("CreateExtkey", JsonMappingApi::CreateExtkey);
     request_map->emplace("CreateExtPubkey", JsonMappingApi::CreateExtPubkey);
     request_map->emplace("CreateKeyPair", JsonMappingApi::CreateKeyPair);
+    request_map->emplace("SignMessage", JsonMappingApi::SignMessage);
+    request_map->emplace("VerifyMessage", JsonMappingApi::VerifyMessage);
     request_map->emplace("ParseScript", JsonMappingApi::ParseScript);
     request_map->emplace("CreateScript", JsonMappingApi::CreateScript);
     request_map->emplace(

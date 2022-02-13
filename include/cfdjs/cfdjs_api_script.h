@@ -13,7 +13,7 @@
 #include "cfdjs/cfdjs_struct.h"
 
 /**
- * @brief cfdapi名前空間
+ * @brief cfdapi namespace
  */
 namespace cfd {
 namespace js {

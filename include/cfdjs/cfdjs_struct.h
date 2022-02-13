@@ -3585,6 +3585,32 @@ struct CreateElementsSignatureHashRequestStruct {
 };
 
 // ------------------------------------------------------------------------
+// SignMessageRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief SignMessageRequestStruct struct
+ */
+struct SignMessageRequestStruct {
+  std::string privkey = "";  //!< privkey  // NOLINT
+  std::string message = "";  //!< message  // NOLINT
+  std::string magic = "";    //!< magic  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// SignMessageResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief SignMessageResponseStruct struct
+ */
+struct SignMessageResponseStruct {
+  std::string signature = "";  //!< signature  // NOLINT
+  std::string base64 = "";     //!< base64  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
 // SignPsbtRequestStruct
 // ------------------------------------------------------------------------
 /**
@@ -3730,6 +3756,34 @@ struct VerifyEcdsaAdaptorRequestStruct {
   std::string message = "";            //!< message  // NOLINT
   bool is_hashed = true;               //!< is_hashed  // NOLINT
   std::string pubkey = "";             //!< pubkey  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// VerifyMessageRequestStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief VerifyMessageRequestStruct struct
+ */
+struct VerifyMessageRequestStruct {
+  std::string signature = "";  //!< signature  // NOLINT
+  std::string pubkey = "";     //!< pubkey  // NOLINT
+  std::string message = "";    //!< message  // NOLINT
+  std::string magic = "";      //!< magic  // NOLINT
+  bool ignore_error = false;   //!< ignore_error  // NOLINT
+  std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
+};
+
+// ------------------------------------------------------------------------
+// VerifyMessageResponseStruct
+// ------------------------------------------------------------------------
+/**
+ * @brief VerifyMessageResponseStruct struct
+ */
+struct VerifyMessageResponseStruct {
+  bool success = false;     //!< success  // NOLINT
+  std::string pubkey = "";  //!< pubkey  // NOLINT
+  cfd::js::api::InnerErrorResponseStruct error;   //!< error information
   std::set<std::string> ignore_items;   //!< using on JSON mapping convert.
 };
 

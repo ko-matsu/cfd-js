@@ -2,7 +2,7 @@
 /**
  * @file cfdjs_api_utility.h
  *
- * @brief cfd-apiで利用する共通系のクラス定義
+ * @brief definition for utility api.
  */
 #ifndef CFD_JS_INCLUDE_CFDJS_CFDJS_API_UTILITY_H_
 #define CFD_JS_INCLUDE_CFDJS_CFDJS_API_UTILITY_H_
@@ -13,20 +13,20 @@
 #include "cfdjs/cfdjs_struct.h"
 
 /**
- * @brief cfdapi名前空間
+ * @brief cfdapi namespace
  */
 namespace cfd {
 namespace js {
 namespace api {
 
 /**
- * @brief 共通系の関数群クラス
+ * @brief utility api class.
  */
 class CFD_JS_API_EXPORT UtilStructApi {
  public:
   /**
-   * @brief サポート機能情報を取得する。
-   * @return サポート機能の情報を格納したJSON文字列
+   * @brief Get the support functions.
+   * @return response.
    */
   static GetSupportedFunctionResponseStruct GetSupportedFunction();
 
@@ -76,7 +76,7 @@ class CFD_JS_API_EXPORT UtilStructApi {
   static HexDataStruct HashMessage(const HashMessageRequestStruct &request);
 
   /**
-   * @brief Encode the secp signature by der encodeing
+   * @brief Encode the ec signature by der encodeing
    * @param[in] request   request struct from json
    * @return response struct including encoded signature
    */

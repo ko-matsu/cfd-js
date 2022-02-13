@@ -17,7 +17,7 @@
 #include "cfdjs/cfdjs_struct.h"
 
 /**
- * @brief cfdapi名前空間
+ * @brief cfdapi namespace
  */
 namespace cfd {
 namespace js {
@@ -26,108 +26,108 @@ namespace api {
 using cfd::api::ExtKeyType;
 
 /**
- * @brief HDWallet構造体関数群クラス
+ * @brief HDWallet api class.
  */
 class CFD_JS_API_EXPORT HDWalletStructApi {
  public:
   /**
-   * @brief JSONパラメータの情報を元に、BIP39 で利用できる wordlist を取得する.
-   * @param[in] request wordlistの言語を含むリクエスト構造体
-   * @return wordlist一覧を含むレスポンス構造体
+   * @brief Get the mnemonic wordlist.
+   * @param[in] request     request parameter.
+   * @return response
    */
   static GetMnemonicWordlistResponseStruct GetMnemonicWordlist(
       const GetMnemonicWordlistRequestStruct& request);
 
   /**
-   * @brief JSONパラメータの情報を元に、mnemonic から hdwallet seedを生成する.
-   * @param[in] request mnemonicを含むリクエスト構造体
-   * @return seedを含むレスポンス構造体
+   * @brief Convert the mnemonic to HDWallet seed.
+   * @param[in] request     request parameter.
+   * @return response
    */
   static ConvertMnemonicToSeedResponseStruct ConvertMnemonicToSeed(
       const ConvertMnemonicToSeedRequestStruct& request);
 
   /**
-   * @brief JSONパラメータの情報を元に、entropyからmnemonicを生成する.
-   * @param[in] request Entropyを含むリクエスト構造体
-   * @return mnemonicを含むレスポンス構造体
+   * @brief Convert the entropy to mnemonic.
+   * @param[in] request     request parameter.
+   * @return response
    */
   static ConvertEntropyToMnemonicResponseStruct ConvertEntropyToMnemonic(
       const ConvertEntropyToMnemonicRequestStruct& request);
 
   /**
-   * @brief JSONパラメータの情報を元に、seedから拡張鍵を生成する.
-   * @param[in] request リクエスト構造体
-   * @return extkeyを含むレスポンス構造体
+   * @brief Convert the seed to extkey.
+   * @param[in] request     request parameter.
+   * @return response
    */
   static CreateExtkeyResponseStruct CreateExtkeyFromSeed(
       const CreateExtkeyFromSeedRequestStruct& request);
 
   /**
-   * @brief JSONパラメータの情報を元に、拡張鍵から派生拡張鍵を生成する.
-   * @param[in] request リクエスト構造体
-   * @return extkeyを含むレスポンス構造体
+   * @brief Convert the extkey from parent key information.
+   * @param[in] request     request parameter.
+   * @return response
    */
   static CreateExtkeyResponseStruct CreateExtkeyFromParent(
       const CreateExtkeyFromParentRequestStruct& request);
 
   /**
-   * @brief JSONパラメータの情報を元に、拡張鍵から派生拡張鍵を生成する.
-   * @param[in] request リクエスト構造体
-   * @return extkeyを含むレスポンス構造体
+   * @brief Convert the extkey from parent path.
+   * @param[in] request     request parameter.
+   * @return response
    */
   static CreateExtkeyResponseStruct CreateExtkeyFromParentPath(
       const CreateExtkeyFromParentPathRequestStruct& request);
 
   /**
-   * @brief JSONパラメータの情報を元に、親の鍵情報から派生拡張鍵を生成する.
-   * @param[in] request リクエスト構造体
-   * @return extkeyを含むレスポンス構造体
+   * @brief Convert the extkey from parent key.
+   * @param[in] request     request parameter.
+   * @return response
    */
   static CreateExtkeyResponseStruct CreateExtkeyFromParentKey(
       const CreateExtkeyFromParentKeyRequestStruct& request);
 
   /**
-   * @brief JSONパラメータの情報を元に、拡張鍵を生成する.
-   * @param[in] request リクエスト構造体
-   * @return extkeyを含むレスポンス構造体
+   * @brief Create the extkey.
+   * @param[in] request     request parameter.
+   * @return response
    */
   static CreateExtkeyResponseStruct CreateExtkey(
       const CreateExtkeyRequestStruct& request);
 
   /**
-   * @brief JSONパラメータの情報を元に、拡張秘密鍵から同階層の拡張公開鍵を生成する.
-   * @param[in] request リクエスト構造体
-   * @return extkeyを含むレスポンス構造体
+   * @brief Create the extend pubkey.
+   * @param[in] request     request parameter.
+   * @return response
    */
   static CreateExtkeyResponseStruct CreateExtPubkey(
       const CreateExtPubkeyRequestStruct& request);
 
   /**
-   * @brief JSONパラメータの情報を元に、拡張鍵の情報を取得する.
-   * @param[in] request リクエスト構造体
-   * @return extkey情報を含むレスポンス構造体
+   * @brief Get the extend key information.
+   * @param[in] request     request parameter.
+   * @return response
    */
   static GetExtkeyInfoResponseStruct GetExtkeyInfo(
       const GetExtkeyInfoRequestStruct& request);
 
   /**
-   * @brief JSONパラメータの情報を元に、拡張秘密鍵から秘密鍵を取得する.
-   * @param[in] request リクエスト構造体
-   * @return privkeyを含むレスポンス構造体
+   * @brief Get the privkey from extkey.
+   * @param[in] request     request parameter.
+   * @return response
    */
   static GetPrivkeyFromExtkeyResponseStruct GetPrivkeyFromExtkey(
       const GetPrivkeyFromExtkeyRequestStruct& request);
 
   /**
-   * @brief JSONパラメータの情報を元に、拡張鍵から公開鍵を取得する.
-   * @param[in] request リクエスト構造体
-   * @return pubkeyを含むレスポンス構造体
+   * @brief Get the pubkey from extkey.
+   * @param[in] request     request parameter.
+   * @return response
    */
   static PubkeyDataStruct GetPubkeyFromExtkey(
       const GetPubkeyFromExtkeyRequestStruct& request);
 
   /**
-   * @brief 文字列からExtKeyTypeを取得する.
+   * @brief Convert to ExtKeyType.
    * @param[in] key_type    extkey type string
    * @return ExtKeyType
    */

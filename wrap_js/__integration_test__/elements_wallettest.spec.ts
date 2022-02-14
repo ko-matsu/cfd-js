@@ -1119,7 +1119,7 @@ describe('wallet test', () => {
     const pegoutAmount = 1000000;
     const counter = 3;
     const mainchainBip32 = 'tpubDDbMfNVnS7fmrTyv98A1bPydovdx2GhaxVAfvgPztEw3R3J2bZ7c2yy3oHx1D3ivjEH5tidRdA766QC83omWBtoUN7CBrk6vyogkTEPUb5b';
-    const pegoutDescriptor = `pkh(${mainchainBip32}/0/*)`;
+    const pegoutDescriptor = `pkh(${mainchainBip32}/0/*)`; /* comment */
     const onlineKey = 'cVSf1dmLm1XjafyXSXn955cyb2uabdtXxjBXx6fHMQLPQKzHCpT7';
     const onlinePubkey = '024fb0908ea9263bedb5327da23ff914ce1883f851337d71b3ca09b32701003d05';
 
@@ -1196,5 +1196,426 @@ describe('wallet test', () => {
       console.log(e);
       throw e;
     }
+  });
+
+  it('send taproot-schnorr test', async () => {
+    const genesisBlockHash = await elmWalletMgr.callRpcDirect(
+        TargetNode.Elements, 'getblockhash', [0]);
+    const asset = elmWallet1.getPeggedAsset();
+    const ubAddr1 = await elmWallet2.getNewAddress(
+        AddressType.P2wpkh, 'addr1');
+    const internalKeyWif = await elmWallet2.dumpPrivkey(ubAddr1.address);
+    const internalKey = cfd.GetPrivkeyFromWif({
+      wif: internalKeyWif,
+    });
+    const internalPubkey = cfd.GetSchnorrPubkeyFromPrivkey({
+      privkey: internalKey.hex,
+    });
+    const descStr = `tr(${internalPubkey.pubkey})`;
+    const desc: cfdjs.ParseDescriptorResponse = cfd.ParseDescriptor({
+      isElements: true,
+      descriptor: descStr,
+      network: network,
+    });
+    console.log('descriptor:', desc);
+
+    const addr1: string = (!desc.address) ? '' : desc.address;
+    const genKey = cfd.CreateKeyPair({
+      wif: false,
+      network: mainchainNetwork,
+    });
+    const blindingKey = genKey.privkey;
+    const confidentialKey = cfd.GetPubkeyFromPrivkey({
+      privkey: blindingKey,
+    });
+    const ctAddr1 = cfd.GetConfidentialAddress({
+      unblindedAddress: addr1,
+      key: confidentialKey.pubkey,
+    });
+    const tweakedKey = cfd.TweakAddPrivkey({
+      privkey: internalKey.hex,
+      tweak: desc.tapTweak,
+    });
+
+    const elmAddr1 = await elmWallet2.getNewAddress(
+        AddressType.P2wpkh, 'addr1');
+    const elmCtAddr1 = await elmWallet2.getConfidentialAddress(
+        elmAddr1.address);
+    const beforeBalance = await elmWallet2.getBalance(1);
+    console.log('before balance:', beforeBalance);
+
+    const sendAmt = 1000000;
+    const txBase = await cfd.ElementsCreateRawTransaction({
+      version: 2,
+      locktime: 0,
+      txouts: [{
+        asset: asset,
+        amount: sendAmt,
+        address: ctAddr1.confidentialAddress,
+      }],
+    });
+    const fundTx = await elmWallet1.fundRawTransaction(txBase.hex, asset);
+    const blindInput: cfdjs.BlindTxInRequest[] = [];
+    for (const utxo of fundTx.utxos) {
+      blindInput.push({
+        txid: utxo.txid,
+        vout: utxo.vout,
+        asset: (utxo.asset) ? utxo.asset : '',
+        blindFactor: utxo.amountBlinder,
+        assetBlindFactor: utxo.assetBlinder,
+        amount: utxo.amount,
+      });
+    }
+    // const decFundTx = cfd.ElementsDecodeRawTransaction({hex: fundTx.hex});
+    // console.log('tx:', JSON.stringify(decFundTx, null, '  '));
+    // console.log('blindInput:', blindInput);
+    const blindTx = await cfd.BlindRawTransaction({
+      tx: fundTx.hex,
+      txins: blindInput,
+    });
+    const signed = await elmWallet1.signRawTransactionWithWallet(blindTx.hex);
+    const signTx: string = signed.hex;
+    const decTx = await cfd.ElementsDecodeRawTransaction({hex: signTx});
+
+    console.log('send tx:', signTx);
+    const txid = await elmWallet1.sendRawTransaction(signTx);
+    // console.log('sendRawTransaction pegin tx:', txid);
+    expect(txid).toBe(decTx.txid);
+
+    const unblindData = cfd.UnblindRawTransaction({
+      tx: signTx,
+      txouts: [{
+        index: 0,
+        blindingKey,
+      }],
+    });
+
+    const tx2Base = await cfd.ElementsCreateRawTransaction({
+      version: 2,
+      locktime: 0,
+    });
+    const fundTx2Input = {
+      utxos: [{
+        txid,
+        vout: 0,
+        address: addr1,
+        amount: sendAmt,
+        asset,
+        descriptor: descStr,
+        confidentialValueCommitment: decTx.vout[0].valuecommitment,
+        confidentialAssetCommitment: decTx.vout[0].assetcommitment,
+        blindFactor: unblindData.outputs[0].blindFactor,
+        assetBlindFactor: unblindData.outputs[0].assetBlindFactor,
+      }],
+      tx: tx2Base.hex,
+      isElements: true,
+      network,
+      targets: [{
+        asset,
+        amount: 1,
+        reserveAddress: elmCtAddr1,
+      }],
+      feeInfo: {
+        feeRate: 0.1,
+        longTermFeeRate: 0.1,
+        knapsackMinChange: 0,
+        feeAsset: asset,
+        isBlindEstimateFee: true,
+        exponent: 0,
+        minimumBits: 52,
+      },
+    };
+    const fundTx2 = cfd.FundRawTransaction(fundTx2Input);
+    const blindInput2: cfdjs.BlindTxInRequest[] = [{
+      txid: txid,
+      vout: 0,
+      asset: asset,
+      blindFactor: unblindData.outputs[0].blindFactor,
+      assetBlindFactor: unblindData.outputs[0].assetBlindFactor,
+      amount: unblindData.outputs[0].amount,
+    }];
+    // const decFundTx = cfd.ElementsDecodeRawTransaction({hex: fundTx.hex});
+    // console.log('tx:', JSON.stringify(decFundTx, null, '  '));
+    // console.log('blindInput:', blindInput);
+    const blindTx2 = await cfd.BlindRawTransaction({
+      tx: fundTx2.hex,
+      txins: blindInput2,
+    });
+    // taproot sign tx
+    // await elmWallet1.signRawTransactionWithWallet(blindTx.hex);
+    console.log('genesisBlockHash:', genesisBlockHash);
+    const signTx2 = cfdjs.SignWithPrivkey({
+      tx: blindTx2.hex,
+      isElements: true,
+      txin: {
+        txid: txid,
+        vout: 0,
+        privkey: tweakedKey.privkey,
+        hashType: 'taproot',
+        sighashType: 'default',
+      },
+      utxos: fundTx2Input.utxos,
+      genesisBlockHash: `${genesisBlockHash}`,
+    }).hex;
+    const decTx2 = await cfd.ElementsDecodeRawTransaction({hex: signTx2});
+    // send tx
+    try {
+      console.log('send tx2:', signTx2);
+      const txid2 = await elmWallet1.sendRawTransaction(signTx2);
+      // console.log('sendRawTransaction pegin tx:', txid);
+      expect(txid2).toBe(decTx2.txid);
+
+      await elmWallet1.generate(1);
+      // console.log('tx:', decTx);
+
+      const balance = await elmWallet1.getBalance(1, '', '');
+      console.log('wallet balance:', balance);
+      await elmWallet1.generate(2);
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
+    await elmWallet2.forceUpdateUtxoData();
+  });
+
+  it('send taproot-tapscript test1', async () => {
+    const genesisBlockHash = await elmWalletMgr.callRpcDirect(
+        TargetNode.Elements, 'getblockhash', [0]);
+    const asset = elmWallet1.getPeggedAsset();
+    const ubAddr1 = await elmWallet2.getNewAddress(
+        AddressType.P2wpkh, 'addr1');
+    const internalKeyWif = await elmWallet2.dumpPrivkey(ubAddr1.address);
+    const internalKey = cfd.GetPrivkeyFromWif({
+      wif: internalKeyWif,
+    });
+    const internalPubkey = cfd.GetSchnorrPubkeyFromPrivkey({
+      privkey: internalKey.hex,
+    });
+
+    const genKey1 = cfd.CreateKeyPair({
+      wif: false,
+      network: mainchainNetwork,
+    });
+    const genKey2 = cfd.CreateKeyPair({
+      wif: false,
+      network: mainchainNetwork,
+    });
+    const internalPubkey1 = cfd.GetSchnorrPubkeyFromPrivkey({
+      privkey: genKey1.privkey,
+    });
+    const internalPubkey2 = cfd.GetSchnorrPubkeyFromPrivkey({
+      privkey: genKey2.privkey,
+    });
+
+    const redeemScript = cfdjs.CreateScript({
+      items: [internalPubkey.pubkey, 'OP_CHECKSIG'],
+    }).hex;
+    const descStr = `tr(${internalPubkey.pubkey},{{pk(${internalPubkey.pubkey}),pk(${internalPubkey1.pubkey})},pk(${internalPubkey2.pubkey})})`;
+    const desc: cfdjs.ParseDescriptorResponse = cfd.ParseDescriptor({
+      isElements: true,
+      descriptor: descStr,
+      network: network,
+    });
+    console.log('descriptor:', desc);
+
+    const scriptTree = cfdjs.GetTapScriptTreeFromString({
+      network,
+      isElements: true,
+      treeString: `${desc.treeString}`,
+      tapscript: redeemScript,
+      internalPubkey: internalPubkey.pubkey,
+    });
+    console.log('scriptTree:', scriptTree);
+
+    const scriptSigTemplateBase = cfdjs.CreateScript({
+      items: [
+        '0000000000000000000000000000000000000000000000000000000000000000' +
+        '000000000000000000000000000000000000000000000000000000000000000000',
+        `${scriptTree.tapscript}`,
+        `${scriptTree.controlBlock}`,
+      ],
+    }).hex;
+
+    const addr1: string = (!desc.address) ? '' : desc.address;
+    const genKey = cfd.CreateKeyPair({
+      wif: false,
+      network: mainchainNetwork,
+    });
+    const blindingKey = genKey.privkey;
+    const confidentialKey = cfd.GetPubkeyFromPrivkey({
+      privkey: blindingKey,
+    });
+    const ctAddr1 = cfd.GetConfidentialAddress({
+      unblindedAddress: addr1,
+      key: confidentialKey.pubkey,
+    });
+
+    const elmAddr1 = await elmWallet2.getNewAddress(
+        AddressType.P2wpkh, 'addr1');
+    const elmCtAddr1 = await elmWallet2.getConfidentialAddress(
+        elmAddr1.address);
+    const beforeBalance = await elmWallet2.getBalance(1);
+    console.log('before balance:', beforeBalance);
+
+    const sendAmt = 1000000;
+    const txBase = await cfd.ElementsCreateRawTransaction({
+      version: 2,
+      locktime: 0,
+      txouts: [{
+        asset: asset,
+        amount: sendAmt,
+        address: ctAddr1.confidentialAddress,
+      }],
+    });
+    const fundTx = await elmWallet1.fundRawTransaction(txBase.hex, asset);
+    const blindInput: cfdjs.BlindTxInRequest[] = [];
+    for (const utxo of fundTx.utxos) {
+      blindInput.push({
+        txid: utxo.txid,
+        vout: utxo.vout,
+        asset: (utxo.asset) ? utxo.asset : '',
+        blindFactor: utxo.amountBlinder,
+        assetBlindFactor: utxo.assetBlinder,
+        amount: utxo.amount,
+      });
+    }
+    // const decFundTx = cfd.ElementsDecodeRawTransaction({hex: fundTx.hex});
+    // console.log('tx:', JSON.stringify(decFundTx, null, '  '));
+    // console.log('blindInput:', blindInput);
+    const blindTx = await cfd.BlindRawTransaction({
+      tx: fundTx.hex,
+      txins: blindInput,
+    });
+    const signed = await elmWallet1.signRawTransactionWithWallet(blindTx.hex);
+    const signTx: string = signed.hex;
+    const decTx = await cfd.ElementsDecodeRawTransaction({hex: signTx});
+
+    console.log('send tx:', signTx);
+    const txid = await elmWallet1.sendRawTransaction(signTx);
+    // console.log('sendRawTransaction pegin tx:', txid);
+    expect(txid).toBe(decTx.txid);
+
+    const unblindData = cfd.UnblindRawTransaction({
+      tx: signTx,
+      txouts: [{
+        index: 0,
+        blindingKey,
+      }],
+    });
+
+    const tx2Base = await cfd.ElementsCreateRawTransaction({
+      version: 2,
+      locktime: 0,
+    });
+    const fundTx2Input = {
+      utxos: [{
+        txid,
+        vout: 0,
+        address: addr1,
+        amount: sendAmt,
+        asset,
+        descriptor: descStr,
+        confidentialValueCommitment: decTx.vout[0].valuecommitment,
+        confidentialAssetCommitment: decTx.vout[0].assetcommitment,
+        blindFactor: unblindData.outputs[0].blindFactor,
+        assetBlindFactor: unblindData.outputs[0].assetBlindFactor,
+        scriptSigTemplate: scriptSigTemplateBase,
+      }],
+      tx: tx2Base.hex,
+      isElements: true,
+      network,
+      targets: [{
+        asset,
+        amount: 1,
+        reserveAddress: elmCtAddr1,
+      }],
+      feeInfo: {
+        feeRate: 0.11,  // FIXME(k-matsuzawa): re-check fund logic by scriptSigTemplate
+        longTermFeeRate: 0.11,
+        knapsackMinChange: 0,
+        feeAsset: asset,
+        isBlindEstimateFee: true,
+        exponent: 0,
+        minimumBits: 52,
+      },
+    };
+    const fundTx2 = cfd.FundRawTransaction(fundTx2Input);
+    const blindInput2: cfdjs.BlindTxInRequest[] = [{
+      txid: txid,
+      vout: 0,
+      asset: asset,
+      blindFactor: unblindData.outputs[0].blindFactor,
+      assetBlindFactor: unblindData.outputs[0].assetBlindFactor,
+      amount: unblindData.outputs[0].amount,
+    }];
+    // const decFundTx = cfd.ElementsDecodeRawTransaction({hex: fundTx.hex});
+    // console.log('tx:', JSON.stringify(decFundTx, null, '  '));
+    // console.log('blindInput:', blindInput);
+    const blindTx2 = await cfd.BlindRawTransaction({
+      tx: fundTx2.hex,
+      txins: blindInput2,
+    });
+    // taproot sign tx
+    // await elmWallet1.signRawTransactionWithWallet(blindTx.hex);
+    console.log('genesisBlockHash:', genesisBlockHash);
+    const sighash2 = cfdjs.GetSighash({
+      isElements: true,
+      tx: blindTx2.hex,
+      utxos: fundTx2Input.utxos,
+      txin: {
+        txid: txid,
+        vout: 0,
+        keyData: {
+          hex: redeemScript,
+          type: 'redeem_script',
+        },
+        hashType: 'taproot',
+        sighashType: 'default',
+      },
+      genesisBlockHash: `${genesisBlockHash}`,
+    });
+    const randomBytes2 = cfdjs.CreateKeyPair({wif: false}).privkey;
+    const schnorrSign2 = cfdjs.SchnorrSign({
+      privkey: internalKey.hex,
+      message: sighash2.sighash,
+      isHashed: true,
+      isNonce: false,
+      nonceOrAux: randomBytes2,
+    });
+    const signTx2 = cfdjs.AddTapscriptSign({
+      isElements: true,
+      tx: blindTx2.hex,
+      txin: {
+        txid: txid,
+        vout: 0,
+        signParams: [{
+          hex: schnorrSign2.hex,
+          type: 'sign',
+          sighashType: 'default',
+        }],
+        tapscript: `${scriptTree.tapscript}`,
+        controlBlock: `${scriptTree.controlBlock}`,
+      },
+    }).hex;
+
+    const decTx2 = await cfd.ElementsDecodeRawTransaction({hex: signTx2});
+    // send tx
+    try {
+      console.log('send tx2:', signTx2);
+      const txid2 = await elmWallet1.sendRawTransaction(signTx2);
+      // console.log('sendRawTransaction pegin tx:', txid);
+      expect(txid2).toBe(decTx2.txid);
+
+      await elmWallet1.generate(1);
+      // console.log('tx:', decTx);
+
+      const balance = await elmWallet1.getBalance(1, '', '');
+      console.log('wallet balance:', balance);
+      await elmWallet1.generate(2);
+    } catch (e) {
+      console.log(e);
+      throw e;
+    }
+    await elmWallet2.forceUpdateUtxoData();
   });
 });

@@ -1530,7 +1530,7 @@ describe('wallet test', () => {
         reserveAddress: elmCtAddr1,
       }],
       feeInfo: {
-        feeRate: 0.11,  // FIXME(k-matsuzawa): re-check fund logic by scriptSigTemplate
+        feeRate: 0.11, // FIXME(k-matsuzawa): re-check fund logic by scriptSigTemplate
         longTermFeeRate: 0.11,
         knapsackMinChange: 0,
         feeAsset: asset,

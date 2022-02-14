@@ -1,0 +1,28 @@
+{
+  "namespace": ["cfd","js","api","json"],
+  "functionName": "SignMessage",
+  "comment": "Sign bitcoin message.",
+  "request": {
+    ":class": "SignMessageRequest",
+    ":class:comment": "Request for sign message.",
+    "privkey": "",
+    "privkey:require": "require",
+    "privkey:comment": "private key. set is wif or hex.",
+    "message": "",
+    "message:require": "require",
+    "message:comment": "message",
+    "magic": "",
+    "magic:require": "optional",
+    "magic:comment": "message magic word. default is empty (set bitcoin magic word.)"
+  },
+  "response": {
+    ":class": "SignMessageResponse",
+    ":class:comment": "Response of signed message.",
+    "signature": "",
+    "signature:require": "require",
+    "signature:comment": "signature",
+    "base64": "",
+    "base64:require": "require",
+    "base64:comment": "base64 encoded signature"
+  }
+}

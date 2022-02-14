@@ -23,7 +23,7 @@ on:
 jobs:
   analyze-CodeQL:
     name: CodeQL
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
 
     strategy:
       fail-fast: false
@@ -54,7 +54,15 @@ jobs:
     # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
     # If this step fails, then you should remove it and run the build manually (see below)
     - name: Autobuild
+      if: matrix.language == 'javascript'
       uses: github/codeql-action/autobuild@v1
+    - name: Manual Build
+      if: matrix.language != 'javascript'
+      env:
+        CFDJS_UNUSE_ASSET: true
+      run: |
+        npm set progress=false
+        npm ci
 
     # ℹ️ Command-line programs to run using the OS shell.
     #  https://git.io/JvXDl

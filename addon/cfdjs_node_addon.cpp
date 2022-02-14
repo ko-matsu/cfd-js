@@ -102,6 +102,25 @@ Value GetSupportedFunction(const CallbackInfo &information) {
 }
 
 /**
+ * @brief NodeAddon's JSON API for SetCustomPrefix.
+ * @param[in] information     node addon api callback information
+ * @return json string.
+ */
+Value SetCustomPrefix(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::SetCustomPrefix);
+}
+
+/**
+ * @brief NodeAddon's JSON API for ClearCustomPrefix.
+ * @param[in] information     node addon api callback information
+ * @return json string.
+ */
+Value ClearCustomPrefix(const CallbackInfo &information) {
+  return NodeAddonJsonResponseApi(
+      information, JsonMappingApi::ClearCustomPrefix);
+}
+
+/**
  * @brief NodeAddon's JSON API for CreateRawTransaction.
  * @param[in] information     node addon api callback information
  * @return json string.
@@ -517,6 +536,24 @@ Value CreateKeyPair(const CallbackInfo &information) {
  * @param[in] information     node addon api callback information
  * @return json string.
  */
+Value SignMessage(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::SignMessage);
+}
+
+/**
+ * @brief NodeAddon's JSON API.
+ * @param[in] information     node addon api callback information
+ * @return json string.
+ */
+Value VerifyMessage(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::VerifyMessage);
+}
+
+/**
+ * @brief NodeAddon's JSON API.
+ * @param[in] information     node addon api callback information
+ * @return json string.
+ */
 Value ParseScript(const CallbackInfo &information) {
   return NodeAddonJsonApi(information, JsonMappingApi::ParseScript);
 }
@@ -799,12 +836,12 @@ Value ComputeSigPointSchnorrPubkey(const CallbackInfo &information) {
 }
 
 /**
- * @brief The JSON parameter function of SignEcdsaAdaptor.
+ * @brief The JSON parameter function of EncryptEcdsaAdaptor.
  * @param[in] information   node add on api callback information
  * @return json string
  */
-Value SignEcdsaAdaptor(const CallbackInfo &information) {
-  return NodeAddonJsonApi(information, JsonMappingApi::SignEcdsaAdaptor);
+Value EncryptEcdsaAdaptor(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::EncryptEcdsaAdaptor);
 }
 
 /**
@@ -817,22 +854,21 @@ Value VerifyEcdsaAdaptor(const CallbackInfo &information) {
 }
 
 /**
- * @brief The JSON parameter function of AdaptEcdsaAdaptor.
+ * @brief The JSON parameter function of DecryptEcdsaAdaptor.
  * @param[in] information   node add on api callback information
  * @return json string
  */
-Value AdaptEcdsaAdaptor(const CallbackInfo &information) {
-  return NodeAddonJsonApi(information, JsonMappingApi::AdaptEcdsaAdaptor);
+Value DecryptEcdsaAdaptor(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::DecryptEcdsaAdaptor);
 }
 
 /**
- * @brief The JSON parameter function of ExtractSecretEcdsaAdaptor.
+ * @brief The JSON parameter function of RecoverEcdsaAdaptor.
  * @param[in] information   node add on api callback information
  * @return json string
  */
-Value ExtractSecretEcdsaAdaptor(const CallbackInfo &information) {
-  return NodeAddonJsonApi(
-      information, JsonMappingApi::ExtractSecretEcdsaAdaptor);
+Value RecoverEcdsaAdaptor(const CallbackInfo &information) {
+  return NodeAddonJsonApi(information, JsonMappingApi::RecoverEcdsaAdaptor);
 }
 
 /**
@@ -1244,6 +1280,12 @@ void InitializeJsonApi(Env env, Object *exports) {
       String::New(env, "GetSupportedFunction"),
       Function::New(env, GetSupportedFunction));
   exports->Set(
+      String::New(env, "SetCustomPrefix"),
+      Function::New(env, SetCustomPrefix));
+  exports->Set(
+      String::New(env, "ClearCustomPrefix"),
+      Function::New(env, ClearCustomPrefix));
+  exports->Set(
       String::New(env, "CreateRawTransaction"),
       Function::New(env, CreateRawTransaction));
   exports->Set(
@@ -1390,6 +1432,10 @@ void InitializeJsonApi(Env env, Object *exports) {
   exports->Set(
       String::New(env, "CreateKeyPair"), Function::New(env, CreateKeyPair));
   exports->Set(
+      String::New(env, "SignMessage"), Function::New(env, SignMessage));
+  exports->Set(
+      String::New(env, "VerifyMessage"), Function::New(env, VerifyMessage));
+  exports->Set(
       String::New(env, "ParseScript"), Function::New(env, ParseScript));
   exports->Set(
       String::New(env, "CreateScript"), Function::New(env, CreateScript));
@@ -1437,17 +1483,17 @@ void InitializeJsonApi(Env env, Object *exports) {
       String::New(env, "ComputeSigPointSchnorrPubkey"),
       Function::New(env, ComputeSigPointSchnorrPubkey));
   exports->Set(
-      String::New(env, "SignEcdsaAdaptor"),
-      Function::New(env, SignEcdsaAdaptor));
+      String::New(env, "EncryptEcdsaAdaptor"),
+      Function::New(env, EncryptEcdsaAdaptor));
   exports->Set(
       String::New(env, "VerifyEcdsaAdaptor"),
       Function::New(env, VerifyEcdsaAdaptor));
   exports->Set(
-      String::New(env, "AdaptEcdsaAdaptor"),
-      Function::New(env, AdaptEcdsaAdaptor));
+      String::New(env, "DecryptEcdsaAdaptor"),
+      Function::New(env, DecryptEcdsaAdaptor));
   exports->Set(
-      String::New(env, "ExtractSecretEcdsaAdaptor"),
-      Function::New(env, ExtractSecretEcdsaAdaptor));
+      String::New(env, "RecoverEcdsaAdaptor"),
+      Function::New(env, RecoverEcdsaAdaptor));
   exports->Set(
       String::New(env, "GetTapScriptTreeInfo"),
       Function::New(env, GetTapScriptTreeInfo));

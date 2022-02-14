@@ -1,6 +1,6 @@
 {
   "name": "cfd-js",
-  "version": "0.3.11",
+  "version": "0.4.0",
   "domain": "cryptogarageinc",
   "repository": {
     "type": "git",
@@ -9,7 +9,7 @@
   "description": "Crypto Finance Development Kit for JavaScript.",
   "author": "Crypto Garage",
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=12.0.0"
   },
   "binary": {
     "napi_versions": [
@@ -168,7 +168,7 @@
   "dependencies": {
     "@types/node": "^17.0.13",
     "bindings": "^1.5.0",
-    "cmake-js": "^6.2.1",
+    "cmake-js": "github:cryptogarageinc/cmake-js#semver:^6.3.1",
     "del-cli": "^4.0.1",
     "needle": "^3.0.0",
     "node-addon-api": "^4.1.0",
@@ -184,7 +184,7 @@
     "eslint": "^8.8.0",
     "eslint-config-google": "^0.14.0",
     "jest": "^27.1.1",
-    "prebuild": "^11.0.0",
+    "prebuild": "github:cryptogarageinc/prebuild#semver:^11.0.1",
     "ts-jest": "^27.0.5",
     "ts-morph": "^13.0.3",
     "ts-node": "^10.2.1",

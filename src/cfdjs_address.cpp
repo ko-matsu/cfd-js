@@ -263,7 +263,7 @@ TapScriptInfoStruct AddressStructApi::GetTapScriptTreeInfo(
       -> TapScriptInfoStruct {  // NOLINT
     NetType net_type = ConvertNetType(request.network);
     AddressFactory api(net_type);
-    return AddressApiBase::GetTapScriptTreeInfo(request, &api);
+    return AddressApiBase::GetTapScriptTreeInfo(request, &api, net_type);
   };
 
   TapScriptInfoStruct result;
@@ -279,7 +279,8 @@ TapScriptInfoStruct AddressStructApi::GetTapScriptTreeInfoByControlBlock(
       -> TapScriptInfoStruct {  // NOLINT
     NetType net_type = ConvertNetType(request.network);
     AddressFactory api(net_type);
-    return AddressApiBase::GetTapScriptTreeInfoByControlBlock(request, &api);
+    return AddressApiBase::GetTapScriptTreeInfoByControlBlock(
+        request, &api, net_type);
   };
 
   TapScriptInfoStruct result;
@@ -295,7 +296,7 @@ TapScriptInfoStruct AddressStructApi::GetTapScriptTreeFromString(
       -> TapScriptInfoStruct {  // NOLINT
     NetType net_type = ConvertNetType(request.network);
     AddressFactory api(net_type);
-    return AddressApiBase::GetTapScriptTreeFromString(request, &api);
+    return AddressApiBase::GetTapScriptTreeFromString(request, &api, net_type);
   };
 
   TapScriptInfoStruct result;
@@ -307,43 +308,10 @@ TapScriptInfoStruct AddressStructApi::GetTapScriptTreeFromString(
 
 TapBranchInfoStruct AddressStructApi::GetTapBranchInfo(
     const GetTapBranchInfoRequestStruct& request) {
-  static auto call_func = [](const GetTapBranchInfoRequestStruct& request)
+  auto call_func = [](const GetTapBranchInfoRequestStruct& request)
       -> TapBranchInfoStruct {  // NOLINT
-    TapBranchInfoStruct result;
-    if (request.tree_string.empty()) {
-      warn(CFD_LOG_SOURCE, "Failed to parameter. tree string is empty.");
-      throw CfdException(
-          CfdError::kCfdIllegalArgumentError, "tree string is empty.");
-    }
-    TaprootScriptTree tree;
-    TapBranch branch;
-    TapBranch* branch_ptr;
-    if (request.tapscript.empty()) {
-      branch = TapBranch::FromString(request.tree_string);
-      branch_ptr = &branch;
-    } else {
-      std::vector<ByteData256> nodes;
-      for (const auto& node : request.nodes) {
-        nodes.emplace_back(ByteData256(node));
-      }
-      tree = TaprootScriptTree::FromString(
-          request.tree_string, Script(request.tapscript), nodes);
-      branch_ptr = &tree;
-    }
-
-    auto branches = branch_ptr->GetBranchList();
-    if (request.index >= static_cast<uint32_t>(branches.size())) {
-      warn(CFD_LOG_SOURCE, "Failed to parameter. index is out of range.");
-      throw CfdException(
-          CfdError::kCfdOutOfRangeError, "index is out of range.");
-    }
-    auto target_branch = branches[request.index];
-    result.tree_string = target_branch.ToString();
-    result.top_branch_hash = target_branch.GetCurrentBranchHash().GetHex();
-    for (const auto& node : target_branch.GetNodeList()) {
-      result.nodes.emplace_back(node.GetHex());
-    }
-    return result;
+    NetType net_type = ConvertNetType(request.network);
+    return AddressApiBase::GetTapBranchInfo(request, net_type);
   };
 
   TapBranchInfoStruct result;
@@ -353,65 +321,12 @@ TapBranchInfoStruct AddressStructApi::GetTapBranchInfo(
   return result;
 }
 
-/**
- * @brief parse tapbranch.
- * @param[in,out] list    output list.
- * @param[in] branch      target branch.
- * @param[in] depth       top depth.
- */
-static void ParseTapBranch(
-    std::vector<TapScriptTreeItemStruct>* list, const TapBranch& branch,
-    uint8_t depth) {
-  auto branches = branch.GetBranchList();
-  uint32_t branch_max = static_cast<uint32_t>(branches.size());
-  TapScriptTreeItemStruct leaf_data;
-  leaf_data.depth = branch_max + depth;
-  leaf_data.tap_branch_hash = branch.GetBaseHash().GetHex();
-  if (branch.HasTapLeaf()) {
-    leaf_data.tapscript = branch.GetScript().GetHex();
-    leaf_data.leaf_version = branch.GetLeafVersion();
-  } else {
-    leaf_data.ignore_items.insert("tapscript");
-    leaf_data.ignore_items.insert("leafVersion");
-  }
-  leaf_data.ignore_items.insert("relatedBranchHash");
-  list->emplace_back(leaf_data);
-
-  std::string past_branch_hash = leaf_data.tap_branch_hash;
-  for (uint32_t index = 0; index < branch_max; ++index) {
-    uint32_t current_depth = branch_max - 1 - index + depth;
-    auto& target_branch = branches.at(index);
-    // set value (branch hash)
-    TapScriptTreeItemStruct item;
-    item.depth = current_depth;
-    item.tap_branch_hash =
-        branch.GetBranchHash(static_cast<uint8_t>(index)).GetHex();
-    item.related_branch_hash.emplace_back(past_branch_hash);
-    item.related_branch_hash.emplace_back(
-        target_branch.GetCurrentBranchHash().GetHex());
-    item.ignore_items.insert("tapscript");
-    item.ignore_items.insert("leafVersion");
-    list->emplace_back(item);
-    past_branch_hash = item.tap_branch_hash;
-
-    ParseTapBranch(list, target_branch, current_depth + 1);
-  }
-}
-
 AnalyzeTapScriptTreeInfoStruct AddressStructApi::AnalyzeTapScriptTree(
     const AnalyzeTapScriptTreeRequestStruct& request) {
-  static auto call_func = [](const AnalyzeTapScriptTreeRequestStruct& request)
+  auto call_func = [](const AnalyzeTapScriptTreeRequestStruct& request)
       -> AnalyzeTapScriptTreeInfoStruct {  // NOLINT
-    AnalyzeTapScriptTreeInfoStruct result;
-    if (request.tree_string.empty()) {
-      warn(CFD_LOG_SOURCE, "Failed to parameter. tree string is empty.");
-      throw CfdException(
-          CfdError::kCfdIllegalArgumentError, "tree string is empty.");
-    }
-    auto tree = TapBranch::FromString(request.tree_string);
-
-    ParseTapBranch(&result.branches, tree, 0);
-    return result;
+    NetType net_type = ConvertNetType(request.network);
+    return AddressApiBase::AnalyzeTapScriptTree(request, net_type);
   };
 
   AnalyzeTapScriptTreeInfoStruct result;

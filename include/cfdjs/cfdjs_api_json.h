@@ -53,6 +53,18 @@ class CFD_JS_API_EXPORT JsonMappingApi {
   static std::string GetSupportedFunction();
 
   /**
+   * @brief SetCustomPrefix.
+   * @param[in] request_message     the request json message
+   * @return json string
+   */
+  static std::string SetCustomPrefix(const std::string &request_message);
+  /**
+   * @brief ClearCustomPrefix.
+   * @return json string
+   */
+  static std::string ClearCustomPrefix();
+
+  /**
    * @brief CreateRawTransaction.
    * @param[in] request_message     the request json message
    * @return json string
@@ -375,6 +387,20 @@ class CFD_JS_API_EXPORT JsonMappingApi {
   static std::string CreateKeyPair(const std::string &request_message);
 
   /**
+   * @brief SignMessage.
+   * @param[in] request_message the request json message
+   * @return json string
+   */
+  static std::string SignMessage(const std::string &request_message);
+
+  /**
+   * @brief VerifyMessage.
+   * @param[in] request_message the request json message
+   * @return json string
+   */
+  static std::string VerifyMessage(const std::string &request_message);
+
+  /**
    * @brief ParseScript.
    * @param[in] request_message     the request json message
    * @return json string
@@ -607,15 +633,15 @@ class CFD_JS_API_EXPORT JsonMappingApi {
       const std::string &request_message);
 
   /**
-   * @brief Sign a ecdsa adaptor signature.
+   * @brief Encrypt an ecdsa adaptor signature.
    *
    * @param[in] request_message the request json message
    * @return json string
    */
-  static std::string SignEcdsaAdaptor(const std::string &request_message);
+  static std::string EncryptEcdsaAdaptor(const std::string &request_message);
 
   /**
-   * @brief Verify a ecdsa adaptor signature.
+   * @brief Verify an ecdsa adaptor signature.
    *
    * @param[in] request_message the request json message
    * @return json string
@@ -623,21 +649,20 @@ class CFD_JS_API_EXPORT JsonMappingApi {
   static std::string VerifyEcdsaAdaptor(const std::string &request_message);
 
   /**
-   * @brief Adapt a ecdsa adaptor.
+   * @brief Decrypt an ecdsa adaptor.
    *
    * @param[in] request_message the request json message
    * @return json string
    */
-  static std::string AdaptEcdsaAdaptor(const std::string &request_message);
+  static std::string DecryptEcdsaAdaptor(const std::string &request_message);
 
   /**
-   * @brief Extract a secret data.
+   * @brief Recover an ecdsa adaptor.
    *
    * @param[in] request_message the request json message
    * @return json string
    */
-  static std::string ExtractSecretEcdsaAdaptor(
-      const std::string &request_message);
+  static std::string RecoverEcdsaAdaptor(const std::string &request_message);
 
   /**
    * @brief Get a tapscript tree information.

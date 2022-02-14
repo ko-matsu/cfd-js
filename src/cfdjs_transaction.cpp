@@ -851,12 +851,16 @@ VerifySignResponseStruct TransactionStructApi::VerifySign(
 
     TransactionContext ctx(request.tx);
     AddressFactory address_factory;
-    auto utxos = TransactionStructApiBase::ConvertUtxoListForVerify(
-        request.txins, &address_factory);
+    auto utxos = TransactionStructApiBase::ConvertUtxoList(
+        request.utxos, &address_factory);
     ctx.CollectInputUtxo(utxos);
 
-    response.success = !utxos.empty();
-    for (auto& utxo : utxos) {
+    auto target_utxos = TransactionStructApiBase::ConvertUtxoListForVerify(
+        request.txins, &address_factory);
+    ctx.CollectInputUtxo(target_utxos);
+
+    response.success = !target_utxos.empty();
+    for (auto& utxo : target_utxos) {
       OutPoint outpoint(utxo.txid, utxo.vout);
       try {
         ctx.Verify(outpoint);

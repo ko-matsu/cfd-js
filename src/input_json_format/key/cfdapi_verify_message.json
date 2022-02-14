@@ -1,0 +1,34 @@
+{
+  "namespace": ["cfd","js","api","json"],
+  "functionName": "VerifyMessage",
+  "comment": "Verify bitcoin message.",
+  "request": {
+    ":class": "VerifyMessageRequest",
+    ":class:comment": "Request for verify message.",
+    "signature": "",
+    "signature:require": "require",
+    "signature:comment": "message signature. hex or base64.",
+    "pubkey": "",
+    "pubkey:require": "require",
+    "pubkey:comment": "public key.",
+    "message": "",
+    "message:require": "require",
+    "message:comment": "message",
+    "magic": "",
+    "magic:require": "optional",
+    "magic:comment": "message magic word. default is empty (set bitcoin magic word.)",
+    "ignoreError": false,
+    "ignoreError:require": "optional",
+    "ignoreError:comment": "ignore error option. If set to true, response success is true/false."
+  },
+  "response": {
+    ":class": "VerifyMessageResponse",
+    ":class:comment": "Response of verify message.",
+    "success": false,
+    "success:require": "require",
+    "success:comment": "signature",
+    "pubkey": "",
+    "pubkey:require": "optional",
+    "pubkey:comment": "recovered public key"
+  }
+}

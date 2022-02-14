@@ -2,9 +2,9 @@
 /**
  * @file cfdjs_api_elements_transaction.h
  *
- * @brief cfd-apiで利用するElements用Transaction操作のクラス定義
+ * @brief definition for elements transaction operation api.
  *
- * JSON形式のAPIを提供する.
+ * Provide json format API.
  */
 #ifndef CFD_JS_INCLUDE_CFDJS_CFDJS_API_ELEMENTS_TRANSACTION_H_
 #define CFD_JS_INCLUDE_CFDJS_CFDJS_API_ELEMENTS_TRANSACTION_H_
@@ -16,96 +16,99 @@
 #include "cfdjs/cfdjs_api_common.h"
 #include "cfdjs/cfdjs_struct.h"
 
+/**
+ * @brief cfdapi namespace
+ */
 namespace cfd {
 namespace js {
 namespace api {
 
 /**
- * @brief Elements用Transaction関連の関数群クラス
+ * @brief elements transaction api class.
  */
 class CFD_JS_API_EXPORT ElementsTransactionStructApi {
  public:
   /**
-   * @brief パラメータの情報を元に、Elements用のRaw Transactionを作成する.
-   * @param[in] request Transactionを構築するパラメータの構造体
-   * @return Transactionのhexデータを格納した構造体
+   * @brief Create the elemens transaction.
+   * @param[in] request     request parameter.
+   * @return response.
    */
   static RawTransactionResponseStruct CreateRawTransaction(
       const ElementsCreateRawTransactionRequestStruct& request);
 
   /**
-   * @brief パラメータの情報を元に、Elements Transactionに情報を追加する.
-   * @param[in] request Transactionを構築するパラメータの構造体
-   * @return Transactionのhexデータを格納した構造体
+   * @brief Add the tx input/output for elements transaction.
+   * @param[in] request     request parameter.
+   * @return response.
    */
   static ElementsAddRawTransactionResponseStruct AddRawTransaction(
       const ElementsAddRawTransactionRequestStruct& request);
 
   /**
-   * @brief パラメータの情報を元に、Transactionをデコードして出力する.
-   * @param[in] request Transactionとデコード用の情報を格納した構造体
-   * @return Transactionの表示用データを格納した構造体
+   * @brief Decode transaction from hex.
+   * @param[in] request     request parameter.
+   * @return response.
    */
   static ElementsDecodeRawTransactionResponseStruct DecodeRawTransaction(
       const ElementsDecodeRawTransactionRequestStruct& request);
 
   /**
-   * @brief パラメータの情報を元に、WitnessStack数を出力する.
-   * @param[in] request Transactionと対象TxIn情報を格納した構造体
-   * @return WitnessStack数を格納した構造体
+   * @brief Get the witness stack count.
+   * @param[in] request     request parameter.
+   * @return response.
    */
   static GetWitnessStackNumResponseStruct GetWitnessStackNum(
       const GetWitnessStackNumRequestStruct& request);
 
   /**
-   * @brief パラメータの情報を元に、署名情報を追加する.
-   * @param[in] request Transactionと署名情報を格納した構造体
-   * @return Transactionのhexデータを格納した構造体
+   * @brief Add sign data.
+   * @param[in] request     request parameter.
+   * @return response.
    */
   static RawTransactionResponseStruct AddSign(
       const AddSignRequestStruct& request);
 
   /**
-   * @brief パラメータの情報を元に、SegwitのMultisig署名情報を追加する.
-   * @details 追加するsignatureの順序は、redeem
-   * scriptのpubkeyとsignParam内のrelatedPubkeyで
-   *   対応をとって自動的に整列される.
-   * (relatedPubkeyが設定されていない場合は、relatedPubkeyが
-   *   設定されているsignatureを追加した後にsignParamの順序でsignatureを追加)
-   * @param[in] request TransactionとSegwitのMultisig署名情報を格納した構造体
-   * @return Transactionのhexデータを格納した構造体
+   * @brief Add the multisig sign.
+   * @details The order of the signatures to be added is automatically
+   * aligned by the correspondence between the pubkey in the redeem script
+   * and the relatedPubkey in signParam.
+   * If relatedPubkey is not set, add signatures in the order of signParam
+   * after adding signatures with relatedPubkey.
+   * @param[in] request     request parameter.
+   * @return response.
    */
   static RawTransactionResponseStruct AddMultisigSign(
       const AddMultisigSignRequestStruct& request);
 
   /**
-   * @brief パラメータの情報を元に、秘密鍵で署名する.
-   * @param[in] request Transactionと署名情報を格納した構造体
-   * @return Transactionのhexデータを格納した構造体
+   * @brief Sign with privkey.
+   * @param[in] request     request parameter.
+   * @return response.
    */
   static RawTransactionResponseStruct SignWithPrivkey(
       const SignWithPrivkeyRequestStruct& request);
 
   /**
-   * @brief パラメータの情報を元に、公開鍵署名情報を追加する.
-   * @param[in] request Transactionと署名情報を格納した構造体
-   * @return Transactionのhexデータを格納した構造体
+   * @brief Add pubkey hash sign.
+   * @param[in] request     request parameter.
+   * @return response.
    */
   static RawTransactionResponseStruct AddPubkeyHashSign(
       const AddPubkeyHashSignRequestStruct& request);
 
   /**
-   * @brief パラメータの情報を元に、Scriptの署名情報を追加する.
-   * @param[in] request Transactionと署名情報を格納した構造体
-   * @return Transactionのhexデータを格納した構造体
+   * @brief Add script hash sign.
+   * @param[in] request     request parameter.
+   * @return response.
    */
   static RawTransactionResponseStruct AddScriptHashSign(
       const AddScriptHashSignRequestStruct& request);
 
   /**
-   * @brief パラメータの情報を元に、WitnessStackの情報を更新する.
-   * @param[in] request TransactionとWitnessStack追加情報を格納した構造体
-   * @return Transactionのhexデータを格納した構造体
+   * @brief Update the witness stack.
+   * @param[in] request     request parameter.
+   * @return response.
    */
   static RawTransactionResponseStruct UpdateWitnessStack(
       const UpdateWitnessStackRequestStruct& request);
@@ -119,9 +122,9 @@ class CFD_JS_API_EXPORT ElementsTransactionStructApi {
       const UpdateTxInSequenceRequestStruct& request);
 
   /**
-   * @brief パラメータの情報を元に、SigHashを作成する
-   * @param[in] request sighashを生成するパラメータ
-   * @return sighashのhexデータを格納した構造体
+   * @brief Create signature hash (under segwit v0).
+   * @param[in] request     request parameter.
+   * @return response.
    */
   static CreateSignatureHashResponseStruct CreateSignatureHash(
       const CreateElementsSignatureHashRequestStruct& request);
@@ -151,17 +154,17 @@ class CFD_JS_API_EXPORT ElementsTransactionStructApi {
       const AddTapscriptSignRequestStruct& request);
 
   /**
-   * @brief パラメータの情報を元に、署名検証を実施する.
-   * @param[in] request 署名検証情報を格納した構造体
-   * @return 署名検証結果を格納した構造体
+   * @brief Verify signature.
+   * @param[in] request     request parameter.
+   * @return response.
    */
   static VerifySignatureResponseStruct VerifySignature(
       const VerifySignatureRequestStruct& request);
 
   /**
-   * @brief パラメータの情報を元に、署名検証を実施する.
-   * @param[in] request 署名検証情報を格納した構造体
-   * @return 署名検証結果を格納した構造体
+   * @brief Verify sign.
+   * @param[in] request     request parameter.
+   * @return response.
    */
   static VerifySignResponseStruct VerifySign(
       const VerifySignRequestStruct& request);
@@ -199,98 +202,97 @@ class CFD_JS_API_EXPORT ElementsTransactionStructApi {
       const GetTxOutIndexRequestStruct& request);
 
   /**
-   * @brief パラメータの情報を元に、RawTransactionをBlindする.
-   * @param[in] request Blind対象のTransactionとBlind情報を格納した構造体
-   * @return Transactionのhexデータを格納した構造体
+   * @brief Blind the transaction.
+   * @param[in] request     request parameter.
+   * @return response.
    */
   static BlindTransactionResponseStruct BlindTransaction(
       const BlindRawTransactionRequestStruct& request);
 
   /**
-   * @brief パラメータの情報を元に、RawTransactionをUnBlindする.
-   * @param[in] request
-   * Unlblind対象のTransactionとBlindingKey情報を格納した構造体
-   * @return TransactionのhexデータとBlindingFactorを格納した構造体
+   * @brief Unblind the transaction.
+   * @param[in] request     request parameter.
+   * @return response.
    */
   static UnblindRawTransactionResponseStruct UnblindTransaction(
       const UnblindRawTransactionRequestStruct& request);
 
   /**
-   * @brief パラメータの情報を元に、RawTransactionにAsset新規発行情報を設定する.
-   * @param[in] request 設定対象のTransactionとAsset情報を格納した構造体
-   * @return Transactionのhexデータを格納した構造体
+   * @brief Set the issuance asset for transaction.
+   * @param[in] request     request parameter.
+   * @return response.
    */
   static SetRawIssueAssetResponseStruct SetRawIssueAsset(
       const SetRawIssueAssetRequestStruct& request);
 
   /**
-   * @brief パラメータの情報を元に、RawTransactionにAsset再発行情報を設定する.
-   * @param[in] request 設定対象のTransactionとAsset情報を格納した構造体
-   * @return Transactionのhexデータを格納した構造体
+   * @brief Set the reissuance asset for transaction.
+   * @param[in] request     request parameter.
+   * @return response.
    */
   static SetRawReissueAssetResponseStruct SetRawReissueAsset(
       const SetRawReissueAssetRequestStruct& request);
 
   /**
-   * @brief パラメータの情報を元に、Elements Pegin用のRaw Transactionを作成する.
-   * @param[in] request Transactionを構築するパラメータの構造体
-   * @return Transactionのhexデータを格納した構造体
+   * @brief Create the pegin transaction.
+   * @param[in] request     request parameter.
+   * @return response.
    */
   static RawTransactionResponseStruct CreateRawPeginTransaction(  // NOLINT
       const CreateRawPeginRequestStruct& request);
 
   /**
    * @brief Update pegin witness stack.
-   * @param[in] request  pegin witness target data.
-   * @return Transaction hex.
+   * @param[in] request     request parameter.
+   * @return response.
    */
   static RawTransactionResponseStruct UpdatePeginWitnessStack(
       const UpdateWitnessStackRequestStruct& request);
 
   /**
-   * @brief パラメータの情報を元に、Elements Pegout用のRaw Transactionを作成する.
-   * @param[in] request Transactionを構築するパラメータの構造体
-   * @return Transactionのhexデータを格納した構造体
+   * @brief Create the pegout transaction.
+   * @param[in] request     request parameter.
+   * @return response.
    */
   static CreateRawPegoutResponseStruct CreateRawPegoutTransaction(
       const CreateRawPegoutRequestStruct& request);
 
   /**
-   * @brief パラメータの情報を元に、Issue用BlindingKeyを作成する.
-   * @param[in] request BlindingKeyを構築するパラメータの構造体
-   * @return BlindingKeyを格納した構造体
+   * @brief Get the issuance blinding key.
+   * @param[in] request     request parameter.
+   * @return response.
    */
   static BlindingKeyResponseStruct GetIssuanceBlindingKey(
       const GetIssuanceBlindingKeyRequestStruct& request);
 
   /**
-   * @brief パラメータの情報を元に、defaultのBlindingKeyを作成する.
-   * @param[in] request BlindingKeyを構築するパラメータの構造体
-   * @return BlindingKeyを格納した構造体
+   * @brief Get the default blinding key.
+   * @param[in] request     request parameter.
+   * @return response.
    */
   static BlindingKeyResponseStruct GetDefaultBlindingKey(
       const GetDefaultBlindingKeyRequestStruct& request);
 
   /**
-   * @brief パラメータの情報を元に、Elements DestroyAmount用のRaw Transactionを作成する.
-   * @param[in] request Transactionを構築するパラメータの構造体
-   * @return Transactionのhexデータを格納した構造体
+   * @brief Create the burn asset transaction.
+   * @param[in] request     request parameter.
+   * @return response.
    */
   static RawTransactionResponseStruct CreateDestroyAmountTransaction(
       const CreateDestroyAmountRequestStruct& request);
 
   /**
-   * @brief パラメータの情報を元に、Ledger format serialize dataを作成する.
-   * @param[in] request Transactionを構築するパラメータの構造体
-   * @return Ledger format serialize dataを格納した構造体
+   * @brief Serialize ledger format data.
+   * @param[in] request     request parameter.
+   * @return response.
    */
   static SerializeLedgerFormatResponseStruct SerializeLedgerFormat(
       const SerializeLedgerFormatRequestStruct& request);
 
   /**
-   * @brief パラメータの情報を元に、Commitmentを作成する.
-   * @param[in] request Commitmentを構築するパラメータの構造体
-   * @return Commitment dataを格納した構造体
+   * @brief Get the commitment data.
+   * @param[in] request     request parameter.
+   * @return response.
    */
   static GetCommitmentResponseStruct GetCommitment(
       const GetCommitmentRequestStruct& request);

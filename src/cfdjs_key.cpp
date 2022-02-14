@@ -8,7 +8,9 @@
 #include <vector>
 
 #include "cfd/cfdapi_key.h"
+#include "cfdcore/cfdcore_exception.h"
 #include "cfdcore/cfdcore_transaction_common.h"
+#include "cfdcore/cfdcore_util.h"
 #include "cfdjs/cfdjs_api_address.h"
 #include "cfdjs/cfdjs_api_key.h"
 #include "cfdjs_internal.h"  // NOLINT
@@ -20,6 +22,9 @@ namespace api {
 using cfd::api::KeyApi;
 using cfd::core::ByteData;
 using cfd::core::ByteData256;
+using cfd::core::CfdError;
+using cfd::core::CfdException;
+using cfd::core::CryptoUtil;
 using cfd::core::NetType;
 using cfd::core::Privkey;
 using cfd::core::Pubkey;
@@ -312,6 +317,73 @@ PubkeyDataStruct KeyStructApi::NegatePubkey(const PubkeyDataStruct& request) {
 
   PubkeyDataStruct result;
   result = ExecuteStructApi<PubkeyDataStruct, PubkeyDataStruct>(
+      request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
+SignMessageResponseStruct KeyStructApi::SignMessage(
+    const SignMessageRequestStruct& request) {
+  auto call_func = [](const SignMessageRequestStruct& request)
+      -> SignMessageResponseStruct {
+    SignMessageResponseStruct response;
+    Privkey sk;
+    if (Privkey::HasWif(request.privkey)) {
+      sk = Privkey::FromWif(request.privkey);
+    } else {
+      sk = Privkey(request.privkey);
+    }
+    ByteData sig;
+    if (request.magic.empty()) {
+      sig = sk.SignBitcoinMessage(request.message);
+    } else {
+      sig = sk.SignMessage(request.message, request.magic);
+    }
+    response.signature = sig.GetHex();
+    response.base64 = CryptoUtil::EncodeBase64(sig);
+    return response;
+  };
+
+  SignMessageResponseStruct result;
+  result =
+      ExecuteStructApi<SignMessageRequestStruct, SignMessageResponseStruct>(
+          request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
+VerifyMessageResponseStruct KeyStructApi::VerifyMessage(
+    const VerifyMessageRequestStruct& request) {
+  auto call_func = [](const VerifyMessageRequestStruct& request)
+      -> VerifyMessageResponseStruct {
+    VerifyMessageResponseStruct response;
+    Pubkey pubkey(request.pubkey);
+    ByteData signature;
+    if (request.signature.length() == 130) {
+      signature = ByteData(request.signature);
+    } else {
+      signature = CryptoUtil::DecodeBase64(request.signature);
+    }
+
+    Pubkey recovered_pubkey;
+    if (request.magic.empty()) {
+      response.success = pubkey.VerifyBitcoinMessage(
+          signature, request.message, &recovered_pubkey);
+    } else {
+      response.success = pubkey.VerifyMessage(
+          signature, request.message, request.magic, &recovered_pubkey);
+    }
+    if (recovered_pubkey.IsValid()) {
+      response.pubkey = recovered_pubkey.GetHex();
+    }
+    if ((!response.success) && (!request.ignore_error)) {
+      throw CfdException(
+          CfdError::kCfdIllegalArgumentError, "failed to verify message.");
+    }
+    return response;
+  };
+
+  VerifyMessageResponseStruct result;
+  result = ExecuteStructApi<
+      VerifyMessageRequestStruct, VerifyMessageResponseStruct>(
       request, call_func, std::string(__FUNCTION__));
   return result;
 }

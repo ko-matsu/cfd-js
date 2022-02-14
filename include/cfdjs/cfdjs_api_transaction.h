@@ -27,86 +27,70 @@ using cfd::AddressFactory;
 class CFD_JS_API_EXPORT TransactionStructApi {
  public:
   /**
-   * @brief JSONパラメータの情報を元に、Transactionを作成する.
-   * @param[in] request Transactionを構築するパラメータの構造体
-   * @return Transactionのhexデータを格納した構造体
+   * @brief Create the elemens transaction.
+   * @param[in] request     request parameter.
+   * @return response.
    */
   static RawTransactionResponseStruct CreateRawTransaction(
       const CreateRawTransactionRequestStruct& request);
 
   /**
-   * @brief JSONパラメータの情報を元に、Transactionに情報を追加する.
-   * @param[in] request Transactionを構築するパラメータの構造体
-   * @return Transactionのhexデータを格納した構造体
+   * @brief Add the tx input/output for elements transaction.
+   * @param[in] request     request parameter.
+   * @return response.
    */
   static RawTransactionResponseStruct AddRawTransaction(
       const AddRawTransactionRequestStruct& request);
 
   /**
-   * @brief JSONパラメータの情報を元に、Transactionをデコードして出力する.
-   * @param[in] request Transactionとデコード用の情報を格納した構造体
-   * @return Transactionの表示用JSONデータを格納した構造体
+   * @brief Decode transaction from hex.
+   * @param[in] request     request parameter.
+   * @return response.
    */
   static DecodeRawTransactionResponseStruct DecodeRawTransaction(
       const DecodeRawTransactionRequestStruct& request);
 
   /**
-   * @brief JSONパラメータの情報を元に、WitnessStack数を出力する.
-   * @param[in] request Transactionと対象TxIn情報を格納した構造体
-   * @return WitnessStack数を格納した構造体
+   * @brief Get the witness stack count.
+   * @param[in] request     request parameter.
+   * @return response.
    */
   static GetWitnessStackNumResponseStruct GetWitnessStackNum(
       const GetWitnessStackNumRequestStruct& request);
 
   /**
-   * @brief JSONパラメータの情報を元に、署名情報を追加する.
-   * @param[in] request Transactionと署名情報を格納した構造体
-   * @return Transactionのhexデータを格納した構造体
+   * @brief Add sign data.
+   * @param[in] request     request parameter.
+   * @return response.
    */
   static RawTransactionResponseStruct AddSign(
       const AddSignRequestStruct& request);
 
   /**
-   * @brief JSONパラメータの情報を元に、WitnessStackの情報を更新する.
-   * @param[in] request TransactionとWitnessStack追加情報を格納した構造体
-   * @return Transactionのhexデータを格納した構造体
-   */
-  static RawTransactionResponseStruct UpdateWitnessStack(
-      const UpdateWitnessStackRequestStruct& request);
-
-  /**
-   * @brief Update sequence number.
+   * @brief Add the multisig sign.
+   * @details The order of the signatures to be added is automatically
+   * aligned by the correspondence between the pubkey in the redeem script
+   * and the relatedPubkey in signParam.
+   * If relatedPubkey is not set, add signatures in the order of signParam
+   * after adding signatures with relatedPubkey.
    * @param[in] request     request parameter.
-   * @return transaction hex.
-   */
-  static RawTransactionResponseStruct UpdateTxInSequence(
-      const UpdateTxInSequenceRequestStruct& request);
-
-  /**
-   * @brief JSONパラメータの情報を元に、SegwitのMultisig署名情報を追加する.
-   * @details 追加するsignatureの順序は、redeem
-   * scriptのpubkeyとsignParam内のrelatedPubkeyで
-   *   対応をとって自動的に整列される.
-   * (relatedPubkeyが設定されていない場合は、relatedPubkeyが
-   *   設定されているsignatureを追加した後にsignParamの順序でsignatureを追加)
-   * @param[in] request TransactionとSegwitのMultisig署名情報を格納した構造体
-   * @return Transactionのhexデータを格納した構造体
+   * @return response.
    */
   static RawTransactionResponseStruct AddMultisigSign(
       const AddMultisigSignRequestStruct& request);
 
   /**
-   * @brief パラメータの情報を元に、秘密鍵で署名する.
-   * @param[in] request Transactionと署名情報を格納した構造体
-   * @return Transactionのhexデータを格納した構造体
+   * @brief Sign with privkey.
+   * @param[in] request     request parameter.
+   * @return response.
    */
   static RawTransactionResponseStruct SignWithPrivkey(
       const SignWithPrivkeyRequestStruct& request);
 
   /**
-   * @brief パラメータの情報を元に、公開鍵署名情報を追加する.
-   * @param[in] request Transactionと署名情報を格納した構造体
-   * @return Transactionのhexデータを格納した構造体
+   * @brief Add pubkey hash sign.
+   * @param[in] request     request parameter.
+   * @return response.
    */
   static RawTransactionResponseStruct AddPubkeyHashSign(
       const AddPubkeyHashSignRequestStruct& request);
@@ -118,6 +102,22 @@ class CFD_JS_API_EXPORT TransactionStructApi {
    */
   static RawTransactionResponseStruct AddScriptHashSign(
       const AddScriptHashSignRequestStruct& request);
+
+  /**
+   * @brief Update the witness stack.
+   * @param[in] request     request parameter.
+   * @return response.
+   */
+  static RawTransactionResponseStruct UpdateWitnessStack(
+      const UpdateWitnessStackRequestStruct& request);
+
+  /**
+   * @brief Update sequence number.
+   * @param[in] request     request parameter.
+   * @return transaction hex.
+   */
+  static RawTransactionResponseStruct UpdateTxInSequence(
+      const UpdateTxInSequenceRequestStruct& request);
 
   /**
    * @brief Create signature hash.

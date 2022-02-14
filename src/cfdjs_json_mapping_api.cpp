@@ -306,6 +306,20 @@ std::string JsonMappingApi::GetSupportedFunction() {
       UtilStructApi::GetSupportedFunction);
 }
 
+std::string JsonMappingApi::SetCustomPrefix(
+    const std::string &request_message) {
+  return ExecuteJsonApi<
+      api::json::SetCustomPrefixRequest, api::json::VoidFunctionResponse,
+      api::SetCustomPrefixRequestStruct, api::VoidFunctionResponseStruct>(
+      request_message, UtilStructApi::SetCustomPrefix);
+}
+
+std::string JsonMappingApi::ClearCustomPrefix() {
+  return ExecuteJsonResponseOnlyApi<
+      api::json::VoidFunctionResponse, api::VoidFunctionResponseStruct>(
+      UtilStructApi::ClearCustomPrefix);
+}
+
 std::string JsonMappingApi::CreateRawTransaction(
     const std::string &request_message) {
   return ExecuteJsonApi<
@@ -459,7 +473,7 @@ std::string JsonMappingApi::GetSighash(const std::string &request_message) {
       api::GetSighashRequestStruct, api::CreateSignatureHashResponseStruct>(
       request_message, TransactionStructApi::GetSighash,
 #ifndef CFD_DISABLE_ELEMENTS
-      TransactionStructApi::GetSighash);
+      ElementsTransactionStructApi::GetSighash);
 #else
       TransactionStructApi::GetSighash);
 #endif
@@ -709,6 +723,20 @@ std::string JsonMappingApi::CreateKeyPair(const std::string &request_message) {
       api::json::CreateKeyPairRequest, api::json::CreateKeyPairResponse,
       api::CreateKeyPairRequestStruct, api::CreateKeyPairResponseStruct>(
       request_message, KeyStructApi::CreateKeyPair);
+}
+
+std::string JsonMappingApi::SignMessage(const std::string &request_message) {
+  return ExecuteJsonApi<
+      api::json::SignMessageRequest, api::json::SignMessageResponse,
+      api::SignMessageRequestStruct, api::SignMessageResponseStruct>(
+      request_message, KeyStructApi::SignMessage);
+}
+
+std::string JsonMappingApi::VerifyMessage(const std::string &request_message) {
+  return ExecuteJsonApi<
+      api::json::VerifyMessageRequest, api::json::VerifyMessageResponse,
+      api::VerifyMessageRequestStruct, api::VerifyMessageResponseStruct>(
+      request_message, KeyStructApi::VerifyMessage);
 }
 
 std::string JsonMappingApi::ParseScript(const std::string &request_message) {
@@ -1040,12 +1068,12 @@ std::string JsonMappingApi::ComputeSigPointSchnorrPubkey(
       request_message, SchnorrApi::ComputeSigPointSchnorrPubkey);
 }
 
-std::string JsonMappingApi::SignEcdsaAdaptor(
+std::string JsonMappingApi::EncryptEcdsaAdaptor(
     const std::string &request_message) {
   return ExecuteJsonApi<
-      SignEcdsaAdaptorRequest, SignEcdsaAdaptorResponse,
-      SignEcdsaAdaptorRequestStruct, SignEcdsaAdaptorResponseStruct>(
-      request_message, SchnorrApi::SignEcdsaAdaptor);
+      EncryptEcdsaAdaptorRequest, EcdsaAdaptorSignature,
+      EncryptEcdsaAdaptorRequestStruct, EcdsaAdaptorSignatureStruct>(
+      request_message, SchnorrApi::EncryptEcdsaAdaptor);
 }
 
 std::string JsonMappingApi::VerifyEcdsaAdaptor(
@@ -1056,20 +1084,19 @@ std::string JsonMappingApi::VerifyEcdsaAdaptor(
       request_message, SchnorrApi::VerifyEcdsaAdaptor);
 }
 
-std::string JsonMappingApi::AdaptEcdsaAdaptor(
+std::string JsonMappingApi::DecryptEcdsaAdaptor(
     const std::string &request_message) {
   return ExecuteJsonApi<
-      AdaptEcdsaAdaptorRequest, SignatureDataResponse,
-      AdaptEcdsaAdaptorRequestStruct, SignatureDataResponseStruct>(
-      request_message, SchnorrApi::AdaptEcdsaAdaptor);
+      DecryptEcdsaAdaptorRequest, SignatureDataResponse,
+      DecryptEcdsaAdaptorRequestStruct, SignatureDataResponseStruct>(
+      request_message, SchnorrApi::DecryptEcdsaAdaptor);
 }
 
-std::string JsonMappingApi::ExtractSecretEcdsaAdaptor(
+std::string JsonMappingApi::RecoverEcdsaAdaptor(
     const std::string &request_message) {
   return ExecuteJsonApi<
-      ExtractSecretEcdsaAdaptorRequest, SecretData,
-      ExtractSecretEcdsaAdaptorRequestStruct, SecretDataStruct>(
-      request_message, SchnorrApi::ExtractSecretEcdsaAdaptor);
+      RecoverEcdsaAdaptorRequest, SecretData, RecoverEcdsaAdaptorRequestStruct,
+      SecretDataStruct>(request_message, SchnorrApi::RecoverEcdsaAdaptor);
 }
 
 std::string JsonMappingApi::GetTapScriptTreeInfo(
@@ -1113,20 +1140,30 @@ std::string JsonMappingApi::GetTapScriptTreeFromString(
 
 std::string JsonMappingApi::GetTapBranchInfo(
     const std::string &request_message) {
-  return ExecuteJsonApi<
+  return ExecuteElementsCheckApi<
       api::json::GetTapBranchInfoRequest, api::json::TapBranchInfo,
       api::GetTapBranchInfoRequestStruct, api::TapBranchInfoStruct>(
-      request_message, AddressStructApi::GetTapBranchInfo);
+      request_message, AddressStructApi::GetTapBranchInfo,
+#ifndef CFD_DISABLE_ELEMENTS
+      ElementsAddressStructApi::GetTapBranchInfo);
+#else
+      AddressStructApi::GetTapBranchInfo);
+#endif
 }
 
 std::string JsonMappingApi::AnalyzeTapScriptTree(
     const std::string &request_message) {
-  return ExecuteJsonApi<
+  return ExecuteElementsCheckApi<
       api::json::AnalyzeTapScriptTreeRequest,
       api::json::AnalyzeTapScriptTreeInfo,
       api::AnalyzeTapScriptTreeRequestStruct,
       api::AnalyzeTapScriptTreeInfoStruct>(
-      request_message, AddressStructApi::AnalyzeTapScriptTree);
+      request_message, AddressStructApi::AnalyzeTapScriptTree,
+#ifndef CFD_DISABLE_ELEMENTS
+      ElementsAddressStructApi::AnalyzeTapScriptTree);
+#else
+      AddressStructApi::AnalyzeTapScriptTree);
+#endif
 }
 
 std::string JsonMappingApi::GetBlockInfo(const std::string &request_message) {
@@ -1458,9 +1495,12 @@ void JsonMappingApi::LoadFunctions(
   if (response_only_map != nullptr) {
     response_only_map->emplace(
         "GetSupportedFunction", JsonMappingApi::GetSupportedFunction);
+    response_only_map->emplace(
+        "ClearCustomPrefix", JsonMappingApi::ClearCustomPrefix);
   }
 
   if (request_map != nullptr) {
+    request_map->emplace("SetCustomPrefix", JsonMappingApi::SetCustomPrefix);
     request_map->emplace(
         "CreateRawTransaction", JsonMappingApi::CreateRawTransaction);
     request_map->emplace(
@@ -1547,6 +1587,8 @@ void JsonMappingApi::LoadFunctions(
     request_map->emplace("CreateExtkey", JsonMappingApi::CreateExtkey);
     request_map->emplace("CreateExtPubkey", JsonMappingApi::CreateExtPubkey);
     request_map->emplace("CreateKeyPair", JsonMappingApi::CreateKeyPair);
+    request_map->emplace("SignMessage", JsonMappingApi::SignMessage);
+    request_map->emplace("VerifyMessage", JsonMappingApi::VerifyMessage);
     request_map->emplace("ParseScript", JsonMappingApi::ParseScript);
     request_map->emplace("CreateScript", JsonMappingApi::CreateScript);
     request_map->emplace(
@@ -1582,14 +1624,14 @@ void JsonMappingApi::LoadFunctions(
     request_map->emplace(
         "ComputeSigPointSchnorrPubkey",
         JsonMappingApi::ComputeSigPointSchnorrPubkey);
-    request_map->emplace("SignEcdsaAdaptor", JsonMappingApi::SignEcdsaAdaptor);
+    request_map->emplace(
+        "EncryptEcdsaAdaptor", JsonMappingApi::EncryptEcdsaAdaptor);
     request_map->emplace(
         "VerifyEcdsaAdaptor", JsonMappingApi::VerifyEcdsaAdaptor);
     request_map->emplace(
-        "AdaptEcdsaAdaptor", JsonMappingApi::AdaptEcdsaAdaptor);
+        "DecryptEcdsaAdaptor", JsonMappingApi::DecryptEcdsaAdaptor);
     request_map->emplace(
-        "ExtractSecretEcdsaAdaptor",
-        JsonMappingApi::ExtractSecretEcdsaAdaptor);
+        "RecoverEcdsaAdaptor", JsonMappingApi::RecoverEcdsaAdaptor);
     request_map->emplace(
         "GetTapScriptTreeInfo", JsonMappingApi::GetTapScriptTreeInfo);
     request_map->emplace(

@@ -1,7 +1,7 @@
 // Copyright 2019 CryptoGarage
 /**
  * @file cfdjs_api_common.h
- * @brief cfdcoreの共通定義ファイル。
+ * @brief definition for cfd-js common.
  */
 #ifndef CFD_JS_INCLUDE_CFDJS_CFDJS_API_COMMON_H_
 #define CFD_JS_INCLUDE_CFDJS_CFDJS_API_COMMON_H_
@@ -9,7 +9,7 @@
 #include <cstdint>
 
 /**
- * @brief API/クラスのDLLエクスポート定義
+ * @brief definition for exporting API/class.
  */
 #ifndef CFD_JS_API_EXPORT
 #if defined(_WIN32)

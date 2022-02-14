@@ -104,7 +104,10 @@
       "scriptSigTemplate": "",
       "scriptSigTemplate:require": "optional",
       "scriptSigTemplate:comment": "ScriptSig template is for scriptHash calculation fee."
-    }]
+    }],
+    "genesisBlockHash": "",
+    "genesisBlockHash:require": "optional",
+    "genesisBlockHash:comment": "genesis block hash (for elements taproot)"
   },
   "response": {
     ":class": "RawTransactionResponse",

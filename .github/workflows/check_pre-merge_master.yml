@@ -13,9 +13,9 @@ on:
 env:
   CMAKE_BUILD_PARALLEL_LEVEL: 4
   IMAGE_NODE_VERSION: 14
-  GITHUB_ELEMENTS_VERSION: v0.0.10
-  GITHUB_BITCOIN_VERSION: v0.0.10
-  GITHUB_DOCKER_IMAGE: docker.pkg.github.com/cryptogarageinc/elements-testing-dockerfile/elements-testing
+  GITHUB_ELEMENTS_VERSION: v0.1.1
+  GITHUB_BITCOIN_VERSION: v0.1.1
+  GITHUB_DOCKER_IMAGE: ghcr.io/cryptogarageinc/elements-testing
   ELEMENTS_ENTRYPOINT_PATH: /github/workspace/.github/workflows/docker/test_entrypoint.sh
   BITCOIN_ENTRYPOINT_PATH: /github/workspace/.github/workflows/docker/test_bitcoin_entrypoint.sh
 
@@ -26,15 +26,26 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-10.15, windows-2019, ubuntu-18.04]
-        node: [12, 14, 16]
+        os: [macos-11, windows-2019, ubuntu-18.04]
+        node: [12, 14, 16, 17]
+        exclude:
+          - os: macos-11
+            node: 12
+          - os: macos-11
+            node: 17
         include:
           - node: 12
             always: false
+            npmv7: false
           - node: 14
             always: false
+            npmv7: false
           - node: 16
             always: true
+            npmv7: true
+          - node: 17
+            always: true
+            npmv7: true
 
     steps:
     - uses: actions/checkout@v2
@@ -43,7 +54,7 @@ jobs:
       with:
         node-version: ${{ matrix.node }}
     - name: update to npm v7
-      if: runner.os == 'Windows' || matrix.node == '16'
+      if: runner.os == 'Windows' || matrix.npmv7 == true
       run: npm i -g npm@7
     - name: dump node version
       id: node_ver
@@ -57,8 +68,8 @@ jobs:
       id: node_cache
       with:
         path: node_modules
-        key: node-${{ runner.os }}-${{ matrix.node }}-${{ steps.node_ver.outputs.node_version }}-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: node-${{ runner.os }}-${{ matrix.node }}-${{ steps.node_ver.outputs.node_version }}-${{ hashFiles('**/package-lock.json') }}
+        key: node-${{ runner.os }}-${{ matrix.node }}-${{ steps.node_ver.outputs.node_version }}-${{ hashFiles('**/package-lock.json') }}-0
+        restore-keys: node-${{ runner.os }}-${{ matrix.node }}-${{ steps.node_ver.outputs.node_version }}-${{ hashFiles('**/package-lock.json') }}-
     - name: npm info
       if: steps.node_cache.outputs.cache-hit != 'true'
       id: npm_info
@@ -66,7 +77,7 @@ jobs:
         npm --version
         echo "::set-output name=temp_npm_cachedir::$(npm config get cache)"
     - name: use npm cache
-      if: runner.os != 'Windows' && steps.node_cache.outputs.cache-hit != 'true'
+      if: steps.node_cache.outputs.cache-hit != 'true'
       uses: actions/cache@v1
       id: npm_cache
       with:
@@ -82,7 +93,7 @@ jobs:
         npm set progress=false
         npm ci
     - name: build
-      if: steps.node_cache.outputs.cache-hit == 'true' || ${{ matrix.always }} == 'true'
+      if: steps.node_cache.outputs.cache-hit == 'true'
       run: npm run cmake_release_parallel
     - name: test_all
       run: npm run test

@@ -867,30 +867,52 @@ RawTransactionResponseStruct ElementsTransactionStructApi::SignWithPrivkey(
     Privkey privkey;
     AddressType addr_type =
         AddressApiBase::ConvertAddressType(request.txin.hash_type);
+    bool has_taproot = (addr_type == AddressType::kTaprootAddress);
     SigHashType sighashtype = TransactionStructApiBase::ConvertSigHashType(
         request.txin.sighash_type, request.txin.sighash_anyone_can_pay,
-        request.txin.sighash_rangeproof);
+        request.txin.sighash_rangeproof, has_taproot);
 
-    if (request.txin.privkey.size() == (Privkey::kPrivkeySize * 2)) {
+    if (Privkey::HasWif(request.txin.privkey)) {
+      privkey = Privkey::FromWif(request.txin.privkey);
+    } else {
       privkey = Privkey(request.txin.privkey);
-    } else {
-      KeyApi key_api;
-      privkey = key_api.GetPrivkeyFromWif(request.txin.privkey);
-    }
-    if (request.txin.pubkey.empty()) {
-      pubkey = privkey.GeneratePubkey();
-    } else {
-      pubkey = Pubkey(request.txin.pubkey);
     }
 
-    const std::string& value_hex = request.txin.confidential_value_commitment;
-    ConfidentialValue value =
-        (value_hex.empty()) ? ConfidentialValue(Amount(request.txin.amount))
-                            : ConfidentialValue(value_hex);
+    if (has_taproot) {
+      if (!request.genesis_block_hash.empty()) {
+        BlockHash block_hash(request.genesis_block_hash);
+        ctx.SetGenesisBlockHash(block_hash);
+      }
+      ByteData256 aux_rand;
+      if (!request.txin.aux_rand.empty()) {
+        aux_rand = ByteData256(request.txin.aux_rand);
+      }
+      ByteData annex(request.txin.annex);
+      ElementsAddressFactory factory;
+      auto utxos =
+          TransactionStructApiBase::ConvertUtxoList(request.utxos, &factory);
+      ctx.CollectInputUtxo(utxos);
+      ctx.SignWithSchnorrPrivkeySimple(
+          outpoint, privkey, sighashtype,
+          (aux_rand.IsEmpty()) ? nullptr : &aux_rand,
+          (annex.IsEmpty()) ? nullptr : &annex);
+    } else {
+      if (request.txin.pubkey.empty()) {
+        pubkey = privkey.GeneratePubkey();
+      } else {
+        pubkey = Pubkey(request.txin.pubkey);
+      }
 
-    ctx.SignWithPrivkeySimple(
-        outpoint, pubkey, privkey, sighashtype, value, addr_type,
-        request.txin.is_grind_r);
+      const std::string& value_hex =
+          request.txin.confidential_value_commitment;
+      ConfidentialValue value =
+          (value_hex.empty()) ? ConfidentialValue(Amount(request.txin.amount))
+                              : ConfidentialValue(value_hex);
+
+      ctx.SignWithPrivkeySimple(
+          outpoint, pubkey, privkey, sighashtype, value, addr_type,
+          request.txin.is_grind_r);
+    }
     response.hex = ctx.GetHex();
     return response;
   };
@@ -1115,10 +1137,34 @@ CreateSignatureHashResponseStruct ElementsTransactionStructApi::GetSighash(
       redeem_script = Script(request.txin.key_data.hex);
     }
 
+    ByteData sighash;
     if (has_taproot) {
-      throw CfdException(
-          CfdError::kCfdIllegalStateError,
-          "Elements does not yet support the taproot.");
+      if (!request.genesis_block_hash.empty()) {
+        BlockHash block_hash(request.genesis_block_hash);
+        tx.SetGenesisBlockHash(block_hash);
+      }
+      ByteData annex(request.txin.annex);
+      auto utxos =
+          TransactionStructApiBase::ConvertUtxoList(request.utxos, &factory);
+      tx.CollectInputUtxo(utxos);
+      auto target_utxo = tx.GetTxInUtxoData(outpoint);
+      ByteData256 tap_leaf_hash;
+      if (!redeem_script.IsEmpty()) {
+        TaprootScriptTree tree(redeem_script, NetType::kLiquidV1);
+        tap_leaf_hash = tree.GetTapLeafHash();
+      }
+      uint32_t code_separator_pos = cfd::core::kDefaultCodeSeparatorPosition;
+      if ((request.txin.code_separator_position >= 0) &&
+          (request.txin.code_separator_position <= 0xffffffff)) {
+        code_separator_pos =
+            static_cast<uint32_t>(request.txin.code_separator_position);
+      }
+      auto tmp_sighash = tx.CreateSignatureHashByTaproot(
+          outpoint, sighashtype,
+          redeem_script.IsEmpty() ? nullptr : &tap_leaf_hash,
+          redeem_script.IsEmpty() ? nullptr : &code_separator_pos,
+          annex.IsEmpty() ? nullptr : &annex);
+      sighash = tmp_sighash.GetData();
     } else {
       WitnessVersion version = WitnessVersion::kVersion0;
       if ((addr_type == AddressType::kP2pkhAddress) ||
@@ -1126,17 +1172,18 @@ CreateSignatureHashResponseStruct ElementsTransactionStructApi::GetSighash(
         version = WitnessVersion::kVersionNone;
       }
       auto utxo = tx.GetTxInUtxoData(outpoint);
-      ByteData sighash;
+      ConfidentialValue value(utxo.amount);
+      if (!utxo.value_commitment.IsEmpty()) value = utxo.value_commitment;
       if (is_pubkey) {
         Pubkey pubkey(request.txin.key_data.hex);
         sighash = tx.CreateSignatureHash(
-            outpoint, pubkey, sighashtype, utxo.amount, version);
+            outpoint, pubkey, sighashtype, value, version);
       } else {
         sighash = tx.CreateSignatureHash(
-            outpoint, redeem_script, sighashtype, utxo.amount, version);
+            outpoint, redeem_script, sighashtype, value, version);
       }
-      response.sighash = sighash.GetHex();
     }
+    response.sighash = sighash.GetHex();
     return response;
   };
 
@@ -1166,10 +1213,7 @@ ElementsTransactionStructApi::AddTaprootSchnorrSign(
       sig.SetSigHashType(sighashtype);
     }
 
-    // ctx.AddSchnorrSign(outpoint, sig, (annex.IsEmpty()) ? nullptr : &annex);
-    throw CfdException(
-        CfdError::kCfdIllegalStateError,
-        "Elements does not yet support the taproot.");
+    ctx.AddSchnorrSign(outpoint, sig, (annex.IsEmpty()) ? nullptr : &annex);
     response.hex = ctx.GetHex();
     return response;
   };
@@ -1237,49 +1281,84 @@ VerifySignatureResponseStruct ElementsTransactionStructApi::VerifySignature(
       -> VerifySignatureResponseStruct {  // NOLINT
     VerifySignatureResponseStruct response;
     std::string sig_hash;
-    int64_t amount = request.txin.amount;
     const std::string& hashtype_str = request.txin.hash_type;
-    const std::string& value_hex = request.txin.confidential_value_commitment;
     const Txid& txid = Txid(request.txin.txid);
     uint32_t vout = request.txin.vout;
+    bool has_taproot = (hashtype_str == "taproot");
     SigHashType sighashtype = TransactionStructApiBase::ConvertSigHashType(
         request.txin.sighash_type, request.txin.sighash_anyone_can_pay,
-        request.txin.sighash_rangeproof);
+        request.txin.sighash_rangeproof, has_taproot);
 
-    Pubkey pubkey = Pubkey(request.txin.pubkey);
     ByteData signature = ByteData(request.txin.signature);
-    Script script;
 
     ConfidentialTransactionContext ctx(request.tx);
     bool is_success = false;
-    WitnessVersion version;
-    ConfidentialValue value =
-        (value_hex.empty())
-            ? ConfidentialValue(Amount::CreateBySatoshiAmount(amount))
-            : ConfidentialValue(value_hex);
-    if ((hashtype_str == "p2pkh") || (hashtype_str == "p2wpkh")) {
-      version = (hashtype_str == "p2wpkh") ? WitnessVersion::kVersion0
-                                           : WitnessVersion::kVersionNone;
-      is_success = ctx.VerifyInputSignature(
-          signature, pubkey, OutPoint(txid, vout), sighashtype, value,
-          version);
-    } else if ((hashtype_str == "p2sh") || (hashtype_str == "p2wsh")) {
-      script = Script(request.txin.redeem_script);
-      version = (hashtype_str == "p2wsh") ? WitnessVersion::kVersion0
-                                          : WitnessVersion::kVersionNone;
-      is_success = ctx.VerifyInputSignature(
-          signature, pubkey, OutPoint(txid, vout), script, sighashtype, value,
-          version);
+    OutPoint outpoint(txid, vout);
+    if (has_taproot) {
+      SchnorrPubkey pubkey(request.txin.pubkey);
+      ByteData annex(request.txin.annex);
+      SchnorrSignature sig(signature);
+      if (sig.GetSigHashType().GetSigHashFlag() == 0) {
+        sig.SetSigHashType(sighashtype);
+      }
+      if (!request.genesis_block_hash.empty()) {
+        BlockHash block_hash(request.genesis_block_hash);
+        ctx.SetGenesisBlockHash(block_hash);
+      }
+      ElementsAddressFactory factory;
+      auto utxo_list =
+          TransactionStructApiBase::ConvertUtxoList(request.utxos, &factory);
+      ctx.CollectInputUtxo(utxo_list);
+      ByteData256 tap_leaf_hash;
+
+      if (!request.txin.redeem_script.empty()) {
+        TaprootScriptTree tree(
+            Script(request.txin.redeem_script), NetType::kLiquidV1);
+        tap_leaf_hash = tree.GetTapLeafHash();
+      }
+      uint32_t code_separator_pos = cfd::core::kDefaultCodeSeparatorPosition;
+      if ((request.txin.code_separator_position >= 0) &&
+          (request.txin.code_separator_position <= 0xffffffff)) {
+        code_separator_pos =
+            static_cast<uint32_t>(request.txin.code_separator_position);
+      }
+      auto sighash = ctx.CreateSignatureHashByTaproot(
+          outpoint, sighashtype,
+          request.txin.redeem_script.empty() ? nullptr : &tap_leaf_hash,
+          request.txin.redeem_script.empty() ? nullptr : &code_separator_pos,
+          annex.IsEmpty() ? nullptr : &annex);
+      is_success = pubkey.Verify(sig, sighash);
     } else {
-      warn(
-          CFD_LOG_SOURCE,
-          "Failed to VerifySignature. Invalid hashtype_str:  "
-          "hashtype_str={}",  // NOLINT
-          hashtype_str);
-      throw CfdException(
-          CfdError::kCfdIllegalArgumentError,
-          "Invalid hashtype_str. hashtype_str must be \"p2pkh\" "
-          "or \"p2sh\" or \"p2wpkh\" or \"p2wsh\".");  // NOLINT
+      Pubkey pubkey = Pubkey(request.txin.pubkey);
+      int64_t amount = request.txin.amount;
+      WitnessVersion version;
+      ConfidentialValue value =
+          (request.txin.confidential_value_commitment.empty())
+              ? ConfidentialValue(Amount::CreateBySatoshiAmount(amount))
+              : ConfidentialValue(request.txin.confidential_value_commitment);
+      if ((hashtype_str == "p2pkh") || (hashtype_str == "p2wpkh")) {
+        version = (hashtype_str == "p2wpkh") ? WitnessVersion::kVersion0
+                                             : WitnessVersion::kVersionNone;
+        is_success = ctx.VerifyInputSignature(
+            signature, pubkey, outpoint, sighashtype, value, version);
+      } else if ((hashtype_str == "p2sh") || (hashtype_str == "p2wsh")) {
+        Script script = Script(request.txin.redeem_script);
+        version = (hashtype_str == "p2wsh") ? WitnessVersion::kVersion0
+                                            : WitnessVersion::kVersionNone;
+        is_success = ctx.VerifyInputSignature(
+            signature, pubkey, outpoint, script, sighashtype, value, version);
+      } else {
+        warn(
+            CFD_LOG_SOURCE,
+            "Failed to VerifySignature. Invalid hashtype_str:  "
+            "hashtype_str={}",  // NOLINT
+            hashtype_str);
+        throw CfdException(
+            CfdError::kCfdIllegalArgumentError,
+            "Invalid hashtype_str. hashtype_str must be \"p2pkh\" "
+            "or \"p2sh\" or \"p2wpkh\" or \"p2wsh\" "
+            "or \"taproot\".");  // NOLINT
+      }
     }
     if (!is_success) {
       warn(CFD_LOG_SOURCE, "Failed to VerifySignature. check fail.");
@@ -1307,12 +1386,21 @@ VerifySignResponseStruct ElementsTransactionStructApi::VerifySign(
 
     ConfidentialTransactionContext ctx(request.tx);
     ElementsAddressFactory address_factory;
-    auto utxos = TransactionStructApiBase::ConvertUtxoListForVerify(
-        request.txins, &address_factory);
+    auto utxos = TransactionStructApiBase::ConvertUtxoList(
+        request.utxos, &address_factory);
     ctx.CollectInputUtxo(utxos);
 
-    response.success = !utxos.empty();
-    for (auto& utxo : utxos) {
+    auto target_utxos = TransactionStructApiBase::ConvertUtxoListForVerify(
+        request.txins, &address_factory);
+    ctx.CollectInputUtxo(target_utxos);
+
+    if (!request.genesis_block_hash.empty()) {
+      BlockHash block_hash(request.genesis_block_hash);
+      ctx.SetGenesisBlockHash(block_hash);
+    }
+
+    response.success = !target_utxos.empty();
+    for (auto& utxo : target_utxos) {
       OutPoint outpoint(utxo.txid, utxo.vout);
       try {
         ctx.Verify(outpoint);
@@ -2047,15 +2135,13 @@ ElementsTransactionStructApi::CreateRawPegoutTransaction(  // NOLINT
         ElementsAddressStructApi::ConvertElementsNetType(elements_nettype);
     if (!request.pegout.online_pubkey.empty() &&
         !request.pegout.master_online_key.empty()) {
-      if (request.pegout.master_online_key.size() ==
-          Privkey::kPrivkeySize * 2) {
-        // hex
+      if (Privkey::HasWif(request.pegout.master_online_key)) {
+        pegout_data.master_online_key =
+            Privkey::FromWif(request.pegout.master_online_key);
+      } else {
         pegout_data.master_online_key =
             Privkey(request.pegout.master_online_key);
-      } else {
-        // Wif
-        pegout_data.master_online_key = Privkey::FromWif(
-            request.pegout.master_online_key, pegout_data.net_type);
+        pegout_data.master_online_key.SetNetType(pegout_data.net_type);
       }
       pegout_data.online_pubkey = Pubkey(request.pegout.online_pubkey);
       pegout_data.bitcoin_descriptor = request.pegout.bitcoin_descriptor;

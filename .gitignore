@@ -60,6 +60,7 @@ test-driver
 build
 .libs
 node_modules
+node_modules_*
 package-lock.json
 html
 html_graph

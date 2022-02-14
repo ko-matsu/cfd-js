@@ -5,6 +5,13 @@
   "request": {
     ":class": "AnalyzeTapScriptTreeRequest",
     ":class:comment": "Request for get TapBranch info.",
+    "network": "mainnet",
+    "network:require": "optional",
+    "network:comment": "network type",
+    "network:hint": "bitcoin:'mainnet, testnet, regtest'. elements:'liquidv1, regtest'",
+    "isElements": false,
+    "isElements:require": "optional",
+    "isElements:comment": "elements transaction flag.",
     "treeString": "",
     "treeString:require": "require",
     "treeString:comment": "tree serialize string. (cfd format)"

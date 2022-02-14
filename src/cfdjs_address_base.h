@@ -87,31 +87,52 @@ class AddressApiBase {
    * @brief Get tapscript tree information by control block.
    * @param[in] request         tapscript data
    * @param[in] address_factory address factory instance.
+   * @param[in] network         network type
    * @return tapscript information
    */
   static TapScriptInfoStruct GetTapScriptTreeInfo(
       const GetTapScriptTreeInfoRequestStruct& request,
-      const AddressFactory* address_factory);
+      const AddressFactory* address_factory, NetType network);
 
   /**
    * @brief Get tapscript tree information by control block.
    * @param[in] request     tapscript data
    * @param[in] address_factory address factory instance.
+   * @param[in] network         network type
    * @return tapscript information
    */
   static TapScriptInfoStruct GetTapScriptTreeInfoByControlBlock(
       const TapScriptInfoByControlRequestStruct& request,
-      const AddressFactory* address_factory);
+      const AddressFactory* address_factory, NetType network);
 
   /**
    * @brief Get tapscript tree information by string.
    * @param[in] request     tapscript data
    * @param[in] address_factory address factory instance.
+   * @param[in] network         network type
    * @return tapscript information
    */
   static TapScriptInfoStruct GetTapScriptTreeFromString(
       const TapScriptFromStringRequestStruct& request,
-      const AddressFactory* address_factory);
+      const AddressFactory* address_factory, NetType network);
+
+  /**
+   * @brief Get a tapbranch information by string.
+   * @param[in] request     tapbranch data
+   * @param[in] network     network type
+   * @return tapbranch information
+   */
+  static TapBranchInfoStruct GetTapBranchInfo(
+      const GetTapBranchInfoRequestStruct& request, NetType network);
+
+  /**
+   * @brief Analyze a tapscript tree information by string.
+   * @param[in] request     tapscript data
+   * @param[in] network     network type
+   * @return tapscript information
+   */
+  static AnalyzeTapScriptTreeInfoStruct AnalyzeTapScriptTree(
+      const AnalyzeTapScriptTreeRequestStruct& request, NetType network);
 
   /**
    * @brief Convert address type from string to AddressType.

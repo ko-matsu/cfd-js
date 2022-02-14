@@ -294,7 +294,7 @@ TapScriptInfoStruct ElementsAddressStructApi::GetTapScriptTreeInfo(
       -> TapScriptInfoStruct {  // NOLINT
     ElementsNetType net_type = ConvertElementsNetType(request.network);
     ElementsAddressFactory api(net_type);
-    return AddressApiBase::GetTapScriptTreeInfo(request, &api);
+    return AddressApiBase::GetTapScriptTreeInfo(request, &api, net_type);
   };
 
   TapScriptInfoStruct result;
@@ -311,7 +311,8 @@ ElementsAddressStructApi::GetTapScriptTreeInfoByControlBlock(
       -> TapScriptInfoStruct {  // NOLINT
     ElementsNetType net_type = ConvertElementsNetType(request.network);
     ElementsAddressFactory api(net_type);
-    return AddressApiBase::GetTapScriptTreeInfoByControlBlock(request, &api);
+    return AddressApiBase::GetTapScriptTreeInfoByControlBlock(
+        request, &api, net_type);
   };
 
   TapScriptInfoStruct result;
@@ -327,13 +328,44 @@ TapScriptInfoStruct ElementsAddressStructApi::GetTapScriptTreeFromString(
       -> TapScriptInfoStruct {  // NOLINT
     ElementsNetType net_type = ConvertElementsNetType(request.network);
     ElementsAddressFactory api(net_type);
-    return AddressApiBase::GetTapScriptTreeFromString(request, &api);
+    return AddressApiBase::GetTapScriptTreeFromString(request, &api, net_type);
   };
 
   TapScriptInfoStruct result;
   result =
       ExecuteStructApi<TapScriptFromStringRequestStruct, TapScriptInfoStruct>(
           request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
+TapBranchInfoStruct ElementsAddressStructApi::GetTapBranchInfo(
+    const GetTapBranchInfoRequestStruct& request) {
+  auto call_func = [](const GetTapBranchInfoRequestStruct& request)
+      -> TapBranchInfoStruct {  // NOLINT
+    ElementsNetType net_type = ConvertElementsNetType(request.network);
+    ElementsAddressFactory api(net_type);
+    return AddressApiBase::GetTapBranchInfo(request, net_type);
+  };
+
+  TapBranchInfoStruct result;
+  result =
+      ExecuteStructApi<GetTapBranchInfoRequestStruct, TapBranchInfoStruct>(
+          request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
+AnalyzeTapScriptTreeInfoStruct ElementsAddressStructApi::AnalyzeTapScriptTree(
+    const AnalyzeTapScriptTreeRequestStruct& request) {
+  auto call_func = [](const AnalyzeTapScriptTreeRequestStruct& request)
+      -> AnalyzeTapScriptTreeInfoStruct {  // NOLINT
+    ElementsNetType net_type = ConvertElementsNetType(request.network);
+    return AddressApiBase::AnalyzeTapScriptTree(request, net_type);
+  };
+
+  AnalyzeTapScriptTreeInfoStruct result;
+  result = ExecuteStructApi<
+      AnalyzeTapScriptTreeRequestStruct, AnalyzeTapScriptTreeInfoStruct>(
+      request, call_func, std::string(__FUNCTION__));
   return result;
 }
 

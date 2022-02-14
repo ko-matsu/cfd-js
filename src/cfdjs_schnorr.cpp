@@ -2,7 +2,7 @@
 /**
  * @file cfdjs_schnorr.cpp
  *
- * @brief cfd-apiで利用するTransaction作成の実装ファイル
+ * @brief This is an implementation file of schnorr signature used in cfd-api.
  */
 #include "cfdjs_schnorr.h"  // NOLINT
 
@@ -15,9 +15,7 @@
 #include "cfdcore/cfdcore_util.h"
 #include "cfdjs_internal.h"  // NOLINT
 
-using cfd::core::AdaptorProof;
 using cfd::core::AdaptorSignature;
-using cfd::core::AdaptorUtil;
 using cfd::core::ByteData;
 using cfd::core::ByteData256;
 using cfd::core::CfdError;
@@ -230,25 +228,24 @@ PubkeyDataStruct SchnorrApi::ComputeSigPointSchnorrPubkey(
   return result;
 }
 
-SignEcdsaAdaptorResponseStruct SchnorrApi::SignEcdsaAdaptor(
-    const SignEcdsaAdaptorRequestStruct& request) {
-  auto call_func = [](const SignEcdsaAdaptorRequestStruct& request)
-      -> SignEcdsaAdaptorResponseStruct {
-    SignEcdsaAdaptorResponseStruct response;
+EcdsaAdaptorSignatureStruct SchnorrApi::EncryptEcdsaAdaptor(
+    const EncryptEcdsaAdaptorRequestStruct& request) {
+  auto call_func = [](const EncryptEcdsaAdaptorRequestStruct& request)
+      -> EcdsaAdaptorSignatureStruct {
+    EcdsaAdaptorSignatureStruct response;
 
-    Pubkey adaptor(request.adaptor);
+    Pubkey encryption_key(request.encryption_key);
     Privkey sk(request.privkey);
     ByteData256 message = GetMessage(request.message, request.is_hashed);
 
-    auto sig = AdaptorUtil::Sign(message, sk, adaptor);
-    response.adaptor_signature = sig.signature.GetData().GetHex();
-    response.proof = sig.proof.GetData().GetHex();
+    auto sig = AdaptorSignature::Encrypt(message, sk, encryption_key);
+    response.adaptor_signature = sig.GetData().GetHex();
     return response;
   };
 
-  SignEcdsaAdaptorResponseStruct result;
+  EcdsaAdaptorSignatureStruct result;
   result = ExecuteStructApi<
-      SignEcdsaAdaptorRequestStruct, SignEcdsaAdaptorResponseStruct>(
+      EncryptEcdsaAdaptorRequestStruct, EcdsaAdaptorSignatureStruct>(
       request, call_func, std::string(__FUNCTION__));
   return result;
 }
@@ -259,13 +256,11 @@ VerifySignatureResponseStruct SchnorrApi::VerifyEcdsaAdaptor(
       -> VerifySignatureResponseStruct {
     VerifySignatureResponseStruct response;
     AdaptorSignature adaptor_sig(request.adaptor_signature);
-    AdaptorProof proof(request.proof);
-    Pubkey adaptor(request.adaptor);
+    Pubkey encryption_key(request.encryption_key);
     Pubkey pubkey(request.pubkey);
     ByteData256 message = GetMessage(request.message, request.is_hashed);
 
-    response.success =
-        AdaptorUtil::Verify(adaptor_sig, proof, adaptor, message, pubkey);
+    response.success = adaptor_sig.Verify(message, pubkey, encryption_key);
 
     if (!response.success) {
       warn(CFD_LOG_SOURCE, "Failed to VerifyEcdsaAdaptor. check fail.");
@@ -282,46 +277,45 @@ VerifySignatureResponseStruct SchnorrApi::VerifyEcdsaAdaptor(
   return result;
 }
 
-SignatureDataResponseStruct SchnorrApi::AdaptEcdsaAdaptor(
-    const AdaptEcdsaAdaptorRequestStruct& request) {
-  auto call_func = [](const AdaptEcdsaAdaptorRequestStruct& request)
+SignatureDataResponseStruct SchnorrApi::DecryptEcdsaAdaptor(
+    const DecryptEcdsaAdaptorRequestStruct& request) {
+  auto call_func = [](const DecryptEcdsaAdaptorRequestStruct& request)
       -> SignatureDataResponseStruct {
     SignatureDataResponseStruct response;
     AdaptorSignature adaptor_signature(request.adaptor_signature);
     Privkey sk(request.secret);
 
-    auto signature = AdaptorUtil::Adapt(adaptor_signature, sk);
+    auto signature = adaptor_signature.Decrypt(sk);
     response.signature = signature.GetHex();
     return response;
   };
 
   SignatureDataResponseStruct result;
   result = ExecuteStructApi<
-      AdaptEcdsaAdaptorRequestStruct, SignatureDataResponseStruct>(
+      DecryptEcdsaAdaptorRequestStruct, SignatureDataResponseStruct>(
       request, call_func, std::string(__FUNCTION__));
   return result;
 }
 
-SecretDataStruct SchnorrApi::ExtractSecretEcdsaAdaptor(
-    const ExtractSecretEcdsaAdaptorRequestStruct& request) {
-  auto call_func = [](const ExtractSecretEcdsaAdaptorRequestStruct& request)
-      -> SecretDataStruct {
+SecretDataStruct SchnorrApi::RecoverEcdsaAdaptor(
+    const RecoverEcdsaAdaptorRequestStruct& request) {
+  auto call_func =
+      [](const RecoverEcdsaAdaptorRequestStruct& request) -> SecretDataStruct {
     SecretDataStruct response;
 
-    Pubkey adaptor(request.adaptor);
+    Pubkey encryption_key(request.encryption_key);
     AdaptorSignature adaptor_signature(request.adaptor_signature);
     ByteData signature(request.signature);
 
-    auto secret =
-        AdaptorUtil::ExtractSecret(adaptor_signature, signature, adaptor);
+    auto secret = adaptor_signature.Recover(signature, encryption_key);
     response.secret = secret.GetHex();
     return response;
   };
 
   SecretDataStruct result;
-  result = ExecuteStructApi<
-      ExtractSecretEcdsaAdaptorRequestStruct, SecretDataStruct>(
-      request, call_func, std::string(__FUNCTION__));
+  result =
+      ExecuteStructApi<RecoverEcdsaAdaptorRequestStruct, SecretDataStruct>(
+          request, call_func, std::string(__FUNCTION__));
   return result;
 }
 

@@ -63,6 +63,7 @@ jobs:
       run: |
         npm set progress=false
         npm ci
+        npm run cmake_release_parallel
 
     # ℹ️ Command-line programs to run using the OS shell.
     #  https://git.io/JvXDl

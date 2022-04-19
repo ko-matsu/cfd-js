@@ -33,19 +33,6 @@ jobs:
             node: 12
           - os: macos-11
             node: 17
-        include:
-          - node: 12
-            always: false
-            npmv7: false
-          - node: 14
-            always: false
-            npmv7: false
-          - node: 16
-            always: true
-            npmv7: true
-          - node: 17
-            always: true
-            npmv7: true
 
     steps:
     - uses: actions/checkout@v2
@@ -53,9 +40,8 @@ jobs:
       timeout-minutes: 1
       with:
         node-version: ${{ matrix.node }}
-    - name: update to npm v7
-      if: runner.os == 'Windows' || matrix.npmv7 == true
-      run: npm i -g npm@7
+    - name: update to npm v8
+      run: npm i -g npm@8
     - name: dump node version
       id: node_ver
       run: |

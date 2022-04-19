@@ -2,7 +2,6 @@
 
 JavaScript wrapper of cfd libraries
 
-
 ## Overview
 
 This library is development kit for crypto finance application.
@@ -64,7 +63,8 @@ Useful when developing applications for cryptocurrencies.
 ### Windows
 
 download and install files.
-- node.js
+
+- node.js (by npm v7 or higher, or yarn.)
 - Python 3.x
 - [CMake](https://cmake.org/) (3.14.3 or higher)
 - MSVC
@@ -92,7 +92,7 @@ apt-get install -y build-essential cmake python nodejs
 ```
 
 cmake version 3.14.2 or lower, download from website and install cmake.
-(https://cmake.org/download/)
+([https://cmake.org/download/](https://cmake.org/download/))
 
 ---
 
@@ -103,14 +103,16 @@ cmake version 3.14.2 or lower, download from website and install cmake.
 Add cfd-js github on caller app's package.json.
 
 ex)
-```
+
+```package
   "cfd-js": "cryptogarageinc/cfd-js#semver:^0.1.3",
 ```
 
 If you use old npm or yarn, describe as follows.
 
 ex)
-```
+
+```package
   "cfd-js": "git+https://github.com/cryptogarageinc/cfd-js#semver:^0.1.3",
 ```
 
@@ -145,13 +147,13 @@ npm run test_all
 
 #### Bitcoin
 
-```
+```sh
 npm run example
 ```
 
 #### Elements
 
-```
+```sh
 npm run elements_example
 ```
 
@@ -190,41 +192,46 @@ npm run elements_example
 
 ## Note
 
-### Git connection:
+### Git connection
 
 Git repository connections default to HTTPS.
 However, depending on the connection settings of GitHub, you may only be able to connect via SSH.
 As a countermeasure, forcibly establish SSH connection by setting `CFD_CMAKE_GIT_SSH=1` in the environment variable.
 
 - Windows: (On the command line. Or set from the system setting screen.)
-```
-set CFD_CMAKE_GIT_SSH=1
-```
+
+  ```bat
+  set CFD_CMAKE_GIT_SSH=1
+  ```
 
 - MacOS & Linux(Ubuntu):
-```
-export CFD_CMAKE_GIT_SSH=1
-```
 
-### For installed fail:
+  ```sh
+  export CFD_CMAKE_GIT_SSH=1
+  ```
+
+### For installed fail
 
 If the shared library you downloaded cannot be referenced and the build fails, do a full build without downloading the shared library.
 Prevents the download of the shared library by setting `CFDJS_UNUSE_ASSET=1` in the environment variable.
 
 - Windows: (On the command line. Or set from the system setting screen.)
-```
-set CFDJS_UNUSE_ASSET=1
-```
+
+  ```bat
+  set CFDJS_UNUSE_ASSET=1
+  ```
 
 - MacOS & Linux(Ubuntu):
-```
-export CFDJS_UNUSE_ASSET=1
-```
 
-### Ignore git update for CMake External Project:
+  ```sh
+  export CFDJS_UNUSE_ASSET=1
+  ```
+
+### Ignore git update for CMake External Project
 
 Depending on your git environment, you may get the following error when checking out external:
-```
+
+```sh
   Performing update step for 'libwally-core-download'
   Current branch cmake_build is up to date.
   No stash entries found.
@@ -243,20 +250,23 @@ This phenomenon is due to the `git update` related command.
 Please set an environment variable that skips update processing.
 
 - Windows: (On the command line. Or set from the system setting screen.)
-```
-set CFD_CMAKE_GIT_SKIP_UPDATE=1
-```
+
+  ```bat
+  set CFD_CMAKE_GIT_SKIP_UPDATE=1
+  ```
 
 - MacOS & Linux(Ubuntu):
-```
-export CFD_CMAKE_GIT_SKIP_UPDATE=1
-```
 
-### Build error on windows:
+  ```sh
+  export CFD_CMAKE_GIT_SKIP_UPDATE=1
+  ```
+
+### Build error on windows
 
 Errors may occur during processing of CMake External project on Windows.
 This is a problem with the Windows environment, but you can work around it by using npm v7.
 If npm is less than v7, please try to cleanup&build after running the following command:
+
 ```bat
 npm i -g npm@7
 ```

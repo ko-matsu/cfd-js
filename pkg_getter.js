@@ -225,6 +225,7 @@ const main = async function() {
             }
             if (path.indexOf('..') == -1) {
               entry.pipe(fs.createWriteStream(path));
+              console.log('copy file:', path);
             } else {
               console.log('skipping bad path:', path);
             }

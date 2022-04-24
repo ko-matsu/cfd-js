@@ -59,13 +59,7 @@ set(CFDCORE_LIBRARY cfdcore)
 set(UNIVALUE_LIBRARY univalue)
 # set(LIBWALLY_LIBRARY wally)
 set(USE_INSTALLED_LIBRARY  TRUE)
-
-# Tentative.
-if(EXISTS "${cfd_DIR}/../lib/x86_64-linux-gnu")
-set(INSTALLED_LIBRARY_DIR "${cfd_DIR}/../lib/x86_64-linux-gnu")
-else()
 set(INSTALLED_LIBRARY_DIR "${cfd_DIR}/../lib")
-endif()
 endif()
 
 # js-api library

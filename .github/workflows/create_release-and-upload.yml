@@ -179,6 +179,12 @@ jobs:
     - name: npm install
       run: npm install
       timeout-minutes: 20
+    - name: debug list
+      run: |
+        echo "ls wrap_js"
+        ls wrap_js
+        echo "ls wrap_js/dl_lib/lib"
+        ls wrap_js/dl_lib/lib
     - name: prebuild
       run: npm run prebuild_napi
     - name: prebuild upload

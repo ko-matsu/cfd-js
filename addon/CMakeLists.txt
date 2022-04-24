@@ -76,7 +76,14 @@ set(INSTALLED_INCLUDE_FOLDER  ".")
 
 else()
 #set(USE_INSTALLED_CFD_LIBRARY  TRUE)
+
+# Tentative.
+if(EXISTS "${cfd_DIR}/../lib/x86_64-linux-gnu")
+set(INSTALLED_LIBRARY_DIR "${cfd_DIR}/../lib/x86_64-linux-gnu")
+else()
 set(INSTALLED_LIBRARY_DIR "${cfd_DIR}/../lib")
+endif()
+
 set(INSTALLED_INCLUDE_FOLDER  "${cfd_DIR}/../include")
 message(STATUS "[find LIBRARY_DIRS]=${INSTALLED_LIBRARY_DIR}")
 message(STATUS "[find INCLUDE_FOLDER]=${INSTALLED_INCLUDE_FOLDER}")
@@ -115,7 +122,13 @@ set(USE_INSTALLED_LIBRARY  TRUE)
 message(STATUS "[cfdjs_api_FOUND]=${cfdjs_api_FOUND}")
 message(STATUS "[cfdjs_api_DIR]=${cfdjs_api_DIR}")
 
+# Tentative.
+if(EXISTS "${cfdjs_api_DIR}/../lib/x86_64-linux-gnu")
+set(INSTALLED_LIBRARY_DIR "${cfdjs_api_DIR}/../lib/x86_64-linux-gnu")
+else()
 set(INSTALLED_LIBRARY_DIR "${cfdjs_api_DIR}/../lib")
+endif()
+
 set(INSTALLED_INCLUDE_FOLDER  "${cfdjs_api_DIR}/../include")
 if(APPLE)
 set(CFDJS_API_LIBRARY "${INSTALLED_LIBRARY_DIR}/libcfdjs_api.a")

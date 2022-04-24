@@ -48,6 +48,8 @@ set(CFDCORE_LIBRARY cfdcore)
 set(UNIVALUE_LIBRARY univalue)
 # set(LIBWALLY_LIBRARY wally)
 
+set(USE_INSTALLED_LIBRARY  FALSE)
+set(INSTALLED_LIBRARY_DIR  ".")
 else()
 message(STATUS "[cfd_FOUND]=${cfd_FOUND}")
 message(STATUS "[cfd_DIR]=${cfd_DIR}")
@@ -56,6 +58,14 @@ set(CFD_LIBRARY cfd)
 set(CFDCORE_LIBRARY cfdcore)
 set(UNIVALUE_LIBRARY univalue)
 # set(LIBWALLY_LIBRARY wally)
+set(USE_INSTALLED_LIBRARY  TRUE)
+
+# Tentative.
+if(EXISTS "${cfd_DIR}/../lib/x86_64-linux-gnu")
+set(INSTALLED_LIBRARY_DIR "${cfd_DIR}/../lib/x86_64-linux-gnu")
+else()
+set(INSTALLED_LIBRARY_DIR "${cfd_DIR}/../lib")
+endif()
 endif()
 
 # js-api library
@@ -126,7 +136,6 @@ target_link_directories(${PROJECT_NAME}
   PRIVATE
     ./
 )
-set(USE_INSTALLED_LIBRARY  FALSE)
 add_dependencies(${PROJECT_NAME} ${CFD_LIBRARY})
 else()
 target_include_directories(${PROJECT_NAME}
@@ -142,9 +151,8 @@ target_include_directories(${PROJECT_NAME}
 target_link_directories(${PROJECT_NAME}
   PRIVATE
     ./
-    ${cfd_DIR}/../lib
+    ${INSTALLED_LIBRARY_DIR}
 )
-set(USE_INSTALLED_LIBRARY  TRUE)
 endif()
 
 target_link_libraries(${PROJECT_NAME}
@@ -162,7 +170,6 @@ target_link_libraries(${PROJECT_NAME}
 
 
 if(USE_INSTALLED_LIBRARY)
-set(INSTALLED_LIBRARY_DIR  ${cfd_DIR}/../lib)
 if(ENABLE_SHARED)
 set(LIB_PREFIX  ${CMAKE_SHARED_LIBRARY_PREFIX})
 set(LIB_SUFFIX  ${CMAKE_SHARED_LIBRARY_SUFFIX})

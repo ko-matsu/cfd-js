@@ -1,10 +1,10 @@
 {
   "name": "cfd-js",
-  "version": "0.4.2-local.0",
-  "domain": "cryptogarageinc",
+  "version": "0.4.2-local.1",
+  "domain": "ko-matsu",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cryptogarageinc/cfd-js.git"
+    "url": "https://github.com/ko-matsu/cfd-js.git"
   },
   "description": "Crypto Finance Development Kit for JavaScript.",
   "author": "Crypto Garage",

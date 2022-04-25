@@ -66,6 +66,7 @@ jobs:
         node-version: 14
     - name: cmake version
       id: cmake_version
+      shell: bash
       run: |
         cmake --version
         cmake_version=$(cmake --version | head -n 1)
@@ -226,6 +227,7 @@ jobs:
         node-version: 14
     - name: cmake version
       id: cmake_version
+      shell: bash
       run: |
         cmake --version
         cmake_version=$(cmake --version | head -n 1)

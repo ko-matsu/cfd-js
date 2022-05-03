@@ -292,3 +292,44 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: npm run prebuild_upload_all -- ${GITHUB_TOKEN}
+
+  upload-object-alpine:
+    name: upload-object-alpine3.14
+    needs: create_releases
+    runs-on: ubuntu-18.04
+
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+    - name: Get the version
+      id: get_version
+      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+    - name: list
+      run: ls -a $GITHUB_WORKSPACE
+    - name: create folder
+      run: |
+        echo "---- dump output data ----"
+        mkdir dist
+    - name: docker run
+      uses: docker://alpine:3.14
+      with:
+        entrypoint: /github/workspace/.github/workflows/docker/alpine_build_entrypoint.sh
+
+    - name: Upload Release Asset
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ needs.create_releases.outputs.release_url }}
+        asset_path: ./dist/cfd.zip
+        asset_name: cfdjs-api-${{ steps.get_version.outputs.VERSION }}-alpine314-musl-x86_64.zip
+        asset_content_type: application/zip
+
+    - name: docker run
+      uses: docker://node:16.15.0-alpine3.14
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        entrypoint: /github/workspace/.github/workflows/docker/alpine_release_entrypoint.sh
+

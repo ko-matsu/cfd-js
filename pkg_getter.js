@@ -78,7 +78,12 @@ const main = async function() {
     } else if (isWindows) {
       targetName = 'win-vs2019';
     } else {
-      targetName = 'ubuntu1804-gcc';
+      const {MUSL, family} = require('detect-libc');
+      if (family == MUSL) {
+        targetName = 'alpine314-musl';
+      } else {
+        targetName = 'ubuntu1804-gcc';
+      }
     }
     const targetUrl = `https://github.com/${repositoryDomain}/cfd-js/releases/download/v${version}/cfdjs-api-v${version}-${targetName}-x86_64.zip`;
     if (!localFile) {

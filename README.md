@@ -270,3 +270,13 @@ If npm is less than v7, please try to cleanup&build after running the following 
 ```bat
 npm i -g npm@7
 ```
+
+### Error loading shared library libcfdjs.so
+
+This error may occur on the Alpine Linux.
+The cause is that the related library can not referenced.
+Please add the installation location to LD_LIBRARY_PATH.
+
+```sh
+export LD_LIBRARY_PATH="./node_modules/cfd-js/build/Release:$LD_LIBRARY_PATH"
+```

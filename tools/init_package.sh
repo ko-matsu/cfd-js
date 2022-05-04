@@ -17,5 +17,7 @@ mkdir node_modules
 chmod 777 node_modules
 
 node --version
+npm --version
+
 npm install
 npm run cmake_release_parallel

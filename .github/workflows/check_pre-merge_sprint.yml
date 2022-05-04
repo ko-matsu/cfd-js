@@ -5,6 +5,7 @@ on:
     branches:
     - features/sprint*
     - feature/ci-*
+    - test/node18
   pull_request:
     branches:
     - features/sprint*
@@ -25,8 +26,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-11, windows-2019, ubuntu-18.04]
-        node: [12, 14, 16, 17]
+        os: [macos-11, windows-2019, ubuntu-20.04]
+        node: [12, 14, 16, 18]
         exclude:
           - os: macos-11
             node: 12

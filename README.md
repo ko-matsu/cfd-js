@@ -134,13 +134,13 @@ When using the cmake-js package and npm script, the options for compilation are 
 
 ```Shell
 npm install
-npm run cmake_all
+npm run cmake_release_parallel
 ```
 
 ### Test
 
 ```Shell
-npm run test_all
+npm run test
 ```
 
 ### Example
@@ -280,3 +280,24 @@ Please add the installation location to LD_LIBRARY_PATH.
 ```sh
 export LD_LIBRARY_PATH="./node_modules/cfd-js/build/Release:$LD_LIBRARY_PATH"
 ```
+
+### For source build
+
+The cfd-js is using prebuild-install & own downloading asset.
+If you want to build directly from source code, you can do so by setting environment variables as follows:
+
+- Windows: (On the command line. Or set from the system setting screen.)
+
+  ```bat
+  set npm_config_build_from_source=true
+  set CFDJS_UNUSE_ASSET=1
+  ```
+
+- MacOS & Linux(Ubuntu):
+
+  ```sh
+  export npm_config_build_from_source=true
+  export CFDJS_UNUSE_ASSET=1
+  ```
+
+see: https://www.npmjs.com/package/prebuild-install

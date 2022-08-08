@@ -6,7 +6,7 @@ on:
     - 'v*'
 
 env:
-  XCODE_VERSION: 10.3
+  XCODE_VERSION: 11.7
 
 jobs:
   create_releases:

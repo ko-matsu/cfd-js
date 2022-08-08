@@ -216,7 +216,7 @@ jobs:
   upload-object-macos:
     name: upload-object-macos
     needs: create_releases
-    runs-on: macos-10.15
+    runs-on: macos-11
 
     steps:
     - name: checkout

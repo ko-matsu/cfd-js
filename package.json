@@ -1,6 +1,6 @@
 {
   "name": "cfd-js",
-  "version": "0.4.6",
+  "version": "0.4.7",
   "domain": "cryptogarageinc",
   "repository": {
     "type": "git",
@@ -166,30 +166,30 @@
     "convert_json_debug": "ts-node ./tools/generate_json_map_class.ts mode=debug"
   },
   "dependencies": {
-    "@types/node": "^17.0.41",
+    "@types/node": "^18.6.4",
     "bindings": "^1.5.0",
     "cmake-js": "github:cryptogarageinc/cmake-js#semver:^6.3.2",
-    "del-cli": "^4.0.1",
+    "del-cli": "^5.0.0",
     "detect-libc": "^2.0.1",
     "got": "^11.8.2",
-    "node-addon-api": "^4.1.0",
+    "node-addon-api": "^5.0.0",
     "npm-run-all": "^4.1.5",
     "prebuild-install": "^7.1.1",
     "run-script-os": "^1.1.6",
     "unzipper": "^0.10.11"
   },
   "devDependencies": {
-    "@types/jest": "^28.1.1",
-    "@typescript-eslint/eslint-plugin": "^5.27.1",
-    "@typescript-eslint/parser": "^5.27.1",
-    "eslint": "^8.17.0",
+    "@types/jest": "^28.1.6",
+    "@typescript-eslint/eslint-plugin": "^5.32.0",
+    "@typescript-eslint/parser": "^5.32.0",
+    "eslint": "^8.21.0",
     "eslint-config-google": "^0.14.0",
-    "jest": "^28.1.1",
+    "jest": "^28.1.3",
     "prebuild": "github:cryptogarageinc/prebuild#semver:^11.0.3",
-    "ts-jest": "^28.0.4",
+    "ts-jest": "^28.0.7",
     "ts-morph": "^15.1.0",
-    "ts-node": "^10.8.1",
-    "typescript": "^4.7.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.7.4",
     "wallet-for-testing-js": "github:cryptogarageinc/wallet-for-testing-js#semver:^0.2.0"
   }
 }

@@ -1,23 +1,21 @@
-const stream = require('stream');
-const util = require('util');
-const fs = require('fs');
-const path = require('path');
+import stream from 'stream';
+import util from 'util';
+import fs from 'fs';
+import path from 'path';
+import got from 'got';
 
-const unzipper = require('unzipper');
+import * as unzipper from 'unzip-stream';
 
-const pkg = require('./package.json');
+import * as pkg from './package.json';
 
 const isWindows = process.platform === 'win32';
 const isMacos = process.platform === 'darwin';
 
 const repositoryDomain = (!pkg.domain) ? 'p2pderivatives' : pkg.domain;
 
-let asyncfs;
-if (fs.promises) {
-  asyncfs = fs.promises;
-}
+import {promises as asyncfs} from 'fs';
 
-const findPath = async function(path) {
+const findPath = async (path: string) => {
   try {
     if (asyncfs) {
       await asyncfs.stat(path);
@@ -30,7 +28,7 @@ const findPath = async function(path) {
   }
 };
 
-const removeFile = async function(path) {
+const removeFile = async (path: string) => {
   try {
     if (asyncfs) {
       await asyncfs.unlink(path);
@@ -74,7 +72,7 @@ const main = async function() {
 
     let targetName = '';
     if (isMacos) {
-      targetName = 'osx-xcode10.3';
+      targetName = 'osx-xcode11.7';
     } else if (isWindows) {
       targetName = 'win-vs2019';
     } else {
@@ -132,7 +130,6 @@ const main = async function() {
       }
     }
 
-    const got = require('got');
     const exists = await findPath(zipfilepath);
     if (exists) {
       // console.log('already downloaded. path=' + zipfilepath);
@@ -153,10 +150,10 @@ const main = async function() {
 
     // remove other file
     // ignore: filepath
-    const dirlist = [];
-    await fs.createReadStream(zipfilepath)
+    const dirlist:string[] = [];
+    fs.createReadStream(zipfilepath)
         .pipe(unzipper.Parse())
-        .on('entry', function(entry) {
+        .on('entry', (entry) => {
           if (entry.type !== 'File') {
             if (dirlist.indexOf(entry.path) === -1) {
               dirlist.push(entry.path);
@@ -165,7 +162,7 @@ const main = async function() {
             const index = entry.path.lastIndexOf('/');
             let dirPath = '';
             if (index > 0) {
-              dirPath = entry.path.substr(0, index);
+              dirPath = entry.path.substring(0, index);
               if (dirlist.indexOf(dirPath) === -1) {
                 dirlist.push(dirPath);
               }
@@ -174,8 +171,9 @@ const main = async function() {
             }
           }
           entry.autodrain();
-        }).promise()
-        .then( () => console.log('search zip file done'), (e) => console.log('error', e));
+        })
+        .on('error', (e) => console.log('error', e));
+    console.log('search zip file done');
     /*
     if (!isWindows) {
       if (isMacos) {
@@ -192,7 +190,7 @@ const main = async function() {
         let dirName = dirpath;
         const index = dirpath.indexOf('usr/local/');
         if (index >= 0) {
-          dirName = dirpath.substr('usr/local/'.length);
+          dirName = dirpath.substring('usr/local/'.length);
         }
         // if (isMacos && (dirName === 'cmake')) {
         //   dirName = 'CMake';
@@ -211,7 +209,7 @@ const main = async function() {
       }
     });
 
-    await fs.createReadStream(zipfilepath)
+    fs.createReadStream(zipfilepath)
         .pipe(unzipper.Parse())
         .on('entry', function(entry) {
           if (entry.type === 'File') {
@@ -219,7 +217,7 @@ const main = async function() {
             let fileName = entry.path;
             const index = fileName.indexOf('usr/local/');
             if (index >= 0) {
-              fileName = fileName.substr('usr/local/'.length);
+              fileName = fileName.substring('usr/local/'.length);
             }
             // if (isMacos) {
             //   fileName = fileName.replace('cmake/', 'CMake/');
@@ -236,8 +234,9 @@ const main = async function() {
           } else {
             entry.autodrain();
           }
-        }).promise()
-        .then( () => console.log('unzip done'), (e) => console.log('error', e));
+        })
+        .on('error', (e) => console.log('error', e) );
+    console.log('unzip done');
     return;
   } catch (error) {
     console.log(error);

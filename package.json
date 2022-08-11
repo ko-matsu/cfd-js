@@ -1,10 +1,10 @@
 {
   "name": "cfd-js",
-  "version": "0.4.7",
-  "domain": "cryptogarageinc",
+  "version": "0.4.7-local.0",
+  "domain": "ko-matsu",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cryptogarageinc/cfd-js.git"
+    "url": "https://github.com/ko-matsu/cfd-js.git"
   },
   "description": "Crypto Finance Development Kit for JavaScript.",
   "author": "Crypto Garage",
@@ -40,7 +40,7 @@
     "prebuild_napi": "prebuild --backend cmake-js -r napi --verbose --include-regex \".*(node|a|so|dll|dylib)$\" --  -O build --CDENABLE_SHARED=off --CDENABLE_CAPI=off --CDENABLE_JSONAPI=off --CDENABLE_TESTS=off --CDENABLE_JS_WRAPPER=off --CDTARGET_RPATH=\"@executable_path;/usr/local/lib;/usr/local/lib64;\\$\\$ORIGIN/node_modules/cfd-js/build/Release;\\$ORIGIN/node_modules/cfd-js/build/Release;\\$ORIGIN/../node_modules/cfd-js/build/Release;\\$ORIGIN/../../node_modules/cfd-js/build/Release;\\$ORIGIN/../../../node_modules/cfd-js/build/Release;\\$ORIGIN/../../../../node_modules/cfd-js/build/Release;\\$ORIGIN/../../../../../node_modules/cfd-js/build/Release;\\$ORIGIN/../../../../../../node_modules/cfd-js/build/Release;\\$ORIGIN/build/Release;\\$ORIGIN/wrap_js/dl_lib/lib\" -C",
     "prebuild_upload_all": "prebuild --upload-all",
     "check_version": "node ./tools/checker.js version",
-    "download_object": "node ./pkg_getter.js",
+    "download_object": "ts-node ./pkg_getter.ts",
     "deploy_object": "node ./pkg_getter.js deployment",
     "cmake_compile": "cmake-js compile -O build",
     "cmake_install_configure": "cmake-js configure -O build --CDENABLE_SHARED=off --CDENABLE_CAPI=off --CDENABLE_JSONAPI=off --CDENABLE_TESTS=off --CDENABLE_JS_WRAPPER=off --CDTARGET_RPATH=\"@executable_path;/usr/local/lib;/usr/local/lib64;\\$\\$ORIGIN/node_modules/cfd-js/build/Release;\\$ORIGIN/node_modules/cfd-js/build/Release;\\$ORIGIN/../node_modules/cfd-js/build/Release;\\$ORIGIN/../../node_modules/cfd-js/build/Release;\\$ORIGIN/../../../node_modules/cfd-js/build/Release;\\$ORIGIN/../../../../node_modules/cfd-js/build/Release;\\$ORIGIN/../../../../../node_modules/cfd-js/build/Release;\\$ORIGIN/../../../../../../node_modules/cfd-js/build/Release;\\$ORIGIN/build/Release;\\$ORIGIN/wrap_js/dl_lib/lib\" -C",
@@ -167,16 +167,19 @@
   },
   "dependencies": {
     "@types/node": "^18.6.4",
+    "@types/unzip-stream": "^0.3.1",
     "bindings": "^1.5.0",
     "cmake-js": "github:cryptogarageinc/cmake-js#semver:^6.3.2",
     "del-cli": "^5.0.0",
     "detect-libc": "^2.0.1",
-    "got": "^11.8.2",
+    "got": "^12.3.1",
     "node-addon-api": "^5.0.0",
     "npm-run-all": "^4.1.5",
     "prebuild-install": "^7.1.1",
     "run-script-os": "^1.1.6",
-    "unzipper": "^0.10.11"
+    "ts-node": "^10.9.1",
+    "typescript": "^4.7.4",
+    "unzip-stream": "^0.3.1"
   },
   "devDependencies": {
     "@types/jest": "^28.1.6",
@@ -188,8 +191,6 @@
     "prebuild": "github:cryptogarageinc/prebuild#semver:^11.0.3",
     "ts-jest": "^28.0.7",
     "ts-morph": "^15.1.0",
-    "ts-node": "^10.9.1",
-    "typescript": "^4.7.4",
     "wallet-for-testing-js": "github:cryptogarageinc/wallet-for-testing-js#semver:^0.2.0"
   }
 }

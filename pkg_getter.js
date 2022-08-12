@@ -74,7 +74,7 @@ const main = async function() {
 
     let targetName = '';
     if (isMacos) {
-      targetName = 'osx-xcode10.3';
+      targetName = 'osx-xcode11.7';
     } else if (isWindows) {
       targetName = 'win-vs2019';
     } else {
@@ -132,7 +132,7 @@ const main = async function() {
       }
     }
 
-    const got = require('got');
+    const {got} = await import('got');
     const exists = await findPath(zipfilepath);
     if (exists) {
       // console.log('already downloaded. path=' + zipfilepath);

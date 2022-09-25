@@ -1,8 +1,8 @@
 #!/bin/bash -u
 
 # while :; do sleep 10; done
-export WORKDIR_ROOT=workspace
-export WORKDIR_PATH=/workspace
+export WORKDIR_ROOT=workspace/workdir
+export WORKDIR_PATH=/workspace/workdir
 
 if [ ! -d ${WORKDIR_PATH} ]; then
   mkdir ${WORKDIR_PATH}
@@ -24,7 +24,7 @@ do
   bitcoin-cli --regtest -datadir=${WORKDIR_PATH}/bitcoind_datadir ping > /dev/null 2>&1
 done
 echo "start bitcoin node"
-bitcoin-cli --regtest -datadir=${WORKDIR_PATH}/bitcoind_datadir createwallet wallet
+bitcoin-cli --regtest -datadir=${WORKDIR_PATH}/bitcoind_datadir createwallet wallet false false "" false false
 
 set -e
 

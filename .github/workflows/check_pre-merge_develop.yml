@@ -12,9 +12,8 @@ on:
 
 env:
   CMAKE_BUILD_PARALLEL_LEVEL: 4
-  IMAGE_NODE_VERSION: 14
-  GITHUB_ELEMENTS_VERSION: v0.1.1
-  GITHUB_BITCOIN_VERSION: v0.1.1
+  GITHUB_ELEMENTS_VERSION: v0.2.2
+  GITHUB_BITCOIN_VERSION: v0.2.2
   GITHUB_DOCKER_IMAGE: ghcr.io/cryptogarageinc/elements-testing
   ELEMENTS_ENTRYPOINT_PATH: /github/workspace/.github/workflows/docker/test_entrypoint.sh
   BITCOIN_ENTRYPOINT_PATH: /github/workspace/.github/workflows/docker/test_bitcoin_entrypoint.sh
@@ -27,7 +26,7 @@ jobs:
     strategy:
       matrix:
         os: [macos-11, windows-2019, ubuntu-20.04]
-        node: [12, 14, 16, 18]
+        node: [14, 16, 18]
         exclude:
           - os: macos-11
             node: 12
@@ -37,7 +36,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
-      timeout-minutes: 1
+      timeout-minutes: 2
       with:
         node-version: ${{ matrix.node }}
         cache: 'npm'
@@ -90,7 +89,8 @@ jobs:
 
   bitcoin-e2e-test:
     name: bitcoin e2e test
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
 
     steps:
     - name: checkout
@@ -101,11 +101,12 @@ jobs:
       run: docker pull ${{ env.GITHUB_DOCKER_IMAGE }}:${{ env.GITHUB_BITCOIN_VERSION }}
     - name: integration test
       run: |
-        docker run -v ${{ github.workspace }}:/github/workspace --entrypoint ${{ env.BITCOIN_ENTRYPOINT_PATH }} ${{ env.GITHUB_DOCKER_IMAGE }}:${{ env.GITHUB_BITCOIN_VERSION }}
+        docker run -u root -v ${{ github.workspace }}:/github/workspace --entrypoint ${{ env.BITCOIN_ENTRYPOINT_PATH }} ${{ env.GITHUB_DOCKER_IMAGE }}:${{ env.GITHUB_BITCOIN_VERSION }}
 
   elements-e2e-test:
     name: elements e2e test
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
+    timeout-minutes: 40
 
     steps:
     - name: checkout
@@ -116,11 +117,11 @@ jobs:
       run: docker pull ${{ env.GITHUB_DOCKER_IMAGE }}:${{ env.GITHUB_ELEMENTS_VERSION }}
     - name: integration test
       run: |
-        docker run -v ${{ github.workspace }}:/github/workspace --entrypoint ${{ env.ELEMENTS_ENTRYPOINT_PATH }} ${{ env.GITHUB_DOCKER_IMAGE }}:${{ env.GITHUB_ELEMENTS_VERSION }}
+        docker run -u root -v ${{ github.workspace }}:/github/workspace --entrypoint ${{ env.ELEMENTS_ENTRYPOINT_PATH }} ${{ env.GITHUB_DOCKER_IMAGE }}:${{ env.GITHUB_ELEMENTS_VERSION }}
 
   doxygen-ubuntu:
     name: doxygen-ubuntu
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
 
     steps:
     - uses: actions/checkout@v3

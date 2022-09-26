@@ -1,8 +1,8 @@
 #!/bin/bash -u
 
 # while :; do sleep 10; done
-export WORKDIR_ROOT=workspace
-export WORKDIR_PATH=/workspace
+export WORKDIR_ROOT=workspace/workdir
+export WORKDIR_PATH=/workspace/workdir
 
 if [ ! -d ${WORKDIR_PATH} ]; then
   mkdir ${WORKDIR_PATH}

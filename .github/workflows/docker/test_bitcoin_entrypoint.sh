@@ -26,14 +26,14 @@ do
   bitcoin-cli --regtest -datadir=${WORKDIR_PATH}/bitcoind_datadir ping > /dev/null 2>&1
 done
 echo "start bitcoin node"
-bitcoin-cli --regtest -datadir=${WORKDIR_PATH}/bitcoind_datadir createwallet wallet
+bitcoin-cli --regtest -datadir=${WORKDIR_PATH}/bitcoind_datadir createwallet wallet false false "" false false
 
 set -e
 
 if [ ! -d node_modules ]; then
   mkdir node_modules
 fi
-chmod 777 node_modules
+chmod -R 777 node_modules
 node --version
 npm install
 npm run cmake_release_parallel

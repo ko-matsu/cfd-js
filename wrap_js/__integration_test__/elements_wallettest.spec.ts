@@ -78,11 +78,11 @@ beforeAll(async () => {
 
   // initialize walletManager
   btcWalletMgr = new WalletManager(btcConfigFilePath, dbDir,
-      mainchainNetwork);
+      mainchainNetwork, cfdjs);
   await btcWalletMgr.setMasterPrivkey(testSeed);
   await btcWalletMgr.initialize(TargetNode.Bitcoin);
   elmWalletMgr = new WalletManager(elementsConfigFilePath, dbDir,
-      network);
+      network, cfdjs);
   await elmWalletMgr.setMasterPrivkey(testSeed);
   await elmWalletMgr.initialize(TargetNode.Elements);
 

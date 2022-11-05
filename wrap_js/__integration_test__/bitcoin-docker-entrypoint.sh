@@ -52,7 +52,17 @@ if [ "$clrFlg" = "true" ]; then
   npm run cmake_release_parallel
 fi
 
-npm run bitcoin_test
+NODE_MAJOR_VER=$(node --version | sed -r 's/^v([0-9]+).([0-9]+).([0-9]+)(\..*)?$/\1/')
+NODE_MINOR_VER=$(node --version | sed -r 's/^v([0-9]+).([0-9]+).([0-9]+)(\..*)?$/\2/')
+if [ $NODE_MAJOR_VER -gt 18 ]; then
+  echo "node version $NODE_MAJOR_VER" ;
+  NODE_OPTIONS="--no-experimental-fetch" npm run bitcoin_test ;
+elif test "$NODE_MAJOR_VER" = "18" && test "$NODE_MINOR_VER" != "0"; then
+  echo "node version $NODE_MAJOR_VER.$NODE_MINOR_VER" ;
+  NODE_OPTIONS="--no-experimental-fetch" npm run bitcoin_test ;
+else
+  npm run bitcoin_test
+fi
 
 if [ "$clrFlg" = "true" ]; then
   rm -rf node_modules

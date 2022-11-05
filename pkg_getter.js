@@ -82,7 +82,7 @@ const main = async function() {
       if (family == MUSL) {
         targetName = 'alpine314-musl';
       } else {
-        targetName = 'ubuntu1804-gcc';
+        targetName = 'ubuntu2004-gcc';
       }
     }
     const targetUrl = `https://github.com/${repositoryDomain}/cfd-js/releases/download/v${version}/cfdjs-api-v${version}-${targetName}-x86_64.zip`;

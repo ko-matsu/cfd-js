@@ -1,6 +1,11 @@
 module.exports = {
-  transform:  {
-    "\\.[t]sx?$": ["ts-jest", { tsconfig: "tsconfig.json" }],
+  transform: {
+    '\\.[t]sx?$': [
+      'ts-jest',
+      {
+        tsconfig: 'tsconfig.json',
+      },
+    ],
   },
   modulePathIgnorePatterns: [
     '<rootDir>/external/.*/external',

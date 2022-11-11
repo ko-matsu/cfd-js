@@ -37,7 +37,7 @@ while [ $? -ne 0 ]
 do
   elements-cli -chain=liquidregtest -datadir=${WORKDIR_PATH}/elementsd_datadir ping > /dev/null 2>&1
 done
-elements-cli -chain=liquidregtest -datadir=${WORKDIR_PATH}/elementsd_datadir createwallet wallet
+elements-cli -chain=liquidregtest -datadir=${WORKDIR_PATH}/elementsd_datadir createwallet wallet false false "" false false
 
 echo "start elements node"
 
@@ -67,7 +67,17 @@ if [ "$clrFlg" = "true" ]; then
   npm run cmake_release_parallel
 fi
 
-npm run elements_test
+NODE_MAJOR_VER=$(node --version | sed -r 's/^v([0-9]+).([0-9]+).([0-9]+)(\..*)?$/\1/')
+NODE_MINOR_VER=$(node --version | sed -r 's/^v([0-9]+).([0-9]+).([0-9]+)(\..*)?$/\2/')
+if [ $NODE_MAJOR_VER -gt 18 ]; then
+  echo "node version $NODE_MAJOR_VER" ;
+  NODE_OPTIONS="--no-experimental-fetch" npm run elements_test ;
+elif test "$NODE_MAJOR_VER" = "18" && test "$NODE_MINOR_VER" != "0"; then
+  echo "node version $NODE_MAJOR_VER.$NODE_MINOR_VER" ;
+  NODE_OPTIONS="--no-experimental-fetch" npm run elements_test ;
+else
+  npm run elements_test
+fi
 
 if [ "$clrFlg" = "true" ]; then
   rm -rf node_modules

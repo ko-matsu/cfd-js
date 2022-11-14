@@ -7,20 +7,19 @@ on:
 
 env:
   XCODE_VERSION: 11.7
+  NODE_VERSION: 16
 
 jobs:
   create_releases:
     name: create-releases
     runs-on: ubuntu-20.04
-    outputs:
-      release_url: ${{ steps.output_url.outputs.upload_url }}
 
     steps:
     - name: checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Get the version
       id: get_version
-      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+      run: echo "VERSION=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_OUTPUT
       shell: bash
     - name: check package.json version
       env:
@@ -28,29 +27,15 @@ jobs:
       run: node ./tools/checker.js version ${version}
     - name: Create Release
       id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: softprops/action-gh-release@v1
       with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
+        name: Release ${{ steps.get_version.outputs.VERSION }}
         body: |
           Changes in this Release
           - First Change
           - Second Change
-        draft: false
         prerelease: true
       continue-on-error: true
-    - name: Get release
-      if: steps.create_release.outcome == 'failure'
-      id: get_release
-      uses: bruceadams/get-release@v1.2.0
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - name: output url
-      id: output_url
-      run: |
-        echo "::set-output name=upload_url::${{steps.get_release.outputs.upload_url}}${{steps.create_release.outputs.upload_url}}"
 
   upload-object-windows-vs2019:
     name: upload-object-win-vs2019
@@ -59,36 +44,24 @@ jobs:
 
     steps:
     - name: checkout
-      uses: actions/checkout@v2
-    - uses: actions/setup-node@v2
+      uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
       timeout-minutes: 1
       with:
-        node-version: 14
+        node-version: ${{ env.NODE_VERSION }}
     - name: cmake version
       id: cmake_version
       shell: bash
-      run: |
-        cmake --version
-        cmake_version=$(cmake --version | head -n 1)
-        echo ::set-output name=CMAKE_VERSION::${cmake_version}
-    - name: update cmake
-      if: "contains(${{steps.cmake_version.outputs.CMAKE_VERSION}}, '3.23.0')"
-      uses: jwlawson/actions-setup-cmake@v1.12
-      with:
-        cmake-version: '3.23.x'
+      run: cmake --version
     - name: update to npm v7
       run: npm i -g npm@7
-    - name: output url
-      id: get_url
-      run: echo "::set-output name=upload_url::${{ needs.create_releases.outputs.release_url }}"
     - name: Get the version
       id: get_version
-      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+      run: echo "VERSION=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_OUTPUT
       shell: bash
-    - name: dump version
-      env:
-        version: ${{ steps.get_version.outputs.VERSION }}
-      run: echo "version=${version}"
+    - name: Get the asset name
+      id: asset_name
+      run: echo "ASSET_NAME=cfdjs-api-${{ steps.get_version.outputs.VERSION }}-win-vs2019-x86_64.zip" >> $GITHUB_OUTPUT
       shell: bash
     - name: create folder
       run: mkdir dist
@@ -110,20 +83,15 @@ jobs:
     - name: create archive file
       run: |
         cd dist
-        Compress-Archive -Path ./* -DestinationPath ../cfd.zip
+        Compress-Archive -Path ./* -DestinationPath ../${{ steps.asset_name.outputs.ASSET_NAME }}
         cd ..
         echo "---- dump zip file ----"
         dir .
     - name: Upload Release Asset
       id: upload-release-asset 
-      uses: actions/upload-release-asset@v1.0.1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: softprops/action-gh-release@v1
       with:
-        upload_url: ${{ steps.get_url.outputs.upload_url }}
-        asset_path: ./cfd.zip
-        asset_name: cfdjs-api-${{ steps.get_version.outputs.VERSION }}-win-vs2019-x86_64.zip
-        asset_content_type: application/zip
+        files: ${{ steps.asset_name.outputs.ASSET_NAME }}
     - name: cleanup
       run: rm -rf build
       shell: bash
@@ -145,25 +113,20 @@ jobs:
 
     steps:
     - name: checkout
-      uses: actions/checkout@v2
-    - uses: actions/setup-node@v2
+      uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
       timeout-minutes: 1
       with:
-        node-version: 14
+        node-version: ${{ env.NODE_VERSION }}
     - name: cmake version
       id: cmake_version
-      run: |
-        cmake --version
-        cmake_version=$(cmake --version | head -n 1)
-        echo ::set-output name=CMAKE_VERSION::${cmake_version}
-    - name: update cmake
-      if: "contains(${{steps.cmake_version.outputs.CMAKE_VERSION}}, '3.23.0')"
-      uses: jwlawson/actions-setup-cmake@v1.12
-      with:
-        cmake-version: '3.23.x'
+      run: cmake --version
     - name: Get the version
       id: get_version
-      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+      run: echo "VERSION=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_OUTPUT
+    - name: Get the asset name
+      id: asset_name
+      run: echo "ASSET_NAME=cfdjs-api-${{ steps.get_version.outputs.VERSION }}-ubuntu2004-gcc-x86_64.zip" >> $GITHUB_OUTPUT
     - name: list
       run: ls -a $GITHUB_WORKSPACE
     - name: create folder
@@ -187,22 +150,14 @@ jobs:
     - name: create archive file
       run: |
         cd dist
-        zip -r cfd.zip usr
+        zip -r ../${{ steps.asset_name.outputs.ASSET_NAME }} usr
         echo "---- dump zip file ----"
-        ls -l
-    - name: output url
-      id: get_url
-      run: echo "::set-output name=upload_url::${{ needs.create_releases.outputs.release_url }}"
+        ls -l ../*.zip
     - name: Upload Release Asset
       id: upload-release-asset 
-      uses: actions/upload-release-asset@v1.0.1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: softprops/action-gh-release@v1
       with:
-        upload_url: ${{ steps.get_url.outputs.upload_url }}
-        asset_path: ./dist/cfd.zip
-        asset_name: cfdjs-api-${{ steps.get_version.outputs.VERSION }}-ubuntu1804-gcc-x86_64.zip
-        asset_content_type: application/zip
+        files: ${{ steps.asset_name.outputs.ASSET_NAME }}
     - name: npm install
       run: npm install
       timeout-minutes: 20
@@ -220,26 +175,21 @@ jobs:
 
     steps:
     - name: checkout
-      uses: actions/checkout@v2
-    - uses: actions/setup-node@v2
+      uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
       timeout-minutes: 1
       with:
-        node-version: 14
+        node-version: ${{ env.NODE_VERSION }}
     - name: cmake version
       id: cmake_version
       shell: bash
-      run: |
-        cmake --version
-        cmake_version=$(cmake --version | head -n 1)
-        echo ::set-output name=CMAKE_VERSION::${cmake_version}
-    - name: update cmake
-      if: "contains(${{steps.cmake_version.outputs.CMAKE_VERSION}}, '3.23.0')"
-      uses: jwlawson/actions-setup-cmake@v1.12
-      with:
-        cmake-version: '3.23.x'
+      run: cmake --version
     - name: Get the version
       id: get_version
-      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+      run: echo "VERSION=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_OUTPUT
+    - name: Get the asset name
+      id: asset_name
+      run: echo "ASSET_NAME=cfdjs-api-${{ steps.get_version.outputs.VERSION }}-osx-xcode${{ env.XCODE_VERSION }}-x86_64.zip" >> $GITHUB_OUTPUT
     - name: Select Xcode version
       run: sudo xcode-select -s '/Applications/Xcode_${{ env.XCODE_VERSION }}.app/Contents/Developer'
     - name: Show Xcode version
@@ -267,22 +217,14 @@ jobs:
     - name: create archive file
       run: |
         cd dist
-        zip -r cfd.zip usr
+        zip -r ../${{ steps.asset_name.outputs.ASSET_NAME }} usr
         echo "---- dump zip file ----"
-        ls -l
-    - name: output url
-      id: get_url
-      run: echo "::set-output name=upload_url::${{ needs.create_releases.outputs.release_url }}"
+        ls -l ../*.zip
     - name: Upload Release Asset
       id: upload-release-asset 
-      uses: actions/upload-release-asset@v1.0.1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: softprops/action-gh-release@v1
       with:
-        upload_url: ${{ steps.get_url.outputs.upload_url }}
-        asset_path: ./dist/cfd.zip
-        asset_name: cfdjs-api-${{ steps.get_version.outputs.VERSION }}-osx-xcode${{ env.XCODE_VERSION }}-x86_64.zip
-        asset_content_type: application/zip
+        files: ${{ steps.asset_name.outputs.ASSET_NAME }}
     - name: npm install
       run: npm install
       timeout-minutes: 20
@@ -300,10 +242,13 @@ jobs:
 
     steps:
     - name: checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Get the version
       id: get_version
-      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+      run: echo "VERSION=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_OUTPUT
+    - name: Get the asset name
+      id: asset_name
+      run: echo "ASSET_NAME=cfdjs-api-${{ steps.get_version.outputs.VERSION }}-alpine314-musl-x86_64.zip" >> $GITHUB_OUTPUT
     - name: list
       run: ls -a $GITHUB_WORKSPACE
     - name: create folder
@@ -314,22 +259,16 @@ jobs:
       uses: docker://alpine:3.14
       with:
         entrypoint: /github/workspace/.github/workflows/docker/alpine_build_entrypoint.sh
-
+    - name: rename asset
+      run: mv ./dist/cfd.zip ${{ steps.asset_name.outputs.ASSET_NAME }}
     - name: Upload Release Asset
       id: upload-release-asset 
-      uses: actions/upload-release-asset@v1.0.1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: softprops/action-gh-release@v1
       with:
-        upload_url: ${{ needs.create_releases.outputs.release_url }}
-        asset_path: ./dist/cfd.zip
-        asset_name: cfdjs-api-${{ steps.get_version.outputs.VERSION }}-alpine314-musl-x86_64.zip
-        asset_content_type: application/zip
-
+        files: ${{ steps.asset_name.outputs.ASSET_NAME }}
     - name: docker run
       uses: docker://node:16.15.0-alpine3.14
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         entrypoint: /github/workspace/.github/workflows/docker/alpine_release_entrypoint.sh
-

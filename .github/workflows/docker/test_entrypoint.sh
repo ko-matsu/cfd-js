@@ -42,6 +42,9 @@ done
 echo "start elements node"
 elements-cli -chain=liquidregtest -datadir=${WORKDIR_PATH}/elementsd_datadir createwallet wallet
 
+bitcoin-cli --regtest -datadir=${WORKDIR_PATH}/bitcoind_datadir createwallet wallet false false "" false false
+elements-cli -chain=liquidregtest -datadir=${WORKDIR_PATH}/elementsd_datadir createwallet wallet false false "" false false
+
 set -e
 
 if [ ! -d node_modules ]; then
@@ -51,4 +54,15 @@ chmod -R 777 node_modules
 node --version
 npm install
 npm run cmake_release_parallel
-npm run elements_test
+
+NODE_MAJOR_VER=$(node --version | sed -r 's/^v([0-9]+).([0-9]+).([0-9]+)(\..*)?$/\1/')
+NODE_MINOR_VER=$(node --version | sed -r 's/^v([0-9]+).([0-9]+).([0-9]+)(\..*)?$/\2/')
+if [ $NODE_MAJOR_VER -gt 18 ]; then
+  echo "node version $NODE_MAJOR_VER" ;
+  NODE_OPTIONS="--no-experimental-fetch" npm run elements_test ;
+elif test "$NODE_MAJOR_VER" = "18" && test "$NODE_MINOR_VER" != "0"; then
+  echo "node version $NODE_MAJOR_VER.$NODE_MINOR_VER" ;
+  NODE_OPTIONS="--no-experimental-fetch" npm run elements_test ;
+else
+  npm run elements_test
+fi

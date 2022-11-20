@@ -6,6 +6,7 @@
  */
 #include <napi.h>  // NOLINT
 
+#include <functional>
 #include <string>
 
 #include "cfd/cfd_common.h"

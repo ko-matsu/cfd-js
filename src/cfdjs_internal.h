@@ -7,6 +7,7 @@
 #ifndef CFD_JS_SRC_CFDJS_INTERNAL_H_
 #define CFD_JS_SRC_CFDJS_INTERNAL_H_
 
+#include <functional>
 #include <string>
 
 #include "cfd/cfd_common.h"

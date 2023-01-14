@@ -9,7 +9,7 @@
   "description": "Crypto Finance Development Kit for JavaScript.",
   "author": "Crypto Garage",
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=14.15.0"
   },
   "binary": {
     "napi_versions": [
@@ -168,7 +168,7 @@
   "dependencies": {
     "@types/node": "^18.11.9",
     "bindings": "^1.5.0",
-    "cmake-js": "github:cryptogarageinc/cmake-js#semver:^6.3.2",
+    "cmake-js": "^7.1.1",
     "del-cli": "^5.0.0",
     "detect-libc": "^2.0.1",
     "got": "^12.5.2",
@@ -185,7 +185,7 @@
     "eslint": "^8.27.0",
     "eslint-config-google": "^0.14.0",
     "jest": "^29.3.1",
-    "prebuild": "github:cryptogarageinc/prebuild#semver:^11.0.3",
+    "prebuild": "github:cryptogarageinc/prebuild#semver:^11.1.0",
     "ts-jest": "^29.0.3",
     "ts-morph": "^16.0.0",
     "ts-node": "^10.9.1",

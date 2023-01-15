@@ -2,42 +2,42 @@ version: '3.8'
 
 services:
   cfd-js-build:
-    image: ghcr.io/cryptogarageinc/elements-testing:v0.2.3
+    image: ghcr.io/cryptogarageinc/elements-testing:v0.2.5
     volumes:
       - ./:/workspace/workdir
     working_dir: /workspace/workdir
     command: /bin/bash -c "./tools/init_package.sh"
 
   cfd-js-elements-test:
-    image: ghcr.io/cryptogarageinc/elements-testing:v0.2.3
+    image: ghcr.io/cryptogarageinc/elements-testing:v0.2.5
     volumes:
       - ./:/workspace/workdir
     working_dir: /workspace/workdir
     command: /bin/bash -c "./wrap_js/__integration_test__/docker-entrypoint.sh cache"
 
   cfd-js-bitcoin-test:
-    image: ghcr.io/cryptogarageinc/elements-testing:v0.2.3
+    image: ghcr.io/cryptogarageinc/elements-testing:v0.2.5
     volumes:
       - ./:/workspace/workdir
     working_dir: /workspace/workdir
     command: /bin/bash -c "./wrap_js/__integration_test__/bitcoin-docker-entrypoint.sh cache"
 
   cfd-js-test:
-    image: ghcr.io/cryptogarageinc/elements-testing:v0.2.3
+    image: ghcr.io/cryptogarageinc/elements-testing:v0.2.5
     volumes:
       - ./:/workspace/workdir
     working_dir: /workspace/workdir
     command: /bin/bash -c "npm run test_example"
 
   cfd-js-update-package-lock:
-    image: ghcr.io/cryptogarageinc/elements-testing:v0.2.3
+    image: ghcr.io/cryptogarageinc/elements-testing:v0.2.5
     volumes:
       - ./:/workspace/workdir
     working_dir: /workspace/workdir
     command: /bin/bash -c "./tools/update_package.sh"
 
   cfd-js-debian-test:
-    image: ghcr.io/cryptogarageinc/elements-testing:v0.2.3
+    image: ghcr.io/cryptogarageinc/elements-testing:v0.2.5
     volumes:
       - ./:/github/workspace
     working_dir: /github/workspace

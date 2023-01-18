@@ -15025,50 +15025,50 @@ SchnorrSignResponseStruct SchnorrSignResponse::ConvertToStruct() const {  // NOL
 }
 
 // ------------------------------------------------------------------------
-// SchnorrVerifyRequest
+// VerifySignatureWithPubkeyRequest
 // ------------------------------------------------------------------------
-cfd::core::JsonTableMap<SchnorrVerifyRequest>
-  SchnorrVerifyRequest::json_mapper;
-std::vector<std::string> SchnorrVerifyRequest::item_list;
+cfd::core::JsonTableMap<VerifySignatureWithPubkeyRequest>
+  VerifySignatureWithPubkeyRequest::json_mapper;
+std::vector<std::string> VerifySignatureWithPubkeyRequest::item_list;
 
-void SchnorrVerifyRequest::CollectFieldName() {
+void VerifySignatureWithPubkeyRequest::CollectFieldName() {
   if (!json_mapper.empty()) {
     return;
   }
-  cfd::core::CLASS_FUNCTION_TABLE<SchnorrVerifyRequest> func_table;  // NOLINT
+  cfd::core::CLASS_FUNCTION_TABLE<VerifySignatureWithPubkeyRequest> func_table;  // NOLINT
 
   func_table = {
-    SchnorrVerifyRequest::GetPubkeyString,
-    SchnorrVerifyRequest::SetPubkeyString,
-    SchnorrVerifyRequest::GetPubkeyFieldType,
+    VerifySignatureWithPubkeyRequest::GetPubkeyString,
+    VerifySignatureWithPubkeyRequest::SetPubkeyString,
+    VerifySignatureWithPubkeyRequest::GetPubkeyFieldType,
   };
   json_mapper.emplace("pubkey", func_table);
   item_list.push_back("pubkey");
   func_table = {
-    SchnorrVerifyRequest::GetMessageString,
-    SchnorrVerifyRequest::SetMessageString,
-    SchnorrVerifyRequest::GetMessageFieldType,
+    VerifySignatureWithPubkeyRequest::GetMessageString,
+    VerifySignatureWithPubkeyRequest::SetMessageString,
+    VerifySignatureWithPubkeyRequest::GetMessageFieldType,
   };
   json_mapper.emplace("message", func_table);
   item_list.push_back("message");
   func_table = {
-    SchnorrVerifyRequest::GetIsHashedString,
-    SchnorrVerifyRequest::SetIsHashedString,
-    SchnorrVerifyRequest::GetIsHashedFieldType,
+    VerifySignatureWithPubkeyRequest::GetIsHashedString,
+    VerifySignatureWithPubkeyRequest::SetIsHashedString,
+    VerifySignatureWithPubkeyRequest::GetIsHashedFieldType,
   };
   json_mapper.emplace("isHashed", func_table);
   item_list.push_back("isHashed");
   func_table = {
-    SchnorrVerifyRequest::GetSignatureString,
-    SchnorrVerifyRequest::SetSignatureString,
-    SchnorrVerifyRequest::GetSignatureFieldType,
+    VerifySignatureWithPubkeyRequest::GetSignatureString,
+    VerifySignatureWithPubkeyRequest::SetSignatureString,
+    VerifySignatureWithPubkeyRequest::GetSignatureFieldType,
   };
   json_mapper.emplace("signature", func_table);
   item_list.push_back("signature");
 }
 
-void SchnorrVerifyRequest::ConvertFromStruct(
-    const SchnorrVerifyRequestStruct& data) {
+void VerifySignatureWithPubkeyRequest::ConvertFromStruct(
+    const VerifySignatureWithPubkeyRequestStruct& data) {
   pubkey_ = data.pubkey;
   message_ = data.message;
   is_hashed_ = data.is_hashed;
@@ -15076,8 +15076,8 @@ void SchnorrVerifyRequest::ConvertFromStruct(
   ignore_items = data.ignore_items;
 }
 
-SchnorrVerifyRequestStruct SchnorrVerifyRequest::ConvertToStruct() const {  // NOLINT
-  SchnorrVerifyRequestStruct result;
+VerifySignatureWithPubkeyRequestStruct VerifySignatureWithPubkeyRequest::ConvertToStruct() const {  // NOLINT
+  VerifySignatureWithPubkeyRequestStruct result;
   result.pubkey = pubkey_;
   result.message = message_;
   result.is_hashed = is_hashed_;
@@ -16255,6 +16255,7 @@ UpdateTxOutAmountRequestStruct UpdateTxOutAmountRequest::ConvertToStruct() const
   result.ignore_items = ignore_items;
   return result;
 }
+
 
 
 // ------------------------------------------------------------------------

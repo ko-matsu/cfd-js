@@ -771,6 +771,12 @@ std::string JsonMappingApi::CalculateEcSignature(
       request_message, KeyStructApi::CalculateEcSignature);
 }
 
+std::string JsonMappingApi::VerifySignatureWithPubkey(const std::string &request_message) {
+  return ExecuteJsonApi<
+      VerifySignatureWithPubkeyRequest, VerifySignatureResponse, VerifySignatureWithPubkeyRequestStruct,
+      VerifySignatureResponseStruct>(request_message, KeyStructApi::VerifySignature);
+}
+
 std::string JsonMappingApi::AddSign(const std::string &request_message) {
   return ExecuteElementsCheckApi<
       api::json::AddSignRequest, api::json::RawTransactionResponse,
@@ -1056,7 +1062,7 @@ std::string JsonMappingApi::SchnorrSign(const std::string &request_message) {
 
 std::string JsonMappingApi::SchnorrVerify(const std::string &request_message) {
   return ExecuteJsonApi<
-      SchnorrVerifyRequest, SchnorrVerifyResponse, SchnorrVerifyRequestStruct,
+      VerifySignatureWithPubkeyRequest, SchnorrVerifyResponse, VerifySignatureWithPubkeyRequestStruct,
       SchnorrVerifyResponseStruct>(request_message, SchnorrApi::SchnorrVerify);
 }
 
@@ -1595,6 +1601,8 @@ void JsonMappingApi::LoadFunctions(
         "CreateMultisigScriptSig", JsonMappingApi::CreateMultisigScriptSig);
     request_map->emplace(
         "CalculateEcSignature", JsonMappingApi::CalculateEcSignature);
+    request_map->emplace(
+        "VerifySignatureWithPubkey", JsonMappingApi::VerifySignatureWithPubkey);
     request_map->emplace("EstimateFee", JsonMappingApi::EstimateFee);
     request_map->emplace("SelectUtxos", JsonMappingApi::SelectUtxos);
     request_map->emplace(

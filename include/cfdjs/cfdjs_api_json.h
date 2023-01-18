@@ -430,6 +430,14 @@ class CFD_JS_API_EXPORT JsonMappingApi {
   static std::string CalculateEcSignature(const std::string &request_message);
 
   /**
+   * @brief Verify a signature for a given message and public key.
+   *
+   * @param[in] request_message     the request json message
+   * @return json string
+   */
+  static std::string VerifySignatureWithPubkey(const std::string &request_message);
+
+  /**
    * @brief AddSign.
    * @param[in] request_message     the request json message
    * @return json string

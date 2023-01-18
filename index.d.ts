@@ -2817,14 +2817,6 @@ export interface SchnorrSignResponse {
     hex: string;
 }
 
-/** Request for creating a Schnorr signature. */
-export interface SchnorrVerifyRequest {
-    pubkey: string;
-    message: string;
-    isHashed?: boolean;
-    signature: string;
-}
-
 /**
  * Contains the validation result
  * @property {boolean} valid - whether the signature is valid.
@@ -3604,7 +3596,10 @@ export interface VerifySignatureRequest {
     genesisBlockHash?: string;
 }
 
-/** @property {boolean} success - verify result (true only. If it fails, an error is thrown.) */
+/**
+ * Contains the validation result
+ * @property {boolean} success - verify result (true only. If it fails, an error is thrown.)
+ */
 export interface VerifySignatureResponse {
     success: boolean;
 }
@@ -3638,6 +3633,17 @@ export interface VerifySignatureTxInRequest {
     confidentialValueCommitment?: string;
     annex?: string;
     codeSeparatorPosition?: bigint | number;
+}
+
+/**
+ * Request for verify signature.
+ * @property {string} pubkey - public key (ecdsa or x-only schnorr)
+ */
+export interface VerifySignatureWithPubkeyRequest {
+    pubkey: string;
+    message: string;
+    isHashed?: boolean;
+    signature: string;
 }
 
 /**
@@ -4422,10 +4428,10 @@ export function SchnorrSign(jsonObject: SchnorrSignRequest): SchnorrSignResponse
 
 /**
  * Verify a Schnorr signature for a given message
- * @param {SchnorrVerifyRequest} jsonObject - request data.
+ * @param {VerifySignatureWithPubkeyRequest} jsonObject - request data.
  * @return {SchnorrVerifyResponse} - response data.
  */
-export function SchnorrVerify(jsonObject: SchnorrVerifyRequest): SchnorrVerifyResponse;
+export function SchnorrVerify(jsonObject: VerifySignatureWithPubkeyRequest): SchnorrVerifyResponse;
 
 /**
  * Select coins.
@@ -4615,6 +4621,13 @@ export function VerifySign(jsonObject: VerifySignRequest): VerifySignResponse;
  * @return {VerifySignatureResponse} - response data.
  */
 export function VerifySignature(jsonObject: VerifySignatureRequest): VerifySignatureResponse;
+
+/**
+ * Verify signature with pubkey.
+ * @param {VerifySignatureWithPubkeyRequest} jsonObject - request data.
+ * @return {VerifySignatureResponse} - response data.
+ */
+export function VerifySignatureWithPubkey(jsonObject: VerifySignatureWithPubkeyRequest): VerifySignatureResponse;
 
 /** error class. */
 export class CfdError extends Error {

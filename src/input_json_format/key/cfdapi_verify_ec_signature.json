@@ -1,0 +1,26 @@
+{
+  "namespace": ["cfd","js","api","json"],
+  "functionName": "VerifySignatureWithPubkey",
+  "comment": "Verify signature with pubkey.",
+  "request": {
+    ":class": "VerifySignatureWithPubkeyRequest",
+    ":class:comment": "Request for verify signature.",
+    "pubkey": "",
+    "pubkey:require": "require",
+    "pubkey:comment": "public key (ecdsa or x-only schnorr)",
+    "message:require": "require",
+    "message": "",
+    "isHashed": false,
+    "isHashed:require": "optional",
+    "signature": "",
+    "signature:require": "require"
+  },
+  "response": {
+    ":class": "VerifySignatureResponse",
+    ":class:comment": "Contains the validation result",
+    "success": true,
+    "success:require": "require",
+    "success:comment": "verify result",
+    "success:hint": "true only. If it fails, an error is thrown."
+  }
+}

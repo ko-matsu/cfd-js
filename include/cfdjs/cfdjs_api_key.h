@@ -43,6 +43,14 @@ class CFD_JS_API_EXPORT KeyStructApi {
       const CalculateEcSignatureRequestStruct& request);
 
   /**
+   * @brief Verify signature.
+   * @param[in] request     request parameter.
+   * @return verify result
+   */
+  static VerifySignatureResponseStruct VerifySignature(
+      const VerifySignatureWithPubkeyRequestStruct& request);
+
+  /**
    * @brief Get privkey's hex from WIF.
    * @param[in] request  parameter into WIF.
    * @return hex, networkType, isCompressed.

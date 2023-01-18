@@ -29,6 +29,8 @@ using cfd::core::NetType;
 using cfd::core::Privkey;
 using cfd::core::Pubkey;
 using cfd::core::SignatureUtil;
+using cfd::core::SchnorrPubkey;
+using cfd::core::SchnorrSignature;
 using cfd::js::api::AddressStructApi;
 
 CreateKeyPairResponseStruct KeyStructApi::CreateKeyPair(
@@ -94,6 +96,33 @@ SignatureDataResponseStruct KeyStructApi::CalculateEcSignature(
   SignatureDataResponseStruct result;
   result = ExecuteStructApi<
       CalculateEcSignatureRequestStruct, SignatureDataResponseStruct>(
+      request, call_func, std::string(__FUNCTION__));
+  return result;
+}
+
+VerifySignatureResponseStruct KeyStructApi::VerifySignature(
+    const VerifySignatureWithPubkeyRequestStruct& request) {
+  auto call_func = [](const VerifySignatureWithPubkeyRequestStruct& request)
+      -> VerifySignatureResponseStruct {  // NOLINT
+    VerifySignatureResponseStruct response;
+
+    ByteData pk(request.pubkey);
+    ByteData256 message = GetMessage(request.message, request.is_hashed);
+    if (pk.GetDataSize() == SchnorrPubkey::kSchnorrPubkeySize) {
+      SchnorrPubkey pubkey(pk);
+      SchnorrSignature signature(request.signature);
+      response.success = pubkey.Verify(signature, message);
+    } else {
+      Pubkey pubkey(pk);
+      ByteData signature(request.signature);
+      response.success = pubkey.VerifyEcSignature(message, signature);
+    }
+    return response;
+  };
+
+  VerifySignatureResponseStruct result;
+  result = ExecuteStructApi<
+      VerifySignatureWithPubkeyRequestStruct, VerifySignatureResponseStruct>(
       request, call_func, std::string(__FUNCTION__));
   return result;
 }

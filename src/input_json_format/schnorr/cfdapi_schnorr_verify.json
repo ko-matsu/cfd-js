@@ -1,9 +1,10 @@
 {
   "namespace": ["cfd", "js", "api", "json"],
+  "functionName": "SchnorrVerify",
   "comment": "Verify a Schnorr signature for a given message",
   "request": {
-    ":class": "SchnorrVerifyRequest",
-    ":class:comment": "Request for creating a Schnorr signature.",
+    ":class": "VerifySignatureWithPubkeyRequest",
+    ":class:comment": "Request for verify signature.",
     "pubkey": "",
     "pubkey:require": "require",
     "message:require": "require",

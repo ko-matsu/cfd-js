@@ -144,21 +144,6 @@ VerifySignatureResponseStruct SchnorrApi::CheckTweakedSchnorrPubkey(
   return result;
 }
 
-/**
- * @brief Return a ByteData256 object from a string and hash it before if requested
- *
- * @param input the message as a string
- * @param is_hashed whether to has the message
- * @return ByteData256
- */
-static ByteData256 GetMessage(std::string input, bool is_hashed) {
-  if (!is_hashed) {
-    return HashUtil::Sha256(input);
-  } else {
-    return ByteData256(input);
-  }
-}
-
 SchnorrSignResponseStruct SchnorrApi::SchnorrSign(
     const SchnorrSignRequestStruct& request) {
   auto call_func = [](const SchnorrSignRequestStruct& request)
@@ -189,8 +174,8 @@ SchnorrSignResponseStruct SchnorrApi::SchnorrSign(
 }
 
 SchnorrVerifyResponseStruct SchnorrApi::SchnorrVerify(
-    const SchnorrVerifyRequestStruct& request) {
-  auto call_func = [](const SchnorrVerifyRequestStruct& request)
+    const VerifySignatureWithPubkeyRequestStruct& request) {
+  auto call_func = [](const VerifySignatureWithPubkeyRequestStruct& request)
       -> SchnorrVerifyResponseStruct {
     SchnorrVerifyResponseStruct response;
     SchnorrPubkey pubkey(request.pubkey);
@@ -203,7 +188,7 @@ SchnorrVerifyResponseStruct SchnorrApi::SchnorrVerify(
   };
   SchnorrVerifyResponseStruct result;
   result = ExecuteStructApi<
-      SchnorrVerifyRequestStruct, SchnorrVerifyResponseStruct>(
+      VerifySignatureWithPubkeyRequestStruct, SchnorrVerifyResponseStruct>(
       request, call_func, std::string(__FUNCTION__));
   return result;
 }

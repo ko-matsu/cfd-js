@@ -81,7 +81,7 @@ class SchnorrApi {
    * @return SchnorrVerifyResponseStruct
    */
   static SchnorrVerifyResponseStruct SchnorrVerify(
-      const SchnorrVerifyRequestStruct& request);
+      const VerifySignatureWithPubkeyRequestStruct& request);
 
   /**
    * @brief Compute a sigpoint from Schnorr pubkey.

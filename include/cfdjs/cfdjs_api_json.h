@@ -435,7 +435,8 @@ class CFD_JS_API_EXPORT JsonMappingApi {
    * @param[in] request_message     the request json message
    * @return json string
    */
-  static std::string VerifySignatureWithPubkey(const std::string &request_message);
+  static std::string VerifySignatureWithPubkey(
+      const std::string &request_message);
 
   /**
    * @brief AddSign.

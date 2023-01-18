@@ -771,10 +771,12 @@ std::string JsonMappingApi::CalculateEcSignature(
       request_message, KeyStructApi::CalculateEcSignature);
 }
 
-std::string JsonMappingApi::VerifySignatureWithPubkey(const std::string &request_message) {
+std::string JsonMappingApi::VerifySignatureWithPubkey(
+    const std::string &request_message) {
   return ExecuteJsonApi<
-      VerifySignatureWithPubkeyRequest, VerifySignatureResponse, VerifySignatureWithPubkeyRequestStruct,
-      VerifySignatureResponseStruct>(request_message, KeyStructApi::VerifySignature);
+      VerifySignatureWithPubkeyRequest, VerifySignatureResponse,
+      VerifySignatureWithPubkeyRequestStruct, VerifySignatureResponseStruct>(
+      request_message, KeyStructApi::VerifySignature);
 }
 
 std::string JsonMappingApi::AddSign(const std::string &request_message) {
@@ -1062,8 +1064,9 @@ std::string JsonMappingApi::SchnorrSign(const std::string &request_message) {
 
 std::string JsonMappingApi::SchnorrVerify(const std::string &request_message) {
   return ExecuteJsonApi<
-      VerifySignatureWithPubkeyRequest, SchnorrVerifyResponse, VerifySignatureWithPubkeyRequestStruct,
-      SchnorrVerifyResponseStruct>(request_message, SchnorrApi::SchnorrVerify);
+      VerifySignatureWithPubkeyRequest, SchnorrVerifyResponse,
+      VerifySignatureWithPubkeyRequestStruct, SchnorrVerifyResponseStruct>(
+      request_message, SchnorrApi::SchnorrVerify);
 }
 
 std::string JsonMappingApi::ComputeSigPointSchnorrPubkey(
@@ -1602,7 +1605,8 @@ void JsonMappingApi::LoadFunctions(
     request_map->emplace(
         "CalculateEcSignature", JsonMappingApi::CalculateEcSignature);
     request_map->emplace(
-        "VerifySignatureWithPubkey", JsonMappingApi::VerifySignatureWithPubkey);
+        "VerifySignatureWithPubkey",
+        JsonMappingApi::VerifySignatureWithPubkey);
     request_map->emplace("EstimateFee", JsonMappingApi::EstimateFee);
     request_map->emplace("SelectUtxos", JsonMappingApi::SelectUtxos);
     request_map->emplace(

@@ -19,8 +19,8 @@ namespace cfd {
 namespace js {
 namespace api {
 
-using cfd::core::CfdException;
 using cfd::core::ByteData256;
+using cfd::core::CfdException;
 using cfd::core::logger::warn;
 
 /**

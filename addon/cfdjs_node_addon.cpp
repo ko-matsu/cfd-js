@@ -592,7 +592,8 @@ Value CalculateEcSignature(const CallbackInfo &information) {
  * @return json string.
  */
 Value VerifySignatureWithPubkey(const CallbackInfo &information) {
-  return NodeAddonJsonApi(information, JsonMappingApi::VerifySignatureWithPubkey);
+  return NodeAddonJsonApi(
+      information, JsonMappingApi::VerifySignatureWithPubkey);
 }
 
 /**

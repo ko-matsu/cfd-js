@@ -54,14 +54,14 @@ const createTestFunc = (helper) => {
       break;
     case 'Pubkey.VerifyEcSignature':
       request = {
-        ...req, 
+        ...req,
         pubkey: req.hex,
         isHashed: true,
         message: req.sighash,
-      }
+      };
       resp = cfd.VerifySignatureWithPubkey(request);
       resp = await helper.getResponse(resp);
-      resp = {bool: resp.success}
+      resp = {bool: resp.success};
       break;
     case 'Pubkey.VerifyMessage':
       resp = cfd.VerifyMessage(req);

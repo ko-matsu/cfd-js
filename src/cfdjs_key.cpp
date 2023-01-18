@@ -28,9 +28,9 @@ using cfd::core::CryptoUtil;
 using cfd::core::NetType;
 using cfd::core::Privkey;
 using cfd::core::Pubkey;
-using cfd::core::SignatureUtil;
 using cfd::core::SchnorrPubkey;
 using cfd::core::SchnorrSignature;
+using cfd::core::SignatureUtil;
 using cfd::js::api::AddressStructApi;
 
 CreateKeyPairResponseStruct KeyStructApi::CreateKeyPair(

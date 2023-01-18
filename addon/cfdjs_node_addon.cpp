@@ -591,6 +591,16 @@ Value CalculateEcSignature(const CallbackInfo &information) {
  * @param[in] information     node addon api callback information
  * @return json string.
  */
+Value VerifySignatureWithPubkey(const CallbackInfo &information) {
+  return NodeAddonJsonApi(
+      information, JsonMappingApi::VerifySignatureWithPubkey);
+}
+
+/**
+ * @brief NodeAddon's JSON API.
+ * @param[in] information     node addon api callback information
+ * @return json string.
+ */
 Value AddSign(const CallbackInfo &information) {
   return NodeAddonJsonApi(information, JsonMappingApi::AddSign);
 }
@@ -1445,6 +1455,9 @@ void InitializeJsonApi(Env env, Object *exports) {
   exports->Set(
       String::New(env, "CalculateEcSignature"),
       Function::New(env, CalculateEcSignature));
+  exports->Set(
+      String::New(env, "VerifySignatureWithPubkey"),
+      Function::New(env, VerifySignatureWithPubkey));
   exports->Set(
       String::New(env, "EstimateFee"), Function::New(env, EstimateFee));
   exports->Set(

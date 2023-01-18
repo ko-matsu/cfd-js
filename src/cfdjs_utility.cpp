@@ -336,6 +336,14 @@ InnerErrorResponseStruct ConvertCfdExceptionToStruct(
   return result;
 }
 
+ByteData256 GetMessage(std::string input, bool is_hashed) {
+  if (!is_hashed) {
+    return HashUtil::Sha256(input);
+  } else {
+    return ByteData256(input);
+  }
+}
+
 }  // namespace api
 }  // namespace js
 }  // namespace cfd

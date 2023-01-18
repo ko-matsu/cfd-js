@@ -1,12 +1,13 @@
 {
-  "namespace": ["cfd", "js", "api", "json"],
-  "functionName": "SchnorrVerify",
-  "comment": "Verify a Schnorr signature for a given message",
+  "namespace": ["cfd","js","api","json"],
+  "functionName": "VerifySignatureWithPubkey",
+  "comment": "Verify signature with pubkey.",
   "request": {
     ":class": "VerifySignatureWithPubkeyRequest",
     ":class:comment": "Request for verify signature.",
     "pubkey": "",
     "pubkey:require": "require",
+    "pubkey:comment": "public key (ecdsa or x-only schnorr)",
     "message:require": "require",
     "message": "",
     "isHashed": false,
@@ -15,10 +16,11 @@
     "signature:require": "require"
   },
   "response": {
-    ":class": "SchnorrVerifyResponse",
+    ":class": "VerifySignatureResponse",
     ":class:comment": "Contains the validation result",
-    "valid": false,
-    "valid:require": "require",
-    "valid:comment": "whether the signature is valid."
+    "success": true,
+    "success:require": "require",
+    "success:comment": "verify result",
+    "success:hint": "true only. If it fails, an error is thrown."
   }
 }

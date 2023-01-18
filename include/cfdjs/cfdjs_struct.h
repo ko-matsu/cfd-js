@@ -3439,12 +3439,12 @@ struct SchnorrSignResponseStruct {
 };
 
 // ------------------------------------------------------------------------
-// SchnorrVerifyRequestStruct
+// VerifySignatureWithPubkeyRequestStruct
 // ------------------------------------------------------------------------
 /**
- * @brief SchnorrVerifyRequestStruct struct
+ * @brief VerifySignatureWithPubkeyRequestStruct struct
  */
-struct SchnorrVerifyRequestStruct {
+struct VerifySignatureWithPubkeyRequestStruct {
   std::string pubkey = "";     //!< pubkey  // NOLINT
   std::string message = "";    //!< message  // NOLINT
   bool is_hashed = false;      //!< is_hashed  // NOLINT

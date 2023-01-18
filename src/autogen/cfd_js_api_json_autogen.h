@@ -67846,18 +67846,18 @@ class SchnorrSignResponse
 };
 
 // ------------------------------------------------------------------------
-// SchnorrVerifyRequest
+// VerifySignatureWithPubkeyRequest
 // ------------------------------------------------------------------------
 /**
- * @brief JSON-API (SchnorrVerifyRequest) class
+ * @brief JSON-API (VerifySignatureWithPubkeyRequest) class
  */
-class SchnorrVerifyRequest
-  : public cfd::core::JsonClassBase<SchnorrVerifyRequest> {
+class VerifySignatureWithPubkeyRequest
+  : public cfd::core::JsonClassBase<VerifySignatureWithPubkeyRequest> {
  public:
-  SchnorrVerifyRequest() {
+  VerifySignatureWithPubkeyRequest() {
     CollectFieldName();
   }
-  virtual ~SchnorrVerifyRequest() {
+  virtual ~VerifySignatureWithPubkeyRequest() {
     // do nothing
   }
   /**
@@ -67893,7 +67893,7 @@ class SchnorrVerifyRequest
    * @return JSON string
    */
   static std::string GetPubkeyString(  // line separate
-      const SchnorrVerifyRequest& obj) {  // NOLINT
+      const VerifySignatureWithPubkeyRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.pubkey_);
   }
   /**
@@ -67902,7 +67902,7 @@ class SchnorrVerifyRequest
    * @param[in] json_value  JSON object.
    */
   static void SetPubkeyString(  // line separate
-      SchnorrVerifyRequest& obj,  // NOLINT
+      VerifySignatureWithPubkeyRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfd::core::ConvertFromUniValue(  // line separate
       obj.pubkey_, json_value);
@@ -67936,7 +67936,7 @@ class SchnorrVerifyRequest
    * @return JSON string
    */
   static std::string GetMessageString(  // line separate
-      const SchnorrVerifyRequest& obj) {  // NOLINT
+      const VerifySignatureWithPubkeyRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.message_);
   }
   /**
@@ -67945,7 +67945,7 @@ class SchnorrVerifyRequest
    * @param[in] json_value  JSON object.
    */
   static void SetMessageString(  // line separate
-      SchnorrVerifyRequest& obj,  // NOLINT
+      VerifySignatureWithPubkeyRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfd::core::ConvertFromUniValue(  // line separate
       obj.message_, json_value);
@@ -67979,7 +67979,7 @@ class SchnorrVerifyRequest
    * @return JSON string
    */
   static std::string GetIsHashedString(  // line separate
-      const SchnorrVerifyRequest& obj) {  // NOLINT
+      const VerifySignatureWithPubkeyRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.is_hashed_);
   }
   /**
@@ -67988,7 +67988,7 @@ class SchnorrVerifyRequest
    * @param[in] json_value  JSON object.
    */
   static void SetIsHashedString(  // line separate
-      SchnorrVerifyRequest& obj,  // NOLINT
+      VerifySignatureWithPubkeyRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfd::core::ConvertFromUniValue(  // line separate
       obj.is_hashed_, json_value);
@@ -68022,7 +68022,7 @@ class SchnorrVerifyRequest
    * @return JSON string
    */
   static std::string GetSignatureString(  // line separate
-      const SchnorrVerifyRequest& obj) {  // NOLINT
+      const VerifySignatureWithPubkeyRequest& obj) {  // NOLINT
     return cfd::core::ConvertToString(obj.signature_);
   }
   /**
@@ -68031,7 +68031,7 @@ class SchnorrVerifyRequest
    * @param[in] json_value  JSON object.
    */
   static void SetSignatureString(  // line separate
-      SchnorrVerifyRequest& obj,  // NOLINT
+      VerifySignatureWithPubkeyRequest& obj,  // NOLINT
       const UniValue& json_value) {
     cfd::core::ConvertFromUniValue(  // line separate
       obj.signature_, json_value);
@@ -68050,27 +68050,27 @@ class SchnorrVerifyRequest
    * @param[in] data   struct data.
    */
   void ConvertFromStruct(
-      const SchnorrVerifyRequestStruct& data);
+      const VerifySignatureWithPubkeyRequestStruct& data);
 
   /**
    * @brief Convert class to struct.
    * @return  struct data.
    */
-  SchnorrVerifyRequestStruct ConvertToStruct()  const;
+  VerifySignatureWithPubkeyRequestStruct ConvertToStruct()  const;
 
  protected:
   /**
    * @brief definition type of Map table.
    */
-  using SchnorrVerifyRequestMapTable =
-    cfd::core::JsonTableMap<SchnorrVerifyRequest>;
+  using VerifySignatureWithPubkeyRequestMapTable =
+    cfd::core::JsonTableMap<VerifySignatureWithPubkeyRequest>;
 
   /**
    * @brief Get JSON mapping object.
    * @return JSON mapping object.
    * @see cfd::core::JsonClassBase::GetJsonMapper()
    */
-  virtual const SchnorrVerifyRequestMapTable& GetJsonMapper() const {  // NOLINT
+  virtual const VerifySignatureWithPubkeyRequestMapTable& GetJsonMapper() const {  // NOLINT
     return json_mapper;
   }
   /**
@@ -68096,7 +68096,7 @@ class SchnorrVerifyRequest
  /**
   * @brief JsonFunctionMap table
   */
-  static SchnorrVerifyRequestMapTable json_mapper;
+  static VerifySignatureWithPubkeyRequestMapTable json_mapper;
   /**
    * @brief field name list.
    */
@@ -73250,6 +73250,7 @@ class UpdateTxOutAmountRequest
    */
   JsonObjectVector<UpdateTxOutAmountData, UpdateTxOutAmountDataStruct> txouts_;  // NOLINT
 };
+
 
 
 // ------------------------------------------------------------------------

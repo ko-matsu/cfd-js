@@ -10,6 +10,7 @@
 #include <string>
 
 #include "cfd/cfd_common.h"
+#include "cfdcore/cfdcore_bytedata.h"
 #include "cfdcore/cfdcore_exception.h"
 #include "cfdcore/cfdcore_logger.h"
 #include "cfdjs/cfdjs_struct.h"
@@ -18,6 +19,7 @@ namespace cfd {
 namespace js {
 namespace api {
 
+using cfd::core::ByteData256;
 using cfd::core::CfdException;
 using cfd::core::logger::warn;
 
@@ -27,6 +29,15 @@ using cfd::core::logger::warn;
  * @return ErrorResponse object
  */
 InnerErrorResponseStruct ConvertCfdExceptionToStruct(const CfdException& cfde);
+
+/**
+ * @brief Return a ByteData256 object from a string and hash it before if requested
+ *
+ * @param input the message as a string
+ * @param is_hashed whether to has the message
+ * @return ByteData256
+ */
+ByteData256 GetMessage(std::string input, bool is_hashed);
 
 /**
  * @brief 構造体指定処理の共通部テンプレート関数.

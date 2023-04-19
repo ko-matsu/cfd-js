@@ -25,12 +25,12 @@ jobs:
     strategy:
       matrix:
         os: [macos-11, windows-2019, ubuntu-20.04]
-        node: [14, 16, 18, 19]
+        node: [16, 18, 19, 20]
         exclude:
           - os: macos-11
-            node: 12
-          - os: macos-11
             node: 14
+          - os: macos-11
+            node: 19
 
     steps:
     - uses: actions/checkout@v3

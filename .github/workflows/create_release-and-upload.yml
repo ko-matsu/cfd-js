@@ -7,7 +7,7 @@ on:
 
 env:
   XCODE_VERSION: 11.7
-  NODE_VERSION: 16
+  NODE_VERSION: 18
 
 jobs:
   create_releases:
@@ -236,7 +236,7 @@ jobs:
       run: npm run prebuild_upload_all -- ${GITHUB_TOKEN}
 
   upload-object-alpine:
-    name: upload-object-alpine3.14
+    name: upload-object-alpine3.16
     needs: create_releases
     runs-on: ubuntu-20.04
 
@@ -256,7 +256,7 @@ jobs:
         echo "---- dump output data ----"
         mkdir dist
     - name: docker run
-      uses: docker://alpine:3.14
+      uses: docker://alpine:3.16
       with:
         entrypoint: /github/workspace/.github/workflows/docker/alpine_build_entrypoint.sh
     - name: rename asset
@@ -267,7 +267,7 @@ jobs:
       with:
         files: ${{ steps.asset_name.outputs.ASSET_NAME }}
     - name: docker run
-      uses: docker://node:16.15.0-alpine3.14
+      uses: docker://node:18.16-alpine3.16
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
